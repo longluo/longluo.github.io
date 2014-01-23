@@ -3,7 +3,7 @@ layout: post
 title: "最近几天的日志和Todos"
 date: 2014-01-20 22:07:18 +0800
 comments: true
-categories: 
+categories: Life Android Guitar
 ---
 
 #### ***By Long Luo***

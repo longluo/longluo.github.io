@@ -3,7 +3,7 @@ layout: post
 title: "试听了一节吉他课"
 date: 2014-01-19 18:34:49 +0800
 comments: true
-categories: 
+categories: Life Blog 吐槽
 ---
 
 #### ***By Long Luo***
