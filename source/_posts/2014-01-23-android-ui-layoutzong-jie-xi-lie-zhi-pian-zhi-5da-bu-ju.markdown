@@ -3,7 +3,9 @@ layout: post
 title: "Android UI Layout总结系列之篇之5大布局"
 date: 2014-01-23 20:16:36 +0800
 comments: true
-categories: Android UI Layout
+categories: Android
+description: "Android UI Layout总结系列之篇之5大布局."
+keywords: Android, UI, Layout, 布局
 ---
 
 #### ***By Long Luo***
@@ -20,14 +22,12 @@ categories: Android UI Layout
 2. 使用XML完全定义界面
 3. 结合使用两者，在XML中定义，在JAVA中引用和修改
 
-
 #### Android SDK中关于UI的核心类：
 
 Android.view.View和android.view.ViewGroup
 
 android中的常见UI控件均会扩展View和ViewGroup其中有一部分是专门用来控制其子View位置和大小，这些类我们称为布局管理器。
-
-
+<!--more-->
 #### ViewGroup
 
 1.LayoutParams是ViewGroup内部类，包含了ViewGroup的布局参数，用来告诉它们的父类它们想怎么在父类中布局（大小和位置），所有在LayoutParams及其子类中定义的布局参数在xml中定义都是通过layout_***定义的。
@@ -205,7 +205,7 @@ layout_gravity  相对于父元素的重力值(用法同LinearLayout)
 2. 关于android:layout_width="fill_parent"和android:layout_height="wrap_content" ，这是对每个布局宽和高的设置。wrap_content可表示随着其中控件的不同而改变这个布局的宽度或高度，类似于自动设置宽和高，fill_parent使布局填充整个屏幕，另外还有一种match_parent，它本质上和 fill_parent 一样，并从API Level8开始替代fill_parent。
 
 
-
 #### ***Created By Long Luo at 2014/1/21 14:20:57*** 
-
 #### ***Completed By Long Luo at 2014/1/23 18:13:04 @Shenzhen, China.***
+
+### [ My Blog ](http://www.imlongluo.com/blog "Blog")

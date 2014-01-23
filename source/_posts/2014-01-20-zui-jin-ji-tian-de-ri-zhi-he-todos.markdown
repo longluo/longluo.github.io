@@ -3,7 +3,9 @@ layout: post
 title: "最近几天的日志和Todos"
 date: 2014-01-20 22:07:18 +0800
 comments: true
-categories: Life Android Guitar
+categories: Guitar
+description: "最近几天的日志和Todos."
+keywords: Guitar, Music, Android, WordPress, Swimming
 ---
 
 #### ***By Long Luo***
@@ -18,7 +20,7 @@ categories: Life Android Guitar
 
 吉他目前啥和弦都忘了，和弦的理解：
 **音乐的旋律，需要不同的音符，而和弦就是在每个音符根据一定的音乐原理，可以让这个音或者这段旋律更好听，所以才需要和弦。**
-
+<!--more-->
 - **Android**
 
 昨天成功的将WordPress Android客户端编译Okay，目前好多代码需要看。
@@ -39,3 +41,5 @@ WheelView, Sliding, ActionBar相关控件的实现希望自己可以好好认真
 
 
 #### ***Long Luo PM22:30 ~ PM23:48 @Jan. 20th, 2014 at Shenzhen, China.***
+
+### [ My Blog ](http://www.imlongluo.com/blog "Blog")

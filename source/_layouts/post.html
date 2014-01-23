@@ -31,12 +31,6 @@ single: true
     <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
   </section>
 {% endif %}
-{% if site.duoshuo_short_name and site.duoshuo_comments == true and page.comments == true %}
-  <section>
-    <h1>Comments</h1>
-    <div id="comments" aria-live="polite">{% include post/duoshuo.html %}</div>
-  </section>
-{% endif %}
 </div>
 {% unless page.sidebar == false %}
 <aside class="sidebar">
@@ -47,4 +41,14 @@ single: true
   {% endif %}
 </aside>
 {% endunless %}
-
+<!-- For Related Post -->
+<section>
+  <h2>相关文章：</h2>
+  <ul class="posts">
+       {% for post in site.related_posts limit:5 %}
+          <li class="related">
+          	<a href="{{ root_url }}{{ post.url }}">{{ post.title }}</a>
+          </li>
+      {% endfor %}
+  </ul>
+</section>
