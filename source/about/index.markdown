@@ -9,12 +9,17 @@ description: "about me"
 keywords: Long Luo, Program, 程序员, Android 
 ---
 
-## My Name is **Long Luo**， 80后。程序员一枚。
+## My Name is [Long Luo](http://www.imlongluo.com)， 80后。程序员一枚，现居深圳。
+
 ---------
 
-#### 个人主页: <http://www.imlongluo.com>
-#### 博客主页: <http://www.imlongluo.com/blog> & CSDN Blog: <http://blog.csdn.net/tcpipstack>
-### 微信: @imlongluo
+### [个人主页](http://www.imlongluo.com)
+### [独立博客主页](http://www.imlongluo.com/blog) & [CSDN Blog](http://blog.csdn.net/tcpipstack)
+### 我的个人微信: 
+![QRCode](http://databank.u.qiniudn.com/images/Me/weixin_my_qrcode_512x512.jpeg "@imlongluo")
+### 我的微信公众号：
+![QRCode](http://databank.u.qiniudn.com/images/Me/weixin_mp_irefactoring_qrcode_430x430.jpg "@irefactoring")
+
 ### 微博: [@Long_Luo](http://weibo.com/uniqueshine)
 ### Follow [@FrankLuo](http://twitter.com/frankluo2005) on Twitter for the latest news.
 ### Facebook: [@FrankLuo](http://www.facebook.com/frankluo2005) 
@@ -36,6 +41,9 @@ keywords: Long Luo, Program, 程序员, Android
 *  游泳、羽毛球，更喜欢在水里玩球；
 *  人生，就像肥皂泡一样。风一吹就呼呼的飞上了天，注意到的时候，却啪地一下消失了。就在即将破裂的瞬间，想要自己飞得更高。但回过神来的时候，却总是来不及。
 *  关于自己的生活，我和你都不是读者，而是作者。至少结局，还是能自己说了算的。
+
+
+#### Update at 2014.02.11 at shenzhen.
 
  
 
