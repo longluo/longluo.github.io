@@ -28,3 +28,16 @@
   {% include custom/head.html %}
   {% include google_analytics.html %}
 </head>
+<script type="text/javascript">
+
+<!-- for adding new target="_blank" -->
+function addBlankTargetForLinks() {
+  $('a[href^="http"]').each(function(){
+  	$(this).attr('target', '_blank');
+  });
+}
+
+$(document).bind('DOMNodeInserted', function(event){
+	addBlankTargetForLinks();
+});
+</script>

@@ -32,6 +32,8 @@ keywords: Android, ListView, Layout, 性能, Adapter, 技巧
 
 为了实现第二点，在我们滑动屏幕时，*ListView*通过使用View回收器来增加低于或者高于当当前窗口的Views，并当前活动的Views移动到一个可回收池中。这样的话，*ListView*只需要在内存中保持足够多的Views去填充分配空间中的布局和一些额外的可回收Views，即使当你的Adapter有上百个items的适合。它会使用不同的方法去填充行之间的空间，从顶部或者底部等等，具体取决于窗口是如何变化的。
 
+<!--more-->
+
 下面这个图很直观的展示了当你按下ListView的时候发生了什么：
 
 ![ListView](http://blogresource.qiniudn.com/2014/Android/listview_tips.png)
@@ -96,7 +98,7 @@ View Holder的模式就是减少在Adapter中*getView()*方法中调用*findView
 
 很多时候，Android应用在*ListView*每行中显示一些多媒体内容，比如图片等。在Adapter中的*getView()*使用应用内置的图片资源还是不会出什么问题的，因为可以存储在Android的高速缓存中。但当你想多态的显示来自本地磁盘或网络的内容时，例如缩略图，简历图片等。在这种情况下，你可能不希望直接在Adapter中的*getView()*加载它们，因为[IO进程会阻塞UI线程](http://blog.ometer.com/2008/09/07/synchronous-io-never-ok/)。如果这样做的话，*ListView*就看起来非常卡顿。
 
-在一个单独的线程，如果想要运行的所有行的IO操作或任何高负载CPU限制的异步操作。其中的技巧就是要做到符合*ListView*的回收行为。例如，如果在Adapter中的*getView()*中，使用*AsyncTask*的加载去加载资料图片，在*AsyncTask*完成之前，你正在加载的图片View就有可能被回收用于其他地方。所以，一旦异步操作完成的同时，需要一种机制来知道如果相应的View有没有被回收，。
+在一个单独的线程，如果想要运行的所有行的IO操作或任何高负载CPU限制的异步操作。其中的技巧就是要做到符合*ListView*的回收行为。例如，如果在Adapter中的*getView()*中，使用*AsyncTask*的加载去加载资料图片，在*AsyncTask*完成之前，你正在加载的图片View就有可能被回收用于其他地方。所以，一旦异步操作完成的同时，需要一种机制来知道如果相应的View有没有被回收。
 
 一个简单的方法来实现这一目标是通过附加一些标识该行与它相关的View的信息。然后，当异步操作完成的适合，检查目标行的View和标识的View是否一致。实现这一目标的方法很多。下面是实现这种方法的一个很简单的示例：
 
@@ -158,8 +160,7 @@ View Holder的模式就是减少在Adapter中*getView()*方法中调用*findView
 
 希望它是你在Android开发中一个很有用的参考:-)
 
-#### Created Time: 2014/2/11 20:22:10 
 
-#### ***Long Luo Feb. 11th, 2014 @Shenzhen, China.***
+#### ***Long Luo at PM17:30 Feb. 14th, 2014 @Shenzhen, China.***
 
 

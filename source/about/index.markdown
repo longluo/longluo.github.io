@@ -5,8 +5,8 @@ date: 2014-01-23 22:37
 comments: true
 sharing: true
 footer: true
-description: "about me"
-keywords: Long Luo, Program, 程序员, Android 
+description: about me, 关于我
+keywords: Long Luo, Frank Luo, Program, Code, 程序员, Android, iOS, App Develop, Java 
 ---
 
 ## My Name is [Long Luo](http://www.imlongluo.com)， 80后。程序员一枚，现居深圳。
