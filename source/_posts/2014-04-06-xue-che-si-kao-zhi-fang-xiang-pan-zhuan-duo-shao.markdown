@@ -69,5 +69,5 @@ keywords: 2014, 驾驶, 汽车
 开车是需要多多练习，熟能生巧:-)
 
 
-#### ***Long Luo at PM19:43 ~ PM April 06th, 2014 @Shenzhen, China.***
+#### ***Long Luo at PM19:43 ~ PM20:25 April 06th, 2014 @Shenzhen, China.***
 
