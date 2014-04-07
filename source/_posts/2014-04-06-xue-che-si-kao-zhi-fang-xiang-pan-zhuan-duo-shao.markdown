@@ -3,9 +3,9 @@ layout: post
 title: "学车思考之一:方向盘转多少,车轮就转多少度对吗?"
 date: 2014-04-06 19:43:27 +0800
 comments: true
-categories: 汽车, 思考
+categories: Drive
 description: "学车思考之一:方向盘转多少,车轮就转多少度对吗?"
-keywords: 2014, 驾驶, 汽车
+keywords: 驾驶, 汽车, Drive
 ---
 
 #### ***By Long Luo***
