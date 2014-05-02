@@ -1,18 +1,17 @@
 ---
 layout: post
-title: "如何设计一个优秀的App?"
-date: 2014-04-12 10:30:39 +0800
+title: "Android网络编程指南App 3.0版本发布"
+date: 2014-04-27 21:29:56 +0800
 comments: true
-categories: App Design
-description: "如何设计一个优秀的App?"
-keywords: App,设计,要点
+categories: App 网络编程
+description: "Android网络编程指南App 3.0版本发布?"
+keywords: App,Android网络编程
 ---
 
 #### ***By Long Luo***
+---
 
-题目有点标题党了，因为这是一个*非常大的课题，涉及面的东西之多*，可以写好几本书了。
-
-这几年，体验了很多App，也亲自写了一些App，最近又去思考了一些东西，在此把自己的一些想法写出来，希望能够抛砖引玉，一起交流一些想法。
+2013年有一段时间
 
 ### 1. App是为了解决什么问题？
 ---------
@@ -62,6 +61,10 @@ Todos
 好吧，我再去修炼一些技术，再来发言。
 
 
-#### ***Long Luo Version0.1 Created at 2014/04/12 10:36 @Shenzhen, China.***
+#### ***Long Luo Version0.1 Created at 2014/04/27 21:35 @Shenzhen, China.***
 #### ***Long Luo Version0.1 Completed at 2014/04/13 22:26 @Shenzhen, China.***
+
+
+
+
 
