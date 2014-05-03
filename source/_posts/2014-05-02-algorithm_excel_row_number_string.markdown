@@ -16,7 +16,9 @@ keywords: Algorithm
 
 例如：A对应1，Z对应26，AA对应27，AZ对应52 ......
 
-这个题目是一个典型的***26进制***思路去处理，但是这个题目里面有很多陷阱，在1, 26, 52等特殊情况进行考虑，经过晚上接近1个小时的编写，完成的代码如下：
+这个题目是一个典型的***26进制***思路去处理，一个整数除26然后但是这个题目里面有很多陷阱，在1, 26, 52等特殊情况进行考虑，经过晚上接近1个小时的编写，完成的代码如下：
+
+<!--more-->
 
 #### `C++`代码如下所示：
 
@@ -35,29 +37,29 @@ keywords: Algorithm
 		while((num >= 1) && (n < 255))
 		{
 			m = num % 26;
-          if (m != 0)
-         {
-             res[n] = 'A' + m - 1;
-         }
-          else
-         {
-             res[n] = 'Z';
-              num--;
-         }
+			if (m != 0)
+			{
+				res[n] = 'A' + m - 1;
+			}
+			else
+        {
+        		res[n] = 'Z';
+        		num--;
+        }
          
-          num /= 26;
-         n++;
+			num /= 26;
+			n++;
     }
 
-     for(m = n; m > 0; m--)
-    {
-          pcout[n - m] = res[m - 1];
-    }
+		for(m = n; m > 0; m--)
+		{
+			pcout[n - m] = res[m - 1];
+		}
 
-     pcout[n] = '\0' ;
-     delete[] res;
+		pcout[n] = '\0';
+		delete[] res;
 
-     return;
+		return;
 	}
 
 	//soti：字符串到数字的转换
@@ -96,14 +98,14 @@ keywords: Algorithm
 
 	int main()
 	{
-     char out[255] = {0};
-    printf( "out = %s\n", out);
-    itos(32, out);
-    printf( "out = %s\n", out);
+		char out[255] = {0};
+    	printf( "out = %s\n", out);
+    	itos(32, out);
+    	printf( "out = %s\n", out);
 
-    getchar();
+    	getchar();
 
-     return true ;
+     	return true ;
 	}
 
 
