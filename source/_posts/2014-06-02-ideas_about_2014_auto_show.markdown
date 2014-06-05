@@ -116,5 +116,5 @@ keywords: 车展,思考
 
 
 #### ***Long Luo Created at PM23:35 ~ 00:41 @June 02nd, 2014 at Shenzhen, China.***
-#### ***Long Luo Modified at PM00:05 @June 05th, 2014 at Shenzhen, China.***
+#### ***Long Luo Modified at AM00:05 @June 05th, 2014 at Shenzhen, China.***
 
