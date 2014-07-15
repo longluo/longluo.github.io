@@ -4,12 +4,12 @@ title: "视频频道页面重构总结"
 date: 2014-07-02 23:16:42 +0800
 comments: true
 categories: Android
-description: "本文是关于视频频道页面的重构总结"
+description: "本文是关于视频频道页面的重构总结，通过重构之后，将CPU执行时间降低了50%，由7.9%降低到了3.8%。"
 keywords: Android
 ---
 
-#### By Long Luo
-#### @2014.07.01
+### *By Long Luo*
+### @2014.07.01
 
 ## 1. 重构前的一些缺点
 ----------
@@ -72,5 +72,6 @@ keywords: Android
 从上图可以看出，getView()占据的CPU时间仅为**3.2%**，效率大大提高。
 
 
-#### Created by Long Luo at 2014/7/1 15:45:01 
-#### Completed by Long Luo at 2014/7/2 14:42:29 
+#### *Created by Long Luo at 2014/7/1 15:45:01*
+#### *Completed by Long Luo at 2014/7/2 14:42:29*
+
