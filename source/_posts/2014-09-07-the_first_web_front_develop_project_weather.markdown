@@ -17,4 +17,4 @@ keywords: Web, 天气
 使用了jQuery库开发，虽然现在啥都不会，也就到处copy。
 
 
-#### *Created by Long Luo at 2014-09-07 11:36:20 @Shenzhen, China.
+#### *Created by Long Luo at 2014-09-07 11:36:20 @Shenzhen, China.*
