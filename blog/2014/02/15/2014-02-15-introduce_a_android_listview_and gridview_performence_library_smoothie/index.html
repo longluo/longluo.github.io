@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>介绍一个提高Android ListView或GridView的Smoothie库 | Long Luo&#39;s Dev Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="介绍一个提高Android ListView或GridView的Smoothie库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="介绍一个提高Android ListView或GridView的Smoothie库">
+<meta property="og:url" content="http://yoursite.com/blog/2014/02/15/2014-02-15-introduce_a_android_listview_and gridview_performence_library_smoothie/index.html">
+<meta property="og:site_name" content="Long Luo's Dev Notes">
+<meta property="og:description" content="介绍一个提高Android ListView或GridView的Smoothie库">
+<meta property="og:image" content="http://blogresource.qiniudn.com/2014/Android/smoothie.png">
+<meta property="og:updated_time" content="2016-04-07T17:04:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="介绍一个提高Android ListView或GridView的Smoothie库">
+<meta name="twitter:description" content="介绍一个提高Android ListView或GridView的Smoothie库">
+<meta name="twitter:image" content="http://blogresource.qiniudn.com/2014/Android/smoothie.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Long Luo&#39;s Dev Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Long Luo&#39;s Dev Notes</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">每一天都是奇迹</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2014-02-15-introduce_a_android_listview_and gridview_performence_library_smoothie" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2014/02/15/2014-02-15-introduce_a_android_listview_and gridview_performence_library_smoothie/" class="article-date">
+  <time datetime="2014-02-15T03:41:06.000Z" itemprop="datePublished">2014-02-15</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      介绍一个提高Android ListView或GridView的Smoothie库
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="翻译-By-Long-Luo"><a href="#翻译-By-Long-Luo" class="headerlink" title="翻译 By Long Luo"></a><strong><em>翻译 By Long Luo</em></strong></h4><h4 id="原文链接：Introducing-Smoothie"><a href="#原文链接：Introducing-Smoothie" class="headerlink" title="原文链接：Introducing Smoothie"></a>原文链接：<a href="http://lucasr.org/2013/01/06/introducing-smoothie/" target="_blank" rel="external">Introducing Smoothie</a></h4><hr>
+<p><img src="http://blogresource.qiniudn.com/2014/Android/smoothie.png" alt="smoothie"></p>
+<p><a href="http://pattrnapp.com/" target="_blank" rel="external">Pattrn</a> UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：<a href="https://github.com/lucasr/smoothie" target="_blank" rel="external">Smoothie</a>。</p>
+<p><strong><em>Smoothie</em></strong>提供了一个简单的API来异步加载<em>ListView/GridView</em>的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。</p>
+<a id="more"></a>
+<p><strong><em>Smoothie</em></strong>是<strong>手势识别</strong>：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，<strong><em>Smoothie</em></strong>使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。</p>
+<p>那么，怎么使用它呢？很简单：</p>
+<ol>
+<li><p>首先在你的布局文件中增加一个<a href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncListView.java" target="_blank" rel="external">AsyncListView</a>或者<a href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncGridView.java" target="_blank" rel="external">AsyncGridView</a>，只需要增加一个额外传递的方法到响应的父类中。</p>
+</li>
+<li><p>然后实现一个和你的应用程序加载和显示项目逻辑一致的<a href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemLoader.java" target="_blank" rel="external">ItemLoader</a>。你将需要重写下面四种方法：<em>getItemParams()</em>, <em>loadItem()</em>, <em>loadItemFromMemory()</em>以及<em>displayItem()</em>。</p>
+</li>
+<li><p>最后在<em>ItemLoader</em>中建一个<a href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemManager.java" target="_blank" rel="external">ItemManager</a>，同时把它和目标<em>AsyncListView</em>或者<em>AsyncGridView</em>关联起来。</p>
+</li>
+</ol>
+<p>在你的<em>ListView/GridView</em>控件需要异步加载时，考虑下把<strong><em>Smoothie</em></strong>作为你的轻量骨架。您可以轻松地连接您自己的图像加载/缓存框架在里面。例如，一个典型的示例应用，<a href="https://github.com/chrisbanes/Android-BitmapCache" target="_blank" rel="external">Android-BitmapCache</a>实现了<a href="https://github.com/lucasr/smoothie/blob/master/samples/bitmap-cache/src/org/lucasr/smoothie/samples/bitmapcache/PatternsListLoader.java" target="_blank" rel="external">ItemLoader</a>使用一个简单的淡入淡出的动画来显示图像。</p>
+<p>除了在代码中的API文档，还可以看看App示例，一边更好地了解如何使用该库。请记住，API是​不是最终版本哦。目前反响是非常好的！</p>
+<p><strong>Enjoy it:-)</strong></p>
+<h4 id="Long-Luo-at-AM11-30-12-42-Feb-15th-2014-Shenzhen-China"><a href="#Long-Luo-at-AM11-30-12-42-Feb-15th-2014-Shenzhen-China" class="headerlink" title="Long Luo at AM11:30 ~ 12:42 Feb. 15th, 2014 @Shenzhen, China."></a><strong><em>Long Luo at AM11:30 ~ 12:42 Feb. 15th, 2014 @Shenzhen, China.</em></strong></h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2014/02/15/2014-02-15-introduce_a_android_listview_and gridview_performence_library_smoothie/" data-id="cims2prev0004p7ne6321pz5k" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2014/04/06/2014-04-06-xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          学车思考之一:方向盘转多少,车轮就转多少度对吗?
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2014/02/14/2014-02-14-some_tips_about_android_listview_performence/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">提升Android ListView性能的几个技巧</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-学习/">Android 学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App-网络编程/">App 网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Apple/">Apple</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drive/">Drive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Game/">Game</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameEngine-手游/">GameEngine 手游</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/性能优化/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/沉思录/">沉思录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/驾驶/">驾驶</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/">学钢琴中最重要的是什么？</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/">我生命的原点（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/21/2015-04-21-my-necessary-app-list/">我的必备App清单</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/12/2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/">一道迅雷面试题:求出一个字符串中每个字母出现的次数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/09/2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/">Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Long Luo<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

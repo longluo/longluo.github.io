@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android App性能优化笔记之一:性能优化是什么及为什么? | Long Luo&#39;s Dev Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Android App性能优化笔记之一:性能优化是什么及为什么?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android App性能优化笔记之一:性能优化是什么及为什么?">
+<meta property="og:url" content="http://yoursite.com/blog/2014/04/07/2014-04-07-tips_for_performances_optimization_on_build_an_android_app_draft/index.html">
+<meta property="og:site_name" content="Long Luo's Dev Notes">
+<meta property="og:description" content="Android App性能优化笔记之一:性能优化是什么及为什么?">
+<meta property="og:updated_time" content="2016-04-07T17:04:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android App性能优化笔记之一:性能优化是什么及为什么?">
+<meta name="twitter:description" content="Android App性能优化笔记之一:性能优化是什么及为什么?">
+  
+    <link rel="alternate" href="/atom.xml" title="Long Luo&#39;s Dev Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Long Luo&#39;s Dev Notes</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">每一天都是奇迹</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2014-04-07-tips_for_performances_optimization_on_build_an_android_app_draft" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2014/04/07/2014-04-07-tips_for_performances_optimization_on_build_an_android_app_draft/" class="article-date">
+  <time datetime="2014-04-07T06:19:28.000Z" itemprop="datePublished">2014-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/性能优化/">性能优化</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android App性能优化笔记之一:性能优化是什么及为什么?
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="By-Long-Luo"><a href="#By-Long-Luo" class="headerlink" title="By Long Luo"></a><strong><em>By Long Luo</em></strong></h4><p>周星驰的电影《功夫》里面借火云邪神之口说出了一句至理名言：“<strong>天下武功，唯快不破</strong>”。</p>
+<p>在移动互联网时代，同样如此，留给一个公司的窗口往往只有很短的时间，如何把握住这个时机，迅速开发出产品，成为至关重要的一环。相对传统互联网时代的PC产品，<strong>用户对移动端产品的容忍度更低</strong>。而一款移动应用在推出的时候可能只是接近完成的状态，这就需要通过<strong>快速的迭代开发来更新产品，不断完善产品来留住用户</strong>。同时，通过更新产品也能唤醒一些沉默用户，让一些原本下载了应用但使用次数非常少的用户给该应用多一次机会。</p>
+<p>所以<strong><em>快速迭代</em></strong>成为移动互联网时代的一个重要生存法则。</p>
+<h3 id="1-为什么需要性能优化？"><a href="#1-为什么需要性能优化？" class="headerlink" title="1. 为什么需要性能优化？"></a>1. 为什么需要性能优化？</h3><hr>
+<p>上面说到，在时间窗口期内开发出产品是极端重要的，但是虽然基本功能我们实现了，但是开发出来的产品代码运行的效率怎么样呢？我们的App用户给用户的体验如何呢？</p>
+<ul>
+<li>我们的App在低端机上经常ANR、闪退、卡顿等</li>
+<li>我们的App在其他分辨率上显示惨不忍睹？</li>
+<li>我们的App在不同网络的情况下如何处理的</li>
+<li>…</li>
+</ul>
+<a id="more"></a>
+<p>我们的App体验如此之差，导致大量的用户流失。这些迫使我们认识到性能优化是非常重要，某种程度上甚至超过了新功能的开发。</p>
+<p>也验证了一句话：“<strong><em>别人有的我们也有，而且比他们的要好要快。</em></strong>”</p>
+<p>做Android开发已经3年了，期间也开发了不少App了，最开始写App的时候，只追求迅速完成所需要的功能，后来随着对相关知识的熟悉，再回头看之前写的代码，也知道有哪些改进和优化的手段了。<strong><em>性能优化</em></strong>，一方面需要自身能力的提高，另外一方面，也需要有意识去学习优化技术，并应用于自身项目的开发中。</p>
+<h3 id="2-性能优化技术"><a href="#2-性能优化技术" class="headerlink" title="2. 性能优化技术"></a>2. 性能优化技术</h3><hr>
+<p>我们的Android App开发除了NDK之外，使用的都是Java语言，而Java语言是一种基于虚拟机JVM运行的语言，所以相比C/C++语言来说，效率是比较低的。Java需要占用大量内存来换取执行速度，而不定期的GC机制，直接导致Android界面的卡顿现象。</p>
+<p>相比Apple的iOS，Android要面对无数不同的硬件组合，分辨率，驱动等，导致App质量参差不齐。</p>
+<p>性能优化技术，简而言之，就是<strong><em>提高我们程序的性能</em></strong>，让我们的应用更快，更少使用CPU资源，更少使用内存。</p>
+<h3 id="3-性能优化笔记提纲"><a href="#3-性能优化笔记提纲" class="headerlink" title="3. 性能优化笔记提纲"></a>3. 性能优化笔记提纲</h3><hr>
+<p>性能优化是一个非常大的课题，在这里目前准备写8篇笔记来记录，提纲如下：</p>
+<ol>
+<li>如何书写优秀代码？</li>
+<li>程序性能测试</li>
+<li>App内存优化</li>
+<li>图片缓存技术(ImageCache及Image SD卡缓存技术)</li>
+<li>数据库优化</li>
+<li>网络优化</li>
+<li>App UI优化</li>
+<li>性能调优工具</li>
+</ol>
+<h4 id="Long-Luo-Version0-1-Created-at-PM14-10-April-12th-2014-Shenzhen-China"><a href="#Long-Luo-Version0-1-Created-at-PM14-10-April-12th-2014-Shenzhen-China" class="headerlink" title="Long Luo Version0.1 Created at PM14:10 April 12th, 2014 @Shenzhen, China."></a><strong><em>Long Luo Version0.1 Created at PM14:10 April 12th, 2014 @Shenzhen, China.</em></strong></h4><h4 id="Long-Luo-Version0-1-Completed-at-PM15-25-April-12th-2014-Shenzhen-China"><a href="#Long-Luo-Version0-1-Completed-at-PM15-25-April-12th-2014-Shenzhen-China" class="headerlink" title="Long Luo Version0.1 Completed at PM15:25 April 12th, 2014 @Shenzhen, China."></a><strong><em>Long Luo Version0.1 Completed at PM15:25 April 12th, 2014 @Shenzhen, China.</em></strong></h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2014/04/07/2014-04-07-tips_for_performances_optimization_on_build_an_android_app_draft/" data-id="cims2prf9000cp7neiv2sceth" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2014/04/09/2014-04-09-android_develop_references/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android学习资源(持续更新中)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2014/04/07/2014-04-07-Game_Engine_Notes_introducation_architect_design_develop/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">游戏引擎学习笔记:介绍,架构,设计及实现</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-学习/">Android 学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App-网络编程/">App 网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Apple/">Apple</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drive/">Drive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Game/">Game</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameEngine-手游/">GameEngine 手游</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/性能优化/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/沉思录/">沉思录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/驾驶/">驾驶</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/">学钢琴中最重要的是什么？</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/">我生命的原点（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/21/2015-04-21-my-necessary-app-list/">我的必备App清单</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/12/2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/">一道迅雷面试题:求出一个字符串中每个字母出现的次数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/09/2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/">Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Long Luo<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

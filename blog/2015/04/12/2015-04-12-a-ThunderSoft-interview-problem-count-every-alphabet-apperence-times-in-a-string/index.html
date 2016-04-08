@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>一道迅雷面试题:求出一个字符串中每个字母出现的次数 | Long Luo&#39;s Dev Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="By Long Luo上次在迅雷面试的时候，遇到了一个算法题，题目是：
+有一个很长很长的字符串，全部都是由大写字母组成，要求求出其中每个字母在这个字符串中出现的次数。
+
+不允许使用STL中的方法。
+当时拿到这个题目，我首先想到了以下几个方法：
+
+穷举法，一个个比较，最后算出每个字母出现的次数，这种方法可行，但不轻巧与优雅。
+每个字符与’A’想减，会得到一个值，统计下这个值出现次数，和方法1类似。(">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一道迅雷面试题:求出一个字符串中每个字母出现的次数">
+<meta property="og:url" content="http://yoursite.com/blog/2015/04/12/2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/index.html">
+<meta property="og:site_name" content="Long Luo's Dev Notes">
+<meta property="og:description" content="By Long Luo上次在迅雷面试的时候，遇到了一个算法题，题目是：
+有一个很长很长的字符串，全部都是由大写字母组成，要求求出其中每个字母在这个字符串中出现的次数。
+
+不允许使用STL中的方法。
+当时拿到这个题目，我首先想到了以下几个方法：
+
+穷举法，一个个比较，最后算出每个字母出现的次数，这种方法可行，但不轻巧与优雅。
+每个字符与’A’想减，会得到一个值，统计下这个值出现次数，和方法1类似。(">
+<meta property="og:updated_time" content="2016-04-07T17:04:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一道迅雷面试题:求出一个字符串中每个字母出现的次数">
+<meta name="twitter:description" content="By Long Luo上次在迅雷面试的时候，遇到了一个算法题，题目是：
+有一个很长很长的字符串，全部都是由大写字母组成，要求求出其中每个字母在这个字符串中出现的次数。
+
+不允许使用STL中的方法。
+当时拿到这个题目，我首先想到了以下几个方法：
+
+穷举法，一个个比较，最后算出每个字母出现的次数，这种方法可行，但不轻巧与优雅。
+每个字符与’A’想减，会得到一个值，统计下这个值出现次数，和方法1类似。(">
+  
+    <link rel="alternate" href="/atom.xml" title="Long Luo&#39;s Dev Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Long Luo&#39;s Dev Notes</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">每一天都是奇迹</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/04/12/2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/" class="article-date">
+  <time datetime="2015-04-11T16:59:54.000Z" itemprop="datePublished">2015-04-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一道迅雷面试题:求出一个字符串中每个字母出现的次数
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="By-Long-Luo"><a href="#By-Long-Luo" class="headerlink" title="By Long Luo"></a><em>By Long Luo</em></h4><p>上次在<code>迅雷</code>面试的时候，遇到了一个算法题，题目是：</p>
+<pre><code>有一个很长很长的字符串，全部都是由大写字母组成，要求求出其中每个字母在这个字符串中出现的次数。
+
+不允许使用STL中的方法。
+</code></pre><p>当时拿到这个题目，我首先想到了以下几个方法：</p>
+<ol>
+<li><strong>穷举法</strong>，一个个比较，最后算出每个字母出现的次数，这种方法可行，但不轻巧与优雅。</li>
+<li>每个字符与’A’想减，会得到一个<strong>值</strong>，统计下这个值出现次数，和方法1类似。(事后回顾这个已经很接近了，但是还是没能完美解决。)</li>
+</ol>
+<p>其实这个题目，事后回顾起来，是比较简单的，但遗憾的是，当时未能在规定时间内解答出来，导致未能通过面试，拿到Offer，在此将这个题目记录下来。</p>
+<p>重新认真解答这个题目。</p>
+<h3 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h3><a id="more"></a>
+<p>其实这个题目有一个很简单的解决防范，新建一个数组，大小为26，将字符串中每个字符都与<code>&#39;A&#39;</code>相减，得到的就是每个字母在数组中的<code>元素下标值</code>，我们最后得到的这个数组就是每个字母在这个字符串中出现的次数。</p>
+<p>根据以上分析，可以写出如下代码：</p>
+<pre><code>package com.algorithm.alphabetSort;
+
+/**
+ * 有一个很长的字符串，其中都是一些字母，求其中每个字母出现的次数(大小写区分)。
+ * 
+ * @author luolong
+ * @date: 2015-04-12 00:54:17
+ * 
+ */
+public class AlphabetSort {
+    private static String str = &quot;AWQEYIOAHDHDKKLDLAHFHJALAFHANNAFGJCXCKBZCQIEOPADHAZBZVCFGCSHDJCKCLDMDHFAKAIIAYQO&quot;;
+
+    private static int[] outArray = new int[26];
+
+    public static void main(String[] args) {
+        AlphabetSortString(str);
+        printSortArray(outArray);
+    }
+
+    public static void AlphabetSortString(String str) {
+        char cTemp;
+
+        for (int i = 0; i &lt; str.length(); i++) {
+            cTemp = str.charAt(i);
+
+            outArray[cTemp - &apos;A&apos;]++;
+        }
+    }
+
+    private static void printSortArray(int[] arr) {
+        for (int i = 0; i &lt; arr.length; i++) {
+            char c = (char) (&apos;A&apos; + i);
+            System.out.print(&quot;&quot; + c + &quot;=&quot; + arr[i] + &quot; &quot;);
+        }
+    }
+
+}
+</code></pre><h3 id="引申与扩展一"><a href="#引申与扩展一" class="headerlink" title="引申与扩展一"></a>引申与扩展一</h3><p>如果字符串不仅仅是大写字母，而是大小写字母都存在的情况下，那应该如何写呢？</p>
+<p>其实也很简单，如下所示：</p>
+<pre><code>if (cTemp &gt;= &apos;A&apos; &amp;&amp; cTemp &lt;= &apos;Z&apos;) {
+    /**
+    * 大写字母
+    */
+    outArray[cTemp - &apos;A&apos;]++;
+} else if (cTemp &gt;= &apos;a&apos; &amp;&amp; cTemp &lt;= &apos;z&apos;) {
+    /**
+    * 小写字母
+    */
+    outArray[cTemp - &apos;a&apos; + 26]++;
+} else {
+
+}
+</code></pre><h3 id="引申与扩展二"><a href="#引申与扩展二" class="headerlink" title="引申与扩展二"></a>引申与扩展二</h3><p>如果字符串，假如<code>所有字符</code>都需要统计呢？</p>
+<p>那又应该如何做呢？</p>
+<p>后来我发现了用HashMap来存储也是可以的，也可以完美解决这个问题，代码如下所示：</p>
+<pre><code>package com.algorithm.alphabetSort;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 有一个很长的字符串，其中都是一些字母，求其中每个字母出现的次数(大小写区分)。
+ * 
+ * @author luolong
+ * @date: 2015-04-12 01:03:38
+ * 
+ */
+public class CharSort {
+    private static String str = &quot;AWQEYIOAHDHDKKLDLAHFHJALAFHANNAFGJCXCKBZCQIEOPADHAZBZVCFGCSHDJCKCLDMDHFAKAIIAYQO&quot;;
+
+    public static void main(String args[]) {
+        Map&lt;Character, KeyValue&gt; map = new HashMap&lt;Character, KeyValue&gt;();
+        char c;
+        KeyValue kv = null;
+        for (int i = 0; i &lt; str.length(); i++) {
+            c = str.charAt(i);
+            kv = map.get(c);
+            if (kv == null) {
+                kv = new KeyValue();
+                kv.ch = c;
+                kv.count = 1;
+                map.put(c, kv);
+            } else {
+                kv.count++;
+            }
+        }
+        List&lt;KeyValue&gt; list = new ArrayList&lt;KeyValue&gt;(map.values());
+        Collections.sort(list);
+        for (KeyValue o : list) {
+            System.out.print(o.ch + &quot;=&quot; + o.count + &quot;  &quot;);
+        }
+    }
+}
+
+class KeyValue implements Comparable {
+    public int compareTo(Object obj) {
+        if (obj instanceof KeyValue) {
+            KeyValue kv = (KeyValue) obj;
+            return kv.count - this.count;
+        }
+
+        return -1;
+    }
+
+    char ch;
+
+    int count;
+}
+</code></pre><p>以上。</p>
+<p>如果大家还有其他更好的方法，欢迎一起讨论:-)</p>
+<h5 id="Created-by-Long-Luo-at-2015-04-12-01-08-20-Shenzhen-China"><a href="#Created-by-Long-Luo-at-2015-04-12-01-08-20-Shenzhen-China" class="headerlink" title="Created by Long Luo at 2015-04-12 01:08:20 @Shenzhen, China."></a><em>Created by Long Luo at 2015-04-12 01:08:20 @Shenzhen, China.</em></h5><h5 id="Completed-By-Long-Luo-at-2015-04-12-01-28-39-Shenzhen-China"><a href="#Completed-By-Long-Luo-at-2015-04-12-01-28-39-Shenzhen-China" class="headerlink" title="Completed By Long Luo at 2015-04-12 01:28:39 @Shenzhen, China."></a><em>Completed By Long Luo at 2015-04-12 01:28:39 @Shenzhen, China.</em></h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2015/04/12/2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/" data-id="cims2prh5001jp7ne6og689kj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2015/04/21/2015-04-21-my-necessary-app-list/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          我的必备App清单
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2015/04/09/2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-学习/">Android 学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App-网络编程/">App 网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Apple/">Apple</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drive/">Drive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Game/">Game</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameEngine-手游/">GameEngine 手游</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/性能优化/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/沉思录/">沉思录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/驾驶/">驾驶</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/">学钢琴中最重要的是什么？</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/">我生命的原点（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/21/2015-04-21-my-necessary-app-list/">我的必备App清单</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/12/2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/">一道迅雷面试题:求出一个字符串中每个字母出现的次数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/09/2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/">Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Long Luo<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

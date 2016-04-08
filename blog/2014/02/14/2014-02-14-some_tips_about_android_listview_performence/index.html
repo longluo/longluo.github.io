@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>提升Android ListView性能的几个技巧 | Long Luo&#39;s Dev Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="提升Android ListView性能的几个技巧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="提升Android ListView性能的几个技巧">
+<meta property="og:url" content="http://yoursite.com/blog/2014/02/14/2014-02-14-some_tips_about_android_listview_performence/index.html">
+<meta property="og:site_name" content="Long Luo's Dev Notes">
+<meta property="og:description" content="提升Android ListView性能的几个技巧">
+<meta property="og:image" content="http://blogresource.qiniudn.com/2014/Android/listview_tips.png">
+<meta property="og:updated_time" content="2016-04-07T17:04:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="提升Android ListView性能的几个技巧">
+<meta name="twitter:description" content="提升Android ListView性能的几个技巧">
+<meta name="twitter:image" content="http://blogresource.qiniudn.com/2014/Android/listview_tips.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Long Luo&#39;s Dev Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Long Luo&#39;s Dev Notes</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">每一天都是奇迹</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2014-02-14-some_tips_about_android_listview_performence" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2014/02/14/2014-02-14-some_tips_about_android_listview_performence/" class="article-date">
+  <time datetime="2014-02-14T07:22:10.000Z" itemprop="datePublished">2014-02-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      提升Android ListView性能的几个技巧
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="翻译-Long-Luo"><a href="#翻译-Long-Luo" class="headerlink" title="翻译 Long Luo"></a><strong><em>翻译 Long Luo</em></strong></h4><h4 id="原文链接：Performance-Tips-for-Android’s-ListView"><a href="#原文链接：Performance-Tips-for-Android’s-ListView" class="headerlink" title="原文链接：Performance Tips for Android’s ListView"></a>原文链接：<a href="http://lucasr.org/2012/04/05/performance-tips-for-androids-listview/" target="_blank" rel="external">Performance Tips for Android’s ListView</a></h4><pre><code>译者注：
+1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
+2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正；
+3. inflation这个词一直找不到特别好的中文翻译。
+</code></pre><h2 id="ListView如何运作的？"><a href="#ListView如何运作的？" class="headerlink" title="ListView如何运作的？"></a>ListView如何运作的？</h2><hr>
+<p><em>ListView</em>是设计应用于对<strong>可扩展性和高性能要求</strong>的地方。实际上，这就意味着<em>ListView</em>有以下2个要求：</p>
+<ol>
+<li>尽可能少的创建View；</li>
+<li>只是绘制和布局在屏幕上可见的子View。</li>
+</ol>
+<p>理解第一点很简单：通过布局xml文件在创建View并显示是很昂贵耗时耗资源的操作。尽管布局文件已经编译打包成了二进制形式以便于更高效的语法解析，但是创建View仍然需要通过一个特殊的XML树，并实例化所有需要响应的View。</p>
+<p><em>ListView</em>通过回收一些不可见的Views，通常在Android源码中称为“<em>ScrapView</em>(废弃的View)”来解决这个问题。这及意味着开发者只需要简单的更新每行的内容而不需要针对每个单独的行的布局来创建View。</p>
+<p>为了实现第二点，在我们滑动屏幕时，<em>ListView</em>通过使用View回收器来增加低于或者高于当当前窗口的Views，并当前活动的Views移动到一个可回收池中。这样的话，<em>ListView</em>只需要在内存中保持足够多的Views去填充分配空间中的布局和一些额外的可回收Views，即使当你的Adapter有上百个items的适合。它会使用不同的方法去填充行之间的空间，从顶部或者底部等等，具体取决于窗口是如何变化的。</p>
+<a id="more"></a>
+<p>下面这个图很直观的展示了当你按下ListView的时候发生了什么：</p>
+<p><img src="http://blogresource.qiniudn.com/2014/Android/listview_tips.png" alt="ListView"></p>
+<p>通过上述介绍，相比我们已经熟悉了<em>ListView</em>的这种机制，让我们继续前往技巧部分。正如上述介绍的，在滑动时，<em>ListView</em>通过动态的创建和回收很多View，实现了尽可能地让Adapter的<em>getView()</em>轻量。所有的技巧都是通过多种方法让<em>getView()</em>更快。</p>
+<h2 id="View的回收"><a href="#View的回收" class="headerlink" title="View的回收"></a>View的回收</h2><hr>
+<p>当<em>ListView</em>每次需要在屏幕上显示新的一行的时候，会从其Adapter中调用<em>getView()</em>的方法。众所周知，<em>getView()</em>方法有3个参数：行的位置， convertView以及父ViewGroup。</p>
+<p>参数<em>convertView</em>说穿来就是之前讲述的ScrapView。当<em>ListView</em>要求更新一行的布局时，<em>convertView</em>是一个非空值。因此，当<em>convertView</em>值非空时，你仅仅需要<em>更新内容</em>即可，而不需要重新一个新行的布局。<em>getView()</em>在Adapter中一般是如下的形式：</p>
+<pre><code>public View getView(int position, View convertView, ViewGroup parent) {
+    if (convertView == null) {
+        convertView = mInflater.inflate(R.layout.your_layout, null);
+    }
+
+    TextView text = (TextView) convertView.findViewById(R.id.text);
+    text.setText(&quot;Position &quot; + position);
+
+    return convertView;
+}
+</code></pre><h2 id="View-Holder如何写的模板"><a href="#View-Holder如何写的模板" class="headerlink" title="View Holder如何写的模板"></a>View Holder如何写的模板</h2><hr>
+<p>Android很常见的一个操作就是在布局文件中找到一个内部的View。通常是使用一个<strong><em>findViewById()</em></strong>的View方法来实现的。这个<strong><em>findViewById()</em></strong>方法在View树中，根据一个View ID，会递归的被调用来找到其子树。虽然在静态UI布局中使用<strong><em>findViewById()</em></strong>是完全正常的。但是，在滑动时，<em>ListView</em>调用其Adapter中的<em>getView()</em>是非常频繁的。<strong><em>findViewById()</em></strong>可能会影响<em>ListView</em>滑动时的性能，尤其是你的行布局是很复杂的时候。</p>
+<p>寻找一个充气布局内的内部观点是在Android上最常用的操作之一。这通常是通过一个名为findViewById（查看方法完成）。此方法将递归经过视图树寻找一个孩子用给定的ID码。静态的UI布局使用findViewById（）是完全正常，但正如你所看到的，ListView中滚动时调用适配器的getView（）非常频繁。 findViewById（）可能perceivably击中ListViews，尤其是滚动的性能，如果你行的布局是不平凡的。</p>
+<p>View Holder的模式就是减少在Adapter中<em>getView()</em>方法中调用<em>findViewById()</em>次数。实际上，View Holder是一个轻量级的内部类，用于直接引用到所有内部views。在创建View之后，你可以在每行的View存储为一个标签。通过这种方法，只需要在初次创建布局的时候调用<strong><em>findViewById()</em></strong>。下面是一个使用上述方法的View Holder模板的代码示例：</p>
+<pre><code>public View getView(int position, View convertView, ViewGroup parent) {
+    ViewHolder holder;
+
+    if (convertView == null) {
+        convertView = mInflater.inflate(R.layout.your_layout, null);
+
+        holder = new ViewHolder();
+        holder.text = (TextView) convertView.findViewById(R.id.text);
+
+        convertView.setTag(holder);
+    } else {
+        holder = convertView.getTag();
+    }
+
+    holder.text.setText(&quot;Position &quot; + position);
+
+    return convertView;
+}
+
+private static class ViewHolder {
+    public TextView text;
+}
+</code></pre><h2 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h2><hr>
+<p>很多时候，Android应用在<em>ListView</em>每行中显示一些多媒体内容，比如图片等。在Adapter中的<em>getView()</em>使用应用内置的图片资源还是不会出什么问题的，因为可以存储在Android的高速缓存中。但当你想多态的显示来自本地磁盘或网络的内容时，例如缩略图，简历图片等。在这种情况下，你可能不希望直接在Adapter中的<em>getView()</em>加载它们，因为<a href="http://blog.ometer.com/2008/09/07/synchronous-io-never-ok/" target="_blank" rel="external">IO进程会阻塞UI线程</a>。如果这样做的话，<em>ListView</em>就看起来非常卡顿。</p>
+<p>在一个单独的线程，如果想要运行的所有行的IO操作或任何高负载CPU限制的异步操作。其中的技巧就是要做到符合<em>ListView</em>的回收行为。例如，如果在Adapter中的<em>getView()</em>中，使用<em>AsyncTask</em>的加载去加载资料图片，在<em>AsyncTask</em>完成之前，你正在加载的图片View就有可能被回收用于其他地方。所以，一旦异步操作完成的同时，需要一种机制来知道如果相应的View有没有被回收。</p>
+<p>一个简单的方法来实现这一目标是通过附加一些标识该行与它相关的View的信息。然后，当异步操作完成的适合，检查目标行的View和标识的View是否一致。实现这一目标的方法很多。下面是实现这种方法的一个很简单的示例：</p>
+<pre><code>public View getView(int position, View convertView,
+        ViewGroup parent) {
+    ViewHolder holder;
+
+    ...
+
+    holder.position = position;
+
+    new ThumbnailTask(position, holder)
+            .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null);
+
+    return convertView;
+}
+
+private static class ThumbnailTask extends AsyncTask {
+    private int mPosition;
+    private ViewHolder mHolder;
+
+    public ThumbnailTask(int position, ViewHolder holder) {
+        mPosition = position;
+        mHolder = holder;
+    }
+
+    @Override
+    protected Cursor doInBackground(Void... arg0) {
+        // Download bitmap here
+    }
+
+    @Override
+    protected void onPostExecute(Bitmap bitmap) {
+        if (mHolder.position == mPosition) {
+            mHolder.thumbnail.setImageBitmap(bitmap);
+        }
+    }
+}
+
+private static class ViewHolder {
+    public ImageView thumbnail;
+    public int position;
+}
+</code></pre><h2 id="人机交互知识"><a href="#人机交互知识" class="headerlink" title="人机交互知识"></a>人机交互知识</h2><hr>
+<p>做到在每一行异步加载很多资源，是一个高性能的<em>ListView</em>的必经之路。但是，在滑动屏幕时，如果你一味的在每一个<em>getView()</em>调用里面都去启动一个异步的操作，造成的结果就是你会浪费大量资源。因为行被频繁回收，造成大部分返回的结果会被丢弃。</p>
+<p>考虑到实际的人机交互情况，在<em>ListView</em>适配器中，在每一行中都不应该去触发任何异步操作。也就是说，在<em>ListView</em>中有fling(快速滑动)操作时，启动任何异步操作都没有任何意义。一旦滚动停止或即将停止，才是开始真正显示每行的内容的时候。</p>
+<p>我不会发布一个代码示例贴在这里，因为其中涉及到的代码太多。Romain Guy写了一个很经典的应用：<a href="http://code.google.com/p/shelves/" target="_blank" rel="external">Shelves app</a>，其中有一个很好的的<a href="https://code.google.com/p/shelves/source/browse/trunk/Shelves/src/org/curiouscreature/android/shelves/activity/ShelvesActivity.java" target="_blank" rel="external">示例</a>。当<strong><em>GridView</em></strong>停止滑动时不做其他事情时，它就开始触发从而去异步加载书的封面资源。即使在滑动时，你也可以展示缓存中的内容，通过使用memory cache来平衡交互。这真是个好主意！</p>
+<h2 id="以上"><a href="#以上" class="headerlink" title="以上"></a>以上</h2><hr>
+<p>我强烈推荐你看下Romain Guy和Adam Powell的关于<em>ListView</em>的<a href="http://www.youtube.com/watch?v=wDBM6wVEO70" target="_blank" rel="external">讨论</a>，里面涵盖了很多这篇文章的东西。你可以看看<a href="https://play.google.com/store/apps/details?id=org.lucasr.pattrn" target="_blank" rel="external">Pattrn</a>，可以看到这里面的几个技巧是如何在应用中运用的。</p>
+<p>希望它是你在Android开发中一个很有用的参考:-)</p>
+<h4 id="Long-Luo-at-PM17-30-Feb-14th-2014-Shenzhen-China"><a href="#Long-Luo-at-PM17-30-Feb-14th-2014-Shenzhen-China" class="headerlink" title="Long Luo at PM17:30 Feb. 14th, 2014 @Shenzhen, China."></a><strong><em>Long Luo at PM17:30 Feb. 14th, 2014 @Shenzhen, China.</em></strong></h4>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2014/02/14/2014-02-14-some_tips_about_android_listview_performence/" data-id="cims2pret0003p7nenr8bya6q" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2014/02/15/2014-02-15-introduce_a_android_listview_and gridview_performence_library_smoothie/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          介绍一个提高Android ListView或GridView的Smoothie库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2014/01/23/2014-01-23-android_ui_layout_summay_5_layouts/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android UI Layout总结系列之篇之5大布局</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-学习/">Android 学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App-网络编程/">App 网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Apple/">Apple</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drive/">Drive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Game/">Game</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameEngine-手游/">GameEngine 手游</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/性能优化/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/沉思录/">沉思录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/驾驶/">驾驶</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/">学钢琴中最重要的是什么？</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/">我生命的原点（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/21/2015-04-21-my-necessary-app-list/">我的必备App清单</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/12/2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/">一道迅雷面试题:求出一个字符串中每个字母出现的次数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/09/2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/">Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Long Luo<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

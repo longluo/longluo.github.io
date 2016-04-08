@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值 | Long Luo&#39;s Dev Notes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="编写一个程序，开启4个线程，这3个线程的ID分别为A、B、C、D，每个线程将自己的ID在屏幕上打印10遍，要求输出结果必须按ABCD的顺序显示；如：ABCDABCD..., BCDABCDA..., CDABCDAB..., DABCDABC...依次递推.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值">
+<meta property="og:url" content="http://yoursite.com/blog/2015/04/09/2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/index.html">
+<meta property="og:site_name" content="Long Luo's Dev Notes">
+<meta property="og:description" content="编写一个程序，开启4个线程，这3个线程的ID分别为A、B、C、D，每个线程将自己的ID在屏幕上打印10遍，要求输出结果必须按ABCD的顺序显示；如：ABCDABCD..., BCDABCDA..., CDABCDAB..., DABCDABC...依次递推.">
+<meta property="og:updated_time" content="2016-04-07T17:04:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值">
+<meta name="twitter:description" content="编写一个程序，开启4个线程，这3个线程的ID分别为A、B、C、D，每个线程将自己的ID在屏幕上打印10遍，要求输出结果必须按ABCD的顺序显示；如：ABCDABCD..., BCDABCDA..., CDABCDAB..., DABCDABC...依次递推.">
+  
+    <link rel="alternate" href="/atom.xml" title="Long Luo&#39;s Dev Notes" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Long Luo&#39;s Dev Notes</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">每一天都是奇迹</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog/2015/04/09/2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/" class="article-date">
+  <time datetime="2015-04-09T13:04:10.000Z" itemprop="datePublished">2015-04-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="By-Long-Luo"><a href="#By-Long-Luo" class="headerlink" title="By Long Luo"></a><em>By Long Luo</em></h4><p>最近在学习<code>Java多线程</code>时，遇到了一个下面的笔试题，题目如下： </p>
+<pre><code>编写一个程序，程序会启动4个线程，向4个文件A，B，C，D里写入数据，每个线程只能写一个值。 
+    线程A：只写A
+    线程B：只写B 
+    线程C：只写C 
+    线程D：只写D 
+
+4个文件A，B，C，D。 
+
+程序运行起来，4个文件的写入结果如下： 
+    A：ABCDABCD... 
+    B：BCDABCDA... 
+    C：CDABCDAB... 
+    D：DABCDABC... 
+</code></pre><p>网上搜索了下，好像还是一个<strong><em>Google笔试题</em></strong>，这个问题涉及到的知识点有：<code>多线程</code>, <code>并发</code>, <code>锁</code>, <code>线程间通信</code>。</p>
+<h5 id="个人分析过程："><a href="#个人分析过程：" class="headerlink" title="个人分析过程："></a>个人分析过程：</h5><pre><code>1. 创建4个线程；
+2. 每个线程在输出时都需要加锁；
+3. 操作文件的代码要加锁；
+4. 一个线程完成之后，通知下一个要执行的线程；
+</code></pre><a id="more"></a>
+<p>根据以上分析，可以写出如下代码：</p>
+<pre><code>package com.imlongluo.Practise;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class Practise {
+
+    public static void main(String[] args) {
+
+        final Task task = new Task();
+
+        /** 创建4个线程，同时启动 */
+        /**
+         * Thread A
+         */
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                for (int i = 0; i &lt; 10; i++) {
+                    task.outputA();
+                }
+            }
+        }, &quot; Thread A&quot;).start();
+
+        /**
+         * Thread B
+         */
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                for (int i = 0; i &lt; 10; i++) {
+                    task.outputB();
+                }
+            }
+        }, &quot;Thread B&quot;).start();
+
+        /**
+         * Thread C
+         */
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                for (int i = 0; i &lt; 10; i++) {
+                    task.outputC();
+                }
+            }
+        }, &quot;Thread C&quot;).start();
+
+        /**
+         * Thread D
+         */
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                for (int i = 0; i &lt; 10; i++) {
+                    task.outputD();
+                }
+            }
+        }, &quot;Thread D&quot;).start();
+    }
+
+    /**
+    任务类
+    */
+    public static class Task {
+        /**
+        创建一个Lock锁对象
+        */
+        private Lock lock = new ReentrantLock();
+
+        private BufferedWriter bw1 = null;
+        private BufferedWriter bw2 = null;
+        private BufferedWriter bw3 = null;
+        private BufferedWriter bw4 = null;
+
+        private int ctl = 0;
+
+        /**
+         * Condition: 线程条件  
+         */
+        private Condition cond1 = lock.newCondition();
+        private Condition cond2 = lock.newCondition();
+        private Condition cond3 = lock.newCondition();
+        private Condition cond4 = lock.newCondition();
+
+        private boolean[] outputThisRound = { false, true, true, true };
+
+        public Task() {
+            try {
+                bw1 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(
+                        &quot;/Users/luolong/Code/Android/workspace/MultiThreads/A.txt&quot;))));
+                bw2 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(
+                        &quot;/Users/luolong/Code/Android/workspace/MultiThreads/B.txt&quot;))));
+                bw3 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(
+                        &quot;/Users/luolong/Code/Android/workspace/MultiThreads/C.txt&quot;))));
+                bw4 = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(new File(
+                        &quot;/Users/luolong/Code/Android/workspace/MultiThreads/D.txt&quot;))));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void outputA() {
+
+            lock.lock();
+
+            try {
+                while (outputThisRound[0]) {
+                    System.out.println(&quot;outputA begin to await!&quot;);
+                    cond1.await(); //阻塞A线程 
+                }
+
+                if (ctl % 4 == 0) {
+                    bw1.write(&quot;A&quot;);
+                    bw1.flush();
+                } else if (ctl % 4 == 1) {
+                    bw4.write(&quot;A&quot;);
+                    bw4.flush();
+                } else if (ctl % 4 == 2) {
+                    bw3.write(&quot;A&quot;);
+                    bw3.flush();
+                } else if (ctl % 4 == 3) {
+                    bw2.write(&quot;A&quot;);
+                    bw2.flush();
+                }
+
+                outputThisRound[0] = true;
+                outputThisRound[1] = false;
+
+                System.out.println(&quot;outputA signal outputB!&quot;);
+                cond2.signal(); //唤醒B线程
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+
+        }
+
+        public void outputB() {
+
+            lock.lock();
+
+            try {
+                while (outputThisRound[1]) {
+                    System.out.println(&quot;outputB begin to await!&quot;);
+                    cond2.await();
+                }
+
+                if (ctl % 4 == 0) {
+                    bw2.write(&quot;B&quot;);
+                    bw2.flush();
+                } else if (ctl % 4 == 1) {
+                    bw1.write(&quot;B&quot;);
+                    bw1.flush();
+                } else if (ctl % 4 == 2) {
+                    bw4.write(&quot;B&quot;);
+                    bw4.flush();
+                } else if (ctl % 4 == 3) {
+                    bw3.write(&quot;B&quot;);
+                    bw3.flush();
+                }
+
+                outputThisRound[1] = true;
+                outputThisRound[2] = false;
+                System.out.println(&quot;outputB signal outputC!&quot;);
+                cond3.signal();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+        }
+
+        public void outputC() {
+            lock.lock();
+            try {
+                while (outputThisRound[2]) {
+                    System.out.println(&quot;outputC begin to await!&quot;);
+                    cond3.await();
+                }
+
+                if (ctl % 4 == 0) {
+                    bw3.write(&quot;C&quot;);
+                    bw3.flush();
+                } else if (ctl % 4 == 1) {
+                    bw2.write(&quot;C&quot;);
+                    bw2.flush();
+                } else if (ctl % 4 == 2) {
+                    bw1.write(&quot;C&quot;);
+                    bw1.flush();
+                } else if (ctl % 4 == 3) {
+                    bw4.write(&quot;C&quot;);
+                    bw4.flush();
+                }
+
+                outputThisRound[2] = true;
+                outputThisRound[3] = false;
+                System.out.println(&quot;outputC signal outputD!&quot;);
+                cond4.signal();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+        }
+
+        public void outputD() {
+            lock.lock();
+
+            try {
+                while (outputThisRound[3]) {
+                    System.out.println(&quot;outputD begin to await!&quot;);
+                    cond4.await();
+                }
+
+                if (ctl % 4 == 0) {
+                    bw4.write(&quot;D&quot;);
+                    bw4.flush();
+                } else if (ctl % 4 == 1) {
+                    bw3.write(&quot;D&quot;);
+                    bw3.flush();
+                } else if (ctl % 4 == 2) {
+                    bw2.write(&quot;D&quot;);
+                    bw2.flush();
+                } else if (ctl % 4 == 3) {
+                    bw1.write(&quot;D&quot;);
+                    bw1.flush();
+                }
+
+                outputThisRound[3] = true;
+                outputThisRound[0] = false;
+                ctl++;
+                System.out.println(&quot;outputD signal outputA!&quot;);
+                cond1.signal();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+        }
+    }
+}
+</code></pre><p>以上。</p>
+<p>如果大家还有其他更好的方法，欢迎一起讨论:-)</p>
+<h5 id="Created-by-Long-Luo-at-2015-04-09-22-14-02-Shenzhen-China"><a href="#Created-by-Long-Luo-at-2015-04-09-22-14-02-Shenzhen-China" class="headerlink" title="Created by Long Luo at 2015-04-09 22:14:02 @Shenzhen, China."></a><em>Created by Long Luo at 2015-04-09 22:14:02 @Shenzhen, China.</em></h5><h5 id="Completed-By-Long-Luo-at-2015-04-09-23-46-29-Shenzhen-China"><a href="#Completed-By-Long-Luo-at-2015-04-09-23-46-29-Shenzhen-China" class="headerlink" title="Completed By Long Luo at 2015-04-09 23:46:29 @Shenzhen, China."></a><em>Completed By Long Luo at 2015-04-09 23:46:29 @Shenzhen, China.</em></h5>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/blog/2015/04/09/2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/" data-id="cims2prh1001hp7nef030onud" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/blog/2015/04/12/2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          一道迅雷面试题:求出一个字符串中每个字母出现的次数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog/2015/04/06/2015-04-06-an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">面试算法题:爬楼梯，N级楼梯有多少种走法？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android-学习/">Android 学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App/">App</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/App-网络编程/">App 网络编程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Apple/">Apple</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Drive/">Drive</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Game/">Game</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameEngine-手游/">GameEngine 手游</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learn/">Learn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/">Life</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tools/">Tools</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Web/">Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/性能优化/">性能优化</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/沉思录/">沉思录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络/">网络</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/驾驶/">驾驶</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/07/">July 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/06/">June 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/">May 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">April 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">February 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">January 2014</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/">学钢琴中最重要的是什么？</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/">我生命的原点（一）</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/21/2015-04-21-my-necessary-app-list/">我的必备App清单</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/12/2015-04-12-a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/">一道迅雷面试题:求出一个字符串中每个字母出现的次数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/2015/04/09/2015-04-09-a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/">Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Long Luo<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
