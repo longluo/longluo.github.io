@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android" />
+  <meta name="keywords" content="Android,视频,重构,性能优化,软件" />
 
 
 
@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png">
 <meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridListAdapter_getView.png">
 <meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png">
-<meta property="og:updated_time" content="2016-04-09T02:06:31.000Z">
+<meta property="og:updated_time" content="2016-04-10T17:05:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="视频频道页面重构总结">
 <meta name="twitter:description" content="本文是关于视频频道页面的重构总结，通过重构之后，将CPU执行时间降低了50%，由7.9%降低到了3.8%。">
@@ -351,7 +351,8 @@
       
 
       
-        <h3 id="By-Long-Luo"><a href="#By-Long-Luo" class="headerlink" title="By Long Luo"></a><em>By Long Luo</em></h3><h3 id="2014-07-01"><a href="#2014-07-01" class="headerlink" title="@2014.07.01"></a>@2014.07.01</h3><h2 id="1-重构前的一些缺点"><a href="#1-重构前的一些缺点" class="headerlink" title="1. 重构前的一些缺点"></a>1. 重构前的一些缺点</h2><hr>
+        <p><strong><em>By Long Luo</em></strong></p>
+<h2 id="1-重构前的一些缺点"><a href="#1-重构前的一些缺点" class="headerlink" title="1. 重构前的一些缺点"></a>1. 重构前的一些缺点</h2><hr>
 <ol>
 <li>频道显示在VideoListActivity实现的，代码结构不够清晰；</li>
 <li>频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间；</li>
@@ -387,7 +388,8 @@
 <h5 id="重构之后："><a href="#重构之后：" class="headerlink" title="重构之后："></a>重构之后：</h5><p>重构之后，我们仅需要在ChannelGridAdapter中绘制View，测量数据如下：</p>
 <p><img src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png" alt="ChannelGridAdapter"></p>
 <p>从上图可以看出，getView()占据的CPU时间仅为<strong>3.2%</strong>，效率大大提高。</p>
-<h4 id="Created-by-Long-Luo-at-2014-7-1-15-45-01"><a href="#Created-by-Long-Luo-at-2014-7-1-15-45-01" class="headerlink" title="Created by Long Luo at 2014/7/1 15:45:01"></a><em>Created by Long Luo at 2014/7/1 15:45:01</em></h4><h4 id="Completed-by-Long-Luo-at-2014-7-2-14-42-29"><a href="#Completed-by-Long-Luo-at-2014-7-2-14-42-29" class="headerlink" title="Completed by Long Luo at 2014/7/2 14:42:29"></a><em>Completed by Long Luo at 2014/7/2 14:42:29</em></h4>
+<p><strong><em>Created by Long Luo at 2014/7/1 15:45:01</em></strong><br><strong><em>Completed by Long Luo at 2014/7/2 14:42:29</em></strong></p>
+
       
     </div>
     
@@ -404,6 +406,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android-性能优化/" rel="tag">#Android, 性能优化</a>
+          
+        </div>
       
 
       
@@ -509,7 +517,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -518,7 +526,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -600,7 +608,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#By-Long-Luo"><span class="nav-number">1.</span> <span class="nav-text">By Long Luo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2014-07-01"><span class="nav-number">2.</span> <span class="nav-text">@2014.07.01</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-重构前的一些缺点"><span class="nav-number"></span> <span class="nav-text">1. 重构前的一些缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-重构方案"><span class="nav-number"></span> <span class="nav-text">2. 重构方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-具体实现"><span class="nav-number"></span> <span class="nav-text">3. 具体实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-数据对比"><span class="nav-number"></span> <span class="nav-text">4. 数据对比</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#重构之前："><span class="nav-number">0.0.1.</span> <span class="nav-text">重构之前：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重构之后："><span class="nav-number">0.0.2.</span> <span class="nav-text">重构之后：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Created-by-Long-Luo-at-2014-7-1-15-45-01"><span class="nav-number">0.1.</span> <span class="nav-text">Created by Long Luo at 2014/7/1 15:45:01</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Completed-by-Long-Luo-at-2014-7-2-14-42-29"><span class="nav-number">0.2.</span> <span class="nav-text">Completed by Long Luo at 2014/7/2 14:42:29</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-重构前的一些缺点"><span class="nav-number">1.</span> <span class="nav-text">1. 重构前的一些缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-重构方案"><span class="nav-number">2.</span> <span class="nav-text">2. 重构方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-具体实现"><span class="nav-number">3.</span> <span class="nav-text">3. 具体实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-数据对比"><span class="nav-number">4.</span> <span class="nav-text">4. 数据对比</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#重构之前："><span class="nav-number">4.0.0.1.</span> <span class="nav-text">重构之前：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重构之后："><span class="nav-number">4.0.0.2.</span> <span class="nav-text">重构之后：</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

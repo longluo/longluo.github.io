@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,App,原理" />
+  <meta name="keywords" content="iOS,App,原理,iOS开发" />
 
 
 
@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/HelloWorld-Message-Flow.jpg">
 <meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Process.jpg">
 <meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Option.jpg">
-<meta property="og:updated_time" content="2016-04-07T17:04:00.000Z">
+<meta property="og:updated_time" content="2016-04-10T16:55:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS编程基础: Hello World App是如何运作的?">
 <meta name="twitter:description" content="iOS编程基础: Hello World App是如何运作的?">
@@ -297,6 +297,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -334,7 +353,9 @@
       
 
       
-        <h4 id="翻译-By-Long-Luo"><a href="#翻译-By-Long-Luo" class="headerlink" title="翻译 By Long Luo"></a><strong><em>翻译 By Long Luo</em></strong></h4><h4 id="原文链接：iOS-Programming-Basic-How-Does-the-Hello-World-App-Work"><a href="#原文链接：iOS-Programming-Basic-How-Does-the-Hello-World-App-Work" class="headerlink" title="原文链接：iOS Programming Basic: How Does the Hello World App Work?"></a>原文链接：<a href="http://www.appcoda.com/ios-programming-basic-how-does-the-hello-world-app-work/" target="_blank" rel="external">iOS Programming Basic: How Does the Hello World App Work?</a></h4><pre><code>译者注：
+        <p><strong><em>翻译 By Long Luo</em></strong></p>
+<p><strong><em>原文链接：<a href="http://www.appcoda.com/ios-programming-basic-how-does-the-hello-world-app-work/" target="_blank" rel="external">iOS Programming Basic: How Does the Hello World App Work?</a></em></strong></p>
+<pre><code>译者注：
 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.
 </code></pre><p>我希望你享受了第一个<strong><em>iOS编程教程</em></strong>，同时已经创造了你的第一个App。在进入下一教程以及制作一个更复杂的App之前，我们有必要回过头，分析这个Hello World App。对于你理解一些Objective-C语言的语法和App的内部工作机制有很大帮助。</p>
@@ -347,7 +368,8 @@
 </ul>
 <a id="more"></a>
 <p>我希望你已经对Xcode IDE开发环境比较熟悉了，这样我就不用再解释一遍上面的内容了。对于每个开发者来说，理解代码的内部细节和抓住基本概念对于iOS编程是很有必要的。对于某些技术概念，如果你没有丝毫的编程背景来说，理解一些技术概念是有一定难度的。但是，别担心，这里仅仅是一个开始。如果你继续学习后续的教程，写出更多的代码，你就能更好的理解iOS编程。尽你所能努力学习更多知识吧！</p>
-<h2 id="Interface-Builder-Header-and-Implementation-Files"><a href="#Interface-Builder-Header-and-Implementation-Files" class="headerlink" title="Interface Builder, Header and Implementation Files"></a>Interface Builder, Header and Implementation Files</h2><p>首先，.xib, .h, .m文件是什么呢？这是一位读者提出的一个非常好的问题。在项目导航中，你应该可以找到3种主要的文件类型：<strong>.xib, .h, .m</strong>。(如果你打开“Supporting Files”文件夹，你可以找到其他的文件类型，例如plist和framework。但到目前为此，我们先忘掉它们，在今后课程中我们会讨论它们。)</p>
+<h2 id="Interface-Builder-Header-and-Implementation-Files"><a href="#Interface-Builder-Header-and-Implementation-Files" class="headerlink" title="Interface Builder, Header and Implementation Files"></a>Interface Builder, Header and Implementation Files</h2><hr>
+<p>首先，.xib, .h, .m文件是什么呢？这是一位读者提出的一个非常好的问题。在项目导航中，你应该可以找到3种主要的文件类型：<strong>.xib, .h, .m</strong>。(如果你打开“Supporting Files”文件夹，你可以找到其他的文件类型，例如plist和framework。但到目前为此，我们先忘掉它们，在今后课程中我们会讨论它们。)</p>
 <h3 id="xib"><a href="#xib" class="headerlink" title=".xib"></a>.xib</h3><ul>
 <li>如果一个文件也有.xib的扩展名，它们是Interface Builder文件，存储了应用的UI。当你点击了.xib文件，Xcode会自动的打开Interface Builder界面，你可以通过拖动和放下来编辑应用的UI。如下图所示:</li>
 </ul>
@@ -384,7 +406,8 @@
 <p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-App.jpg" alt="Hello World App"></p>
 <p><strong>Hello World App</strong></p>
 <p>想必你已经弄明白了接口和实现吧？</p>
-<h2 id="Behind-the-Touch-and-Tap"><a href="#Behind-the-Touch-and-Tap" class="headerlink" title="Behind the Touch and Tap"></a>Behind the Touch and Tap</h2><p>当你按下 “Hello World”按钮实际上发生了什么？ “Hello World” 按钮是如何调用 “showMessage” 方法去显示“Hello World”的消息呢？</p>
+<h2 id="Behind-the-Touch-and-Tap"><a href="#Behind-the-Touch-and-Tap" class="headerlink" title="Behind the Touch and Tap"></a>Behind the Touch and Tap</h2><hr>
+<p>当你按下 “Hello World”按钮实际上发生了什么？ “Hello World” 按钮是如何调用 “showMessage” 方法去显示“Hello World”的消息呢？</p>
 <p>回想起你是如何在Interface Builder建立起“Hello World”按钮和“sendMessage”的具体动作的关联的。再次打开“HelloWorldViewController.xib” ，选择“Hello World” 按钮，在Utility区域点击“Sent Events”按钮打开发生事件。</p>
 <p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Button-Sent-Events.jpg" alt="Hello World Button Send Events"></p>
 <p>发送部分展示了所有的关于事件和动作的联系。例如上述图片所示，“Touch Up Inside” 事件就关联到 “showMessage”的动作。在iOS中，app是事件驱动的。控制/目标监听特定的动作，例如触摸和按下。当事件触发之后，目标就会调用预设的关联到事件的动作。</p>
@@ -406,7 +429,8 @@
 <h4 id="Run"><a href="#Run" class="headerlink" title="Run"></a>Run</h4><ul>
 <li>按下之后，启动模拟器，载入你的App.</li>
 </ul>
-<h4 id="Long-Luo-created-at-19-22-21-06-May-5th-2014-Shenzhen-China"><a href="#Long-Luo-created-at-19-22-21-06-May-5th-2014-Shenzhen-China" class="headerlink" title="Long Luo created at 19:22 ~ 21: 06 May 5th, 2014 @Shenzhen, China."></a><strong><em>Long Luo created at 19:22 ~ 21: 06 May 5th, 2014 @Shenzhen, China.</em></strong></h4>
+<p><strong><em>Long Luo created at 19:22 ~ 21: 06 May 5th, 2014 @Shenzhen, China.</em></strong></p>
+
       
     </div>
     
@@ -423,6 +447,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+        </div>
       
 
       
@@ -528,7 +558,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -537,7 +567,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">28</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -619,7 +649,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#翻译-By-Long-Luo"><span class="nav-number">1.</span> <span class="nav-text">翻译 By Long Luo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原文链接：iOS-Programming-Basic-How-Does-the-Hello-World-App-Work"><span class="nav-number">2.</span> <span class="nav-text">原文链接：iOS Programming Basic: How Does the Hello World App Work?</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interface-Builder-Header-and-Implementation-Files"><span class="nav-number"></span> <span class="nav-text">Interface Builder, Header and Implementation Files</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xib"><span class="nav-number"></span> <span class="nav-text">.xib</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Behind-the-Touch-and-Tap"><span class="nav-number"></span> <span class="nav-text">Behind the Touch and Tap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Behind-the-Scene-of-the-“Run”-Button"><span class="nav-number"></span> <span class="nav-text">Behind the Scene of the “Run” Button</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编译"><span class="nav-number">1.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包"><span class="nav-number">2.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Run"><span class="nav-number">3.</span> <span class="nav-text">Run</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Long-Luo-created-at-19-22-21-06-May-5th-2014-Shenzhen-China"><span class="nav-number">4.</span> <span class="nav-text">Long Luo created at 19:22 ~ 21: 06 May 5th, 2014 @Shenzhen, China.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Interface-Builder-Header-and-Implementation-Files"><span class="nav-number">1.</span> <span class="nav-text">Interface Builder, Header and Implementation Files</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#xib"><span class="nav-number">1.1.</span> <span class="nav-text">.xib</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Behind-the-Touch-and-Tap"><span class="nav-number">2.</span> <span class="nav-text">Behind the Touch and Tap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Behind-the-Scene-of-the-“Run”-Button"><span class="nav-number">3.</span> <span class="nav-text">Behind the Scene of the “Run” Button</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#编译"><span class="nav-number">3.0.1.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#打包"><span class="nav-number">3.0.2.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Run"><span class="nav-number">3.0.3.</span> <span class="nav-text">Run</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
