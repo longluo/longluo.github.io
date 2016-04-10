@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Volley, HTTP, XML, JSON, 网络编程, Header" />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -80,16 +80,16 @@
 
 
 
-<meta name="description" content="如何使用Google Volley网络库发起带Header的HTTP请求?">
-<meta property="og:type" content="article">
-<meta property="og:title" content="如何使用Google Volley网络库发起带Header的HTTP请求?">
-<meta property="og:url" content="http://longluo.me/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/index.html">
+<meta name="description" content="Android | Java | Linux">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://longluo.me/about/index.html">
 <meta property="og:site_name" content="Long Luo's Develop Notes">
-<meta property="og:description" content="如何使用Google Volley网络库发起带Header的HTTP请求?">
-<meta property="og:updated_time" content="2016-04-10T15:32:44.000Z">
+<meta property="og:description" content="Android | Java | Linux">
+<meta property="og:updated_time" content="2016-04-10T16:23:05.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何使用Google Volley网络库发起带Header的HTTP请求?">
-<meta name="twitter:description" content="如何使用Google Volley网络库发起带Header的HTTP请求?">
+<meta name="twitter:title" content="about">
+<meta name="twitter:description" content="Android | Java | Linux">
 
 
 
@@ -107,7 +107,13 @@
   };
 </script>
 
-  <title> 如何使用Google Volley网络库发起带Header的HTTP请求? | Long Luo's Develop Notes </title>
+  <title>
+  
+
+  
+    about | Long Luo's Develop Notes
+  
+</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -153,7 +159,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -253,223 +259,9 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                如何使用Google Volley网络库发起带Header的HTTP请求?
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-09-07T12:20:14+08:00" content="2014-09-07">
-              2014-09-07
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/" class="leancloud_visitors" data-flag-title="如何使用Google Volley网络库发起带Header的HTTP请求?">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-        </div>
-      </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p><strong><em>By Long Luo</em></strong></p>
-<p>由于合作的第三方iQiyi视频的数据源更新速度很慢，通过和iQiyi反馈，于是提供了新的API接口。</p>
-<p>通过阅读新API接口说明，在发起HTTP Get请求时，必须<strong>同时带2个加密的Header参数</strong>，分别是时间戳和MD5加密后的key、时间戳以及客户端参数，否则无法返回正确的请求。</p>
-<p>目前在Android客户端使用的是Google开源Volley库，支持各种HTTP请求，图片缓存，JSON解析，性能十分强大。之前使用的接口都是直接发起HTTP Get请求，附带相关参数即可。</p>
-<p>通过阅读Volley相关资料，找到了下列方法，可以在发起HTTP请求时，附带Header参数，代码如下所示：</p>
-<a id="more"></a>
-<pre><code>    public void makeHTTPrequest(String url) {
-    MyLog.d(TAG, &quot;makeHTTPrequest, url=&quot; + url);
-
-    JsonObjectRequest jsonObjRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-            new Response.Listener&lt;JSONObject&gt;() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    try {
-                        MyLog.d(TAG, &quot;response=&quot; + response);
-                        parseiQiyiInterfaceResponse(response);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    if (error instanceof NetworkError) {
-                    } else if (error instanceof ClientError) {
-                    } else if (error instanceof ServerError) {
-                    } else if (error instanceof AuthFailureError) {
-                    } else if (error instanceof ParseError) {
-                    } else if (error instanceof NoConnectionError) {
-                    } else if (error instanceof TimeoutError) {
-                    }
-
-                    MyLog.e(TAG, &quot;onErrorResponse, error=&quot; + error);
-                }
-            }) {
-        @Override
-        public Map&lt;String, String&gt; getHeaders() throws AuthFailureError {
-            HashMap&lt;String, String&gt; headers = new HashMap&lt;String, String&gt;();
-            headers.put(&quot;t&quot;, iQiyiInterface.getEncryptTimestamp());
-            headers.put(&quot;sign&quot;, iQiyiInterface.getSign());
-
-            // MyLog.d(TAG, &quot;headers=&quot; + headers);
-            return headers;
-        }
-    };
-
-    // Set a retry policy in case of SocketTimeout &amp; ConnectionTimeout
-    // Exceptions. Volley does retry for you if you have specified the
-    // policy.
-    jsonObjRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
-            DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-    jsonObjRequest.setTag(TAG);
-    jsonObjRequest.setShouldCache(true);
-
-    mQueue.add(jsonObjRequest);
-    mQueue.start();
-}
-</code></pre><p><strong>Header参数使用HashMap存储。</strong></p>
-<p>获取到JSON数据之后，剩下的就是解析数据了，在这里就不赘述了。</p>
-<p>在完成这个过程中，还遇到了很多小插曲，比如Header的sign值不支持大写字母，结果前后也白费了不少力气。apk烧写到手机之后，还需要使用tcpdump抓取数据包，看是否返回了正确的数据。</p>
-<p>最后发现了Chrome的一个Smart Header插件，完美的解决了以上问题，不需要每次抓包验证返回结果了，直接在Chrome浏览器即可，节省了大量时间。</p>
-<p>总之，希望这篇文章对大家能有所帮助。谢谢！</p>
-<p><strong><em>Created by Long Luo at 2014-09-07 12:30:03 @Shenzhen, China.</em></strong></p>
-
-      
-    </div>
-    
-    <div>
-      
-        
-      
-    </div>
-
-    <div>
-      
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Volley-网络/" rel="tag">#Volley, 网络</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/blog/2014/09/07/the_first_web_front_develop_project_weather/" rel="next" title="第一个前端开发项目: 天气应用">
-                <i class="fa fa-chevron-left"></i> 第一个前端开发项目: 天气应用
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" rel="prev" title="一个用于批量下载网络图片的Shell脚本">
-                一个用于批量下载网络图片的Shell脚本 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
-
-
-
-    <div class="post-spread">
-      
-        
-<script>
-  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
-</script>
-
-      
-    </div>
   </div>
 
 
@@ -483,8 +275,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/"
-           data-title="如何使用Google Volley网络库发起带Header的HTTP请求?" data-url="http://longluo.me/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/">
+      <div class="ds-thread" data-thread-key="about/index.html"
+           data-title="about" data-url="http://longluo.me/about/index.html">
       </div>
     
   </div>
@@ -508,17 +300,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/default_avatar.jpg"
@@ -622,17 +405,6 @@
       </section>
 
       
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
-      
 
     </div>
   </aside>
@@ -734,10 +506,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
