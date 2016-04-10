@@ -80,40 +80,16 @@
 
 
 
-<meta name="description" content="By Long Luo
-上次在迅雷面试的时候，遇到了一个算法题，题目是：
-有一个很长很长的字符串，全部都是由大写字母组成，要求求出其中每个字母在这个字符串中出现的次数。
-
-不允许使用STL中的方法。
-当时拿到这个题目，我首先想到了以下几个方法：
-
-穷举法，一个个比较，最后算出每个字母出现的次数，这种方法可行，但不轻巧与优雅。
-每个字符与’A’想减，会得到一个值，统计下这个值出现次数，和方法1类似。">
+<meta name="description" content="面试迅雷时，遇到的一道算法题，要求统计一个字符串中每个字母出现的次数。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一道迅雷面试题:求出一个字符串中每个字母出现的次数">
 <meta property="og:url" content="http://longluo.me/blog/2015/04/12/a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/index.html">
 <meta property="og:site_name" content="Long Luo's Develop Notes">
-<meta property="og:description" content="By Long Luo
-上次在迅雷面试的时候，遇到了一个算法题，题目是：
-有一个很长很长的字符串，全部都是由大写字母组成，要求求出其中每个字母在这个字符串中出现的次数。
-
-不允许使用STL中的方法。
-当时拿到这个题目，我首先想到了以下几个方法：
-
-穷举法，一个个比较，最后算出每个字母出现的次数，这种方法可行，但不轻巧与优雅。
-每个字符与’A’想减，会得到一个值，统计下这个值出现次数，和方法1类似。">
-<meta property="og:updated_time" content="2016-04-09T02:12:02.000Z">
+<meta property="og:description" content="面试迅雷时，遇到的一道算法题，要求统计一个字符串中每个字母出现的次数。">
+<meta property="og:updated_time" content="2016-04-10T15:17:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一道迅雷面试题:求出一个字符串中每个字母出现的次数">
-<meta name="twitter:description" content="By Long Luo
-上次在迅雷面试的时候，遇到了一个算法题，题目是：
-有一个很长很长的字符串，全部都是由大写字母组成，要求求出其中每个字母在这个字符串中出现的次数。
-
-不允许使用STL中的方法。
-当时拿到这个题目，我首先想到了以下几个方法：
-
-穷举法，一个个比较，最后算出每个字母出现的次数，这种方法可行，但不轻巧与优雅。
-每个字符与’A’想减，会得到一个值，统计下这个值出现次数，和方法1类似。">
+<meta name="twitter:description" content="面试迅雷时，遇到的一道算法题，要求统计一个字符串中每个字母出现的次数。">
 
 
 
@@ -125,7 +101,7 @@
     fancybox: true,
     motion: true,
     duoshuo: {
-      userId: 0,
+      userId: 6271750883441116000,
       author: '博主'
     }
   };
@@ -357,7 +333,8 @@
 </ol>
 <p>其实这个题目，事后回顾起来，是比较简单的，但遗憾的是，当时未能在规定时间内解答出来，导致未能通过面试，拿到Offer，在此将这个题目记录下来。</p>
 <p>重新认真解答这个题目。</p>
-<h3 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h3><a id="more"></a>
+<h3 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h3><hr>
+<a id="more"></a>
 <p>其实这个题目有一个很简单的解决防范，新建一个数组，大小为26，将字符串中每个字符都与<code>&#39;A&#39;</code>相减，得到的就是每个字母在数组中的<code>元素下标值</code>，我们最后得到的这个数组就是每个字母在这个字符串中出现的次数。</p>
 <p>根据以上分析，可以写出如下代码：</p>
 <pre><code>package com.algorithm.alphabetSort;
@@ -397,7 +374,8 @@ public class AlphabetSort {
     }
 
 }
-</code></pre><h3 id="引申与扩展一"><a href="#引申与扩展一" class="headerlink" title="引申与扩展一"></a>引申与扩展一</h3><p>如果字符串不仅仅是大写字母，而是大小写字母都存在的情况下，那应该如何写呢？</p>
+</code></pre><h3 id="引申与扩展一"><a href="#引申与扩展一" class="headerlink" title="引申与扩展一"></a>引申与扩展一</h3><hr>
+<p>如果字符串不仅仅是大写字母，而是大小写字母都存在的情况下，那应该如何写呢？</p>
 <p>其实也很简单，如下所示：</p>
 <pre><code>if (cTemp &gt;= &apos;A&apos; &amp;&amp; cTemp &lt;= &apos;Z&apos;) {
     /**
@@ -412,7 +390,8 @@ public class AlphabetSort {
 } else {
 
 }
-</code></pre><h3 id="引申与扩展二"><a href="#引申与扩展二" class="headerlink" title="引申与扩展二"></a>引申与扩展二</h3><p>如果字符串，假如<code>所有字符</code>都需要统计呢？</p>
+</code></pre><h3 id="引申与扩展二"><a href="#引申与扩展二" class="headerlink" title="引申与扩展二"></a>引申与扩展二</h3><hr>
+<p>如果字符串，假如<code>所有字符</code>都需要统计呢？</p>
 <p>那又应该如何做呢？</p>
 <p>后来我发现了用HashMap来存储也是可以的，也可以完美解决这个问题，代码如下所示：</p>
 <pre><code>package com.algorithm.alphabetSort;
@@ -473,7 +452,8 @@ class KeyValue implements Comparable {
 }
 </code></pre><p>以上。</p>
 <p>如果大家还有其他更好的方法，欢迎一起讨论:-)</p>
-<h5 id="Created-by-Long-Luo-at-2015-04-12-01-08-20-Shenzhen-China"><a href="#Created-by-Long-Luo-at-2015-04-12-01-08-20-Shenzhen-China" class="headerlink" title="Created by Long Luo at 2015-04-12 01:08:20 @Shenzhen, China."></a><em>Created by Long Luo at 2015-04-12 01:08:20 @Shenzhen, China.</em></h5><h5 id="Completed-By-Long-Luo-at-2015-04-12-01-28-39-Shenzhen-China"><a href="#Completed-By-Long-Luo-at-2015-04-12-01-28-39-Shenzhen-China" class="headerlink" title="Completed By Long Luo at 2015-04-12 01:28:39 @Shenzhen, China."></a><em>Completed By Long Luo at 2015-04-12 01:28:39 @Shenzhen, China.</em></h5>
+<p><strong><em>Created by Long Luo at 2015-04-12 01:08:20 @Shenzhen, China.</em></strong><br><strong><em>Completed By Long Luo at 2015-04-12 01:28:39 @Shenzhen, China.</em></strong></p>
+
       
     </div>
     
@@ -493,9 +473,7 @@ class KeyValue implements Comparable {
       
         <div class="post-tags">
           
-            <a href="/tags/面试/" rel="tag">#面试</a>
-          
-            <a href="/tags/算法/" rel="tag">#算法</a>
+            <a href="/tags/面试-算法/" rel="tag">#面试, 算法</a>
           
         </div>
       
@@ -595,7 +573,7 @@ class KeyValue implements Comparable {
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -603,7 +581,7 @@ class KeyValue implements Comparable {
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -612,7 +590,7 @@ class KeyValue implements Comparable {
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -628,9 +606,9 @@ class KeyValue implements Comparable {
               <span class="links-of-author-item">
                 <a href="https://github.com/longluo" target="_blank">
                   
-                    <i class="fa fa-globe"></i>
+                    <i class="fa fa-github"></i>
                   
-                  github
+                  GitHub
                 </a>
               </span>
             
@@ -694,7 +672,7 @@ class KeyValue implements Comparable {
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#How"><span class="nav-number">1.</span> <span class="nav-text">How?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引申与扩展一"><span class="nav-number">2.</span> <span class="nav-text">引申与扩展一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引申与扩展二"><span class="nav-number">3.</span> <span class="nav-text">引申与扩展二</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Created-by-Long-Luo-at-2015-04-12-01-08-20-Shenzhen-China"><span class="nav-number">3.0.1.</span> <span class="nav-text">Created by Long Luo at 2015-04-12 01:08:20 @Shenzhen, China.</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Completed-By-Long-Luo-at-2015-04-12-01-28-39-Shenzhen-China"><span class="nav-number">3.0.2.</span> <span class="nav-text">Completed By Long Luo at 2015-04-12 01:28:39 @Shenzhen, China.</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#How"><span class="nav-number">1.</span> <span class="nav-text">How?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引申与扩展一"><span class="nav-number">2.</span> <span class="nav-text">引申与扩展一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引申与扩展二"><span class="nav-number">3.</span> <span class="nav-text">引申与扩展二</span></a></li></ol></div>
             
           </div>
         </section>
@@ -712,7 +690,7 @@ class KeyValue implements Comparable {
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2013 - 
   <span itemprop="copyrightYear">2016</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
