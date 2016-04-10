@@ -64,7 +64,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Game, GameEngine, 手机游戏" />
+  <meta name="keywords" content="Game, GameEngine, 手机游戏,游戏,游戏引擎" />
 
 
 
@@ -86,7 +86,7 @@
 <meta property="og:url" content="http://longluo.me/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/index.html">
 <meta property="og:site_name" content="Long Luo's Develop Notes">
 <meta property="og:description" content="游戏引擎学习笔记:介绍,架构,设计及实现">
-<meta property="og:updated_time" content="2016-04-07T17:04:00.000Z">
+<meta property="og:updated_time" content="2016-04-10T15:28:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="游戏引擎学习笔记:介绍,架构,设计及实现">
 <meta name="twitter:description" content="游戏引擎学习笔记:介绍,架构,设计及实现">
@@ -128,6 +128,21 @@
 
 
 
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55523596";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258500959&web_id=1258500959" type="text/javascript"></script>
+  </div>
 
 
 
@@ -273,8 +288,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/GameEngine-手游/" itemprop="url" rel="index">
-                    <span itemprop="name">GameEngine 手游</span>
+                  <a href="/categories/游戏/" itemprop="url" rel="index">
+                    <span itemprop="name">游戏</span>
                   </a>
                 </span>
 
@@ -321,7 +336,8 @@
       
 
       
-        <h4 id="By-Long-Luo"><a href="#By-Long-Luo" class="headerlink" title="By Long Luo"></a><strong><em>By Long Luo</em></strong></h4><p>从小到大，虽然玩过的游戏不少，但是从写程序开始，目前为此仅仅写过2个游戏。其一是2011年在MTK平台下写的贪食蛇，其二是2010年在嵌入式开发板上写过一个迷宫的游戏。第一个代码量大概有3000行左右，第二个有2000行左右。</p>
+        <p><strong><em>By Long Luo</em></strong></p>
+<p>从小到大，虽然玩过的游戏不少，但是从写程序开始，目前为此仅仅写过2个游戏。其一是2011年在MTK平台下写的贪食蛇，其二是2010年在嵌入式开发板上写过一个迷宫的游戏。第一个代码量大概有3000行左右，第二个有2000行左右。</p>
 <p>这2个游戏都很简单，而且网上有很多现成的例子可供参考，因此难度也比较低。</p>
 <p>这2天把拖延了好久的<strong><em>《Android应用开发揭秘》</em></strong>的游戏引擎的那一章看完了，收获还是很大，在此写一篇读书笔记。</p>
 <p>关于Game Engine，我能想到的几个问题：</p>
@@ -334,7 +350,8 @@
 </ol>
 <p>下面就来探讨几个问题：</p>
 <a id="more"></a>
-<h3 id="1-Game-Engine是什么？"><a href="#1-Game-Engine是什么？" class="headerlink" title="1. Game Engine是什么？"></a>1. Game Engine是什么？</h3><p>游戏产业在全球来看是一个很大的产业，一款游戏大作包含了非常多的元素。游戏涉及到剧情、人物、任务、关卡、地图、画质、美术、音乐、网络等多种元素。开发一款游戏实际上需要耗费非常多的资源，据说North Star的《GTA V》耗资几亿美元。正因为如此，在开发项目过程中，尽可能复用之前项目成功的东西就非常重要。</p>
+<h3 id="1-Game-Engine是什么？"><a href="#1-Game-Engine是什么？" class="headerlink" title="1. Game Engine是什么？"></a>1. Game Engine是什么？</h3><hr>
+<p>游戏产业在全球来看是一个很大的产业，一款游戏大作包含了非常多的元素。游戏涉及到剧情、人物、任务、关卡、地图、画质、美术、音乐、网络等多种元素。开发一款游戏实际上需要耗费非常多的资源，据说North Star的《GTA V》耗资几亿美元。正因为如此，在开发项目过程中，尽可能复用之前项目成功的东西就非常重要。</p>
 <p>一款游戏中，<em>Game Engine直接控制着剧情、关卡、美工、音乐、操作</em>等内容，将游戏的所有元素捆绑在一起。</p>
 <p>一般来说，一款Game Engine需要包含以下模块：</p>
 <ol>
@@ -349,10 +366,12 @@
 7. 音乐音效
 8. 网络
 9. 脚本（有些类型的游戏引擎需要脚本和逻辑的关联性非常强，有些脚本则比较独立）
-</code></pre><h3 id="2-Game-Engine为了解决什么问题？"><a href="#2-Game-Engine为了解决什么问题？" class="headerlink" title="2. Game Engine为了解决什么问题？"></a>2. Game Engine为了解决什么问题？</h3><p><strong>Game Engine实际上有效的减少开发者编写程序时的冗余劳动，同时增强游戏的可移植性</strong>。</p>
+</code></pre><h3 id="2-Game-Engine为了解决什么问题？"><a href="#2-Game-Engine为了解决什么问题？" class="headerlink" title="2. Game Engine为了解决什么问题？"></a>2. Game Engine为了解决什么问题？</h3><hr>
+<p><strong>Game Engine实际上有效的减少开发者编写程序时的冗余劳动，同时增强游戏的可移植性</strong>。</p>
 <p>Engine就是游戏的框架，我们需要往框架中填充内容就可以形成一个游戏。</p>
 <p>引擎，就是一系列的工具和生产链，像Unreal 3，Unity这样的成熟引擎，用起来非常方便，就是因为它的关卡/场景编辑器十分宜用，支持多种脚本语言。这类引擎运用恰当的话，理论上能将关卡调试和物件流水线的大部分工作从程序员那里完全移出。</p>
-<h3 id="3-Game-Engine的架构"><a href="#3-Game-Engine的架构" class="headerlink" title="3. Game Engine的架构"></a>3. Game Engine的架构</h3><pre><code>游戏 = 引擎(程序) + 资源(图像、声音、动画等)
+<h3 id="3-Game-Engine的架构"><a href="#3-Game-Engine的架构" class="headerlink" title="3. Game Engine的架构"></a>3. Game Engine的架构</h3><hr>
+<pre><code>游戏 = 引擎(程序) + 资源(图像、声音、动画等)
 </code></pre><p>目前的Game Engine的架构都是Model-View-Controller架构，逻辑和显示分开，由一个逻辑控制流来协调Client的请求和Server的行动。</p>
 <ol>
 <li>View: 负责界面回执</li>
@@ -361,17 +380,20 @@
 </ol>
 <p><strong>消息循环-&gt;更新数据-&gt;绘制各节点</strong> 这是绘制的基本结构基本不会有大的改变。 </p>
 <p>各种引擎的变种很大部分是在游戏逻辑上的封装。脚本也好，直接写代码也好。比如较为古老的数据与函数分离，以C语言为代表。大行其道的类结构。以c++为代表。以及现在光环日耀的CBSE，基于组件的架构</p>
-<h3 id="4-如何设计一款游戏引擎？"><a href="#4-如何设计一款游戏引擎？" class="headerlink" title="4. 如何设计一款游戏引擎？"></a>4. 如何设计一款游戏引擎？</h3><h4 id="结构设计及功能设计"><a href="#结构设计及功能设计" class="headerlink" title=". 结构设计及功能设计"></a><1>. 结构设计及功能设计</1></h4><p>Game Engine的设计包括结构设计、功能设计及注意事项。</p>
+<h3 id="4-如何设计一款游戏引擎？"><a href="#4-如何设计一款游戏引擎？" class="headerlink" title="4. 如何设计一款游戏引擎？"></a>4. 如何设计一款游戏引擎？</h3><hr>
+<h4 id="结构设计及功能设计"><a href="#结构设计及功能设计" class="headerlink" title=". 结构设计及功能设计"></a><1>. 结构设计及功能设计</1></h4><p>Game Engine的设计包括结构设计、功能设计及注意事项。</p>
 <p>Game Engine包括<strong>图形引擎</strong>、脚本引擎、物理引擎、工具模块、音效引擎、网络组件、事件组件等。</p>
 <p>Android游戏主要包括一个Activity类、流程控制类、游戏线程类和游戏对象类。Activity类是游戏的执行单元，负责游戏生命周期的控制。</p>
 <p>流程控制：提供在游戏中多个界面之间切换方法；</p>
 <p>游戏线程：不断监测可能发生的各种事件，计算游戏状态，刷新屏幕。</p>
 <h4 id="注意事项："><a href="#注意事项：" class="headerlink" title=". 注意事项："></a><2>. 注意事项：</2></h4><p>手机游戏的主要问题是 硬件限制 及 电池瓶颈。CPU及内存不足，屏幕大小，音效等多方面限制，在设计时需要注意这些方面。</p>
-<h3 id="5-实现一款游戏引擎"><a href="#5-实现一款游戏引擎" class="headerlink" title="5. 实现一款游戏引擎"></a>5. 实现一款游戏引擎</h3><p>游戏引擎<strong>只是一款炒菜的炒菜锅，但有了好的炒菜锅不一定能保证炒出好的菜</strong>。</p>
+<h3 id="5-实现一款游戏引擎"><a href="#5-实现一款游戏引擎" class="headerlink" title="5. 实现一款游戏引擎"></a>5. 实现一款游戏引擎</h3><hr>
+<p>游戏引擎<strong>只是一款炒菜的炒菜锅，但有了好的炒菜锅不一定能保证炒出好的菜</strong>。</p>
 <p>游戏引擎的实现就很复杂了，需要按照上一节的架构及功能设计去编码实现，目前绝大部分都是面向对象编程，设计好各种类。比如人物、NPC、道具、动画、动植物等等。有余力的同学可以去研究研究。</p>
 <p>最近流行的一些游戏，其实也并不需要多么NB的游戏引擎，充分发掘用户的痛点才能设计出一款好的游戏。</p>
 <p>目前有很多开源的Game Engine可供大家研究，比如Unity3D, Box2D等，大家可以去网上搜索并研究。</p>
-<h3 id="6-对手机游戏的展望"><a href="#6-对手机游戏的展望" class="headerlink" title="6. 对手机游戏的展望"></a>6. 对手机游戏的展望</h3><p>这2年玩过的手机游戏也不少，我也来谈谈一款好的手机游戏应该具备哪些特征：</p>
+<h3 id="6-对手机游戏的展望"><a href="#6-对手机游戏的展望" class="headerlink" title="6. 对手机游戏的展望"></a>6. 对手机游戏的展望</h3><hr>
+<p>这2年玩过的手机游戏也不少，我也来谈谈一款好的手机游戏应该具备哪些特征：</p>
 <ol>
 <li><strong>上手容易，精通不易</strong>，且玩且珍惜。手游面向的是大众，所以上手难的游戏就一律pass，必须保证游戏具有简单性，让玩家一安装就可以玩的；</li>
 <li><strong><em>可中断，时间短</em></strong>。一般玩游戏，都是在公交地铁上等碎片时间里，所以提供的是短时间的娱乐效果，允许在游戏和工作模式之间顺利切换；</li>
@@ -379,7 +401,8 @@
 <li>充分利用手机的各项优点：手机的优点比如便携性，私密性，即使抵达。手机是我们身体的延伸，所以一款好的游戏应该充分利用手机的一些传感器、摄像头、网络、蓝牙，找出特点，以便设计出一款优秀的游戏。</li>
 <li>…</li>
 </ol>
-<h4 id="Long-Luo-Created-at-AM00-17-April-07th-2014-Shenzhen-China"><a href="#Long-Luo-Created-at-AM00-17-April-07th-2014-Shenzhen-China" class="headerlink" title="Long Luo Created at AM00:17 April 07th, 2014 @Shenzhen, China."></a><strong><em>Long Luo Created at AM00:17 April 07th, 2014 @Shenzhen, China.</em></strong></h4><h4 id="Long-Luo-Completed-at-PM21-35-April-07th-2014-Shenzhen-China"><a href="#Long-Luo-Completed-at-PM21-35-April-07th-2014-Shenzhen-China" class="headerlink" title="Long Luo Completed at PM21:35 April 07th, 2014 @Shenzhen, China."></a><strong><em>Long Luo Completed at PM21:35 April 07th, 2014 @Shenzhen, China.</em></strong></h4>
+<p><strong><em>Long Luo Created at AM00:17 April 07th, 2014 @Shenzhen, China.</em></strong><br><strong><em>Long Luo Completed at PM21:35 April 07th, 2014 @Shenzhen, China.</em></strong></p>
+
       
     </div>
     
@@ -396,6 +419,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/游戏/" rel="tag">#游戏</a>
+          
+        </div>
       
 
       
@@ -501,7 +530,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -510,7 +539,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-count">20</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -592,7 +621,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#By-Long-Luo"><span class="nav-number">1.</span> <span class="nav-text">By Long Luo</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Game-Engine是什么？"><span class="nav-number"></span> <span class="nav-text">1. Game Engine是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Game-Engine为了解决什么问题？"><span class="nav-number"></span> <span class="nav-text">2. Game Engine为了解决什么问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Game-Engine的架构"><span class="nav-number"></span> <span class="nav-text">3. Game Engine的架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-如何设计一款游戏引擎？"><span class="nav-number"></span> <span class="nav-text">4. 如何设计一款游戏引擎？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构设计及功能设计"><span class="nav-number">1.</span> <span class="nav-text">. 结构设计及功能设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意事项："><span class="nav-number">2.</span> <span class="nav-text">. 注意事项：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-实现一款游戏引擎"><span class="nav-number"></span> <span class="nav-text">5. 实现一款游戏引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-对手机游戏的展望"><span class="nav-number"></span> <span class="nav-text">6. 对手机游戏的展望</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Long-Luo-Created-at-AM00-17-April-07th-2014-Shenzhen-China"><span class="nav-number">1.</span> <span class="nav-text">Long Luo Created at AM00:17 April 07th, 2014 @Shenzhen, China.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Long-Luo-Completed-at-PM21-35-April-07th-2014-Shenzhen-China"><span class="nav-number">2.</span> <span class="nav-text">Long Luo Completed at PM21:35 April 07th, 2014 @Shenzhen, China.</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Game-Engine是什么？"><span class="nav-number">1.</span> <span class="nav-text">1. Game Engine是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Game-Engine为了解决什么问题？"><span class="nav-number">2.</span> <span class="nav-text">2. Game Engine为了解决什么问题？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Game-Engine的架构"><span class="nav-number">3.</span> <span class="nav-text">3. Game Engine的架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-如何设计一款游戏引擎？"><span class="nav-number">4.</span> <span class="nav-text">4. 如何设计一款游戏引擎？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构设计及功能设计"><span class="nav-number">4.1.</span> <span class="nav-text">. 结构设计及功能设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意事项："><span class="nav-number">4.2.</span> <span class="nav-text">. 注意事项：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-实现一款游戏引擎"><span class="nav-number">5.</span> <span class="nav-text">5. 实现一款游戏引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-对手机游戏的展望"><span class="nav-number">6.</span> <span class="nav-text">6. 对手机游戏的展望</span></a></li></ol></div>
             
           </div>
         </section>
