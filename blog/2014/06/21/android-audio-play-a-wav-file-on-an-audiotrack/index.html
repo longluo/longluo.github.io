@@ -1,0 +1,959 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android,Audio,音频,AudioTrack" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Long Luo's Develop Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://7d9hot.com1.z0.glb.clouddn.com/favicon/coding_favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文是关于如何在Android中使用AudioTrack播放WAV格式文件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?">
+<meta property="og:url" content="http://longluo.me/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/index.html">
+<meta property="og:site_name" content="Long Luo's Develop Notes">
+<meta property="og:description" content="本文是关于如何在Android中使用AudioTrack播放WAV格式文件。">
+<meta property="og:updated_time" content="2016-04-11T16:30:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?">
+<meta name="twitter:description" content="本文是关于如何在Android中使用AudioTrack播放WAV格式文件。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6271750883441116000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> [译]Android音频: 如何使用AudioTrack播放一个WAV格式文件? | Long Luo's Develop Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55523596";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258500959&web_id=1258500959" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Long Luo's Develop Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">每一天都是奇迹</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-06-21T23:15:30+08:00" content="2014-06-21">
+              2014-06-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" class="leancloud_visitors" data-flag-title="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong><em>翻译 By Long Luo</em></strong></p>
+<h4 id="原文链接：Android-Audio-Play-a-WAV-file-on-an-AudioTrack"><a href="#原文链接：Android-Audio-Play-a-WAV-file-on-an-AudioTrack" class="headerlink" title="原文链接：Android Audio: Play a WAV file on an AudioTrack"></a>原文链接：<a href="http://mindtherobot.com/blog/580/android-audio-play-a-wav-file-on-an-audiotrack/" target="_blank" rel="external">Android Audio: Play a WAV file on an AudioTrack</a></h4><pre><code>译者注：
+1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
+2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.
+3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。
+</code></pre><p>如果你已经成功地了解了关于<strong>AudioTrack</strong>的<a href="http://mindtherobot.com/blog/555/android-audio-problems-hidden-limitations-and-opensl-es/" title="Android Audio: Problems, Hidden Limitations and OpenSL ES" target="_blank" rel="external">一些话题</a>，那么你可能享受它带来的好处，例如低延迟（在STATIC(静态)模式），能够生成流式音频（在STREAM(流)模式）以及在播放之前，就能够访问和修改原始声音数据。</p>
+<p>不过，现在的问题是如何从源获取数据。许多应用需要使用的<strong>AudioTrack</strong>并不能简单的生成PCM音频（一个例子，比如<strong>Ethereal Dialpad</strong>或者其他类似的App）。你可能需要从文件源去加载数据，例如<em>WAV</em>或<em>MP3</em>文件。 </p>
+<p>不要期望使用<strong>MediaPlayer</strong>，去解码<em>WAV</em>文件和<em>MP3</em>音频。虽然<strong>MediaPlayer</strong>播放这些文件非常好，但是其播放逻辑完全在Native层，同时并没有为我们提供额外选项，允许我们使用其他解码器实现我们的目的。因此，我们必须从手动地从音频文件进行解码出<em>PCM</em>。</p>
+<p>在这篇文章中，将会讨论<strong>WAV</strong>格式文件。而在下一课中，我们将会更进一步，讨论如何从<strong>MP3</strong>文件读取音频。</p>
+<h4 id="背景知识-一些数字音频术语"><a href="#背景知识-一些数字音频术语" class="headerlink" title="背景知识: 一些数字音频术语"></a>背景知识: 一些数字音频术语</h4><hr>
+<p>如果你的App不是专门为数字音频设计，那么在继续我们的讨论之前，你可能需要先了解一些基本的缩略语。别担心，都很简单，我们不需要对此做深入挖掘。</p>
+<ul>
+<li><p>PCM(<strong>脉冲调制方式</strong>) - 实现一个物理音频信号变成数字化最简单方法。基本原理就是信号变成了一个数字阵列，而其中<strong>每个数字代表的是声音在特定的时间瞬间的电平</strong>也可以说是能量（振幅）。(如果这种解释在科学上可能不会很准确，那我就只能说声抱歉了）。信不信由你，你可以使用这种方法表示<strong>任何复杂</strong>的声音，而且回放出来也非常精准。在这里，我们将只会谈到线性PCM。在线性PCM中，其中阵列中的每个数字都是原始声音振幅的<strong>线性表示</strong>。在某些情况下，对数映射能够更好地表示原来的声音幅度比例情况 - 但是我们不会讨论那些情况。</p>
+</li>
+<li><p>Sampling rate(采样率)：- 每秒你的数字声音有多少样本（声音幅度用数字表示）。样本越多，你能得到声音质量越好。目前在消费类音频系统目前使用的采样率通常是22050，44100和48000Hz/s。</p>
+</li>
+<li><p>每个样品分辨率/采样大小/位 - 定义表示振幅数字的大小和格式。例如，如果您使用的是8位整数，你只能表达出256级的幅度，所以原来的物理波形将被简化为256个离散电平，与此同时，你将失去一些声音精度也可以说是质量。如果你使用16位，那么声音质量变得更好。事实上，大部分时间你可能会使用16位音频。其他选项包括24位，32位（这些都是Android现在不支持的），或是使用浮点数。</p>
+</li>
+<li><p>声道 - 既可以是单声道，也可以是立体声(2个声道)，或者更多声道(但是Android不支持)。如果你想要有立体声，你需要有立体声音频，就必须要在每个声道都需要有一个独立的PCM数组，相应的信息量也会翻倍。</p>
+</li>
+</ul>
+<p>上述定义也有助于你理解特定的格式和长度的音频缓冲区的数据量，以便提前预备缓冲区。也就是你需要一个缓冲区，以用于存储5秒长度以44100Hz采样率的立体声16-bit线性PCM数据。数据计算公式如下所示：</p>
+<p><code>5 sec * 44100 samples per sec * 2 bytes per sample * 2 channels = 882,000 bytes</code></p>
+<p>这一数额所需的内存可能会让初学者感到惊讶，因为当你往你的磁盘上存储的音频时，一个MP3文件，一个880KB的文件就可以容纳以相同的采样率和分辨率1分钟时长的音轨。这是为什么呢？因为先进的格式，比如MP3格式。因为我们大脑无法分辨识别出一些音频的内容，所以使用了很多复杂的方式在压缩的过程中去掉了这些内容。然而，大多数低等级的音频API，包括Android的<strong>AudioTrack</strong>只能接受线性<strong>PCM</strong>。这就是为什么如果我们不能把整个样品都放在内存中，我们需要将要处理的数据流，循环缓冲区和其他聪明的方式来使用音频API。</p>
+<p>希望这样的解释并没有让你产生困惑，现在让我们继续来实际做一些与Android上的数字音频有关的工作吧！</p>
+<a id="more"></a>
+<h4 id="WAV文件格式"><a href="#WAV文件格式" class="headerlink" title="WAV文件格式"></a>WAV文件格式</h4><hr>
+<p>我们的目标是用一个<strong>InputStream</strong>，由其从一个<em>WAV</em>文件加载PCM数据，来提供原始字节数据。然后我们就可以将原始的PCM数据直接推送到使用已经正确的配置好了的<strong>AudioTrack.write</strong>，通过使用<strong><em>AudioTrack.write()</em></strong>这个API。</p>
+<p><em>WAV</em>文件包含一个文件头和具体数据会。我们需要读取文件头以知道诸如采样速率，分辨率等信息。另外，我们通过文件头，也可以知道此格式是否支持。<em>WAV</em>可以封装成多种格式，我们无法全部支持。也许，只是合理的采样率，分辨率和通道的线性<strong>PCM</strong>格式。</p>
+<p><em>WAV</em>格式的细节在互联网上都可以找到，你仅仅需要在Google上搜索下。但是，遗憾的是，我并没有搜索到一个很好的Java库来读取WAV文件，而且可以移植到<strong>Android</strong>下。因此，我自己写了一些简单的代码。</p>
+<p>下面这个方法就是如何读取一个WAV文件的头部：</p>
+<pre><code>private static final String RIFF_HEADER = &quot;RIFF&quot;;
+private static final String WAVE_HEADER = &quot;WAVE&quot;;
+private static final String FMT_HEADER = &quot;fmt &quot;;
+private static final String DATA_HEADER = &quot;data&quot;;
+
+private static final int HEADER_SIZE = 44;
+
+private static final String CHARSET = &quot;ASCII&quot;;
+
+/* ... */
+
+public static WavInfo readHeader(InputStream wavStream) throws IOException,
+        DecoderException {
+
+    ByteBuffer buffer = ByteBuffer.allocate(HEADER_SIZE);
+    buffer.order(ByteOrder.LITTLE_ENDIAN);
+
+    wavStream.read(buffer.array(), buffer.arrayOffset(), buffer.capacity());
+
+    buffer.rewind();
+    buffer.position(buffer.position() + 20);
+    int format = buffer.getShort();
+    checkFormat(format == 1, &quot;Unsupported encoding: &quot; + format); // 1 means
+                                                                    // Linear
+                                                                    // PCM
+    int channels = buffer.getShort();
+    checkFormat(channels == 1 || channels == 2, &quot;Unsupported channels: &quot;
+            + channels);
+    int rate = buffer.getInt();
+    checkFormat(rate &lt;= 48000 &amp;&amp; rate &gt;= 11025, &quot;Unsupported rate: &quot; + rate);
+    buffer.position(buffer.position() + 6);
+    int bits = buffer.getShort();
+    checkFormat(bits == 16, &quot;Unsupported bits: &quot; + bits);
+    int dataSize = 0;
+    while (buffer.getInt() != 0x61746164) { // &quot;data&quot; marker
+        Log.d(TAG, &quot;Skipping non-data chunk&quot;);
+        int size = buffer.getInt();
+        wavStream.skip(size);
+
+        buffer.rewind();
+        wavStream.read(buffer.array(), buffer.arrayOffset(), 8);
+        buffer.rewind();
+    }
+    dataSize = buffer.getInt();
+    checkFormat(dataSize &gt; 0, &quot;wrong datasize: &quot; + dataSize);
+
+    return new WavInfo(new FormatSpec(rate, channels == 2), dataSize);
+}
+</code></pre><p>上面的代码中，缺少的部分应该是显而易见的。正如你所看到的，仅仅支持16位，但在你可以修改代码以支持8位（<strong>AudioTrack</strong>不支持任何其他分辨率的）。</p>
+<p>下面这个方法，则是用来读取文件剩余的部分 - <strong>音频数据</strong>。</p>
+<pre><code>public static byte[] readWavPcm(WavInfo info, InputStream stream)
+        throws IOException {
+    byte[] data = new byte[info.getDataSize()];
+    stream.read(data, 0, data.length);
+    return data;
+}
+</code></pre><p>我们读取的<strong>WavInfo</strong>结构体，包含采样率，分辨率和声道数已经足够让我们去播放我们读取的音频了。</p>
+<p>如果我们不需要将全部音频数据一次性放入内存中，我们可以使用一个<strong><em>InputStream</em></strong>，一点一点地读取。</p>
+<h4 id="将PCM传入AudioTrack"><a href="#将PCM传入AudioTrack" class="headerlink" title="将PCM传入AudioTrack"></a>将PCM传入AudioTrack</h4><hr>
+<p>我们现在面临2种情况，新建一个适合这种格式的<strong>AudioTrack</strong>，或者使用一个已存在的<strong>AudioTrack</strong>，但是可能和我们<em>WAV</em>音频数据的格式不一致。</p>
+<p>在第一种情况，事情就很简单了，我们仅仅需要使用<strong>AudioTrack</strong>构造器构造一个我们已经从WAV头部对应的即可。</p>
+<p>第二种情况，我们就需要将我们的音频变成<strong>AudioTrack</strong>需要的目标格式。我们需要做一下几种转换方式：</p>
+<p>如果采样率不同，要么丢弃或复制一个样本以便和目标速率相匹配。如果分辨率是不同的，将源信号分辨率映射到目标分辨率，从16位到8位，反之亦然。如果信道不同，我们要么将立体声声道混合成一个单声道或重复单声道的数据把它变成准立体声。（请考虑将这些算法的实现放在Native层，因为Native层在做这类处理有很大的优势。） </p>
+<p>在其他情况下，我们已经确定格式已经匹配。我们使用<strong>AudioTrack.write()</strong>写入缓冲区，以便实现回放。</p>
+<p>记住，如果你使用静态模式，你需要在<strong>play()</strong>之前，新建一个包含准确的缓冲区大小的<strong>AudioTrack</strong> ，同时写入<strong>write()</strong>音频数据。而在流模式下，我们可以先使用<strong>AudioTrack</strong>的<strong>play()</strong>，然后在使用<strong>write()</strong>写入数据部分</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><hr>
+<p>你想实现<strong><em>AudioTrack</em></strong>上播放<strong><em>WAV</em></strong>音频可能有很多原因。有时候，可能是SoundPool有尺寸限制，或是MediaPlayer会有延迟和对资源占用太高，让你考虑使用这种方式。有时候你需要修改音频或者混合音频。不管任何情况，这篇文章试图告诉你应该如何做。</p>
+<p>在下一篇中，我们将会讨论MP3音频，敬请期待:-)</p>
+<p><strong><em>Long Luo for Part 1 created at 23:15 ~ 00: 33 June 21th, 2014 @Shenzhen, China.</em></strong><br><strong><em>Long Luo for Part 2 created at 16:00 ~ 17: 15 June 22th, 2014 @Shenzhen, China.</em></strong></p>
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/音频/" rel="tag">#音频</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/06/05/summary_of_wwdc2014_ios8/" rel="next" title="WWDC2014总结之iOS8篇">
+                <i class="fa fa-chevron-left"></i> WWDC2014总结之iOS8篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" rel="prev" title="视频在线搜索设计与实现">
+                视频在线搜索设计与实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/"
+           data-title="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?" data-url="http://longluo.me/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Long Luo" />
+          <p class="site-author-name" itemprop="name">Long Luo</p>
+          <p class="site-description motion-element" itemprop="description">一个三流程序员的网上家园，目前Android开发攻城狮, 不仅喜欢码字还喜欢码代码, Java, C, Linux</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/longluo" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/imlongluo" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/65242715/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/longluo" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imlongluo.com/" target="_blank">My Home Page</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/tcpipstack" target="_blank">My CSDN</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#原文链接：Android-Audio-Play-a-WAV-file-on-an-AudioTrack"><span class="nav-number">1.</span> <span class="nav-text">原文链接：Android Audio: Play a WAV file on an AudioTrack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#背景知识-一些数字音频术语"><span class="nav-number">2.</span> <span class="nav-text">背景知识: 一些数字音频术语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WAV文件格式"><span class="nav-number">3.</span> <span class="nav-text">WAV文件格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将PCM传入AudioTrack"><span class="nav-number">4.</span> <span class="nav-text">将PCM传入AudioTrack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"longluome"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz", "p2mNUdDbqxrxOYMjs1xiS0zM");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

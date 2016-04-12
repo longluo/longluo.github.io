@@ -1,0 +1,977 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android, UI, Layout, 布局" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Long Luo's Develop Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://7d9hot.com1.z0.glb.clouddn.com/favicon/coding_favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Android UI Layout总结系列之篇之5大布局.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android UI Layout总结系列之篇之5大布局">
+<meta property="og:url" content="http://longluo.me/blog/2014/01/23/android_ui_layout_summay_5_layouts/index.html">
+<meta property="og:site_name" content="Long Luo's Develop Notes">
+<meta property="og:description" content="Android UI Layout总结系列之篇之5大布局.">
+<meta property="og:updated_time" content="2016-04-11T16:32:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android UI Layout总结系列之篇之5大布局">
+<meta name="twitter:description" content="Android UI Layout总结系列之篇之5大布局.">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6271750883441116000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> Android UI Layout总结系列之篇之5大布局 | Long Luo's Develop Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55523596";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258500959&web_id=1258500959" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Long Luo's Develop Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">每一天都是奇迹</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android UI Layout总结系列之篇之5大布局
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-01-23T20:16:36+08:00" content="2014-01-23">
+              2014-01-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2014/01/23/android_ui_layout_summay_5_layouts/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014/01/23/android_ui_layout_summay_5_layouts/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2014/01/23/android_ui_layout_summay_5_layouts/" class="leancloud_visitors" data-flag-title="Android UI Layout总结系列之篇之5大布局">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong><em>By Long Luo</em></strong></p>
+<p>在一个Android应用中，Layout是开发中的一个很重要环节，Layout是组成UI不可缺少的一部分。</p>
+<h2 id="Android-UI-核心类"><a href="#Android-UI-核心类" class="headerlink" title="Android UI 核心类"></a>Android UI 核心类</h2><hr>
+<h4 id="在Android应用构建UI的方法有以下几种："><a href="#在Android应用构建UI的方法有以下几种：" class="headerlink" title="在Android应用构建UI的方法有以下几种："></a>在Android应用构建UI的方法有以下几种：</h4><ol>
+<li>单纯使用JAVA代码</li>
+<li>使用XML完全定义界面</li>
+<li>结合使用两者，在XML中定义，在JAVA中引用和修改</li>
+</ol>
+<h4 id="Android-SDK中关于UI的核心类："><a href="#Android-SDK中关于UI的核心类：" class="headerlink" title="Android SDK中关于UI的核心类："></a>Android SDK中关于UI的核心类：</h4><p>Android.view.View和android.view.ViewGroup</p>
+<p>android中的常见UI控件均会扩展View和ViewGroup其中有一部分是专门用来控制其子View位置和大小，这些类我们称为布局管理器。</p>
+<h4 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h4><p>1.LayoutParams是ViewGroup内部类，包含了ViewGroup的布局参数，用来告诉它们的父类它们想怎么在父类中布局（大小和位置），所有在LayoutParams及其子类中定义的布局参数在xml中定义都是通过layout_<em>*</em>定义的。</p>
+<p>LayoutParams只提供了两个参数设定：</p>
+<pre><code>layout_width  元素的高度(fill_parent | match_parent | wrap_content | *dip)
+layout_height 元素的宽度(同上)                    
+</code></pre><p>2.MarginLayoutParams也是ViewGroup一个内部类，它继承了LayoutParams类，用来扩展LayoutParams的属性，设置参数。</p>
+<p>MarginLayoutParams添加了四个参数设定：</p>
+<pre><code>layout_marginLeft       相对于本元素左边界的偏移
+layout_marginRight         相对于本元素右边界的偏移
+layout_marginTop，        相对于本元素上边界的偏移
+layout_marginBottom      相对于本元素下边界的偏移
+</code></pre><p>以上的两种Layout参数，所有布局中的子ViewGroup和子View都可以使用</p>
+<a id="more"></a>
+<p><strong>下面讲述5种布局：</strong></p>
+<h2 id="1-Linear-Layout-线性布局"><a href="#1-Linear-Layout-线性布局" class="headerlink" title="1.Linear Layout (线性布局)"></a>1.Linear Layout (线性布局)</h2><hr>
+<p>线性布局是Android布局中最简单的布局，也是最常用，最实用的布局。</p>
+<p>android:orientation线形布局的对齐方式 ： vertical(垂直) 和 horizontal(水平)</p>
+<p>LayoutParams中的特殊参数:</p>
+<pre><code>layout_weight  权值
+layout_gravity 相对于父元素的重力值(默认top|left)：
+(top|bottom|left|right|center_vertical|fill_vertical |center_ horizontal 
+|fill_ horizontal | center| fill)
+</code></pre><h4 id="LinearLayout有两个非常相似的属性："><a href="#LinearLayout有两个非常相似的属性：" class="headerlink" title="LinearLayout有两个非常相似的属性："></a>LinearLayout有两个非常相似的属性：</h4><pre><code>android:gravity
+android:layout_gravity
+</code></pre><p><strong>他们的区别在于：</strong></p>
+<ul>
+<li><p>android:gravity属性是对该view中内容的限定．比如一个button 上面的text. 你可以设置该text相对于view的靠左，靠右等位置．</p>
+</li>
+<li><p>android:layout_gravity是用来设置该view相对与父view的位置．比如一个button在linearlayout里，你想把该button放在linearlayout里靠左、靠右等位置就可以通过该属性设置． </p>
+</li>
+</ul>
+<p>android:gravity用于设置View中内容相对于View组件的对齐方式，而android:layout_gravity用于设置View组件相对于Container的对齐方式。</p>
+<p>原理跟android:paddingLeft、android:layout_marginLeft有点类似。如果在按钮上同时设置这两个属性。</p>
+<pre><code>android:paddingLeft=&quot;30px&quot;  按钮上设置的内容离按钮左边边界30个像素
+android:layout_marginLeft=&quot;30px&quot;  整个按钮离左边设置的内容30个像素
+</code></pre><p>下面回到正题， 我们可以通过设置android:gravity=”center”来让EditText中的文字在EditText组件中居中显示；</p>
+<p>同时我们设置EditText的android:layout_gravity=”right”来让EditText组件在LinearLayout中居右显示。看下效果：</p>
+<pre><code>&lt;LinearLayout
+       xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:orientation=&quot;vertical&quot;
+    android:layout_width=&quot;fill_parent&quot;
+    android:layout_height=&quot;fill_parent&quot; &gt;
+    &lt;EditText
+        android:layout_width=&quot;wrap_content&quot;
+        android:gravity=&quot;center&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;one&quot;
+        android:layout_gravity=&quot;right&quot;/&gt;
+&lt;/LinearLayout&gt;
+</code></pre><h2 id="2-Relative-Layout-相对布局"><a href="#2-Relative-Layout-相对布局" class="headerlink" title="2.Relative Layout (相对布局)"></a>2.Relative Layout (相对布局)</h2><hr>
+<p><strong>RelativeLayout</strong>允许子元素指定他们相对于其它元素或父元素的位置（通过ID 指定）。因此，你可以以右对齐，或上下，或置于屏幕中央的形式来 排列两个元素。元素按顺序排列，因此如果第一个元素在屏幕的中央，那么相对于这个元素的其它元素将以屏幕中央的相对位置来排列。如果使用XML 来指定这个 layout ，在你定义它之前，被关联的元素必须定义。</p>
+<p>这个布局是最灵活的布局，因此复杂的布局我们多用这个布局。</p>
+<h4 id="LayoutParams中特殊的参数"><a href="#LayoutParams中特殊的参数" class="headerlink" title="LayoutParams中特殊的参数 :"></a>LayoutParams中特殊的参数 :</h4><h4 id="属性值为true或false"><a href="#属性值为true或false" class="headerlink" title=". 属性值为true或false"></a><1>. 属性值为true或false</1></h4><pre><code>android:layout_centerHrizontal            水平居中
+android:layout_centerVertical             垂直居中
+android:layout_centerInparent             相对于父元素完全居中
+android:layout_alignParentBottom          贴紧父元素的下边缘
+android:layout_alignParentLeft            贴紧父元素的左边缘
+android:layout_alignParentRight           贴紧父元素的右边缘
+android:layout_alignParentTop             贴紧父元素的上边缘
+android:layout_alignWithParentIfMissing   若找不到兄弟元素以父元素做参照物
+</code></pre><h4 id="属性值必须为id的引用名”-id-id-name”"><a href="#属性值必须为id的引用名”-id-id-name”" class="headerlink" title=". 属性值必须为id的引用名”@id/id-name”"></a><2>. 属性值必须为id的引用名”@id/id-name”</2></h4><pre><code>android:layout_below               在某元素的下方
+android:layout_above               在某元素的上方
+android:layout_toLeftOf            在某元素的左边
+android:layout_toRightOf           在某元素的右边
+android:layout_alignBaseLine        该控件的baseline和给定ID的控件的Baseline对齐
+android:layout_alignTop            本元素的上边缘和某元素的的上边缘对齐
+android:layout_alignLeft           本元素的左边缘和某元素的的左边缘对齐
+android:layout_alignBottom         本元素的下边缘和某元素的的下边缘对齐
+android:layout_alignRight          本元素的右边缘和某元素的的右边缘对齐
+</code></pre><h4 id="属性值为具体的像素值，如30dip，40px"><a href="#属性值为具体的像素值，如30dip，40px" class="headerlink" title=". 属性值为具体的像素值，如30dip，40px"></a><3>. 属性值为具体的像素值，如30dip，40px</3></h4><pre><code>android:layout_marginBottom        离某元素底边缘的距离
+android:layout_marginLeft          离某元素左边缘的距离
+android:layout_marginRight         离某元素右边缘的距离
+android:layout_marginTop           离某元素上边缘的距离
+</code></pre><h2 id="3-TableLayout-表格布局"><a href="#3-TableLayout-表格布局" class="headerlink" title="3.TableLayout (表格布局)"></a>3.TableLayout (表格布局)</h2><hr>
+<p>TableLayout 将子元素的位置分配到行或列中。一个TableLayout 由许多的TableRow 组成，每个TableRow 都会定义一个 row（事实上，你可以定义其它的子对象）。</p>
+<p>TableLayout 容器不会显示row 、cloumns 或cell 的边框线。每个row拥有0个或多个的cell；每个cell 拥有一个View对象。</p>
+<p>表格由列和行组成许多的单元格。表格允许单元格为空。单元格不能跨列，这与HTML 中的不一样。</p>
+<p>特殊的参数：</p>
+<pre><code>android:stretchColumns    伸展的列的索引
+android:shrinkColumns    收缩的列的索引
+android:collapseColumns    倒塌的列的索引(即销毁)
+</code></pre><p>表示两行两列的一个表格。<br>android:gravity=”center”书面解释是权重比。其实就是让它居中显示。</p>
+<p>它还可以动态添加里面的每行每列。如下代码所示:</p>
+<pre><code>TableLayout tableLayout = (TableLayout) findViewById(R.id.table01);
+TableRow tableRow = new TableRow(this);
+TextView temp = new TextView(this);
+temp.setText(&quot;text的值&quot;);
+tableRow.addView(temp);
+</code></pre><p>android:stretchColumns=”1,2,3,4” 它的意思就是自动拉伸1,2,3,4列。</p>
+<h2 id="4-AbsoluteLayout-绝对布局"><a href="#4-AbsoluteLayout-绝对布局" class="headerlink" title="4.AbsoluteLayout (绝对布局)"></a>4.AbsoluteLayout (绝对布局)</h2><hr>
+<p>AbsoluteLayout可以让子元素指定准确的x/y坐标值，并显示在屏幕上。(0, 0)为左上角，当向下或向右移动时，坐标值将变大。</p>
+<p>AbsoluteLayout没有页边框，允许元素之间互相重叠（尽管不推荐）。我们通常不推荐使用 </p>
+<p>AbsoluteLayout，除非你有正当理由要使用它，因为它使界面代码太过刚性，以至于在不同的设备上可能不能很好地工作。</p>
+<p>LayoutParams中特殊的参数 :</p>
+<pre><code>layout_x   x方向的坐标
+layout_y   y方向的坐标
+</code></pre><h2 id="5-FrameLayout-帧布局"><a href="#5-FrameLayout-帧布局" class="headerlink" title="5.FrameLayout ( 帧布局 )"></a>5.FrameLayout ( 帧布局 )</h2><hr>
+<p>FrameLayout是最简单的一个布局对象。它被定制为你屏幕上的一个空白备用区域，之后你可以在其中填充一个单一对象。比如，一张你要发布的图片。所有的子元素将会固定在屏幕的左上角；你不能为FrameLayout中的一个子元素指定一个位置。后一个子元素将会直接在前 一个子元素之上进行覆盖填充，把它们部份或全部挡住（除非后一个子元素是透明的）。</p>
+<p>里面可以放多个控件，不过控件的位置都是相对位置</p>
+<p>LayoutParams中特殊的参数 :</p>
+<p>layout_gravity  相对于父元素的重力值(用法同LinearLayout)</p>
+<p><strong>注意事项：</strong></p>
+<ol>
+<li><p>各布局不要乱用各自的属性。比如把属于AbsoluteLayout布局的android:layout_x和android:layout_y用到LinearLayout布局或RelativeLayout布局，或者把RelativeLayout布局的 below，rightof等属性应用到其他布局中。这样做虽然不会报错，但是根本达不到我们需要的效果。</p>
+</li>
+<li><p>关于android:layout_width=”fill_parent”和android:layout_height=”wrap_content” ，这是对每个布局宽和高的设置。wrap_content可表示随着其中控件的不同而改变这个布局的宽度或高度，类似于自动设置宽和高，fill_parent使布局填充整个屏幕，另外还有一种match_parent，它本质上和 fill_parent 一样，并从API Level8开始替代fill_parent。</p>
+</li>
+</ol>
+<p><strong><em>Created By Long Luo at 2014/1/21 14:20:57</em></strong><br><strong><em>Completed By Long Luo at 2014/1/23 18:13:04 @Shenzhen, China.</em></strong></p>
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/Layout/" rel="tag">#Layout</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/" rel="next" title="情歌有多动听，你就有多怀疑?">
+                <i class="fa fa-chevron-left"></i> 情歌有多动听，你就有多怀疑?
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/02/14/some_tips_about_android_listview_performence/" rel="prev" title="提升Android ListView性能的几个技巧">
+                提升Android ListView性能的几个技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2014/01/23/android_ui_layout_summay_5_layouts/"
+           data-title="Android UI Layout总结系列之篇之5大布局" data-url="http://longluo.me/blog/2014/01/23/android_ui_layout_summay_5_layouts/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Long Luo" />
+          <p class="site-author-name" itemprop="name">Long Luo</p>
+          <p class="site-description motion-element" itemprop="description">一个三流程序员的网上家园，目前Android开发攻城狮, 不仅喜欢码字还喜欢码代码, Java, C, Linux</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/longluo" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/imlongluo" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/65242715/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/longluo" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imlongluo.com/" target="_blank">My Home Page</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/tcpipstack" target="_blank">My CSDN</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-UI-核心类"><span class="nav-number">1.</span> <span class="nav-text">Android UI 核心类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在Android应用构建UI的方法有以下几种："><span class="nav-number">1.0.1.</span> <span class="nav-text">在Android应用构建UI的方法有以下几种：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Android-SDK中关于UI的核心类："><span class="nav-number">1.0.2.</span> <span class="nav-text">Android SDK中关于UI的核心类：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ViewGroup"><span class="nav-number">1.0.3.</span> <span class="nav-text">ViewGroup</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Linear-Layout-线性布局"><span class="nav-number">2.</span> <span class="nav-text">1.Linear Layout (线性布局)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LinearLayout有两个非常相似的属性："><span class="nav-number">2.0.1.</span> <span class="nav-text">LinearLayout有两个非常相似的属性：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Relative-Layout-相对布局"><span class="nav-number">3.</span> <span class="nav-text">2.Relative Layout (相对布局)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LayoutParams中特殊的参数"><span class="nav-number">3.0.1.</span> <span class="nav-text">LayoutParams中特殊的参数 :</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性值为true或false"><span class="nav-number">3.0.2.</span> <span class="nav-text">. 属性值为true或false</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性值必须为id的引用名”-id-id-name”"><span class="nav-number">3.0.3.</span> <span class="nav-text">. 属性值必须为id的引用名”@id/id-name”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性值为具体的像素值，如30dip，40px"><span class="nav-number">3.0.4.</span> <span class="nav-text">. 属性值为具体的像素值，如30dip，40px</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-TableLayout-表格布局"><span class="nav-number">4.</span> <span class="nav-text">3.TableLayout (表格布局)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-AbsoluteLayout-绝对布局"><span class="nav-number">5.</span> <span class="nav-text">4.AbsoluteLayout (绝对布局)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-FrameLayout-帧布局"><span class="nav-number">6.</span> <span class="nav-text">5.FrameLayout ( 帧布局 )</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"longluome"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz", "p2mNUdDbqxrxOYMjs1xiS0zM");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>

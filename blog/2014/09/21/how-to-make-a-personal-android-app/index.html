@@ -1,0 +1,901 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android, App, RSS, XML，个人应用, 博客" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Long Luo's Develop Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="http://7d9hot.com1.z0.glb.clouddn.com/favicon/coding_favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这篇文章描述的是我个人在制造我的个人阅读App所走过的弯路，因为历时比较长，直到最近2周才有突破性进展，在此将这些经验与教训总结下来，希望对有需要的同学有所帮助。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何从零实现一个你的个人博客Android App?">
+<meta property="og:url" content="http://longluo.me/blog/2014/09/21/how-to-make-a-personal-android-app/index.html">
+<meta property="og:site_name" content="Long Luo's Develop Notes">
+<meta property="og:description" content="这篇文章描述的是我个人在制造我的个人阅读App所走过的弯路，因为历时比较长，直到最近2周才有突破性进展，在此将这些经验与教训总结下来，希望对有需要的同学有所帮助。">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_all.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_favorite.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_article_detail.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_article_share.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:updated_time" content="2016-04-11T16:32:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何从零实现一个你的个人博客Android App?">
+<meta name="twitter:description" content="这篇文章描述的是我个人在制造我的个人阅读App所走过的弯路，因为历时比较长，直到最近2周才有突破性进展，在此将这些经验与教训总结下来，希望对有需要的同学有所帮助。">
+<meta name="twitter:image" content="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_all.png?imageView/1/w/540/h/960/q/62/format/PNG">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6271750883441116000,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 如何从零实现一个你的个人博客Android App? | Long Luo's Develop Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55523596";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1258500959&web_id=1258500959" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Long Luo's Develop Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">每一天都是奇迹</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-user fa-fw"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何从零实现一个你的个人博客Android App?
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2014-09-21T11:43:03+08:00" content="2014-09-21">
+              2014-09-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/blog/2014/09/21/how-to-make-a-personal-android-app/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="/blog/2014/09/21/how-to-make-a-personal-android-app/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/blog/2014/09/21/how-to-make-a-personal-android-app/" class="leancloud_visitors" data-flag-title="如何从零实现一个你的个人博客Android App?">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong><em>By Long Luo</em></strong></p>
+<h3 id="一、Overview"><a href="#一、Overview" class="headerlink" title="一、Overview"></a>一、Overview</h3><hr>
+<p>最近实现了我的第一个个人博客阅读App，但是<strong><em>目前存在很多很多Bugo(╯□╰)o  &gt;_&lt;|||</em></strong>。</p>
+<p>可以通过这个App来实现RSS订阅功能，第一时间阅读我的个人博客文章，同时可实现文章收藏与分享功能。App使用截图如下所示：</p>
+<h4 id="1-RSS-订阅最新的20篇文章"><a href="#1-RSS-订阅最新的20篇文章" class="headerlink" title="1. RSS 订阅最新的20篇文章"></a>1. RSS 订阅最新的20篇文章</h4><p><img src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_all.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="All Articles"></p>
+<h4 id="2-可以收藏文章"><a href="#2-可以收藏文章" class="headerlink" title="2. 可以收藏文章"></a>2. 可以收藏文章</h4><p><img src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_favorite.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="Favorite Articles"></p>
+<h4 id="3-查看文章全文"><a href="#3-查看文章全文" class="headerlink" title="3. 查看文章全文"></a>3. 查看文章全文</h4><p><img src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_article_detail.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="Article Detail"></p>
+<h4 id="4-支持将文章分享到SNS"><a href="#4-支持将文章分享到SNS" class="headerlink" title="4. 支持将文章分享到SNS"></a>4. 支持将文章分享到SNS</h4><p><img src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_article_share.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="SNS Share"></p>
+<a id="more"></a>
+<h3 id="二、How-to-make-it"><a href="#二、How-to-make-it" class="headerlink" title="二、How to make it?"></a>二、How to make it?</h3><hr>
+<p>其实我去年就想实现一个我的个人App，但是由于种种原因一直拖到现在才有了1.0版本，期间走过了很多弯路，也进行了反思，为什么失败？我觉得部分原因如下：</p>
+<h4 id="1-产品功能不清晰"><a href="#1-产品功能不清晰" class="headerlink" title="1. 产品功能不清晰"></a>1. 产品功能不清晰</h4><p>最开始产品功能不清楚，到底仅仅是博客阅读App还是一个大而全式的App，包含自己的简历，网站，展示自己的一些作品？</p>
+<p>如果一开始就仅仅是最简单的博客阅读App，那实现难度就降了一个数量级了，目前完成的成品也仅仅是一个阅读App。</p>
+<h4 id="2-没有选择一个合适的产品参考"><a href="#2-没有选择一个合适的产品参考" class="headerlink" title="2. 没有选择一个合适的产品参考"></a>2. 没有选择一个合适的产品参考</h4><p>对于从无到有，最好是有成熟的产品可以参考，但是一开始我没有找到。有一天新大陆似的发现了<a href="https://wordpress.org/" target="_blank" rel="external"><strong>WordPress</strong></a>的开源Android客户端，于是决定参照此开源代码进行开发。</p>
+<p>WordPress的Android客户端代码<em>太庞大</em>了，当时也没有去认真阅读里面的源码。后来有很长一段时间，我的这个项目又放弃了。</p>
+<h4 id="3-网站自动制作App"><a href="#3-网站自动制作App" class="headerlink" title="3. 网站自动制作App"></a>3. 网站自动制作App</h4><p>有一天看到别人分享的网站自动制作App，于是折腾了2天，看能不能给我制作出来，不过最后以失败告终。</p>
+<h4 id="4-制定详细规划"><a href="#4-制定详细规划" class="headerlink" title="4. 制定详细规划"></a>4. 制定详细规划</h4><p>为什么在最近2周又突飞猛进了呢？<br>中秋节3天，也没啥事，于是绝对重新捡起来。首先，我思考了这款App要做成什么样？有那些功能？各需要哪些技术？</p>
+<p>于是分析如下：</p>
+<h5 id="需要的功能"><a href="#需要的功能" class="headerlink" title="需要的功能"></a>需要的功能</h5><ol>
+<li>1.0版本只做最基本的博客阅读功能；</li>
+<li>文章可以收藏也可以分享；</li>
+<li>文章可以删除以及标记阅读情况功能</li>
+</ol>
+<h5 id="需要的技术"><a href="#需要的技术" class="headerlink" title="需要的技术"></a>需要的技术</h5><ol>
+<li>博客阅读，也就是RSS订阅功能，需要学习RSS解析技术；</li>
+<li>最基本的页面设计，使用底部Tab技术；</li>
+<li>文章可以编辑处理，也就需要一个数据库，需要对这个阅读数据库设计，由ContentProvider实现；</li>
+<li>收藏功能，爷就是在数据库增加一个字段，在查询时进行处理，新建一张表；</li>
+<li>分享功能，使用分享SDK完成</li>
+</ol>
+<h4 id="5-实现"><a href="#5-实现" class="headerlink" title="5. 实现"></a>5. 实现</h4><p>经过上述分析，那么开始学习相关技术，努力编程实现吧！</p>
+<p>在实现RSS技术的过程中，其实也就是XML解析技术。通过研读了网上开源代码，移植Ok。其实界面调优也花了不少时间。</p>
+<h3 id="三、Download"><a href="#三、Download" class="headerlink" title="三、Download"></a>三、Download</h3><hr>
+<p>说了这么多，放下新Apk下载链接吧，大家也体验一下吧：</p>
+<p><a href="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fapk%2FBlogReader_v1.0_20140923.apk" target="_blank" rel="external"><strong>点我下载</strong></a></p>
+<p><strong><em>Created by Long Luo at 2014-09-21 22:09:21 @Shenzhen, China.</em><br>*</strong>Completed By Long Luo at 2014-09-21 23:12:02 @Shenzhen, China.<strong><em>
+</em></strong>Modified By Long Luo at 2014-9-23 21:07:26 @Shenzhen, China.<em>*</em></p>
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag">#Android</a>
+          
+            <a href="/tags/App/" rel="tag">#App</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" rel="next" title="一个用于批量下载网络图片的Shell脚本">
+                <i class="fa fa-chevron-left"></i> 一个用于批量下载网络图片的Shell脚本
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/blog/2014/09/23/some-key-tips-on-how-to-make-a-successful-tower-defense-game/" rel="prev" title="设计一款好玩的塔防游戏需要注意的几个要点---由个人玩一款塔防游戏引起的思考">
+                设计一款好玩的塔防游戏需要注意的几个要点---由个人玩一款塔防游戏引起的思考 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="/blog/2014/09/21/how-to-make-a-personal-android-app/"
+           data-title="如何从零实现一个你的个人博客Android App?" data-url="http://longluo.me/blog/2014/09/21/how-to-make-a-personal-android-app/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="Long Luo" />
+          <p class="site-author-name" itemprop="name">Long Luo</p>
+          <p class="site-description motion-element" itemprop="description">一个三流程序员的网上家园，目前Android开发攻城狮, 不仅喜欢码字还喜欢码代码, Java, C, Linux</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/longluo" target="_blank">
+                  
+                    <i class="fa fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/imlongluo" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/65242715/" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  douban
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/longluo" target="_blank">
+                  
+                    <i class="fa fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        <div class="links-of-blogroll motion-element">
+          
+            <div class="links-of-blogroll-title">Links</div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.imlongluo.com/" target="_blank">My Home Page</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/tcpipstack" target="_blank">My CSDN</a>
+                </li>
+              
+            </ul>
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Overview"><span class="nav-number">1.</span> <span class="nav-text">一、Overview</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-RSS-订阅最新的20篇文章"><span class="nav-number">1.1.</span> <span class="nav-text">1. RSS 订阅最新的20篇文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-可以收藏文章"><span class="nav-number">1.2.</span> <span class="nav-text">2. 可以收藏文章</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-查看文章全文"><span class="nav-number">1.3.</span> <span class="nav-text">3. 查看文章全文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-支持将文章分享到SNS"><span class="nav-number">1.4.</span> <span class="nav-text">4. 支持将文章分享到SNS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、How-to-make-it"><span class="nav-number">2.</span> <span class="nav-text">二、How to make it?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-产品功能不清晰"><span class="nav-number">2.1.</span> <span class="nav-text">1. 产品功能不清晰</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-没有选择一个合适的产品参考"><span class="nav-number">2.2.</span> <span class="nav-text">2. 没有选择一个合适的产品参考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-网站自动制作App"><span class="nav-number">2.3.</span> <span class="nav-text">3. 网站自动制作App</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-制定详细规划"><span class="nav-number">2.4.</span> <span class="nav-text">4. 制定详细规划</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#需要的功能"><span class="nav-number">2.4.1.</span> <span class="nav-text">需要的功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#需要的技术"><span class="nav-number">2.4.2.</span> <span class="nav-text">需要的技术</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-实现"><span class="nav-number">2.5.</span> <span class="nav-text">5. 实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Download"><span class="nav-number">3.</span> <span class="nav-text">三、Download</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2013 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"longluome"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz", "p2mNUdDbqxrxOYMjs1xiS0zM");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
