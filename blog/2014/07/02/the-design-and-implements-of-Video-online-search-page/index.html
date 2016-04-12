@@ -70,6 +70,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="Long Luo's Develop Notes" type="application/atom+xml" />
+
 
 
 
@@ -533,7 +535,6 @@ mSearchKeyword.addTextChangedListener(mTextWatcher);
 <h4 id="选择列表一个热词同时按下返回键，视频退出"><a href="#选择列表一个热词同时按下返回键，视频退出" class="headerlink" title=". 选择列表一个热词同时按下返回键，视频退出"></a><2>. 选择列表一个热词同时按下返回键，视频退出</2></h4><p>原因是Activity在onDestory()中，销毁了对应的fragments List，但是在此之前已经启动搜索，搜索结果通过Handler，绘制页面，但fragments已经为空，导致出现空指针。</p>
 <h5 id="解决方案：-1"><a href="#解决方案：-1" class="headerlink" title="解决方案："></a>解决方案：</h5><p>增加相应的空指针判断。</p>
 <p><strong><em>Created By Long Luo at 2014/6/27 20:09:59</em></strong><br><strong><em>Completed By Long Luo at 2014/7/2 16:39:54</em></strong></p>
-
       
     </div>
     
@@ -677,6 +678,13 @@ mSearchKeyword.addTextChangedListener(mTextWatcher);
 
         </nav>
 
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
         
 
         <div class="links-of-author motion-element">
