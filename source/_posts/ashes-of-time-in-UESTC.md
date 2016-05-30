@@ -3,7 +3,6 @@ layout: post
 title: "成电，小镇青年心怀远方的起点"
 date: 2016-05-05 11:15:33 +0800
 comments: true
-
 tags: [大学,成电,回忆]
 categories: Life
 keywords: 钢琴,学习,注意,音乐
