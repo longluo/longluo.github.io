@@ -1,5 +1,31 @@
 ---
-title: what is the magic of school real estate
-date: 2016-04-18 09:46:53
-tags:
+layout: post
+title: "学区房的魔力在哪里？"
+date: 2016-04-19 01:53:52 +0800
+comments: true
+categories: Life
+tags: [思考,学区房,Life]
+keywords: 房地产,学区房,生活,
 ---
+
+***By Long Luo***
+
+
+大概二周前，一则[北京11平米学区房以530万的价格卖出](http://money.163.com/photoview/0BGT0025/24444.html#p=BHKCR3N00BGT0025])新闻刷了各大网站的屏，虽然大家都知道北京的房价很贵，但接近50w一平还是让大家感叹还是**缺乏想象力**。
+
+前几天又在[水木社区看到一个帖子](http://www.newsmth.net/nForum/#!article/SchoolEstate/407931)，一位土豪学霸妈妈斥资***570w***在**万柳蜂鸟社区**买了一套房，而这套房仅仅只是一套<strong>46平</strong>的一房一厅。虽然中国有钱人很多，但是对于大部分中产阶级来说，500w也绝对不是一个小数字，而这所有的一切只是为了能够让她的小孩能够上<strong>中关村三小</strong>，一所北京乃至全国最好的小学之一。
+
+<!--more-->
+
+不过，从<strong>经济学角度</strong>来看，实验二小是中国最好的小学，中央领导子女都在此读书，500w仅仅是一个门槛而已，是买一张<strong>入场券</strong>。至于那堆破烂砖头，只是落个户口而已，没人会去住的。等孩子读完书，这堆砖头还可以高于500w的价格卖掉，既能赚钱又能上学，是一笔<strong>很划算的买卖</strong>。
+
+<strong>可怜天下父母心！</strong> 
+
+虽然目前还是[单身狗](http://www.imlongluo.com)一只，但是我理解父母的心，总想把最好的给自己的孩子。目前购买学区房的主力都是中产阶级，买学区房的大部分应该是<strong>中产阶级</strong>。
+
+在我看来，学区房的优势在于<strong><em>优秀的师资，软件环境及硬件条件</em></strong>(排名有先后)。下面我会这三点进行阐述。
+
+<strong><em>Long Luo Created @2016-03-11 22:45:13 ~ 2016-03-12 01:49:08 at Shenzhen Version 0.1 </em></strong>
+<strong><em>Long Luo Version 0.2 @2016-04-19 01:25:16</em></strong>
+
+

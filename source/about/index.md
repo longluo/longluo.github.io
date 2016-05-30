@@ -11,8 +11,7 @@ description: "About me"
 
 ![Computer Programmer](http://7d9hot.com1.z0.glb.clouddn.com/cybersecurity.jpg)
 
-About:
-
+### About:
 ---------------------------------------
 
 Hi, everybody! Welcome to my space. My Name is [Long Luo](http://www.imlongluo.com)，80后，性别`男`，爱好`女`。
@@ -25,8 +24,7 @@ Hi, everybody! Welcome to my space. My Name is [Long Luo](http://www.imlongluo.c
 
 中国很大，世界更大，**梦想成为一名优秀的人，可以去看看这世界**。
 
-Contacts:
-
+### Contacts:
 ---------------------------------------
 
 你可以在互联网上找到[我的网上小屋](http://www.imlongluo.com)，也可以在[CSDN](http://blog.csdn.net/tcpipstack)看到我的出没；
@@ -37,8 +35,7 @@ Contacts:
 
 如果你还对我有兴趣的话，也可以加我的`个人微信` [imlongluo](http://databank.u.qiniudn.com/images/Me/weixin_my_qrcode_512x512.jpeg)
 
-Keywords:
-
+### Keywords:
 ---------------------------------------
 
 * **哦，你在看我主页嗦(⊙o⊙)**
@@ -60,8 +57,7 @@ Keywords:
 * 人生，就像肥皂泡一样。风一吹就呼呼的飞上了天，注意到的时候，却啪地一下消失了。就在即将破裂的瞬间，想要自己飞得更高。但回过神来的时候，却总是来不及。
 * 关于自己的生活，我和你都不是读者，而是作者。至少结局，还是能自己说了算的。
 
-More:
-
+### More:
 ---------------------------------------
 
 如果你想了解我更多，可以先看下[这里](http://www.imlongluo.com/aboutme/index.html)...
