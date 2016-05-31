@@ -5,16 +5,36 @@ date: 2016-05-31 09:00:37 +800
 comments: true
 categories: Life
 tags: [hexo, blog]
-keywords: 
+keywords: hexo, blog, next, npm, 博客, 指南
 ---
 
 ***By Long Luo***
 
+配置SSH
+
+老手和已配置过的用户略过
+
+打开 Git Bash 终端：在桌面右键，会出现"Git Bash here"的选项，点击即可。
+设置user name和email：
+
+$ git config --global user.name "你的GitHub用户名"
+$ git config --global user.email "你的GitHub注册邮箱"
+生成ssh密钥:输入下面命令
+
+$ ssh-keygen -t rsa -C "你的GitHub注册邮箱"
+一般情况下是不需要密码的，所以，接下来直接回车就好。 
+此时，在用户文件夹下就会有一个新的文件夹 .ssh ，里面有刚刚创建的ssh密钥文件 id_rsa 和 id_rsa.pub 。 
+注：id_rsa文件是私钥，要妥善保管，id_rsa.pub是公钥文件。
+添加公钥到github： 
+点击用户头像，然后点击显示的 Settings(设置) 选项； 
+
+在用户设置栏，点击 SSH and GPG keys 选项，然后点击 New SSH key(新建SSH) 按钮； 
+
+将id_rsa.pub中的内容复制到 Key 文本框中，然后点击 Add SSH key(添加SSH) 按钮； 
 
 测试SSH：
 
-	$ ssh -T git@github.com
-	
+$ ssh -T git@github.com
 接下来会出来下面的确认信息：
 
 The authenticity of host 'github.com (207.97.227.239)' can't be established. 
@@ -27,49 +47,56 @@ Hi SeayXu! You've successfully authenticated,
 but GitHub does not provide shell access.
 以上是准备工作。
 
+<!-- more -->
 
-Hexo初始化博客框架
+### Hexo初始化博客框架
 
-安装Hexo
+#### 安装Hexo
 
 Hexo安装和搭建依赖Nodejs和Git,可自行下载。
 
 	$ npm install -g hexo-cli
 	
-初始化框架
+#### 初始化框架
 
 	$ hexo init <yourFolder>
 	$ cd <yourFolder>
 	$ npm install
 	
-初始化完成大概的目录：
+#### 初始化完成大概的目录：
 
 	.
-	├── _config.yml //网站的 配置 信息，您可以在此配置大部分的参数。
+	├── _config.yml //网站的`配置`信息，您可以在此配置大部分的参数。
 	├── package.json
-	├── scaffolds     //模版 文件夹。当您新建文章时，Hexo 会根据 scaffold 来建立文件。
+	├── db.json // json格式的静态常量数据库	
+	├── node_modules // Hexo的功能JavaScript文件
+	├── public // 生成静态网页文件
+	├── scaffolds   //模版文件夹。当您新建文章时，Hexo会根据scaffold来建立文件。
 	├── source     //资源文件夹是存放用户资源的地方。
-	|   ├── _drafts
-	|   └── _posts
-	└── themes     //主题 文件夹。Hexo 会根据主题来生成静态页面。
+	|   ├── _drafts // 草稿文件夹
+	|   └── _posts // 文章文件夹
+	└── themes     //主题文件夹。Hexo会根据主题来生成静态页面。
 	
-新建文章（创建一个Hello World）
+	
+#### 新建文章（创建一个Hello World）
 	
 	$ hexo new "Hello World"
 	
 在/source/_post里添加hello-world.md文件，之后新建的文章都将存放在此目录下。
 
-生成网站
+#### 生成网站
 
 	$ hexo generate
 	
 此时会将/source的.md文件生成到/public中，形成网站的静态文件。
 
-服务器
+#### 服务器
+
 	$ hexo server -p 3000
+	
 输入http://localhost:3000即可查看网站。
 
-部署网站
+#### 部署网站
 	
 	$ hexo deploy
 	
@@ -82,37 +109,44 @@ Hexo安装和搭建依赖Nodejs和Git,可自行下载。
    branch: master
 
    
-使用Next主题让站点更酷炫
-使用
-$ cd your-hexo-site
-$ git clone https://github.com/iissnan/hexo-theme-next themes/next
+## 使用Next主题让站点更酷炫
+
+### 使用
+
+	$ cd your-hexo-site
+	$ git clone https://github.com/iissnan/hexo-theme-next themes/next
+	
 从Next的Gihub仓库中获取最新版本。
-启用
+
+### 启用
 需要修改/root/_config.yml配置项theme：
-# Extensions
-## Plugins: http://hexo.io/plugins/
-## Themes: http://hexo.io/themes/
-theme: next
-验证是否启用
-$ hexo s --debug
+
+	# Extensions
+	## Plugins: http://hexo.io/plugins/
+	## Themes: http://hexo.io/themes/
+	theme: next
+	
+### 验证是否启用
+
+	$ hexo s --debug
+	
 访问http://localhost:4000，确保站点正确运行。（此命令可以做平时预览用）
 
 
-Hexo NexT主题的文档结构
+### Hexo NexT主题的文档结构
 
-/languages   #用来配置国际化语言版本，里边包含各种个配置像的文本翻译。
-/layout      #以swig文件来定义各种含有配置信息调用的布局
-/scripts     #一些JS脚本
-/source    
-   /css      #用来修改自定义样式，需要掌握一定的css语法。
-   /fonts    #定义字体文件，可以修改博客字体
-   /images   #一些svg图片
-   /js       #一些js脚本
-   /vendors  
-   /404.html #自定义的公益404页面
-/test        #用于测试
-   
-   
+	/languages   #用来配置国际化语言版本，里边包含各种个配置像的文本翻译。
+	/layout      #以swig文件来定义各种含有配置信息调用的布局
+	/scripts     #一些JS脚本
+	/source    
+		/css      #用来修改自定义样式，需要掌握一定的css语法。
+		/fonts    #定义字体文件，可以修改博客字体
+		/images   #一些svg图片
+		/js       #一些js脚本
+		/vendors  
+	/404.html #自定义的公益404页面
+	/test        #用于测试
+	
 
 创建本地仓库
 
@@ -154,21 +188,6 @@ Hexo NexT主题的文档结构
 
 注：此时可以初始化git本地仓库了，或者是等本地博客搭建好之后也可以。
 
-
-等待他完成后我们可以进去到文件夹中看到以下目录：
-
-	node_modules ： Hexo的功能JavaScript文件
-	public ：生成静态网页文件
-	scaffolds ：工具模板
-	source ：
-		/_drafts -草稿文件夹
-		/_posts -文章文件夹
-		
-	themes ：用来存放皮肤的文件夹
-	_config.yml ：全局配置文件
-	db.json ：json格式的静态常量数据库
-	
-	
 
 再探Hexo
 
