@@ -1,6 +1,9 @@
 ---
+layout: post
 title: "Hexo"
 date: 2016-05-31 09:00:37 +800
+comments: true
+categories: Life
 tags: [hexo, blog]
 keywords: 
 ---
@@ -94,9 +97,20 @@ theme: next
 $ hexo s --debug
 访问http://localhost:4000，确保站点正确运行。（此命令可以做平时预览用）
 
-文／Jovey（简书作者）
-原文链接：http://www.jianshu.com/p/f66103553c45
-著作权归作者所有，转载请联系作者获得授权，并标注“简书作者”。   
+
+Hexo NexT主题的文档结构
+
+/languages   #用来配置国际化语言版本，里边包含各种个配置像的文本翻译。
+/layout      #以swig文件来定义各种含有配置信息调用的布局
+/scripts     #一些JS脚本
+/source    
+   /css      #用来修改自定义样式，需要掌握一定的css语法。
+   /fonts    #定义字体文件，可以修改博客字体
+   /images   #一些svg图片
+   /js       #一些js脚本
+   /vendors  
+   /404.html #自定义的公益404页面
+/test        #用于测试
    
    
 
@@ -211,6 +225,37 @@ $ # 将SeayXu/seayxu.github.io.git换成自己的GitHub仓库地址
 如果没有意外，部署就成功了，可以打开 http:// <用户名> .github.io 查看。
 
 本文简单介绍 Hexo 的部署，接下来的文章会介绍 Hexo 的相关配置。
+
+关于NPM
+NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。
+就目前而言，NPM的官网[1]拥有18万的packages。国内的镜像是淘宝所提供的CNPM[2]，与NPM相同，它会每隔10分钟就同步一次。
+
+一些常用命令
+
+	npm -v: 查看npm安装的版本
+	npm init: 引导你创建一个package.json文件，包括名称、版本、作者这些信息等
+	npm install <modulename>: 安装模块
+	npm install <modulename> -g: 安装全局模块
+	npm install <modulename>@1.0.0: 安装指定版本的模块
+	npm install <modulename> -save: 安装模块并添加到package.json依赖中
+
+	npm uninstall <modulename>: 卸载模块
+
+	npm cache clean: 清除缓存
+
+	npm help: 查看帮助命令
+
+	npm ls: 查看当前目录安装的依赖
+	npm ls -g: 查看全局目录安装的依赖
+	npm view <modulename>: 查看包的package.json
+	npm view <modulename> dependencies: 查看包的依赖关系
+	npm view <modulename> repository.url: 查看包的源文件地址
+
+	npm update <modulename>: 更新模块
+
+	npm remove <modulename>: 移除模块
+	
+	
 
 
 
