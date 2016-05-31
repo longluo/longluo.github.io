@@ -10,46 +10,59 @@ keywords: hexo, blog, next, npm, 博客, 指南
 
 ***By Long Luo***
 
-配置SSH
-
-老手和已配置过的用户略过
-
-打开 Git Bash 终端：在桌面右键，会出现"Git Bash here"的选项，点击即可。
-设置user name和email：
-
-$ git config --global user.name "你的GitHub用户名"
-$ git config --global user.email "你的GitHub注册邮箱"
-生成ssh密钥:输入下面命令
-
-$ ssh-keygen -t rsa -C "你的GitHub注册邮箱"
-一般情况下是不需要密码的，所以，接下来直接回车就好。 
-此时，在用户文件夹下就会有一个新的文件夹 .ssh ，里面有刚刚创建的ssh密钥文件 id_rsa 和 id_rsa.pub 。 
-注：id_rsa文件是私钥，要妥善保管，id_rsa.pub是公钥文件。
-添加公钥到github： 
-点击用户头像，然后点击显示的 Settings(设置) 选项； 
-
-在用户设置栏，点击 SSH and GPG keys 选项，然后点击 New SSH key(新建SSH) 按钮； 
-
-将id_rsa.pub中的内容复制到 Key 文本框中，然后点击 Add SSH key(添加SSH) 按钮； 
-
-测试SSH：
-
-$ ssh -T git@github.com
-接下来会出来下面的确认信息：
-
-The authenticity of host 'github.com (207.97.227.239)' can't be established. 
-RSA key fingerprint is 17:24:ac:a5:76:28:24:36:62:1b:36:4d:eb:df:a6:45.
- Are you sure you want to continue connecting (yes/no)?
-输入 yes 后回车。 
-然后显示如下信息则OK(其中的SeayXu是用户名)。
-
-Hi SeayXu! You've successfully authenticated, 
-but GitHub does not provide shell access.
-以上是准备工作。
+A blog
 
 <!-- more -->
 
-### Hexo初始化博客框架
+## 配置SSH
+
+打开Git Bash终端：在桌面右键，会出现"Git Bash here"的选项，点击即可。
+
+#### 设置user name和email：
+
+	$ git config --global user.name "你的GitHub用户名"
+	$ git config --global user.email "你的GitHub注册邮箱"
+	
+#### 生成ssh密钥:
+
+输入下面命令
+
+	$ ssh-keygen -t rsa -C "你的GitHub注册邮箱"
+	
+一般情况下是不需要密码的，所以，接下来直接回车就好。 
+
+此时，在用户文件夹下就会有一个新的文件夹 .ssh，里面有刚刚创建的ssh密钥文件 id_rsa 和 id_rsa.pub。 
+
+注：id_rsa文件是私钥，要妥善保管，id_rsa.pub是公钥文件。
+
+#### 添加公钥到github： 
+
+点击用户头像，然后点击显示的 Settings(设置) 选项； 
+
+在用户设置栏，点击SSH and GPG keys选项，然后点击New SSH key(新建SSH)按钮； 
+
+将id_rsa.pub中的内容复制到 Key 文本框中，然后点击 Add SSH key(添加SSH) 按钮； 
+
+#### 测试SSH：
+
+$ ssh -T git@github.com
+
+接下来会出来下面的确认信息：
+
+	The authenticity of host 'github.com (207.97.227.239)' can't be established. 
+	RSA key fingerprint is 17:24:ac:a5:76:28:24:36:62:1b:36:4d:eb:df:a6:45.
+	Are you sure you want to continue connecting (yes/no)?
+ 
+输入`yes`后回车。 
+
+然后显示如下信息则OK(其中的SeayXu是用户名)。
+
+	Hi longluo! You've successfully authenticated, 
+	but GitHub does not provide shell access.
+	
+以上是准备工作。
+
+## Hexo初始化博客框架
 
 #### 安装Hexo
 
@@ -118,7 +131,22 @@ Hexo安装和搭建依赖Nodejs和Git,可自行下载。
 	
 从Next的Gihub仓库中获取最新版本。
 
+### Hexo NexT主题的文档结构
+
+	/languages   #用来配置国际化语言版本，里边包含各种个配置像的文本翻译。
+	/layout      #以swig文件来定义各种含有配置信息调用的布局
+	/scripts     #一些JS脚本
+	/source    
+		/css      #用来修改自定义样式，需要掌握一定的css语法。
+		/fonts    #定义字体文件，可以修改博客字体
+		/images   #一些svg图片
+		/js       #一些js脚本
+		/vendors  
+	/404.html #自定义的公益404页面
+	/test        #用于测试
+
 ### 启用
+
 需要修改/root/_config.yml配置项theme：
 
 	# Extensions
@@ -133,20 +161,6 @@ Hexo安装和搭建依赖Nodejs和Git,可自行下载。
 访问http://localhost:4000，确保站点正确运行。（此命令可以做平时预览用）
 
 
-### Hexo NexT主题的文档结构
-
-	/languages   #用来配置国际化语言版本，里边包含各种个配置像的文本翻译。
-	/layout      #以swig文件来定义各种含有配置信息调用的布局
-	/scripts     #一些JS脚本
-	/source    
-		/css      #用来修改自定义样式，需要掌握一定的css语法。
-		/fonts    #定义字体文件，可以修改博客字体
-		/images   #一些svg图片
-		/js       #一些js脚本
-		/vendors  
-	/404.html #自定义的公益404页面
-	/test        #用于测试
-	
 
 创建本地仓库
 
@@ -224,6 +238,7 @@ Hexo安装和搭建依赖Nodejs和Git,可自行下载。
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type:
+  
 添加github仓库信息：
 
 # Deployment
@@ -241,9 +256,9 @@ $ # 将SeayXu/seayxu.github.io.git换成自己的GitHub仓库地址
 部署
 
 	$ hexo deploy
+	
 如果没有意外，部署就成功了，可以打开 http:// <用户名> .github.io 查看。
 
-本文简单介绍 Hexo 的部署，接下来的文章会介绍 Hexo 的相关配置。
 
 关于NPM
 NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。
