@@ -1,26 +1,22 @@
 ---
 layout: post
 title: "如何使用Hexo建立一个自己的个人Blog及主页美化？"
-date: 2016-05-31 09:00:37 +800
+date: 2016-03-08 22:16:37 +800
 comments: true
-categories: Life
-tags: [hexo, blog, 主页]
+categories: Blog
+tags: [hexo, blog, 主页,博客]
 keywords: hexo, blog, next, npm, 博客, 指南, 主页
 ---
 
 ***By Long Luo***
 
-我的女神之一[@恢复吃素的F小姐](http://weibo.com/rainfieldfifi)曾写了一篇文章[为了保持逼格，不要停止写作](http://www.15yan.com/topic/chuang-zuo-de-mi-mi/i0sBdlKnryf/?f=wx)
-，我深以为然。
+我的女神之一[@恢复吃素的F小姐](http://weibo.com/rainfieldfifi)曾写了一篇文章[为了保持逼格，不要停止写作](http://www.15yan.com/topic/chuang-zuo-de-mi-mi/i0sBdlKnryf/?f=wx)，我深以为然。
 
-个人也是个非常喜欢装逼的人。小学时发现自己在文字方面有一点点天赋时，就喜欢上了阅读和码字。上学时写在日记本里，后来接触了互联网，
-就写在了网络博客里，断断续续在新浪，网易，QQ空间等都留下了一些文字痕迹。
+个人也是个非常喜欢装逼的人。小学时发现自己在文字方面有一点点天赋时，就喜欢上了阅读和码字。上学时写在日记本里，后来接触了互联网，就写在了网络博客里，断断续续在新浪，网易，QQ空间等都留下了一些文字痕迹。
 
-工作之后，成了一名程序员，有时候查资料发现大神们都有自己的个人网站时，感觉逼格好高。作为一名追求逼格的三流程序员，于是乎，买空间，查资料，折腾，终于也搭建了一个属于自己的
-[网络小屋](http://www.imlongluo.com/)。
+工作之后，成了一名程序员，有时候查资料发现大神们都有自己的个人网站时，感觉逼格好高。作为一名追求逼格的三流程序员，于是乎，买空间，查资料，折腾，终于也搭建了一个属于自己的[网络小屋](http://www.imlongluo.com/)。
 
-[GitHub](https://github.com/)作为程序员界中最大的***同性交友***网站，逼格不知道高到哪里去了！我很快移情别恋，基于Github Pages建了一个[个人网站](http://longluo.me)，
-最开始是用基于**Jekyll**的[***Octopress***](http://octopress.org/)搭建的。
+[GitHub](https://github.com/)作为程序员界中最大的***同性交友***网站，逼格不知道高到哪里去了！我很快移情别恋，基于Github Pages建了一个[个人网站](http://longluo.me)，最开始是用基于**Jekyll**的[***Octopress***](http://octopress.org/)搭建的。
 
 **Jekyll**是基于Python的，访问起来很慢，而且不够简洁。于是乎，基于***NodeJS***的[***Hexo***](https://hexo.io/zh-cn/)这个逼格极高的程序猿写作方式进入了我的视线，于是花了几个小时从[***Octopress***](http://octopress.org/)迁移到了[***Hexo***](https://hexo.io/zh-cn/)。
 
@@ -28,11 +24,11 @@ keywords: hexo, blog, next, npm, 博客, 指南, 主页
 
 <!-- more -->
 
-## 一、 注册GitHub
+### 一、 注册GitHub
 
-首先我们需要做的是去[GitHub](https://github.com/)注册一个帐号，并创建一个Repository仓库。这里需要注意的是仓库的名称必须是`用户名.github.io`，才能使用Github Pages.
+首先我们需要做的是去[GitHub](https://github.com/)注册一个帐号，并创建一个Repository仓库。这里需要注意的是仓库的名称必须是`用户名.github.io`，才能使用**Github Pages**.
 
-## 二、配置SSH
+### 二、配置SSH
 
 下载并安装[Git](https://git-scm.com/)。
 
@@ -78,7 +74,7 @@ keywords: hexo, blog, next, npm, 博客, 指南, 主页
 	
 以上是准备工作。
 
-## 三、创建本地仓库
+### 三、创建本地仓库
 
 #### 1. 新建仓库文件夹
 
@@ -94,10 +90,11 @@ keywords: hexo, blog, next, npm, 博客, 指南, 主页
 	$ git init # 初始化git仓库
 	
 注：初始化要在Hexo安装之后执行，因为在hexo初始化的时候会从github上克隆代码，会创建.git文件夹。
+
 如果在此之前初始化仓库会将原有的仓库信息覆盖掉，最后也会删除。
 
 
-## 四、Hexo初始化
+### 四、Hexo初始化
 
 #### 1. 安装Hexo
 
@@ -134,6 +131,7 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 	$ hexo new <title> for example: "Hello World"
 	
 在/source/_post里添加hello-world.md文件，之后新建的文章都将存放在此目录下。
+
 如果要删除，直接在此文件夹下删除对应的文件即可。
 
 #### 6. 生成网站
@@ -142,41 +140,52 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 	
 此时会将/source的.md文件生成到/public中，形成网站的静态文件。
 
-
-#### 清除生成内容
-
-	$ hexo clean
-	
-执行此操作会删除 public 文件夹中的内容。
-
 #### 7. 服务器
 
 	$ hexo server -p 3000
 	
 输入http://localhost:3000即可查看网站。
 
-#### 7. 部署网站
+#### 8. 部署网站
 	
 	$ hexo deploy
 	
-部署网站之前需要生成静态文件，即可以用`$ hexo generate -d`直接生成并部署。此时需要在_config.yml中配置你所要部署的站点：
+该操作会将hexo生成的静态内容部署到配置的仓库中，请看下面介绍。
+
+部署网站之前需要生成静态文件，即可以用`$ hexo generate -d`直接生成并部署。
+
+此时需要在**_config.yml**中配置你所要部署的站点：
 
 	## Docs: http://hexo.io/docs/deployment.html
 	deploy:
 		type: git
 		repo: git@github.com:YourRepository.git
 		branch: master
-   
-## 三、使用Next主题让站点更酷炫
+	
+如果没有意外，部署就成功了，可以打开`http://<用户名>.github.io`查看。
 
-### 1. 使用
+#### 常用Hexo命令
+
+清除生成内容
+
+	$ hexo c == hexo clean
+
+执行此操作会删除 public 文件夹中的内容。
+
+	$ hexo g == hexo generate
+    $ hexo s == hexo server
+
+   
+### 五、使用Next主题让站点更酷炫
+
+#### 1. 使用NexT Theme
 
 	$ cd your-hexo-site
 	$ git clone https://github.com/iissnan/hexo-theme-next themes/next
 	
 从Next的Gihub仓库中获取最新版本。
 
-### 2. Hexo NexT主题的文档结构
+#### 2. Hexo NexT主题的文档结构
 
 	/languages   #用来配置国际化语言版本，里边包含各种个配置像的文本翻译。
 	/layout      #以swig文件来定义各种含有配置信息调用的布局
@@ -190,7 +199,7 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 	/404.html #自定义的公益404页面
 	/test        #用于测试
 
-### 3. 启用NexT主题
+#### 3. 启用NexT主题
 
 需要修改/root/_config.yml配置项theme：
 
@@ -199,81 +208,16 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 	## Themes: http://hexo.io/themes/
 	theme: next
 	
-### 4. 验证是否启用
+#### 4. 验证是否启用
 
 	$ hexo s --debug
 	
 访问http://localhost:4000，确保站点正确运行。（此命令可以做平时预览用）
 
+### 六、总结
 
+通过以上步骤，我们就成功的实现了在Github上建立了一个高逼格的Hexo个人博客站点。
 
+下面的事情就是不断的去写，去思考，去实践！
 
-
-#### 部署Hexo
-
-	$ hexo deploy
-	
-该操作会将hexo生成的静态内容部署到配置的仓库中，请看下面介绍。
-
-#### 部署Hexo
-
-编辑配置文件：在编辑器中打开Hexo配置文件**_config.yml**，找到下面内容：
-
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type:
-  
-添加github仓库信息：
-
-# Deployment
-## Docs: https://hexo.io/docs/deployment.html
-deploy:
-  type: git
-  repo: git@github.com:SeayXu/seayxu.github.io.git #github仓库地址
-  branch: master # github分支
-关联远程仓库
-
-$ # 将SeayXu/seayxu.github.io.git换成自己的GitHub仓库地址
-
-	$ git remote add origin git@github.com:SeayXu/seayxu.github.io.git
-	
-部署
-
-	$ hexo deploy
-	
-如果没有意外，部署就成功了，可以打开http://<用户名>.github.io查看。
-
-
-关于NPM
-NPM的全称是Node Package Manager，是一个NodeJS包管理和分发工具，已经成为了非官方的发布Node模块（包）的标准。
-就目前而言，NPM的官网[1]拥有18万的packages。国内的镜像是淘宝所提供的CNPM[2]，与NPM相同，它会每隔10分钟就同步一次。
-
-一些常用命令
-
-	npm -v: 查看npm安装的版本
-	npm init: 引导你创建一个package.json文件，包括名称、版本、作者这些信息等
-	npm install <modulename>: 安装模块
-	npm install <modulename> -g: 安装全局模块
-	npm install <modulename>@1.0.0: 安装指定版本的模块
-	npm install <modulename> -save: 安装模块并添加到package.json依赖中
-
-	npm uninstall <modulename>: 卸载模块
-
-	npm cache clean: 清除缓存
-
-	npm help: 查看帮助命令
-
-	npm ls: 查看当前目录安装的依赖
-	npm ls -g: 查看全局目录安装的依赖
-	npm view <modulename>: 查看包的package.json
-	npm view <modulename> dependencies: 查看包的依赖关系
-	npm view <modulename> repository.url: 查看包的源文件地址
-
-	npm update <modulename>: 更新模块
-	npm remove <modulename>: 移除模块
-	
-	
-
-
-
+*** Complete By Long Luo @2016-3-08 23:12:01 at Shenzhen, China.***
