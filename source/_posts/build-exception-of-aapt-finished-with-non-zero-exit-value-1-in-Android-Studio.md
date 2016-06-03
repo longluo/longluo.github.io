@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Android编译时出现aapt.exe finished with non-zero exit value 1错误的解决方法"
-date: 2016-05-21 23:15:56
+date: 2016-04-08 23:15:56
 comments: true
 categories: Android
 tags: [Android, Tech, Debug]
@@ -10,12 +10,12 @@ keywords: Android, Exception, Error, Debug, Gradle
 
 ***By Long Luo***
 
-昨天在开发一个项目时，在Android Studio中编译时，gradble编译之后出现了如下错误：
+昨天在开发一个项目时，在Android Studio中编译时，gradle编译之后出现了如下错误：
 
 	Error:Execution failed for task ':samples-simplevideowidget:processDebugResources'.
 	> com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process 'command 'E:\Android\SDK\build-tools\23.0.1\aapt.exe'' finished with non-zero exit value 1
 
-首先看到这个错误之后，我先检查了下Android Studio项目中资源，代码有无提示的错误，经过确认没有之后，将错误信息在Google中搜索。
+首先看到这个错误之后，因为移植的代码在之前的`eclipse`编译时OK的，所以先检查了下Android Studio项目中资源，代码有无提示的错误，经过确认没有之后，将错误信息在Google中搜索。
 
 经过搜索之后，在StackOverflow和CSDN上发现有很多人遇到了这个错误，不过解决方法却各不相同。有的建议`Clean`然后`Rebuild`，有的建议修改使用内存，有的说是代码问题，也有的说是资源问题，比如本来是jpg图片，文件后缀却是png也会导致问题...
 
@@ -50,5 +50,5 @@ keywords: Android, Exception, Error, Debug, Gradle
 
 重新编译之后，问题解决。
 	
-***Completed by Long Luo at 2016-05-22 00:36 @Shenzhen, China.***
+***Completed by Long Luo at 2016-04-09 00:36 @Shenzhen, China.***
 

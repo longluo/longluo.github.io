@@ -2,47 +2,90 @@
 layout: post
 title: "Hexo入门指南"
 date: 2016-03-11 23:37:21
-tags: [Hexo, 指南]
-categories: hexo
-keywords: hexo
+tags: [Hexo, 指南, blog]
+categories: blog
+keywords: hexo, manual, handbook
+comments: true
 ---
 
 ***By Long Luo***
 
-之前一篇文章[]()，下面我们来说说Hexo的入门指南，
+之前一篇文章[如何使用Hexo建立一个自己的个人Blog及主页美化？](http://www.longluo.me/blog/2016/03/08/the-manual-of-hexo/)，讲述了如何利用Github Pages建立一个属于自己的静态博客，下面这篇文章主要讲的是hexo的常见指令及说明，定位于**Hexo的入门指南**。
+
+## Hexo 命令
+---------------
+
+命令行中输入：
+
+	$hexo help
+
+列出了Hexo常用命令：
+
+	Commands:
+	  clean     Removed generated files and cache.
+	  config    Get or set configurations.
+	  deploy    Deploy your website.
+	  generate  Generate static files.
+	  help      Get help on a command. 查看帮助信息
+	  init      Create a new Hexo folder. init [文件夹名]： 创建一个hexo项目，不指定文件夹名，则在当前目录创建
+	  list      List the information of the site
+	  migrate   Migrate your site from other system to Hexo.
+	  new       Create a new post.
+	  publish   Moves a draft post from _drafts to _posts folder.
+	  render    Render files with renderer plugins.
+	  server    Start the server.
+	  version   Display version information. 查看hexo的版本
+	
+	Global Options:
+	  --config  Specify config file instead of using _config.yml config-path：指定配置文件，代替默认的_config.yml
+	  --cwd     Specify the CWD cwd-path：自定义当前工作目录
+	  --debug   Display all verbose messages in the terminal 调试模式，输出所有日志信息
+	  --draft   Display draft posts
+	  --safe    Disable all plugins and scripts 安全模式，禁用所有的插件和脚本
+	  --silent  Hide output on console 无日志输出模式
+
+Hexo常用命令也可以使用以下缩写：
+
+	hexo n == hexo new
+	hexo g == hexo generate
+	hexo s == hexo server
+	hexo d == hexo deploy
+
+清除生成内容
+
+	$ hexo clean
+
+执行此操作会删除 public 文件夹中的内容。
+
+以上就是经常使用的命令。
 
 <!--more-->
 
-### Hexo 命令
-Hexo常用命令：
+## Hexo文件夹结构
 
-	help： 查看帮助信息
-	init [文件夹名] ： 创建一个hexo项目，不指定文件夹名，则在当前目录创建
-	version： 查看hexo的版本
-	--config config-path ：指定配置文件，代替默认的_config.yml
-	--cwd cwd-path ：自定义当前工作目录
-	--debug ：调试模式，输出所有日志信息
-	--safe ：安全模式，禁用所有的插件和脚本
-	--silent ：无日志输出模式
+### scaffolds：
+模板文件夹，新建文章时，Hexo会根据scaffold来建立文件。Hexo有三种默认布局： post 、page和draft，它们分别对应不同的路径。新建文件的默认布局是post ，可以在配置文件中更改布局。用draft布局生成的文件会被保存到source/_drafts文件夹。
 
-###
+### source：
+资源文件夹是存放用户资源的地方。
 
-scaffolds：模板文件夹，新建文章时，Hexo 会根据 scaffold 来建立文件。Hexo 有三种默认布局： post 、 page 和 draft ，它们分别对应不同的路径。新建文件的默认布局是 post ，可以在配置文件中更改布局。用 draft 布局生成的文件会被保存到 source/_drafts 文件夹。
+#### source/_post：
+文件箱。除_posts文件夹之外，开头命名为`_`(下划线)的文件`/`文件夹和隐藏的文件将会被忽略。Markdown和HTML文件会被解析并放到public文件夹，而其他文件会被拷贝过去
 
-source：资源文件夹是存放用户资源的地方。
+#### source/_draft: 
+草稿箱
 
-source/_post：文件箱。除_posts文件夹之外，开头命名为`_`(下划线)的文件`/`文件夹和隐藏的文件将会被忽略。Markdown和HTML文件会被解析并放到public文件夹，而其他文件会被拷贝过去
+### themes：
+主题 文件夹。Hexo 会根据主题来生成静态页面。
 
-source/_draft: 草稿箱
+#### themes/landscape：
+默认的皮肤文件夹
 
-themes：主题 文件夹。Hexo 会根据主题来生成静态页面。
+### _config.yml：
+全局的配置文件，每次更改要重启服务。
 
-themes/landscape：默认的皮肤文件夹
-
-_config.yml：全局的配置文件，每次更改要重启服务。
-
-
-全局配置
+## 全局配置
+-------------------
 
 可以在 _config.yml 中修改：
 
@@ -113,13 +156,13 @@ _config.yml：全局的配置文件，每次更改要重启服务。
 
 	<%= __('tags') %>
 	
-language 的配置项是 zh-CN ，则会在 languages 文件夹下找到 zh-CN.yml 文件中对应的项来解释。
+language的配置项是zh-CN ，则会在 languages 文件夹下找到`zh-CN.yml`文件中对应的项来解释。
 
 修改全局配置时，注意缩进，同时注意冒号后面要有一个空格。
 
-### 主题配置
+## 主题配置
 
-主题的配置文件在 /themes/主题文件夹/_config.yml ，一般包括导航配置(menu)，内容配置(content)，评论插件，图片效果(fancybox)和边栏(sidebar)。
+主题的配置文件在/themes/主题文件夹/_config.yml ，一般包括导航配置(menu)，内容配置(content)，评论插件，图片效果(fancybox)和边栏(sidebar)。
 
 Hexo提高了大量的主题，可以在全局配置文件中更改主题：
 
@@ -128,17 +171,9 @@ Hexo提高了大量的主题，可以在全局配置文件中更改主题：
 	## Themes: http://hexo.io/themes/ 主题
 	theme: 你的主题名称
 	
-主题的文件目录必须在 themes 目录下
+主题的文件目录必须在themes目录下
 
-Hexo常用命令：
-
-	hexo n == hexo new
-	hexo g == hexo generate
-	hexo s == hexo server
-	hexo d == hexo deploy
-
-
-文章
+## 文章
 命令行中输入：
 
 	$ hexo new "new article"
@@ -159,8 +194,7 @@ Hexo常用命令：
 
 新建、删除或修改文章后，不需要重启hexo server，刷新一下即可预览。
 
-属性
-
+### 属性
 文章可以拥有如下属性：
 
 	Setting Description Default
@@ -175,36 +209,34 @@ Hexo常用命令：
 
 动态博客中通过发布文章页面设置的各种属性，在hexo里要这样设置。
 
-分类和标签
+### 分类和标签
+
 例如：
 
 	categories: - 日记 
 	tags: - Hexo - node.js
 
-摘要
-
+### 摘要
 同wordpress一样，`<!--more-->`之上的内容为摘要。
 
-layout
-
+### layout
 如果你修改了layout，在scaffolds文件夹里一定要有名字对应的模版文件，否则会采用默认模版。
 
-文件名
-
+### 文件名
 在配置文件中的new_post_name项可以设置文件名，默认为:title，也就是你在命令行输入的名字。
 
 文件名可以为下面几个变量和字符串常量的任意组合：
 
-Variable Description
+	Variable Description
 
-:title    Escaped title (lower case and replace spaces with dash)    
-:year    Created year (4-digit)    
-:month    Created month (2-digit)    
-:i_month    Created month (Without leading zeros)    
-:day    Created day (2-digit)    
-:i_day    Created day (Without leading zeros)    
+	:title    Escaped title (lower case and replace spaces with dash)    
+	:year    Created year (4-digit)    
+	:month    Created month (2-digit)    
+	:i_month    Created month (Without leading zeros)    
+	:day    Created day (2-digit)    
+	:i_day    Created day (Without leading zeros)    
 
-#### 草稿
+###  草稿
 草稿相当于很多博客都有的“私密文章”功能。
 
 	$ hexo new draft "new draft"
@@ -215,7 +247,6 @@ Variable Description
 
 	render_drafts: true
 
-
 或者，如下方式启动server：
 
 	$ hexo server --drafts
@@ -224,49 +255,41 @@ Variable Description
 
 	$ hexo publish [layout] <filename>
 
-#### 页面
+### 页面
+
 命令行键入：
 
 	$ hexo new page about
 
-会在source/about中生成index.html。这个就叫做页面，不在文章列表显示，可以通过http://localhost/about浏览。
+会在`source/about`中生成index.html。这个就叫做页面，不在文章列表显示，可以通过http://localhost:4000/about浏览。
 
 页面支持文章的大部分属性，除了分类和标签。
 
-导航
-打开主题中的设置文件，即themes\<theme_name>\_config.yml（其中<theme_name>是当前主题的名字，默认为landscape，下同），找到menu:，在列表的末端添加About: 关于。刷新页面，导航栏上就出现了关于链接。
+### 导航
+打开主题中的设置文件，即`themes\<theme_name>\_config.yml`（其中`<theme_name>`是当前主题的名字，默认为landscape，下同），找到menu:，在列表的末端添加About: 关于。刷新页面，导航栏上就出现了关于链接。
 
-边栏
-进入themes\<theme_name>\layout\_widget目录中，创建about.ejs文件，模仿其他文件中的模版，输入以下内容：
+### 边栏
+进入`themes\<theme_name>\layout\_widget`目录中，创建about.ejs文件，模仿其他文件中的模版，输入以下内容：
 
 <% if (site.tags.length){ %> 
-
   <div class="widget-wrap"> 
-
     <h3 class="widget-title">About</h3> 
-
     <div class="widget"> 
-
       邮箱：xxx@xxx.com<br /> 
-
       微博：@xxxxx 
-
     </div> 
-
   </div> 
-
 <% } %>
 
+打开`themes\<theme_name>\_config.yml`，找到#Sidebar，在最后面添加- about。刷新页面。
 
-打开themes\<theme_name>\_config.yml，找到#Sidebar，在最后面添加- about。刷新页面。
+### 底栏
+打开`themes\<theme_name>\layout\_partial\footer.ejs`修改。
 
-#### 底栏
-打开themes\<theme_name>\layout\_partial\footer.ejs修改。
+### banner
+打开`themes\<theme_name>\source\css\images`，把banner.jpg换掉。
 
-#### banner
-打开themes\<theme_name>\source\css\images，把banner.jpg换掉。
-
-搬入hexo
+## 搬入hexo
 
 首先，需要拿到原博客数据的xml文件。
 
@@ -276,36 +299,39 @@ wordpress的话，后台“工具->导出”就可以生成。点点和lofter也
 
 	npm install hexo-migrator-wordpress --save
 
-#### 运行
+### 运行
 
 	hexo migrate wordpress wordpress.xml
 
 xml中的数据就导入到source中了。最后的工作是修复链接什么的。
 
-搬出hexo
+## 搬出hexo
 没有什么好的办法。可以写个脚本遍历public文件夹，之后post到指定目录或者制作成xml文件。
 
-备份
-有句话说得好，数据恢复的最佳方案永远是“备份备份再备份”。
+## 备份
 
-个人建议，分别备份站点配置和文章。站点配置包括blog根目录除了source和public文件夹的所有内容，文章就是source文件夹的全部内容。站点配置不经常变的话可以不用经常备份。
+有句话说得好，数据恢复的最佳方案永远是***备份备份再备份***。
 
-sitemap & rss
+个人建议，分别**备份站点配置**和**文章**。
+
+站点配置包括blog根目录除了source和public文件夹的所有内容，文章就是source文件夹的全部内容。站点配置不经常变的话可以不用经常备份。
+
+## Sitemap & RSS
 切换到blog根目录下，输入：
 
 	$ npm install hexo-generator-feed 
 	$ npm install hexo-generator-sitemap
 
-之后重启博客，访问/atom.xml和/sitemap.xml，会发现已经生成了。可以把sitemap提交到搜索引擎的站长平台来增加收录。
+之后重启博客，访问`/atom.xml`和`/sitemap.xml`，会发现已经生成了。可以把sitemap提交到搜索引擎的站长平台来增加收录。
 
-部署
-首先按照前面教程（一）的gitcafe部分建立好代码仓库，这里假设你的用户名是your_name。由于ssh配置比较麻烦，这里采用https方式提交。
+## 部署
+首先按照前面教程建立好代码仓库，这里假设你的用户名是`your_name`。由于ssh配置比较麻烦，这里采用https方式提交。
 
-找到配置文件中# Deployment一节，修改：
+找到配置文件中#Deployment一节，修改：
 
-type: github 
-repository: https://gitcafe.com/your_name/your_name.git 
-branch: gitcafe-pages
+	type: github 
+	repository:https://github.com/your_name/your_name.git
+	branch: master
 
 之后输入：
 
@@ -321,6 +347,9 @@ hexo会自动生成并部署。
 	$ hexo deploy
 
 部署即可。
+
+***By Long Luo at 2016-3-11 23:19:53 ~ 2016-3-12 00:27:31@Shenzhen, China.***
+***Updated at 2016-6-3 00:04:11***
 
 
 

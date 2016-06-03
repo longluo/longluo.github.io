@@ -163,18 +163,6 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 		branch: master
 	
 如果没有意外，部署就成功了，可以打开`http://<用户名>.github.io`查看。
-
-#### 常用Hexo命令
-
-清除生成内容
-
-	$ hexo c == hexo clean
-
-执行此操作会删除 public 文件夹中的内容。
-
-	$ hexo g == hexo generate
-    $ hexo s == hexo server
-
    
 ### 五、使用Next主题让站点更酷炫
 
@@ -221,3 +209,4 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 下面的事情就是不断的去写，去思考，去实践！
 
 *** Complete By Long Luo @2016-3-08 23:12:01 at Shenzhen, China.***
+*** Updated at 2016-6-1 23:42:55 ***
