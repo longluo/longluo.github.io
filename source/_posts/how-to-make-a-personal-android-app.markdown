@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "如何从零实现一个你的个人博客Android App?"
 date: 2014-09-21 11:43:03 +0800

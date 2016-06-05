@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "与《仙剑奇侠传四》音乐对话"
 comments: true

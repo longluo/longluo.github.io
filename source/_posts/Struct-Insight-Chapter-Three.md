@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: Struct Insight Chapter Three
 comments: true

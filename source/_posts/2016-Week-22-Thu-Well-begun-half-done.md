@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "2016 Week 22nd Thu 好的开始是成功的一半"
 date: 2016-06-02 21:25:08

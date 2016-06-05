@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: Struct
 comments: true

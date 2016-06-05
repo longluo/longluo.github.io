@@ -1,4 +1,4 @@
----
+﻿---
 layout: post
 title: "提升Android ListView性能的几个技巧"
 date: 2014-02-14 15:22:10 +0800
