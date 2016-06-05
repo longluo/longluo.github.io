@@ -4,8 +4,7 @@ title: "游戏引擎学习笔记:介绍,架构,设计及实现"
 date: 2014-04-07 00:17:51 +0800
 comments: true
 categories: Game
-tags: 游戏
-description: "游戏引擎学习笔记:介绍,架构,设计及实现"
+tags: [游戏, 游戏引擎, 手游, 笔记]
 keywords: Game, GameEngine, 手机游戏,游戏,游戏引擎
 ---
 

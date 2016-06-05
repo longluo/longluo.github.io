@@ -5,7 +5,6 @@ date: 2014-07-02 23:04:48 +0800
 comments: true
 categories: Android
 tags: [Android, 优化]
-description: "本文是视频在线搜索页面的设计与实现"
 keywords: Android,UI,Layout,Design,设计,性能优化,视频
 ---
 
@@ -84,84 +83,86 @@ keywords: Android,UI,Layout,Design,设计,性能优化,视频
 
 SearchBar即为顶部的搜索栏，包括返回、编辑框、搜索按钮、语音按钮等。假如采用标准SDK，还需要加上一个清除全部文字按钮。
 
+```xml
+<RelativeLayout
+    android:id="@+id/searchBar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/searchBarHeight"
+    android:layout_alignParentTop="true"
+    android:background="@drawable/searchbar_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="center" >
+    
     <RelativeLayout
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/searchBarHeight"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/searchbar_bg"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:gravity="center" >
+        android:id="@+id/searchBack"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
 
-        <RelativeLayout
-            android:id="@+id/searchBack"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" >
-
-            <ImageView
-                android:id="@+id/searchBackButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:background="@drawable/phone_search_back_arrow"
-                android:clickable="true"
-                android:contentDescription="@null"
-                android:focusable="true" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/searchSubmitLayout"
+        <ImageView
+            android:id="@+id/searchBackButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/searchBar_SearchMarginRight" >
-
-            <ImageView
-                android:id="@+id/searchVoiceSubmit"
-                android:layout_width="@dimen/searchBar_VoiceSearchButtonWidth"
-                android:layout_height="@dimen/searchBar_VoiceSearchButtonHeight"
-                android:layout_centerVertical="true"
-                android:background="@drawable/video_search_voice_bg"
-                android:visibility="gone" />
-
-            <ImageView
-                android:id="@+id/searchSubmit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:background="@drawable/video_search_submit_bg" />
-    	</RelativeLayout>
-
-    	<RelativeLayout
-            android:id="@+id/searchInputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="@dimen/searchBar_marginLeft"
-            android:layout_toLeftOf="@id/searchSubmitLayout"
-            android:layout_toRightOf="@id/searchBack" >
+            android:background="@drawable/phone_search_back_arrow"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:focusable="true" />
+    </RelativeLayout>
 
-            <com.oppo.widget.OppoEditText
-                android:id="@+id/searchKeyword"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/searchBar_EditTextHeight"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/video_search_input_bg"
-                android:ellipsize="end"
-                android:hint="@string/search_hit"
-                android:inputType="text"
-                android:paddingLeft="@dimen/searchBar_EditTextPaddingLeft"
-                android:paddingRight="@dimen/searchBar_EditTextPaddingRight"
-                android:singleLine="true"
-                android:textSize="14sp"
-                oppo:quickDelete="true" />
+    <RelativeLayout
+        android:id="@+id/searchSubmitLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/searchBar_SearchMarginRight" >
 
-    	</RelativeLayout>
-	</RelativeLayout>
+        <ImageView
+            android:id="@+id/searchVoiceSubmit"
+            android:layout_width="@dimen/searchBar_VoiceSearchButtonWidth"
+            android:layout_height="@dimen/searchBar_VoiceSearchButtonHeight"
+            android:layout_centerVertical="true"
+            android:background="@drawable/video_search_voice_bg"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/searchSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/video_search_submit_bg" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/searchInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/searchBar_marginLeft"
+        android:layout_toLeftOf="@id/searchSubmitLayout"
+        android:layout_toRightOf="@id/searchBack" >
+
+        <com.oppo.widget.OppoEditText
+            android:id="@+id/searchKeyword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/searchBar_EditTextHeight"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/video_search_input_bg"
+            android:ellipsize="end"
+            android:hint="@string/search_hit"
+            android:inputType="text"
+            android:paddingLeft="@dimen/searchBar_EditTextPaddingLeft"
+            android:paddingRight="@dimen/searchBar_EditTextPaddingRight"
+            android:singleLine="true"
+            android:textSize="14sp"
+            oppo:quickDelete="true" />
+
+    </RelativeLayout>
+</RelativeLayout>
+```
 
 ### 2. 热词和关联词
 
@@ -219,10 +220,12 @@ http://iface.iqiyi.com/api/searchIface?key=xxx&id=7f15c6eafc&type=xml&version=1.
 
 设计搜索的数据结构如下：
 
-    public class SearchResult {
-		public ArrayList<SearchFilterInfo> weightList;
-		public ArrayList<SearchVideoInfo> searchVideoList;
-	}
+```java
+public class SearchResult {
+	public ArrayList<SearchFilterInfo> weightList;
+	public ArrayList<SearchVideoInfo> searchVideoList;
+}
+```
 
 ### 3. 搜索结果页面
 
@@ -257,10 +260,12 @@ http://iface.iqiyi.com/api/searchIface?key=xxx&id=7f15c6eafc&type=xml&version=1.
 
 但是在手动输入文字中，**setKeywords()**方法由于需要兼顾列表输入文字方法，需要先将**mTextWatcher**remove，然后**setText()**，再添加**mTextWatcher**，这样就造成了每输入一个字符都会在编辑框中显示，就无法输入中文了。
 
-	mSearchKeyword.removeTextChangedListener(mTextWatcher);
-	mSearchKeyword.setText(word);
-	mSearchKeyword.setSelection(word.length());
-	mSearchKeyword.addTextChangedListener(mTextWatcher);
+```java
+mSearchKeyword.removeTextChangedListener(mTextWatcher);
+mSearchKeyword.setText(word);
+mSearchKeyword.setSelection(word.length());
+mSearchKeyword.addTextChangedListener(mTextWatcher);
+```
 
 ##### 解决方法：
 

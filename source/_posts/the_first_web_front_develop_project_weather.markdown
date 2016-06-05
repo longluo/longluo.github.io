@@ -5,7 +5,6 @@ date: 2014-09-07 11:32:45 +0800
 comments: true
 categories: Web
 tags: [Web, 前端]
-description: "第一个Web前端开发项目：天气应用"
 keywords: Web, 天气, Yahoo, 前端开发
 ---
 

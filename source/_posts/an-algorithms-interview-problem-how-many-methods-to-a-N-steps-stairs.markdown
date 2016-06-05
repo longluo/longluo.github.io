@@ -5,7 +5,6 @@ date: 2015-04-06 22:20:50 +0800
 comments: true
 categories: Algorithm
 tags: [算法, 面试]
-description: "一个人爬楼梯，一步可以迈一级，二级，三级台阶，如果楼梯有N级，要求编写程序，求总共有多少种走法，并输出存在的所有走法。"
 keywords: 算法, 递归, 树, 栈
 ---
 
@@ -27,6 +26,7 @@ keywords: 算法, 递归, 树, 栈
 	
 那么，根据以上的分析很容易写出如下代码：
 
+```java
     public static int countNumber(int stepsNum) {
         int sum = 0;
 
@@ -54,6 +54,7 @@ keywords: 算法, 递归, 树, 栈
             System.out.println("楼梯台阶数:" + i + ", 走法有:" + countNumber(i));
         }
     }
+```
 
 再看看输出：
 
@@ -81,6 +82,7 @@ keywords: 算法, 递归, 树, 栈
 
 具体代码如下所示：
 
+```java
     /**
      * 一个人爬楼梯，一步可以迈一级，二级，三级台阶，如果楼梯有N级，编写程序，输出所有走法。
      * 
@@ -115,6 +117,7 @@ keywords: 算法, 递归, 树, 栈
             System.out.println("完成");
         }
     }
+```
 
 以上。
 

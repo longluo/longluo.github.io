@@ -5,7 +5,6 @@ date: 2014-09-23 23:13:15 +0800
 comments: true
 categories: Game
 tags: [游戏, 塔防]
-description: "这是本人3月份去年玩一款塔防游戏所引发的思考，思考了这款塔防游戏是如何让人沉迷的，对如何设计一款塔防游戏提出了一些原则和设计要点。"
 keywords: Tower Defense, Game, 设计塔防游戏, App, Design
 ---
 

@@ -5,8 +5,7 @@ date: 2014-04-07 14:19:28 +0800
 comments: true
 categories: Android
 tags: [Android, 性能优化]
-description: "Android App性能优化笔记之一:性能优化是什么及为什么?"
-keywords: App,Android,性能优化
+keywords: App,Android,性能优化, , , 
 ---
 
 ***By Long Luo***

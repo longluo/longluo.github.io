@@ -5,7 +5,6 @@ date: 2014-09-21 11:43:03 +0800
 comments: true
 categories: Android
 tags: [Android, App]
-description: "这篇文章描述的是我个人在制造我的个人阅读App所走过的弯路，因为历时比较长，直到最近2周才有突破性进展，在此将这些经验与教训总结下来，希望对有需要的同学有所帮助。"
 keywords: Android, App, RSS, XML，个人应用, 博客
 ---
 
@@ -21,6 +20,8 @@ keywords: Android, App, RSS, XML，个人应用, 博客
 
 #### 1. RSS 订阅最新的20篇文章
 
+<!--more-->
+
 ![All Articles](http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_all.png?imageView/1/w/540/h/960/q/62/format/PNG)
 
 #### 2. 可以收藏文章
@@ -34,8 +35,6 @@ keywords: Android, App, RSS, XML，个人应用, 博客
 #### 4. 支持将文章分享到SNS
 
 ![SNS Share](http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_article_share.png?imageView/1/w/540/h/960/q/62/format/PNG)
-
-<!--more-->
 
 ### 二、How to make it?
 -----

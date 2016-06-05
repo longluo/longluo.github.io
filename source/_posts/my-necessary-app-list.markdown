@@ -5,7 +5,6 @@ date: 2015-04-21 23:53:35 +0800
 comments: true
 categories: App
 tags: App
-description: "我的手机必备App"
 keywords: App,必备,效率
 ---
 

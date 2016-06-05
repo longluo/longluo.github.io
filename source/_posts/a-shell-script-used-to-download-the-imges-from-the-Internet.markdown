@@ -5,7 +5,6 @@ date: 2014-09-13 22:26:00 +0800
 comments: true
 categories: Tools
 tags: [Shell, 脚本]
-description: "最近为了做好一个天气预报的项目，需要从Yahoo下载一些天气图标，由于图标比较多，有80多张。迅雷不支持https的下载，每次在浏览器下载太慢，于是写了一个批量下载图片资源的Shell脚本，完美的解决了这个问题。"
 keywords: Shell, 网络资源, 脚本
 ---
 
@@ -26,7 +25,7 @@ Yahoo天气图标的地址规则如下：`https://s.yimg.com/zz/combo?a/i/us/nws
 ### *方法1：*
 -----
 
-
+```bash
 	#!/bin/bash
 	# 
 	#  Decription: 
@@ -62,13 +61,14 @@ Yahoo天气图标的地址规则如下：`https://s.yimg.com/zz/combo?a/i/us/nws
 		sleep 1
 
 	done
+```
 
 ### *方法2：*
 -----
 
 方法2将图片URL地址都写在一个数组里，然后从数组中读取，并重命名，相对来说，不如第一种方法简单：
 
-
+```bash
 	# Method 2
 
 	URL_ARRAY=(
@@ -90,9 +90,10 @@ Yahoo天气图标的地址规则如下：`https://s.yimg.com/zz/combo?a/i/us/nws
 		sleep 1
 		
 	done
+```
 
 以上，希望有需要的同学可以采用:-）
 
 ***Created by Long Luo at 2014-09-13 22:44:52 @Shenzhen, China.***
-***Completed By Long Luo at 2014-09-13 23:01:05 @Shenzhen, China.***
+***Completed By Long Luo at 2014-09-13 23:01:05 @Shenzhen, China.***
 

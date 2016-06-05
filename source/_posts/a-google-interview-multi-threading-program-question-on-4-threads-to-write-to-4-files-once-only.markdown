@@ -5,7 +5,6 @@ date: 2015-04-09 21:04:10 +0800
 comments: true
 categories: Algorithm
 tags: [算法, 多线程]
-description: "编写一个程序，开启4个线程，这3个线程的ID分别为A、B、C、D，每个线程将自己的ID在屏幕上打印10遍，要求输出结果必须按ABCD的顺序显示；如：ABCDABCD..., BCDABCDA..., CDABCDAB..., DABCDABC...依次递推."
 keywords: 算法, 多线程, 互斥, 线程通信
 ---
 
@@ -41,6 +40,7 @@ keywords: 算法, 多线程, 互斥, 线程通信
 
 根据以上分析，可以写出如下代码：
 
+```java
     package com.imlongluo.Practise;
     
     import java.io.BufferedWriter;
@@ -293,6 +293,7 @@ keywords: 算法, 多线程, 互斥, 线程通信
             }
         }
     }
+```
 
 以上。
 

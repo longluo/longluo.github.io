@@ -5,7 +5,6 @@ date: 2015-04-12 00:59:54 +0800
 comments: true
 categories: Algorithm
 tags: [面试, 算法]
-description: "面试迅雷时，遇到的一道算法题，要求统计一个字符串中每个字母出现的次数。"
 keywords: 算法, 面试题, 字符串
 ---
 
@@ -36,6 +35,7 @@ keywords: 算法, 面试题, 字符串
 
 根据以上分析，可以写出如下代码：
 
+```java
     package com.algorithm.alphabetSort;
     
     /**
@@ -73,6 +73,7 @@ keywords: 算法, 面试题, 字符串
         }
     
     }
+```
 
 ### 引申与扩展一
 -----
@@ -81,6 +82,7 @@ keywords: 算法, 面试题, 字符串
 
 其实也很简单，如下所示：
 
+```java
 	if (cTemp >= 'A' && cTemp <= 'Z') {
 		/**
 		* 大写字母
@@ -94,6 +96,7 @@ keywords: 算法, 面试题, 字符串
 	} else {
     
 	}
+```
 	
 ### 引申与扩展二
 -----
@@ -104,6 +107,7 @@ keywords: 算法, 面试题, 字符串
 
 后来我发现了用HashMap来存储也是可以的，也可以完美解决这个问题，代码如下所示：
 
+```java
     package com.algorithm.alphabetSort;
     
     import java.util.ArrayList;
@@ -160,6 +164,7 @@ keywords: 算法, 面试题, 字符串
     
         int count;
     }
+```
 
 以上。
 

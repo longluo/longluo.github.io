@@ -4,9 +4,8 @@ title: "我看车展感(tu)想(cao)"
 date: 2014-06-02 14:15:10 +0800
 comments: true
 categories: Life
-tags: 车展
-description: "2014年06月参观深圳·香港·澳门国际车展，一些感想和吐槽。"
-keywords: 车展,思考
+tags: [车展, 思考]
+keywords: 车展,思考, 知识, 吐槽,
 ---
 
 ***By Long Luo***
@@ -15,6 +14,8 @@ keywords: 车展,思考
 
 ### 1. 学到的东西:
 -----
+
+<!--more-->
 
 ***English：***
 
@@ -36,8 +37,6 @@ keywords: 车展,思考
 	宝马－BMW   
 	宾利－Bentley   
 	别克－Buick  
-
-<!--more-->
 		   
 ***C*** 
 

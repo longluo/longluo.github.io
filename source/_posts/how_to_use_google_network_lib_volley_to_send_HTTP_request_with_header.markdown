@@ -5,7 +5,6 @@ date: 2014-09-07 12:20:14 +0800
 comments: true
 categories: Android
 tags: [Volley, 网络]
-description: "如何使用Google Volley网络库发起带Header的HTTP请求?"
 keywords: Volley, HTTP, XML, JSON, 网络编程, Header
 ---
 
@@ -21,6 +20,7 @@ keywords: Volley, HTTP, XML, JSON, 网络编程, Header
 
 <!--more-->
 
+```java
 	    public void makeHTTPrequest(String url) {
         MyLog.d(TAG, "makeHTTPrequest, url=" + url);
 
@@ -72,6 +72,7 @@ keywords: Volley, HTTP, XML, JSON, 网络编程, Header
         mQueue.add(jsonObjRequest);
         mQueue.start();
     }
+```
 
 **Header参数使用HashMap存储。**
 

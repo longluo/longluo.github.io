@@ -4,8 +4,7 @@ title: "情歌有多动听，你就有多怀疑?"
 date: 2014-01-21 22:41:43 +0800
 comments: true
 categories: 沉思
-tags: Life
-description: "情歌有多动听，你就有多怀疑."
+tags: [Life, 思考, 眼界]
 keywords: 命运, Music, 宿命, 眼界, 视野, 资源, 圈子
 ---
 

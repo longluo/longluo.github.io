@@ -5,7 +5,6 @@ date: 2014-02-14 15:22:10 +0800
 comments: true
 categories: Android
 tags: [Android, ListView, 性能优化]
-description: "提升Android ListView性能的几个技巧"
 keywords: Android, ListView, Layout, 性能, Adapter, 技巧
 ---
 
@@ -50,17 +49,18 @@ keywords: Android, ListView, Layout, 性能, Adapter, 技巧
 
 参数*convertView*说穿来就是之前讲述的ScrapView。当*ListView*要求更新一行的布局时，*convertView*是一个非空值。因此，当*convertView*值非空时，你仅仅需要*更新内容*即可，而不需要重新一个新行的布局。*getView()*在Adapter中一般是如下的形式：
 
-	public View getView(int position, View convertView, ViewGroup parent) {
-	    if (convertView == null) {
-	        convertView = mInflater.inflate(R.layout.your_layout, null);
-	    }
-	
-	    TextView text = (TextView) convertView.findViewById(R.id.text);
-	    text.setText("Position " + position);
-	
-	    return convertView;
-	}
+```java
+public View getView(int position, View convertView, ViewGroup parent) {
+    if (convertView == null) {
+        convertView = mInflater.inflate(R.layout.your_layout, null);
+    }
 
+    TextView text = (TextView) convertView.findViewById(R.id.text);
+    text.setText("Position " + position);
+
+    return convertView;
+}
+```
 
 ## View Holder如何写的模板
 ------------
@@ -71,29 +71,30 @@ Android很常见的一个操作就是在布局文件中找到一个内部的View
 
 View Holder的模式就是减少在Adapter中*getView()*方法中调用*findViewById()*次数。实际上，View Holder是一个轻量级的内部类，用于直接引用到所有内部views。在创建View之后，你可以在每行的View存储为一个标签。通过这种方法，只需要在初次创建布局的时候调用***findViewById()***。下面是一个使用上述方法的View Holder模板的代码示例：
 
-	public View getView(int position, View convertView, ViewGroup parent) {
-	    ViewHolder holder;
-	
-	    if (convertView == null) {
-	        convertView = mInflater.inflate(R.layout.your_layout, null);
-	
-	        holder = new ViewHolder();
-	        holder.text = (TextView) convertView.findViewById(R.id.text);
-	
-	        convertView.setTag(holder);
-	    } else {
-	        holder = convertView.getTag();
-	    }
-	
-	    holder.text.setText("Position " + position);
-	
-	    return convertView;
-	}
+```Java
+public View getView(int position, View convertView, ViewGroup parent) {
+    ViewHolder holder;
 
-	private static class ViewHolder {
-	    public TextView text;
-	}
+    if (convertView == null) {
+        convertView = mInflater.inflate(R.layout.your_layout, null);
 
+        holder = new ViewHolder();
+        holder.text = (TextView) convertView.findViewById(R.id.text);
+
+        convertView.setTag(holder);
+    } else {
+        holder = convertView.getTag();
+    }
+
+    holder.text.setText("Position " + position);
+
+    return convertView;
+}
+
+private static class ViewHolder {
+    public TextView text;
+}
+```
 
 ## 异步加载
 ------------
@@ -104,47 +105,48 @@ View Holder的模式就是减少在Adapter中*getView()*方法中调用*findView
 
 一个简单的方法来实现这一目标是通过附加一些标识该行与它相关的View的信息。然后，当异步操作完成的适合，检查目标行的View和标识的View是否一致。实现这一目标的方法很多。下面是实现这种方法的一个很简单的示例：
 
-	public View getView(int position, View convertView,
-	        ViewGroup parent) {
-	    ViewHolder holder;
-	
-	    ...
-	
-	    holder.position = position;
-	
-	    new ThumbnailTask(position, holder)
-	            .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null);
-	
-	    return convertView;
-	}
+```Java
+public View getView(int position, View convertView,
+        ViewGroup parent) {
+    ViewHolder holder;
 
-	private static class ThumbnailTask extends AsyncTask {
-	    private int mPosition;
-	    private ViewHolder mHolder;
-	
-	    public ThumbnailTask(int position, ViewHolder holder) {
-	        mPosition = position;
-	        mHolder = holder;
-	    }
-	
-	    @Override
-	    protected Cursor doInBackground(Void... arg0) {
-	        // Download bitmap here
-	    }
-	
-	    @Override
-	    protected void onPostExecute(Bitmap bitmap) {
-	        if (mHolder.position == mPosition) {
-	            mHolder.thumbnail.setImageBitmap(bitmap);
-	        }
-	    }
-	}
+    ...
 
-	private static class ViewHolder {
-	    public ImageView thumbnail;
-	    public int position;
-	}
+    holder.position = position;
 
+    new ThumbnailTask(position, holder)
+            .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null);
+
+    return convertView;
+}
+
+private static class ThumbnailTask extends AsyncTask {
+    private int mPosition;
+    private ViewHolder mHolder;
+
+    public ThumbnailTask(int position, ViewHolder holder) {
+        mPosition = position;
+        mHolder = holder;
+    }
+
+    @Override
+    protected Cursor doInBackground(Void... arg0) {
+        // Download bitmap here
+    }
+
+    @Override
+    protected void onPostExecute(Bitmap bitmap) {
+        if (mHolder.position == mPosition) {
+            mHolder.thumbnail.setImageBitmap(bitmap);
+        }
+    }
+}
+
+private static class ViewHolder {
+    public ImageView thumbnail;
+    public int position;
+}
+```
 
 ## 人机交互知识
 ------------

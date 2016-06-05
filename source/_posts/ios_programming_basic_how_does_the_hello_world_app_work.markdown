@@ -4,8 +4,7 @@ title: "iOS编程基础: Hello World App是如何运作的?"
 date: 2014-05-05 19:11:03 +0800
 comments: true
 categories: iOS
-tags: iOS
-description: "iOS编程基础: Hello World App是如何运作的?"
+tags: [iOS, App]
 keywords: iOS,App,原理,iOS开发
 ---
 

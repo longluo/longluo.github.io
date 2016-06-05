@@ -5,7 +5,6 @@ date: 2014-06-21 23:15:30 +0800
 comments: true
 categories: Android
 tags: [Android, 音频]
-description: "本文是关于如何在Android中使用AudioTrack播放WAV格式文件。"
 keywords: Android,Audio,音频,AudioTrack
 ---
 
@@ -25,6 +24,8 @@ keywords: Android,Audio,音频,AudioTrack
 不要期望使用**MediaPlayer**，去解码*WAV*文件和*MP3*音频。虽然**MediaPlayer**播放这些文件非常好，但是其播放逻辑完全在Native层，同时并没有为我们提供额外选项，允许我们使用其他解码器实现我们的目的。因此，我们必须从手动地从音频文件进行解码出*PCM*。
 
 在这篇文章中，将会讨论**WAV**格式文件。而在下一课中，我们将会更进一步，讨论如何从**MP3**文件读取音频。
+
+<!--more-->
 
 #### 背景知识: 一些数字音频术语
 -----

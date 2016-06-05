@@ -5,7 +5,6 @@ date: 2014-04-27 21:29:56 +0800
 comments: true
 categories: Android
 tags: [Android, 网络]
-description: "Android网络编程指南App 3.0版本发布?"
 keywords: App,Android,网络编程
 ---
 

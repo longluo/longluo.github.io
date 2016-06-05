@@ -5,7 +5,6 @@ date: 2014-05-02 22:15:57 +0800
 comments: true
 categories: Algorithm 
 tags: 算法
-description: "一道有趣的面试算法题:仿照Excel的列编号,给定一个数字,输出该列编号字符串"
 keywords: Algorithm, 算法
 ---
 
@@ -23,7 +22,7 @@ keywords: Algorithm, 算法
 
 #### `C++`代码如下所示：
 -----
-
+```cpp
 	#include <iostream>
 	#include <string.h>
 
@@ -109,11 +108,13 @@ keywords: Algorithm, 算法
 
      	return true ;
 	}
+```
 
 
 #### `JAVA`代码如下所示：
 -----
 
+```java
 	package com.Algorithms.excelrow;
 	
 	/*
@@ -180,7 +181,7 @@ keywords: Algorithm, 算法
 		}
 	
 	}
-
+```
 
 以上代码均测试通过。
 

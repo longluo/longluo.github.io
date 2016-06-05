@@ -5,7 +5,6 @@ date: 2014-07-02 23:16:42 +0800
 comments: true
 categories: Android
 tags: [Android, 性能优化]
-description: "本文是关于视频频道页面的重构总结，通过重构之后，将CPU执行时间降低了50%，由7.9%降低到了3.8%。"
 keywords: Android,视频,重构,性能优化,软件
 ---
 

@@ -4,8 +4,7 @@ title: "介绍一个提高Android ListView或GridView的Smoothie库"
 date: 2014-02-15 11:41:06 +0800
 comments: true
 categories: Android
-tags: Android
-description: "介绍一个提高Android ListView或GridView的Smoothie库"
+tags: [Android, ListView, GridView]
 keywords: Android, ListView, GridView, Layout, 库
 ---
 
@@ -21,11 +20,11 @@ keywords: Android, ListView, GridView, Layout, 库
 
 ***Smoothie***提供了一个简单的API来异步加载*ListView/GridView*的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。
 
-<!--more-->
-
 ***Smoothie***是**手势识别**：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，***Smoothie***使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。
 
 那么，怎么使用它呢？很简单：
+
+<!--more-->
 
 1. 首先在你的布局文件中增加一个[AsyncListView](https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncListView.java)或者[AsyncGridView](https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncGridView.java)，只需要增加一个额外传递的方法到响应的父类中。
 
@@ -41,6 +40,4 @@ keywords: Android, ListView, GridView, Layout, 库
 
 
 ***Long Luo at AM11:30 ~ 12:42 Feb. 15th, 2014 @Shenzhen, China.***
-
-
 
