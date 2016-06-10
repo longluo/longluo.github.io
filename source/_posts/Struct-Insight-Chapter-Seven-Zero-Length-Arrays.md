@@ -12,7 +12,7 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普, 对齐, 0元素数
 
 #### 前言
 
-[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第五篇: [大话结构体之七：struct中0元素数组的意义在哪里？](http://blog.csdn.net/tcpipstack/article/details/8271856)
+[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第七篇: [大话结构体之七：struct中0元素数组的意义在哪里？](http://blog.csdn.net/tcpipstack/article/details/8271856)
 
 -----------
 上一回[大话结构体之六：无即是有，没有成员变量的Struct(结构体)](http://www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/)，我们在文章的结尾留了一个悬念：
