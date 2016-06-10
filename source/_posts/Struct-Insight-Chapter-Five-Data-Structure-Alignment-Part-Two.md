@@ -12,6 +12,6 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普, 对齐,
 
 #### 前言
 
-[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第一篇: [大话结构体之三: 借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白...](http://blog.csdn.net/tcpipstack/article/details/8267346)
+[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第五篇: [大话结构体之三: 借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白...](http://blog.csdn.net/tcpipstack/article/details/8267346)
 
 -----------
