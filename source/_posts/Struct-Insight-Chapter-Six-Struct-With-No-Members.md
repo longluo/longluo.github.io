@@ -2,7 +2,7 @@
 layout: post
 title: "大话结构体之六：无即是有，没有成员变量的Struct(结构体)"
 comments: true
-date: 2012-01-01 03:08:58
+date: 2013-01-01 03:08:58
 tags: [结构体, 技术, 科普]
 categories: 大话结构体
 keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普, 对齐, 成员变量, members
