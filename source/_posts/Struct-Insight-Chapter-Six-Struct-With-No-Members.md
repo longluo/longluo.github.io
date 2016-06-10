@@ -1,244 +1,289 @@
 ﻿---
 layout: post
-title: "大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)"
+title: "大话结构体之六：无即是有，没有成员变量的Struct(结构体)"
 comments: true
-date: 2012-12-29 01:08:58
+date: 2012-01-01 03:08:58
 tags: [结构体, 技术, 科普]
 categories: 大话结构体
-keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普, 对齐, 
+keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普, 对齐, 成员变量, members
 ---
 
 ***By Long Luo***
 
 #### 前言
 
-[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第五篇: [大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)](http://blog.csdn.net/tcpipstack/article/details/8272233)
+[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第六篇: [大话结构体之六：无即是有，没有成员变量的Struct(结构体)](http://blog.csdn.net/tcpipstack/article/details/8249915)
 
 -----------
-### 引言
-------------------
+在上一篇[大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)](http://www.longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/) 中，我们学习了`struct`的内存对齐的前世今生。
 
-在上一篇[大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)](http://www.longluo.me/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/) 中，我们了解到`struct ALIGN2`和`struct ALIGN3`的成员变量都是1个int型，1个char型及1个short型，可是它们所占的空间却1个是8字节，一个是12字节。
+在开始本篇之前，想问大家一个问题：
 
-***为什么会有这样的区别呢？***
+	---0是什么？
+	---呵呵，就是没有呗！
+	---那好，这5块钱拿去，就当抵我上次向你借的500块钱。
+	---什么？这哪和哪啊！这不一样
+	---可是你自己说的， 0就是“没有”。
+	---我说不清，反正不行，你必须还我500.
+ 
+0是什么？
+起什么作用呢？
+为什么500 ≠ 5？
 
-通过上篇关于**对齐**的介绍，我们已经猜测这是*因为编译器对其作了对齐的处理*所致，但是***编译器处理的细节***具体是什么呢？
+这节我们来讨论***0的作用***。
 
-在这一篇里，我们将对程序的**编译，汇编，链接**进行逐一分析，解开这个谜团。
+例如，500块钱，它后面0起到了什么作用呢？ 
 
-***不要走开，下面更精彩！***
+500 的0，表示十和个位“没有”。虽说“没有”，但这个0却不能省略。因为如果省略了0，一件500块的衣服，你只给5块，小心遭到暴打。
 
-<!--more-->
+那原因是什么呢？
 
-### 编译过程
-------------------
+在***按位计数法***中，***数位***具有很重要的意义。即使十位的数“没有”，也不能不写数字。这时就轮到0出场了，即`0`的作用就是***占位***。换言之，0占着一个位置以保证数位高于它的数字不会产生错位。
 
-一般情况下，`C`程序的编译过程为
+正因为有了表示“没有”的0，数值才能正确地表现出来。可以说在按位计数法中0是不可或缺的。
+ 
+打住，这和我们讲的`struct`有什么关系？
 
-1. 预处理
-2. 编译成汇编代码
-3. 汇编成目标代码
-4. 链接
-
-这一篇我们将使用`gcc`对上述几个过程进行仔细分析，了解其处理细节。
-
-首先我们看一个例子，源码如下：
-
+当然有关系了，请问下面这段代码输出的是什么呢？
 ```cpp
-/************************************************************************************
-** File: - Z:\code\c\Alignment\Align.c
-**  
-** Copyright (C), Long.Luo, All Rights Reserved!
-** 
-** Description: 
-**      Align.c --- To learn the details of Alignment by the compiler.
-** 
-** Version: 1.1
-** Date created: 22:33:50,10/12/2012
-** Author: Long.Luo
-** 
-** --------------------------- Revision History: --------------------------------
-** 	<author>	<data>			<desc>
-** 
-************************************************************************************/
+#include <iostream>
 
-#include <stdio.h>
+using namespace std;
 
-struct ALIGN2
+struct NoMember
 {
-	char mA;
-	int mB;
-	short mC;
-};
 
-struct ALIGN3
-{
-	int mB;
-	char mA;
-	short mC;
 };
-
 
 int main(void)
 {
-	struct ALIGN2 aln2;
-	struct ALIGN3 aln3;
+	cout<<"The size of the struct NoMem is:"<<endl;
+	cout<<sizeof(NoMember)<<endl;
 
-	printf("The size of struct ALIGN2 is: %d\n", sizeof(aln2));
-	printf("\t aln2.mA=0x%x, aln2.mB=0x%x, aln2.mC=0x%x\n", &aln2.mA, &aln2.mB, &aln2.mC);
-
-	printf("The size of struct ALIGN3 is: %d\n", sizeof(aln3));
-	printf("\t aln3.mA=0x%x, aln3.mB=0x%x, aln3.mC=0x%x\n", &aln3.mA, &aln3.mB, &aln3.mC);
-
+	getchar();
 	return 0;
 }
 ```
 
-接下来我们对`Align.c`按照C程序的编译流程进行一一分析，如下所示：
+---是0呢？
+---还是1？2？3？
 
-#### 1. 预处理
+想必大部分人还是说不出来的，那我们先看看输出结果：
+![没有成员变量的结构体](http://img.my.csdn.net/uploads/201212/03/1354466907_1355.jpg)
 
-输出文件的后缀为：`*.cpp`文件。
+一个没有任何变量的`struct`居然占了**1个字节**的空间。
 
-![预处理](http://img.my.csdn.net/uploads/201212/10/1355152365_3674.jpg)
+---***这不科学！***
 
-#### 2. 编译成汇编代码
-1. 使用-x参数说明根据指定的步骤进行工作，`cpp-output`指明从预处理得到的文件开始编译；
+那这是为什么呢？
 
-2. 使用-S说明生成汇编代码后停止工作
+不急，让子弹先飞一会儿.....
 
-```cmake
-gcc –x cpp-output –S –o align.s align.cpp
-```
-
-![汇编处理](http://img.my.csdn.net/uploads/201212/10/1355152365_5219.jpg)
-
-我们也可以直接编译到汇编代码：
-```cmake
-gcc –S Align.c
-```
-
-得到`align.s`文件之后，在最开始之处我们可以看到：
-```
-	.file	"Align.c"
-	.section	.rodata
-	.align 4
-```
-
-其中的`.align 4`就表明了**其后面所有的数据都遵守4字节对齐的限制**。
-
-#### 3. 编译成目标代码
-汇编代码--->目标代码
-![Object Code](http://img.my.csdn.net/uploads/201212/10/1355153534_1992.jpg)
-
-#### 4. 编译成执行代码
-目标代码-->执行代码
-
-最终的输出结果如下所示：
-![Execute Result:](http://img.my.csdn.net/uploads/201212/10/1355153534_2589.jpg)
-
-### 内存分析
-----------------------
-我们可以绘出`struct ALIGN2`和`struct ALIGN3`的***内存分配图***：
-![Memory](http://img.my.csdn.net/uploads/201212/11/1355157509_6978.jpg)
-
-#### 假如我们不对齐？
-
-上图是**内存对齐**的`struct ALIGN2`和`struct ALIGN3`的内存分配情况，但是假如我们不对齐呢？
-
-其内存分配如下所示：
-![内存不对齐](http://img.my.csdn.net/uploads/201212/11/1355157973_3867.jpg)
-
-很明显，`int mB`和`short mC`都不满足对齐要求。
-
-#### 对齐的好处是什么呢？
-通过上一节，我们知道了**如果不对齐**，我们可以节省出几个byte的内存空间，在计算机世界中，可以对齐也可以不对齐，但是实际中，都做了对齐。
-
-那么，***对齐的好处是什么呢***？
-
-答案是：**对齐**是在***时间***和***空间***之间做了一个***tradeoff***!
-
-对齐可以**提高取数据的效率**！
-
-在IA32架构中，数据总线是32位，即一次可以存取4个字节的数据。
-
-在对齐的情况下，`struct ALIGN2`的每个成员都可以在一个指令周期内完成；
-
-而假设我们的`struct ALIGN2`没有对齐，那么对于`struct ALIGN2`中`char mA`，CPU可以一次取出4个字节获得低位的一个字节，同时需要将高位的3个字节保存在寄存器中，之后的`int mB`，CPU必须再取得低位的1个字节并通之前保存在寄存器中的数据结果组合在一起，***每一个都需要好几条指令***，是不是相当麻烦？
-
-#### 如何自定义对齐？
-那肯定有同学要问了，有没有办法**让处理器按照自己的要求进行地址对齐**呢？
-
----当然可以！
-
-我们可以通过**预编译命令**`#pragma pack(n)，n=1,2,4,8,16`来改变这一系数，其中的`n`就是你要指定的“**对齐系数**”。
-
-比如，我想让处理器按照1个字节的方式对齐，则代码如下:
+再看下面一段代码：
 ```cpp
-/************************************************************************************
-** File: - Z:\code\c\Alignment\AlignPackOne.c
-**  
-** Copyright (C), Long.Luo, All Rights Reserved!
-** 
-** Description: 
-**      Align.c --- To learn the details of Alignment by the compiler.
-** 
-** Version: 1.1
-** Date created: 23:39:05,10/12/2012
-** Author: Long.Luo
-** 
-** --------------------------- Revision History: --------------------------------
-** 	<author>	<data>			<desc>
-** 
-************************************************************************************/
+#include <iostream>
 
-#include <stdio.h>
+using namespace std;
 
-
-#pragma pack(1)
-
-struct ALIGN2
+struct NoMember
 {
-	char mA;
-	int mB;
-	short mC;
+
 };
 
-struct ALIGN3
+struct NoMember1
 {
-	int mB;
-	char mA;
-	short mC;
+	int mA[0];
 };
-
 
 int main(void)
 {
-	struct ALIGN2 aln2;
-	struct ALIGN3 aln3;
+	//cout<<endl<<"The size of the struct NoMember is: "<<sizeof(NoMember)<<endl;
+	cout<<endl<<"The size of the struct NoMember1 is: "<<sizeof(NoMember1)<<endl;
 
-	printf("The size of struct ALIGN2 is: %d\n", sizeof(aln2));
-	printf("\t aln2.mA=0x%x, aln2.mB=0x%x, aln2.mC=0x%x\n", &aln2.mA, &aln2.mB, &aln2.mC);
-
-	printf("The size of struct ALIGN3 is: %d\n", sizeof(aln3));
-	printf("\t aln3.mA=0x%x, aln3.mB=0x%x, aln3.mC=0x%x\n", &aln3.mA, &aln3.mB, &aln3.mC);
-
+	getchar();
 	return 0;
 }
 ```
 
-编译之后输出结果如下：
-![自定义对齐内存情况](http://img.my.csdn.net/uploads/201212/10/1355154279_8492.jpg)
+一个结构体里面定义了一个空的数组，那这次的输出会是什么呢？
 
-可以看出，在我们要求的1字节对齐方式下，`struct ALIGN2`和`struct ALIGN3`的结果都是***7***，只占了**4+2+1**个字节，内存空间一个字节都利用到极致。
+---厄， 这还是一个空的结构体，所以**输出还是1**吧？
 
-至此，关于**内存对齐**就到此告一段落了，**你弄明白了吗**？
+好的，你还真蒙对了，请看结果：
 
-之前的系列文章，我们的`struct`都有成员变量，那么你有没有考虑过如果过`struct`完全是空的情况呢？
+![空的数组的结构体](http://img.my.csdn.net/uploads/201212/05/1354637651_7390.jpg)
 
-下一篇我们将重点探讨这个问题！
+但是，如果`struct`里面还有另外的变量呢？会是什么情况呢？
+```cpp
+#include <iostream>
 
-***不要走开，后面更精彩！***
+using namespace std;
 
-***Updated by Long Luo at 2016-6-11 03:44:26 @Shenzhen, China.***
+struct NoMember
+{
+
+};
+
+struct NoMember1
+{
+	int mA[0];
+};
+
+struct NoMember2
+{
+	char mB;
+	int mA[0];
+};
+
+int main(void)
+{
+	//cout<<endl<<"The size of the struct NoMember is: "<<sizeof(NoMember)<<endl;
+	//cout<<endl<<"The size of the struct NoMember1 is: "<<sizeof(NoMember1)<<endl;
+	cout<<endl<<"The size of the struct NoMember2 is: "<<sizeof(NoMember2)<<endl;
+
+	getchar();
+	return 0;
+}
+```
+
+---那这一次的输出是什么呢？
+
+---`char mB`占据4个字节，然后`int mA[0]`占据1个字节，所以结果**应该是5**吧？ 
+
+结果是什么呢？请看大屏幕！
+
+![0元素数组和成员变量](http://img.my.csdn.net/uploads/201212/05/1354637651_3893.jpg)
+
+结果是4，为什么呢？
+
+其实结合**500 ≠ 5**的话也很好理解，虽然结构体包含0个成员变量，但是结构体起到“占位”的作用，“空结构体”变量必须被存储，编译器为其分配一个字节的空间用于占位了。这样一来，不光可以取地址，两个不同的“空结构体”变量又可以得以区分。
+
+我们可以输出各个结构体的地址：
+```cpp
+#include <iostream>
+
+using namespace std;
+
+struct NoMember
+{
+
+};
+
+struct NoMember1
+{
+	int mA[0];
+};
+
+struct NoMember2
+{
+	char mB;
+	int mA[0];
+};
+
+int main(void)
+{
+	NoMember nm0;
+	NoMember1 nm1;
+	NoMember2 nm2;
+
+	cout<<endl<<"The size of the struct NoMember is: "<<sizeof(NoMember)<<endl;
+	cout<<"The address of the struct of NoMember: 0x"<<&nm0<<endl;
+
+	cout<<endl<<"The size of the struct NoMember1 is: "<<sizeof(NoMember1)<<endl;
+	cout<<"The address of the struct of NoMember: 0x"<<&nm1.mA<<endl;
+
+	cout<<endl<<"The size of the struct NoMember2 is: "<<sizeof(NoMember2)<<endl;
+	cout<<"The address of the struct of NoMember: 0x"<<&nm2.mA<<"\t0x"<<&nm2.mA<<endl;
+
+	getchar();
+	return 0;
+}
+```
+
+从输出结果，可以看出内存情况如下：
+![内存情况](http://img.my.csdn.net/uploads/201212/05/1354637651_4158.jpg)
+
+
+注意下面这份简谱，注意到乐谱上也有很多的***休止符***，在简谱上也是用`0`来表示，但是它们**不是“没有”**， 而是表示**不发音**！
+
+![简谱](http://img.my.csdn.net/uploads/201212/06/1354802731_3968.jpg)
+
+这些0都**不能去掉**的，因为去掉，节奏肯定乱了。
+ 
+ 0与其说是“空”，还不如说是“填空”更恰当。因为它的作用是***占位***。
+
+结合这个例子，想必大家就理解了， “空结构体” 为什么需要占用一个字节的空间。
+
+***可见，科学和艺术不分家的啊！***
+
+对数组比较熟悉的同学可能会问，怎么可以有0元素数组呢？
+
+是的，如果我们在`struct`和`class`之后定义0元素数组，会编译报错，如下代码所示：
+```cpp
+#include <iostream>
+
+using namespace std;
+
+struct NoMember
+{
+
+};
+
+struct NoMember1
+{
+	int mA[0];
+};
+
+struct NoMember2
+{
+	char mB;
+	int mA[0];
+};
+
+
+struct NoMember3
+{
+	int arr[0];
+};
+
+
+int arr[0];
+
+
+int main(void)
+{
+	NoMember nm0;
+	NoMember1 nm1;
+	NoMember2 nm2;
+
+	cout<<endl<<"The size of the struct NoMember is: "<<sizeof(NoMember)<<endl;
+	cout<<"The address of the struct of NoMember: 0x"<<&nm0<<endl;
+
+	cout<<endl<<"The size of the struct NoMember1 is: "<<sizeof(NoMember1)<<endl;
+	cout<<"The address of the struct of NoMember: 0x"<<&nm1.mA<<endl;
+
+	cout<<endl<<"The size of the struct NoMember2 is: "<<sizeof(NoMember2)<<endl;
+	cout<<"The address of the struct of NoMember: 0x"<<&nm2.mA<<"\t0x"<<&nm2.mA<<endl;
+
+	getchar();
+	return 0;
+}
+```
+
+出错信息如下：
+```
+1>e:\code\vs2010_prjs\struct\structdeclare\nomems.cpp(28): error C2466: 不能分配常量大小为 0 的数组
+```
+
+而`stuct`里面的0元素数组报的是**warning**，如下所示：
+```
+1>e:\code\vs2010_prjs\struct\structdeclare\nomems.cpp(24): warning C4200: 使用了非标准扩展 : 结构/联合中的零大小数组
+1>          当 UDT 包含大小为零的数组时，无法生成复制构造函数或副本赋值运算符
+```
+
+那么，问题又来了，这些`struct`里面的**0元素数组**有什么意义呢？
+
+***欲知后事如何，请听下回分解......***
+
+***Updated by Long Luo at 2016-6-11 04:17:09 @Shenzhen, China.***
 
