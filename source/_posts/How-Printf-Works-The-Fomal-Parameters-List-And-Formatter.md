@@ -19,7 +19,7 @@ keywords: printf, 技术, Linux, Kernel, 格式化输出, 形参列表,
 
 #### 一、引言
 ----------
-在上一篇 [深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出"Hello World"?]() 里，我们已经实现了用汇编语言在屏幕上输出了`“Hello World”`， 迈出了万里长征的第一步，但是我们知道实际的`printf`的功能是十分强大的，它和`scanf`一样属于标准输入输出的一种格式化函数，我们一般是这样使用它的：
+在上一篇 [深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出"Hello World"?](http://www.longluo.me/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/) 里，我们已经实现了用汇编语言在屏幕上输出了`“Hello World”`， 迈出了万里长征的第一步，但是我们知道实际的`printf`的功能是十分强大的，它和`scanf`一样属于标准输入输出的一种格式化函数，我们一般是这样使用它的：
 
 ```
 printf()的基本形式：printf("格式控制字符串"，变量列表)；
