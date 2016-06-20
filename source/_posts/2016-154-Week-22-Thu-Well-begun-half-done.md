@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Week 22nd Thu 好的开始是成功的一半"
+title: "2016 Day 154 Week 22nd Thu 好的开始是成功的一半"
 date: 2016-06-02 21:25:08
 tags: [Diary, 效率, 成功]
 categories: Diary

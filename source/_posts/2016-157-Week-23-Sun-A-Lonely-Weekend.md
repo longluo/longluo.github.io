@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Week 23rd Sun 一个孤独普通的周末"
+title: "2016 Day 157 Week 23rd Sun 一个孤独普通的周末"
 comments: true
 date: 2016-06-05 23:12:49
 tags: [日记, 行动, 改变]

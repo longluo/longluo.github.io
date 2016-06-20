@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Week 23rd Thu 自律"
+title: "2016 Day 161 Week 23rd Thu 自律"
 comments: true
 date: 2016-06-09 22:41:34
 tags: [自律, Diary]

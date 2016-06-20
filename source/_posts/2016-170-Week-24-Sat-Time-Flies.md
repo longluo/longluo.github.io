@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "2016 Week 24 Sat 时光飞逝"
+title: "2016 Week 24th Sat 时光飞逝"
 comments: true
 date: 2016-06-18 23:15:53
-tags: [日记, 周末]
+tags: [Diary, Life]
 categories: Diary
 keywords: Diary, 日记, 周末, 说,
 ---
