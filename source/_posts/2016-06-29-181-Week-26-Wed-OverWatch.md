@@ -3,7 +3,7 @@ layout: post
 title: "2016-06-29 181 Week 26th Wed OverWatch"
 comments: true
 date: 2016-06-29 23:32:49
-tags: [Diary, Record]
+tags: [Diary, Game]
 categories: Diary
 keywords: Diary, 日记, OverWatch,
 ---
