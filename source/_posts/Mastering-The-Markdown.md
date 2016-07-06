@@ -8,8 +8,6 @@ categories: 技术
 keywords: Markdown, 语法, 
 ---
 
-
-
 **NOTE:** This is Simplelified  Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to [Markdown: Syntax][eng-doc].
 
 [eng-doc]:http://daringfireball.net/projects/markdown/syntax
@@ -27,6 +25,9 @@ keywords: Markdown, 语法,
 
 Markdown 语法说明 (简体中文版) / ([点击查看快速入门](./basic.html))
 ================
+
+<!--more-->
+
 
 *   [概述](#overview)
     *   [宗旨](#philosophy)

@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Day 158 Week 23rd Mon 在高考前夜的沉思"
+title: "2016-06-06 Day 158 Week 23rd Mon 在高考前夜的沉思"
 comments: true
 date: 2016-06-06 21:19:51
 tags: [Diary, 高考, 沉思]

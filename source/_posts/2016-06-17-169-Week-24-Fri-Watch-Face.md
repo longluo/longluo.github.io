@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Week 24th Fri "
+title: "2016-06-17 169 Week 24th Fri "
 comments: true
 date: 2016-06-17 23:15:53
 tags: [日记, 周末]

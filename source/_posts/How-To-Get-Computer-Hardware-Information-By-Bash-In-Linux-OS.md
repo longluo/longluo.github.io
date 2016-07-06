@@ -8,10 +8,13 @@ categories: Linux
 keywords:
 ---
 
+***By Long Luo***
 
 http://blog.csdn.net/tcpipstack/article/details/8100270
 
 最近由于要获取几台Linux服务器的硬件配置信息，就写了一个获取硬件配置信息的脚本代码，可以获取cpu核心数、内存大小、硬盘大小信息，代码如下所示：
+
+<!--more-->
 
 ```Bash
 #!/bin/bash

@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Day 164 Week 24th Sun 自尊心这么强，你咋在社会上混呢？"
+title: "2016-06-12 Day 164 Week 24th Sun 自尊心这么强，你咋在社会上混呢？"
 comments: true
 date: 2016-06-12 22:45:13
 tags: [Diary, 自尊心]

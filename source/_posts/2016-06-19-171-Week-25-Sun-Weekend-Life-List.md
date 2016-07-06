@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Day 171 Week 25th Sun 周末流水账"
+title: "2016-06-19 Day 171 Week 25th Sun 周末流水账"
 comments: true
 date: 2016-06-19 22:32:54
 tags: [Diary, Life]

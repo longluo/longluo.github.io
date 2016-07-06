@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 177 Week 25 Sat 流水账"
+title: "2016-06-25 177 Week 25 Sat 流水账"
 comments: true
 date: 2016-06-25 23:27:17
 tags: [Diary, Record]

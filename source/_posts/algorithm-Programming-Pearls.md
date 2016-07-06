@@ -8,7 +8,7 @@ categories: Algorithm
 keywords: 字符串翻转, 编程珠玑, 杂技算法, 翻转算法, 
 ---
 
-
+***By Long Luo***
 
 ### 题目：
 

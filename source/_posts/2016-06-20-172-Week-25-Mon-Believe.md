@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Day 172 Week 25th Mon Believe!"
+title: "2016-06-20 Day 172 Week 25th Mon Believe!"
 comments: true
 date: 2016-06-20 22:12:41
 tags: [Diary, Honor]

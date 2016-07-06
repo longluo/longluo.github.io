@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Day 173 Week 25th Feb 心态!"
+title: "2016-06-21 Day 173 Week 25th Feb 心态!"
 comments: true
 date: 2016-06-21 23:02:05
 tags: [Diary, 心态]

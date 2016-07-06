@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Day 165 Week 24th Mon 好穷！！！"
+title: "2016-06-13 Day 165 Week 24th Mon 好穷！！！"
 comments: true
 date: 2016-06-13 21:50:03
 tags: [Diary, 穷]

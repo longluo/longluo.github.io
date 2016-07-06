@@ -23,6 +23,8 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普
 第二，把很多C程序员忽悠进C++这个大坑里，为C++之崛起而加班，上了贼船可就由不得你了**XD**
 .......
 
+<!--more-->
+
 也正是因为这个原因，C++中保留了Struct结构类型，并使得Struct的功能更强大，不仅仅是简单继承C的结构体，而且扩充了Struct，使得它也具有类的特点，那么**在C++中，Class和Struct到底有什么区别呢**？
 
 ***Talk is cheap, show me the Code!***

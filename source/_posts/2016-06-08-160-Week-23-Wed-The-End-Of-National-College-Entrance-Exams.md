@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Day 160 Week 23rd Wed 高考结束了，假期开始了"
+title: "2016-06-08 Day 160 Week 23rd Wed 高考结束了，假期开始了"
 comments: true
 date: 2016-06-08 20:40:11
 tags: [Dirary, 高考, 选择]

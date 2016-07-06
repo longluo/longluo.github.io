@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016 Day 153 Week 22nd Wed 不对任何人有所期待"
+title: "2016-06-01 Day 153 Week 22nd Wed 不对任何人有所期待"
 date: 2016-06-01 19:48:41
 tags: [Diary, 期望, 成长]
 categories: Diary
