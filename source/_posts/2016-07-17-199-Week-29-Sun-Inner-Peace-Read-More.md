@@ -27,7 +27,7 @@ keywords: 日记, Diary, 读书, 内心平静,
 
 查了下，还有接近3000积分，于是用[招行信用卡](http://cc.cmbchina.com/)积分消费了人生第一杯[星冰乐](http://baike.baidu.com/link?url=gm6EOWT11ayeScEW5funTVzsYsh-tHW-V1zCBPN8_p1NP5seUimdBilJmusZ9P24FWFInbr23jzptZdKvJA-Zq)。
 
-***Frappuccino***还是挺好喝的，就是太少了，确实是消暑利器啊！
+[Frappuccino](http://www.starbucks.com/menu/drinks/frappuccino-blended-beverages)还是挺好喝的，就是太少了，确实是消暑利器啊！
 
 星巴克的店员都很漂亮啊，不知道最近几周有没有机会搭讪几个呢？
 
