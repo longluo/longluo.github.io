@@ -26,4 +26,4 @@ keywords: Diary, 日记, 迷茫,
 
 好好努力思考吧！
 
-***By Long Luo at 2016-7-27 01:05:17 ~ 2016-7-27 01:20:09  @Shenzhen, China.***
+***By Long Luo at 2016-7-26 01:05:17 ~ 2016-7-26 01:20:09  @Shenzhen, China.***

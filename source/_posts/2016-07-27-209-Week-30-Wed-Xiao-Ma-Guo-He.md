@@ -30,4 +30,4 @@ keywords: Diary, 日记, 小马过河, 哲理,
 
 所以，永远记得尝试，即使失败也没什么！
 
-***By Long Luo at 2016-7-28 00:53:39 ~ 2016-7-28 01:10:59  @Shenzhen, China.***
+***By Long Luo at 2016-7-27 00:53:39 ~ 2016-7-27 01:10:59  @Shenzhen, China.***
