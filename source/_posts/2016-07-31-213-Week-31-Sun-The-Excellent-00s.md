@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016-07-32 213 Week 31 Sun 好优秀的00后！"
+title: "2016-07-31 213 Week 31 Sun 好优秀的00后！"
 comments: true
 date: 2016-07-31 21:05:37
 tags: [Diary, 优秀]
