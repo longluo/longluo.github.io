@@ -27,4 +27,3 @@ keywords: Diary, 日记, 优秀, 奋斗, 混吃等死,
 
 ***By Long Luo at 2016-8-3 22:48:04 ~ 2016-8-3 23:10:32 @Shenzhen, China.***
 
-
