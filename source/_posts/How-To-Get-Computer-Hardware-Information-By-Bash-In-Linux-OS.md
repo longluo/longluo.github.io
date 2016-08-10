@@ -1,18 +1,22 @@
 ﻿---
 layout: post
-title: "Linux Bash"
+title: "获取电脑配置：一个20行的脚本代码就够了，So Easy！"
 comments: true
 date: 2012-10-22 20:16:33 
-tags:
+tags: [Linux, Shell, 硬件]
 categories: Linux
-keywords:
+keywords: Linux, Shell, 脚本, 硬件信息, 
 ---
 
 ***By Long Luo***
 
-http://blog.csdn.net/tcpipstack/article/details/8100270
+这篇文章是2012年在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上写的，[Linux下获取电脑硬件配置信息的bash脚本代码](http://blog.csdn.net/tcpipstack/article/details/8100270)。
 
-最近由于要获取几台Linux服务器的硬件配置信息，就写了一个获取硬件配置信息的脚本代码，可以获取cpu核心数、内存大小、硬盘大小信息，代码如下所示：
+---------
+
+最近由于要获取几台Linux服务器的硬件配置信息，就写了一个获取硬件配置信息的脚本代码，可以获取CPU、内存、硬盘等硬件信息。
+
+使用这个脚本文件，就可以一次性输出代码如下所示：
 
 <!--more-->
 
@@ -59,6 +63,22 @@ fn_get_mem_info
 echo -e "\n -----------End -----------\n"
 ```
 
-输出如下所示：
+在一台Win7电脑上运行此脚本，输出硬件配置信息如下所示：
+
+```
+
+ -----------This Computer's Hardware Config Information is: -----------
+
+
+        Disk Information: 
+
+        CPU Num is: 4
+
+        Memory is:  8096 MB
+
+ -----------End -----------
+```
+
+以上。
 
 

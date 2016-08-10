@@ -3,12 +3,16 @@ layout: post
 title: "如何利用单片机控制蜂鸣器播放音乐？---以《梁祝》的实现为例"
 comments: true
 date: 2012-10-23 22:37:57  
-tags:
-categories:
-keywords:
+tags: [单片机, Music, 乐理]
+categories: Music
+keywords: 单片机, Music, 技术, 乐理, 
 ---
 
 ***By Long Luo***
+
+这篇文章是2012年在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上写的，[TI EK-LM3S8962开发板使用蜂鸣器播放音乐《梁祝》的实现](http://blog.csdn.net/tcpipstack/article/details/8104111)。
+
+--------
 
 TI的EK-LM3S8962开发板有着比较丰富的外设，由于个人从小对音乐感兴趣，因此利用其中的蜂鸣器外设来实现音乐播放的功能，下面对此进行逐一解析：
 
