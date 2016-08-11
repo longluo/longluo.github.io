@@ -30,20 +30,25 @@ support introspection, but do not support reflection, e.g., C++.
 
 Introspection Example: The instanceof operator determines whether an object belongs to a particular class.
 
-i f ( obj ins tanceof Dog) {
-Dog d = (Dog) obj ;
-d . bark ( ) ;
+```java
+if(obj instanceof Dog) {
+	Dog d = (Dog)obj;
+	d.bark();
 }
+```
 
 Reflection Example: The `Class.forName()` method returns the Class object associated
 with the class/interface with the given name(a string and full qualified name).
 The forName method causes the class with the name to be initialized.
 
-/ / wi th r e f l e c t i o n
-Class <?> c = Clas s . forName ( " c l a s spa th . and . classname " ) ;
-Object dog = c . newInstance ( ) ;
-Method m = c . getDeclaredMethod ( " bark " , new Class <? >[0] ) ;
-m. invoke ( dog ) ;
+```java
+// with reflection
+Class <?> c = Class.forName("classpath.and.classname");
+Object dog = c.newInstance();
+
+Method m = c.getDeclaredMethod("bark", new Class<?>[0]);
+m.invoke(dog);
+```
 
 In Java, reflection is more about introspection, because you can not change structure
 of an object. There are some APIs to change accessibilities of methods and
@@ -69,22 +74,25 @@ quickly dynamically initialize the classes required.
 
 For example, Spring uses bean configuration such as:
 
-<bean id=" someID" c l a s s="com. programcreek . Foo ">
-<property name=" someField " value=" someValue " />
+```xml
+<bean id="someID" class="com.programcreek.Foo">
+<property name="someField" value="someValue"/>
 </bean>
+```
 
-When the Spring context processes this <bean >element, it will use Class.forName(String)
+When the Spring context processes this <bean>element, it will use Class.forName(String)
 with the argument “com.programcreek.Foo” to instantiate that Class. It will then
-again use reflection to get the appropriate setter for the <property >element and
+again use reflection to get the appropriate setter for the <property>element and
 set its value to the specified value.
 
 The same mechanism is also used for Servlet web applications:
 
-<s e rvl e t >
-<s e rvl e t􀀀name>someServlet </s e rvl e t􀀀name>
-<s e rvl e t􀀀c las s >com. programcreek . WhyRef lect ionServlet </s e rvl e t􀀀
-c las s >
-<s e rvl e t >
+```xml
+<servlet>
+<servlet name>someServlet </s e rvl e t􀀀name>
+<servlet class>com.programcreek.WhyReflectionServlet</servlet class>
+<servlet>
+```
 
 # 3. how to use reflection?
 
@@ -119,9 +127,7 @@ com.longluo.java.interview.reflection.Foo
 
 ## Example 2: Invoke method on unknown object
 
-For the code example below, image the types of an object is unknown. By using
-reflection, the code can use the object and find out if the object has a method called
-“print” and then call it.
+For the code example below, image the types of an object is unknown. By using reflection, the code can use the object and find out if the object has a method called “print” and then call it.
 
 ```java
 package com.longluo.java.interview.reflection;
@@ -268,22 +274,66 @@ null
 abc
 ```
 
-In addition, you can use Class instance to get implemented interfaces, super class,
-declared field, etc.
+In addition, you can use Class instance to get implemented interfaces, super class, declared field, etc.
 
 ## Example 5: Change array size though reflection
 
 ```java
+package com.longluo.java.interview.reflection;
 
+import java.lang.reflect.Array;
 
+public class ReflectionHelloWorld5 {
+	public static void main(String[] args) {
+		int[] intArray = { 1, 2, 3, 4, 5 };
+		int[] newIntArray = (int[]) changeArraySize(intArray, 10);
+
+		print(newIntArray);
+
+		String[] atr = { "a", "b", "c", "d", "e" };
+		String[] str1 = (String[]) changeArraySize(atr, 10);
+		print(str1);
+	}
+
+	// change array size
+	public static Object changeArraySize(Object obj, int len) {
+		Class<?> arr = obj.getClass().getComponentType();
+
+		Object newArray = Array.newInstance(arr, len);
+
+		// do array copy
+		int co = Array.getLength(obj);
+
+		System.arraycopy(obj, 0, newArray, 0, co);
+
+		return newArray;
+	}
+
+	// print
+	public static void print(Object obj) {
+		Class<?> c = obj.getClass();
+
+		if (!c.isArray()) {
+			return;
+		}
+
+		System.out.println("\nArray length:" + Array.getLength(obj));
+
+		for (int i = 0; i < Array.getLength(obj); i++) {
+			System.out.print(Array.get(obj, i) + " ");
+		}
+	}
+}
 
 ```
-
 
 Output:
 
 ```
-
+Array length:10
+1 2 3 4 5 0 0 0 0 0 
+Array length:10
+a b c d e null null null null null 
 ```
 
 
