@@ -26,6 +26,8 @@ and behavior of an object at runtime.
 From their definitions, introspection is a subset of reflection. Some languages
 support introspection, but do not support reflection, e.g., C++.
 
+<!--more-->
+
 # 2. WHY DO WE NEED REFLECTION? 
 
 Introspection Example: The instanceof operator determines whether an object belongs to a particular class.
