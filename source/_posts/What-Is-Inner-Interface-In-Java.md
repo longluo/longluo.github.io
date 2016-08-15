@@ -2,7 +2,7 @@
 layout: post
 title: What Is Inner Interface In Java
 comments: true
-date: 2016-08-12 11:45:12
+date: 2016-08-10 11:45:12
 tags: [Java, 接口]
 categories: Java
 keywords:
