@@ -1,8 +1,8 @@
 ﻿---
 layout: post
-title: "2016-08-21 234 Week 34 Sun 纠结!!!" 
+title: "2016-08-19 232 Week Fri 解决问题的能力！"
 comments: true
-date: 2016-08-21 22:04:32
+date: 2016-08-19 22:04:07
 tags: [Diary, Life]
 categories: Diary
 keywords: Diary, 日记, 纠结, 命运, 选择,
@@ -10,7 +10,7 @@ keywords: Diary, 日记, 纠结, 命运, 选择,
 
 ***By Long Luo***
 
-今天是2016年08月21日，星期天，Page 234 of 366。
+今天是2016年08月19日，星期五，Page 232 of 366。
  
 --------------
 
