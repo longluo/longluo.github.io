@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016-08-19 232 Week Fri 解决问题的能力！"
+title: "2016-08-19 232 Week 33 Fri 解决问题的能力！"
 comments: true
 date: 2016-08-19 22:04:07
 tags: [Diary, Life]
