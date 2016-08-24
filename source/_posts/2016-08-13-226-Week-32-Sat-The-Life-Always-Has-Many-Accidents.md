@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "2016-08-13 226 Week 32 Sat 生活是由意外组成的！" 
+title: "2016-08-13 226 Week 32 Sat 生活是由很多意外组成的！" 
 comments: true
 date: 2016-08-13 21:36:36
 tags:
