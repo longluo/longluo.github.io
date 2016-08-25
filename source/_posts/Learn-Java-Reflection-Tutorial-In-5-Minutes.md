@@ -1,6 +1,6 @@
-﻿---
+---
 layout: post
-title: "《SimpleJava》之43: Java反射教程"
+title: "Java反射教程"
 comments: true
 date: 2016-08-09 22:26:08
 tags: [Java, 反射, 教程]
@@ -8,20 +8,25 @@ categories: Java
 keywords: Java, Reflection, 反射, 
 ---
 
-
 What is reflection, why is it useful, and how to use it?
 
 # 1. what is reflection?
 
-“Reflection is commonly used by programs which require the ability to examine or
-modify the runtime behavior of applications running in the Java virtual machine.”
+Reflection is commonly used by programs which require the ability to examine or
+modify the runtime behavior of applications running in the Java virtual machine.
+
 This concept is often mixed with introspection. The following are their definitions
+
 from Wiki:
 
 1. Introspection is the ability of a program to examine the type or properties of
 an object at runtime.
+
+1. 自省(Introspection)是
+2. 反射是一个程序
 2. Reflection is the ability of a program to examine and modify the structure
 and behavior of an object at runtime.
+
 
 From their definitions, introspection is a subset of reflection. Some languages
 support introspection, but do not support reflection, e.g., C++.
@@ -32,6 +37,8 @@ support introspection, but do not support reflection, e.g., C++.
 
 Introspection Example: The instanceof operator determines whether an object belongs to a particular class.
 
+一个对象是否属于一个特定的类。
+
 ```java
 if(obj instanceof Dog) {
 	Dog d = (Dog)obj;
@@ -39,8 +46,8 @@ if(obj instanceof Dog) {
 }
 ```
 
-Reflection Example: The `Class.forName()` method returns the Class object associated
-with the class/interface with the given name(a string and full qualified name).
+Reflection Example: The `Class.forName()` method returns the Class object associated with the class/interface with the given name(a string and full qualified name).
+
 The forName method causes the class with the name to be initialized.
 
 ```java
