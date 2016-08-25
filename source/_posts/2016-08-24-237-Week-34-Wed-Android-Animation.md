@@ -22,4 +22,4 @@ keywords: Diary, 日记, 事情, 任务, ,
 
 加油！
 
-***By Long Luo at 8-25 00:38 @Shenzhen, China.***
+***By Long Luo at 2016-8-25 00:38:56 @Shenzhen, China.***
