@@ -171,8 +171,8 @@ class Foo {
 
 ```
 
-
 abc
+
 
 ## Example 3: Create object from Class instance
 
