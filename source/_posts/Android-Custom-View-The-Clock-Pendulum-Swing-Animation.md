@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "Android自定义View: 如何实现类钟摆的动画效果?"
 comments: true
@@ -8,7 +8,7 @@ categories: Android
 keywords: Android, 自定义View, 动画, 摆动动画, 钟摆, 
 ---
 
-
+***By Long Luo***
 
 
 <!--more-->
@@ -61,8 +61,6 @@ keywords: Android, 自定义View, 动画, 摆动动画, 钟摆,
         mInitialized = true;
     }
 ```
-
-
 
 
 ```java
