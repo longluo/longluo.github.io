@@ -1,24 +1,22 @@
-﻿---
+---
 layout: post
-title: "Top 10 Questions About Java Collections"
+title: "关于Java Collections应知应会"
 comments: true
 date: 2016-08-07 22:56:28
-tags: [Java, ]
+tags: [Java, Collection, Basic]
 categories: Java
-keywords: Java, 
+keywords: Java, Collections, 基础知识, 
 ---
 
-The following are the most popular questions of Java collections asked and discussed
-on Stackoverflow. Before you look at those questions, it’s a good idea to
+The following are the most popular questions of Java collections asked and discussedon Stackoverflow. Before you look at those questions, it’s a good idea to
 see the class hierarchy diagram.
 
 <!--more-->
 
-59.1 when to use linkedlist over arraylist?
+# 59.1 when to use linkedlist over arraylist?
 
 ArrayList is essentially an array. Its elements can be accessed directly by index.
-But if the array is full, a new larger array is needed to allocate and moving all elements
-to the new array will take O(n) time. Also adding or removing an element
+But if the array is full, a new larger array is needed to allocate and moving all elements to the new array will take O(n) time. Also adding or removing an element
 needs to move existing elements in an array. This might be the most disadvantage
 to use ArrayList.
 
@@ -28,8 +26,12 @@ removing an element in LinkedList is quicklier, because it only changes the list
 locally.
 
 In summary, the worst case of time complexity comparison is as follows:
+
+
+
+
 | Ar r a y l i s t | LinkedLi s t
-􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀􀀀
+
 get ( index ) | O( 1 ) | O(n)
 add (E) | O(n) | O( 1 )
 add (E , index ) | O(n) | O(n)

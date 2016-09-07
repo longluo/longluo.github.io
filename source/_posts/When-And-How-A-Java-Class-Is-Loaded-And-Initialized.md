@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "When and how a Java Class is loaded AND HOW A JAVA CLAS S I S LOADED AND INI T IAL IZED"
+title: "When and how a Java Class is loaded AND HOW A JAVA CLAS S I S LOADED AND INITIALIZED"
 comments: true
 date: 2016-07-31 19:19:47
 tags: [Java, Class, ]
