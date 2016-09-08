@@ -1,101 +1,104 @@
 ﻿---
 layout: post
-title: "Top 10 Questions Of Java Strings"
+title: "关于Java字符串(String)10个最常见问题"
 comments: true
 date: 2016-08-05 09:49:42
 tags: [Java, String]
 categories: Java
-keywords: Java, String, 
+keywords: Java, String, 字符串, 问题,
 ---
 
-The following are top 10 frequently asked questions about Java Strings.
+Java语言中，String一直很基础，但很多人都很多概念还是很模糊。这里我们选取了网络上最常见的10个问题，希望通过
 
-# 56.1 how to compare strings? use “==” or use equals()?
+# 1. 如何对字符串进行比较？用“==” 还是`equals()`？
 
-In brief, “==” tests if references are equal and equals() tests if values are equal.
-Unless you want to check if two strings are the same object, you should always
-use equals(). It would be better if you know the concept of string interning.
+简单来说，如果**引用是否相同**那么使用`==`， 判断***值是否相等***则用`equals()`。除非你想判断2个字符串是否是同一对象，否则你都应该使用`equals()`。
 
 <!--more-->
 
-# 56.2 why is char[] preferred over string for security sensitive information?
+# 2. 为什么在安全敏感信息场合应该用char[]而不是string？
 
-Strings are immutable, which means once they are created, they will stay unchanged
-until Garbage Collector kicks in. With an array, you can explicitly change
-its elements. In this way, security sensitive information(e.g. password) will not be
-present anywhere in the system.
+String具有不可变的特性，当字符串一旦被创建，那么知道垃圾收集器处理之前他们都是不可变的。如果使用数组，那么你可以明确地改变其内部单元数据。因此，安全敏感的信息例如密码不应该在系统中任何时候都存在。
 
-# 56.3 can we use string for switch statement?
+# 3. 我们可以在switch语句中使用string吗？
 
-Yes to version 7. From JDK 7, we can use string as switch condition. Before version
-6, we can not use string as switch condition.
-/ / j a v a 7 only !
+是的，在Java 7中可以！JDK7中，我们可以在`switch`中使用string。但是之前的Java版本是不可以的。
+
+```java
+// java 7 only!
+switch(str.toLowerCase()){
+	case "a":
+		value = 1;
+		break;
+
+	case "b":
+		value = 2 ;
+		break;
+	}
+```
+
+# 4. 如何将字符转成Int类型？
+
+```java
+int n = Integer.parseInt("10");
+```
+
+就是这样简单！
+
+# 5. 如何用白色空格字符分离一个字符串？
+
+可以使用***正则表达式***分离字符串。""表示白色空格字符比如" ", ""。
+
+```java
+String [] strArray = aString.split("\\s+");
+```
+
+# 6. `substring()`这个方法起什么作用？
+
+在JDK6中，`substring()`方法并不会创建一个新的字符数组，而是给现存的字符串一个窗口用于表示当前字符串。如果想用一个新的字符数组来表示新的字符串，你可以加一个空支付串来实现，如下所示：
+
+```java
+str.substring(m, n) + ""
+```
+
+使用上述方法，会创建一个新的字符数组来表示新的字符串。有时候可以让你的代码更快，因为垃圾收集器会收集一些没有使用的大字符串但子字符串确实保留的。
+
+JDK7中，`substring()`会创建一个新的字符数组，而不是使用现在的这个。
 
 
-# 56.4. HOW TO CONVERT STRING TO INT? 196
+# 7. String vs StringBuilder vs StringBuffer
 
-switch ( s t r . toLowerCase ( ) ) {
-case " a " :
-value = 1 ;
-break ;
-case "b" :
-value = 2 ;
-break ;
-}
+String vs StringBuilder: StringBuilder是可变的,你可以在创建之后继续修改它。 
 
-# 56.4 how to convert string to int?
+StringBuilder vs StringBuffer: StringBuffer是同步的，线程安全但是也因为如此，它比StringBuilder要慢。
 
-int n = Int ege r . pa r s e Int ( " 10 " ) ;
-Simple, but so frequently used and sometimes ignored.
-# 56.5 how to split a string with white space characters?
-We can simple do split using regular expression. “” stands for white space characters
-such as ” “, “’’, “°’’, “”.
-S t r ing [ ] s t rAr ray = aSt r ing . s p l i t ( "\\s+" ) ;
+# 8. 如何重复一个字符串？
 
-#56.6 what substring() method really does?
+Python语言，要重复一个字符串只需要乘以一个数字即可。Java语言中，我们可以使用StringUtils中的`repeat()`方法。
 
-In JDK 6, the substring() method gives a window to an array of chars which
-represents the existing String, but do not create a new one. To create a new
-string represented by a new char array, you can do add an empty string like the
-following:
-s t r . subs t r ing (m, n) + " "
-This will create a new char array that represents the new string. The above approach
-sometimes can make your code faster, because Garbage Collector can collect
-the unused large string and keep only the sub string.
-In Oracle JDK 7, substring() creates a new char array, not uses the existing one.
-Check out the diagram for showing substring() difference between JDK 6 and JDK
-7.
-56.7. STRING VS STRINGBUILDER VS STRINGBUFFER 197
+```java
+String str = "abcd";
+String repeated = StringUtils.repeat(str,3);
+//abcdabcdabcd
+```
 
-# 56.7 string vs stringbuilder vs stringbuffer
+# 9. 如何将字符串转换成日期？
 
-String vs StringBuilder: StringBuilder is mutable, which means you can modify
-it after its creation. StringBuilder vs StringBuffer: StringBuffer is synchronized,
-which means it is thread-safe but slower than StringBuilder.
+```java
+String str = "Sep 17, 2013";
+Date date = new SimpleDateFormat("MMMM d, yy", Locale.ENGLISH).parse(str);
+System.out.println(date);
+//Tue Sep 17 00:00:00 EDT 2013
+```
 
-#56.8 how to repeat a string?
+# 10. 如何计算一个字符串中某个字符的出现次数？
 
-In Python, we can just multiply a number to repeat a string. In Java, we can use
-the repeat() method of StringUtils from Apache Commons Lang package.
-S t r ing s t r = " abcd " ;
-S t r ing repeated = S t r i n gUt i l s . repeat ( s t r , 3 ) ;
-/ / a b c d a b c d a b c d
+使用StringUtils中方法：
 
-#56.9 how to convert string to date?
+```java
+int n = StringUtils.countMatches("11112222", "1");
+System.out.println(n);
+```
 
-S t r ing s t r = " Sep 17 , 2013 " ;
-Date date = new SimpleDateFormat ( "MMMM d , yy " , Locale .ENGLISH) .
-parse ( s t r ) ;
-System . out . pr int ln ( date ) ;
-
-#56.10 . how to count # of occurrences of a character in a string?
-
-Use StringUtils from apache commons lang.
-int n = S t r i n gUt i l s . countMatches ( " 11112222 " , " 1 " ) ;
-System . out . pr int ln (n) ;
-
-#56.11 one more do you know how to detect if a string contains
-
-only uppercase letter?
-
+以上！
 

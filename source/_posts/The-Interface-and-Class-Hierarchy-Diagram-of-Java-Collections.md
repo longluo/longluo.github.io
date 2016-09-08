@@ -1,41 +1,48 @@
----
+﻿---
 layout: post
-title: "关于Java Collections应知应会"
+title: "3分钟速读：图解Java Collections的接口以及类层级关系"
 comments: true
 date: 2016-08-08 18:56:28
 tags: [Java, Collection, Basic]
 categories: Java
-keywords: Java, Collections, 基础知识, 
+keywords: Java, Collections, 基础知识, 层级, Collection,
 ---
 
+***翻译 By Long Luo***
 
+本文翻译自[The Interface and Class Hierarchy Diagram of Java Collections](http://www.programcreek.com/2009/02/the-interface-and-class-hierarchy-for-collections/)，主要通过一系列简单易懂的图片让你迅速了解Java容器类，容器接口以及类层级关系。
 
-1. Collection vs Collections
+大段文字会看得很烦，图片才是王道！
 
-First of all, "Collection" and "Collections" are two different concepts. As you will see from the hierarchy diagram below, "Collection" is a root interface in the Collection hierarchy but "Collections" is a class which provide static methods to manipulate on some Collection types.
+<!--more-->
 
+# 一、 Collection vs Collections
 
+"Collection"和"Collections"是2个完全不同的概念，在Java容器的类层级图中，"Collection"是一个根接口，但是"Collections"仅仅只是一个提供多种静态方法的类用于操作一些Collection类型。
 
-2. Class hierarchy of Collection
+![Collection Vs Collections](http://www.programcreek.com/wp-content/uploads/2009/02/CollectionVsCollections.jpeg)
 
-The following diagram demonstrates class hierarchy of Collection.
+# 二、 Collection的类层级图
 
+下图展示了Collection的类层级图：
 
+![java-collection-hierarchy](http://www.programcreek.com/wp-content/uploads/2009/02/java-collection-hierarchy.jpeg)
 
-3. Class hierarchy of Map
+# 三、 Map的类层级图
 
-Here is class hierarchy of Map.
+下图是一张Map的类层级图：
 
+![MapClassHierarchy](http://www.programcreek.com/wp-content/uploads/2009/02/MapClassHierarchy-600x354.jpg)
 
+# 四、 总结
 
-4. Summary of classes
+![collection summary](http://www.programcreek.com/wp-content/uploads/2009/02/collection-summary.png)
 
-collection-summary
+# 五、 代码示例
 
-5. Code Example
+下面展示容器类的一个代码示例：
 
-The following is a simple example to illustrate some collection types:
-
+```java
 List<String> a1 = new ArrayList<String>();
 a1.add("Program");
 a1.add("Creek");
@@ -68,8 +75,11 @@ m1.put("Language", "Java");
 m1.put("Website", "programcreek.com");
 System.out.println("Map Elements");
 System.out.print("\t" + m1);
-Output:
+```
 
+输出如下：
+
+```
 ArrayList Elements
 	[Program, Creek, Java, Java]
 LinkedList Elements
@@ -78,3 +88,6 @@ Set Elements
 	[tutorial, Creek, Program, Java]
 Map Elements
 	{Windows=XP, Website=programcreek.com, Language=Java}
+```
+
+以上！
