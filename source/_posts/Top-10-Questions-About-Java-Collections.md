@@ -8,31 +8,33 @@ categories: Java
 keywords: Java, Collections, 基础知识, 
 ---
 
-The following are the most popular questions of Java collections asked and discussed on Stackoverflow. Before you look at those questions, it's a good idea to see the class hierarchy diagram.
+***翻译 By Long Luo***
 
-# 1. When to use LinkedList over ArrayList?
+下面这些问题[Stackoverflow](http://www.stackoverflow.com)上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章[3分钟速读：图解Java Collections的接口以及类层级关系](http://www.longluo.me/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/)。
 
-ArrayList is essentially an array. Its elements can be accessed directly by index. But if the array is full, a new larger array is needed to allocate and moving all elements to the new array will take O(n) time. Also adding or removing an element needs to move existing elements in an array. This might be the most disadvantage to use ArrayList.
+# 1. 什么时候用LinkedList？什么时候用ArrayList？
 
-LinkedList is a double linked list. Therefore, to access an element in the middle, it has to search from the beginning of the list. On the other hand, adding and removing an element in LinkedList is quicklier, because it only changes the list locally.
+***ArrayList***本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经满了，那么需要重新分配一个更大的数组并且将全部的元素移动到新的数组需要花费***O(n)***的时间。当然从现有的数组中增加或者删除一个元素都需要移动现有的元素。这个可能是使用ArrayList中最大的不便之处。
 
-In summary, the worst case of time complexity comparison is as follows:
+***LinkedList***是一个**双端链表**。正因为如此，如果要获取一个链表中间的元素，需要从链表的头部开始查找。另一方面，增加或者删除链表中的元素将会很快，因为只需要在本地修改即可。
 
-                   | Arraylist | LinkedList
- ------------------------------------------
- get(index)        |    O(1)   |   O(n)
- add(E)            |    O(n)   |   O(1)
- add(E, index)     |    O(n)   |   O(n)
- remove(index)     |    O(n)   |   O(n)
- Iterator.remove() |    O(n)   |   O(1)
- Iterator.add(E)   |    O(n)   |   O(1)
+下表总结了最快情况下的比较需要耗费时间：
 
+ |      Method       | Arraylist | LinkedList |
+ |:----------------- | ---------:| :--------: |
+ | get(index)        |    O(1)   |   O(n)     |
+ | add(E)            |    O(n)   |   O(1)     |
+ | add(E, index)     |    O(n)   |   O(n)     |
+ | remove(index)     |    O(n)   |   O(n)     |
+ | Iterator.remove() |    O(n)   |   O(1)     |
+ | Iterator.add(E)   |    O(n)   |   O(1)     |
 
-Despite the running time, memory usage should be considered too especially for large lists. In LinkedList, every node needs at least two extra pointers to link the previous and next nodes; while in ArrayList, only an array of elements is needed.
+不管运行时间，当大型列表需要额外考虑内存占用。LinkedList每个node至少需要2个额外的指针用于连接前后2个node。而在ArrayList中只需要数组存储元素值即可。
 
-More comparisons between list.
 
 # 2. Efficient equivalent for removing elements while iterating the Collection
+
+# 2. 
 
 The only correct way to modify a collection while iterating is using Iterator.remove(). For example,
 
@@ -54,7 +56,7 @@ for(Integer i: list) {
 
 You will get a ConcurrentModificationException by running the above code. This is because an iterator has been generated (in for statement) to traverse over the list, but at the same time the list is changed by Iterator.remove(). In Java, "it is not generally permissible for one thread to modify a collection while another thread is iterating over it."
 
-# 3. How to convert List to int[]?
+# 3. 如何将List转换成int[]？
 
 The easiest way might be using ArrayUtils in Apache Commons Lang library.
 
@@ -71,7 +73,8 @@ for(int i=0; i < list.size(); i++) {
 }
 ```
 
-# 4. How to convert int[] into List?
+
+# 4. 如何将int[]转换成List？
 
 The easiest way might still be using ArrayUtils in Apache Commons Lang library, like below.
 
