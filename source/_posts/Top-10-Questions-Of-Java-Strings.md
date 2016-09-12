@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "关于Java字符串(String)10个最常见问题"
 comments: true
@@ -8,7 +8,7 @@ categories: Java
 keywords: Java, String, 字符串, 问题,
 ---
 
-Java语言中，String一直很基础，但很多人都很多概念还是很模糊。这里我们选取了网络上最常见的10个问题，希望通过
+Java语言中，String一直很基础，但很多人都很多概念还是很模糊。这里我们选取了网络上最常见的10个问题，希望通过这篇文章让大家对Java String有更深刻的认识。
 
 # 1. 如何对字符串进行比较？用“==” 还是`equals()`？
 

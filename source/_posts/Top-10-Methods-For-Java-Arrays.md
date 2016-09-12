@@ -10,6 +10,8 @@ keywords: Java, Array, 数组, 方法,
 
 本文将展示Java Array的最重要的10个方法：
 
+<!--more-->
+
 # 0. 声明一个数组
 
 ```java
