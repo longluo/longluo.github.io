@@ -14,11 +14,11 @@ keywords:
 
 	wget -c http://soft.vpser.net/lnmp/lnmp1.3-full.tar.gz
 
-tar zxf lnmp1.3-full.tar.gz
+	tar zxf lnmp1.3-full.tar.gz
 
-cd lnmp1.3-full
+	cd lnmp1.3-full
 
- ./install.sh lnmpa
+ 	./install.sh lnmpa
 
 	$ git --version
 	git version 1.7.1
@@ -30,8 +30,10 @@ id_rsa.pub
 
 	ssh -t git@github.com
 
-$ git config --global user.name "Your Name"
-$ git config --global user.email "email@example.com"
+
+	$ git config --global user.name "Your Name"
+	$ git config --global user.email "email@example.com"
+
 
 ```
 The authenticity of host 'github.com (192.30.253.112)' can't be established.
@@ -50,5 +52,13 @@ Hi longluo! You've successfully authenticated, but GitHub does not provide shell
 　
 　　出现：(current) UNIX password: 然后输入当前系统登陆用户的密码 回车
 　　出现：New password: 再输入新密码（新的密码必须是字母数字都有，不然的话不成功）
+
+
+
+
+
+
+
+
 
 
