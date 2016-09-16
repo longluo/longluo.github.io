@@ -1,12 +1,13 @@
 ﻿---
 layout: post
-title: 'git '
+title: "Git常用操作指南"
 comments: true
 date: 2016-09-14 08:55:18
-tags: [git, ]
-categories: 工具
-keywords:
+tags: [git, 工具, 效率]
+categories: Git
+keywords: git, 工具, 效率, 指南, 
 ---
+
 
 
 	$ git add .	
