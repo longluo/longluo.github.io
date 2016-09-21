@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "《SimpleJava》翻译之17: 4种Java内部类"
 comments: true
@@ -12,7 +12,7 @@ keywords: Java, Class, 类, 内部类,
 
 There are 4 different types of inner classes you can use in Java. The following gives their name and examples.
 
-Java中有4种不同类型的Java内部类，下面我们将
+Java中有4种不同类型的Java内部类，下面我们将一一用实例
 
 # 1. static nested classes
 

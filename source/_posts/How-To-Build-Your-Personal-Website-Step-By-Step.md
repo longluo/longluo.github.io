@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "如何一步一步建立一个属于你自己的个人网站？"
 comments: true
@@ -7,6 +7,9 @@ tags: [网站, 个人品牌, 程序员]
 categories: 个人品牌
 keywords: 网站, 个人品牌, 程序员, Linux, VPS, 域名
 ---
+
+***By Long Luo***
+
 
 
 [LNMP](http://lnmp.org/)
