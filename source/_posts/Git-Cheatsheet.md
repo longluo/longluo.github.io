@@ -32,7 +32,21 @@ git reset –hard：彻底回退到某个版本，本地的源码也会变为上
 
 
 
+git 放弃本地修改 强制更新
+git fetch --all
+git reset --hard origin/master
+git fetch 只是下载远程的库的内容，不做任何的合并 git reset 把HEAD指向刚刚下载的最新的版本
 
+
+git新手。本地做了一些修改，我用git rebase说有冲突。我现在想把本地的请求都干掉，可能有的已经commit过了（没有push过），完全同步成远程版本，应该用什么命令？
+
+使用命令：
+
+git reset --hard ORIGIN/BRANCH
+
+比如master分支：
+
+git reset --hard origin/master
 
 
 
