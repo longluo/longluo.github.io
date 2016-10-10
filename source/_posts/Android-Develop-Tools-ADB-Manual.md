@@ -1,14 +1,16 @@
 ---
 layout: post
-title: "Android ADB "
+title: "Android ADB工具"
 comments: true
 date: 2016-10-01 15:18:20
 tags: [Android, ADB, ]
 categories: Android
-keywords:
+keywords: Android, ADB, Tools, 工具, 效率,
 ---
 
+***By Long Luo***
 
+ADB工具是Android开发中使用很频繁也是非常重要的一个工具，用于手机与电脑的通信。
 
 # Help
 
