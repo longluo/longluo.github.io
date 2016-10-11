@@ -1,4 +1,4 @@
-﻿---
+---
 layout: post
 title: "Git常用操作指南"
 comments: true
@@ -29,9 +29,6 @@ git reset –soft：回退到某个版本，只回退了commit的信息，不会
 git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容
 
 
-
-
-
 git 放弃本地修改 强制更新
 git fetch --all
 git reset --hard origin/master
@@ -47,6 +44,21 @@ git reset --hard ORIGIN/BRANCH
 比如master分支：
 
 git reset --hard origin/master
+
+# Git 
+
+## Git dojo
+
+[https://www.shortcutfoo.com/](https://www.shortcutfoo.com/)
+
+## Try Git
+
+
+[https://try.github.io/levels/1/challenges/1](https://try.github.io/levels/1/challenges/1)
+
+## LearnGitBranching
+
+[http://learngitbranching.js.org/](http://learngitbranching.js.org/)
 
 
 
