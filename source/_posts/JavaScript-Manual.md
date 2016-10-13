@@ -1,4 +1,12 @@
-﻿
+﻿---
+layout: post
+title: "Learn JavaScript"
+comments: true
+date: 2016-10-12 23:55:36
+tags: [JavaScript, Web, ]
+categories: JavaScript
+keywords:
+---
 
 
 JavaScript，经常简称为 JS，是一种脚本语言。广泛用于客户端网页开发，现在服务端也有应用（Node.js），甚至游戏引擎 Unity 也可以使用 JavaScript。JavaScript 是一种动态、弱类型、基于原型的语言。
