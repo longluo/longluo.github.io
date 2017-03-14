@@ -215,7 +215,7 @@
                 {% if theme.post_wordcount.item_text %}
                   <span class="post-meta-item-text">{{ __('post.min2read') }}</span>
                 {% endif %}
-                <span title="{{ __('post.min2read') }}" }}">
+                <span title="{{ __('post.min2read') }}">
                   {{ min2read(post.content) }}
                 </span>
               {% endif %}
@@ -308,6 +308,11 @@
       {% endif %}
     </div>
 
+    <div>
+      {% if not is_index %}
+        {% include 'post-copyright.swig' with { post: post } %}
+      {% endif %}
+    </div>
 
     <footer class="post-footer">
       {% if post.tags and post.tags.length and not is_index %}
