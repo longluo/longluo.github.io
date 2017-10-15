@@ -1,12 +1,12 @@
 ---
 layout: page
-title: about
+title: 'About'
 date: 2016-04-11 00:22:24 +0800
 comments: true
 type: "about"
 tags: [about]
 keywords: Long Luo, Frank Luo, Program, Code, 程序员, Android, iOS, App Develop, Java 
-description: "About me"
+description: "About Me"
 ---
 
 ![Computer Programmer](http://7d9hot.com1.z0.glb.clouddn.com/cybersecurity.jpg)
