@@ -4,7 +4,7 @@ title: "如何在Hexo中创建一个自定义404页面?"
 comments: true
 date: 2016-07-28 10:57:41
 tags: [Hexo, 404]
-categories: Hexo
+categories: 技术
 keywords: Hexo, 404, Html, 
 ---
 

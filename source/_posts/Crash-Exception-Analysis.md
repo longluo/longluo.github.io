@@ -8,9 +8,6 @@ categories: Android
 keywords:
 ---
 
-
-
-
 # Fragment
 
 >Fragment not attached to Activity

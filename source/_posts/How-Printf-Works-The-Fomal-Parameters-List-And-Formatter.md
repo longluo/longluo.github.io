@@ -4,7 +4,7 @@ title: "深入剖析printf函数(下)：---形参列表和格式化输出是如�
 comments: true
 date: 2013-01-25 00:42:00  
 tags: [Printf, Kernel]
-categories: Printf
+categories: Program
 keywords: printf, 技术, Linux, Kernel, 格式化输出, 形参列表, 
 ---
 

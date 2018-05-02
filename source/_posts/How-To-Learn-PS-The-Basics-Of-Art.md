@@ -4,7 +4,7 @@ title: "码农学PS：如何优雅的学习UI设计？"
 comments: true
 date: 2017-02-10 20:32:51
 tags: [PS, 艺术, 基础]
-categories: PS
+categories: Design
 keywords: PS, UI, 美工, 基础, 艺术, 学习,
 ---
 
