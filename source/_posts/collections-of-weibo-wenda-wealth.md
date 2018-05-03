@@ -4,7 +4,7 @@ title: '微博问答精选: 财富篇'
 comments: true
 date: 2017-06-01 23:31:36
 tags: [微博问答, 理财, 财富]
-categories: 微博
+categories: Life
 keywords: 微博问答, 微博, 知识, 付费, 理财, 财富, 金钱,   
 ---
 

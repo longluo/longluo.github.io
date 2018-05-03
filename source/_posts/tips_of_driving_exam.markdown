@@ -3,7 +3,7 @@ layout: post
 title: "学车科目二要点总结"
 date: 2014-05-03 11:59:03 +0800
 comments: true
-categories: Drive
+categories: Life
 tags: [学车,科目二, 要点总结]
 keywords: 学车,科目二,要点
 ---

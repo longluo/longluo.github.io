@@ -4,7 +4,7 @@ title: "Startup vs Work"
 comments: true
 date: 2016-09-15 19:38:49
 tags:
-categories:
+categories: Life
 keywords:
 ---
 

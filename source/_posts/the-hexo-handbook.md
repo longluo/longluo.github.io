@@ -3,7 +3,7 @@ layout: post
 title: "Hexo入门指南"
 date: 2016-03-11 23:37:21
 tags: [Hexo, 指南, blog]
-categories: blog
+categories: 技术
 keywords: hexo, manual, handbook
 comments: true
 ---

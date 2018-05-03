@@ -4,7 +4,7 @@ title: '微博问答精选: 股海浮沉篇'
 comments: true
 date: 2017-05-30 22:11:54
 tags: [微博问答, 投资, 股市]
-categories: 微博
+categories: Life
 keywords: 微博问答, 微博, 知识, 付费, 
 ---
 

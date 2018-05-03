@@ -4,7 +4,7 @@ title: '微博问答精选: 知识篇'
 comments: true
 date: 2017-05-27 22:38:50
 tags: [微博问答, 知识, 学习]
-categories: 微博
+categories: Life
 keywords: 微博问答, 微博, 知识, 付费, 
 ---
 

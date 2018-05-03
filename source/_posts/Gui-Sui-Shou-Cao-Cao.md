@@ -4,7 +4,7 @@ title: "龟虽寿"
 comments: true
 date: 2016-09-16 11:17:23
 tags: [诗歌, 曹操, Life]
-categories: 诗歌
+categories: Life
 keywords: 诗歌, 曹操, 人生, 哲理, 奋发, 
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: "我生命的原点（一）"
 date: 2016-02-09 01:52:02 +0800
 comments: true
-categories: 沉思
+categories: Life
 tags: [Life, 思考, 成长]
 keywords: 沉思,成长,生命,命运, ,  ,
 ---

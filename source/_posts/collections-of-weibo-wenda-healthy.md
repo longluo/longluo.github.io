@@ -4,7 +4,7 @@ title: '微博问答精选: 健康身体篇'
 comments: true
 date: 2017-05-22 23:12:46
 tags: [微博问答, 身体, 健康]
-categories: 微博
+categories: Life
 keywords: 微博问答, 微博, 知识, 付费, 健康, 身体,  
 ---
 

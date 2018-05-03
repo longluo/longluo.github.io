@@ -3,7 +3,7 @@ layout: post
 title: "第一个前端开发项目: 天气应用"
 date: 2014-09-07 11:32:45 +0800
 comments: true
-categories: Web
+categories: 技术
 tags: [Web, 前端]
 keywords: Web, 天气, Yahoo, 前端开发
 ---

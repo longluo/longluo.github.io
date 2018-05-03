@@ -4,7 +4,7 @@ title: "Excellent Blogs"
 comments: true
 date: 2016-10-14 17:06:27
 tags:
-categories:
+categories: 技术
 keywords:
 ---
 

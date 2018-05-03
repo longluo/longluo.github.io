@@ -4,7 +4,7 @@ title: '微博问答精选: 房产篇'
 comments: true
 date: 2017-05-26 23:13:20
 tags: [微博问答, 房地产, 学习]
-categories: 微博
+categories: Life
 keywords: 微博问答, 微博, 知识, 付费, 房地产, 
 ---
 

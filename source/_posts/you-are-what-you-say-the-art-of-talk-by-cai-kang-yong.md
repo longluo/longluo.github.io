@@ -3,7 +3,7 @@ layout: post
 title: "You are what you say. ---《蔡康永的说话之道》读书笔记"
 date: 2016-03-21 23:36:25 +800
 comments: true
-categories: book
+categories: 读书
 tags: [Life, 说话, 为人处事]
 keywords: Life, talk, 蔡康永的说话之道, 蔡康永, 说话, 为人处事 
 ---

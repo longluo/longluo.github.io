@@ -4,7 +4,7 @@ title: "人造的风景 ---东部华侨城一日游感想与收获"
 comments: true
 date: 2013-12-28 21:24:59 
 tags: [旅游, 感悟]
-categories: Journey
+categories: Travel
 keywords: 东部华侨城, OCT, OCT East, 旅游,  
 ---
 

@@ -4,7 +4,7 @@ title: "五味杂陈---盘点2016这一年"
 comments: true
 date: 2017-02-05 10:29:12
 tags: [年度总结,思考,2016]
-categories: 年度总结
+categories: Life
 keywords: 年度总结, 2016, 进步, 失败, 恋爱,
 ---
 

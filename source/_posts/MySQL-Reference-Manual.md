@@ -4,7 +4,7 @@ title: "MySQL常用操作指南"
 comments: true
 date: 2016-09-20 19:51:09
 tags: [MySQL, 工具, 效率, 数据库]
-categories: MySQL
+categories: 数据库
 keywords: MySQL, 数据库, 工具, 效率, 指南, 
 ---
 

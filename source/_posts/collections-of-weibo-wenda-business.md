@@ -4,7 +4,7 @@ title: '微博问答精选: 商海浮沉篇'
 comments: true
 date: 2017-05-28 22:34:21
 tags: [微博问答, 商海, 挣钱]
-categories: 微博
+categories: Life
 keywords: 微博问答, 微博, 知识, 付费, 
 ---
 

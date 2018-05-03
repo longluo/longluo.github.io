@@ -4,7 +4,7 @@ title: "VR晕眩原因及解决方法"
 comments: true
 date: 2016-07-15 09:55:34
 tags: [VR, 眩晕, 方法]
-categories: VR
+categories: 技术
 keywords: VR, AR, Sensor, 眩晕, 解决方法,  
 ---
 

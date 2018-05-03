@@ -4,7 +4,7 @@ title: "相信未来"
 comments: true
 date: 2016-09-16 20:24:05
 tags: [诗歌, 未来, Life]
-categories: 诗歌
+categories: Life
 keywords: 诗歌, 未来, Life, 认识, 生活,
 ---
 
