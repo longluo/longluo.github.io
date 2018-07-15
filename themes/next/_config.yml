@@ -201,10 +201,12 @@ links:
 
 
 # Sidebar Avatar
-# in theme directory(source/images): /images/avatar.gif
-# in site  directory(source/uploads): /uploads/avatar.gif
-#avatar: /images/avatar.gif
-  # If true, the avatar would be dispalyed in circle. 
+avatar:
+  # in theme directory(source/images): /images/avatar.gif
+  # in site  directory(source/uploads): /uploads/avatar.gif
+  # You can also use other linking images.
+  url: #/images/avatar.gif
+  # If true, the avatar would be dispalyed in circle.
   rounded: false
   # The value of opacity should be choose from 0 to 1 to set the opacity of the avatar.
   opacity: 1
@@ -231,6 +233,12 @@ sidebar:
   # Sidebar Position, available value: left | right (only for Pisces | Gemini).
   position: left
   #position: right
+
+  # Manual define the sidebar width.
+  # If commented, will be default for:
+  # Muse | Mist: 320
+  # Pisces | Gemini: 240
+  #width: 300
 
   # Sidebar Display, available value (only for Muse | Mist):
   #  - post    expand on posts automatically. Default.
@@ -292,7 +300,7 @@ symbols_count_time:
   separated_meta: true
   item_text_post: true
   item_text_total: false
-  awl: 2
+  awl: 4
   wpm: 275
 
 codeblock:
@@ -370,15 +378,6 @@ highlight_theme: normal
 # Enable "cheers" for archive page.
 cheers_enabled: true
 
-# Manual define the max content width
-# !!Only available for Gemini Scheme currently
-# Leave it empty for the default 75% (suggest not less than 1000px)
-#max_content_width: 1000px
-
-# Manual define the sidebar width
-# !!Only available for Gemini Scheme currently
-# Leave it empty for the default 240
-sidebar_width:
 
 # ---------------------------------------------------------------
 # Font Settings
@@ -498,9 +497,6 @@ disqus:
   count: true
   lazyload: false
 
-# Hypercomments
-#hypercomments_id:
-
 # changyan
 changyan:
   enable: false
@@ -512,7 +508,7 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://valine.js.org
 valine:
-  enable: false
+  enable: false # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
   appid:  # your leancloud application appid
   appkey:  # your leancloud application appkey
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
@@ -521,6 +517,7 @@ valine:
   avatar: mm # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
+  visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
 
 
 # Support for youyan comments system.
@@ -661,7 +658,7 @@ leancloud_visitors:
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in lc counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set the `security` to `false`.
-  security: false
+  security: true
   betterPerformance: false
 
 # Another tool to show number of visitors to each article.
@@ -933,19 +930,15 @@ vendors:
   # https://github.com/hustcc/canvas-nest.js
   canvas_nest:
 
-  # three
+  # Internal version: 1.0.0
+  # See: https://github.com/theme-next/theme-next-three
+  # three: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1.0.0/three.min.js
+  # three_waves: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1.0.0/three-waves.min.js
+  # canvas_lines: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1.0.0/canvas_lines.min.js
+  # canvas_sphere: //cdn.jsdelivr.net/gh/theme-next/theme-next-three@1.0.0/canvas_sphere.min.js
   three:
-
-  # three_waves
-  # https://github.com/jjandxa/three_waves
   three_waves:
-
-  # three_waves
-  # https://github.com/jjandxa/canvas_lines
   canvas_lines:
-
-  # three_waves
-  # https://github.com/jjandxa/canvas_sphere
   canvas_sphere:
 
   # Internal version: 1.0.0
