@@ -3,9 +3,9 @@ layout: post
 title: "一道有趣的算法题:仿照Excel的列编号,给定一个数字,输出该列编号字符串"
 date: 2014-05-02 22:15:57 +0800
 comments: true
-categories: Algorithm 
-tags: 算法
-keywords: Algorithm, 算法
+categories: Data Structures and Algorithms 
+tags: [算法, 面试]
+keywords: Algorithm, 算法, 面试,  
 ---
 
 ***By Long Luo***

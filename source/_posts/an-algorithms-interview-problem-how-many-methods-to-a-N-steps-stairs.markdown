@@ -3,9 +3,9 @@ layout: post
 title: "面试算法题:爬楼梯，N级楼梯有多少种走法？"
 date: 2015-04-06 22:20:50 +0800
 comments: true
-categories: Algorithm
+categories: Data Structures and Algorithms
 tags: [算法, 面试]
-keywords: 算法, 递归, 树, 栈
+keywords: 算法, 递归, 树, 栈, 面试, 
 ---
 
 ***By Long Luo***

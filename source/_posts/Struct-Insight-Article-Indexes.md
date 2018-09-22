@@ -4,7 +4,7 @@ title: "大话结构体系列文章目录"
 comments: true
 date: 2013-01-10 03:58:28
 tags: [结构体, 技术, 科普]
-categories: 技术
+categories: Program
 keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普, 文章, 目录, 
 ---
 

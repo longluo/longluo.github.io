@@ -3,7 +3,7 @@ layout: post
 title: "一道迅雷面试题:求出一个字符串中每个字母出现的次数"
 date: 2015-04-12 00:59:54 +0800
 comments: true
-categories: Algorithm
+categories: Data Structures and Algorithms
 tags: [面试, 算法]
 keywords: 算法, 面试题, 字符串
 ---

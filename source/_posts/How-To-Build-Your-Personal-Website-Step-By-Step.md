@@ -4,7 +4,7 @@ title: "如何一步一步建立一个属于你自己的个人网站？"
 comments: true
 date: 2016-09-09 22:56:28
 tags: [网站, 个人品牌, 程序员]
-categories: 技术
+categories: Web
 keywords: 网站, 个人品牌, 程序员, Linux, VPS, 域名
 ---
 

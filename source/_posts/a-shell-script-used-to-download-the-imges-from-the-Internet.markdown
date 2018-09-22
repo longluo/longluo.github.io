@@ -3,7 +3,7 @@ layout: post
 title: "一个用于批量下载网络图片的Shell脚本"
 date: 2014-09-13 22:26:00 +0800
 comments: true
-categories: 工具
+categories: Tools
 tags: [Shell, 脚本]
 keywords: Shell, 网络资源, 脚本
 ---

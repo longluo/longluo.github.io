@@ -4,7 +4,7 @@ title: "大话结构体之三：借我一双慧眼吧，让我把C++中Class(类
 comments: true
 date: 2012-12-25 23:52:25 
 tags: [结构体, 技术, 科普]
-categories: 技术
+categories: Program
 keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普
 ---
 

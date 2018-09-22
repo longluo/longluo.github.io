@@ -4,7 +4,7 @@ title: "一些Windows系统知识"
 comments: true
 date: 2013-06-25 16:20:46
 tags: [工具, 效率]
-categories: 工具
+categories: Tools
 keywords: Windows, 知识, 工具, 效率,
 ---
 

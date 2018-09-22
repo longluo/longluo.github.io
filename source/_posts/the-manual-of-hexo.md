@@ -3,7 +3,7 @@ layout: post
 title: "如何使用Hexo建立一个自己的个人Blog及主页美化？"
 date: 2016-03-08 22:16:37 +800
 comments: true
-categories: 技术
+categories: Techniques
 tags: [hexo, blog, 主页,博客]
 keywords: hexo, blog, next, npm, 博客, 指南, 主页
 ---

@@ -4,7 +4,7 @@ title: "大话结构体之七：struct中0元素数组的意义在哪里？"
 comments: true
 date: 2013-01-03 04:28:58
 tags: [结构体, 技术, 科普]
-categories: 技术
+categories: Program
 keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普, 对齐, 0元素数组
 ---
 

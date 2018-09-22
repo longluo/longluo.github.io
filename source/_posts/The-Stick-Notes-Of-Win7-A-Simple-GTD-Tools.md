@@ -4,7 +4,7 @@ title: "一个简单的时间管理工具: Win 7自带的便签"
 comments: true
 date: 2016-07-24 21:17:05
 tags: [时间管理, 工具]
-categories: 时间管理
+categories: Time Management
 keywords: GTD, Sticky Note, 便签, 时间管理, 笔记, ,
 ---
 

@@ -4,7 +4,7 @@ title: '注意工作方法，少做无用功！'
 comments: true
 date: 2018-05-07 23:58:12
 tags: [工作, 方法, 时间]
-categories: 工作
+categories: Work
 keywords: 工作, 方法, 时间, 
 ---
 

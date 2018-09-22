@@ -4,7 +4,7 @@ title: "Learn JavaScript"
 comments: true
 date: 2016-10-12 23:55:36
 tags: [JavaScript, Web, ]
-categories: 技术
+categories: JavaScript
 keywords:
 ---
 

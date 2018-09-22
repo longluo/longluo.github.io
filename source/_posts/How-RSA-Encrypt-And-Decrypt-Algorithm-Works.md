@@ -4,7 +4,7 @@ title: "解析RSA加解密算法"
 comments: true
 date: 2013-09-24 12:26:49
 tags: [RSA, 加解密, 算法]
-categories: Algorithm
+categories: Data Structures and Algorithms
 keywords: 加解密算法, RSA, 细节, 信息安全
 ---
 
