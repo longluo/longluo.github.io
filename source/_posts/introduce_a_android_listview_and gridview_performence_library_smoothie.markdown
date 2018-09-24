@@ -10,9 +10,8 @@ keywords: Android, ListView, GridView, Layout, 库
 
 ***翻译 By Long Luo***
 
-***原文链接：[Introducing Smoothie](http://lucasr.org/2013/01/06/introducing-smoothie/) ***
+原文链接：[Introducing Smoothie](http://lucasr.org/2013/01/06/introducing-smoothie/)
 
------
 
 ![smoothie](http://blogresource.qiniudn.com/2014/Android/smoothie.png)
 

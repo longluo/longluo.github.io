@@ -10,7 +10,6 @@ keywords: Earthquake, Mature, Life, 地震, 512,
 
 ***By Long Luo*** 
 
-
 At 14:28 on May the 12th, I was studying in the fifth floor of No.2 Teaching Building on my campus in Chengdu.  Suddenly I felt that the desk was swaying, the first idea came to my mind was that who was shaking my desk.  I swept then found that all the schoolmates there were also confused. Then I realized that it was earthquake.  I ran towards the emergency staircase and tried to escape as quickly as possible. The staircase was full of students, which seemed too long. Finally, we got outside, only finding many students on the roads, lawns, the squares, streets, all stunned. 
 
 At that night, I slept on the playground starring at the dark sky. I heard of terrifying news on the radio that a magnitude 7.8 earthquake attacked Wenchuan. Calling to mind of the day, I was so fortunate but scared. 

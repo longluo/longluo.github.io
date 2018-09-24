@@ -14,10 +14,7 @@ keywords: 字符串翻转, 编程珠玑, 杂技算法, 翻转算法, 算法, 编
 
 将一个n元一维数组a[n]左移i个位置。例如，当n=8，i=3时，数组abcdefgh旋转为defghabc。请设计一个算法完成这个任务。
 
-<!--more-->
-
 ### 解答
-
 
 #### 杂技算法
 
@@ -105,6 +102,8 @@ string AcrobatRotateShift(string str, int n)
 	return str;
 }
 ```
+
+<!--more-->
 
 #### 翻转算法
 

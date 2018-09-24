@@ -10,15 +10,14 @@ keywords: printf, 技术, Linux, Kernel, 格式化输出, 形参列表,
 
 ***By Long Luo***
 
-#### 前言
+# 前言
 
-[“深入剖析printf函数”](http://blog.csdn.net/tcpipstack/article/category/6270060)写于2013年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上的，这是下篇: [ 深入剖析printf函数(下)：---形参列表和格式化输出是如何做到的？](http://blog.csdn.net/tcpipstack/article/details/8279584)
+    [“深入剖析printf函数”](http://blog.csdn.net/tcpipstack/article/category/6270060)写于2013年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上的，这是下篇: [ 深入剖析printf函数(下)：---形参列表和格式化输出是如何做到的？](http://blog.csdn.net/tcpipstack/article/details/8279584)
 
 -----------
 
+# 一、引言
 
-#### 一、引言
-----------
 在上一篇 [深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出"Hello World"?](http://www.longluo.me/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/) 里，我们已经实现了用汇编语言在屏幕上输出了`“Hello World”`， 迈出了万里长征的第一步，但是我们知道实际的`printf`的功能是十分强大的，它和`scanf`一样属于标准输入输出的一种格式化函数，我们一般是这样使用它的：
 
 ```
@@ -27,8 +26,8 @@ printf()的基本形式：printf("格式控制字符串"，变量列表)；
 
 <!--more-->
 
-#### 二、格式化输出
-----------
+# 二、格式化输出
+
 `printf()`函数是格式输出函数，请求`printf()`打印变量的指令取决与变量的类型．
 
 例如，在打印整数是使用`％d`符号，在打印字符是用`％c`符号．这些符号被称为**转换说明**．因为它们指定了**如何不数据转换成可显示的形式**．
@@ -56,8 +55,8 @@ printf()的基本形式：printf("格式控制字符串"，变量列表)；
 %%　　　　打印一个百分号
 ```
 
-#### 三、形参列表的读入
-----------
+# 三、形参列表的读入
+
 `printf`函数的参数列表是如下的形式：
 
 ```cpp
@@ -196,8 +195,7 @@ i = vsLprintf(buf, fmt, arg);
 
 让我们进入下一节：对参数进行格式化处理。
 
-#### 四、参数格式化输出
-----------
+# 四、参数格式化输出
 
 让我们来看看`vsLprintf(buf, fmt, arg)`是什么函数：
 
@@ -756,8 +754,8 @@ convert:
 
 写的很精彩，是不是？
 
-#### 五、应用层的使用
-----------
+# 五、应用层的使用
+
 通过上面的工作，我们已经实现了一个自己的`printf`函数：`LLprintf`
 
 `LLprintf`的功能和我们标准库的`printf`一样强大，我们可以在上层如此使用`LLprintf`:
@@ -803,13 +801,7 @@ make一下，我们再来看看输出结果：
 
 ![Final Output](http://img.my.csdn.net/uploads/201301/25/1359045656_3317.jpg)
 
-
 这样我们就了解了`printf`函数的前因后果。
 
 ***聪明的你，弄明白了吗？^_^***
-
-
-
-
-
 

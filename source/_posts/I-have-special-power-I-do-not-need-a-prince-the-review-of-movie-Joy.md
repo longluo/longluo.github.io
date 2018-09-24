@@ -10,18 +10,17 @@ keywords: 奋斗的乔伊,Joy,电影,影评,观后感,Jennifer Lawrence,
 
 ***By Long Luo***
 
-#### 前言
+# 前言
 
 	A lot of people patent their ideas...but only a few of them actually get their ideas made.                                        
 
-------------
 上周末看完了一部电影[《奋斗的乔伊》](https://movie.douban.com/subject/25901741/)，当然看这部电影的原因是因为我是[Jennifer Lawrence](https://movie.douban.com/celebrity/1022616/)的脑残粉。看完之后，想起自己的一些经历，心里还是挺大触动的，就在此写点感想吧！
 
 电影是根据真实故事改编的，主人公原型是[Joy Mangano](https://en.wikipedia.org/wiki/Joy_Mangano)，讲述了上世纪八十年代一名草根单亲妈妈通过自身努力，凭借发明的神奇拖把发家致富，最终成就了一个商业帝国。用一句话来概括的话，诠释了<strong><em>女人当自强</em></strong>，一部家庭主妇逆天改命的<strong><em>美国梦</em></strong>类型的翻身剧，但是又区别于传统的<strong><em>心灵鸡汤正能量</em></strong>电影，电影里面用了非常大的篇幅在渲染各种悲伤的情感。Joy每一次的奋进，看似努力而为，其实都是<strong><em>被现实所逼无可奈何的举措</em></strong>。
 
 影片可以分为三段，第一段讲述Joy是如何在生活的泥沼中苦苦挣扎；第二段在生活的重担上，Joy爆发了，先天的<strong><em>创造天赋</em></strong>加成，利用一次经历激发灵感发明了神奇拖把，豁出一切，破釜沉舟，绝地反击；第三段失败破产之后的Joy单枪匹马杀到民风彪悍的Texas加工厂，设计逼骗子妥协成功拿回属于自己的东西，成功登顶霸道女总裁。
 
-#### 一个离婚带俩娃还要养活一家老小的独身女人人生会是怎样的处境？
+***一个离婚带俩娃还要养活一家老小的独身女人人生会是怎样的处境？***
 
 <!--more-->
 

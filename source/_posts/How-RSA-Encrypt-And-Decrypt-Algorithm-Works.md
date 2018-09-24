@@ -10,24 +10,23 @@ keywords: 加解密算法, RSA, 细节, 信息安全
 
 <strong><em>By Long Luo</strong></em>
 
-### 注
+## 注
 
-本文是从之前[个人网站](http://www.imlongluo.com)上[解析RSA加解密算法](http://www.imlongluo.com/blog/?p=35)移植过来的。
+	本文是从之前[个人网站](http://www.imlongluo.com)上[解析RSA加解密算法](http://www.imlongluo.com/blog/?p=35)移植过来的。
 
-### 1. RSA说明  
+# 一、RSA说明  
 
 ***RSA***公钥加密算法是1977年由Ron Rivest、Adi Shamirh和LenAdleman在（美国麻省理工学院）开发的。RSA取名来自开发他们三者的名字。
 
 RSA算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥。
 
-### 2. RSA算法实现  
+# 二、RSA算法实现  
 
 RSA算法是一种非对称密码算法，所谓非对称，就是指该算法需要一对密钥，使用其中一个加密，则需要用另一个才能解密。
 
 <!--more-->
 
 详细加密过程如下：
-
 
 1. 选择两个大素数P、Q
 2. 计算N = P*Q

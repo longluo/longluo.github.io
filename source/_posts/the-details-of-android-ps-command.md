@@ -10,9 +10,9 @@ keywords: Android, ps, 进程, Linux, 命令
 
 ***By Long Luo***
 
-### 注:
+# 注:
 
-这篇文章是2013年发表在个人[CSDN Blog](http://blog.csdn.net/tcpipstack/)上[解析ANDROID ps命令执行后各项参数的含义](http://blog.csdn.net/tcpipstack/article/details/8541980)，今天将其移到个人独立博客站上。
+    这篇文章是2013年发表在个人[CSDN Blog](http://blog.csdn.net/tcpipstack/)上[解析ANDROID ps命令执行后各项参数的含义](http://blog.csdn.net/tcpipstack/article/details/8541980)，今天将其移到个人独立博客站上。
 
 如何查看**Android**进程信息呢？
 

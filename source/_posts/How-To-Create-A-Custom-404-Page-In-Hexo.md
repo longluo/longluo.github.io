@@ -10,7 +10,6 @@ keywords: Hexo, 404, Html,
 
 ***By Long Luo***
 
-
 ```html
 <!DOCTYPE HTML>
 <html>
@@ -27,10 +26,6 @@ keywords: Hexo, 404, Html,
 </body>
 </html>
 ```
-
-
-
-
 
 ```html
 <html>

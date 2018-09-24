@@ -12,7 +12,7 @@ keywords: 人生, 哲理, 沉思, 我,
 
 #### 注
 
-本文是从之前[个人网站](http://www.imlongluo.com)上[人生的那一“丿”]( http://www.imlongluo.com/blog/?p=41)移植过来的。
+    本文是从之前[个人网站](http://www.imlongluo.com)上[人生的那一“丿”]( http://www.imlongluo.com/blog/?p=41)移植过来的。
 
 ----------
 

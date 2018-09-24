@@ -24,16 +24,18 @@ public interface Map {
 void clear();
 ```
 
-# 18.2 why use inner interface?
+# 2. why use inner interface?
 There are several compelling reasons for using inner interface:
- It is a way of logically grouping interfaces that are only used in one place.
- It increases encapsulation.
- Nested interfaces can lead to more readable and maintainable code.
-One example of inner interface used in java standard library is java.util.Map and
-Java.util.Map.Entry. Here java.util.Map is used also as a namespace. Entry does
+1. It is a way of logically grouping interfaces that are only used in one place.
+2. It increases encapsulation.
+3. Nested interfaces can lead to more readable and maintainable code.
+
+One example of inner interface used in java standard library is `java.util.Map` and
+`Java.util.Map.Entry`. Here `java.util.Map` is used also as a namespace. Entry does
 not belong to the global scope, which means there are many other entities that are
 64
-18.3. HOW INNER INTERFACE WORKS? 65
+
+# 3. HOW INNER INTERFACE WORKS? 65
 Entries and are not necessary Map’s entries. This indicates that Entry represents
 entries related to the Map.
 18.3 how inner interface works?

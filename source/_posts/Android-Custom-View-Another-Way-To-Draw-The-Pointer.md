@@ -24,13 +24,13 @@ keywords: Android, View, 自定义View, 自定义控件, 表盘,
 
 下面我们给出对应指针弧度如何计算的，如下所示：
 
-<!--more-->
-
 ```java
         float secRot = mCalendar.get(Calendar.SECOND) / 30f * (float) Math.PI;
         float minRot = mCalendar.get(Calendar.MINUTE) / 30f * (float) Math.PI;
         float hrRot = (((mCalendar.get(Calendar.HOUR_OF_DAY) + (mCalendar.get(Calendar.MINUTE) / 60f))) / 6f) * (float) Math.PI;
 ```
+
+<!--more-->
 
 ## 2. 绘制
 

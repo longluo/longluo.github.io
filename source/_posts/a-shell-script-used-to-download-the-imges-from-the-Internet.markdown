@@ -22,8 +22,7 @@ Yahoo天气图标的地址规则如下：`https://s.yimg.com/zz/combo?a/i/us/nws
 
 <!--more-->
 
-### *方法1：*
------
+# 方法1:
 
 ```bash
 	#!/bin/bash
@@ -63,8 +62,7 @@ Yahoo天气图标的地址规则如下：`https://s.yimg.com/zz/combo?a/i/us/nws
 	done
 ```
 
-### *方法2：*
------
+# 方法2：
 
 方法2将图片URL地址都写在一个数组里，然后从数组中读取，并重命名，相对来说，不如第一种方法简单：
 

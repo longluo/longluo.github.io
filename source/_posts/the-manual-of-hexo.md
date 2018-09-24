@@ -24,20 +24,20 @@ keywords: hexo, blog, next, npm, 博客, 指南, 主页
 
 <!-- more -->
 
-### 一、 注册GitHub
+# 一、 注册GitHub
 
 首先我们需要做的是去[GitHub](https://github.com/)注册一个帐号，并创建一个Repository仓库。这里需要注意的是仓库的名称必须是`用户名.github.io`，才能使用**Github Pages**.
 
-### 二、配置SSH
+# 二、配置SSH
 
 下载并安装[Git](https://git-scm.com/)。
 
-#### 1. 设置user name和email：
+## 1. 设置user name和email：
 
 	$ git config --global user.name "你的GitHub用户名"
 	$ git config --global user.email "你的GitHub注册邮箱"
 	
-#### 2. 生成ssh密钥:
+## 2. 生成ssh密钥:
 
 输入下面命令
 
@@ -49,13 +49,13 @@ keywords: hexo, blog, next, npm, 博客, 指南, 主页
 
 注：id_rsa文件是私钥，要妥善保管，id_rsa.pub是公钥文件。
 
-#### 3. 添加公钥到github： 
+## 3. 添加公钥到github： 
 
 点击用户头像，进入Settings(设置)选项。在用户设置栏，点击SSH and GPG keys选项，然后点击New SSH key(新建SSH)按钮； 
 
 将id_rsa.pub中的内容复制到 Key 文本框中，然后点击Add SSH key(添加SSH)按钮。 
 
-#### 4. 测试SSH：
+## 4. 测试SSH：
 
 	$ ssh -T git@github.com
 
@@ -74,15 +74,15 @@ keywords: hexo, blog, next, npm, 博客, 指南, 主页
 	
 以上是准备工作。
 
-### 三、创建本地仓库
+# 三、创建本地仓库
 
-#### 1. 新建仓库文件夹
+## 1. 新建仓库文件夹
 
 这里就取名为blog。
 
 	$ mkdir blog
 	
-#### 2. 初始化仓库
+## 2. 初始化仓库
 
 进入到blog文件夹，执行初始化命令。
 
@@ -93,25 +93,24 @@ keywords: hexo, blog, next, npm, 博客, 指南, 主页
 
 如果在此之前初始化仓库会将原有的仓库信息覆盖掉，最后也会删除。
 
+# 四、Hexo初始化
 
-### 四、Hexo初始化
-
-#### 1. 安装Hexo
+## 1. 安装Hexo
 
 Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 
 	$ npm install -g hexo-cli
 	
-#### 2. 初始化框架
+## 2. 初始化框架
 
 	$ hexo init <yourFolder>
 	$ cd <yourFolder>
 
-#### 3. 安装依赖
+## 3. 安装依赖
 
 	$ npm install
 	
-#### 4. 初始化完成大概的目录：
+## 4. 初始化完成大概的目录：
 
 	.
 	├── _config.yml //网站的`配置`信息，您可以在此配置大部分的参数。
@@ -126,7 +125,7 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 	└── themes     //主题文件夹。Hexo会根据主题来生成静态页面。
 	
 	
-#### 5. 新建文章（创建一个Hello World）
+## 5. 新建文章（创建一个Hello World）
 	
 	$ hexo new <title> for example: "Hello World"
 	
@@ -134,19 +133,19 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 
 如果要删除，直接在此文件夹下删除对应的文件即可。
 
-#### 6. 生成网站
+## 6. 生成网站
 
 	$ hexo generate
 	
 此时会将/source的.md文件生成到/public中，形成网站的静态文件。
 
-#### 7. 服务器
+## 7. 服务器
 
 	$ hexo server -p 3000
 	
 输入http://localhost:3000即可查看网站。
 
-#### 8. 部署网站
+## 8. 部署网站
 	
 	$ hexo deploy
 	
@@ -164,16 +163,16 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 	
 如果没有意外，部署就成功了，可以打开`http://<用户名>.github.io`查看。
    
-### 五、使用Next主题让站点更酷炫
+# 五、使用Next主题让站点更酷炫
 
-#### 1. 使用NexT Theme
+## 1. 使用NexT Theme
 
 	$ cd your-hexo-site
 	$ git clone https://github.com/iissnan/hexo-theme-next themes/next
 	
 从Next的Gihub仓库中获取最新版本。
 
-#### 2. Hexo NexT主题的文档结构
+## 2. Hexo NexT主题的文档结构
 
 	/languages   #用来配置国际化语言版本，里边包含各种个配置像的文本翻译。
 	/layout      #以swig文件来定义各种含有配置信息调用的布局
@@ -187,7 +186,7 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 	/404.html #自定义的公益404页面
 	/test        #用于测试
 
-#### 3. 启用NexT主题
+## 3. 启用NexT主题
 
 需要修改/root/_config.yml配置项theme：
 
@@ -196,13 +195,13 @@ Hexo是基于[NodeJS](https://nodejs.org/)，所以需要先安装NodeJS。
 	## Themes: http://hexo.io/themes/
 	theme: next
 	
-#### 4. 验证是否启用
+## 4. 验证是否启用
 
 	$ hexo s --debug
 	
 访问http://localhost:4000，确保站点正确运行。（此命令可以做平时预览用）
 
-### 六、总结
+# 六、总结
 
 通过以上步骤，我们就成功的实现了在Github上建立了一个高逼格的Hexo个人博客站点。
 

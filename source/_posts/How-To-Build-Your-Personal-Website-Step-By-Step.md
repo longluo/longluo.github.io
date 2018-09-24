@@ -10,9 +10,7 @@ keywords: 网站, 个人品牌, 程序员, Linux, VPS, 域名
 
 ***By Long Luo***
 
-
 [LNMP](http://lnmp.org/)
-
 
 	wget -c http://soft.vpser.net/lnmp/lnmp1.3-full.tar.gz
 
