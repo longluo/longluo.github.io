@@ -1,11 +1,11 @@
 ﻿---
 layout: post
-title: "<SimpleJava> 37: Frequently Used Methods Of Java HashMap"
+title: "《SimpleJava》Problems 37th: Frequently Used Methods Of Java HashMap"
 comments: true
 date: 2016-08-11 15:23:27
 tags: [Java, HashMap, FAQ]
 categories: Java
-keywords:
+keywords: Java, HashMap, FAQ, Map, 
 ---
 
 HashMap is very useful when a counter is required.
@@ -51,7 +51,6 @@ HashMap is very useful when a counter is required.
 		}
 	}
 ```
-
 
 # 3 sort hashmap by value
 

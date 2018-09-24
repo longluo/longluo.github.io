@@ -22,8 +22,6 @@ keywords: Android, ps, 进程, Linux, 命令
 
 输入之后，我们就可以看到如下的信息：
 
-<!--more-->
-
 ```bash
 # ps
 ps
@@ -75,6 +73,8 @@ root      2454  0.4  0.4   8888  3164 ?        Rs   22:06   0:00 sshd: root@pts/
 root      2518  0.1  0.2   4684  2004 pts/1    Ss   22:06   0:00 -bash
 root      2551  0.0  0.1   2736  1088 pts/1    R+   22:06   0:00 ps aux
 ```
+
+<!--more-->
 
 #### 在Linux下ps命令各项含义如下所示：
 

@@ -17,6 +17,8 @@ At that night, I slept on the playground starring at the dark sky. I heard of te
 
 Firstly, I was lack of the sense of emergency escape. When facing danger, it is not right to follow the instinct but to stay calm. To rush out of the building doesn’t make sense if the earthquake was too fierce for the building may be collapsed at the moment. The best way is to find somewhere safe to stay. 
 
+<!--more-->
+
 Secondly, what does one indeed need in life? A healthy body and a family is enough. In our life, we rarely have such a chance to face the death. I regretted that I hadn’t cherished the time with family members, but often quarreling with them. I realized that I loved them so deeply that I didn't want to lose anyone of them. I couldn't imagine one day when they have to leave. I will certainly cherish my family, friends, everyone who loves me and I love. 
 
 On May 14th, I carried the relief materials at a station as a volunteer. I know I should do something to comfort them. so many people lost their lives because of the terrible disaster, who may be the youngsters like us, the parents, the sisters, the brothers...Everyone had his own stories, had his bright future, especially for the children. They had no chance to enjoy the beautiful world again. They might have become excellent scientists, soldiers, policemen, doctors, teachers... However, the dreams fall to pieces forever. 

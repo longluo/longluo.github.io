@@ -4,8 +4,8 @@ title: "学钢琴中最重要的是什么？"
 date: 2016-02-22 00:18:56 +0800
 comments: true
 categories: Music
-tags: [音乐,钢琴,Life]
-keywords: 钢琴,学习,注意,音乐, ,
+tags: [音乐, 钢琴, Life]
+keywords: 钢琴, 学习, 注意, 音乐, Music,
 ---
 
 ***By Long Luo***

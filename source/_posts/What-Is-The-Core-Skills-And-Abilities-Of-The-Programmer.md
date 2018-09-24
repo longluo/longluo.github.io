@@ -4,7 +4,7 @@ title: "什么才是程序员的核心技能？"
 comments: true
 date: 2016-08-17 01:42:30
 tags: [核心技能, 生活, 工作]
-categories: Life
+categories: Program
 keywords: 工作, 程序员, 核心技能, 核心竞争力,
 ---
 

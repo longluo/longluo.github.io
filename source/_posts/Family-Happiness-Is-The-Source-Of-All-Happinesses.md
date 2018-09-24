@@ -21,7 +21,9 @@ keywords: Life, 生活, 家庭, 幸福,
 >I never really knew my own father. I was raised by a single mom and two wonderful grandparents who made incredible sacrifices for me. And there are single parents all across the country who do a heroic job raising terrific kids. But I still wish I had a dad who was not only around, but involved; another role model to teach me what my mom did her best to instill – values like hard work and integrity; responsibility and delayed gratification – all the things that give a child the foundation to envision a brighter future for themselves.
 
 我对生身父亲知之甚少，而是由寡母和外祖父母抚养成人，她们为此做出了巨大的牺牲。全国各地也有许多这样的单身父母，他们勇敢面对，养育儿女。然而，我还是情愿父亲在我身边，并参与我的成长。（我希望他）能成为另一个角色，教会我许多（后来不得已）由母亲尽力传授的价值观念。比如，勤奋、正直、责任感和不急于享乐等等，这一切都为他的孩子赢得一个灿烂的未来奠定了基础。
- 
+
+<!--more-->
+
 >That’ s why I try every day to be for Michelle and my girls what my father was not for my mother and me. And I’ve met plenty of other people – dads and uncles and men without a family connection –who are trying to break the cycle and give more of our young people a strong male role model.
 
 这就是为什么我每天都会为米歇尔和女儿们做点事情，这正是先父没来得及为他的妻儿所做的。我也碰到过许多父亲、叔伯和其他没有完整家庭的男人，他们正努力打破这种怪圈，为年轻人树立一个男子汉的榜样。

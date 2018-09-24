@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "一些Windows系统知识"
+title: "一些Windows操作系统知识"
 comments: true
 date: 2013-06-25 16:20:46
-tags: [工具, 效率]
+tags: [工具, 效率, Windows]
 categories: Tools
 keywords: Windows, 知识, 工具, 效率,
 ---
@@ -11,9 +11,6 @@ keywords: Windows, 知识, 工具, 效率,
 Windows系统文件夹中的应用程序及路径：
 
 1. windows图片和传真查看器不是以程序的方式存在，而是动态链接库的形式存在于explorer.exe程序中。shimgvw.dll做为一个线程插入到EXPLORER.EXE主程序中。路径为:C:\windows\system32\shimgvw.dll。动态链接库（DLL）的好处之一就是减少系统资源占用，不必为它再创建一个单独程序，而是插入其他程序以运行一些功能。如丢失其解决办法：开始--运行--输入regsvr32 shimgvw.dll 确定；  
-
-<!--more-->
-
 2. All Users目录：此子目录下是电脑的所有用户及这些用户个人设定的开始菜单及桌面等信息；  
 3. Application data目录：此目录存放了电脑用户安装应用程序时的一些数据信息；      
 4. Cursors目录：Windows下用来表示系统各种状态的光标文件都放置在此目录下；       

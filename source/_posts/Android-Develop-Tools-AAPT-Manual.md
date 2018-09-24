@@ -8,7 +8,6 @@ categories: Android
 keywords:
 ---
 
-
 Android Asset Packaging Tool
 
 # AAPT命令格式

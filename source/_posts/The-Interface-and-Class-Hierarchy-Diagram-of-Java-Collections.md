@@ -14,8 +14,6 @@ keywords: Java, Collections, 基础知识, 层级, Collection,
 
 大段文字会看得很烦，图片才是王道！
 
-<!--more-->
-
 # 一、 Collection vs Collections
 
 "Collection"和"Collections"是2个完全不同的概念，在Java容器的类层级图中，"Collection"是一个根接口，但是"Collections"仅仅只是一个提供多种静态方法的类用于操作一些Collection类型。
@@ -27,6 +25,8 @@ keywords: Java, Collections, 基础知识, 层级, Collection,
 下图展示了Collection的类层级图：
 
 ![java-collection-hierarchy](http://www.programcreek.com/wp-content/uploads/2009/02/java-collection-hierarchy.jpeg)
+
+<!--more-->
 
 # 三、 Map的类层级图
 

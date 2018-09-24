@@ -1,26 +1,30 @@
 ﻿---
 layout: post
-title: What Is Inner Interface In Java
+title: 'What Is Inner Interface In Java?'
 comments: true
 date: 2016-08-10 11:45:12
-tags: [Java, 接口]
+tags: [Java, Interface]
 categories: Java
-keywords:
+keywords: Java, Interface, Inner Interface, 
 ---
 
 
-
-18.1 what is inner interface in java?
+# 1. what is inner interface in java?
 Inner interface is also called nested interface, which means declare an interface
 inside of another interface. For example, the Entry interface is declared in the
 Map interface.
-public int e r f a c e Map {
-int e r f a c e Entry {
-int getKey ( ) ;
+
+```java
+public interface Map {
+    interface Entry {
+        int getKey();
+    }
 }
-void c l e a r ( ) ;
-}
-18.2 why use inner interface?
+
+void clear();
+```
+
+# 18.2 why use inner interface?
 There are several compelling reasons for using inner interface:
  It is a way of logically grouping interfaces that are only used in one place.
  It increases encapsulation.

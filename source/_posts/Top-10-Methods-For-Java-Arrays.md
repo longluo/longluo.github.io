@@ -10,8 +10,6 @@ keywords: Java, Array, 数组, 方法,
 
 本文将展示Java Array的最重要的10个方法：
 
-<!--more-->
-
 # 0. 声明一个数组
 
 ```java
@@ -33,6 +31,8 @@ System.out.println(intArray);
 System.out.println(intArrayString);
 // [1, 2, 3, 4, 5]
 ```
+
+<!--more-->
 
 # 2. 从一个数组中创建一个ArrayList
 

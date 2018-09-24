@@ -18,8 +18,6 @@ keywords: Java, Collections, 基础知识,
 
 ***LinkedList***是一个**双端链表**。正因为如此，如果要获取一个链表中间的元素，需要从链表的头部开始查找。另一方面，增加或者删除链表中的元素将会很快，因为只需要在本地修改即可。
 
-<!--more-->
-
 下表总结了最快情况下的比较需要耗费时间：
 
  |      Method       | Arraylist | LinkedList |
@@ -32,6 +30,8 @@ keywords: Java, Collections, 基础知识,
  | Iterator.add(E)   |    O(n)   |   O(1)     |
 
 不管运行时间，当大型列表需要额外考虑内存占用。LinkedList每个node至少需要2个额外的指针用于连接前后2个node。而在ArrayList中只需要数组存储元素值即可。
+
+<!--more-->
 
 # 2. 当遍历容器时，高效等价于移除元素的操作？
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '如何找到优秀的员工？'
+title: '如何招到优秀的员工？'
 comments: true
 date: 2017-11-28 22:22:02
 tags: [招聘, 选择, 风险]
