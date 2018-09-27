@@ -10,14 +10,11 @@ keywords: Android,UI,Layout,Design,设计,性能优化,视频
 
 ***By Long Luo***
 
-@2014.06.27
-
-# Agenda 
-
-1. 在线搜索现状及发展
-2. UI设计及实现
-3. 代码逻辑设计及实现
-4. 问题及解决
+>Agenda 
+	1. 在线搜索现状及发展
+	2. UI设计及实现
+	3. 代码逻辑设计及实现
+	4. 问题及解决
 
 # 一、在线搜索
 
@@ -287,5 +284,5 @@ mSearchKeyword.addTextChangedListener(mTextWatcher);
 
 ***Created By Long Luo at 2014/6/27 20:09:59***
 ***Completed By Long Luo at 2014/7/2 16:39:54***
-***Modified By Long Luo at 2018年9月26日00点06分***
+***Modified By Long Luo at 2018年9月26日00点06分 at Hangzhou, China.***
 
