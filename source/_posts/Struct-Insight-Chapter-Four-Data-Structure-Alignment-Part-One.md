@@ -10,11 +10,9 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普
 
 ***By Long Luo***
 
-#### 前言
-
+>前言
 [“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第四篇: [以空间换时间，Struct(结构体)中的成员对齐之道(上)](http://blog.csdn.net/tcpipstack/article/details/8267255)
 
------------
 在开始今天的文章之前，请先看下面一道面试题：
 
 问题： 阅读下面一段代码并回答题目之后的问题：
@@ -27,8 +25,6 @@ struct ALIGN
 ```
 
 请问在**32位**系统下`sizeof(ALIGN)`的结果是多少？
-
-<!--more-->
 
 当然这道题目是难不到广大程序员同学们滴！
 
@@ -69,6 +65,8 @@ int main()
 
 请问输出是多少？
 
+<!--more-->
+
 这还不简单，小case嘛！
 
 	mA占4个字节，mB占2个字节，所以Struct ALGN1应该是4+2=6个字节，所以答案是2和6。
@@ -79,7 +77,6 @@ int main()
 好的，请看大屏幕：
 
 ![结构体对齐2](http://img.my.csdn.net/uploads/201212/03/1354466216_5266.jpg)
-
 
 咦？
 
@@ -212,4 +209,4 @@ ALIGN2 和 ALIGN3都是1个int型，1个char型，1个short型，可是它们所
 
 
 ***By Long Luo transfer at 2016-6-8 21:51:38 @Shenzhen, China.***
-
+***Modified By Long Luo at 2018年9月28日23点28分 @Hangzhou, China.***

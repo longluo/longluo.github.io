@@ -10,13 +10,11 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普, 对齐,
 
 ***By Long Luo***
 
-***前言：***
-
+>前言：
 [“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第五篇: [大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)](http://blog.csdn.net/tcpipstack/article/details/8272233)
 
------------
-### 引言
-------------------
+
+# 引言
 
 在上一篇[大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)](http://www.longluo.me/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/) 中，我们了解到`struct ALIGN2`和`struct ALIGN3`的成员变量都是1个int型，1个char型及1个short型，可是它们所占的空间却1个是8字节，一个是12字节。
 
@@ -28,10 +26,7 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普, 对齐,
 
 ***不要走开，下面更精彩！***
 
-<!--more-->
-
-### 编译过程
-------------------
+# 编译过程：
 
 一般情况下，`C`程序的编译过程为
 
@@ -94,15 +89,16 @@ int main(void)
 }
 ```
 
+<!--more-->
+
 接下来我们对`Align.c`按照C程序的编译流程进行一一分析，如下所示：
 
-#### 1. 预处理
-
+## 1. 预处理
 输出文件的后缀为：`*.cpp`文件。
 
 ![预处理](http://img.my.csdn.net/uploads/201212/10/1355152365_3674.jpg)
 
-#### 2. 编译成汇编代码
+## 2. 编译成汇编代码
 1. 使用-x参数说明根据指定的步骤进行工作，`cpp-output`指明从预处理得到的文件开始编译；
 
 2. 使用-S说明生成汇编代码后停止工作
@@ -127,22 +123,22 @@ gcc –S Align.c
 
 其中的`.align 4`就表明了**其后面所有的数据都遵守4字节对齐的限制**。
 
-#### 3. 编译成目标代码
+## 3. 编译成目标代码
 汇编代码--->目标代码
 ![Object Code](http://img.my.csdn.net/uploads/201212/10/1355153534_1992.jpg)
 
-#### 4. 编译成执行代码
+## 4. 编译成执行代码
 目标代码-->执行代码
 
 最终的输出结果如下所示：
 ![Execute Result:](http://img.my.csdn.net/uploads/201212/10/1355153534_2589.jpg)
 
-### 内存分析
-----------------------
+#  内存分析
+
 我们可以绘出`struct ALIGN2`和`struct ALIGN3`的***内存分配图***：
 ![Memory](http://img.my.csdn.net/uploads/201212/11/1355157509_6978.jpg)
 
-#### 假如我们不对齐？
+##  假如我们不对齐？
 
 上图是**内存对齐**的`struct ALIGN2`和`struct ALIGN3`的内存分配情况，但是假如我们不对齐呢？
 
@@ -151,7 +147,7 @@ gcc –S Align.c
 
 很明显，`int mB`和`short mC`都不满足对齐要求。
 
-#### 对齐的好处是什么呢？
+## 对齐的好处是什么呢？
 通过上一节，我们知道了**如果不对齐**，我们可以节省出几个byte的内存空间，在计算机世界中，可以对齐也可以不对齐，但是实际中，都做了对齐。
 
 那么，***对齐的好处是什么呢***？
@@ -166,7 +162,7 @@ gcc –S Align.c
 
 而假设我们的`struct ALIGN2`没有对齐，那么对于`struct ALIGN2`中`char mA`，CPU可以一次取出4个字节获得低位的一个字节，同时需要将高位的3个字节保存在寄存器中，之后的`int mB`，CPU必须再取得低位的1个字节并通之前保存在寄存器中的数据结果组合在一起，***每一个都需要好几条指令***，是不是相当麻烦？
 
-#### 如何自定义对齐？
+## 如何自定义对齐？
 那肯定有同学要问了，有没有办法**让处理器按照自己的要求进行地址对齐**呢？
 
 ---当然可以！
@@ -241,4 +237,4 @@ int main(void)
 ***不要走开，后面更精彩！***
 
 ***Updated by Long Luo at 2016-6-11 03:44:26 @Shenzhen, China.***
-
+***Updated by Long Luo at 2018年9月28日23点23分 @Hangzhou, China.***
