@@ -19,8 +19,7 @@ keywords: Android, ListView, Layout, 性能, Adapter, 技巧
 	3. inflation这个词一直找不到特别好的中文翻译。
 
 
-## ListView如何运作的？
-------------
+# ListView如何运作的？
 
 *ListView*是设计应用于对**可扩展性和高性能要求**的地方。实际上，这就意味着*ListView*有以下2个要求：
 
@@ -33,17 +32,15 @@ keywords: Android, ListView, Layout, 性能, Adapter, 技巧
 
 为了实现第二点，在我们滑动屏幕时，*ListView*通过使用View回收器来增加低于或者高于当当前窗口的Views，并当前活动的Views移动到一个可回收池中。这样的话，*ListView*只需要在内存中保持足够多的Views去填充分配空间中的布局和一些额外的可回收Views，即使当你的Adapter有上百个items的适合。它会使用不同的方法去填充行之间的空间，从顶部或者底部等等，具体取决于窗口是如何变化的。
 
-<!--more-->
-
 下面这个图很直观的展示了当你按下ListView的时候发生了什么：
 
 ![ListView](http://blogresource.qiniudn.com/2014/Android/listview_tips.png)
 
 通过上述介绍，相比我们已经熟悉了*ListView*的这种机制，让我们继续前往技巧部分。正如上述介绍的，在滑动时，*ListView*通过动态的创建和回收很多View，实现了尽可能地让Adapter的*getView()*轻量。所有的技巧都是通过多种方法让*getView()*更快。
 
+<!--more-->
 
-## View的回收
-------------
+# View的回收
 
 当*ListView*每次需要在屏幕上显示新的一行的时候，会从其Adapter中调用*getView()*的方法。众所周知，*getView()*方法有3个参数：行的位置， convertView以及父ViewGroup。
 
@@ -62,8 +59,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 }
 ```
 
-## View Holder如何写的模板
-------------
+# View Holder如何写的模板
 
 Android很常见的一个操作就是在布局文件中找到一个内部的View。通常是使用一个***findViewById()***的View方法来实现的。这个***findViewById()***方法在View树中，根据一个View ID，会递归的被调用来找到其子树。虽然在静态UI布局中使用***findViewById()***是完全正常的。但是，在滑动时，*ListView*调用其Adapter中的*getView()*是非常频繁的。***findViewById()***可能会影响*ListView*滑动时的性能，尤其是你的行布局是很复杂的时候。
 
@@ -96,8 +92,7 @@ private static class ViewHolder {
 }
 ```
 
-## 异步加载
-------------
+# 异步加载
 
 很多时候，Android应用在*ListView*每行中显示一些多媒体内容，比如图片等。在Adapter中的*getView()*使用应用内置的图片资源还是不会出什么问题的，因为可以存储在Android的高速缓存中。但当你想多态的显示来自本地磁盘或网络的内容时，例如缩略图，简历图片等。在这种情况下，你可能不希望直接在Adapter中的*getView()*加载它们，因为[IO进程会阻塞UI线程](http://blog.ometer.com/2008/09/07/synchronous-io-never-ok/)。如果这样做的话，*ListView*就看起来非常卡顿。
 
@@ -148,8 +143,7 @@ private static class ViewHolder {
 }
 ```
 
-## 人机交互知识
-------------
+# 人机交互知识
 
 做到在每一行异步加载很多资源，是一个高性能的*ListView*的必经之路。但是，在滑动屏幕时，如果你一味的在每一个*getView()*调用里面都去启动一个异步的操作，造成的结果就是你会浪费大量资源。因为行被频繁回收，造成大部分返回的结果会被丢弃。
 
@@ -157,8 +151,7 @@ private static class ViewHolder {
 
 我不会发布一个代码示例贴在这里，因为其中涉及到的代码太多。Romain Guy写了一个很经典的应用：[Shelves app](http://code.google.com/p/shelves/)，其中有一个很好的的[示例](https://code.google.com/p/shelves/source/browse/trunk/Shelves/src/org/curiouscreature/android/shelves/activity/ShelvesActivity.java)。当***GridView***停止滑动时不做其他事情时，它就开始触发从而去异步加载书的封面资源。即使在滑动时，你也可以展示缓存中的内容，通过使用memory cache来平衡交互。这真是个好主意！
 
-## 以上
-------------
+# 以上
 
 我强烈推荐你看下Romain Guy和Adam Powell的关于*ListView*的[讨论](http://www.youtube.com/watch?v=wDBM6wVEO70)，里面涵盖了很多这篇文章的东西。你可以看看[Pattrn](https://play.google.com/store/apps/details?id=org.lucasr.pattrn)，可以看到这里面的几个技巧是如何在应用中运用的。
 

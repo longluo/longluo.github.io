@@ -10,8 +10,8 @@ keywords: 漂泊, 成长, 随想, 沉思, 音乐,
 
 ***By Long Luo***
 
-### 注:
-    本文是从之前[个人网站](http://www.imlongluo.com)上[成长·漂泊·随想](http://www.imlongluo.com/blog/?p=29)移植过来的。
+>注:
+本文是从之前[个人网站](http://www.imlongluo.com)上[成长·漂泊·随想](http://www.imlongluo.com/blog/?p=29)移植过来的。
 
 # 一、简单与复杂
 
