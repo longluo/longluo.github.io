@@ -10,15 +10,14 @@ keywords: Android, ps, 进程, Linux, 命令
 
 ***By Long Luo***
 
-# 注:
-
+>注:
     这篇文章是2013年发表在个人[CSDN Blog](http://blog.csdn.net/tcpipstack/)上[解析ANDROID ps命令执行后各项参数的含义](http://blog.csdn.net/tcpipstack/article/details/8541980)，今天将其移到个人独立博客站上。
 
 如何查看**Android**进程信息呢？
 
 可以打开`adb shell`，然后我们就有2种方法：
 
-### 1. 直接输入ps命令
+# 1. 直接输入ps命令
 
 输入之后，我们就可以看到如下的信息：
 
@@ -47,7 +46,7 @@ root      22    2     0      0     c0175900 00000000 S mtdblockdc
 
 	USER     PID   PPID  VSIZE  RSS     WCHAN    PC         NAME
 	
-#### 那么这些项各代表着什么意思呢？
+## 那么这些项各代表着什么意思呢？
 
 1. USER：  进程的当前用户；
 2. PID ： 毫无疑问, process ID的缩写，也就进程号；
@@ -58,7 +57,7 @@ root      22    2     0      0     c0175900 00000000 S mtdblockdc
 7. PC  ： program counter，
 8. NAME: process name，进程的名称
 
-#### 和`Linux ps`命令对比:
+## 和`Linux ps`命令对比:
 
 Android的内核还是Linux的，我们可以和Linux下ps aux命令的各项参数进行对比，可见：
 
@@ -76,7 +75,7 @@ root      2551  0.0  0.1   2736  1088 pts/1    R+   22:06   0:00 ps aux
 
 <!--more-->
 
-#### 在Linux下ps命令各项含义如下所示：
+## 在Linux下ps命令各项含义如下所示：
 
 - %CPU 进程的cpu占用率
 - %MEM 进程的内存占用率
@@ -94,7 +93,7 @@ root      2551  0.0  0.1   2736  1088 pts/1    R+   22:06   0:00 ps aux
 - WCHAN 进程正在睡眠的内核函数名称；该函数的名称是从/root/system.map文件中获得的。
 - FLAGS 与进程相关的数字标识
 
-#### android ps命令实现的源码
+## android ps命令实现的源码
 
 android下ps命令的源码的位置：`android/system/core/toolbox/ps.c`，其实现如下：
 
@@ -268,7 +267,7 @@ static int ps_line(int pid, int tid, char *namefilter)
 }
 ```
 
-### 进入/proc文件夹
+## 进入/proc文件夹
 在/proc文件夹下有很多对应进程ID号的子文件夹：
 
 ```bash

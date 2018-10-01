@@ -10,7 +10,8 @@ keywords: Linux, Shell, 脚本, 硬件信息,
 
 ***By Long Luo***
 
-	这篇文章是2012年在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上写的，[Linux下获取电脑硬件配置信息的bash脚本代码](http://blog.csdn.net/tcpipstack/article/details/8100270)。
+>这篇文章是2012年在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上写的，[Linux下获取电脑硬件配置信息的bash脚本代码](http://blog.csdn.net/tcpipstack/article/details/8100270)。
+
 
 ---------
 
@@ -66,7 +67,6 @@ echo -e "\n -----------End -----------\n"
 在一台Win7电脑上运行此脚本，输出硬件配置信息如下所示：
 
 ```
-
  -----------This Computer's Hardware Config Information is: -----------
 
 

@@ -10,13 +10,13 @@ keywords: 字符串翻转, 编程珠玑, 杂技算法, 翻转算法, 算法, 编
 
 ***By Long Luo***
 
-### 题目：
+# 题目：
 
 将一个n元一维数组a[n]左移i个位置。例如，当n=8，i=3时，数组abcdefgh旋转为defghabc。请设计一个算法完成这个任务。
 
-### 解答
+# 解答
 
-#### 杂技算法
+## 杂技算法
 
 分析：将a[0]存储在一个临时变量中，然后将a[i]替换a[0],a[2i]替换a[i]….当一个循环结束的时候，若替换次数小于n，则从a[1]开始替换…，需要经过gcd（n,i）(n和i的最大公约数)次循环后，才能把每一个元素都移到该移的地方。
 
@@ -105,7 +105,7 @@ string AcrobatRotateShift(string str, int n)
 
 <!--more-->
 
-#### 翻转算法
+## 翻转算法
 
 我们将问题看成把数组ab转换成ba，同时假定我们拥有一个函数可以将数组中的特定部分元素求逆。从ab开始，先对a求逆，得到ar b,然后对b求逆，得到ar br  ，然后整体求逆，得到（ar br）r 。此时就是ba。
 
@@ -178,5 +178,5 @@ string InverseRotateShift(string str, int n)
 }
 ```
 
-
+*** Modified By Long Luo at 2018年10月1日 in Shenzhen, China.***
 

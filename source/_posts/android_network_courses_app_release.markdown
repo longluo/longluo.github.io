@@ -10,20 +10,15 @@ keywords: App,Android,网络编程
 
 ***By Long Luo***
 
-
-### 1. App是为了解决什么问题？
----------
+# 1. App是为了解决什么问题？
 
 <!--more-->
 
 
-### 2. 
----------
+# 2. 
 
 
-### 3. 
----------
-
+# 3. 
 
 
 #### ***Long Luo Version0.1 Created at 2014/04/27 21:35 @Shenzhen, China.***

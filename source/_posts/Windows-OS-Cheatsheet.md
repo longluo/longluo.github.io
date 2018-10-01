@@ -5,7 +5,7 @@ comments: true
 date: 2013-06-25 16:20:46
 tags: [工具, 效率, Windows]
 categories: Tools
-keywords: Windows, 知识, 工具, 效率,
+keywords: Windows, 知识, 工具, 效率, Tools, 
 ---
 
 Windows系统文件夹中的应用程序及路径：

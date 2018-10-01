@@ -3,9 +3,9 @@ layout: post
 title: "3分钟教你快速入门Markdown"
 comments: true
 date: 2013-10-15 01:52:26
-tags: [Markdown, 入门, 写作]
+tags: [Markdown, 写作]
 categories: Techniques
-keywords: Markdown, 语法, 
+keywords: Markdown, 语法, 教程,  
 ---
 
 **NOTE:** This is Simplelified  Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to [Markdown: Syntax][eng-doc].

@@ -41,6 +41,7 @@ keywords: Android, Exception, Error, Debug, Gradle
 从上述Log信息，我们可知出错点是`ERROR: In <declare-styleable> ListItemLinearLayout, unable to find attribute singleLine`，那么肯定是`attrs`文件的`ListItemLinearLayout`styleable出错了。
 	
 # 2. 错误原因
+
 经过上述分析，我们进入`attrs.xml`文件，找到`ListItemLinearLayout`，如下所示：
 
 	    <declare-styleable name="ListItemLinearLayout">

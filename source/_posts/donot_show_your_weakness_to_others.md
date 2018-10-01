@@ -5,7 +5,7 @@ comments: true
 date: 2017-09-16 21:46:31
 tags: [人生, 挫折, 坚强]
 categories: Life
-keywords: 人生, 挫折, 坚强, 
+keywords: 人生, 挫折, 坚强, Life, 
 ---
 
 ***By Long Luo***
@@ -77,5 +77,5 @@ keywords: 人生, 挫折, 坚强,
 
 避免失望的最好方式是，不对任何人有所期待，并不是心冷，而是想对自己再多一些期待，想给自己再留多一些惊喜。
 
-###By Luo Long 2017-09-16 23:17:41###
+***By Luo Long 2017-09-16 23:17:41***
 

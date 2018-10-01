@@ -3,7 +3,7 @@ layout: post
 title: "Android自定义View：另一种实现手表指针转动的方法"
 comments: true
 date: 2016-08-19 17:01:19
-tags: [Android, 技术, 自定义View]
+tags: [Android, View]
 categories: Android
 keywords: Android, View, 自定义View, 自定义控件, 表盘, 
 ---
@@ -18,7 +18,7 @@ keywords: Android, View, 自定义View, 自定义控件, 表盘,
 
 要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的`sin`及`cos`值及圆心进行对应的计算。
 
-## 1. 弧度
+## 1.1 弧度
 
 要计算指针对应的`sin`及`cos`值，区别于上一篇的***角度***，这一篇我们使用***弧度***。具体弧度是什么以及角度弧度换算关系可自行Google。
 
@@ -32,7 +32,7 @@ keywords: Android, View, 自定义View, 自定义控件, 表盘,
 
 <!--more-->
 
-## 2. 绘制
+## 1.2 绘制
 
 知道对应指针的弧度之后，我们就很容易计算出对应的指针坐标了，那么绘制也变得简单了，如下所示：
 
@@ -54,7 +54,7 @@ keywords: Android, View, 自定义View, 自定义控件, 表盘,
         canvas.drawLine(centerX, centerY, centerX + secX, centerY + secY, paintSecond);
 ```
 
-## 3. 小插曲
+## 1.3 小插曲
 
 开发完成之后，发现了一个Bug，指针一直不动，打印Log发现对应的弧度一直不变，那么很明显就是时间没有刷新，在计算弧度前，设置为当前时间即可。
 
@@ -77,3 +77,5 @@ keywords: Android, View, 自定义View, 自定义控件, 表盘,
 
 
 ***By Long Luo 2016-08-24 10:39 at Shenzhen.***
+***Modified By Long Luo at 2018年10月1日10点38分 in Shenzhen, China.***
+

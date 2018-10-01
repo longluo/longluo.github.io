@@ -3,7 +3,7 @@ layout: post
 title: "Android ADB工具"
 comments: true
 date: 2016-10-01 15:18:20
-tags: [Android, ADB, ]
+tags: [Android, ADB, Tools]
 categories: Android
 keywords: Android, ADB, Tools, 工具, 效率,
 ---

@@ -3,9 +3,9 @@ layout: post
 title: '春日慢游西湖'
 comments: true
 date: 2018-03-26 22:28:16
-tags: [旅行, 人文, 西湖]
+tags: [旅行, 西湖]
 categories: Travel
-keywords: 旅行, 人文, 西湖, 历史, 杭州
+keywords: 旅行, 人文, 西湖, 历史, 杭州, Hangzhou, West Lake, 
 ---
 
 ***By Long Luo***

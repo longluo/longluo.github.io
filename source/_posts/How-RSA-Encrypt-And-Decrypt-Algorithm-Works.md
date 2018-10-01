@@ -10,9 +10,6 @@ keywords: 加解密算法, RSA, 细节, 信息安全
 
 <strong><em>By Long Luo</strong></em>
 
-## 注
-
-	本文是从之前[个人网站](http://www.imlongluo.com)上[解析RSA加解密算法](http://www.imlongluo.com/blog/?p=35)移植过来的。
 
 # 一、RSA说明  
 
@@ -107,6 +104,7 @@ void main(void)
 <img src="http://databank.u.qiniudn.com/blog/images/2013/09/RSA_demo_output.jpg" alt="RSA_Output" />
 
 通过以上，我们就了解了***RSA***算法的原理及其实现。
+
 
 ***By Long Luo transfer at 2016-6-5 17:30:58 @Shenzhen, China.***
 

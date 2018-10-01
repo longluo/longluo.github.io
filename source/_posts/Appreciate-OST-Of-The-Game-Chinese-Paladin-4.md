@@ -3,15 +3,14 @@ layout: post
 title: "与《仙剑奇侠传四》音乐对话"
 comments: true
 date: 2013-08-26 23::39:28
-tags: [仙剑奇侠传, 音乐, 赏析]
+tags: [仙剑奇侠传, 音乐, Game]
 categories: Music
-keywords: 仙剑奇侠传, 原声音乐, 游戏, 音乐赏析
+keywords: 仙剑奇侠传, 原声音乐, 游戏, 音乐赏析, Music, Game, 
 ---
 
 ***By Long Luo***
 
-### 注
-
+>注
     本文是从之前[个人网站](http://www.imlongluo.com)上[与《仙剑奇侠传四》音乐对话](http://www.imlongluo.com/blog/?p=43)移植过来的。
 
 -------

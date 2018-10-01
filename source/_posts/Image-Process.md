@@ -1,11 +1,11 @@
 ﻿---
 layout: post
-title: "Image Process"
+title: "图像处理"
 comments: true
 date: 2016-11-01 22:46:15
-tags: []
-categories: Program
-keywords:
+tags: [CV, Image]
+categories: CV
+keywords: CV, Image, Process, 图像处理, 图形, 
 ---
 
 Java Image Process

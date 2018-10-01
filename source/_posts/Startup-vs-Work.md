@@ -3,9 +3,9 @@ layout: post
 title: "Startup vs Work"
 comments: true
 date: 2016-09-15 19:38:49
-tags:
+tags: [Statup, Work, Life]
 categories: Life
-keywords:
+keywords: Statup, Work, Life, 
 ---
 
 创业和就业是两种完全不同的生活方式，如果你想要从就业这种生活步入到创业这种生活，需要考虑的不仅仅是创业可能带来更大的财富和自由，更重要的是要考虑你是否适合及适应这种生活方式。创业者和就业者的生活态度和做事方式往往是有天渊之别的，冒然切换，会导致失败。

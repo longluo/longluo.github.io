@@ -10,12 +10,14 @@ keywords: Android,Audio,音频,AudioTrack
 
 ***翻译 By Long Luo***
 
-#### 原文链接：[Android Audio: Play a WAV file on an AudioTrack](http://mindtherobot.com/blog/580/android-audio-play-a-wav-file-on-an-audiotrack/)
+原文链接：[Android Audio: Play a WAV file on an AudioTrack](http://mindtherobot.com/blog/580/android-audio-play-a-wav-file-on-an-audiotrack/)
 
-	译者注：
+译者注：
 	1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
 	2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.
 	3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。
+
+----------------
 
 如果你已经成功地了解了关于**AudioTrack**的[一些话题](http://mindtherobot.com/blog/555/android-audio-problems-hidden-limitations-and-opensl-es/ "Android Audio: Problems, Hidden Limitations and OpenSL ES")，那么你可能享受它带来的好处，例如低延迟（在STATIC(静态)模式），能够生成流式音频（在STREAM(流)模式）以及在播放之前，就能够访问和修改原始声音数据。
 
@@ -27,8 +29,7 @@ keywords: Android,Audio,音频,AudioTrack
 
 <!--more-->
 
-#### 背景知识: 一些数字音频术语
------
+# 背景知识: 一些数字音频术语
 
 如果你的App不是专门为数字音频设计，那么在继续我们的讨论之前，你可能需要先了解一些基本的缩略语。别担心，都很简单，我们不需要对此做深入挖掘。
 
@@ -50,8 +51,7 @@ keywords: Android,Audio,音频,AudioTrack
 
 <!--more-->
 
-#### WAV文件格式
------
+# WAV文件格式
 
 我们的目标是用一个**InputStream**，由其从一个*WAV*文件加载PCM数据，来提供原始字节数据。然后我们就可以将原始的PCM数据直接推送到使用已经正确的配置好了的**AudioTrack.write**，通过使用***AudioTrack.write()***这个API。
 
@@ -61,6 +61,7 @@ keywords: Android,Audio,音频,AudioTrack
 
 下面这个方法就是如何读取一个WAV文件的头部：
 
+```java
 	private static final String RIFF_HEADER = "RIFF";
 	private static final String WAVE_HEADER = "WAVE";
 	private static final String FMT_HEADER = "fmt ";
@@ -109,24 +110,26 @@ keywords: Android,Audio,音频,AudioTrack
 
 		return new WavInfo(new FormatSpec(rate, channels == 2), dataSize);
 	}
+```
 
 上面的代码中，缺少的部分应该是显而易见的。正如你所看到的，仅仅支持16位，但在你可以修改代码以支持8位（**AudioTrack**不支持任何其他分辨率的）。
 
 下面这个方法，则是用来读取文件剩余的部分 - **音频数据**。
 
+```java
 	public static byte[] readWavPcm(WavInfo info, InputStream stream)
 			throws IOException {
 		byte[] data = new byte[info.getDataSize()];
 		stream.read(data, 0, data.length);
 		return data;
 	}
+```
 	
 我们读取的**WavInfo**结构体，包含采样率，分辨率和声道数已经足够让我们去播放我们读取的音频了。
 
 如果我们不需要将全部音频数据一次性放入内存中，我们可以使用一个***InputStream***，一点一点地读取。
 
-#### 将PCM传入AudioTrack
------
+# 将PCM传入AudioTrack
 
 我们现在面临2种情况，新建一个适合这种格式的**AudioTrack**，或者使用一个已存在的**AudioTrack**，但是可能和我们*WAV*音频数据的格式不一致。
 
@@ -140,8 +143,7 @@ keywords: Android,Audio,音频,AudioTrack
 
 记住，如果你使用静态模式，你需要在**play()**之前，新建一个包含准确的缓冲区大小的**AudioTrack** ，同时写入**write()**音频数据。而在流模式下，我们可以先使用**AudioTrack**的**play()**，然后在使用**write()**写入数据部分
 
-#### 总结
------
+# 总结
 
 你想实现***AudioTrack***上播放***WAV***音频可能有很多原因。有时候，可能是SoundPool有尺寸限制，或是MediaPlayer会有延迟和对资源占用太高，让你考虑使用这种方式。有时候你需要修改音频或者混合音频。不管任何情况，这篇文章试图告诉你应该如何做。
 
@@ -149,3 +151,5 @@ keywords: Android,Audio,音频,AudioTrack
 
 ***Long Luo for Part 1 created at 23:15 ~ 00: 33 June 21th, 2014 @Shenzhen, China.***
 ***Long Luo for Part 2 created at 16:00 ~ 17: 15 June 22th, 2014 @Shenzhen, China.***
+***Modified By Long Luo at 2018年10月1日10点36分 in Shenzhen, China.***
+

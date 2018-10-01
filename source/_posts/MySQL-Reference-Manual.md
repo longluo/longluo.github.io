@@ -3,7 +3,7 @@ layout: post
 title: "MySQL常用操作指南"
 comments: true
 date: 2016-09-20 19:51:09
-tags: [MySQL, 工具, 效率, 数据库]
+tags: [MySQL, Tools, 效率, 数据库]
 categories: DataBase
 keywords: MySQL, 数据库, 工具, 效率, 指南, 
 ---

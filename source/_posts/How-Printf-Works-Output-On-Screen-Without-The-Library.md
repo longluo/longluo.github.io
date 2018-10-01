@@ -10,14 +10,9 @@ keywords: printf, 技术, Linux, Kernel, 第三方库,
 
 ***By Long Luo***
 
-***前言:***
-
-	[“深入剖析printf函数”](http://blog.csdn.net/tcpipstack/article/category/6270060)写于2013年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上的，这是上篇: [深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出"Hello World"?](http://blog.csdn.net/tcpipstack/article/details/8490811)
-
------------
 
 # 前言
---------
+
 ---"你为什么要去登珠穆朗玛？"  
 
 当美国《纽约时报》记者问英国登山家乔治·马洛里。
@@ -302,4 +297,11 @@ app.o: app.c
 But，`printf`那么复杂的功能到底是如何实现的呢？
 
 ***欲知后事如何，且听下回分解......***
+
+-----------
+
+***注：***
+[“深入剖析printf函数”](http://blog.csdn.net/tcpipstack/article/category/6270060)写于2013年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上的，这是上篇: [深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出"Hello World"?](http://blog.csdn.net/tcpipstack/article/details/8490811)
+
+***Modified By Long Luo at 2018年10月2日03点42分 in Shenzhen, China.***
 

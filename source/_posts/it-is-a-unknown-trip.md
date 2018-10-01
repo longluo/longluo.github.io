@@ -3,9 +3,9 @@ layout: post
 title: '这是一次未知的远航----写在毕业四个月之际'
 comments: true
 date: 2009-10-31 14:36:37
-tags: [Life]
+tags: [Life, Panic]
 categories: Life
-keywords: Life, 记录, 
+keywords: Life, 记录, 工作, 迷茫, 
 ---
 
 ***By Long Luo***
@@ -18,4 +18,5 @@ keywords: Life, 记录,
 
 这是一次未知的远航，狂风会带来巨浪，但也会让风帆鼓起；风浪再大，只会锤炼水手的坚强。远处那漆黑的天幕，依稀可以看到星星的亮光！
 
-***---Long Luo 2009年10月31日下午于深圳。***
+***Long Luo 2009年10月31日下午于深圳***
+

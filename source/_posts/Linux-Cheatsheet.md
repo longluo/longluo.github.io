@@ -11,7 +11,6 @@ keywords: Linux, OS, Shell, 效率, 工具, 手册,
 ***By Long Luo***
 
 
-
 ```shell
 	# df -h
 Filesystem      Size  Used Avail Use% Mounted on
@@ -19,7 +18,6 @@ Filesystem      Size  Used Avail Use% Mounted on
 none             64M  4.0K   64M   1% /dev
 none             64M     0   64M   0% /dev/shm
 ```
-
 
 ```shell
 	# free -m

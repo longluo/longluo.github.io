@@ -10,11 +10,6 @@ keywords: printf, 技术, Linux, Kernel, 格式化输出, 形参列表,
 
 ***By Long Luo***
 
-# 前言
-
-    [“深入剖析printf函数”](http://blog.csdn.net/tcpipstack/article/category/6270060)写于2013年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上的，这是下篇: [ 深入剖析printf函数(下)：---形参列表和格式化输出是如何做到的？](http://blog.csdn.net/tcpipstack/article/details/8279584)
-
------------
 
 # 一、引言
 
@@ -804,4 +799,11 @@ make一下，我们再来看看输出结果：
 这样我们就了解了`printf`函数的前因后果。
 
 ***聪明的你，弄明白了吗？^_^***
+
+-----------
+
+>***注：***
+[“深入剖析printf函数”](http://blog.csdn.net/tcpipstack/article/category/6270060)写于2013年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上的，这是下篇: [ 深入剖析printf函数(下)：---形参列表和格式化输出是如何做到的？](http://blog.csdn.net/tcpipstack/article/details/8279584)
+
+***Modified By Long Luo at 2018年10月2日03点44分 in Shenzhen, China.***
 

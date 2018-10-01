@@ -5,7 +5,7 @@ date: 2014-09-13 22:26:00 +0800
 comments: true
 categories: Tools
 tags: [Shell, 脚本]
-keywords: Shell, 网络资源, 脚本, 
+keywords: Shell, 网络资源, 脚本, Scripts, 
 ---
 
 ***By Long Luo***

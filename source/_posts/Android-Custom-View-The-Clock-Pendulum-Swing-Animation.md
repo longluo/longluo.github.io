@@ -3,9 +3,9 @@ layout: post
 title: "Android自定义View: 如何实现类钟摆的动画效果?"
 comments: true
 date: 2016-08-26 22:40:34
-tags: [Android, 自定义View, 动画]
+tags: [Android, View, Animation]
 categories: Android
-keywords: Android, 自定义View, 动画, 摆动动画, 钟摆, 
+keywords: Android, 自定义View, 动画, 摆动动画, 钟摆, Animation, View, 
 ---
 
 ***By Long Luo***
@@ -28,11 +28,11 @@ keywords: Android, 自定义View, 动画, 摆动动画, 钟摆,
 
 在这一节里，我们会简单谈谈Android动画。
 
-## 1. 动画分类
+## 2.1 动画分类
 
 Android动画目前可分为以下3种：
 
-### 补间动画(Tween Animation)
+### 2.1.1 补间动画(Tween Animation)
 
 所谓的**补间动画**，其实就是**定义了我们动画的起始点和终止点的状态**，而动画的过程我们是不关心的，只需要达到我们想要的效果就行。
 
@@ -50,14 +50,14 @@ Animation c = new RotateAnimation();
 Animation d = new TranslateAnimation();
 ```
 
-### 帧动画(Frame Animation)
+### 2.1.2 帧动画(Frame Animation)
 
 所谓的**帧动画**就是可以设置我们的动画的每一帧的效果，其实视频或者Gif的效果都是由许多张图片在很短的时间内播放，从而产生动画效果。
 
 1. 用于生成连续的Gif效果图。
 2. DrawableAnimation也是指此动画。
 
-### 属性动画(Property Animation)
+### 2.1.3 属性动画(Property Animation)
 
 属性动画是Android动画里面最复杂也是最能做出复杂的动画效果的一种类型。
 
@@ -81,13 +81,15 @@ ValueAnimator和ObjectAnimator是属性动画里面经常使用的对象类，Ob
 
 当然Android属性动画是很复杂，达到熟练运用还需要深入研究，大家想了解可以去网上寻找相关知识学习。
 
-## 2. 自定义动画
+## 2.2 自定义动画
 
 在本文中，我们主要是要实现一个自定义动画：摆动动画。那么，我们有必要了解如何实现自定义动画。
 
 ***---如何实现自定义动画？***
 
-实现自定义动画，要继承`Animation(android.view.animation.Animation)`，然后Override其中的2个方法：
+实现自定义动画，要继承
+
+`Animation(android.view.animation.Animation)`，然后Override其中的2个方法：
 
 `Animation.applyTransformation(float, Transformation)`，和`initialize()`两个方法。
 
@@ -114,7 +116,6 @@ ValueAnimator和ObjectAnimator是属性动画里面经常使用的对象类，Ob
 通过注释我们明白了（也可以结合调试理解）：
 
 >在绘制动画的过程中会反复的调用applyTransformation函数，每次调用参数interpolatedTime值都会变化，该参数从0渐变为1，当该参数为1时表明动画结束。通过参数Transformation来获取变换的矩阵（matrix），通过改变矩阵就可以实现各种复杂的效果。
-
 
 `Animation.initialize()`方法具体就是初始化动画时的一些对象的尺寸以及其父对象的尺寸。
 
@@ -205,4 +206,6 @@ ValueAnimator和ObjectAnimator是属性动画里面经常使用的对象类，Ob
 
 以上。
 
+
+***Modified By Long Luo at 2018年10月1日11点29分 in Shenzhen, China.***
 

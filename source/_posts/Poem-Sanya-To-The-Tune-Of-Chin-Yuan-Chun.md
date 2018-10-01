@@ -3,9 +3,9 @@ layout: post
 title: "沁园春·三亚"
 comments: true
 date: 2013-11-12 23:30:52 
-tags: [诗歌, 三亚, 台风]
+tags: [诗歌, Travel, 台风]
 categories: Life
-keywords: 三亚, 沁园春, 台风, 
+keywords: 三亚, 沁园春, 台风, Travel, 旅行, 
 ---
 
 ***By Long Luo***
@@ -23,7 +23,6 @@ keywords: 三亚, 沁园春, 台风,
 问国各路航班，
 何时飞高？
 
-<!--more-->
 
 人力如此之渺，
 徒然闲坐凭栏眺。
@@ -39,16 +38,18 @@ keywords: 三亚, 沁园春, 台风,
 多总结思考，
 莫负今朝！
 
+<!--more-->
+
 -------------
 
-#### The Hand Writing of this Chinese Poem To The Tune Of Chin Yuan Chun:
+# The Hand Writing of this Chinese Poem To The Tune Of Chin Yuan Chun:
 
 <img src="http://databank.u.qiniudn.com/blog/images/2013/11/qinyuanchun_sanya.jpg?imageView/2/w/600/h/800/q/60/format/JPG" alt="沁园春·三亚 手写" />
 
-#### 创作背景
-------------
+# 创作背景
+
 2013年11月时，部门集体去三亚旅游时，遇到强台风[海燕](http://baike.baidu.com/link?url=qWzUypcgRYaDO7qrjjk6y2A1B7dyNy_KoVDvWq7ulVUDqsYszaa3WLXK_HDbGfg8izX_10450OFEc5mTzTO0uq)，遭遇停水停电，写于三亚宾馆。
 
 <em><strong>---Long Luo, 12th, Nov., 2013 @Shenzhen</strong></em>
-
 ***Long Luo transfer at 2016-6-5 17:10:46 @Shenzhen, China***
+

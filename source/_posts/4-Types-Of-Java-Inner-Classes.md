@@ -32,12 +32,11 @@ public class Test {
 	}
 }
 ```
-
+Output: 
 
 ```
 Inner class reference is: com.longluo.java.interview.innerclass.Outer$Inner@15db9742
 ```
-
 
 # 2. member inner class
 
