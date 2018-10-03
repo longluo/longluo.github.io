@@ -12,7 +12,6 @@ keywords: Linux, Shell, 脚本, 硬件信息,
 
 >这篇文章是2012年在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上写的，[Linux下获取电脑硬件配置信息的bash脚本代码](http://blog.csdn.net/tcpipstack/article/details/8100270)。
 
-
 ---------
 
 最近由于要获取几台Linux服务器的硬件配置信息，就写了一个获取硬件配置信息的脚本代码，可以获取CPU、内存、硬盘等硬件信息。

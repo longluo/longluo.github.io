@@ -1,10 +1,10 @@
 ---
 layout: page
-title: 'About'
+title: 'About | 关于我'
 date: 2016-04-11 00:22:24 +0800
 comments: true
 type: "about"
-tags: [about]
+tags: [about, myself]
 keywords: Long Luo, Frank Luo, Program, Code, 程序员, Android, iOS, App Develop, Java 
 description: "About Me"
 ---

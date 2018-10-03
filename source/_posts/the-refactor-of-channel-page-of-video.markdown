@@ -10,6 +10,7 @@ keywords: Android,视频,重构,性能优化,软件
 
 ***By Long Luo***
 
+
 # 一、重构前的一些缺点
 
 1. 频道显示在VideoListActivity实现的，代码结构不够清晰；

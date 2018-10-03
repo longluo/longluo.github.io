@@ -10,11 +10,11 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普
 
 ***By Long Luo***
 
-#### 前言
-
-[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第三篇: [大话结构体之三: 借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白...](http://blog.csdn.net/tcpipstack/article/details/8267346)
+>前言
+	[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第三篇: [大话结构体之三: 借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白...](http://blog.csdn.net/tcpipstack/article/details/8267346)
 
 -----------
+
 之前一篇 [大话结构体之二: 名不正则言不顺---Struct(结构体)的声明、定义及初始化](http://blog.csdn.net/tcpipstack/article/details/8267339)，我们已经了解了**C++**中**Struct**的定义方法和**C**中有点不一样，而且增加了一种新的类型---***Class***。从C++的名字我们就可以知道，C++是从C进化而来，“**++**”就是在C的基础上加了一些东西：***面向对象的东西***。
 
 虽然C++作为一种面向对象语言，要区别于面向过程的C语言，但是在设计时，一个很重要的原则是C++必须向前兼容C，必须是C的超集。这样一来就可以带来好多好处：
@@ -22,8 +22,6 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普
 第一个嘛，首先呢，C++就可以站在C这个巨人的肩膀上，大量过去用C编写的程序可以不加修改地在C++环境下使用；
 第二，把很多C程序员忽悠进C++这个大坑里，为C++之崛起而加班，上了贼船可就由不得你了**XD**
 .......
-
-<!--more-->
 
 也正是因为这个原因，C++中保留了Struct结构类型，并使得Struct的功能更强大，不仅仅是简单继承C的结构体，而且扩充了Struct，使得它也具有类的特点，那么**在C++中，Class和Struct到底有什么区别呢**？
 
@@ -64,6 +62,8 @@ int main(void)
 ![Class And Struct Output](http://img.my.csdn.net/uploads/201212/06/1354804133_7588.jpg)
 
 从结果我们可以看出，**没啥区别**啊！
+
+<!--more-->
 
 且慢，再看下面这段代码：
 

@@ -10,11 +10,11 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普
 
 ***By Long Luo***
 
-#### 前言
-
-[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第二篇: [大话结构体之二: 名不正则言不顺---Struct(结构体)的声明、定义及初始化](http://blog.csdn.net/tcpipstack/article/details/8267339)
+>前言
+	[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第二篇: [大话结构体之二: 名不正则言不顺---Struct(结构体)的声明、定义及初始化](http://blog.csdn.net/tcpipstack/article/details/8267339)
 
 -----------
+
 在上一篇[大话结构体之一: 从女孩怎么选男朋友开始...Struct是为了解决什么问题？](http://blog.csdn.net/tcpipstack/article/details/8267336)里我们讲了为什么我们要引入Struct这个数据类型，我们了解到Struct是一种聚合数据类型，是为了用户描述和解释一些事物的方便而提出的，Struct是一种用户自定义数据类型，如下图所示：
 
 ![数据类型](http://img.my.csdn.net/uploads/201212/09/1355020124_4311.png)
@@ -27,7 +27,7 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普
 
 <!--more-->
 
-#### 一、Struct的声明
+# 一、Struct的声明
 
 要了解Struct的声明，我们需要首先了解**声明的含义**到底是什么？
 
@@ -41,7 +41,7 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普
 extern struct ExpectedBoyFriend;
 ```
 
-#### 二、Struct的定义
+# 二、Struct的定义
 
 上一小节我们了解了声明的定义，那么定义是什么呢？
   
@@ -98,7 +98,7 @@ S1 sb;
 
 因为**C语言中对于Struct的定义**是需要使用`struct S0 sa`这种方式。
 
-#### 三、C99标准下的Struct的初始化方法
+# 三、C99标准下的Struct的初始化方法
 
 Struct的常见初始化方法我们可以在任何一本关于C语言书里面都可以找到，这里就不赘述了。我们先看下面一段代码：
 

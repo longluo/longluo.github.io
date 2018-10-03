@@ -4,8 +4,8 @@ title: "我的必备App清单"
 date: 2015-04-21 23:53:35 +0800
 comments: true
 categories: Tools
-tags: App
-keywords: App,必备,效率
+tags: [App, Tools]
+keywords: App, 必备, 效率
 ---
 
 ***By Long Luo***
