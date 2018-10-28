@@ -2,7 +2,7 @@
 layout: post
 title: "与《仙剑奇侠传四》音乐对话"
 comments: true
-date: 2013-08-26 23::39:28
+date: 2009-03-05 23::39:28
 tags: [仙剑奇侠传, 音乐, Game]
 categories: Music
 keywords: 仙剑奇侠传, 原声音乐, 游戏, 音乐赏析, Music, Game, 
@@ -10,10 +10,6 @@ keywords: 仙剑奇侠传, 原声音乐, 游戏, 音乐赏析, Music, Game,
 
 ***By Long Luo***
 
->注
-    本文是从之前[个人网站](http://www.imlongluo.com)上[与《仙剑奇侠传四》音乐对话](http://www.imlongluo.com/blog/?p=43)移植过来的。
-
--------
 从去年开始玩《仙剑四》开始，到现在已经玩了不下5遍了。我实在是太喜欢里面的音乐了，已经记不得自己多少次在深夜里听着mp3里面的原声音乐带，回忆游戏带给我的感动。一直很想写一篇文章记下自己的感觉，然而提笔时又困难重重。音乐是好，可是怎么个好法？好在哪里？又多次在深夜里认真听了几遍，认真体会，结合主角性格和游戏剧情，写下了这些感想。
 
 # 哀婉飘逸的《迴梦游仙》
@@ -75,9 +71,17 @@ keywords: 仙剑奇侠传, 原声音乐, 游戏, 音乐赏析, Music, Game,
 最后以仙剑四里的一首诗结束：涛山阻绝秦帝船，汉宫彻夜捧金盘。玉肌枉然生白骨，不如剑啸易水寒。
 
 --------------- 附上当年校报发表照片 ----------
+
 <img src="http://databank.u.qiniudn.com/blog/images/2013/09/pal4_ost_review.jpg?imageView/2/w/600/h/800/q/60/format/JPG" alt="仙剑四校报发表" />
 
-<b><i>---Draft L. Luo @ Mar. 05<sup>th</sup>, 2009 at UESTC, Chengdu</i></b>
-<b><i>---Modified L. Luo @ Mar. 22nd, 2009 at UESTC, Chengdu</i></b>
+--------2018.10.28 更新--------
+
+[电子科大校报](http://uestcweekly.uestc.edu.cn/)电子化做的不错，居然还能找到[这篇文章](http://uestcweekly.uestc.edu.cn/Front/ArticlePage?sid=402&pid=5140&hid=40788&cid=3)。
+
+***---Draft L. Luo @Mar. 05th, 2009 at UESTC, Chengdu.***
+***---Modified L. Luo @Mar. 22nd, 2009 at UESTC, Chengdu.***
 
 ***By Long Luo transfer at 2016-6-5 18:10:52 @Shenzhen, China.***
+
+***Modified By Long Luo at 2018年10月29日 00点12分 @Shenzhen, China.***
+

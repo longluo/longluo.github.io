@@ -2,10 +2,10 @@
 layout: post
 title: "Became Mature From The Quake"
 comments: true
-date: 2013-10-07 23:53:06 
+date: 2008-07-06 23:53:06 
 tags: [地震, 512, 生活]
 categories: Life
-keywords: Earthquake, Mature, Life, 地震, 512, 
+keywords: Earthquake, Mature, Life, 地震, 512,  四川, 汶川, 
 ---
 
 ***By Long Luo*** 
@@ -26,5 +26,5 @@ I have heard a survivor saying on TV soon after she was rescued. “The moon is 
 
 Now I believe that it is of greatest happiness to enjoy an ordinary life. 
 
-<strong><em>---Long Luo at 6th, July, 2008, @Chengdu, Sichuan, China.</em></strong>
+***By Long Luo at 6th, July, 2008, @Chengdu, Sichuan, China.***
 
