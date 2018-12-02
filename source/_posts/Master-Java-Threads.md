@@ -31,13 +31,13 @@ keywords: Java, Basics, 基础, 多线程, , ,
 5. Thread 类中的start() 和 run() 方法有什么区别？
 这个问题经常被问到，但还是能从此区分出面试者对Java线程模型的理解程度。start()方法被用来启动新创建的线程，而且start()内部调用了run()方法，这和直接调用run()方法的效果不一样。当你调用run()方法的时候，只会是在原来的线程中调用，没有新的线程启动，start()方法才会启动新线程。更多讨论请点击这里
 
-7) Java中Runnable和Callable有什么不同？
+6. Java中Runnable和Callable有什么不同？
 Runnable和Callable都代表那些要在不同的线程中执行的任务。Runnable从JDK1.0开始就有了，Callable是在JDK1.5增加的。它们的主要区别是Callable的 call() 方法可以返回值和抛出异常，而Runnable的run()方法没有这些功能。Callable可以返回装载有计算结果的Future对象。我的博客有更详细的说明。
 
-8) Java中CyclicBarrier 和 CountDownLatch有什么不同？
+7. Java中CyclicBarrier 和 CountDownLatch有什么不同？
 CyclicBarrier 和 CountDownLatch 都可以用来让一组线程等待其它线程。与 CyclicBarrier 不同的是，CountdownLatch 不能重新使用。点此查看更多信息和示例代码。
 
-9) Java内存模型是什么？
+8. Java内存模型是什么？
 Java内存模型规定和指引Java程序在不同的内存架构、CPU和操作系统间有确定性地行为。它在多线程的情况下尤其重要。Java内存模型对一个线程所做的变动能被其它线程可见提供了保证，它们之间是先行发生关系。这个关系定义了一些规则让程序员在并发编程时思路更清晰。比如，先行发生关系确保了：
 
 线程内的代码能够按先后顺序执行，这被称为程序次序规则。
@@ -49,7 +49,7 @@ Java内存模型规定和指引Java程序在不同的内存架构、CPU和操作
 可传递性
 我强烈建议大家阅读《Java并发编程实践》第十六章来加深对Java内存模型的理解。
 
-10) Java中的volatile 变量是什么？
+   Java中的volatile 变量是什么？
 volatile是一个特殊的修饰符，只有成员变量才能使用它。在Java并发程序缺少同步类的情况下，多线程对成员变量的操作对其它线程是透明的。volatile变量可以保证下一个读取操作会在前一个写操作之后发生，就是上一题的volatile变量规则。点击这里查看更多volatile的相关内容。
 
 11) 什么是线程安全？Vector是一个线程安全类吗？ （详见这里)
