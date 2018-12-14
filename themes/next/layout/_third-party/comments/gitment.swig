@@ -19,10 +19,10 @@
     {% endif %}
 
     {% if page.comments %}
-      <script type="text/javascript">
+      <script>
       function renderGitment(){
         var gitment = new {{CommentsClass}}({
-            id: '{{ page.date }}',
+            id: window.location.pathname,
             owner: '{{ theme.gitment.github_user }}',
             repo: '{{ theme.gitment.github_repo }}',
             {% if theme.gitment.mint %}
