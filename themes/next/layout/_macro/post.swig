@@ -19,16 +19,16 @@
   {### POST BLOCK ###}
   {##################}
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(post.path) }}">
+    <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(post.path) }}"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="{{ author }}">
-      <meta itemprop="description" content="{{ description }}">
-      <meta itemprop="image" content="{{ url_for( theme.avatar.url | default(theme.images + '/avatar.gif') ) }}">
+      <meta itemprop="name" content="{{ author }}"/>
+      <meta itemprop="description" content="{{ description }}"/>
+      <meta itemprop="image" content="{{ url_for( theme.avatar.url | default(theme.images + '/avatar.gif') ) }}"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{{ title }}">
+      <meta itemprop="name" content="{{ title }}"/>
     </span>
 
     {% if not headlessPost %}
@@ -316,12 +316,14 @@
                 {{ __('post.read_more') }} &raquo;
               </a>
             </div>
-         {% endif %}
+          {% endif %}
           <!--/noindex-->
         {% elif theme.auto_excerpt.enable %}
-          {% set content = post.content | striptags %}
-          {{ content.substring(0, theme.auto_excerpt.length) }}
-          {% if content.length > theme.auto_excerpt.length %}...{% endif %}
+          {% set content = post.content | replace('<td class="gutter">.*?</td>', "", "g") | striptags %}
+            <p>
+              {{ content.substring(0, theme.auto_excerpt.length) }}
+              {% if content.length > theme.auto_excerpt.length %}...{% endif %}
+            </p>
           <!--noindex-->
           {% if theme.read_more_btn %}
             <div class="post-button text-center">
@@ -384,7 +386,7 @@
       {% endif %}
 
       {% if not is_index %}
-      {% if theme.rating.enable or (theme.vkontakte_api.enable and theme.vkontakte_api.like) or (theme.facebook_sdk.enable and theme.facebook_sdk.like_button) or (theme.needmoreshare2.enable and theme.needmoreshare2.postbottom.enable) or (theme.baidushare and theme.baidushare.type === "button" )%}
+      {% if theme.rating.enable or (theme.vkontakte_api.enable and theme.vkontakte_api.like) or (theme.facebook_sdk.enable and theme.facebook_sdk.like_button) or (theme.needmoreshare2.enable and theme.needmoreshare2.postbottom.enable) or (theme.baidushare and theme.baidushare.type === "button") %}
         <div class="post-widgets">
         {% if theme.rating.enable %}
           <div class="wp_rating">
