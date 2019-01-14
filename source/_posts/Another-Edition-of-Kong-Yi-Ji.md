@@ -8,6 +8,7 @@ categories: University
 keywords: 大学, 成电, 孔乙己, 大学同学, 
 ---
 
+
 ***By Long Luo***
 
 >这篇文章是大三时在学校内网([5come5](http://5come5.cn))写的，关于我的一位同班同学，发表于5come5 BBS灌水区。

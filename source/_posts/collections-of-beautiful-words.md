@@ -3,9 +3,9 @@ layout: post
 title: '一些文艺美好的句子'
 comments: true
 date: 2017-03-19 21:12:49
-tags: [美好, 收集, 句子]
+tags: [美好, 文艺, 句子]
 categories: Life
-keywords: 句子, 
+keywords: 句子, 美好, 文艺, 
 ---
 
 ***By Long Luo***

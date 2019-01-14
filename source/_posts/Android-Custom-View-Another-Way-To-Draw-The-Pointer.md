@@ -8,6 +8,7 @@ categories: Android
 keywords: Android, View, 自定义View, 自定义控件, 表盘, 
 ---
 
+
 ***By Long Luo***
 
 在上一篇[Android自定义View：如何实现一个模拟时钟？](http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/)中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的`canvas.rotate()`方法让坐标系旋转从而绘制出指针。

@@ -8,8 +8,8 @@ categories: Life
 keywords: 欧洲, 欧洲小镇, 华为, huawei, Europe Town, Town, 
 ---
 
-***By Long Luo***
 
+***By Long Luo***
 
 上周末去了趟南方工厂，下午顺便逛了下朋友圈网红之地：**华为欧洲小镇**，大名**溪流背坡村**。
 
@@ -38,6 +38,4 @@ keywords: 欧洲, 欧洲小镇, 华为, huawei, Europe Town, Town,
 话说完了，毕竟**颜值即正义**，请大家欣赏美图：
 
 
-
 ***Created By Long Luo at 2018年12月14日 @Shenzhen***
-

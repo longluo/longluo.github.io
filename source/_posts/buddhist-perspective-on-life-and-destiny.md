@@ -8,6 +8,7 @@ categories: Life
 keywords: Life, 思考, Destiny, 总结, 佛学, 生活, 人生, buddhism, 灵隐寺,
 ---
 
+
 ***By Long Luo***
 
 # 一、

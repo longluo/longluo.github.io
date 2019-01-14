@@ -8,6 +8,7 @@ categories: Android
 keywords: Android, View, 自定义View, 自定义控件, 
 ---
 
+
 ***By Long Luo***
 
 **Android中自定义控件**一直都是Android开发中的一个难点。

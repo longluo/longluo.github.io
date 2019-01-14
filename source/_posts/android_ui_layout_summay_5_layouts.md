@@ -8,6 +8,7 @@ tags: [Android, Layout]
 keywords: Android, UI, Layout, 布局,
 ---
 
+
 ***By Long Luo***
 
 在一个Android应用中，Layout是开发中的一个很重要环节，Layout是组成UI不可缺少的一部分。

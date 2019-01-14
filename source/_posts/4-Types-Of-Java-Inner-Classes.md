@@ -8,6 +8,7 @@ categories: Java
 keywords: Java, Class, 类, 内部类, 
 ---
 
+
 ***翻译 By Long Luo***
 
 There are 4 different types of inner classes you can use in Java. The following gives their name and examples.

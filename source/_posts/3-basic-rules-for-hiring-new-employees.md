@@ -8,6 +8,7 @@ categories: Work
 keywords: 招聘, 选择, 风险, Hire, 工作, 
 ---
 
+
 ***By Long Luo***
 
 **招聘**其实本质上是在做***风险评估***，根据简历和面试确定风险最小的那个人。

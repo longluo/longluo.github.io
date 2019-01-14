@@ -8,6 +8,7 @@ tags: [Shell, 脚本]
 keywords: Shell, 网络资源, 脚本, Scripts, 
 ---
 
+
 ***By Long Luo***
 
 最近为了做好一个[天气预报](http://imlongluo.com/weather)的项目，需要从Yahoo下载一些天气图标，但是由于图标比较多，有80多张。图标是存储在[Yahoo Image](http://yimg.com)网站上的。

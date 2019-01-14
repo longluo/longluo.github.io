@@ -8,6 +8,7 @@ categories: Android
 keywords: Android, 自定义View, 动画, 摆动动画, 钟摆, Animation, View, 
 ---
 
+
 ***By Long Luo***
 
 继第一篇[Android自定义View：如何实现一个模拟时钟？](http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/)，我们使用Android自定义View实现了一款模拟表盘，第二篇[Android自定义View：另一种实现手表指针转动的方法](http://www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/)我们又通过另外一种方法实现了手表指针的另外一种转动实现。
