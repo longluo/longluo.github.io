@@ -13,12 +13,8 @@ override: false
 cache:
   enable: true
 
-# Redefine custom file paths. Introduced in NexT v6.0.2.
-# If commented, will be used default custom file paths.
-
-# For example, you want to put your custom styles file
-# outside theme directory in root `source/_data`, set
-# `styles: source/_data/styles.styl`
+# Redefine custom file paths. Introduced in NexT v6.0.2. If commented, will be used default custom file paths.
+# For example, you want to put your custom styles file outside theme directory in root `source/_data`, set `styles: source/_data/styles.styl`
 #custom_file_path:
   # Default paths: layout/_custom/*
   #head: source/_data/head.swig
@@ -35,16 +31,9 @@ cache:
 
 # ---------------------------------------------------------------
 # Site Information Settings
+# See: https://theme-next.org/docs/getting-started/
 # ---------------------------------------------------------------
 
-# To get or check favicons visit: https://realfavicongenerator.net
-# Put your favicons into `hexo-site/source/` (recommend) or `hexo-site/themes/next/source/images/` directory.
-
-# Default NexT favicons placed in `hexo-site/themes/next/source/images/` directory.
-# And if you want to place your icons in `hexo-site/source/` root directory, you must remove `/images` prefix from pathes.
-
-# For example, you put your favicons into `hexo-site/source/images` directory.
-# Then need to rename & redefine them on any other names, otherwise icons from Next will rewrite your custom icons in Hexo.
 favicon:
   small: /images/favicon-16x16-next.png
   medium: /images/favicon-32x32-next.png
@@ -57,13 +46,12 @@ favicon:
 keywords: "Software Engineer, Android, Develop, Long Luo, Web, 移动开发, Program, Code, 程序员"
 
 # Set rss to false to disable feed link.
-# Leave rss as empty to use site's feed link, and install hexo-generator-feed: `npm install hexo-generator-feed --save`.
+# Leave rss as blank to use site's feed link, and install hexo-generator-feed: `npm install hexo-generator-feed --save`.
 # Set rss to specific value if you have burned your feed already.
 rss:
 
 footer:
-  # Specify the date when the site was setup.
-  # If not defined, current year will be used.
+  # Specify the date when the site was setup. If not defined, current year will be used.
   since: 2013
 
   # Icon between year and copyright info.
@@ -78,7 +66,7 @@ footer:
 
   # If not defined, `author` from Hexo main config will be used.
   copyright:
-  # -------------------------------------------------------------
+
   powered:
     # Hexo link (Powered by Hexo).
     enable: true
@@ -90,14 +78,13 @@ footer:
     enable: true
     # Version info of NexT after scheme info (vX.X.X).
     version: true
-  # -------------------------------------------------------------
+
   # Beian icp information for Chinese users. In China, every legal website should have a beian icp in website footer.
   # http://www.miitbeian.gov.cn
   beian:
     enable: false
     icp:
 
-  # -------------------------------------------------------------
   # Any custom text can be defined here.
   #custom_text: Hosted by <a href="https://pages.coding.me" class="theme-link" rel="noopener" target="_blank">Coding Pages</a>
 
@@ -113,7 +100,7 @@ creative_commons:
   post: true
   language: deed.zh
 
-# Follow me on GitHub banner in right-top corner.
+# `Follow me on GitHub` banner in the top-right corner.
 github_banner:
   enable: false
   permalink: https://github.com/yourname
@@ -124,7 +111,10 @@ github_banner:
 # SEO Settings
 # ---------------------------------------------------------------
 
-# Canonical, set a canonical link tag in your hexo, you could use it for your SEO of blog.
+# Disable Baidu transformation on mobile devices.
+disable_baidu_transformation: false
+
+# Set a canonical link tag in your hexo, you could use it for your SEO of blog.
 # See: https://support.google.com/webmasters/answer/139066
 # Tips: Before you open this tag, remember set up your URL in hexo _config.yml (e.g. url: http://yourdomain.com)
 canonical: true
@@ -138,6 +128,25 @@ index_with_subtitle: false
 
 # Automatically add external URL with BASE64 encrypt & decrypt.
 exturl: false
+
+# Google Webmaster tools verification.
+# See: https://www.google.com/webmasters
+#google_site_verification:
+
+# Bing Webmaster tools verification.
+# See: https://www.bing.com/webmaster
+#bing_site_verification:
+
+# Yandex Webmaster tools verification.
+# See: https://webmaster.yandex.ru
+#yandex_site_verification:
+
+# Baidu Webmaster tools verification.
+# See: https://ziyuan.baidu.com/site
+#baidu_site_verification:
+
+# Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
+baidu_push: false
 
 
 # ---------------------------------------------------------------
@@ -288,21 +297,28 @@ chat:
   icon: comment # icon in Font Awesome 4, set false to disable icon
   text: Chat # button text, change it as you wish
 
+
 # ---------------------------------------------------------------
 # Post Settings
 # See: https://theme-next.org/docs/theme-settings/posts/
 # ---------------------------------------------------------------
 
+# Set the text alignment in the posts.
+text_align:
+  # Available values: start | end | left | right | center | justify | justify-all | match-parent
+  desktop: justify
+  mobile: justify
+
 # Automatically scroll page to section which is under <!-- more --> mark.
 scroll_to_more: true
 
-# Automatically saving scroll position on each post/page in cookies.
+# Automatically saving scroll position on each post / page in cookies.
 save_scroll: true
 
 # Automatically excerpt description in homepage as preamble text.
 excerpt_description: true
 
-# Automatically Excerpt. Not recommend.
+# Automatically Excerpt (Not recommend).
 # Use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
   enable: false
@@ -318,9 +334,6 @@ post_meta:
   created_at: true
   updated_at:
     enable: true
-    # If true, show updated date label only if `updated date` is different from `created date` (post edited in another day than was created).
-    # And if post was edited in same day as created, edited time will show in popup title under created time label.
-    # If false show anyway, but if post edited in same day, show only edited time.
     another_day: true
   categories: true
 
@@ -334,8 +347,7 @@ symbols_count_time:
   wpm: 275
 
 codeblock:
-  # Manual define the border radius in codeblock
-  # Leave it empty for the default 1
+  # Manual define the border radius in codeblock, leave it blank for the default value: 1
   border_radius:
   # Add copy button on codeblock
   copy_button:
@@ -351,15 +363,18 @@ wechat_subscriber:
   #qcode: /path/to/your/wechatqcode e.g. /uploads/wechat-qcode.jpg
   #description: e.g. subscribe to my blog by scanning my public wechat account
 
-# Reward
-# If true, reward would be displayed in every article by default.
-# You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
-reward:
+# Reward (Donate)
+reward_settings:
+  # If true, reward would be displayed in every article by default.
+  # You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
   enable: false
+  animation: false
   #comment: Donate comment here
-  #wechatpay: /images/wechatpay.jpg
-  #alipay: /images/alipay.jpg
-  #bitcoin: /images/bitcoin.jpg
+
+reward:
+  #wechatpay: /images/wechatpay.png
+  #alipay: /images/alipay.png
+  #bitcoin: /images/bitcoin.png
 
 # Related popular posts
 # Dependencies: https://github.com/tea3/hexo-related-popular-posts
@@ -386,14 +401,17 @@ post_edit:
 # Misc Theme Settings
 # ---------------------------------------------------------------
 
-# Disable Baidu tranformation on mobile devices.
-disable_baidu_tranformation: false
-
 # Reduce padding / margin indents on devices with narrow width.
 mobile_layout_economy: false
 
 # Android Chrome header panel color ($brand-bg / $headband-bg => $black-deep).
 android_chrome_color: "#222"
+
+# Hide sticky headers and color the menu bar on Safari (iOS / macOS).
+safari_rainbow: false
+
+# Optimize the display of scrollbars on webkit based browsers.
+custom_scrollbar: false
 
 # Custom Logo
 # Do not support Scheme Mist currently.
@@ -413,7 +431,6 @@ cheers: true
 tagcloud:
   # If true, font size, font color and amount of tags can be customized
   enable: false
-
   # All values below are same as default, change them by yourself
   min: 12 # min font size in px
   max: 30 # max font size in px
@@ -480,7 +497,10 @@ font:
 # ---------------------------------------------------------------
 # Third Party Services Settings
 # See: https://theme-next.org/docs/third-party-services/
-# You may need to install dependencies or set CDN urls in `vendors`
+# You may need to install dependencies or set CDN URLs in `vendors`
+# There are two different CDN providers by default:
+#   - jsDelivr (cdn.jsdelivr.net), works everywhere even in China
+#   - CDNJS (cdnjs.cloudflare.com), provided by cloudflare
 # ---------------------------------------------------------------
 
 # Math Equations Render Support
@@ -497,10 +517,8 @@ math:
 
   # hexo-rendering-pandoc (or hexo-renderer-kramed) needed to full MathJax support.
   mathjax:
-    # Use 2.7.1 as default, jsdelivr as default CDN, works everywhere even in China
-    cdn: //cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-    # For direct link to MathJax.js with CloudFlare CDN (cdnjs.cloudflare.com)
-    #cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML
+    cdn: //cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+    #cdn: //cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML
 
     # See: https://mhchem.github.io/MathJax-mhchem/
     #mhchem: //cdn.jsdelivr.net/npm/mathjax-mhchem@3
@@ -508,9 +526,7 @@ math:
 
   # hexo-renderer-markdown-it-plus (or hexo-renderer-markdown-it with markdown-it-katex plugin) needed to full Katex support.
   katex:
-    # Use 0.7.1 as default, jsdelivr as default CDN, works everywhere even in China
     cdn: //cdn.jsdelivr.net/npm/katex@0/dist/katex.min.css
-    # CDNJS, provided by cloudflare, maybe the best CDN, but not works in China
     #cdn: //cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css
 
     copy_tex:
@@ -557,18 +573,49 @@ quicklink:
   #   - (uri, el) => el.hasAttribute('noopener')
   ignores:
 
-# Swiftype Search API Key
-#swiftype_key:
-
 # Baidu Analytics ID
 baidu_analytics: a75fb5d0c0ef1e36c34b7f52bb7c48be
 
-# Growingio Analytics ID
-# Copyright 2015-2018 GrowingIO, Inc. More info available at https://www.growingio.com
-#growingio_analytics: #your projectId
 
 # Duoshuo ShortName
 #duoshuo_shortname: longluome
+
+# Bookmark Support
+# Dependencies: https://github.com/theme-next/theme-next-bookmark
+bookmark:
+  enable: false
+  # If auto, save the reading position when closing the page or clicking the bookmark-icon.
+  # If manual, only save it by clicking the bookmark-icon.
+  save: auto
+
+# Reading progress bar
+# Dependencies: https://github.com/theme-next/theme-next-reading-progress
+reading_progress:
+  enable: false
+  color: "#37c6c0"
+  height: 2px
+
+# Google Calendar
+# Share your recent schedule to others via calendar page.
+# API Documentation: https://developers.google.com/google-apps/calendar/v3/reference/events/list
+# To get api_key: https://console.developers.google.com
+# Create & manage a public Google calendar: https://support.google.com/calendar/answer/37083
+calendar:
+  enable: false
+  calendar_id: <required> # Your Google account E-Mail
+  api_key: <required>
+  orderBy: startTime
+  offsetMax: 24 # Time Range
+  offsetMin: 4 # Time Range
+  showDeleted: false
+  singleEvents: true
+  maxResults: 250
+
+
+# ---------------------------------------------------------------
+# Comments and Widgets
+# See: https://theme-next.org/docs/third-party-services/comments-and-widgets/
+# ---------------------------------------------------------------
 
 # Disqus
 disqus:
@@ -576,6 +623,20 @@ disqus:
   shortname:
   count: true
   lazyload: false
+
+# DisqusJS
+# Alternative Disqus - Render comment component using Disqus API
+# Demo: https://suka.js.org/DisqusJS/
+disqusjs:
+  enable: false
+  # API Endpoint of Disqus API (https://disqus.com/api/)
+  # leave api empty if you are able to connect to Disqus API
+  # otherwise you need a reverse proxy for Disqus API
+  # For example:
+  # api: https://disqus.skk.moe/disqus/
+  api:
+  apikey: # register new application from https://disqus.com/api/applications/
+  shortname: # See: https://disqus.com/admin/settings/general/
 
 # Changyan
 changyan:
@@ -635,6 +696,12 @@ gitalk:
   # Available values: en, es-ES, fr, ru, zh-CN, zh-TW
   language:
 
+
+# ---------------------------------------------------------------
+# Content Sharing Services
+# See: https://theme-next.org/docs/third-party-services/content-sharing-services/
+# ---------------------------------------------------------------
+
 # Baidu Share
 # Available values: button | slide
 # Warning: Baidu Share does not support https.
@@ -676,8 +743,8 @@ likely:
 # boxForm: horizontal | vertical
 # position: top / middle / bottom + Left / Center / Right
 # networks:
-# Weibo,Wechat,Douban,QQZone,Twitter,Linkedin,Mailto,Reddit,Delicious,StumbleUpon,Pinterest,Facebook,GooglePlus,
-# Slashdot,Technorati,Posterous,Tumblr,GoogleBookmarks,Newsvine,Evernote,Friendfeed,Vkontakte,Odnoklassniki,Mailru
+# Weibo,Wechat,Douban,QQZone,Twitter,Facebook,Linkedin,Mailto,Reddit,Delicious,StumbleUpon,Pinterest,
+# GooglePlus,Tumblr,GoogleBookmarks,Newsvine,Evernote,Friendfeed,Vkontakte,Odnoklassniki,Mailru
 needmoreshare2:
   enable: false
   postbottom:
@@ -695,26 +762,23 @@ needmoreshare2:
       position: middleRight
       networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
 
-# Google Webmaster tools verification setting
-# See: https://www.google.com/webmasters
-#google_site_verification:
+
+# ---------------------------------------------------------------
+# Statistics and Analytics
+# See: https://theme-next.org/docs/third-party-services/statistics-and-analytics/
+# ---------------------------------------------------------------
+
+# Baidu Analytics ID
+#baidu_analytics:
+
+# Growingio Analytics ID
+# Copyright 2015-2018 GrowingIO, Inc. More info available at https://www.growingio.com
+#growingio_analytics: #your projectId
 
 # Google Analytics
 google_analytics: 
   tracking_id: UA-46213499-2
 #  localhost_ignored: true
-
-# Bing Webmaster tools verification setting
-# See: https://www.bing.com/webmaster
-#bing_site_verification:
-
-# Yandex Webmaster tools verification setting
-# See: https://webmaster.yandex.ru
-#yandex_site_verification:
-
-# Baidu Webmaster tools verification setting
-# See: https://ziyuan.baidu.com/site
-#baidu_site_verification:
 
 # CNZZ count
 cnzz_siteid: 1258500959
@@ -798,24 +862,11 @@ tencent_analytics: 55523596
 # Tencent MTA ID
 #tencent_mta:
 
-# Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
-baidu_push: false
 
-# Google Calendar
-# Share your recent schedule to others via calendar page.
-# API Documentation: https://developers.google.com/google-apps/calendar/v3/reference/events/list
-# To get api_key: https://console.developers.google.com
-# Create & manage a public Google calendar: https://support.google.com/calendar/answer/37083
-calendar:
-  enable: false
-  calendar_id: <required> # Your Google account E-Mail
-  api_key: <required>
-  orderBy: startTime
-  offsetMax: 24 # Time Range
-  offsetMin: 4 # Time Range
-  showDeleted: false
-  singleEvents: true
-  maxResults: 250
+# ---------------------------------------------------------------
+# Search Services
+# See: https://theme-next.org/docs/third-party-services/search-services/
+# ---------------------------------------------------------------
 
 # Algolia Search
 # See: https://github.com/theme-next/hexo-theme-next/blob/master/docs/ALGOLIA-SEARCH.md
@@ -841,20 +892,14 @@ local_search:
   # Unescape html strings to the readable one.
   unescape: false
 
-# Bookmark Support
-# Dependencies: https://github.com/theme-next/theme-next-bookmark
-bookmark:
-  enable: true
-  # If auto, save the reading position when closing the page or clicking the bookmark-icon.
-  # If manual, only save it by clicking the bookmark-icon.
-  save: auto
+# Swiftype Search API Key
+#swiftype_key:
 
-# Reading progress bar
-# Dependencies: https://github.com/theme-next/theme-next-reading-progress
-reading_progress:
-  enable: false
-  color: "#37c6c0"
-  height: 2px
+
+# ---------------------------------------------------------------
+# Chat Services
+# See: https://theme-next.org/docs/third-party-services/chat-services/
+# ---------------------------------------------------------------
 
 # Chatra Support
 # See: https://chatra.io
@@ -871,6 +916,7 @@ chatra:
 tidio:
   enable: false
   key: # Public Key, get it from Dashboard, See: https://www.tidiochat.com/panel/settings/developer
+
 
 # ---------------------------------------------------------------
 # Tags Settings
@@ -902,16 +948,14 @@ tabs:
 # PDF tag, requires two plugins: pdfObject and pdf.js
 # pdfObject will try to load pdf files natively, if failed, pdf.js will be used.
 # The following `cdn` setting is only for pdfObject, because cdn for pdf.js might be blocked by CORS policy.
-# So, YOU MUST install the dependency of pdf.js if you want to use pdf tag and make it work on all browsers.
+# So, you must install the dependency of pdf.js if you want to use pdf tag and make it available to all browsers.
 # See: https://github.com/theme-next/theme-next-pdf
 pdf:
   enable: false
   # Default height
   height: 500px
   pdfobject:
-    # Use 2.1.1 as default, jsdelivr as default CDN, works everywhere even in China
-    cdn: //cdn.jsdelivr.net/npm/pdfobject@2.1.1/pdfobject.min.js
-    # CDNJS, provided by cloudflare, maybe the best CDN, but not works in China
+    cdn: //cdn.jsdelivr.net/npm/pdfobject@2/pdfobject.min.js
     #cdn: //cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js
 
 # Mermaid tag
@@ -919,9 +963,7 @@ mermaid:
   enable: false
   # Available themes: default | dark | forest | neutral
   theme: forest
-  # Use 8.0.0 as default, jsdelivr as default CDN, works everywhere even in China
   cdn: //cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js
-  # CDNJS, provided by cloudflare, maybe the best CDN, but not works in China
   #cdn: //cdnjs.cloudflare.com/ajax/libs/mermaid/8.0.0/mermaid.min.js
 
 
@@ -976,7 +1018,7 @@ pace_theme: pace-theme-minimal
 canvas_nest:
   enable: false
   onmobile: true # display on mobile or not
-  color: '0,0,255' # RGB values, use ',' to separate
+  color: "0,0,255" # RGB values, use ',' to separate
   opacity: 0.5 # the opacity of line: 0~1
   zIndex: -1 # z-index property of the background
   count: 99 # the number of lines
@@ -1023,7 +1065,7 @@ vendors:
   # jquery: //cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js
   jquery:
 
-  # Internal version: 2.1.5 & 3.5.6
+  # Internal version: 2.1.5 & 3.5.7
   # See: https://fancyapps.com/fancybox
   # Example:
   # fancybox: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
@@ -1178,6 +1220,14 @@ vendors:
   # likely_css: //cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.css
   likely_js:
   likely_css:
+
+  # DisqusJS
+  # See: https://github.com/SukkaW/DisqusJS
+  # Example:
+  # disqusjs_js: //cdn.jsdelivr.net/npm/disqusjs@1/dist/disqus.js
+  # disqusjs_css: //cdn.jsdelivr.net/npm/disqusjs@1/dist/disqusjs.css
+  disqusjs_js:
+  disqusjs_css:
 
 # Assets
 css: css
