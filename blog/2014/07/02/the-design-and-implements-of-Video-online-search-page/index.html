@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="By Long Luo  Agenda  1. 在线搜索现状及发展 2. UI设计及实现 3. 代码逻辑设计及实现 4. 问题及解决  一、在线搜索之前搜索页面的一些缺陷：  具体实现位于VideoListActivity中，一方面会造成VideoListActivity代码过于庞大臃肿，另外一方面不便于后续功能扩展，结构不清晰； 依赖了大量系统控件，不便于后续解耦及界面定制； 今后搜索界面会参考">
+<meta name="keywords" content="Android,UI,Layout,Design,设计,性能优化,视频">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视频在线搜索设计与实现">
+<meta property="og:url" content="http://longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
+<meta property="og:description" content="By Long Luo  Agenda  1. 在线搜索现状及发展 2. UI设计及实现 3. 代码逻辑设计及实现 4. 问题及解决  一、在线搜索之前搜索页面的一些缺陷：  具体实现位于VideoListActivity中，一方面会造成VideoListActivity代码过于庞大臃肿，另外一方面不便于后续功能扩展，结构不清晰； 依赖了大量系统控件，不便于后续解耦及界面定制； 今后搜索界面会参考">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/iqiyi_search_filter.png?imageView/1/w/540/h/960/q/62/format/PNG">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_classes.png">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_weights.png">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_initFragment.png">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_pagechangelistener.png">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_resultFragment.png">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_textwatcher.png">
+<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_setText.png">
+<meta property="og:updated_time" content="2019-08-21T17:46:52.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="视频在线搜索设计与实现">
+<meta name="twitter:description" content="By Long Luo  Agenda  1. 在线搜索现状及发展 2. UI设计及实现 3. 代码逻辑设计及实现 4. 问题及解决  一、在线搜索之前搜索页面的一些缺陷：  具体实现位于VideoListActivity中，一方面会造成VideoListActivity代码过于庞大臃肿，另外一方面不便于后续功能扩展，结构不清晰； 依赖了大量系统控件，不便于后续解耦及界面定制； 今后搜索界面会参考">
+<meta name="twitter:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG">
+  <link rel="canonical" href="http://longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>视频在线搜索设计与实现 | Long Luo's Develop Notes</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !false) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-46213499-2');
+    }
+  </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Long Luo's Develop Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">每一天都是奇迹</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-wrapper">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Develop Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">视频在线搜索设计与实现
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2014-07-02 23:04:48" itemprop="dateCreated datePublished" datetime="2014-07-02T23:04:48+08:00">2014-07-02</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" class="post-meta-item leancloud_visitors" data-flag-title="视频在线搜索设计与实现" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span></span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>Agenda </p>
+<pre><code>1. 在线搜索现状及发展
+2. UI设计及实现
+3. 代码逻辑设计及实现
+4. 问题及解决
+</code></pre></blockquote>
+<h1 id="一、在线搜索"><a href="#一、在线搜索" class="headerlink" title="一、在线搜索"></a>一、在线搜索</h1><p>之前搜索页面的一些缺陷：</p>
+<ol>
+<li>具体实现位于VideoListActivity中，一方面会造成VideoListActivity代码过于庞大臃肿，另外一方面<strong><em>不便于后续功能扩展</em></strong>，结构不清晰；</li>
+<li>依赖了大量系统控件，不便于<strong>后续解耦</strong>及<strong>界面定制</strong>；</li>
+<li>今后搜索界面会参考第三方视频应用的实现，之前不便于增加搜索记录，或搜索独立出来，用于搜索本地视频，甚至将此搜索移植应用于其他应用中；</li>
+</ol>
+<h2 id="1-1-在线搜索实现效果"><a href="#1-1-在线搜索实现效果" class="headerlink" title="1.1 在线搜索实现效果"></a>1.1 在线搜索实现效果</h2><p>在线搜索因为是和第三方合作，涉及到很多网络相关的操作，简单来说就是利用HTTP协议向相关接口发起一次网络请求，服务器如果返回了正确的响应，App会解析服务器返回的内容，并展示出来。</p>
+<h3 id="1-1-1-热词界面"><a href="#1-1-1-热词界面" class="headerlink" title="1.1.1 热词界面"></a>1.1.1 热词界面</h3><p>热词界面是<strong>当搜索文本框文字为空</strong>时会弹出热词界面，会展示最近一段时间内搜索频率很高的词语。一方面可以节省大家输入文字，另外一方面你也可以了解当前的一些热点。</p>
+<p>当你点击列表中的某个热词时，就会发起一次以此为关键词的搜索。</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="热词显示"></p>
+<h3 id="1-1-2-关联词"><a href="#1-1-2-关联词" class="headerlink" title="1.1.2 关联词"></a>1.1.2 关联词</h3><p>当<strong>搜索文本输入框含有文字</strong>时，会获取当前输入文字，以此为关键词获取网络的一些联想词，可以点击此联想词发起一次搜索。</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="关联词显示"></p>
+<h3 id="1-1-3-搜索结果分类浏览"><a href="#1-1-3-搜索结果分类浏览" class="headerlink" title="1.1.3 搜索结果分类浏览"></a>1.1.3 搜索结果分类浏览</h3><p>发起一次搜索之后，如果得到了服务器的正确响应，而且确实有相关视频内容。那么我们会将搜索结果展示在手机页面上。</p>
+<p>搜索到的结果可以分<strong>不同频道</strong>浏览，会根据具体内容进行动态变化，有的可能有10几个频道，有的也就1个频道。频道页面可以滑动浏览，也可以选择在顶部页面选中或者滑动。</p>
+<p>分类浏览时，第一个展示的页面是搜索到的全部视频内容，之后的会根据结果动态变化。</p>
+<p>如下图所示：</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果"></p>
+<p>分频道浏览：</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果分类"></p>
+<h3 id="1-1-4-语音搜索"><a href="#1-1-4-语音搜索" class="headerlink" title="1.1.4 语音搜索"></a>1.1.4 语音搜索</h3><p><strong>语音搜索图标只有当搜索框里文字为空才会出现，否则出现搜索图标</strong>。</p>
+<p>点击语音搜索图标将会启动VoiceSearch这个apk，然后你可以说话，如果被正确识别之后，会发起一次搜索，并将结果展示出来。</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索"></p>
+<h3 id="1-1-5-语音搜索结果"><a href="#1-1-5-语音搜索结果" class="headerlink" title="1.1.5 语音搜索结果"></a>1.1.5 语音搜索结果</h3><p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索结果"></p>
+<a id="more"></a>
+<h1 id="二、在线搜索UI设计及实现"><a href="#二、在线搜索UI设计及实现" class="headerlink" title="二、在线搜索UI设计及实现"></a>二、在线搜索UI设计及实现</h1><p>任何功能都离不开UI和代码。在此我们先讨论在线搜索界面的UI设计及具体实现：</p>
+<h2 id="2-1-SearchBar"><a href="#2-1-SearchBar" class="headerlink" title="2.1 SearchBar"></a>2.1 SearchBar</h2><p>SearchBar即为顶部的搜索栏，包括返回、编辑框、搜索按钮、语音按钮等。假如采用标准SDK，还需要加上一个清除全部文字按钮。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">"@+id/searchBar"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"@dimen/searchBarHeight"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_alignParentTop</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:background</span>=<span class="string">"@drawable/searchbar_bg"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:focusable</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:focusableInTouchMode</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:gravity</span>=<span class="string">"center"</span> &gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/searchBack"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span> &gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/searchBackButton"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_centerInParent</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/phone_search_back_arrow"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:clickable</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:contentDescription</span>=<span class="string">"@null"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:focusable</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/searchSubmitLayout"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentRight</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginRight</span>=<span class="string">"@dimen/searchBar_SearchMarginRight"</span> &gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/searchVoiceSubmit"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"@dimen/searchBar_VoiceSearchButtonWidth"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"@dimen/searchBar_VoiceSearchButtonHeight"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/video_search_voice_bg"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:visibility</span>=<span class="string">"gone"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">ImageView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/searchSubmit"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/video_search_submit_bg"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">"@+id/searchInputLayout"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentLeft</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_centerInParent</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_marginLeft</span>=<span class="string">"@dimen/searchBar_marginLeft"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_toLeftOf</span>=<span class="string">"@id/searchSubmitLayout"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_toRightOf</span>=<span class="string">"@id/searchBack"</span> &gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">com.oppo.widget.OppoEditText</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/searchKeyword"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"@dimen/searchBar_EditTextHeight"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_centerInParent</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_centerVertical</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:background</span>=<span class="string">"@drawable/video_search_input_bg"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:ellipsize</span>=<span class="string">"end"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:hint</span>=<span class="string">"@string/search_hit"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:inputType</span>=<span class="string">"text"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:paddingLeft</span>=<span class="string">"@dimen/searchBar_EditTextPaddingLeft"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:paddingRight</span>=<span class="string">"@dimen/searchBar_EditTextPaddingRight"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:singleLine</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:textSize</span>=<span class="string">"14sp"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">oppo:quickDelete</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-2-热词和关联词"><a href="#2-2-热词和关联词" class="headerlink" title="2.2 热词和关联词"></a>2.2 热词和关联词</h2><p>实现热词和关联词需要ListView及相关缓冲、空瓶动画，使用OPPO SDK控件实现。</p>
+<h2 id="2-3-分类筛选页面"><a href="#2-3-分类筛选页面" class="headerlink" title="2.3 分类筛选页面"></a>2.3 分类筛选页面</h2><p><strong>分类筛选页面</strong>是一个难点，为了实现这个效果，使用了2种方案，但第一种方案页面无法滑动，最后选择可滑动页面方案。</p>
+<h3 id="2-3-1-水平ListView和ListView实现方案"><a href="#2-3-1-水平ListView和ListView实现方案" class="headerlink" title="2.3.1 水平ListView和ListView实现方案"></a>2.3.1 水平ListView和ListView实现方案</h3><p>这种方案是参考了iQiyi的实现方案，如下图所示：</p>
+<h4 id="2-3-1-1-iQiyi-搜索结果"><a href="#2-3-1-1-iQiyi-搜索结果" class="headerlink" title="2.3.1.1 iQiyi 搜索结果"></a>2.3.1.1 iQiyi 搜索结果</h4><p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/iqiyi_search_filter.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="iQiyi搜索结果"></p>
+<h4 id="2-3-1-2-iQiyi实现"><a href="#2-3-1-2-iQiyi实现" class="headerlink" title="2.3.1.2 iQiyi实现"></a>2.3.1.2 iQiyi实现</h4><p>分类可滑动使用了一个HorizontalListView实现，搜索结果使用ListView实现，优点：</p>
+<ol>
+<li>每个频道显示可以自定义，可以不仅仅显示频道名称，后续扩展方便，比如添加具体视频数字等；</li>
+<li>代码逻辑简单，仅需要添加ListView点击实现接口，启动搜索，展示结果。</li>
+</ol>
+<p><strong>缺点：</strong> 不同频道页面不可以滑动切换，无法满足UE需求。</p>
+<h3 id="2-3-2-滑动实现方案"><a href="#2-3-2-滑动实现方案" class="headerlink" title="2.3.2 滑动实现方案"></a>2.3.2 滑动实现方案</h3><p>按照iQiyi方案实现之后，由于需求变更。必须实现分类页面滑动切换效果，于是就有了第二种方案。</p>
+<ol>
+<li>分类频道使用HorizontalScrollView实现，ScrollView中添加相应的View，展示搜索分类；</li>
+<li>由于页面可滑动，需要ViewPager和Fragments List，在滑动时，启动相关的fragment，显示相关内容；</li>
+<li>每个fragment需要ListView及相关的一些控件，发起搜索及相关实现；</li>
+</ol>
+<h1 id="三、在线搜索代码逻辑"><a href="#三、在线搜索代码逻辑" class="headerlink" title="三、在线搜索代码逻辑"></a>三、在线搜索代码逻辑</h1><h2 id="3-1-搜索类"><a href="#3-1-搜索类" class="headerlink" title="3.1 搜索类"></a>3.1 搜索类</h2><p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_classes.png" alt="搜索类"></p>
+<p><strong>iQiyi搜索接口</strong>：</p>
+<p><a href="http://iface.iqiyi.com/api/searchIface?key=xxx&amp;id=7f15c6eafc&amp;type=xml&amp;version=1.0&amp;search_type=2&amp;page_size=21&amp;page_number=1&amp;keyword=%E4%B8%96%E7%95%8C%E6%9D%AF" target="_blank" rel="noopener">http://iface.iqiyi.com/api/searchIface?key=xxx&amp;id=7f15c6eafc&amp;type=xml&amp;version=1.0&amp;search_type=2&amp;page_size=21&amp;page_number=1&amp;keyword=%E4%B8%96%E7%95%8C%E6%9D%AF</a></p>
+<p><strong>在某个频道内搜索</strong>:</p>
+<p><a href="http://iface.iqiyi.com/api/searchIface?key=xxx&amp;id=7f15c6eafc&amp;type=xml&amp;version=1.0&amp;search_type=2&amp;page_size=21&amp;page_number=1&amp;keyword=%E4%B8%96%E7%95%8C%E6%9D%AF**&amp;category_id=5**" target="_blank" rel="noopener">http://iface.iqiyi.com/api/searchIface?key=xxx&amp;id=7f15c6eafc&amp;type=xml&amp;version=1.0&amp;search_type=2&amp;page_size=21&amp;page_number=1&amp;keyword=%E4%B8%96%E7%95%8C%E6%9D%AF**&amp;category_id=5**</a></p>
+<h2 id="3-2-搜索结果频道分类"><a href="#3-2-搜索结果频道分类" class="headerlink" title="3.2 搜索结果频道分类"></a>3.2 搜索结果频道分类</h2><p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_weights.png" alt="Weights"></p>
+<p>我们解析这个字段中的内容，就可以获取相关分类频道及其结果数量。</p>
+<p>设计搜索的数据结构如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SearchResult</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> ArrayList&lt;SearchFilterInfo&gt; weightList;</span><br><span class="line">	<span class="keyword">public</span> ArrayList&lt;SearchVideoInfo&gt; searchVideoList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-搜索结果页面"><a href="#3-3-搜索结果页面" class="headerlink" title="3.3 搜索结果页面"></a>3.3 搜索结果页面</h2><p>每一个分类页面都是一个fragment，全部页面是一个fragments List来管理，启动时我们需要初始化，将一些必要的数据传递给各个fragment。</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_initFragment.png" alt="initFragment"></p>
+<p>在不同搜索结果页面进行切换时，实现一个监听器，获取当前选中页面：</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_pagechangelistener.png" alt="pageChangeListener"></p>
+<p>在具体页面实现中，我们需要获取相关的参数及绘制页面：</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_resultFragment.png" alt="resultFragment"></p>
+<h1 id="四、问题及解决"><a href="#四、问题及解决" class="headerlink" title="四、问题及解决"></a>四、问题及解决</h1><p>在完成这个需求过程中，也遇到了一些问题，不过最终还是都得以解决了。在这里，挑选几个典型问题来说明下，仅供大家后续参考：</p>
+<h2 id="4-1-无法输入中文问题"><a href="#4-1-无法输入中文问题" class="headerlink" title="4.1 无法输入中文问题"></a>4.1 无法输入中文问题</h2><p>搜索栏文本输入框有2种输入方式：</p>
+<ol>
+<li>直接在编辑框中输入文字；</li>
+<li>选中列表中的热词或者关联词，填充编辑框，启动搜索；</li>
+</ol>
+<p>最开始，在相应的<strong>mTextWatcher</strong>和列表点击中使用了<strong>setKeywords()</strong>方法来实现编辑框的文字输入。</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_textwatcher.png" alt="TextWatcher"></p>
+<p>但是在手动输入文字中，<strong>setKeywords()</strong>方法由于需要兼顾列表输入文字方法，需要先将<strong>mTextWatcher</strong>remove，然后<strong>setText()</strong>，再添加<strong>mTextWatcher</strong>，这样就造成了每输入一个字符都会在编辑框中显示，就无法输入中文了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mSearchKeyword.removeTextChangedListener(mTextWatcher);</span><br><span class="line">mSearchKeyword.setText(word);</span><br><span class="line">mSearchKeyword.setSelection(word.length());</span><br><span class="line">mSearchKeyword.addTextChangedListener(mTextWatcher);</span><br></pre></td></tr></table></figure>
+<p><strong>解决方法：</strong></p>
+<p>再建一个<strong>setListSearchWords(String word)</strong>方法，用于列表选词，问题得以解决。</p>
+<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_setText.png" alt="搜索框setText"></p>
+<h2 id="4-2-视频异常退出问题"><a href="#4-2-视频异常退出问题" class="headerlink" title="4.2 视频异常退出问题"></a>4.2 视频异常退出问题</h2><p>在实际中遇到了一些异常退出问题：</p>
+<h3 id="4-2-1-滑动页面异常退出"><a href="#4-2-1-滑动页面异常退出" class="headerlink" title="4.2.1 滑动页面异常退出"></a>4.2.1 滑动页面异常退出</h3><p>原因是没有从服务器获取到正确的搜索视频结果，使用Message传递时，虽然message.obj不为空，但搜索结果为空，导致退出。</p>
+<p> <strong>解决方案：</strong><br> 增加相应的空指针判断。</p>
+<h3 id="4-2-2-选择列表一个热词同时按下返回键，视频退出"><a href="#4-2-2-选择列表一个热词同时按下返回键，视频退出" class="headerlink" title="4.2.2 选择列表一个热词同时按下返回键，视频退出"></a>4.2.2 选择列表一个热词同时按下返回键，视频退出</h3><p>原因是Activity在onDestory()中，销毁了对应的fragments List，但是在此之前已经启动搜索，搜索结果通过Handler，绘制页面，但fragments已经为空，导致出现空指针。</p>
+<p><strong>解决方案：</strong><br>增加相应的空指针判断。</p>
+<p><strong><em>Created By Long Luo at 2014/6/27 20:09:59</em></strong><br><strong><em>Completed By Long Luo at 2014/7/2 16:39:54</em></strong><br><strong><em>Modified By Long Luo at 2018年9月26日00点06分 at Hangzhou, China.</em></strong></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Long Luo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" title="视频在线搜索设计与实现">http://longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Android/" rel="tag"># Android</a>
+            
+              <a href="/tags/优化/" rel="tag"># 优化</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" rel="next" title="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?">
+                  <i class="fa fa-chevron-left"></i> [译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/blog/2014/07/02/the-refactor-of-channel-page-of-video/" rel="prev" title="视频频道页面重构总结">
+                  视频频道页面重构总结 <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc">
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、在线搜索"><span class="nav-number">1.</span> <span class="nav-text">一、在线搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-在线搜索实现效果"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 在线搜索实现效果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-热词界面"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1.1 热词界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-关联词"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.1.2 关联词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-搜索结果分类浏览"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.1.3 搜索结果分类浏览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-语音搜索"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.1.4 语音搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-语音搜索结果"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.1.5 语音搜索结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、在线搜索UI设计及实现"><span class="nav-number">2.</span> <span class="nav-text">二、在线搜索UI设计及实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-SearchBar"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 SearchBar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-热词和关联词"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 热词和关联词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-分类筛选页面"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 分类筛选页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-水平ListView和ListView实现方案"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 水平ListView和ListView实现方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-1-iQiyi-搜索结果"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">2.3.1.1 iQiyi 搜索结果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-1-2-iQiyi实现"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">2.3.1.2 iQiyi实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-滑动实现方案"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 滑动实现方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、在线搜索代码逻辑"><span class="nav-number">3.</span> <span class="nav-text">三、在线搜索代码逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-搜索类"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 搜索类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-搜索结果频道分类"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 搜索结果频道分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-搜索结果页面"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 搜索结果页面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、问题及解决"><span class="nav-number">4.</span> <span class="nav-text">四、问题及解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-无法输入中文问题"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 无法输入中文问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-视频异常退出问题"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 视频异常退出问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-滑动页面异常退出"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1 滑动页面异常退出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-选择列表一个热词同时按下返回键，视频退出"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2 选择列表一个热词同时按下返回键，视频退出</span></a></li></ol></li></ol></li></ol></div>
+          </div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description motion-element" itemprop="description">A Curious Programmer.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">269</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/longluo" title="GitHub &rarr; https://github.com/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://weibo.com/imlongluo" title="Weibo &rarr; http://weibo.com/imlongluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://douban.com/people/65242715/" title="DouBan &rarr; http://douban.com/people/65242715/" rel="noopener" target="_blank"><i class="fa fa-fw fa-douban"></i>DouBan</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu &rarr; http://www.zhihu.com/people/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-zhihu"></i>ZhiHu</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com" title="http://www.imlongluo.com" rel="noopener" target="_blank">Home Page</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http://blog.csdn.net/tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2013 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数"></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+  </div>
+
+
+
+
+  
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+            
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz',
+            'X-LC-Key': 'p2mNUdDbqxrxOYMjs1xiS0zM',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  <script>
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55523596";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  </div>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+<script>
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz',
+    appKey: 'p2mNUdDbqxrxOYMjs1xiS0zM',
+    placeholder: 'Please leave your comment here.',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
