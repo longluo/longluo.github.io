@@ -472,9 +472,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/生活/" rel="tag"><i class="fa fa-tag"></i> 生活</a>
-            
               <a href="/tags/人生/" rel="tag"><i class="fa fa-tag"></i> 人生</a>
+            
+              <a href="/tags/生活/" rel="tag"><i class="fa fa-tag"></i> 生活</a>
             
               <a href="/tags/感悟/" rel="tag"><i class="fa fa-tag"></i> 感悟</a>
             
@@ -517,7 +517,47 @@
           </div>
           
     
-    <div class="comments" id="comments"></div>
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+          
+            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
+          
+            <li class="tab"><a href="#comment-valine">valine</a></li>
+          
+        </ul>
+        <div class="tab-content">
+          
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+          
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="comments"></div>
+            </div>
+          
+        </div>
+      </div>
+      <script>
+        window.addEventListener('tabs:register', () => {
+          let activeClass = '';
+          
+            activeClass = localStorage.getItem('comments_active') || activeClass;
+          
+          if (activeClass) {
+            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+            if (activeTab) {
+              activeTab.click();
+            }
+          }
+        });
+        
+        window.addEventListener('tabs:click', event => {
+          let commentClass = event.target.classList[1];
+          localStorage.setItem('comments_active', commentClass);
+        });
+        
+      </script>
+    
   
 
         </div>
@@ -1644,6 +1684,25 @@
   
   <script src="/js/post-details.js?v=7.3.0"></script>
 
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'bef8bb01e277ada131df',
+      clientSecret: 'a2ecfff23c41550c39e4c7df335460a947ed2152',
+      repo: 'longluo.github.io',
+      owner: 'longluo',
+      admin: ['longluo'],
+      id: 'd3f8d362d061102a8b40cafb56bfb3a1',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
 
 
 <script>
