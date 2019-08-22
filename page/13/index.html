@@ -14,6 +14,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
@@ -264,6 +265,332 @@
           <div id="content" class="content page-home">
             
   <section id="posts" class="posts-expand">
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/06/04/the-details-of-android-ps-command/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Develop Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/blog/2016/06/04/the-details-of-android-ps-command/" class="post-title-link" itemprop="url">深入理解Android中查看进程(ps)命令</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2016-06-04 01:18:18" itemprop="dateCreated datePublished" datetime="2016-06-04T01:18:18+08:00">2016-06-04</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2016/06/04/the-details-of-android-ps-command/" class="post-meta-item leancloud_visitors" data-flag-title="深入理解Android中查看进程(ps)命令" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/blog/2016/06/04/the-details-of-android-ps-command/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/blog/2016/06/04/the-details-of-android-ps-command/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span></span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>注:<br>    这篇文章是2013年发表在个人<a href="http://blog.csdn.net/tcpipstack/" target="_blank" rel="noopener">CSDN Blog</a>上<a href="http://blog.csdn.net/tcpipstack/article/details/8541980" target="_blank" rel="noopener">解析ANDROID ps命令执行后各项参数的含义</a>，今天将其移到个人独立博客站上。</p>
+</blockquote>
+<p>如何查看<strong>Android</strong>进程信息呢？</p>
+<p>可以打开<code>adb shell</code>，然后我们就有2种方法：</p>
+<h1 id="1-直接输入ps命令"><a href="#1-直接输入ps命令" class="headerlink" title="1. 直接输入ps命令"></a>1. 直接输入ps命令</h1><p>输入之后，我们就可以看到如下的信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ps</span></span><br><span class="line">ps</span><br><span class="line">USER     PID   PPID  VSIZE  RSS     WCHAN    PC         NAME</span><br><span class="line">root      1     0     276    188   c0099f1c 000086e8 S /init</span><br><span class="line">root      2     0     0      0     c004df64 00000000 S kthreadd</span><br><span class="line">root      3     2     0      0     c003fa28 00000000 S ksoftirqd/0</span><br><span class="line">root      4     2     0      0     c004abc0 00000000 S events/0</span><br><span class="line">root      5     2     0      0     c004abc0 00000000 S khelper</span><br><span class="line">root      6     2     0      0     c004abc0 00000000 S <span class="built_in">suspend</span></span><br><span class="line">root      7     2     0      0     c004abc0 00000000 S kblockd/0</span><br><span class="line">root      8     2     0      0     c004abc0 00000000 S cqueue</span><br><span class="line">root      9     2     0      0     c01780d0 00000000 S kseriod</span><br><span class="line">root      10    2     0      0     c004abc0 00000000 S kmmcd</span><br><span class="line">root      11    2     0      0     c006efa8 00000000 S pdflush</span><br><span class="line">root      12    2     0      0     c006efa8 00000000 S pdflush</span><br><span class="line">root      13    2     0      0     c0073480 00000000 S kswapd0</span><br><span class="line">root      14    2     0      0     c004abc0 00000000 S aio/0</span><br><span class="line">root      22    2     0      0     c0175900 00000000 S mtdblockdc</span><br></pre></td></tr></table></figure>
+<p>那么我们禁不住要问：</p>
+<pre><code>USER     PID   PPID  VSIZE  RSS     WCHAN    PC         NAME
+</code></pre><h2 id="那么这些项各代表着什么意思呢？"><a href="#那么这些项各代表着什么意思呢？" class="headerlink" title="那么这些项各代表着什么意思呢？"></a>那么这些项各代表着什么意思呢？</h2><ol>
+<li>USER：  进程的当前用户；</li>
+<li>PID ： 毫无疑问, process ID的缩写，也就进程号；</li>
+<li>PPID  ：process parent ID，父进程ID</li>
+<li>VSIZE  ： virtual size，进程虚拟地址空间大小；</li>
+<li>RSS    ： 进程正在使用的物理内存的大小；</li>
+<li>WCHAN  ：进程如果处于休眠状态的话，在内核中的地址；</li>
+<li>PC  ： program counter，</li>
+<li>NAME: process name，进程的名称</li>
+</ol>
+<h2 id="和Linux-ps命令对比"><a href="#和Linux-ps命令对比" class="headerlink" title="和Linux ps命令对比:"></a>和<code>Linux ps</code>命令对比:</h2><p>Android的内核还是Linux的，我们可以和Linux下ps aux命令的各项参数进行对比，可见：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">root@long-desktop:~<span class="comment"># ps aux</span></span><br><span class="line">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span><br><span class="line">root         1  0.0  0.2   2804  1684 ?        Ss   21:11   0:01 /sbin/init</span><br><span class="line">root         2  0.0  0.0      0     0 ?        S    21:11   0:00 [kthreadd]</span><br><span class="line">root      2286  0.0  0.4   8888  3172 ?        Ss   21:52   0:00 sshd: root@pts/0    </span><br><span class="line">root      2352  0.0  0.2   4684  2048 pts/0    Ss+  21:52   0:00 -bash</span><br><span class="line">root      2454  0.4  0.4   8888  3164 ?        Rs   22:06   0:00 sshd: root@pts/1    </span><br><span class="line">root      2518  0.1  0.2   4684  2004 pts/1    Ss   22:06   0:00 -bash</span><br><span class="line">root      2551  0.0  0.1   2736  1088 pts/1    R+   22:06   0:00 ps aux</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2016/06/04/the-details-of-android-ps-command/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/05/21/have-a-dinner-with-my-spiritual-leader/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Develop Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/blog/2016/05/21/have-a-dinner-with-my-spiritual-leader/" class="post-title-link" itemprop="url">和我的精神领袖春哥吃了一顿饭</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2016-05-21 22:33:21" itemprop="dateCreated datePublished" datetime="2016-05-21T22:33:21+08:00">2016-05-21</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2016/05/21/have-a-dinner-with-my-spiritual-leader/" class="post-meta-item leancloud_visitors" data-flag-title="和我的精神领袖春哥吃了一顿饭" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/blog/2016/05/21/have-a-dinner-with-my-spiritual-leader/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/blog/2016/05/21/have-a-dinner-with-my-spiritual-leader/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span></span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>时间过的好快，又到了周末了。由于最近休息的不太好，下午的时候就先去了宝体游泳，游了2个小时，刚好2km就到了5点了。</p>
+<p>回到住处换了衣服，就约了老朋友春哥去宝体去打了2个小时的羽毛球，打完球之后，由于好久没见，就去吃了顿饭，聊了很久，从春哥身上学到了很多东西。</p>
+<p>说说几点收获和感想吧！</p>
+<h1 id="一、关于成长"><a href="#一、关于成长" class="headerlink" title="一、关于成长"></a>一、关于成长</h1><p><strong>不要在别人面前诉说自己吃过多少苦</strong>，有过多少辛酸。虽然可能你确实吃过了很多苦，但是你永远不知道对方<strong>经历了什么</strong>，<strong>经历了多少苦涩</strong>。</p>
+<p>一味说自己多不容易，太矫情了。学会咬牙，学会承受，学会埋藏在心里。</p>
+<p>当你经历了越多，就会发现以前那些事情都算是小事，就像一阵风，咻咻就过去了。</p>
+<p>只有<strong>做出结果</strong>才算成事。</p>
+<p>另外，看到我的羽毛球女神<a href="http://baike.baidu.com/link?url=EmrEj6CdLA9WN4ZgcAMoSkgjAGCi0PDT6GyWJ_lqU_g4qMXoo_WDCMz7NqJL6qUbifUw128TiT2PI-ktUjX82q" target="_blank" rel="noopener">王适娴</a>发的一条微博，说的太好了，讲出了成长的真谛。</p>
+<blockquote>
+<p>成长就是你哪怕难过的快死掉了，但你第二天还是照常。没有人知道你发生了什么，也没有人在意你发生了什么。关于你的未来，只有你自己才知道。既然解释不清，那就不要去解释。没有人在意你的青春，也别让别人左右了你的青春。开心每一天，努力向上，做无怨无悔的自己。</p>
+</blockquote>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2016/05/21/have-a-dinner-with-my-spiritual-leader/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
       
 
   <article class="post" itemscope itemtype="http://schema.org/Article">
@@ -1502,311 +1829,6 @@ hexo d == hexo deploy
   </article>
 
     
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Develop Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-            
-            <a href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/" class="post-title-link" itemprop="url">学钢琴中最重要的是什么？</a>
-          
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2016-02-22 00:18:56" itemprop="dateCreated datePublished" datetime="2016-02-22T00:18:56+08:00">2016-02-22</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Music/" itemprop="url" rel="index"><span itemprop="name">Music</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/" class="post-meta-item leancloud_visitors" data-flag-title="学钢琴中最重要的是什么？" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span></span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span></span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>今天下午去<a href="http://www.marguerite-art.com/" target="_blank" rel="noopener">深圳玛格丽特音乐文化教育中心</a>以地板价试听了一节钢琴课，学到了很多东西，再结合<strong>自己的一些思考</strong>，在此简单记录下来。</p>
-<p>对于<strong>成人学钢琴</strong>来说，一大问题是<strong>时间有限</strong>，如果你是个上班族，不可能有很多时间让你去学习和练习，所以你得用<strong><em>脑子</em></strong>去学习。美女老师说，你的脑子里得时时刻刻有钢琴这东西。这种潜意思的学习，你可以在脑海中想象去弹琴，多思考，多分析，多总结，带着疑问去学习，这样才会学得快。</p>
-<p>学习一样新东西，无法就是<strong>学习，模仿，练习，实践</strong>。掌握了正确的学习方法，可以达到事半功倍的效果。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/02/09/the_origin_point_of_my_life_part_one/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Develop Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-            
-            <a href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/" class="post-title-link" itemprop="url">我生命的原点（一）</a>
-          
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2016-02-09 01:52:02" itemprop="dateCreated datePublished" datetime="2016-02-09T01:52:02+08:00">2016-02-09</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/blog/2016/02/09/the_origin_point_of_my_life_part_one/" class="post-meta-item leancloud_visitors" data-flag-title="我生命的原点（一）" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/blog/2016/02/09/the_origin_point_of_my_life_part_one/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span></span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span></span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="一、"><a href="#一、" class="headerlink" title="一、"></a>一、</h1><p>冬天的太阳，比起夏天的太阳，大了很多倍，从山顶探出头来，漏出一片红色的光，落在结了一层白色的霜的屋顶上。这个时候就是吃完饭准备走去学校的时候了。</p>
-<p>抬头一看，只有一片蓝色，云朵都藏起来了。</p>
-<p>四周没有多少声息，只听到一些叽叽喳喳的鸟叫声。那时的我，穿的严严实实，挑着有光的路走。红色的光在手背停留了许久许久，但就像火柴的火一样，烤不热这一团已经发红发麻的大冰块。直到上完前3节课，冰块才完全融化，所以小学课本里的笔记有的地方一片歪歪扭扭，那就说明是在上午前3节课记下的。</p>
-<p>路边的田里覆盖着一层稀稀疏疏的白色，偶尔可以看见几片青色的野草叶子。一排排白色的稻茬排列在田间，像阅兵的方队，等候着我们的检阅。</p>
-<p>我们看着前方，太阳已经离开山顶几丈高了，照亮了更远处的村落和山坡。模模糊糊的远方，有更高的山，其实也只是几缕山的形状。我不知道何时能走到那山脚，看看那山里面到底是什么？</p>
-<p>当太阳已经挂在学校低矮的屋顶时，我们的心已经蠢蠢欲动了。随着老师的一声下课，我们一边站起来说，“老师再见”，另一边两只手已经抓牢了课桌里的书包。不同于早上的慢慢吞吞，下午我们的精力异常的旺盛，一路追着跑着，跑累了就停下来走一走。</p>
-<p>太阳仍然在离地很近很近的高处挂着，将那一片的云从白色烧成通红。不同于八九月的傍晚，尤其是在下午下了一阵雨以后，那时候有很多的云，被烧成了一片红，将大地镀上了一层金色。云彩也飞快的移动着，变化成不同的形状。多年之后我才在课本里知道这叫火烧云。</p>
-<p>太阳仿佛在和我们玩捉迷藏，将自己藏在山里面，只露出了一个头偷偷地看着我们。我们又努力向前跑着，终于又看见它了，不过一小会，它又藏在更远处的山顶。我想山那边会是什么样子？也有像我一样的孩子么？这个世界上会有另外一个我吗？</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
   </section>
 
   
@@ -1857,7 +1879,7 @@ hexo d == hexo deploy
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -2609,7 +2631,13 @@ hexo d == hexo deploy
         
           
         
-        <span class="site-state-item-count">269</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">272</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -2878,6 +2906,15 @@ hexo d == hexo deploy
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

@@ -1,0 +1,1753 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+
+<link rel="stylesheet" href="/css/main.css?v=7.3.0">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.3.0',
+    exturl: false,
+    sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    }
+  };
+</script>
+
+  <meta name="description" content="By LongLuo 机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。 一、矩阵乘法假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix pro">
+<meta name="keywords" content="Matrix Multiplication, Algorithm, Strassen, 算法, 矩阵乘法,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5分钟掌握矩阵乘法的Strassen算法">
+<meta property="og:url" content="http://longluo.me/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
+<meta property="og:description" content="By LongLuo 机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。 一、矩阵乘法假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix pro">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true">
+<meta property="og:image" content="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/matrixmulti_strassen.jpg?raw=true">
+<meta property="og:updated_time" content="2019-08-22T15:29:08.731Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="5分钟掌握矩阵乘法的Strassen算法">
+<meta name="twitter:description" content="By LongLuo 机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。 一、矩阵乘法假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix pro">
+<meta name="twitter:image" content="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true">
+  <link rel="canonical" href="http://longluo.me/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>5分钟掌握矩阵乘法的Strassen算法 | Long Luo's Develop Notes</title>
+  <meta name="generator" content="Hexo 3.9.0">
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !false) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-46213499-2');
+    }
+  </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Long Luo's Develop Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">每一天都是奇迹</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-wrapper">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content page-post-detail">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Develop Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">5分钟掌握矩阵乘法的Strassen算法
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-21 22:27:04" itemprop="dateCreated datePublished" datetime="2019-06-21T22:27:04+08:00">2019-06-21</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 23:29:08" itemprop="dateModified" datetime="2019-08-22T23:29:08+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/" class="post-meta-item leancloud_visitors" data-flag-title="5分钟掌握矩阵乘法的Strassen算法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+        
+      
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/" itemprop="commentCount"></span></a>
+  </span>
+  
+  
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span></span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span></span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong><em>By LongLuo</em></strong></p>
+<p>机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。</p>
+<h1 id="一、矩阵乘法"><a href="#一、矩阵乘法" class="headerlink" title="一、矩阵乘法"></a>一、矩阵乘法</h1><p>假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix product）。</p>
+<p>其中矩阵$C$中的第$i$行第$j$列元素可以表示为：</p>
+<script type="math/tex; mode=display">
+ (AB)_{ij} = \sum_{k=1}^{p}{a_{ik}b_{kj}} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdot\cdot\cdot + a_{ip}b_{pj}</script><p>如下图所示：</p>
+<p><img src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true" alt="@Figure 1. Matrix Multiplication | center "></p>
+<p>假如在矩阵$A$和矩阵$B$中，$m = p = n = N$，那么完成$C = AB$需要多少次乘法呢？</p>
+<ol>
+<li>对于每一个行向量$r$ ，总共有$N$行；</li>
+<li>对于每一个列向量$c$，总共有$N$列；</li>
+<li>计算它们的内积，总共有$N$次乘法计算。</li>
+</ol>
+<p>综合可以看出，矩阵乘法的算法复杂度是：$\Theta(N^{3})$。</p>
+<h1 id="二、Strassen算法"><a href="#二、Strassen算法" class="headerlink" title="二、Strassen算法"></a>二、Strassen算法</h1><p>那么有没有比$\Theta(N^{3})$更快的算法呢？</p>
+<a id="more"></a>
+<p>1969年，Volker Strassen提出了第一个算法时间复杂度低于$\Theta(N^{3})$矩阵乘法算法，算法复杂度为$\Theta(n^{log_{2}^{7}}) = \Theta(n^{2.807})$。从下图可知，Strassen算法只有在对于维数比较大的矩阵 ($N &gt; 300$) ，性能上才有很大的优势，可以减少很多乘法计算。</p>
+<p><img src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/matrixmulti_strassen.jpg?raw=true" alt="@Figure 2. x^3 vs. x^2.807 | center"></p>
+<p>Strassen算法证明了矩阵乘法存在时间复杂度低于$\Theta(N^{3})$的算法的存在，后续学者不断研究发现新的更快的算法，截止目前时间复杂度最低的矩阵乘法算法是Coppersmith-Winograd方法的一种扩展方法，其算法复杂度为$\Theta(n^{2.375})$。</p>
+<h1 id="三、Strassen原理详解"><a href="#三、Strassen原理详解" class="headerlink" title="三、Strassen原理详解"></a>三、Strassen原理详解</h1><p>假设矩阵$A$ 和矩阵$B$都是$N \times N (N = 2^{n})$的方矩阵，求$C = AB$，如下所示：</p>
+<script type="math/tex; mode=display">
+A = \left [\begin{matrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{matrix} \right ] ， B = \left [ \begin{matrix} B_{11} & B_{12} \\ B_{21} & B_{22} \\ \end{matrix} \right ] ， C = \left [ \begin{matrix} C_{11} & C_{12} \\ C_{21} & C_{22} \\ \end{matrix} \right ]</script><p>其中 </p>
+<script type="math/tex; mode=display">
+\begin{bmatrix} C_{11} & C_{12} \\C_{21} & C_{22} \end{bmatrix} = \begin{bmatrix} A_{11} & A_{12} \\A_{21} & A_{22} \end{bmatrix} \cdot \begin{bmatrix} B_{11} & B_{12} \\B_{21} & B_{22} \end{bmatrix}</script><p>矩阵$C$可以通过下列公式求出：</p>
+<script type="math/tex; mode=display">
+C_{11} = A_{11} \cdot B_{11} + A_{12} \cdot B_{21}\\ C_{12} = A_{11} \cdot B_{12} + A_{22} \cdot B_{21}\\ C_{21} = A_{21} \cdot B_{11} + A_{22} \cdot B_{21}\\ C_{22} = A_{21} \cdot B_{12} + A_{22} \cdot B_{22}</script><p>从上述公式我们可以得出，计算2个$n <em> n$的矩阵相乘需要2个$\frac{n}{2} </em> \frac{n}{2}$的矩阵8次乘法和4次加法。我们使用$T(n)$表示$n*n$矩阵乘法的时间复杂度，那么我们可以根据上面的分解得到下面的递推公式：</p>
+<script type="math/tex; mode=display">
+T(n) = 8 * T(\frac{n}{2}) + \Theta(n^{2})</script><p>其中，</p>
+<ol>
+<li>$8T(\frac{n}{2})$表示8次矩阵乘法，而且相乘的矩阵规模降到了$\frac{n}{2}$。</li>
+<li>$\Theta(n^{2})$表示4次矩阵加法的时间复杂度以及合并矩阵$C$的时间复杂度。</li>
+</ol>
+<p>最终可计算得到$T(n)=\Theta(n^{log_{2}^{8}})=\Theta(n^{3})$。</p>
+<p>可以看出每次递归操作都需要8次矩阵相乘，而这正是瓶颈的来源。相比加法，矩阵乘法是非常慢的，于是我们想到能不能减少矩阵相乘的次数呢？</p>
+<p><strong><em>答案是当然可以！！！</em></strong></p>
+<p>Strassen算法正是从这个角度出发，实现了降低算法复杂度！</p>
+<h2 id="Strassen实现步骤"><a href="#Strassen实现步骤" class="headerlink" title="Strassen实现步骤"></a>Strassen实现步骤</h2><p>实现步骤可以分为以下4步：</p>
+<ol>
+<li>按上述方法将矩阵$A,B,C$分解（花费时间$\Theta(1)$。</li>
+<li>如下创建10个$\frac{n}{2} × \frac{n}{2}$的矩阵$S_1, S_2, …, S_{10}$(花费时间 $\Theta(n^2)$。<script type="math/tex; mode=display">
+S_1 = B_{12} - B_{22}\\ S_2 = A_{11} + A_{12}\\S_3 = A_{21} + A_{22}\\S_4 = B_{21} - B_{11}\\S_5 = A_{11} + A_{22}\\S_6 = B_{11} + B_{22}\\S_7 = A_{12} - A_{22}\\S_8 = B_{21} + B_{22}\\S_9 = A_{11} - A_{21}\\S_{10} = B_{11} + B_{12}</script></li>
+<li><p>递归地计算7个矩阵积$P_1, P_2, …, P_7$，每个矩阵$P_i$都是 $\frac{n}{2} × \frac{n}{2}$的。</p>
+<script type="math/tex; mode=display">
+P_1 = A_{11} \cdot S_1 = A_{11} \cdot B_{12} - A_{11} \cdot B_{22}\\P_2 = S_2 \cdot B_{22} = A_{11} \cdot B_{22} + A_{12} \cdot B_{22}\\P_3 = S_3 \cdot B_{11} = A_{21} \cdot B_{11} + A_{22} \cdot B_{11}\\P_4 = A_{22} \cdot S_4 = A_{22}\cdot B_{21} - A_{22} \cdot B_{11}\\P_5 = S_5 \cdot S_6 = A_{11} \cdot B_{11} + A_{11} \cdot B_{22} + A_{22} \cdot B_{11} + A_{22} \cdot B_{22}\\P_6 = S_7 \cdot S_8 = A_{12} \cdot B_{21} + A{12} \cdot B_{22} - A_{22} \cdot B_{21} - A_{22} \cdot B_{22}\\P_7 = S_9 \cdot S_{10}= A_{11} \cdot B_{11} + A_{11} \cdot B_{12} - A_{21} \cdot B_{11} - A_{21} \cdot B_{12}</script><p>注意，上述公式中只有中间一列需要计算。</p>
+</li>
+<li><p>通过$P_i$计算$C_{11}, C_{12}, C_{21}, C_{22}$，花费时间$\Theta(n^2)$。</p>
+<script type="math/tex; mode=display">
+C_{11} = P_5 + P_4 - P_2 + P_6\\C_{12} = P_1 + P_2\\C_{21} = P_3 + P_4\\C_{22} = P_5 + P_1 - P_3 - P_7</script><p>综合可得如下递归式：</p>
+<script type="math/tex; mode=display">
+T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n >1 \end{cases}</script><p>进而求出时间复杂度为：$T(n) = \Theta(n^{log_{2}^{7}})$</p>
+</li>
+</ol>
+<h1 id="四、Strassen算法的代码实现"><a href="#四、Strassen算法的代码实现" class="headerlink" title="四、Strassen算法的代码实现"></a>四、Strassen算法的代码实现</h1><p>我们以MNN中关于Strassen算法源码实现来学习：<a href="https://github.com/alibaba/MNN/blob/master/source/backend/cpu/compute/StrassenMatmulComputor.cpp。" target="_blank" rel="noopener">https://github.com/alibaba/MNN/blob/master/source/backend/cpu/compute/StrassenMatmulComputor.cpp。</a></p>
+<p>类StrassenMatrixComputor提供了3个API供调用：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">API</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">_generateTrivalMatMul(const Tensor<em> AT, const Tensor</em> BT, const Tensor* CT);</td>
+<td style="text-align:center">普通矩阵乘法计算</td>
+</tr>
+<tr>
+<td style="text-align:center">_generateMatMul(const Tensor<em> AT, const Tensor</em> BT, const Tensor* CT, int currentDepth);</td>
+<td style="text-align:center">Strassen算法的矩阵乘法</td>
+</tr>
+<tr>
+<td style="text-align:center">_generateMatMulConstB(const Tensor<em> AT, const Tensor</em> BT, const Tensor* CT, int currentDepth);</td>
+<td style="text-align:center">Strassen算法的矩阵乘法（和MatMul的区别在于内存Buffer是否允许复用)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>我们以_generateMatMul为例来学习下Strassen算法如何实现，可以分成如下几步：</p>
+<h2 id="第一步：使用Strassen算法收益判断"><a href="#第一步：使用Strassen算法收益判断" class="headerlink" title="第一步：使用Strassen算法收益判断"></a>第一步：使用Strassen算法收益判断</h2><p>在矩阵操作中，因为需要对矩阵的维数进行扩展，涉及大量读写操作，这些读写操作都需要大量循环，如果读写次数超出使用Strassen乘法的收益的话，就得不偿失了，那么就使用普通的矩阵乘法。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">Compute the memory read / write cost for expand Matrix Mul need eSub*lSub*hSub*(1+1.0/CONVOLUTION_TILED_NUMBWR), Matrix Add/Sub need x*y*UNIT*3 (2 read 1 write) </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> saveCost = (eSub * lSub * hSub) * (<span class="number">1.0f</span> + <span class="number">1.0f</span> / CONVOLUTION_TILED_NUMBWR) - <span class="number">4</span> * (eSub * lSub) * <span class="number">3</span> - <span class="number">7</span> * (eSub * hSub * <span class="number">3</span>); </span><br><span class="line"><span class="keyword">if</span> (currentDepth &gt;= mMaxDepth || e &lt;= CONVOLUTION_TILED_NUMBWR || l % <span class="number">2</span> != <span class="number">0</span> || h % <span class="number">2</span> != <span class="number">0</span> || saveCost &lt; <span class="number">0.0f</span>) </span><br><span class="line">&#123; </span><br><span class="line">	<span class="keyword">return</span> _generateTrivialMatMul(AT, BT, CT); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第二步：分块"><a href="#第二步：分块" class="headerlink" title="第二步：分块"></a>第二步：分块</h2><p>将矩阵$A，B，C$3个矩阵都分成4块：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> aStride = AT-&gt;stride(<span class="number">0</span>); </span><br><span class="line"><span class="keyword">auto</span> a11 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">0</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> a12 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">1</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> a21 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">0</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> a22 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">1</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> bStride = BT-&gt;stride(<span class="number">0</span>); </span><br><span class="line"><span class="keyword">auto</span> b11 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * bUnit * lSub + <span class="number">0</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> b12 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * bUnit * lSub + <span class="number">1</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> b21 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * bUnit * lSub + <span class="number">0</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> b22 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * bUnit * lSub + <span class="number">1</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> cStride = CT-&gt;stride(<span class="number">0</span>); <span class="keyword">auto</span> c11 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">0</span> * cStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> c12 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">1</span> * cStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> c21 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">0</span> * cStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> c22 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">1</span> * cStride * hSub;</span><br></pre></td></tr></table></figure>
+<h2 id="第三步：分治和递归"><a href="#第三步：分治和递归" class="headerlink" title="第三步：分治和递归"></a>第三步：分治和递归</h2><p>Strassen算法核心就是分治思想。这一步可以写成下列所示伪代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. If n = 1 Output A × B </span><br><span class="line">2. Else </span><br><span class="line">3. Compute A11,B11, . . . ,A22,B22 % by computing m = n/2 </span><br><span class="line">4. P1 Strassen(A11,B12 − B22) </span><br><span class="line">5. P2 Strassen(A11 + A12,B22) </span><br><span class="line">6. P3 Strassen(A21 + A22,B11) </span><br><span class="line">7. P4 Strassen(A22,B21 − B11) </span><br><span class="line">8. P5 Strassen(A11 + A22,B11 + B22) </span><br><span class="line">9. P6 Strassen(A12 − A22,B21 + B22) </span><br><span class="line">10. P7 Strassen(A11 − A21,B11 + B12) </span><br><span class="line">11. C11 P5 + P4 − P2 + P6 </span><br><span class="line">12. C12 P1 + P2 </span><br><span class="line">13. C21 P3 + P4 </span><br><span class="line">14. C22 P1 + P5 − P3 − P7 </span><br><span class="line">15. Output C </span><br><span class="line">16. End If</span><br></pre></td></tr></table></figure>
+<p>例如其中的一步代码如下所示：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">	<span class="comment">// S1=A21+A22, T1=B12-B11, P5=S1T1 </span></span><br><span class="line">	<span class="keyword">auto</span> f = [a22, a21, b11, b12, xAddr, yAddr, eSub, lSub, hSub, aStride, bStride]() &#123; </span><br><span class="line">	MNNMatrixAdd(xAddr, a21, a22, eSub * aUnit / <span class="number">4</span>, eSub * aUnit, aStride, aStride, lSub); </span><br><span class="line">	MNNMatrixSub(yAddr, b12, b11, lSub * bUnit / <span class="number">4</span>, lSub * bUnit, bStride, bStride, hSub); </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">	mFunctions.emplace_back(f); </span><br><span class="line">	<span class="keyword">auto</span> code = _generateMatMul(X.get(), Y.get(), C22.get(), currentDepth); </span><br><span class="line">	<span class="keyword">if</span> (code != NO_ERROR) </span><br><span class="line">	&#123; </span><br><span class="line">		<span class="keyword">return</span> code; </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>递归执行，得到最终结果！</p>
+<p><strong><em>Updated By Long Luo at 19th, Aug. 2019 at Shenzhen.</em></strong></p>
+
+    </div>
+
+    
+    
+    
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Long Luo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://longluo.me/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/" title="5分钟掌握矩阵乘法的Strassen算法">http://longluo.me/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+            
+              <a href="/tags/Matrix-Multiplication/" rel="tag"># Matrix Multiplication</a>
+            
+              <a href="/tags/Strassen/" rel="tag"># Strassen</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/blog/2019/05/07/When-I-am-35-years-old/" rel="next" title="当我35岁时...">
+                  <i class="fa fa-chevron-left"></i> 当我35岁时...
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="comments"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc" data-target="post-toc-wrap">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc">
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、矩阵乘法"><span class="nav-number">1.</span> <span class="nav-text">一、矩阵乘法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Strassen算法"><span class="nav-number">2.</span> <span class="nav-text">二、Strassen算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、Strassen原理详解"><span class="nav-number">3.</span> <span class="nav-text">三、Strassen原理详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Strassen实现步骤"><span class="nav-number">3.1.</span> <span class="nav-text">Strassen实现步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、Strassen算法的代码实现"><span class="nav-number">4.</span> <span class="nav-text">四、Strassen算法的代码实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一步：使用Strassen算法收益判断"><span class="nav-number">4.1.</span> <span class="nav-text">第一步：使用Strassen算法收益判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二步：分块"><span class="nav-number">4.2.</span> <span class="nav-text">第二步：分块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三步：分治和递归"><span class="nav-number">4.3.</span> <span class="nav-text">第三步：分治和递归</span></a></li></ol></li></ol></div>
+          </div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description motion-element" itemprop="description">A Curious Programmer.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">272</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/longluo" title="GitHub &rarr; https://github.com/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://weibo.com/imlongluo" title="Weibo &rarr; http://weibo.com/imlongluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://douban.com/people/65242715/" title="DouBan &rarr; http://douban.com/people/65242715/" rel="noopener" target="_blank"><i class="fa fa-fw fa-douban"></i>DouBan</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu &rarr; http://www.zhihu.com/people/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-zhihu"></i>ZhiHu</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+    <div class="links-of-blogroll-title">
+      <i class="fa  fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com" title="http://www.imlongluo.com" rel="noopener" target="_blank">Home Page</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http://blog.csdn.net/tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+      
+    </ul>
+  </div>
+
+        </div>
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2013 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数"></span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.3.0</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+  </div>
+
+
+
+
+  
+  <script>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+            
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
+              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz',
+            'X-LC-Key': 'p2mNUdDbqxrxOYMjs1xiS0zM',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  <script>
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55523596";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+  </div>
+
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/schemes/pisces.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script>
+
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.3.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdnjs.cloudflare.com/ajax/libs/mathjax-mhchem/3.3.0';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
+
+  
+
+  
+
+
+  
+  <script src="/js/post-details.js?v=7.3.0"></script>
+
+
+
+<script>
+NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(item => {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz',
+    appKey: 'p2mNUdDbqxrxOYMjs1xiS0zM',
+    placeholder: 'Please leave your comment here.',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn',
+    path: location.pathname
+  });
+}, window.Valine);
+</script>
+
+</body>
+</html>
