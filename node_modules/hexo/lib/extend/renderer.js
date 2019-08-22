@@ -1,11 +1,13 @@
 'use strict';
 
-var pathFn = require('path');
-var Promise = require('bluebird');
+const { extname } = require('path');
+const Promise = require('bluebird');
 
 function getExtname(str) {
-  var extname = pathFn.extname(str) || str;
-  return extname[0] === '.' ? extname.slice(1) : extname;
+  if (typeof str !== 'string') return '';
+
+  const ext = extname(str) || str;
+  return ext[0] === '.' ? ext.slice(1) : ext;
 }
 
 function Renderer() {
@@ -18,7 +20,7 @@ Renderer.prototype.list = function(sync) {
 };
 
 Renderer.prototype.get = function(name, sync) {
-  var store = this[sync ? 'storeSync' : 'store'];
+  const store = this[sync ? 'storeSync' : 'store'];
 
   return store[getExtname(name)] || store[name];
 };
@@ -32,7 +34,7 @@ Renderer.prototype.isRenderableSync = function(path) {
 };
 
 Renderer.prototype.getOutput = function(path) {
-  var renderer = this.get(path);
+  const renderer = this.get(path);
   return renderer ? renderer.output : '';
 };
 

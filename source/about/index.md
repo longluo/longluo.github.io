@@ -9,7 +9,7 @@ keywords: Long Luo, Frank Luo, Program, Code, 程序员, Android, iOS, App Devel
 description: "About Me"
 ---
 
-![Computer Programmer](http://7d9hot.com1.z0.glb.clouddn.com/cybersecurity.jpg)
+![Computer Programmer](https://github.com/AppUnion/DataBank/blob/master/images/wallpaper/math-1.jpg?raw=true)
 
 ### About:
 ---------------------------------------
