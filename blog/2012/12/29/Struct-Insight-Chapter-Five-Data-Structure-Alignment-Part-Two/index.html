@@ -15,11 +15,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
   <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
@@ -30,12 +31,12 @@
     version: '7.3.0',
     exturl: false,
     sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -44,7 +45,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
@@ -63,18 +64,10 @@
 <meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
 <meta property="og:description" content="By Long Luo  前言：    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第五篇: 大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)   引言在上一篇大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上) 中，我们了解到struct ALIGN2和struct ALIGN3的成员变量都是1个int型，1个">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355152365_3674.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355152365_5219.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355153534_1992.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355153534_2589.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/11/1355157509_6978.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/11/1355157973_3867.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355154279_8492.jpg">
 <meta property="og:updated_time" content="2019-08-21T17:46:52.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)">
 <meta name="twitter:description" content="By Long Luo  前言：    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第五篇: 大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)   引言在上一篇大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上) 中，我们了解到struct ALIGN2和struct ALIGN3的成员变量都是1个int型，1个">
-<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201212/10/1355152365_3674.jpg">
   <link rel="canonical" href="http://longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">
 
 
@@ -93,7 +86,7 @@
   <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
-  <script>
+  <script pjax>
     var host = window.location.hostname;
     if (host !== "localhost" || !false) {
       window.dataLayer = window.dataLayer || [];
@@ -104,11 +97,11 @@
   </script>
 
 
-  <script>
+  <script pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      hm.src = "https://hm.baidu.com/hm.js?b4c6c0df76415ca14358f56e0f957de1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -416,7 +409,7 @@
 <a id="more"></a>
 <p>接下来我们对<code>Align.c</code>按照C程序的编译流程进行一一分析，如下所示：</p>
 <h2 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1. 预处理"></a>1. 预处理</h2><p>输出文件的后缀为：<code>*.cpp</code>文件。</p>
-<p><img src="http://img.my.csdn.net/uploads/201212/10/1355152365_3674.jpg" alt="预处理"></p>
+<p><img alt="预处理" data-src="http://img.my.csdn.net/uploads/201212/10/1355152365_3674.jpg"></p>
 <h2 id="2-编译成汇编代码"><a href="#2-编译成汇编代码" class="headerlink" title="2. 编译成汇编代码"></a>2. 编译成汇编代码</h2><ol>
 <li><p>使用-x参数说明根据指定的步骤进行工作，<code>cpp-output</code>指明从预处理得到的文件开始编译；</p>
 </li>
@@ -424,16 +417,16 @@
 </li>
 </ol>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc –x cpp-output –S –o align.s align.cpp</span><br></pre></td></tr></table></figure>
-<p><img src="http://img.my.csdn.net/uploads/201212/10/1355152365_5219.jpg" alt="汇编处理"></p>
+<p><img alt="汇编处理" data-src="http://img.my.csdn.net/uploads/201212/10/1355152365_5219.jpg"></p>
 <p>我们也可以直接编译到汇编代码：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc –S Align.c</span><br></pre></td></tr></table></figure></p>
 <p>得到<code>align.s</code>文件之后，在最开始之处我们可以看到：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.file	&quot;Align.c&quot;</span><br><span class="line">.section	.rodata</span><br><span class="line">.align 4</span><br></pre></td></tr></table></figure></p>
 <p>其中的<code>.align 4</code>就表明了<strong>其后面所有的数据都遵守4字节对齐的限制</strong>。</p>
-<h2 id="3-编译成目标代码"><a href="#3-编译成目标代码" class="headerlink" title="3. 编译成目标代码"></a>3. 编译成目标代码</h2><p>汇编代码—-&gt;目标代码<br><img src="http://img.my.csdn.net/uploads/201212/10/1355153534_1992.jpg" alt="Object Code"></p>
+<h2 id="3-编译成目标代码"><a href="#3-编译成目标代码" class="headerlink" title="3. 编译成目标代码"></a>3. 编译成目标代码</h2><p>汇编代码—-&gt;目标代码<br><img alt="Object Code" data-src="http://img.my.csdn.net/uploads/201212/10/1355153534_1992.jpg"></p>
 <h2 id="4-编译成执行代码"><a href="#4-编译成执行代码" class="headerlink" title="4. 编译成执行代码"></a>4. 编译成执行代码</h2><p>目标代码—&gt;执行代码</p>
-<p>最终的输出结果如下所示：<br><img src="http://img.my.csdn.net/uploads/201212/10/1355153534_2589.jpg" alt="Execute Result:"></p>
-<h1 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h1><p>我们可以绘出<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的<strong><em>内存分配图</em></strong>：<br><img src="http://img.my.csdn.net/uploads/201212/11/1355157509_6978.jpg" alt="Memory"></p>
+<p>最终的输出结果如下所示：<br><img alt="Execute Result:" data-src="http://img.my.csdn.net/uploads/201212/10/1355153534_2589.jpg"></p>
+<h1 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h1><p>我们可以绘出<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的<strong><em>内存分配图</em></strong>：<br><img alt="Memory" data-src="http://img.my.csdn.net/uploads/201212/11/1355157509_6978.jpg"></p>
 <h2 id="假如我们不对齐？"><a href="#假如我们不对齐？" class="headerlink" title="假如我们不对齐？"></a>假如我们不对齐？</h2><p>上图是<strong>内存对齐</strong>的<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的内存分配情况，但是假如我们不对齐呢？</p>
-<p>其内存分配如下所示：<br><img src="http://img.my.csdn.net/uploads/201212/11/1355157973_3867.jpg" alt="内存不对齐"></p>
+<p>其内存分配如下所示：<br><img alt="内存不对齐" data-src="http://img.my.csdn.net/uploads/201212/11/1355157973_3867.jpg"></p>
 <p>很明显，<code>int mB</code>和<code>short mC</code>都不满足对齐要求。</p>
 <h2 id="对齐的好处是什么呢？"><a href="#对齐的好处是什么呢？" class="headerlink" title="对齐的好处是什么呢？"></a>对齐的好处是什么呢？</h2><p>通过上一节，我们知道了<strong>如果不对齐</strong>，我们可以节省出几个byte的内存空间，在计算机世界中，可以对齐也可以不对齐，但是实际中，都做了对齐。</p>
 <p>那么，<strong><em>对齐的好处是什么呢</em></strong>？</p>
@@ -446,7 +439,7 @@
 <p>—-当然可以！</p>
 <p>我们可以通过<strong>预编译命令</strong><code>#pragma pack(n)，n=1,2,4,8,16</code>来改变这一系数，其中的<code>n</code>就是你要指定的“<strong>对齐系数</strong>”。</p>
 <p>比如，我想让处理器按照1个字节的方式对齐，则代码如下:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************************************************</span></span><br><span class="line"><span class="comment">** File: - Z:\code\c\Alignment\AlignPackOne.c</span></span><br><span class="line"><span class="comment">**  </span></span><br><span class="line"><span class="comment">** Copyright (C), Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Description: </span></span><br><span class="line"><span class="comment">**      Align.c --- To learn the details of Alignment by the compiler.</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Version: 1.1</span></span><br><span class="line"><span class="comment">** Date created: 23:39:05,10/12/2012</span></span><br><span class="line"><span class="comment">** Author: Long.Luo</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment">** 	&lt;author&gt;	&lt;data&gt;			&lt;desc&gt;</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> pack(1)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> mA;</span><br><span class="line">	<span class="keyword">int</span> mB;</span><br><span class="line">	<span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mB;</span><br><span class="line">	<span class="keyword">char</span> mA;</span><br><span class="line">	<span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span> <span class="title">aln2</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span> <span class="title">aln3</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"The size of struct ALIGN2 is: %d\n"</span>, <span class="keyword">sizeof</span>(aln2));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\t aln2.mA=0x%x, aln2.mB=0x%x, aln2.mC=0x%x\n"</span>, &amp;aln2.mA, &amp;aln2.mB, &amp;aln2.mC);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"The size of struct ALIGN3 is: %d\n"</span>, <span class="keyword">sizeof</span>(aln3));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\t aln3.mA=0x%x, aln3.mB=0x%x, aln3.mC=0x%x\n"</span>, &amp;aln3.mA, &amp;aln3.mB, &amp;aln3.mC);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>编译之后输出结果如下：<br><img src="http://img.my.csdn.net/uploads/201212/10/1355154279_8492.jpg" alt="自定义对齐内存情况"></p>
+<p>编译之后输出结果如下：<br><img alt="自定义对齐内存情况" data-src="http://img.my.csdn.net/uploads/201212/10/1355154279_8492.jpg"></p>
 <p>可以看出，在我们要求的1字节对齐方式下，<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的结果都是<strong><em>7</em></strong>，只占了<strong>4+2+1</strong>个字节，内存空间一个字节都利用到极致。</p>
 <p>至此，关于<strong>内存对齐</strong>就到此告一段落了，<strong>你弄明白了吗</strong>？</p>
 <p>之前的系列文章，我们的<code>struct</code>都有成员变量，那么你有没有考虑过如果过<code>struct</code>完全是空的情况呢？</p>
@@ -459,6 +452,8 @@
     
     
     
+      
+
         
       
         
@@ -484,11 +479,11 @@
           
           <div class="post-tags">
             
-              <a href="/tags/结构体/" rel="tag"># 结构体</a>
+              <a href="/tags/结构体/" rel="tag"><i class="fa fa-tag"></i> 结构体</a>
             
-              <a href="/tags/技术/" rel="tag"># 技术</a>
+              <a href="/tags/技术/" rel="tag"><i class="fa fa-tag"></i> 技术</a>
             
-              <a href="/tags/科普/" rel="tag"># 科普</a>
+              <a href="/tags/科普/" rel="tag"><i class="fa fa-tag"></i> 科普</a>
             
           </div>
         
@@ -1449,7 +1444,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1470,14 +1465,14 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
   </div>
 
 
 
 
   
-  <script>
+  <script pjax>
   function leancloudSelector(url) {
     return document.getElementById(url).querySelector('.leancloud-visitors-count');
   }
@@ -1572,7 +1567,7 @@
   </script>
 
 
-  <script>
+  <script pjax>
     (function() {
       var hm = document.createElement("script");
       hm.src = "//tajs.qq.com/stats?sId=55523596";
@@ -1593,21 +1588,25 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
 
   </div>
 
   
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
 <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 <script src="/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -1638,6 +1637,7 @@
 
 
 
+    <div id="pjax">
 
   
 
@@ -1675,6 +1675,35 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     path: location.pathname
   });
 }, window.Valine);
+</script>
+
+    </div>
+    <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    $(element).parent().append($(element).remove());
+  });
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
 </script>
 
 </body>

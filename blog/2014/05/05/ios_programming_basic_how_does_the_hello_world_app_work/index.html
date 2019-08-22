@@ -15,11 +15,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
   <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
@@ -30,12 +31,12 @@
     version: '7.3.0',
     exturl: false,
     sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -44,7 +45,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
@@ -63,17 +64,10 @@
 <meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
 <meta property="og:description" content="翻译 By Long Luo 原文链接：iOS Programming Basic: How Does the Hello World App Work? 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正. 我希望你享受了第一个iOS编程教程，同时已经创造了你的第一个App。在进入下一教程以及制作一个更">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Interface-Builder.jpg">
-<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-App.jpg">
-<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Button-Sent-Events.jpg">
-<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/HelloWorld-Message-Flow.jpg">
-<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Process.jpg">
-<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Option.jpg">
 <meta property="og:updated_time" content="2019-08-21T17:46:52.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS编程基础: Hello World App是如何运作的?">
 <meta name="twitter:description" content="翻译 By Long Luo 原文链接：iOS Programming Basic: How Does the Hello World App Work? 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正. 我希望你享受了第一个iOS编程教程，同时已经创造了你的第一个App。在进入下一教程以及制作一个更">
-<meta name="twitter:image" content="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Interface-Builder.jpg">
   <link rel="canonical" href="http://longluo.me/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/">
 
 
@@ -92,7 +86,7 @@
   <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
-  <script>
+  <script pjax>
     var host = window.location.hostname;
     if (host !== "localhost" || !false) {
       window.dataLayer = window.dataLayer || [];
@@ -103,11 +97,11 @@
   </script>
 
 
-  <script>
+  <script pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      hm.src = "https://hm.baidu.com/hm.js?b4c6c0df76415ca14358f56e0f957de1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -411,7 +405,7 @@
 <h2 id="xib"><a href="#xib" class="headerlink" title=".xib"></a>.xib</h2><ul>
 <li>如果一个文件也有.xib的扩展名，它们是Interface Builder文件，存储了应用的UI。当你点击了.xib文件，Xcode会自动的打开Interface Builder界面，你可以通过拖动和放下来编辑应用的UI。如下图所示:</li>
 </ul>
-<p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Interface-Builder.jpg" alt="Interface Builder in Xcode"></p>
+<p><img alt="Interface Builder in Xcode" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Interface-Builder.jpg"></p>
 <p><strong>Interface Builder in Xcode</strong></p>
 <h2 id="h-and-m"><a href="#h-and-m" class="headerlink" title=".h and .m"></a>.h and .m</h2><ul>
 <li><strong>.h</strong>扩展名的文件表示这是<code>头文件</code>，<strong>.m</strong>扩展名表示是具体的<code>实现</code>。和其他大多数编程语言一样，Objective-C的源码也分为2部分：<code>接口</code>和<code>实现</code>。</li>
@@ -440,19 +434,19 @@
 
 @end
 </code></pre><p>正如你上面所示，你使用“@implementation”去声明一个实现。在“showMessage”中，代码用于定义在屏幕中弹出一条警告。你不需要弄明白在“showMessage”的方法中每一行代码具体含义。简单来说，创建了一个以“My First App” 为标题，“Hello, World”作为消息的UIAlertView。然后调用“show”方法去请求iOS用于在屏幕上显示一个弹出消息。如下图所示：</p>
-<p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-App.jpg" alt="Hello World App"></p>
+<p><img alt="Hello World App" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-App.jpg"></p>
 <p><strong>Hello World App</strong></p>
 <p>想必你已经弄明白了接口和实现吧？</p>
 <h1 id="Behind-the-Touch-and-Tap"><a href="#Behind-the-Touch-and-Tap" class="headerlink" title="Behind the Touch and Tap"></a>Behind the Touch and Tap</h1><p>当你按下 “Hello World”按钮实际上发生了什么？ “Hello World” 按钮是如何调用 “showMessage” 方法去显示“Hello World”的消息呢？</p>
 <p>回想起你是如何在Interface Builder建立起“Hello World”按钮和“sendMessage”的具体动作的关联的。再次打开“HelloWorldViewController.xib” ，选择“Hello World” 按钮，在Utility区域点击“Sent Events”按钮打开发生事件。</p>
-<p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Button-Sent-Events.jpg" alt="Hello World Button Send Events"></p>
+<p><img alt="Hello World Button Send Events" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Button-Sent-Events.jpg"></p>
 <p>发送部分展示了所有的关于事件和动作的联系。例如上述图片所示，“Touch Up Inside” 事件就关联到 “showMessage”的动作。在iOS中，app是事件驱动的。控制/目标监听特定的动作，例如触摸和按下。当事件触发之后，目标就会调用预设的关联到事件的动作。</p>
 <p>在我们的Hello World App中，当用户在按钮上抬起手指， “Touch Up Inside”的事件就触发了。结果，它会调用“showMessage”的动作去显示 “Hello World” 的消息。</p>
 <p>下图很直观的展示了刚才所描述的事件流:</p>
-<p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/HelloWorld-Message-Flow.jpg" alt="Event and Message Flow of Hello World App"></p>
+<p><img alt="Event and Message Flow of Hello World App" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/HelloWorld-Message-Flow.jpg"></p>
 <p><strong>Event and Message Flow of Hello World App</strong></p>
 <h1 id="Behind-the-Scene-of-the-“Run”-Button"><a href="#Behind-the-Scene-of-the-“Run”-Button" class="headerlink" title="Behind the Scene of the “Run” Button"></a>Behind the Scene of the “Run” Button</h1><p>当你点击“Run” 按钮，Xcode就会载入模拟器，运行你的App。但是在这个场景之后，发生了什么？作为一名程序员，你需要了解它的整个流程。</p>
-<p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Process.jpg" alt="Event and Message Flow of Hello World App"></p>
+<p><img alt="Event and Message Flow of Hello World App" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Process.jpg"></p>
 <p>整个流程可以分为3部分：<strong>编译、打包和运行</strong>。</p>
 <h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><ul>
 <li>你可能会认为iOS可以读懂Objective-C代码。大错特错，实际上，iOS只能读懂机器码。Objective-C代码只是便于程序员去读和写代码。我们需要将Objective-C源码翻译成机器码，这样iOS才可以读懂你的App的源码。这个过程就称之为编程。Xcode已经自带了编译器用于编译源码。</li>
@@ -461,7 +455,7 @@
 <li>不同于其他源码，一个App通常包含大量的资源文件，比如图片，文本，xlib文件等等。所有的这些资源都必须要打包进最终的App中。</li>
 </ul>
 <p>我们通过把上述2个过程称之为<strong>build</strong>。</p>
-<p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Option.jpg" alt="Xcode-Build-Option"></p>
+<p><img alt="Xcode-Build-Option" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Option.jpg"></p>
 <h2 id="Run"><a href="#Run" class="headerlink" title="Run"></a>Run</h2><ul>
 <li>按下之后，启动模拟器，载入你的App.</li>
 </ul>
@@ -472,6 +466,8 @@
     
     
     
+      
+
         
       
         
@@ -497,9 +493,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/App/" rel="tag"># App</a>
+              <a href="/tags/App/" rel="tag"><i class="fa fa-tag"></i> App</a>
             
-              <a href="/tags/iOS/" rel="tag"># iOS</a>
+              <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
             
           </div>
         
@@ -1460,7 +1456,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1481,14 +1477,14 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
   </div>
 
 
 
 
   
-  <script>
+  <script pjax>
   function leancloudSelector(url) {
     return document.getElementById(url).querySelector('.leancloud-visitors-count');
   }
@@ -1583,7 +1579,7 @@
   </script>
 
 
-  <script>
+  <script pjax>
     (function() {
       var hm = document.createElement("script");
       hm.src = "//tajs.qq.com/stats?sId=55523596";
@@ -1604,21 +1600,25 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
 
   </div>
 
   
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
 <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 <script src="/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -1649,6 +1649,7 @@
 
 
 
+    <div id="pjax">
 
   
 
@@ -1686,6 +1687,35 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     path: location.pathname
   });
 }, window.Valine);
+</script>
+
+    </div>
+    <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    $(element).parent().append($(element).remove());
+  });
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
 </script>
 
 </body>

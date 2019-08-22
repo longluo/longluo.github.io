@@ -15,11 +15,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
   <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
@@ -30,12 +31,12 @@
     version: '7.3.0',
     exturl: false,
     sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -44,7 +45,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
@@ -63,16 +64,10 @@
 <meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
 <meta property="og:description" content="By Long Luo 引言NOKIA 有句著名的广告语：“科技以人为本”。任何技术都是为了满足人的生产生活需要而产生的。具体到小小的一个手机，里面蕴含的技术也是浩如烟海，是几千年来人类科技的结晶，单个人穷其一生也未必能掌握其一角。不过个人一直认为基本的技术和思想是放之四海而皆准的，许多技术未必需要我们从头到尾再研究一遍，我们要做的就是站在巨人的肩膀上，利用其成果来为人们的需求服务。 随着移动互联">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.json.org/object.gif">
-<meta property="og:image" content="http://www.json.org/array.gif">
-<meta property="og:image" content="http://www.json.org/value.gif">
-<meta property="og:image" content="http://www.json.org/string.gif">
-<meta property="og:image" content="http://www.json.org/number.gif">
 <meta property="og:updated_time" content="2019-08-21T17:46:52.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="10分钟掌握XML、JSON及其解析">
 <meta name="twitter:description" content="By Long Luo 引言NOKIA 有句著名的广告语：“科技以人为本”。任何技术都是为了满足人的生产生活需要而产生的。具体到小小的一个手机，里面蕴含的技术也是浩如烟海，是几千年来人类科技的结晶，单个人穷其一生也未必能掌握其一角。不过个人一直认为基本的技术和思想是放之四海而皆准的，许多技术未必需要我们从头到尾再研究一遍，我们要做的就是站在巨人的肩膀上，利用其成果来为人们的需求服务。 随着移动互联">
-<meta name="twitter:image" content="http://www.json.org/object.gif">
   <link rel="canonical" href="http://longluo.me/blog/2014/10/31/master-XML-JSON-and-how-to-aprse-them-in-10-minutes/">
 
 
@@ -91,7 +86,7 @@
   <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
-  <script>
+  <script pjax>
     var host = window.location.hostname;
     if (host !== "localhost" || !false) {
       window.dataLayer = window.dataLayer || [];
@@ -102,11 +97,11 @@
   </script>
 
 
-  <script>
+  <script pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      hm.src = "https://hm.baidu.com/hm.js?b4c6c0df76415ca14358f56e0f957de1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -618,23 +613,23 @@ else
 <h4 id="JSON具有以下这些形式："><a href="#JSON具有以下这些形式：" class="headerlink" title="JSON具有以下这些形式："></a><strong><em>JSON</em></strong>具有以下这些形式：</h4><ul>
 <li>对象是一个无序的“’名称/值’对”集合。一个对象以“{”（左括号）开始，“}”（右括号）结束。每个“名称”后跟一个“:”（冒号）；“‘名称/值’ 对”之间使用“,”（逗号）分隔。</li>
 </ul>
-<p><img src="http://www.json.org/object.gif" alt="JSON Object"></p>
+<p><img alt="JSON Object" data-src="http://www.json.org/object.gif"></p>
 <ul>
 <li>数组是值(value)的有序集合。一个数组以“[”（左中括号）开始，“]”（右中括号）结束。值之间使用“,”（逗号）分隔。</li>
 </ul>
-<p><img src="http://www.json.org/array.gif" alt="JSON Array"></p>
+<p><img alt="JSON Array" data-src="http://www.json.org/array.gif"></p>
 <ul>
 <li>值(value)可以是双引号括起来的字符串（string）、数值(number)、true、false、 null、对象（object）或者数组（array）。这些结构可以嵌套。</li>
 </ul>
-<p><img src="http://www.json.org/value.gif" alt="JSON Value"></p>
+<p><img alt="JSON Value" data-src="http://www.json.org/value.gif"></p>
 <ul>
 <li>字符串（string）是由0到多个Unicode字符组成的序列，封装在双引号（””）中, 可以使用反斜杠（‘\’）来进行转义。一个字符可以表示为一个单一字符的字符串。</li>
 </ul>
-<p><img src="http://www.json.org/string.gif" alt="JSON String"></p>
+<p><img alt="JSON String" data-src="http://www.json.org/string.gif"></p>
 <ul>
 <li>数字(number)类似C或者Java里面的数，没有用到的8进制和16进制数除外。</li>
 </ul>
-<p><img src="http://www.json.org/number.gif" alt="JSON Number"></p>
+<p><img alt="JSON Number" data-src="http://www.json.org/number.gif"></p>
 <h2 id="2-3-举个栗子"><a href="#2-3-举个栗子" class="headerlink" title="2.3 举个栗子"></a>2.3 举个栗子</h2><p>上面关于JSON讲了这么多，大家都表示一头雾水了吧？</p>
 <p>没关系，我们来举个栗子，让大家有个直观的感受:-)</p>
 <p>以目前视频使用的iQiyi提供的频道接口为例：</p>
@@ -975,6 +970,8 @@ else
     
     
     
+      
+
         
       
         
@@ -1000,11 +997,11 @@ else
           
           <div class="post-tags">
             
-              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
             
-              <a href="/tags/XML/" rel="tag"># XML</a>
+              <a href="/tags/XML/" rel="tag"><i class="fa fa-tag"></i> XML</a>
             
-              <a href="/tags/JSON/" rel="tag"># JSON</a>
+              <a href="/tags/JSON/" rel="tag"><i class="fa fa-tag"></i> JSON</a>
             
           </div>
         
@@ -1965,7 +1962,7 @@ else
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1986,14 +1983,14 @@ else
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
   </div>
 
 
 
 
   
-  <script>
+  <script pjax>
   function leancloudSelector(url) {
     return document.getElementById(url).querySelector('.leancloud-visitors-count');
   }
@@ -2088,7 +2085,7 @@ else
   </script>
 
 
-  <script>
+  <script pjax>
     (function() {
       var hm = document.createElement("script");
       hm.src = "//tajs.qq.com/stats?sId=55523596";
@@ -2109,21 +2106,25 @@ else
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
 
   </div>
 
   
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
 <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 <script src="/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -2154,6 +2155,7 @@ else
 
 
 
+    <div id="pjax">
 
   
 
@@ -2191,6 +2193,35 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     path: location.pathname
   });
 }, window.Valine);
+</script>
+
+    </div>
+    <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    $(element).parent().append($(element).remove());
+  });
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
 </script>
 
 </body>

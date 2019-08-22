@@ -15,11 +15,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
   <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
@@ -30,12 +31,12 @@
     version: '7.3.0',
     exturl: false,
     sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -44,7 +45,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
@@ -63,15 +64,10 @@
 <meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
 <meta property="og:description" content="By Long Luo 一、重构前的一些缺点 频道显示在VideoListActivity实现的，代码结构不够清晰； 频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间； 后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；  二、重构方案重构方案:  将频道页面独立出">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/Channel_startupTime.png">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridListAdapter_getView.png">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png">
 <meta property="og:updated_time" content="2019-08-21T17:46:52.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="视频频道页面重构总结">
 <meta name="twitter:description" content="By Long Luo 一、重构前的一些缺点 频道显示在VideoListActivity实现的，代码结构不够清晰； 频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间； 后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；  二、重构方案重构方案:  将频道页面独立出">
-<meta name="twitter:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/Channel_startupTime.png">
   <link rel="canonical" href="http://longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/">
 
 
@@ -90,7 +86,7 @@
   <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
-  <script>
+  <script pjax>
     var host = window.location.hostname;
     if (host !== "localhost" || !false) {
       window.dataLayer = window.dataLayer || [];
@@ -101,11 +97,11 @@
   </script>
 
 
-  <script>
+  <script pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      hm.src = "https://hm.baidu.com/hm.js?b4c6c0df76415ca14358f56e0f957de1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -411,15 +407,15 @@
 <a id="more"></a>
 <h1 id="四、数据对比"><a href="#四、数据对比" class="headerlink" title="四、数据对比"></a>四、数据对比</h1><p>我们通过TraceView工具比较前后2种方案的区别：</p>
 <h2 id="4-1-启动时间："><a href="#4-1-启动时间：" class="headerlink" title="4.1 启动时间："></a>4.1 启动时间：</h2><p>比较两者启动时间，可以看出重构之后的方案是有大概20ms的提升。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/Channel/Channel_startupTime.png" alt="Startup Time"></p>
+<p><img alt="Startup Time" data-src="http://blogresource.qiniudn.com/images/2014/Android/Channel/Channel_startupTime.png"></p>
 <hr>
 <h2 id="4-2-TraceView对比："><a href="#4-2-TraceView对比：" class="headerlink" title="4.2 TraceView对比："></a>4.2 TraceView对比：</h2><p>通过DDMS TraceView工具，我们再比较下2者性能上的区别：</p>
 <h3 id="4-2-1-重构之前："><a href="#4-2-1-重构之前：" class="headerlink" title="4.2.1 重构之前："></a>4.2.1 重构之前：</h3><p>重构之前的在绘制页面时需要绘制ListView，然后在每一个List中在绘制GridView，在TraceView获取到的数据如下：</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png" alt="ChannelListAdapter"></p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridListAdapter_getView.png" alt="ChannelGridListAdapter"></p>
+<p><img alt="ChannelListAdapter" data-src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png"></p>
+<p><img alt="ChannelGridListAdapter" data-src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridListAdapter_getView.png"></p>
 <p>从以上可以分析，在ChannelListAdapter的getView()就占据了<strong>1.0%</strong>的Incl Cpu Time, GridView的getView()占据了<strong>6.9%</strong>的Incl Cpu Time，合计占用了<strong>7.9%</strong>的CPU Time。</p>
 <h3 id="4-2-2-重构之后："><a href="#4-2-2-重构之后：" class="headerlink" title="4.2.2 重构之后："></a>4.2.2 重构之后：</h3><p>重构之后，我们仅需要在ChannelGridAdapter中绘制View，测量数据如下：</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png" alt="ChannelGridAdapter"></p>
+<p><img alt="ChannelGridAdapter" data-src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png"></p>
 <p>从上图可以看出，getView()占据的CPU时间仅为<strong>3.2%</strong>，效率大大提高。</p>
 <p><strong><em>Created by Long Luo at 2014/7/1 15:45:01</em></strong><br><strong><em>Completed by Long Luo at 2014/7/2 14:42:29</em></strong><br><strong><em>Modified by Long Luo at 2018年9月27日22点40分 at Hangzhou, China.</em></strong></p>
 
@@ -428,6 +424,8 @@
     
     
     
+      
+
         
       
         
@@ -453,9 +451,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
             
-              <a href="/tags/性能优化/" rel="tag"># 性能优化</a>
+              <a href="/tags/性能优化/" rel="tag"><i class="fa fa-tag"></i> 性能优化</a>
             
           </div>
         
@@ -1416,7 +1414,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1437,14 +1435,14 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
   </div>
 
 
 
 
   
-  <script>
+  <script pjax>
   function leancloudSelector(url) {
     return document.getElementById(url).querySelector('.leancloud-visitors-count');
   }
@@ -1539,7 +1537,7 @@
   </script>
 
 
-  <script>
+  <script pjax>
     (function() {
       var hm = document.createElement("script");
       hm.src = "//tajs.qq.com/stats?sId=55523596";
@@ -1560,21 +1558,25 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
 
   </div>
 
   
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
 <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 <script src="/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -1605,6 +1607,7 @@
 
 
 
+    <div id="pjax">
 
   
 
@@ -1642,6 +1645,35 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     path: location.pathname
   });
 }, window.Valine);
+</script>
+
+    </div>
+    <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    $(element).parent().append($(element).remove());
+  });
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
 </script>
 
 </body>

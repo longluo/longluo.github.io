@@ -15,11 +15,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
   <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
@@ -30,12 +31,12 @@
     version: '7.3.0',
     exturl: false,
     sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -44,7 +45,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
@@ -63,16 +64,10 @@
 <meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
 <meta property="og:description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第六篇: 大话结构体之六：无即是有，没有成员变量的Struct(结构体)   在上一篇大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下) 中，我们学习了struct的内存对齐的前世今生。 在开始本篇之前，想问大家一个问题： ---0是什么？ ---呵呵，就">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/03/1354466907_1355.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/05/1354637651_7390.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/05/1354637651_3893.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/05/1354637651_4158.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/06/1354802731_3968.jpg">
 <meta property="og:updated_time" content="2019-08-21T17:46:52.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大话结构体之六：无即是有，没有成员变量的Struct(结构体)">
 <meta name="twitter:description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第六篇: 大话结构体之六：无即是有，没有成员变量的Struct(结构体)   在上一篇大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下) 中，我们学习了struct的内存对齐的前世今生。 在开始本篇之前，想问大家一个问题： ---0是什么？ ---呵呵，就">
-<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201212/03/1354466907_1355.jpg">
   <link rel="canonical" href="http://longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">
 
 
@@ -91,7 +86,7 @@
   <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
-  <script>
+  <script pjax>
     var host = window.location.hostname;
     if (host !== "localhost" || !false) {
       window.dataLayer = window.dataLayer || [];
@@ -102,11 +97,11 @@
   </script>
 
 
-  <script>
+  <script pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      hm.src = "https://hm.baidu.com/hm.js?b4c6c0df76415ca14358f56e0f957de1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -415,7 +410,7 @@
 <p>打住，这和我们讲的<code>struct</code>有什么关系？</p>
 <p>当然有关系了，请问下面这段代码输出的是什么呢？<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NoMember</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"The size of the struct NoMem is:"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(NoMember)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>—-是0呢？<br>—-还是1？2？3？</p>
-<p>想必大部分人还是说不出来的，那我们先看看输出结果：<br><img src="http://img.my.csdn.net/uploads/201212/03/1354466907_1355.jpg" alt="没有成员变量的结构体"></p>
+<p>想必大部分人还是说不出来的，那我们先看看输出结果：<br><img alt="没有成员变量的结构体" data-src="http://img.my.csdn.net/uploads/201212/03/1354466907_1355.jpg"></p>
 <p>一个没有任何变量的<code>struct</code>居然占了<strong>1个字节</strong>的空间。</p>
 <p>—-<strong><em>这不科学！</em></strong></p>
 <p>那这是为什么呢？</p>
@@ -424,18 +419,18 @@
 <p>一个结构体里面定义了一个空的数组，那这次的输出会是什么呢？</p>
 <p>—-厄， 这还是一个空的结构体，所以<strong>输出还是1</strong>吧？</p>
 <p>好的，你还真蒙对了，请看结果：</p>
-<p><img src="http://img.my.csdn.net/uploads/201212/05/1354637651_7390.jpg" alt="空的数组的结构体"></p>
+<p><img alt="空的数组的结构体" data-src="http://img.my.csdn.net/uploads/201212/05/1354637651_7390.jpg"></p>
 <p>但是，如果<code>struct</code>里面还有另外的变量呢？会是什么情况呢？<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NoMember</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NoMember1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mA[<span class="number">0</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NoMember2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> mB;</span><br><span class="line">	<span class="keyword">int</span> mA[<span class="number">0</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//cout&lt;&lt;endl&lt;&lt;"The size of the struct NoMember is: "&lt;&lt;sizeof(NoMember)&lt;&lt;endl;</span></span><br><span class="line">	<span class="comment">//cout&lt;&lt;endl&lt;&lt;"The size of the struct NoMember1 is: "&lt;&lt;sizeof(NoMember1)&lt;&lt;endl;</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="string">"The size of the struct NoMember2 is: "</span>&lt;&lt;<span class="keyword">sizeof</span>(NoMember2)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>—-那这一次的输出是什么呢？</p>
 <p>—-<code>char mB</code>占据4个字节，然后<code>int mA[0]</code>占据1个字节，所以结果<strong>应该是5</strong>吧？ </p>
 <p>结果是什么呢？请看大屏幕！</p>
-<p><img src="http://img.my.csdn.net/uploads/201212/05/1354637651_3893.jpg" alt="0元素数组和成员变量"></p>
+<p><img alt="0元素数组和成员变量" data-src="http://img.my.csdn.net/uploads/201212/05/1354637651_3893.jpg"></p>
 <p>结果是4，为什么呢？</p>
 <p>其实结合<strong>500 ≠ 5</strong>的话也很好理解，虽然结构体包含0个成员变量，但是结构体起到“占位”的作用，“空结构体”变量必须被存储，编译器为其分配一个字节的空间用于占位了。这样一来，不光可以取地址，两个不同的“空结构体”变量又可以得以区分。</p>
 <p>我们可以输出各个结构体的地址：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NoMember</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NoMember1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mA[<span class="number">0</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">NoMember2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> mB;</span><br><span class="line">	<span class="keyword">int</span> mA[<span class="number">0</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	NoMember nm0;</span><br><span class="line">	NoMember1 nm1;</span><br><span class="line">	NoMember2 nm2;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="string">"The size of the struct NoMember is: "</span>&lt;&lt;<span class="keyword">sizeof</span>(NoMember)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"The address of the struct of NoMember: 0x"</span>&lt;&lt;&amp;nm0&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="string">"The size of the struct NoMember1 is: "</span>&lt;&lt;<span class="keyword">sizeof</span>(NoMember1)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"The address of the struct of NoMember: 0x"</span>&lt;&lt;&amp;nm1.mA&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="string">"The size of the struct NoMember2 is: "</span>&lt;&lt;<span class="keyword">sizeof</span>(NoMember2)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"The address of the struct of NoMember: 0x"</span>&lt;&lt;&amp;nm2.mA&lt;&lt;<span class="string">"\t0x"</span>&lt;&lt;&amp;nm2.mA&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>从输出结果，可以看出内存情况如下：<br><img src="http://img.my.csdn.net/uploads/201212/05/1354637651_4158.jpg" alt="内存情况"></p>
+<p>从输出结果，可以看出内存情况如下：<br><img alt="内存情况" data-src="http://img.my.csdn.net/uploads/201212/05/1354637651_4158.jpg"></p>
 <p>注意下面这份简谱，注意到乐谱上也有很多的<strong><em>休止符</em></strong>，在简谱上也是用<code>0</code>来表示，但是它们<strong>不是“没有”</strong>， 而是表示<strong>不发音</strong>！</p>
-<p><img src="http://img.my.csdn.net/uploads/201212/06/1354802731_3968.jpg" alt="简谱"></p>
+<p><img alt="简谱" data-src="http://img.my.csdn.net/uploads/201212/06/1354802731_3968.jpg"></p>
 <p>这些0都<strong>不能去掉</strong>的，因为去掉，节奏肯定乱了。</p>
 <p> 0与其说是“空”，还不如说是“填空”更恰当。因为它的作用是<strong><em>占位</em></strong>。</p>
 <p>结合这个例子，想必大家就理解了， “空结构体” 为什么需要占用一个字节的空间。</p>
@@ -453,6 +448,8 @@
     
     
     
+      
+
         
       
         
@@ -478,11 +475,11 @@
           
           <div class="post-tags">
             
-              <a href="/tags/结构体/" rel="tag"># 结构体</a>
+              <a href="/tags/结构体/" rel="tag"><i class="fa fa-tag"></i> 结构体</a>
             
-              <a href="/tags/技术/" rel="tag"># 技术</a>
+              <a href="/tags/技术/" rel="tag"><i class="fa fa-tag"></i> 技术</a>
             
-              <a href="/tags/科普/" rel="tag"># 科普</a>
+              <a href="/tags/科普/" rel="tag"><i class="fa fa-tag"></i> 科普</a>
             
           </div>
         
@@ -1439,7 +1436,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1460,14 +1457,14 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
   </div>
 
 
 
 
   
-  <script>
+  <script pjax>
   function leancloudSelector(url) {
     return document.getElementById(url).querySelector('.leancloud-visitors-count');
   }
@@ -1562,7 +1559,7 @@
   </script>
 
 
-  <script>
+  <script pjax>
     (function() {
       var hm = document.createElement("script");
       hm.src = "//tajs.qq.com/stats?sId=55523596";
@@ -1583,21 +1580,25 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
 
   </div>
 
   
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
 <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 <script src="/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -1628,6 +1629,7 @@
 
 
 
+    <div id="pjax">
 
   
 
@@ -1665,6 +1667,35 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     path: location.pathname
   });
 }, window.Valine);
+</script>
+
+    </div>
+    <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    $(element).parent().append($(element).remove());
+  });
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
 </script>
 
 </body>

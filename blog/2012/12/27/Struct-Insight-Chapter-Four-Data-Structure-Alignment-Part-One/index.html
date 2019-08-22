@@ -15,11 +15,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
   <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
@@ -30,12 +31,12 @@
     version: '7.3.0',
     exturl: false,
     sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -44,7 +45,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
@@ -63,15 +64,10 @@
 <meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
 <meta property="og:description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第四篇: 以空间换时间，Struct(结构体)中的成员对齐之道(上)   在开始今天的文章之前，请先看下面一道面试题： 问题： 阅读下面一段代码并回答题目之后的问题：12345struct ALIGN&amp;#123;	int mA;	int mB;&amp;#125;; 请问在32位系统下s">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/03/1354465795_4041.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/03/1354466216_5266.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/07/1354887698_4439.jpg">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/07/1354888541_6359.jpg">
 <meta property="og:updated_time" content="2019-08-21T17:46:52.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)">
 <meta name="twitter:description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第四篇: 以空间换时间，Struct(结构体)中的成员对齐之道(上)   在开始今天的文章之前，请先看下面一道面试题： 问题： 阅读下面一段代码并回答题目之后的问题：12345struct ALIGN&amp;#123;	int mA;	int mB;&amp;#125;; 请问在32位系统下s">
-<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201212/03/1354465795_4041.jpg">
   <link rel="canonical" href="http://longluo.me/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/">
 
 
@@ -90,7 +86,7 @@
   <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
-  <script>
+  <script pjax>
     var host = window.location.hostname;
     if (host !== "localhost" || !false) {
       window.dataLayer = window.dataLayer || [];
@@ -101,11 +97,11 @@
   </script>
 
 
-  <script>
+  <script pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      hm.src = "https://hm.baidu.com/hm.js?b4c6c0df76415ca14358f56e0f957de1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -401,7 +397,7 @@
 <p>当然这道题目是难不到广大程序员同学们滴！</p>
 <p>在32位机器上int类型占4个字节，<strong>Struct ALIGN</strong>里面有2个int型变量，那么总共就是<strong><em>8</em></strong>个字节喽！</p>
 <p>Bingo，在这个例子中，<code>sizeof(ALIGN)</code>的结果的确是<strong><em>8</em></strong>。</p>
-<p><img src="http://img.my.csdn.net/uploads/201212/03/1354465795_4041.jpg" alt="结构体对齐"></p>
+<p><img alt="结构体对齐" data-src="http://img.my.csdn.net/uploads/201212/03/1354465795_4041.jpg"></p>
 <p>下面，我们把代码修改一下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mA;</span><br><span class="line">	<span class="keyword">int</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mA;</span><br><span class="line">	<span class="keyword">short</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(<span class="keyword">short</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(ALIGN1)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>请问输出是多少？</p>
 <a id="more"></a>
@@ -409,7 +405,7 @@
 <pre><code>mA占4个字节，mB占2个字节，所以Struct ALGN1应该是4+2=6个字节，所以答案是2和6。
 </code></pre><p>—-<strong>你确定么？</strong> （<em>小丫的语言</em>）<br>—-<strong>我确定</strong>！</p>
 <p>好的，请看大屏幕：</p>
-<p><img src="http://img.my.csdn.net/uploads/201212/03/1354466216_5266.jpg" alt="结构体对齐2"></p>
+<p><img alt="结构体对齐2" data-src="http://img.my.csdn.net/uploads/201212/03/1354466216_5266.jpg"></p>
 <p>咦？</p>
 <p>结构体的大小不是将结构体元素单纯相加就可以的吗？</p>
 <p>怎么结果却变成8了呢？</p>
@@ -420,12 +416,12 @@
 <p>以IA32为例，在自然对齐方式下，基本数据类型（如short，int，double）<strong>变量的地址必须被他们的大小整除</strong>。</p>
 <p>通俗的说，对于int类型的变量，因为宽度为4，因此存放int类型变量的<code>起始地址必须能被4整除</code>，宽度为2的基本数据类型（short等）则<code>位于能被2整除的地址上</code>，以此类推对于char和bool类型的变量，由于其只占用一个字节，则<code>没有特别要求</code>。</p>
 <p>我们修改下程序，让其输出成员变量的地址：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mA;</span><br><span class="line">	<span class="keyword">int</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mA;</span><br><span class="line">	<span class="keyword">short</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ALIGN aln0;</span><br><span class="line">	ALIGN1 aln1;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"\n"</span>&lt;&lt;&amp;aln0.mA&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln0.mB&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"\n"</span>&lt;&lt;&amp;aln1.mA&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln1.mB&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>程序调试我们可以看到：<br><img src="http://img.my.csdn.net/uploads/201212/07/1354887698_4439.jpg" alt="变量地址"></p>
+<p>程序调试我们可以看到：<br><img alt="变量地址" data-src="http://img.my.csdn.net/uploads/201212/07/1354887698_4439.jpg"></p>
 <p>从上述结果中，可以看出在<code>struct ALIGN1</code>中，int mA的起始地址为<strong>0x0012ff4c</strong>可以被4整除，short mB的起始地址为<strong>0x0012ff50</strong>可以被2整除。</p>
 <p>再看下列代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mA;</span><br><span class="line">	<span class="keyword">int</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mA;</span><br><span class="line">	<span class="keyword">short</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> mA;</span><br><span class="line">	<span class="keyword">int</span> mB;</span><br><span class="line">	<span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mB;</span><br><span class="line">	<span class="keyword">char</span> mA;</span><br><span class="line">	<span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ALIGN aln0;</span><br><span class="line">	ALIGN1 aln1;</span><br><span class="line">	ALIGN2 aln2;</span><br><span class="line">	ALIGN3 aln3;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"The size of struct ALIGN is:"</span>&lt;&lt;<span class="keyword">sizeof</span>(ALIGN)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln0.mA&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln0.mB&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"The size of struct ALIGN1 is:"</span>&lt;&lt;<span class="keyword">sizeof</span>(ALIGN1)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln1.mA&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln1.mB&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"The size of struct ALIGN2 is:"</span>&lt;&lt;<span class="keyword">sizeof</span>(ALIGN2)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln2.mA&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln2.mB&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln2.mC&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"The size of struct ALIGN3 is:"</span>&lt;&lt;<span class="keyword">sizeof</span>(ALIGN3)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln3.mA&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln3.mB&lt;&lt;<span class="string">"\t"</span>&lt;&lt;&amp;aln3.mC&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出结果如下：</p>
-<p><img src="http://img.my.csdn.net/uploads/201212/07/1354888541_6359.jpg" alt="地址输出"></p>
+<p><img alt="地址输出" data-src="http://img.my.csdn.net/uploads/201212/07/1354888541_6359.jpg"></p>
 <p>是不是觉得很奇怪？</p>
 <p>ALIGN2 和 ALIGN3都是1个int型，1个char型，1个short型，可是它们所占的空间却<strong>1个是8，一个是12</strong>？</p>
 <p><strong><em>这非常非常不科学啊</em></strong>！</p>
@@ -439,6 +435,8 @@
     
     
     
+      
+
         
       
         
@@ -464,11 +462,11 @@
           
           <div class="post-tags">
             
-              <a href="/tags/结构体/" rel="tag"># 结构体</a>
+              <a href="/tags/结构体/" rel="tag"><i class="fa fa-tag"></i> 结构体</a>
             
-              <a href="/tags/技术/" rel="tag"># 技术</a>
+              <a href="/tags/技术/" rel="tag"><i class="fa fa-tag"></i> 技术</a>
             
-              <a href="/tags/科普/" rel="tag"># 科普</a>
+              <a href="/tags/科普/" rel="tag"><i class="fa fa-tag"></i> 科普</a>
             
           </div>
         
@@ -1425,7 +1423,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1446,14 +1444,14 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
   </div>
 
 
 
 
   
-  <script>
+  <script pjax>
   function leancloudSelector(url) {
     return document.getElementById(url).querySelector('.leancloud-visitors-count');
   }
@@ -1548,7 +1546,7 @@
   </script>
 
 
-  <script>
+  <script pjax>
     (function() {
       var hm = document.createElement("script");
       hm.src = "//tajs.qq.com/stats?sId=55523596";
@@ -1569,21 +1567,25 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
 
   </div>
 
   
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
 <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 <script src="/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -1614,6 +1616,7 @@
 
 
 
+    <div id="pjax">
 
   
 
@@ -1651,6 +1654,35 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     path: location.pathname
   });
 }, window.Valine);
+</script>
+
+    </div>
+    <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    $(element).parent().append($(element).remove());
+  });
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
 </script>
 
 </body>

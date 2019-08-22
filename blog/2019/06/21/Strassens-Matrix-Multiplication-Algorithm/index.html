@@ -15,11 +15,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
   <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
@@ -30,12 +31,12 @@
     version: '7.3.0',
     exturl: false,
     sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -44,7 +45,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
@@ -63,13 +64,10 @@
 <meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
 <meta property="og:description" content="By LongLuo 机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。 一、矩阵乘法假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix pro">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true">
-<meta property="og:image" content="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/matrixmulti_strassen.jpg?raw=true">
 <meta property="og:updated_time" content="2019-08-22T15:29:08.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="5分钟掌握矩阵乘法的Strassen算法">
 <meta name="twitter:description" content="By LongLuo 机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。 一、矩阵乘法假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix pro">
-<meta name="twitter:image" content="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true">
   <link rel="canonical" href="http://longluo.me/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/">
 
 
@@ -88,7 +86,7 @@
   <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
-  <script>
+  <script pjax>
     var host = window.location.hostname;
     if (host !== "localhost" || !false) {
       window.dataLayer = window.dataLayer || [];
@@ -99,11 +97,11 @@
   </script>
 
 
-  <script>
+  <script pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      hm.src = "https://hm.baidu.com/hm.js?b4c6c0df76415ca14358f56e0f957de1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -394,7 +392,7 @@
 <p>其中矩阵$C$中的第$i$行第$j$列元素可以表示为：</p>
 <script type="math/tex; mode=display">
  (AB)_{ij} = \sum_{k=1}^{p}{a_{ik}b_{kj}} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdot\cdot\cdot + a_{ip}b_{pj}</script><p>如下图所示：</p>
-<p><img src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true" alt="@Figure 1. Matrix Multiplication | center "></p>
+<p><img alt="@Figure 1. Matrix Multiplication | center " data-src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true"></p>
 <p>假如在矩阵$A$和矩阵$B$中，$m = p = n = N$，那么完成$C = AB$需要多少次乘法呢？</p>
 <ol>
 <li>对于每一个行向量$r$ ，总共有$N$行；</li>
@@ -405,7 +403,7 @@
 <h1 id="二、Strassen算法"><a href="#二、Strassen算法" class="headerlink" title="二、Strassen算法"></a>二、Strassen算法</h1><p>那么有没有比$\Theta(N^{3})$更快的算法呢？</p>
 <a id="more"></a>
 <p>1969年，Volker Strassen提出了第一个算法时间复杂度低于$\Theta(N^{3})$矩阵乘法算法，算法复杂度为$\Theta(n^{log_{2}^{7}}) = \Theta(n^{2.807})$。从下图可知，Strassen算法只有在对于维数比较大的矩阵 ($N &gt; 300$) ，性能上才有很大的优势，可以减少很多乘法计算。</p>
-<p><img src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/matrixmulti_strassen.jpg?raw=true" alt="@Figure 2. x^3 vs. x^2.807 | center"></p>
+<p><img alt="@Figure 2. x^3 vs. x^2.807 | center" data-src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/matrixmulti_strassen.jpg?raw=true"></p>
 <p>Strassen算法证明了矩阵乘法存在时间复杂度低于$\Theta(N^{3})$的算法的存在，后续学者不断研究发现新的更快的算法，截止目前时间复杂度最低的矩阵乘法算法是Coppersmith-Winograd方法的一种扩展方法，其算法复杂度为$\Theta(n^{2.375})$。</p>
 <h1 id="三、Strassen原理详解"><a href="#三、Strassen原理详解" class="headerlink" title="三、Strassen原理详解"></a>三、Strassen原理详解</h1><p>假设矩阵$A$ 和矩阵$B$都是$N \times N (N = 2^{n})$的方矩阵，求$C = AB$，如下所示：</p>
 <script type="math/tex; mode=display">
@@ -483,6 +481,8 @@ T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n 
     
     
     
+      
+
         
       
         
@@ -508,11 +508,11 @@ T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n 
           
           <div class="post-tags">
             
-              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Algorithm/" rel="tag"><i class="fa fa-tag"></i> Algorithm</a>
             
-              <a href="/tags/Matrix-Multiplication/" rel="tag"># Matrix Multiplication</a>
+              <a href="/tags/Matrix-Multiplication/" rel="tag"><i class="fa fa-tag"></i> Matrix Multiplication</a>
             
-              <a href="/tags/Strassen/" rel="tag"># Strassen</a>
+              <a href="/tags/Strassen/" rel="tag"><i class="fa fa-tag"></i> Strassen</a>
             
           </div>
         
@@ -1469,7 +1469,7 @@ T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n 
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1490,14 +1490,14 @@ T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n 
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
   </div>
 
 
 
 
   
-  <script>
+  <script pjax>
   function leancloudSelector(url) {
     return document.getElementById(url).querySelector('.leancloud-visitors-count');
   }
@@ -1592,7 +1592,7 @@ T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n 
   </script>
 
 
-  <script>
+  <script pjax>
     (function() {
       var hm = document.createElement("script");
       hm.src = "//tajs.qq.com/stats?sId=55523596";
@@ -1613,21 +1613,25 @@ T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n 
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
 
   </div>
 
   
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
 <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 <script src="/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -1658,6 +1662,7 @@ T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n 
 
 
 
+    <div id="pjax">
 
   
 
@@ -1707,7 +1712,7 @@ T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n 
   });
 </script>
 <script>
-  NexT.utils.getScript('//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
     MathJax.Hub.Typeset();
   }, window.MathJax);
 </script>
@@ -1747,6 +1752,35 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     path: location.pathname
   });
 }, window.Valine);
+</script>
+
+    </div>
+    <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    $(element).parent().append($(element).remove());
+  });
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
 </script>
 
 </body>

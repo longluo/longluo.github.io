@@ -15,11 +15,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.3.0">
   <link rel="mask-icon" href="/images/logo.svg?v=7.3.0" color="#222">
   <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
 
 <link rel="stylesheet" href="/css/main.css?v=7.3.0">
 
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
 
 
 <script id="hexo-configurations">
@@ -30,12 +31,12 @@
     version: '7.3.0',
     exturl: false,
     sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -44,7 +45,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
@@ -63,25 +64,10 @@
 <meta property="og:site_name" content="Long Luo&#39;s Develop Notes">
 <meta property="og:description" content="By Long Luo  Agenda  1. 在线搜索现状及发展 2. UI设计及实现 3. 代码逻辑设计及实现 4. 问题及解决  一、在线搜索之前搜索页面的一些缺陷：  具体实现位于VideoListActivity中，一方面会造成VideoListActivity代码过于庞大臃肿，另外一方面不便于后续功能扩展，结构不清晰； 依赖了大量系统控件，不便于后续解耦及界面定制； 今后搜索界面会参考">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/iqiyi_search_filter.png?imageView/1/w/540/h/960/q/62/format/PNG">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_classes.png">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_weights.png">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_initFragment.png">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_pagechangelistener.png">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_resultFragment.png">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_textwatcher.png">
-<meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_setText.png">
 <meta property="og:updated_time" content="2019-08-21T17:46:52.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="视频在线搜索设计与实现">
 <meta name="twitter:description" content="By Long Luo  Agenda  1. 在线搜索现状及发展 2. UI设计及实现 3. 代码逻辑设计及实现 4. 问题及解决  一、在线搜索之前搜索页面的一些缺陷：  具体实现位于VideoListActivity中，一方面会造成VideoListActivity代码过于庞大臃肿，另外一方面不便于后续功能扩展，结构不清晰； 依赖了大量系统控件，不便于后续解耦及界面定制； 今后搜索界面会参考">
-<meta name="twitter:image" content="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG">
   <link rel="canonical" href="http://longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/">
 
 
@@ -100,7 +86,7 @@
   <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
-  <script>
+  <script pjax>
     var host = window.location.hostname;
     if (host !== "localhost" || !false) {
       window.dataLayer = window.dataLayer || [];
@@ -111,11 +97,11 @@
   </script>
 
 
-  <script>
+  <script pjax>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?b25f92f0b47d1326ae5eb398aaed855d121808aa";
+      hm.src = "https://hm.baidu.com/hm.js?b4c6c0df76415ca14358f56e0f957de1";
       var s = document.getElementsByTagName("script")[0];
       s.parentNode.insertBefore(hm, s);
     })();
@@ -417,20 +403,20 @@
 <h2 id="1-1-在线搜索实现效果"><a href="#1-1-在线搜索实现效果" class="headerlink" title="1.1 在线搜索实现效果"></a>1.1 在线搜索实现效果</h2><p>在线搜索因为是和第三方合作，涉及到很多网络相关的操作，简单来说就是利用HTTP协议向相关接口发起一次网络请求，服务器如果返回了正确的响应，App会解析服务器返回的内容，并展示出来。</p>
 <h3 id="1-1-1-热词界面"><a href="#1-1-1-热词界面" class="headerlink" title="1.1.1 热词界面"></a>1.1.1 热词界面</h3><p>热词界面是<strong>当搜索文本框文字为空</strong>时会弹出热词界面，会展示最近一段时间内搜索频率很高的词语。一方面可以节省大家输入文字，另外一方面你也可以了解当前的一些热点。</p>
 <p>当你点击列表中的某个热词时，就会发起一次以此为关键词的搜索。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="热词显示"></p>
+<p><img alt="热词显示" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
 <h3 id="1-1-2-关联词"><a href="#1-1-2-关联词" class="headerlink" title="1.1.2 关联词"></a>1.1.2 关联词</h3><p>当<strong>搜索文本输入框含有文字</strong>时，会获取当前输入文字，以此为关键词获取网络的一些联想词，可以点击此联想词发起一次搜索。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="关联词显示"></p>
+<p><img alt="关联词显示" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
 <h3 id="1-1-3-搜索结果分类浏览"><a href="#1-1-3-搜索结果分类浏览" class="headerlink" title="1.1.3 搜索结果分类浏览"></a>1.1.3 搜索结果分类浏览</h3><p>发起一次搜索之后，如果得到了服务器的正确响应，而且确实有相关视频内容。那么我们会将搜索结果展示在手机页面上。</p>
 <p>搜索到的结果可以分<strong>不同频道</strong>浏览，会根据具体内容进行动态变化，有的可能有10几个频道，有的也就1个频道。频道页面可以滑动浏览，也可以选择在顶部页面选中或者滑动。</p>
 <p>分类浏览时，第一个展示的页面是搜索到的全部视频内容，之后的会根据结果动态变化。</p>
 <p>如下图所示：</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果"></p>
+<p><img alt="搜索结果" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
 <p>分频道浏览：</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果分类"></p>
+<p><img alt="搜索结果分类" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
 <h3 id="1-1-4-语音搜索"><a href="#1-1-4-语音搜索" class="headerlink" title="1.1.4 语音搜索"></a>1.1.4 语音搜索</h3><p><strong>语音搜索图标只有当搜索框里文字为空才会出现，否则出现搜索图标</strong>。</p>
 <p>点击语音搜索图标将会启动VoiceSearch这个apk，然后你可以说话，如果被正确识别之后，会发起一次搜索，并将结果展示出来。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索"></p>
-<h3 id="1-1-5-语音搜索结果"><a href="#1-1-5-语音搜索结果" class="headerlink" title="1.1.5 语音搜索结果"></a>1.1.5 语音搜索结果</h3><p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索结果"></p>
+<p><img alt="语音搜索" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+<h3 id="1-1-5-语音搜索结果"><a href="#1-1-5-语音搜索结果" class="headerlink" title="1.1.5 语音搜索结果"></a>1.1.5 语音搜索结果</h3><p><img alt="语音搜索结果" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
 <a id="more"></a>
 <h1 id="二、在线搜索UI设计及实现"><a href="#二、在线搜索UI设计及实现" class="headerlink" title="二、在线搜索UI设计及实现"></a>二、在线搜索UI设计及实现</h1><p>任何功能都离不开UI和代码。在此我们先讨论在线搜索界面的UI设计及具体实现：</p>
 <h2 id="2-1-SearchBar"><a href="#2-1-SearchBar" class="headerlink" title="2.1 SearchBar"></a>2.1 SearchBar</h2><p>SearchBar即为顶部的搜索栏，包括返回、编辑框、搜索按钮、语音按钮等。假如采用标准SDK，还需要加上一个清除全部文字按钮。</p>
@@ -438,7 +424,7 @@
 <h2 id="2-2-热词和关联词"><a href="#2-2-热词和关联词" class="headerlink" title="2.2 热词和关联词"></a>2.2 热词和关联词</h2><p>实现热词和关联词需要ListView及相关缓冲、空瓶动画，使用OPPO SDK控件实现。</p>
 <h2 id="2-3-分类筛选页面"><a href="#2-3-分类筛选页面" class="headerlink" title="2.3 分类筛选页面"></a>2.3 分类筛选页面</h2><p><strong>分类筛选页面</strong>是一个难点，为了实现这个效果，使用了2种方案，但第一种方案页面无法滑动，最后选择可滑动页面方案。</p>
 <h3 id="2-3-1-水平ListView和ListView实现方案"><a href="#2-3-1-水平ListView和ListView实现方案" class="headerlink" title="2.3.1 水平ListView和ListView实现方案"></a>2.3.1 水平ListView和ListView实现方案</h3><p>这种方案是参考了iQiyi的实现方案，如下图所示：</p>
-<h4 id="2-3-1-1-iQiyi-搜索结果"><a href="#2-3-1-1-iQiyi-搜索结果" class="headerlink" title="2.3.1.1 iQiyi 搜索结果"></a>2.3.1.1 iQiyi 搜索结果</h4><p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/iqiyi_search_filter.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="iQiyi搜索结果"></p>
+<h4 id="2-3-1-1-iQiyi-搜索结果"><a href="#2-3-1-1-iQiyi-搜索结果" class="headerlink" title="2.3.1.1 iQiyi 搜索结果"></a>2.3.1.1 iQiyi 搜索结果</h4><p><img alt="iQiyi搜索结果" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/iqiyi_search_filter.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
 <h4 id="2-3-1-2-iQiyi实现"><a href="#2-3-1-2-iQiyi实现" class="headerlink" title="2.3.1.2 iQiyi实现"></a>2.3.1.2 iQiyi实现</h4><p>分类可滑动使用了一个HorizontalListView实现，搜索结果使用ListView实现，优点：</p>
 <ol>
 <li>每个频道显示可以自定义，可以不仅仅显示频道名称，后续扩展方便，比如添加具体视频数字等；</li>
@@ -451,21 +437,21 @@
 <li>由于页面可滑动，需要ViewPager和Fragments List，在滑动时，启动相关的fragment，显示相关内容；</li>
 <li>每个fragment需要ListView及相关的一些控件，发起搜索及相关实现；</li>
 </ol>
-<h1 id="三、在线搜索代码逻辑"><a href="#三、在线搜索代码逻辑" class="headerlink" title="三、在线搜索代码逻辑"></a>三、在线搜索代码逻辑</h1><h2 id="3-1-搜索类"><a href="#3-1-搜索类" class="headerlink" title="3.1 搜索类"></a>3.1 搜索类</h2><p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_classes.png" alt="搜索类"></p>
+<h1 id="三、在线搜索代码逻辑"><a href="#三、在线搜索代码逻辑" class="headerlink" title="三、在线搜索代码逻辑"></a>三、在线搜索代码逻辑</h1><h2 id="3-1-搜索类"><a href="#3-1-搜索类" class="headerlink" title="3.1 搜索类"></a>3.1 搜索类</h2><p><img alt="搜索类" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_classes.png"></p>
 <p><strong>iQiyi搜索接口</strong>：</p>
 <p><a href="http://iface.iqiyi.com/api/searchIface?key=xxx&amp;id=7f15c6eafc&amp;type=xml&amp;version=1.0&amp;search_type=2&amp;page_size=21&amp;page_number=1&amp;keyword=%E4%B8%96%E7%95%8C%E6%9D%AF" target="_blank" rel="noopener">http://iface.iqiyi.com/api/searchIface?key=xxx&amp;id=7f15c6eafc&amp;type=xml&amp;version=1.0&amp;search_type=2&amp;page_size=21&amp;page_number=1&amp;keyword=%E4%B8%96%E7%95%8C%E6%9D%AF</a></p>
 <p><strong>在某个频道内搜索</strong>:</p>
 <p><a href="http://iface.iqiyi.com/api/searchIface?key=xxx&amp;id=7f15c6eafc&amp;type=xml&amp;version=1.0&amp;search_type=2&amp;page_size=21&amp;page_number=1&amp;keyword=%E4%B8%96%E7%95%8C%E6%9D%AF**&amp;category_id=5**" target="_blank" rel="noopener">http://iface.iqiyi.com/api/searchIface?key=xxx&amp;id=7f15c6eafc&amp;type=xml&amp;version=1.0&amp;search_type=2&amp;page_size=21&amp;page_number=1&amp;keyword=%E4%B8%96%E7%95%8C%E6%9D%AF**&amp;category_id=5**</a></p>
-<h2 id="3-2-搜索结果频道分类"><a href="#3-2-搜索结果频道分类" class="headerlink" title="3.2 搜索结果频道分类"></a>3.2 搜索结果频道分类</h2><p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_weights.png" alt="Weights"></p>
+<h2 id="3-2-搜索结果频道分类"><a href="#3-2-搜索结果频道分类" class="headerlink" title="3.2 搜索结果频道分类"></a>3.2 搜索结果频道分类</h2><p><img alt="Weights" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_weights.png"></p>
 <p>我们解析这个字段中的内容，就可以获取相关分类频道及其结果数量。</p>
 <p>设计搜索的数据结构如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SearchResult</span> </span>&#123;</span><br><span class="line">	<span class="keyword">public</span> ArrayList&lt;SearchFilterInfo&gt; weightList;</span><br><span class="line">	<span class="keyword">public</span> ArrayList&lt;SearchVideoInfo&gt; searchVideoList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="3-3-搜索结果页面"><a href="#3-3-搜索结果页面" class="headerlink" title="3.3 搜索结果页面"></a>3.3 搜索结果页面</h2><p>每一个分类页面都是一个fragment，全部页面是一个fragments List来管理，启动时我们需要初始化，将一些必要的数据传递给各个fragment。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_initFragment.png" alt="initFragment"></p>
+<p><img alt="initFragment" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_initFragment.png"></p>
 <p>在不同搜索结果页面进行切换时，实现一个监听器，获取当前选中页面：</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_pagechangelistener.png" alt="pageChangeListener"></p>
+<p><img alt="pageChangeListener" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_pagechangelistener.png"></p>
 <p>在具体页面实现中，我们需要获取相关的参数及绘制页面：</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_resultFragment.png" alt="resultFragment"></p>
+<p><img alt="resultFragment" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_resultFragment.png"></p>
 <h1 id="四、问题及解决"><a href="#四、问题及解决" class="headerlink" title="四、问题及解决"></a>四、问题及解决</h1><p>在完成这个需求过程中，也遇到了一些问题，不过最终还是都得以解决了。在这里，挑选几个典型问题来说明下，仅供大家后续参考：</p>
 <h2 id="4-1-无法输入中文问题"><a href="#4-1-无法输入中文问题" class="headerlink" title="4.1 无法输入中文问题"></a>4.1 无法输入中文问题</h2><p>搜索栏文本输入框有2种输入方式：</p>
 <ol>
@@ -473,12 +459,12 @@
 <li>选中列表中的热词或者关联词，填充编辑框，启动搜索；</li>
 </ol>
 <p>最开始，在相应的<strong>mTextWatcher</strong>和列表点击中使用了<strong>setKeywords()</strong>方法来实现编辑框的文字输入。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_textwatcher.png" alt="TextWatcher"></p>
+<p><img alt="TextWatcher" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_textwatcher.png"></p>
 <p>但是在手动输入文字中，<strong>setKeywords()</strong>方法由于需要兼顾列表输入文字方法，需要先将<strong>mTextWatcher</strong>remove，然后<strong>setText()</strong>，再添加<strong>mTextWatcher</strong>，这样就造成了每输入一个字符都会在编辑框中显示，就无法输入中文了。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mSearchKeyword.removeTextChangedListener(mTextWatcher);</span><br><span class="line">mSearchKeyword.setText(word);</span><br><span class="line">mSearchKeyword.setSelection(word.length());</span><br><span class="line">mSearchKeyword.addTextChangedListener(mTextWatcher);</span><br></pre></td></tr></table></figure>
 <p><strong>解决方法：</strong></p>
 <p>再建一个<strong>setListSearchWords(String word)</strong>方法，用于列表选词，问题得以解决。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_setText.png" alt="搜索框setText"></p>
+<p><img alt="搜索框setText" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_setText.png"></p>
 <h2 id="4-2-视频异常退出问题"><a href="#4-2-视频异常退出问题" class="headerlink" title="4.2 视频异常退出问题"></a>4.2 视频异常退出问题</h2><p>在实际中遇到了一些异常退出问题：</p>
 <h3 id="4-2-1-滑动页面异常退出"><a href="#4-2-1-滑动页面异常退出" class="headerlink" title="4.2.1 滑动页面异常退出"></a>4.2.1 滑动页面异常退出</h3><p>原因是没有从服务器获取到正确的搜索视频结果，使用Message传递时，虽然message.obj不为空，但搜索结果为空，导致退出。</p>
 <p> <strong>解决方案：</strong><br> 增加相应的空指针判断。</p>
@@ -491,6 +477,8 @@
     
     
     
+      
+
         
       
         
@@ -516,9 +504,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
             
-              <a href="/tags/优化/" rel="tag"># 优化</a>
+              <a href="/tags/优化/" rel="tag"><i class="fa fa-tag"></i> 优化</a>
             
           </div>
         
@@ -1479,7 +1467,7 @@
 
         
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item-icon">
       <i class="fa fa-user"></i>
     </span>
@@ -1500,14 +1488,14 @@
 
 
   <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
   </div>
 
 
 
 
   
-  <script>
+  <script pjax>
   function leancloudSelector(url) {
     return document.getElementById(url).querySelector('.leancloud-visitors-count');
   }
@@ -1602,7 +1590,7 @@
   </script>
 
 
-  <script>
+  <script pjax>
     (function() {
       var hm = document.createElement("script");
       hm.src = "//tajs.qq.com/stats?sId=55523596";
@@ -1623,21 +1611,25 @@
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
 
   </div>
 
   
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
 <script src="/js/schemes/pisces.js?v=7.3.0"></script>
 <script src="/js/next-boot.js?v=7.3.0"></script>
 
 
 
   
-  <script>
+  <script pjax>
     (function(){
       var bp = document.createElement('script');
       var curProtocol = window.location.protocol.split(':')[0];
@@ -1668,6 +1660,7 @@
 
 
 
+    <div id="pjax">
 
   
 
@@ -1705,6 +1698,35 @@ NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () =>
     path: location.pathname
   });
 }, window.Valine);
+</script>
+
+    </div>
+    <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    $(element).parent().append($(element).remove());
+  });
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
 </script>
 
 </body>
