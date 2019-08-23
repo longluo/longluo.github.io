@@ -1,11 +1,11 @@
 ﻿---
 layout: post
-title: '编程难在哪里？'
+title: '编程到底难在哪里？'
 comments: true
 date: 2017-05-22 23:35:37
 tags: [技能, 编程, 代码]
 categories: Program
-keywords: 工作, 程序员, 核心技能, 核心竞争力,
+keywords: 工作, 程序员, 核心技能, 核心竞争力, Work, Program, Code, 
 ---
 
 ***By Long Luo***

@@ -5,7 +5,7 @@ comments: true
 date: 2016-08-17 01:42:30
 tags: [核心技能, 生活, 工作]
 categories: Program
-keywords: 工作, 程序员, 核心技能, 核心竞争力,
+keywords: 工作, 程序员, 核心技能, 核心竞争力, Work, Core Skills, Programmer, 
 ---
 
 ***By Long Luo***

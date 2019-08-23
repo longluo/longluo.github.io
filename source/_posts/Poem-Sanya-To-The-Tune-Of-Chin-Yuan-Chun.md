@@ -3,9 +3,9 @@ layout: post
 title: "沁园春·三亚"
 comments: true
 date: 2013-11-12 23:30:52 
-tags: [诗歌, Travel, 台风]
+tags: [Poem, Travel]
 categories: Life
-keywords: 三亚, 沁园春, 台风, Travel, 旅行, 
+keywords: 三亚, 沁园春, 台风, Travel, 旅行, Sanya, Sea, Typhoon, 
 ---
 
 ***By Long Luo***

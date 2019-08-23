@@ -34,7 +34,7 @@ XML即**可扩展标记语言**(***eXtensible Markup Language***)。标记是指
 - XML被设计为具有自我描述性。
 - XML是W3C的推荐标准
 
-总结：
+***总结：***
 
 XML是独立于软件和硬件的信息传输工具。
 目前，XML在Web中起到的作用不会亚于一直作为 Web 基石的 HTML。

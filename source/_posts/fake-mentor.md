@@ -3,9 +3,9 @@ layout: post
 title: '年纪轻轻，却喜欢当人生导师...'
 comments: true
 date: 2017-04-23 22:01:29
-tags: [Life, 人生, 低调]
+tags: [Life, 低调]
 categories: Life
-keywords: 人生导师, 低调, 
+keywords: 人生导师, 低调, Life, Low Profile, 
 ---
 
 ***By Long Luo***

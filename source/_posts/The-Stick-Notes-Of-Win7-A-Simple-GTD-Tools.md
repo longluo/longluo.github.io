@@ -4,9 +4,10 @@ title: "一个简单的时间管理工具: Win 7自带的便签"
 comments: true
 date: 2016-07-24 21:17:05
 tags: [时间管理, 工具]
-categories: Time Management
-keywords: GTD, Sticky Note, 便签, 时间管理, 笔记, ,
+categories: Tools
+keywords: GTD, Sticky Note, 便签, 时间管理, 笔记, Notes,
 ---
+
 
 ***By Long Luo***
 
@@ -21,11 +22,5 @@ keywords: GTD, Sticky Note, 便签, 时间管理, 笔记, ,
 其中的便签快捷方式就在该文件路径之下，其存放位置是`C:\Windows\System32`下面的`StikyNot.exe`文件。
 
 以上！
-
-
-
-
-
-
 
 

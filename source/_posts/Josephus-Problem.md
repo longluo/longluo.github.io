@@ -3,9 +3,9 @@ layout: post
 title: '经典算法：从约瑟夫问题说开去...'
 comments: true
 date: 2017-11-10 23:27:04
-tags: [Algorithm, Josephus Problem, 编程]
+tags: [Algorithm, Josephus Problem, Program]
 categories: Data Structures and Algorithms
-keywords: Algorithm, 算法, Josephus Problem, 递归, 约瑟夫问题,  
+keywords: Algorithm, 算法, Josephus Problem, 递归, 约瑟夫问题, Problem, 
 ---
 
 

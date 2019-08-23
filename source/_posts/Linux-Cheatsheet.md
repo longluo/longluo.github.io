@@ -3,7 +3,7 @@ layout: post
 title: "Linux系统操作参考手册"
 comments: true
 date: 2016-09-11 22:18:33
-tags: [Linux, Shell, 手册, 效率]
+tags: [Linux, Shell, 效率]
 categories: Linux
 keywords: Linux, OS, Shell, 效率, 工具, 手册, 
 ---
