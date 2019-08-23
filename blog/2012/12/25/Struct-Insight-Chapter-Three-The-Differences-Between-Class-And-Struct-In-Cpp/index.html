@@ -35,7 +35,7 @@
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
-    mediumzoom: false,
+    mediumzoom: true,
     lazyload: true,
     pangu: false,
     algolia: {
@@ -341,20 +341,6 @@
               <span class="leancloud-visitors-count"></span>
             </span>
           
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/#comments" itemprop="discussionUrl"><span class="post-comments-count valine-comment-count" data-xid="/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
@@ -492,47 +478,7 @@
           </div>
           
     
-      <div class="tabs tabs-comment">
-        <ul class="nav-tabs">
-          
-            <li class="tab"><a href="#comment-valine">valine</a></li>
-          
-            <li class="tab"><a href="#comment-gitalk">gitalk</a></li>
-          
-        </ul>
-        <div class="tab-content">
-          
-            <div class="tab-pane valine" id="comment-valine">
-              <div class="comments" id="comments"></div>
-            </div>
-          
-            <div class="tab-pane gitalk" id="comment-gitalk">
-              <div class="comments" id="gitalk-container"></div>
-            </div>
-          
-        </div>
-      </div>
-      <script>
-        window.addEventListener('tabs:register', () => {
-          let activeClass = '';
-          
-            activeClass = localStorage.getItem('comments_active') || activeClass;
-          
-          if (activeClass) {
-            let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-            if (activeTab) {
-              activeTab.click();
-            }
-          }
-        });
-        
-        window.addEventListener('tabs:click', event => {
-          let commentClass = event.target.classList[1];
-          localStorage.setItem('comments_active', commentClass);
-        });
-        
-      </script>
-    
+    <div class="comments" id="gitalk-container"></div>
   
 
         </div>
@@ -1546,15 +1492,15 @@
     }
   }
 
-  fetch('https://app-router.leancloud.cn/2/route?appId=QBkdl9LHy4ppoSUMgGr46sYb-MdYXbMMI')
+  fetch('https://app-router.leancloud.cn/2/route?appId=hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz')
     .then(response => response.json())
     .then(({ api_server }) => {
       var Counter = (method, url, data) => {
         return fetch(`https://${api_server}/1.1${url}`, {
           method: method,
           headers: {
-            'X-LC-Id': 'QBkdl9LHy4ppoSUMgGr46sYb-MdYXbMMI',
-            'X-LC-Key': 'h9VgcEhsx2SzXE2pbuJp85T2',
+            'X-LC-Id': 'hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz',
+            'X-LC-Key': 'p2mNUdDbqxrxOYMjs1xiS0zM',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data)
@@ -1598,8 +1544,12 @@
   </div>
 
   
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
   <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
@@ -1655,31 +1605,6 @@
   
   <script src="/js/post-details.js?v=7.3.0"></script>
 
-
-
-<script>
-NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(item => {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: 'QBkdl9LHy4ppoSUMgGr46sYb-MdYXbMMI',
-    appKey: 'h9VgcEhsx2SzXE2pbuJp85T2',
-    placeholder: 'Please leave your comment here.',
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: 'zh-cn' || 'zh-cn',
-    path: location.pathname
-  });
-}, window.Valine);
-</script>
 
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
