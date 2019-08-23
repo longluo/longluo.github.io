@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/20/MySQL-Reference-Manual/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/10/31/master-XML-JSON-and-how-to-parse-them-in-10-minutes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Long Luo">
@@ -287,7 +287,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/blog/2016/09/20/MySQL-Reference-Manual/" class="post-title-link" itemprop="url">MySQL常用操作指南</a>
+            <a href="/blog/2014/10/31/master-XML-JSON-and-how-to-parse-them-in-10-minutes/" class="post-title-link" itemprop="url">10分钟掌握XML、JSON及其解析</a>
           
         </h2>
 
@@ -302,7 +302,7 @@
                 
               
 
-              <time title="创建时间：2016-09-20 19:51:09" itemprop="dateCreated datePublished" datetime="2016-09-20T19:51:09+08:00">2016-09-20</time>
+              <time title="创建时间：2014-10-31 15:24:33" itemprop="dateCreated datePublished" datetime="2014-10-31T15:24:33+08:00">2014-10-31</time>
             </span>
           
             
@@ -323,7 +323,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/DataBase/" itemprop="url" rel="index"><span itemprop="name">DataBase</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Techniques/" itemprop="url" rel="index"><span itemprop="name">Techniques</span></a></span>
 
                 
                 
@@ -332,7 +332,7 @@
           
 
           
-            <span id="/blog/2016/09/20/MySQL-Reference-Manual/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL常用操作指南" title="阅读次数">
+            <span id="/blog/2014/10/31/master-XML-JSON-and-how-to-parse-them-in-10-minutes/" class="post-meta-item leancloud_visitors" data-flag-title="10分钟掌握XML、JSON及其解析" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -348,7 +348,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>3.6k</span>
+              <span>30k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -358,7 +358,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>3 分钟</span>
+              <span>27 分钟</span>
             </span>
           
 
@@ -372,403 +372,26 @@
 
       
           <p><strong><em>By Long Luo</em></strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 root  mysql  17987 Jan 15  2016 COPYING</span><br><span class="line">-rw-r--r--  1 root  mysql 151708 Jan 15  2016 INSTALL-BINARY</span><br><span class="line">-rw-r--r--  1 root  mysql   2496 Jan 15  2016 README</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 bin</span><br><span class="line">drwxr-xr-x  3 root  mysql   4096 Sep  9 15:06 data</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 docs</span><br><span class="line">drwxr-xr-x  3 root  mysql   4096 Sep  9 15:06 include</span><br><span class="line">drwxr-xr-x  3 root  mysql   4096 Sep  9 15:06 lib</span><br><span class="line">drwxr-xr-x  4 root  mysql   4096 Sep  9 15:06 man</span><br><span class="line">drwxr-xr-x 10 root  mysql   4096 Sep  9 15:06 mysql-test</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 scripts</span><br><span class="line">drwxr-xr-x 27 root  mysql   4096 Sep  9 15:06 share</span><br><span class="line">drwxr-xr-x  4 root  mysql   4096 Sep  9 15:06 sql-bench</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 support-files</span><br><span class="line">drwxr-xr-x  5 mysql mysql   4096 Sep 14 17:13 var</span><br></pre></td></tr></table></figure>
-<h1 id="MySQL配置文件"><a href="#MySQL配置文件" class="headerlink" title="MySQL配置文件"></a>MySQL配置文件</h1><h1 id="MySQL数据库表"><a href="#MySQL数据库表" class="headerlink" title="MySQL数据库表"></a>MySQL数据库表</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">drwx------ 2 mysql mysql     4096 Sep 14 09:05 blog</span><br><span class="line">-rw-rw---- 1 mysql mysql  5242880 Sep 21 09:03 ib_logfile0</span><br><span class="line">-rw-rw---- 1 mysql mysql  5242880 Sep 19 23:01 ib_logfile1</span><br><span class="line">-rw-rw---- 1 mysql mysql 27262976 Sep 21 09:03 ibdata1</span><br><span class="line">drwx------ 2 mysql mysql     4096 Sep  9 15:06 mysql</span><br><span class="line">-rw-rw---- 1 mysql mysql    27732 Sep  9 15:06 mysql-bin.000001</span><br><span class="line">-rw-rw---- 1 mysql mysql  1113246 Sep  9 15:06 mysql-bin.000002</span><br><span class="line">-rw-rw---- 1 mysql mysql      264 Sep  9 15:06 mysql-bin.000003</span><br><span class="line">-rw-rw---- 1 mysql mysql     1112 Sep  9 15:06 mysql-bin.000004</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 15:06 mysql-bin.000005</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 16:41 mysql-bin.000006</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 16:45 mysql-bin.000007</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 16:50 mysql-bin.000008</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 17:52 mysql-bin.000009</span><br><span class="line">-rw-rw---- 1 mysql mysql  1082048 Sep 13 19:30 mysql-bin.000010</span><br><span class="line">-rw-rw---- 1 mysql mysql     1806 Sep 13 20:28 mysql-bin.000011</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep 13 20:38 mysql-bin.000012</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep 13 20:40 mysql-bin.000013</span><br><span class="line">-rw-rw---- 1 mysql mysql  1197139 Sep 13 21:45 mysql-bin.000014</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep 13 21:51 mysql-bin.000015</span><br><span class="line">-rw-rw---- 1 mysql mysql  1740852 Sep 14 13:39 mysql-bin.000016</span><br><span class="line">-rw-rw---- 1 mysql mysql   767198 Sep 14 17:13 mysql-bin.000017</span><br><span class="line">-rw-rw---- 1 mysql mysql 11751982 Sep 21 09:02 mysql-bin.000018</span><br><span class="line">-rw-rw---- 1 mysql mysql      342 Sep 14 17:13 mysql-bin.index</span><br><span class="line">drwx------ 2 mysql mysql     4096 Sep  9 15:06 performance_schema</span><br><span class="line">-rw-r----- 1 mysql root     46863 Sep 14 17:13 server.imlongluo.com.err</span><br><span class="line">-rw-rw---- 1 mysql mysql        5 Sep 14 17:13 server.imlongluo.com.pid</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-rw-rw---- 1 mysql mysql    67 Sep 13 21:53 db.opt</span><br><span class="line">-rw-rw---- 1 mysql mysql  8688 Sep 13 21:54 wp_commentmeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13380 Sep 13 21:54 wp_comments.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13176 Sep 13 21:54 wp_links.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8698 Sep 13 21:54 wp_options.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8682 Sep 13 21:54 wp_postmeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13684 Sep 13 21:54 wp_posts.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8776 Sep 14 09:05 wp_slim_events.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8776 Sep 14 09:05 wp_slim_events_archive.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 46598 Sep 14 09:05 wp_slim_stats.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 46598 Sep 14 09:05 wp_slim_stats_archive.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8666 Sep 13 21:54 wp_term_relationships.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8768 Sep 13 21:54 wp_term_taxonomy.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8682 Sep 13 21:54 wp_termmeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8668 Sep 13 21:54 wp_terms.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8684 Sep 13 21:54 wp_usermeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13064 Sep 13 21:54 wp_users.frm</span><br></pre></td></tr></table></figure>
-<h1 id="MySQL数据库内容"><a href="#MySQL数据库内容" class="headerlink" title="MySQL数据库内容"></a>MySQL数据库内容</h1><h1 id><a href="#" class="headerlink" title=" "></a> </h1>
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/16/Believe-In-Future/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-            
-            <a href="/blog/2016/09/16/Believe-In-Future/" class="post-title-link" itemprop="url">相信未来</a>
-          
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2016-09-16 20:24:05" itemprop="dateCreated datePublished" datetime="2016-09-16T20:24:05+08:00">2016-09-16</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/blog/2016/09/16/Believe-In-Future/" class="post-meta-item leancloud_visitors" data-flag-title="相信未来" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>390</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>相信未来<br>食指</p>
-<p>当蜘蛛网无情地查封了我的炉台，<br>当灰烬的余烟叹息着贫困的悲哀，<br>我依然固执地铺平失望的灰烬，<br>用美丽的雪花写下：相信未来。</p>
-<p>当我的紫葡萄化为深秋的露水，<br>当我的鲜花依偎在别人的情怀，<br>我依然固执地用凝霜的枯藤，<br>在凄凉的大地上写下：相信未来。</p>
-<p>我要用手指那涌向天边的排浪，<br>我要用手撑那托起太阳的大海，<br>摇曳着曙光那支温暖漂亮的笔杆，<br>用孩子的笔体写下：相信未来。</p>
-<p>我之所以坚定地相信未来，<br>是我相信未来人们的眼睛——<br>她有拨开历史风尘的睫毛，<br>她有看透岁月篇章的瞳孔。</p>
-<p>不管人们对于我们腐烂的皮肉，<br>那些迷途的惆怅，失败的苦痛，<br>是寄予感动的热泪，深切的同情，<br>还是给以轻蔑的微笑，辛辣的嘲讽。</p>
-<p>我坚信人们对于我们的脊骨，<br>那无数次地探索、迷途、失败和成功，<br>一定会给予热情、客观、公正的评定，<br>是的，我焦急地等待着他们的评定。</p>
-<p>朋友，坚定地相信未来吧，<br>相信不屈不挠的努力，<br>相信战胜死亡的年轻，<br>相信未来，热爱生命。</p>
-</blockquote>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/16/Gui-Sui-Shou-Cao-Cao/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-            
-            <a href="/blog/2016/09/16/Gui-Sui-Shou-Cao-Cao/" class="post-title-link" itemprop="url">龟虽寿</a>
-          
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2016-09-16 11:17:23" itemprop="dateCreated datePublished" datetime="2016-09-16T11:17:23+08:00">2016-09-16</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/blog/2016/09/16/Gui-Sui-Shou-Cao-Cao/" class="post-meta-item leancloud_visitors" data-flag-title="龟虽寿" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>180</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>1 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>龟虽寿<br>曹操</p>
-<p>神龟虽寿，犹有竟时。<br>螣蛇乘雾，终为土灰。<br>老骥伏枥，志在千里。<br>烈士暮年，壮心不已。<br>盈缩之期，不但在天；<br>养怡之福，可得永年。<br>幸甚至哉，歌以咏志。</p>
-</blockquote>
-<p>曹操是我很喜欢的一个英雄人物。曹操在晚年时写了这么一首这么富有哲理、慷慨激昂、自强不息的诗，现在我们面临什么30岁问题，40岁问题感觉在曹操这首诗面前都是不值一提的事情。</p>
-<p><strong><em>老骥伏枥，志在千里。烈士暮年，壮心不已。</em></strong></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/15/Startup-vs-Work/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-            
-            <a href="/blog/2016/09/15/Startup-vs-Work/" class="post-title-link" itemprop="url">Startup vs Work</a>
-          
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              
-                
-              
-
-              <time title="创建时间：2016-09-15 19:38:49" itemprop="dateCreated datePublished" datetime="2016-09-15T19:38:49+08:00">2016-09-15</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
-              </span>
-            
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            <span id="/blog/2016/09/15/Startup-vs-Work/" class="post-meta-item leancloud_visitors" data-flag-title="Startup vs Work" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-          
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">本文字数：</span>
-              
-              <span>2.5k</span>
-            </span>
-          
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              
-              <span>2 分钟</span>
-            </span>
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>创业和就业是两种完全不同的生活方式，如果你想要从就业这种生活步入到创业这种生活，需要考虑的不仅仅是创业可能带来更大的财富和自由，更重要的是要考虑你是否适合及适应这种生活方式。创业者和就业者的生活态度和做事方式往往是有天渊之别的，冒然切换，会导致失败。</p>
-<p>创业不一定是要创立一个公司，它体现为一种企业家精神（Entrepreneurship），创立新公司是一种，在公司内部创立新模式，开发新产品等都属于此类，在闹市中摆小摊也属于此类。不是什么拉了风险投资才算创业。创业是一种普遍的现象。</p>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>NOKIA 有句著名的广告语：“<strong><em>科技以人为本</em></strong>”。任何技术都是为了满足人的生产生活需要而产生的。具体到小小的一个手机，里面蕴含的技术也是浩如烟海，是几千年来人类科技的结晶，单个人穷其一生也未必能掌握其一角。不过个人一直认为基本的技术和思想是放之四海而皆准的，许多技术未必需要我们从头到尾再研究一遍，我们要做的就是站在巨人的肩膀上，利用其成果来为人们的需求服务。</p>
+<p>随着移动互联网时代的大潮，越来越多的App<strong>不光是需要和网络服务器进行数据传输和交互，也需要和其他 App 进行数据传递</strong>。承担App与网络来进行传输和存储数据的一般是XML或者JSON。在移动互联网时代，XML和JSON很重要。</p>
+<p>最近一段时间，个人综合了之前对XML、JSON的一些了解，参考了相关资料，再结合视频的代码，把自己的一些思考融入了这篇总结文档中，同时尝试用通俗诙谐的语言风格来阐述，期望能给感兴趣的读者带来帮助。</p>
+<p>为了不和时代落伍，我们必须要学习 XML 和 JSON，但同时它们也很容易学习，Let’s start:-)</p>
+<h1 id="一、XML"><a href="#一、XML" class="headerlink" title="一、XML"></a>一、XML</h1><p>XML即<strong>可扩展标记语言</strong>(<strong><em>eXtensible Markup Language</em></strong>)。标记是指计算机所能理解的信息符号，通过此种标记，计算机之间可以处理包含各种信息的文章等。如何定义这些标记，既可以选择国际通用的标记语言，比如HTML，也可以使用象XML这样由相关人士自由决定的标记语言，这就是语言的可扩展性。XML是从SGML中简化修改出来的。它主要用到的有XML、XSL和XPath等。</p>
+<p>上面这段是对XML的一个基本定义，一个被广泛接受的说明。简单说，XML就是一种数据的描述语言，虽然它是语言，但是通常情况下，它并不具备常见语言的基本功能——被计算机识别并运行。只有依靠另一种语言，来解释它，使它达到你想要的效果或被计算机所接受。</p>
+<p>记住以下几点就行了：</p>
+<ul>
+<li>XML是一种标记语言，很类似HTML</li>
+<li>XML的设计宗旨是传输数据，而非显示数据</li>
+<li>XML标签没有被预定义。您需要自行定义标签。</li>
+<li>XML被设计为具有自我描述性。</li>
+<li>XML是W3C的推荐标准</li>
+</ul>
+<p>总结：</p>
+<p>XML是独立于软件和硬件的信息传输工具。<br>目前，XML在Web中起到的作用不会亚于一直作为 Web 基石的 HTML。<br><strong>XML无所不在</strong>。XML是各种应用程序之间进行<strong>数据传输的最常用的工具</strong>，并且在信息存储和描述领域变得越来越流行。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/blog/2016/09/15/Startup-vs-Work/#more" rel="contents">
+              <a class="btn" href="/blog/2014/10/31/master-XML-JSON-and-how-to-parse-them-in-10-minutes/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -799,7 +422,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/14/Git-Cheatsheet/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/09/23/some-key-tips-on-how-to-make-a-successful-tower-defense-game/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Long Luo">
@@ -813,7 +436,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/blog/2016/09/14/Git-Cheatsheet/" class="post-title-link" itemprop="url">Git常用操作指南</a>
+            <a href="/blog/2014/09/23/some-key-tips-on-how-to-make-a-successful-tower-defense-game/" class="post-title-link" itemprop="url">设计一款好玩的塔防游戏需要注意的几个要点---由个人玩一款塔防游戏引起的思考</a>
           
         </h2>
 
@@ -828,7 +451,282 @@
                 
               
 
-              <time title="创建时间：2016-09-14 08:55:18" itemprop="dateCreated datePublished" datetime="2016-09-14T08:55:18+08:00">2016-09-14</time>
+              <time title="创建时间：2014-09-23 23:13:15" itemprop="dateCreated datePublished" datetime="2014-09-23T23:13:15+08:00">2014-09-23</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Game/" itemprop="url" rel="index"><span itemprop="name">Game</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2014/09/23/some-key-tips-on-how-to-make-a-successful-tower-defense-game/" class="post-meta-item leancloud_visitors" data-flag-title="设计一款好玩的塔防游戏需要注意的几个要点---由个人玩一款塔防游戏引起的思考" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.4k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>之前一段时间花了很长时间来玩了一个 Mac OS平台下的塔防游戏《<a href="https://itunes.apple.com/us/app/ibomber-defense-pacific/id498249308" target="_blank" rel="noopener">iBomber Defense Pacific</a>》，为此浪费了不少时间。</p>
+<p>玩到通关之后，躺在床上，我一方面心痛我居然对游戏如此没有免疫力，另外一方面我在思考这款游戏好在哪里，哪些地方设计的很好？</p>
+<p>作为一款塔防游戏，这款游戏和其他塔防游戏有什么优点？如何设计一款塔防游戏呢？它需要遵循哪些原则呢？</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2014/09/23/some-key-tips-on-how-to-make-a-successful-tower-defense-game/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/09/21/how-to-make-a-personal-android-app/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/blog/2014/09/21/how-to-make-a-personal-android-app/" class="post-title-link" itemprop="url">如何从零实现一个你的个人博客Android App?</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2014-09-21 11:43:03" itemprop="dateCreated datePublished" datetime="2014-09-21T11:43:03+08:00">2014-09-21</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2014/09/21/how-to-make-a-personal-android-app/" class="post-meta-item leancloud_visitors" data-flag-title="如何从零实现一个你的个人博客Android App?" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>1.3k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<h1 id="一、Overview"><a href="#一、Overview" class="headerlink" title="一、Overview"></a>一、Overview</h1><p>最近实现了我的第一个个人博客阅读App，但是<strong><em>目前存在很多很多Bugo(╯□╰)o  &gt;_&lt;|||</em></strong>。</p>
+<p>可以通过这个App来实现RSS订阅功能，第一时间阅读我的个人博客文章，同时可实现文章收藏与分享功能。App使用截图如下所示：</p>
+<h2 id="1-1-RSS-订阅最新的20篇文章"><a href="#1-1-RSS-订阅最新的20篇文章" class="headerlink" title="1.1 RSS 订阅最新的20篇文章"></a>1.1 RSS 订阅最新的20篇文章</h2><p><img alt="All Articles" data-src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_all.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+<h2 id="1-2-可以收藏文章"><a href="#1-2-可以收藏文章" class="headerlink" title="1.2 可以收藏文章"></a>1.2 可以收藏文章</h2><p><img alt="Favorite Articles" data-src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_favorite.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+<h2 id="1-3-查看文章全文"><a href="#1-3-查看文章全文" class="headerlink" title="1.3 查看文章全文"></a>1.3 查看文章全文</h2><p><img alt="Article Detail" data-src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_article_detail.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+<h2 id="1-4-支持将文章分享到SNS"><a href="#1-4-支持将文章分享到SNS" class="headerlink" title="1.4 支持将文章分享到SNS"></a>1.4 支持将文章分享到SNS</h2><p><img alt="SNS Share" data-src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_article_share.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2014/09/21/how-to-make-a-personal-android-app/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" class="post-title-link" itemprop="url">一个用于批量下载网络图片的Shell脚本</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2014-09-13 22:26:00" itemprop="dateCreated datePublished" datetime="2014-09-13T22:26:00+08:00">2014-09-13</time>
             </span>
           
             
@@ -858,7 +756,7 @@
           
 
           
-            <span id="/blog/2016/09/14/Git-Cheatsheet/" class="post-meta-item leancloud_visitors" data-flag-title="Git常用操作指南" title="阅读次数">
+            <span id="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" class="post-meta-item leancloud_visitors" data-flag-title="一个用于批量下载网络图片的Shell脚本" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -874,7 +772,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>922</span>
+              <span>1.7k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -884,7 +782,7 @@
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
           
 
@@ -897,25 +795,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <pre><code>$ git add .    
-
-$ git add -u .
-
-git reset是指将当前head的内容重置，不会留log信息。
-</code></pre><p>git reset HEAD filename  从暂存区中移除文件</p>
-<p>git reset –hard HEAD~3  会将最新的3次提交全部重置，就像没有提交过一样。</p>
-<p>git reset –hard commit (38679ed709fd0a3767b79b93d0fba5bb8dd235f8) 回退到 38679ed709fd0a3767b79b93d0fba5bb8dd235f8 版本</p>
-<p>根据–soft   –mixed   –hard，会对working tree和index和HEAD进行重置:<br>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息<br>git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可<br>git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</p>
-<p>git 放弃本地修改 强制更新<br>git fetch —all<br>git reset —hard origin/master<br>git fetch 只是下载远程的库的内容，不做任何的合并 git reset 把HEAD指向刚刚下载的最新的版本</p>
-<p>git新手。本地做了一些修改，我用git rebase说有冲突。我现在想把本地的请求都干掉，可能有的已经commit过了（没有push过），完全同步成远程版本，应该用什么命令？</p>
-<p>使用命令：</p>
-<p>git reset —hard ORIGIN/BRANCH</p>
-<p>比如master分支：</p>
-<p>git reset —hard origin/master</p>
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="Git-dojo"><a href="#Git-dojo" class="headerlink" title="Git dojo"></a>Git dojo</h2><p><a href="https://www.shortcutfoo.com/" target="_blank" rel="noopener">https://www.shortcutfoo.com/</a></p>
-<h2 id="Try-Git"><a href="#Try-Git" class="headerlink" title="Try Git"></a>Try Git</h2><p><a href="https://try.github.io/levels/1/challenges/1" target="_blank" rel="noopener">https://try.github.io/levels/1/challenges/1</a></p>
-<h2 id="LearnGitBranching"><a href="#LearnGitBranching" class="headerlink" title="LearnGitBranching"></a>LearnGitBranching</h2><p><a href="http://learngitbranching.js.org/" target="_blank" rel="noopener">http://learngitbranching.js.org/</a></p>
-
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>最近为了做好一个<a href="http://imlongluo.com/weather" target="_blank" rel="noopener">天气预报</a>的项目，需要从Yahoo下载一些天气图标，但是由于图标比较多，有80多张。图标是存储在<a href="http://yimg.com" target="_blank" rel="noopener">Yahoo Image</a>网站上的。</p>
+<p>迅雷不支持https的下载，虽然可以在浏览器下载，但是在浏览器下载太慢，于是写了一个批量下载图片资源的Shell脚本，完美的解决了这个问题。</p>
+<p>Yahoo天气图标的地址规则如下：<code>https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/</code> + 图标名称</p>
+<p>比如：<img alt="Thunder" title="雷电天气" data-src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/0d.png"></p>
+<p>我使用了2种方法，解决了下载的难题，虽然好久没有写Shell脚本了，但是意识和底子还在，写即几十行代码还是比较轻松的。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -941,7 +835,7 @@ git reset是指将当前head的内容重置，不会留log信息。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/11/Linux-Cheatsheet/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Long Luo">
@@ -955,7 +849,7 @@ git reset是指将当前head的内容重置，不会留log信息。
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/blog/2016/09/11/Linux-Cheatsheet/" class="post-title-link" itemprop="url">Linux系统操作参考手册</a>
+            <a href="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/" class="post-title-link" itemprop="url">如何使用Google Volley网络库发起带Header的HTTP请求?</a>
           
         </h2>
 
@@ -970,7 +864,7 @@ git reset是指将当前head的内容重置，不会留log信息。
                 
               
 
-              <time title="创建时间：2016-09-11 22:18:33" itemprop="dateCreated datePublished" datetime="2016-09-11T22:18:33+08:00">2016-09-11</time>
+              <time title="创建时间：2014-09-07 12:20:14" itemprop="dateCreated datePublished" datetime="2014-09-07T12:20:14+08:00">2014-09-07</time>
             </span>
           
             
@@ -991,7 +885,7 @@ git reset是指将当前head的内容重置，不会留log信息。
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -1000,7 +894,7 @@ git reset是指将当前head的内容重置，不会留log信息。
           
 
           
-            <span id="/blog/2016/09/11/Linux-Cheatsheet/" class="post-meta-item leancloud_visitors" data-flag-title="Linux系统操作参考手册" title="阅读次数">
+            <span id="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/" class="post-meta-item leancloud_visitors" data-flag-title="如何使用Google Volley网络库发起带Header的HTTP请求?" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1016,7 +910,7 @@ git reset是指将当前head的内容重置，不会留log信息。
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>440</span>
+              <span>3k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1026,7 +920,7 @@ git reset是指将当前head的内容重置，不会留log信息。
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
           
 
@@ -1040,9 +934,19 @@ git reset是指将当前head的内容重置，不会留log信息。
 
       
           <p><strong><em>By Long Luo</em></strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">	#</span><span class="bash"> df -h</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/simfs       10G  3.9G  6.2G  39% /</span><br><span class="line">none             64M  4.0K   64M   1% /dev</span><br><span class="line">none             64M     0   64M   0% /dev/shm</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">	#</span><span class="bash"> free -m</span></span><br><span class="line">             total       used       free     shared    buffers     cached</span><br><span class="line">Mem:           128        125          2          0          0          4</span><br><span class="line">-/+ buffers/cache:        121          6</span><br><span class="line">Swap:          256        211         44</span><br></pre></td></tr></table></figure>
-
+<p>由于合作的第三方iQiyi视频的数据源更新速度很慢，通过和iQiyi反馈，于是提供了新的API接口。</p>
+<p>通过阅读新API接口说明，在发起HTTP Get请求时，必须<strong>同时带2个加密的Header参数</strong>，分别是时间戳和MD5加密后的key、时间戳以及客户端参数，否则无法返回正确的请求。</p>
+<p>目前在Android客户端使用的是Google开源Volley库，支持各种HTTP请求，图片缓存，JSON解析，性能十分强大。之前使用的接口都是直接发起HTTP Get请求，附带相关参数即可。</p>
+<p>通过阅读Volley相关资料，找到了下列方法，可以在发起HTTP请求时，附带Header参数，代码如下所示：</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1068,7 +972,7 @@ git reset是指将当前head的内容重置，不会留log信息。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/09/How-To-Build-Your-Personal-Website-Step-By-Step/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/09/07/the_first_web_front_develop_project_weather/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Long Luo">
@@ -1082,7 +986,7 @@ git reset是指将当前head的内容重置，不会留log信息。
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/blog/2016/09/09/How-To-Build-Your-Personal-Website-Step-By-Step/" class="post-title-link" itemprop="url">如何一步一步建立一个属于你自己的个人网站？</a>
+            <a href="/blog/2014/09/07/the_first_web_front_develop_project_weather/" class="post-title-link" itemprop="url">第一个前端开发项目: 天气应用</a>
           
         </h2>
 
@@ -1097,7 +1001,7 @@ git reset是指将当前head的内容重置，不会留log信息。
                 
               
 
-              <time title="创建时间：2016-09-09 22:56:28" itemprop="dateCreated datePublished" datetime="2016-09-09T22:56:28+08:00">2016-09-09</time>
+              <time title="创建时间：2014-09-07 11:32:45" itemprop="dateCreated datePublished" datetime="2014-09-07T11:32:45+08:00">2014-09-07</time>
             </span>
           
             
@@ -1127,7 +1031,136 @@ git reset是指将当前head的内容重置，不会留log信息。
           
 
           
-            <span id="/blog/2016/09/09/How-To-Build-Your-Personal-Website-Step-By-Step/" class="post-meta-item leancloud_visitors" data-flag-title="如何一步一步建立一个属于你自己的个人网站？" title="阅读次数">
+            <span id="/blog/2014/09/07/the_first_web_front_develop_project_weather/" class="post-meta-item leancloud_visitors" data-flag-title="第一个前端开发项目: 天气应用" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>158</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>1 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>最近几天学习了下网页开发，通过学习，完成了第一个Web前端开发项目：<a href="http://www.imlongluo.com/weather/" target="_blank" rel="noopener"><strong>天气应用</strong></a></p>
+<p>数据源是<a href="https://weather.yahoo.com/" target="_blank" rel="noopener"><strong><em>Yahoo! Weather</em></strong></a></p>
+<p>使用了jQuery库开发，虽然现在啥都不会，也就到处copy。</p>
+<p><strong><em>Created by Long Luo at 2014-09-07 11:36:20 @Shenzhen, China.</em></strong></p>
+
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+          <div class="post-eof"></div>
+        
+      </footer>
+  </div>
+  
+  
+  
+  </article>
+
+    
+      
+
+  <article class="post" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+            
+            <a href="/blog/2014/07/02/the-refactor-of-channel-page-of-video/" class="post-title-link" itemprop="url">视频频道页面重构总结</a>
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2014-07-02 23:16:42" itemprop="dateCreated datePublished" datetime="2014-07-02T23:16:42+08:00">2014-07-02</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2014/07/02/the-refactor-of-channel-page-of-video/" class="post-meta-item leancloud_visitors" data-flag-title="视频频道页面重构总结" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1167,31 +1200,32 @@ git reset是指将当前head的内容重置，不会留log信息。
 
       
           <p><strong><em>By Long Luo</em></strong></p>
-<p><a href="http://lnmp.org/" target="_blank" rel="noopener">LNMP</a></p>
-<pre><code>wget -c http://soft.vpser.net/lnmp/lnmp1.3-full.tar.gz
-
-tar zxf lnmp1.3-full.tar.gz
-
-cd lnmp1.3-full
-
- ./install.sh lnmpa
-
-$ git --version
-git version 1.7.1
-
-
-$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;
-</code></pre><p>id_rsa.pub</p>
-<pre><code>ssh -t git@github.com
-
-
-$ git config --global user.name &quot;Your Name&quot;
-$ git config --global user.email &quot;email@example.com&quot;
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;github.com (192.30.253.112)&apos; can&apos;t be established.</span><br><span class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)? yes</span><br><span class="line">Warning: Permanently added &apos;github.com,192.30.253.112&apos; (RSA) to the list of known hosts.</span><br><span class="line">PTY allocation request failed on channel 0</span><br><span class="line">Hi longluo! You&apos;ve successfully authenticated, but GitHub does not provide shell access.</span><br><span class="line">                                                                                        Connection to github.com closed.</span><br></pre></td></tr></table></figure>
-<p>修改SSH密码。登录ssh后, 通过passwd命令修改即可，命令格式:</p>
-<pre><code>passwd {用户名}
-</code></pre><p>　<br>　　出现：(current) UNIX password: 然后输入当前系统登陆用户的密码 回车<br>　　出现：New password: 再输入新密码（新的密码必须是字母数字都有，不然的话不成功）</p>
-
+<h1 id="一、重构前的一些缺点"><a href="#一、重构前的一些缺点" class="headerlink" title="一、重构前的一些缺点"></a>一、重构前的一些缺点</h1><ol>
+<li>频道显示在VideoListActivity实现的，代码结构不够清晰；</li>
+<li>频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间；</li>
+<li>后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；</li>
+</ol>
+<h1 id="二、重构方案"><a href="#二、重构方案" class="headerlink" title="二、重构方案"></a>二、重构方案</h1><p>重构方案:</p>
+<ol>
+<li>将频道页面独立出来，新建一个ChannelListActivity，作为所有频道页面的Activity，负责所有频道界面的绘制，便于后续扩展；</li>
+<li>针对不同频道，具有不同的布局方式，比如对于需要矩阵式显示的频道，使用矩阵式布局；</li>
+<li>矩阵式布局，替换原有的ListView加GridView显示，提高加载速度；</li>
+</ol>
+<h1 id="三、具体实现"><a href="#三、具体实现" class="headerlink" title="三、具体实现"></a>三、具体实现</h1><p>技术实现方案如下所示：</p>
+<ol>
+<li>新建ChannelListActivity，在VideoListActivity中用进入频道页的接口替换原有的接口，将相关处理在ChannelListActivity中实现；</li>
+<li>根据传入的频道ID不同，使用<strong>setContentView()</strong>加载不同的布局方式，实现不同频道不同布局显示；</li>
+<li>新建ChannelGridAdapter，替换原有的ChannelListAdapter加ChannelGridListAdapter方式，提高加载速度；</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2014/07/02/the-refactor-of-channel-page-of-video/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1217,7 +1251,7 @@ $ git config --global user.email &quot;email@example.com&quot;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Long Luo">
@@ -1231,7 +1265,7 @@ $ git config --global user.email &quot;email@example.com&quot;
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/" class="post-title-link" itemprop="url">Android自定义View: 如何实现类钟摆的动画效果?</a>
+            <a href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" class="post-title-link" itemprop="url">视频在线搜索设计与实现</a>
           
         </h2>
 
@@ -1246,7 +1280,7 @@ $ git config --global user.email &quot;email@example.com&quot;
                 
               
 
-              <time title="创建时间：2016-08-26 22:40:34" itemprop="dateCreated datePublished" datetime="2016-08-26T22:40:34+08:00">2016-08-26</time>
+              <time title="创建时间：2014-07-02 23:04:48" itemprop="dateCreated datePublished" datetime="2014-07-02T23:04:48+08:00">2014-07-02</time>
             </span>
           
             
@@ -1276,7 +1310,7 @@ $ git config --global user.email &quot;email@example.com&quot;
           
 
           
-            <span id="/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/" class="post-meta-item leancloud_visitors" data-flag-title="Android自定义View: 如何实现类钟摆的动画效果?" title="阅读次数">
+            <span id="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" class="post-meta-item leancloud_visitors" data-flag-title="视频在线搜索设计与实现" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1292,7 +1326,7 @@ $ git config --global user.email &quot;email@example.com&quot;
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>5.7k</span>
+              <span>6.5k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1302,7 +1336,7 @@ $ git config --global user.email &quot;email@example.com&quot;
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>5 分钟</span>
+              <span>6 分钟</span>
             </span>
           
 
@@ -1316,17 +1350,40 @@ $ git config --global user.email &quot;email@example.com&quot;
 
       
           <p><strong><em>By Long Luo</em></strong></p>
-<p>继第一篇<a href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" target="_blank" rel="noopener">Android自定义View：如何实现一个模拟时钟？</a>，我们使用Android自定义View实现了一款模拟表盘，第二篇<a href="http://www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/" target="_blank" rel="noopener">Android自定义View：另一种实现手表指针转动的方法</a>我们又通过另外一种方法实现了手表指针的另外一种转动实现。</p>
-<p>在日程生活中，我们常见的挂钟实际都是有个钟摆的，那么，如果我们想在我们所作的模拟时钟实现这种<strong>钟摆动画</strong>呢？那么具体应该如何实现呢？</p>
-<h1 id="一、钟摆"><a href="#一、钟摆" class="headerlink" title="一、钟摆"></a>一、钟摆</h1><p>遇到问题，我们需要先分析<strong>钟摆动画</strong>的具体动画效果，然后再做下一步工作。</p>
 <blockquote>
-<p>单摆是能够产生往复摆动的一种装置，将无重细杆或不可伸长的细柔绳一端悬于重力场内一定点，另一端固结一个重小球，就构成单摆</p>
-</blockquote>
-<p>那么钟摆就是在一定角度内来回摆动，具体更多细节可以自行Google。</p>
+<p>Agenda </p>
+<pre><code>1. 在线搜索现状及发展
+2. UI设计及实现
+3. 代码逻辑设计及实现
+4. 问题及解决
+</code></pre></blockquote>
+<h1 id="一、在线搜索"><a href="#一、在线搜索" class="headerlink" title="一、在线搜索"></a>一、在线搜索</h1><p>之前搜索页面的一些缺陷：</p>
+<ol>
+<li>具体实现位于VideoListActivity中，一方面会造成VideoListActivity代码过于庞大臃肿，另外一方面<strong><em>不便于后续功能扩展</em></strong>，结构不清晰；</li>
+<li>依赖了大量系统控件，不便于<strong>后续解耦</strong>及<strong>界面定制</strong>；</li>
+<li>今后搜索界面会参考第三方视频应用的实现，之前不便于增加搜索记录，或搜索独立出来，用于搜索本地视频，甚至将此搜索移植应用于其他应用中；</li>
+</ol>
+<h2 id="1-1-在线搜索实现效果"><a href="#1-1-在线搜索实现效果" class="headerlink" title="1.1 在线搜索实现效果"></a>1.1 在线搜索实现效果</h2><p>在线搜索因为是和第三方合作，涉及到很多网络相关的操作，简单来说就是利用HTTP协议向相关接口发起一次网络请求，服务器如果返回了正确的响应，App会解析服务器返回的内容，并展示出来。</p>
+<h3 id="1-1-1-热词界面"><a href="#1-1-1-热词界面" class="headerlink" title="1.1.1 热词界面"></a>1.1.1 热词界面</h3><p>热词界面是<strong>当搜索文本框文字为空</strong>时会弹出热词界面，会展示最近一段时间内搜索频率很高的词语。一方面可以节省大家输入文字，另外一方面你也可以了解当前的一些热点。</p>
+<p>当你点击列表中的某个热词时，就会发起一次以此为关键词的搜索。</p>
+<p><img alt="热词显示" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+<h3 id="1-1-2-关联词"><a href="#1-1-2-关联词" class="headerlink" title="1.1.2 关联词"></a>1.1.2 关联词</h3><p>当<strong>搜索文本输入框含有文字</strong>时，会获取当前输入文字，以此为关键词获取网络的一些联想词，可以点击此联想词发起一次搜索。</p>
+<p><img alt="关联词显示" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+<h3 id="1-1-3-搜索结果分类浏览"><a href="#1-1-3-搜索结果分类浏览" class="headerlink" title="1.1.3 搜索结果分类浏览"></a>1.1.3 搜索结果分类浏览</h3><p>发起一次搜索之后，如果得到了服务器的正确响应，而且确实有相关视频内容。那么我们会将搜索结果展示在手机页面上。</p>
+<p>搜索到的结果可以分<strong>不同频道</strong>浏览，会根据具体内容进行动态变化，有的可能有10几个频道，有的也就1个频道。频道页面可以滑动浏览，也可以选择在顶部页面选中或者滑动。</p>
+<p>分类浏览时，第一个展示的页面是搜索到的全部视频内容，之后的会根据结果动态变化。</p>
+<p>如下图所示：</p>
+<p><img alt="搜索结果" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+<p>分频道浏览：</p>
+<p><img alt="搜索结果分类" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+<h3 id="1-1-4-语音搜索"><a href="#1-1-4-语音搜索" class="headerlink" title="1.1.4 语音搜索"></a>1.1.4 语音搜索</h3><p><strong>语音搜索图标只有当搜索框里文字为空才会出现，否则出现搜索图标</strong>。</p>
+<p>点击语音搜索图标将会启动VoiceSearch这个apk，然后你可以说话，如果被正确识别之后，会发起一次搜索，并将结果展示出来。</p>
+<p><img alt="语音搜索" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
+<h3 id="1-1-5-语音搜索结果"><a href="#1-1-5-语音搜索结果" class="headerlink" title="1.1.5 语音搜索结果"></a>1.1.5 语音搜索结果</h3><p><img alt="语音搜索结果" data-src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG"></p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/#more" rel="contents">
+              <a class="btn" href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1357,7 +1414,7 @@ $ git config --global user.email &quot;email@example.com&quot;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/22/The-Moon-In-The-Well/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Long Luo">
@@ -1371,7 +1428,7 @@ $ git config --global user.email &quot;email@example.com&quot;
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/blog/2016/08/22/The-Moon-In-The-Well/" class="post-title-link" itemprop="url">---   井中月   ---</a>
+            <a href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" class="post-title-link" itemprop="url">[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?</a>
           
         </h2>
 
@@ -1386,7 +1443,7 @@ $ git config --global user.email &quot;email@example.com&quot;
                 
               
 
-              <time title="创建时间：2016-08-22 23:19:39" itemprop="dateCreated datePublished" datetime="2016-08-22T23:19:39+08:00">2016-08-22</time>
+              <time title="创建时间：2014-06-21 23:15:30" itemprop="dateCreated datePublished" datetime="2014-06-21T23:15:30+08:00">2014-06-21</time>
             </span>
           
             
@@ -1407,7 +1464,7 @@ $ git config --global user.email &quot;email@example.com&quot;
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -1416,7 +1473,7 @@ $ git config --global user.email &quot;email@example.com&quot;
           
 
           
-            <span id="/blog/2016/08/22/The-Moon-In-The-Well/" class="post-meta-item leancloud_visitors" data-flag-title="---   井中月   ---" title="阅读次数">
+            <span id="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" class="post-meta-item leancloud_visitors" data-flag-title="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1432,7 +1489,7 @@ $ git config --global user.email &quot;email@example.com&quot;
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>111</span>
+              <span>5.1k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1442,7 +1499,7 @@ $ git config --global user.email &quot;email@example.com&quot;
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>1 分钟</span>
+              <span>5 分钟</span>
             </span>
           
 
@@ -1455,10 +1512,26 @@ $ git config --global user.email &quot;email@example.com&quot;
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="—-井中月-—"><a href="#—-井中月-—" class="headerlink" title="—-   井中月   —-"></a>—-   井中月   —-</h1><h2 id="仿《繁星·春水》"><a href="#仿《繁星·春水》" class="headerlink" title="仿《繁星·春水》"></a>仿《繁星·春水》</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">水井啊</span><br><span class="line"></span><br><span class="line">只要你的内心有哪怕那么一点点波澜</span><br><span class="line"></span><br><span class="line">就不能拥有美丽的月亮了</span><br></pre></td></tr></table></figure>
-<p><strong><em> Long Luo at 2016-8-22 23:24:49 @Shenzhen. </em></strong></p>
-
+          <p><strong><em>翻译 By Long Luo</em></strong></p>
+<p>原文链接：<a href="http://mindtherobot.com/blog/580/android-audio-play-a-wav-file-on-an-audiotrack/" target="_blank" rel="noopener">Android Audio: Play a WAV file on an AudioTrack</a></p>
+<p>译者注：</p>
+<pre><code>1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
+2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.
+3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。
+</code></pre><hr>
+<p>如果你已经成功地了解了关于<strong>AudioTrack</strong>的<a href="http://mindtherobot.com/blog/555/android-audio-problems-hidden-limitations-and-opensl-es/" title="Android Audio: Problems, Hidden Limitations and OpenSL ES" target="_blank" rel="noopener">一些话题</a>，那么你可能享受它带来的好处，例如低延迟（在STATIC(静态)模式），能够生成流式音频（在STREAM(流)模式）以及在播放之前，就能够访问和修改原始声音数据。</p>
+<p>不过，现在的问题是如何从源获取数据。许多应用需要使用的<strong>AudioTrack</strong>并不能简单的生成PCM音频（一个例子，比如<strong>Ethereal Dialpad</strong>或者其他类似的App）。你可能需要从文件源去加载数据，例如<em>WAV</em>或<em>MP3</em>文件。 </p>
+<p>不要期望使用<strong>MediaPlayer</strong>，去解码<em>WAV</em>文件和<em>MP3</em>音频。虽然<strong>MediaPlayer</strong>播放这些文件非常好，但是其播放逻辑完全在Native层，同时并没有为我们提供额外选项，允许我们使用其他解码器实现我们的目的。因此，我们必须从手动地从音频文件进行解码出<em>PCM</em>。</p>
+<p>在这篇文章中，将会讨论<strong>WAV</strong>格式文件。而在下一课中，我们将会更进一步，讨论如何从<strong>MP3</strong>文件读取音频。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
@@ -1484,7 +1557,7 @@ $ git config --global user.email &quot;email@example.com&quot;
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/22/What-Should-We-Do-While-Facing-The-Real-Life/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/06/05/summary_of_wwdc2014_ios8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Long Luo">
@@ -1498,7 +1571,7 @@ $ git config --global user.email &quot;email@example.com&quot;
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
             
-            <a href="/blog/2016/08/22/What-Should-We-Do-While-Facing-The-Real-Life/" class="post-title-link" itemprop="url">如何面对人生的挫折与失败？</a>
+            <a href="/blog/2014/06/05/summary_of_wwdc2014_ios8/" class="post-title-link" itemprop="url">WWDC2014总结之iOS8篇</a>
           
         </h2>
 
@@ -1513,7 +1586,7 @@ $ git config --global user.email &quot;email@example.com&quot;
                 
               
 
-              <time title="创建时间：2016-08-22 17:24:39" itemprop="dateCreated datePublished" datetime="2016-08-22T17:24:39+08:00">2016-08-22</time>
+              <time title="创建时间：2014-06-05 23:30:32" itemprop="dateCreated datePublished" datetime="2014-06-05T23:30:32+08:00">2014-06-05</time>
             </span>
           
             
@@ -1534,7 +1607,7 @@ $ git config --global user.email &quot;email@example.com&quot;
               </span>
               <span class="post-meta-item-text">分类于</span>
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Apple/" itemprop="url" rel="index"><span itemprop="name">Apple</span></a></span>
 
                 
                 
@@ -1543,7 +1616,7 @@ $ git config --global user.email &quot;email@example.com&quot;
           
 
           
-            <span id="/blog/2016/08/22/What-Should-We-Do-While-Facing-The-Real-Life/" class="post-meta-item leancloud_visitors" data-flag-title="如何面对人生的挫折与失败？" title="阅读次数">
+            <span id="/blog/2014/06/05/summary_of_wwdc2014_ios8/" class="post-meta-item leancloud_visitors" data-flag-title="WWDC2014总结之iOS8篇" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1559,7 +1632,7 @@ $ git config --global user.email &quot;email@example.com&quot;
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>27k</span>
+              <span>3.7k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -1569,7 +1642,7 @@ $ git config --global user.email &quot;email@example.com&quot;
               
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               
-              <span>25 分钟</span>
+              <span>3 分钟</span>
             </span>
           
 
@@ -1582,21 +1655,18 @@ $ git config --global user.email &quot;email@example.com&quot;
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>整理 By Long Luo</em></strong></p>
-<p>这几天用了很长时间爬完了<a href="http://www.newsmth.net" target="_blank" rel="noopener">水木社区</a>很热的一个帖子：<a href="http://www.newsmth.net/nForum/#!article/FamilyLife/1758469671" target="_blank" rel="noopener">我最大的错误在哪里(20年…略长)？</a>，这个帖子比较有营养，尤其是很多回帖非常有价值，让我学到了很多东西。</p>
-<p>昨晚花了一个多小时整理并收集了一些精彩回帖，激励自己，时常看看，吸取力量。</p>
-<p><strong><em>人生坎坷太多，需要提高逆商啊！</em></strong></p>
-<p><em>苦海泛起爱恨，在世间，难逃避命运！</em></p>
-<hr>
-<p>首先改变一下心态，不要总将问题归结于自己，查找自己的问题。很多时候就是命运弄人，没遇到好人而已。 </p>
-<p>建议，</p>
-<p>第一，过平淡生活，不投机，老实赚钱，不求暴富，不追求女神，娶老婆性格为先。不是每个人能暴富。美女也不是随便那个人承受得了的。</p>
-<p>第二，前妻提的些具体问题，可酌情做些改变。不得不承认，出身会带来一些不适应现代城市生活的特质，可适当修正，但不能急。</p>
-<p>第三，对自己宽容些，不要给自己太多责任。 </p>
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>2014.06.03 Apple举行了万众瞩目的WWDC2014，发布了OS X Yosimite和iOS8，最近几天看了一部分Keynote，从网上搜集了一部分资料，将这次WWDC14的一些新功能点汇总出来，同时加入了自己的一些想法，探讨下码农群体应该注意哪些趋势。</p>
+<h1 id="Continuity-amp-Seamlessly"><a href="#Continuity-amp-Seamlessly" class="headerlink" title="Continuity &amp; Seamlessly"></a>Continuity &amp; Seamlessly</h1><p>总体来说：</p>
+<p><strong><em>系统功能更加完善，更加人性化，更加开放</em></strong>，与其他iOS、Mac设备整合度扩大，并且预示了未来与可穿戴设备、智能家居的紧密结合的趋势，预计Health和Home两大产业将发生重大变革，将有一系列的新App和硬件改变我们的生活。</p>
+<p>WWDC的报道会分别讲解Mac OS Yosemite和iOS 8的各项功能。可是整场看下来，觉得这两个系统的更新都有一个指针：统一。爷就是关键的2个词，<strong>Continuity &amp; Seamlessly</strong>。</p>
+<p>Mac OS Yosemite的扁平化和透明统一了Mac OS和iOS的视觉风格。<br>Mac OS也追加了iOS上特有的功能，比如打电话、IM。</p>
+<p>两个系统在视觉和功能上统一的同时，通过 iCloud 的升级，实现了数据同步。<br>「视觉」，「功能」和「数据」统一了之后， Handoff 实现了Mac OS和iOS工作的无缝切换。</p>
+<p>最终，所有<strong>“苹果设备”</strong>都将无缝的融合到一起。随时拿起iPad，打开Macbook或者掏出 iPhone，你都能看到同样的视觉风格，得到一致的数据，使用同样的功能。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/blog/2016/08/22/What-Should-We-Do-While-Facing-The-Real-Life/#more" rel="contents">
+              <a class="btn" href="/blog/2014/06/05/summary_of_wwdc2014_ios8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1624,7 +1694,7 @@ $ git config --global user.email &quot;email@example.com&quot;
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/9/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/11/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1670,7 +1740,7 @@ $ git config --global user.email &quot;email@example.com&quot;
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-count">151</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1733,21 +1803,7 @@ $ git config --global user.email &quot;email@example.com&quot;
         
           
         
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -2336,99 +2392,7 @@ $ git config --global user.email &quot;email@example.com&quot;
         
           
         
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">272</span>
+        <span class="site-state-item-count">218</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -2526,12 +2490,12 @@ $ git config --global user.email &quot;email@example.com&quot;
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">520k</span>
+    <span title="站点总字数">518k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:52</span>
+    <span title="站点阅读时长">7:51</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>

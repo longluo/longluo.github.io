@@ -60,14 +60,14 @@
 <meta name="keywords" content="Software Engineer, AI, Machine Learning, Algorithm, Android, Web, Long Luo, 移动开发, Program, Code, 程序员">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Long Luo&#39;s Life Notes">
-<meta property="og:url" content="http://longluo.me/tags/Blog/index.html">
+<meta property="og:url" content="http://longluo.me/tags/blog/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
 <meta property="og:description" content="A Curious Programmer.">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Long Luo&#39;s Life Notes">
 <meta name="twitter:description" content="A Curious Programmer.">
-  <link rel="canonical" href="http://longluo.me/tags/Blog/">
+  <link rel="canonical" href="http://longluo.me/tags/blog/">
 
 
 <script id="page-configurations">
@@ -81,7 +81,7 @@
   };
 </script>
 
-  <title>标签: Blog | Long Luo's Life Notes</title>
+  <title>标签: blog | Long Luo's Life Notes</title>
   <meta name="generator" content="Hexo 3.9.0">
   
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
@@ -294,7 +294,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h2>Blog<small>标签</small>
+        <h2>blog<small>标签</small>
         </h2>
       </div>
 
@@ -317,17 +317,17 @@
 
       <h3 class="post-title">
         
-          <a class="post-title-link" href="/blog/2016/03/11/the-hexo-handbook/" itemprop="url">
-            <span itemprop="name">Hexo入门指北</span>
+          <a class="post-title-link" href="/blog/2016/03/08/the-manual-of-hexo/" itemprop="url">
+            <span itemprop="name">如何使用Hexo建立一个自己的个人Blog及主页美化？</span>
           </a>
         
       </h3>
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-03-11T23:37:21+08:00"
-              content="2016-03-11">
-          03-11
+              datetime="2016-03-08T22:16:37+08:00"
+              content="2016-03-08">
+          03-08
         </time>
       </div>
 
@@ -389,7 +389,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-count">151</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -452,21 +452,7 @@
         
           
         
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-count">23</span>
         <span class="site-state-item-name">分类</span>
         </a>
       </div>
@@ -1055,99 +1041,7 @@
         
           
         
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">272</span>
+        <span class="site-state-item-count">218</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1245,12 +1139,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">520k</span>
+    <span title="站点总字数">518k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:52</span>
+    <span title="站点阅读时长">7:51</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
@@ -1499,7 +1393,25 @@ window.addEventListener('pjax:success', () => {
 
 </body>
 </html>
-SidebarPosition();
+oc-wrap',
+    '#pjax'
+  ],
+  analytics: false,
+  cacheBust: false,
+  scrollTo: !CONFIG.bookmark.enable
+});
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    $(element).parent().append($(element).remove());
+  });
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
 });
 </script>
 
