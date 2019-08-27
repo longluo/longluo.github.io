@@ -21,41 +21,31 @@ NexT.boot.registerEvents = function() {
   });
 
   var TAB_ANIMATE_DURATION = 200;
-  $('.sidebar-nav li').on('click', event => {
-    var item = $(event.currentTarget);
-    var activeTabClassName = 'sidebar-nav-active';
-    var activePanelClassName = 'sidebar-panel-active';
-    if (item.hasClass(activeTabClassName)) return;
+  document.querySelectorAll('.sidebar-nav li').forEach(li => {
+    li.addEventListener('click', event => {
+      var item = $(event.currentTarget);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) return;
 
-    var target = $('.' + item.data('target'));
-    var currentTarget = target.siblings('.sidebar-panel');
-    currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, () => {
-      currentTarget.hide();
-      target
-        .stop()
-        .css({ 'opacity': 0, 'display': 'block' })
-        .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, () => {
-          // Prevent adding TOC to Overview if Overview was selected when close & open sidebar.
-          currentTarget.removeClass(activePanelClassName, 'motion-element');
-          target.addClass(activePanelClassName, 'motion-element');
-        });
+      var target = $('.' + item.data('target'));
+      var currentTarget = target.siblings('.sidebar-panel');
+      currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, () => {
+        // Prevent adding TOC to Overview if Overview was selected when close & open sidebar.
+        currentTarget.removeClass(activePanelClassName);
+        target
+          .stop()
+          .css({ opacity: 0 })
+          .addClass(activePanelClassName)
+          .animate({ opacity: 1 }, TAB_ANIMATE_DURATION);
+      });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
     });
-
-    item.siblings().removeClass(activeTabClassName);
-    item.addClass(activeTabClassName);
   });
 
-  /**
-   * Init Sidebar & TOC inner dimensions on all pages and for all schemes.
-   * Need for Sidebar/TOC inner scrolling if content taller then viewport.
-   */
-  function initSidebarDimension() {
-    // Initialize Sidebar & TOC Height.
-    var sidebarWrapperHeight = document.body.clientHeight - NexT.utils.getSidebarSchemePadding();
-    $('.site-overview-wrap, .post-toc-wrap').css('max-height', sidebarWrapperHeight);
-  }
-  initSidebarDimension();
-  window.addEventListener('resize', initSidebarDimension);
+  window.addEventListener('resize', NexT.utils.initSidebarDimension);
 
   window.addEventListener('hashchange', () => {
     var tHash = location.hash;
@@ -73,7 +63,7 @@ NexT.boot.refresh = function() {
    * Need to add config option in Front-End at 'layout/_partials/head.swig' file.
    */
   CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
-  CONFIG.mediumzoom && window.mediumZoom('.post-body img');
+  CONFIG.mediumzoom && window.mediumZoom('.post-body :not(a) > img');
   CONFIG.lazyload && window.lozad('.post-body img').observe();
   CONFIG.pangu && window.pangu.spacingPage();
 
@@ -81,20 +71,9 @@ NexT.boot.refresh = function() {
   CONFIG.copycode.enable && NexT.utils.registerCopyCode();
   NexT.utils.registerTabsTag();
   NexT.utils.registerActiveMenuItem();
-  NexT.utils.embeddedVideoTransformer();
-
-  var sidebarNav = document.querySelector('.sidebar-nav');
-  if (document.querySelector('.post-toc-wrap').childElementCount > 0) {
-    sidebarNav.style.display = '';
-    sidebarNav.classList.add('motion-element');
-    document.querySelector('.sidebar-nav-toc').click();
-  } else {
-    sidebarNav.style.display = 'none';
-    sidebarNav.classList.remove('motion-element');
-    document.querySelector('.sidebar-nav-overview').click();
-  }
-
-  $('table').not('.gist table').wrap('<div class="table-container"></div>');
+  NexT.utils.registerSidebarTOC();
+  NexT.utils.wrapTableWithBox();
+  NexT.utils.registerVideoIframe();
 };
 
 NexT.boot.motion = function() {
@@ -116,4 +95,3 @@ window.addEventListener('DOMContentLoaded', () => {
   NexT.boot.refresh();
   NexT.boot.motion();
 });
-window.addEventListener('pjax:success', NexT.boot.refresh);

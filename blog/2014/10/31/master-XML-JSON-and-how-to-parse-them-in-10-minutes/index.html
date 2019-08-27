@@ -114,7 +114,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -123,7 +122,7 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
   .use-motion .logo,
   .use-motion .site-title,
@@ -144,10 +143,10 @@
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">Long Luo's Life Notes</span>
@@ -241,7 +240,7 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-wrapper">
+  <div class="search-input-container">
     <input autocomplete="off" autocorrect="off" autocapitalize="none"
            placeholder="搜索..." spellcheck="false"
            type="text" id="search-input">
@@ -259,22 +258,29 @@
 </div>
     </header>
 
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
+
+
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
             
 
-          <div id="content" class="content page-post-detail">
+          <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
-    
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
+      <article itemscope itemtype="http://schema.org/Article">
   
   
   
-  <div class="post-block">
+  <div class="post-block post">
     <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/10/31/master-XML-JSON-and-how-to-parse-them-in-10-minutes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1042,7 +1048,7 @@ else
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
         
         
@@ -1050,7 +1056,7 @@ else
         
       
 
-      <ul class="sidebar-nav">
+      <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc" data-target="post-toc-wrap">
           文章目录
         </li>
@@ -1061,25 +1067,22 @@ else
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc">
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、XML"><span class="nav-number">2.</span> <span class="nav-text">一、XML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-XML属性"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 XML属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-XML与HTML的主要差异"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1.1 XML与HTML的主要差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-XML是不作为的。"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.1.2 XML是不作为的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-XML仅仅是纯文本"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.1.3 XML仅仅是纯文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-XML允许自定义标签"><span class="nav-number">2.1.4.</span> <span class="nav-text">1.1.4 XML允许自定义标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-XML不是对HTML的替代"><span class="nav-number">2.1.5.</span> <span class="nav-text">1.1.5 XML不是对HTML的替代</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-XML的语法"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 XML的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-所有元素都必须有关闭标签"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">1.2.1 所有元素都必须有关闭标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-XML标签对大小写敏感"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">1.2.2 XML标签对大小写敏感</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-XML标签对大小写敏感"><span class="nav-number">2.2.0.3.</span> <span class="nav-text">1.2.3 XML标签对大小写敏感</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-XML文档必须有根元素"><span class="nav-number">2.2.0.4.</span> <span class="nav-text">1.2.4 XML文档必须有根元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-XML的属性值须加引号"><span class="nav-number">2.2.0.5.</span> <span class="nav-text">1.2.5 XML的属性值须加引号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-6-实体引用"><span class="nav-number">2.2.0.6.</span> <span class="nav-text">1.2.6 实体引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-7-XML中的注释"><span class="nav-number">2.2.0.7.</span> <span class="nav-text">1.2.7 XML中的注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-8-以-LF-存储换行"><span class="nav-number">2.2.0.8.</span> <span class="nav-text">1.2.8 以 LF 存储换行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-XML-CDATA"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.3 XML CDATA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-PCDATA"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">1.3.1 PCDATA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-转义字符"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">1.3.2 转义字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-CDATA"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">1.3.3 CDATA</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-举个栗子"><span class="nav-number">2.3.</span> <span class="nav-text">1.4 举个栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iQiyi提供的电影频道的XML电影数据如下："><span class="nav-number">2.3.0.0.1.</span> <span class="nav-text">iQiyi提供的电影频道的XML电影数据如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#这是展示一部电影的具体数据，包括标题、介绍、内容、导演、演员、时长、上映年份等很多内容。"><span class="nav-number">2.3.0.0.1.1.</span> <span class="nav-text">这是展示一部电影的具体数据，包括标题、介绍、内容、导演、演员、时长、上映年份等很多内容。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-XML树结构"><span class="nav-number">2.4.</span> <span class="nav-text">1.5 XML树结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-1-一个XML文档实例"><span class="nav-number">2.4.1.</span> <span class="nav-text">1.5.1 一个XML文档实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-XML-DOM"><span class="nav-number">2.5.</span> <span class="nav-text">1.6 XML DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-1-定义"><span class="nav-number">2.5.1.</span> <span class="nav-text">1.6.1 定义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DOM将XML文档作为一个树形结构，而树叶被定义为节点。"><span class="nav-number">2.5.1.0.1.</span> <span class="nav-text">DOM将XML文档作为一个树形结构，而树叶被定义为节点。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-2-总结"><span class="nav-number">2.5.2.</span> <span class="nav-text">1.6.2 总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-XML如何解析？"><span class="nav-number">2.6.</span> <span class="nav-text">1.7 XML如何解析？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-1-Step-1"><span class="nav-number">2.6.1.</span> <span class="nav-text">1.7.1 Step 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#XML文件是一棵树，首先需要找到对应的节点，然后从节点开始解析，比如搜索找到的就是result-weights-weight-和result-weights-weight-2个节点，分别从这个开始解析："><span class="nav-number">2.6.1.0.1.</span> <span class="nav-text">XML文件是一棵树，首先需要找到对应的节点，然后从节点开始解析，比如搜索找到的就是result/weights/weight 和result/weights/weight 2个节点，分别从这个开始解析：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-2-Step-2"><span class="nav-number">2.6.2.</span> <span class="nav-text">1.7.2 Step 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#找到了对应的Node，即从对应的Node开始递归的查找，直到找到最小的节点，也就是最基本的单元Element。再对每一个Element进行解析："><span class="nav-number">2.6.2.0.1.</span> <span class="nav-text">　找到了对应的Node，即从对应的Node开始递归的查找，直到找到最小的节点，也就是最基本的单元Element。再对每一个Element进行解析：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-3-Step-3"><span class="nav-number">2.6.3.</span> <span class="nav-text">1.7.3 Step 3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#针对获取到的Element，解析出对应的String将数据传递给VideoInfo这个类："><span class="nav-number">2.6.3.0.1.</span> <span class="nav-text">　针对获取到的Element，解析出对应的String将数据传递给VideoInfo这个类：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-4-Step-4"><span class="nav-number">2.6.4.</span> <span class="nav-text">1.7.4 Step 4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#当使用XML解析器将XML数据解析出来之后。需要将这些数据提取出来，也是通过连续2层提取，将数据定位到每个video，-将每个video里的数据传递给SearchVideoInfo这个ArrayList，然后将ArrayList中的数据和对应的Adapter数据关联起来："><span class="nav-number">2.6.4.0.1.</span> <span class="nav-text">　当使用XML解析器将XML数据解析出来之后。需要将这些数据提取出来，也是通过连续2层提取，将数据定位到每个video， 将每个video里的数据传递给SearchVideoInfo这个ArrayList，然后将ArrayList中的数据和对应的Adapter数据关联起来：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以上就是搜索数据的XML的解析和数据展示过程。"><span class="nav-number">2.6.4.0.2.</span> <span class="nav-text">以上就是搜索数据的XML的解析和数据展示过程。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、JSON"><span class="nav-number">3.</span> <span class="nav-text">二、JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-JSON是什么？"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 JSON是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-JSON格式"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 JSON格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON构建于两种结构："><span class="nav-number">3.2.0.1.</span> <span class="nav-text">JSON构建于两种结构：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON具有以下这些形式："><span class="nav-number">3.2.0.2.</span> <span class="nav-text">JSON具有以下这些形式：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-举个栗子"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 举个栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iQiyi提供的电影频道的JSON电影数据如下："><span class="nav-number">3.3.0.0.1.</span> <span class="nav-text">iQiyi提供的电影频道的JSON电影数据如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#从上面的例子可以很清晰的看出JSON是如何展示一个电影的数据的，当然这是JSON格式化之后的数据。JSON的元数据是不便于阅读的。"><span class="nav-number">3.3.0.0.1.1.</span> <span class="nav-text">从上面的例子可以很清晰的看出JSON是如何展示一个电影的数据的，当然这是JSON格式化之后的数据。JSON的元数据是不便于阅读的。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-如何解析JSON？"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 如何解析JSON？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见方法"><span class="nav-number">3.4.1.</span> <span class="nav-text">. 常见方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android中如何创建JSON？"><span class="nav-number">3.4.2.</span> <span class="nav-text">. Android中如何创建JSON？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何解析JSON？"><span class="nav-number">3.4.3.</span> <span class="nav-text">. 如何解析JSON？</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#第一步，需要从网络服务器上发起请求，获取到JSON数据："><span class="nav-number">3.4.3.0.0.1.</span> <span class="nav-text">第一步，需要从网络服务器上发起请求，获取到JSON数据：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第二步，获取到对应的对应的JSONObject数据："><span class="nav-number">3.4.3.0.0.2.</span> <span class="nav-text">第二步，获取到对应的对应的JSONObject数据：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#获取到JSON-Object之后，就对这个JSONObject进行解析："><span class="nav-number">3.4.3.0.0.3.</span> <span class="nav-text">获取到JSON Object之后，就对这个JSONObject进行解析：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以上展示的就是JSON数据的解析过程。"><span class="nav-number">3.4.3.0.1.</span> <span class="nav-text">以上展示的就是JSON数据的解析过程。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-JSON解析库"><span class="nav-number">3.4.4.</span> <span class="nav-text">. Android JSON解析库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-JSON-vs-XML"><span class="nav-number">4.</span> <span class="nav-text">三、 JSON vs. XML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON相比XML的不同之处"><span class="nav-number">4.0.1.</span> <span class="nav-text">. JSON相比XML的不同之处</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总之：-JSON-比-XML-更小、更快，更易解析。"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">总之： JSON 比 XML 更小、更快，更易解析。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML和JSON的区别："><span class="nav-number">4.0.2.</span> <span class="nav-text">. XML和JSON的区别：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#One-More-Thing…"><span class="nav-number">4.0.2.0.1.</span> <span class="nav-text">One More Thing…</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、总结"><span class="nav-number">5.</span> <span class="nav-text">四、总结</span></a></li></ol></div>
-          </div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、XML"><span class="nav-number">2.</span> <span class="nav-text">一、XML</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-XML属性"><span class="nav-number">2.1.</span> <span class="nav-text">1.1 XML属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-XML与HTML的主要差异"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1.1 XML与HTML的主要差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-XML是不作为的。"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.1.2 XML是不作为的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-3-XML仅仅是纯文本"><span class="nav-number">2.1.3.</span> <span class="nav-text">1.1.3 XML仅仅是纯文本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-4-XML允许自定义标签"><span class="nav-number">2.1.4.</span> <span class="nav-text">1.1.4 XML允许自定义标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-5-XML不是对HTML的替代"><span class="nav-number">2.1.5.</span> <span class="nav-text">1.1.5 XML不是对HTML的替代</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-XML的语法"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 XML的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-所有元素都必须有关闭标签"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">1.2.1 所有元素都必须有关闭标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-XML标签对大小写敏感"><span class="nav-number">2.2.0.2.</span> <span class="nav-text">1.2.2 XML标签对大小写敏感</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-XML标签对大小写敏感"><span class="nav-number">2.2.0.3.</span> <span class="nav-text">1.2.3 XML标签对大小写敏感</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-4-XML文档必须有根元素"><span class="nav-number">2.2.0.4.</span> <span class="nav-text">1.2.4 XML文档必须有根元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-5-XML的属性值须加引号"><span class="nav-number">2.2.0.5.</span> <span class="nav-text">1.2.5 XML的属性值须加引号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-6-实体引用"><span class="nav-number">2.2.0.6.</span> <span class="nav-text">1.2.6 实体引用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-7-XML中的注释"><span class="nav-number">2.2.0.7.</span> <span class="nav-text">1.2.7 XML中的注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-8-以-LF-存储换行"><span class="nav-number">2.2.0.8.</span> <span class="nav-text">1.2.8 以 LF 存储换行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-XML-CDATA"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.3 XML CDATA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-PCDATA"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">1.3.1 PCDATA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-转义字符"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">1.3.2 转义字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-CDATA"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">1.3.3 CDATA</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-举个栗子"><span class="nav-number">2.3.</span> <span class="nav-text">1.4 举个栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iQiyi提供的电影频道的XML电影数据如下："><span class="nav-number">2.3.0.0.1.</span> <span class="nav-text">iQiyi提供的电影频道的XML电影数据如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#这是展示一部电影的具体数据，包括标题、介绍、内容、导演、演员、时长、上映年份等很多内容。"><span class="nav-number">2.3.0.0.1.1.</span> <span class="nav-text">这是展示一部电影的具体数据，包括标题、介绍、内容、导演、演员、时长、上映年份等很多内容。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-XML树结构"><span class="nav-number">2.4.</span> <span class="nav-text">1.5 XML树结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-1-一个XML文档实例"><span class="nav-number">2.4.1.</span> <span class="nav-text">1.5.1 一个XML文档实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-XML-DOM"><span class="nav-number">2.5.</span> <span class="nav-text">1.6 XML DOM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-1-定义"><span class="nav-number">2.5.1.</span> <span class="nav-text">1.6.1 定义</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DOM将XML文档作为一个树形结构，而树叶被定义为节点。"><span class="nav-number">2.5.1.0.1.</span> <span class="nav-text">DOM将XML文档作为一个树形结构，而树叶被定义为节点。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-2-总结"><span class="nav-number">2.5.2.</span> <span class="nav-text">1.6.2 总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-XML如何解析？"><span class="nav-number">2.6.</span> <span class="nav-text">1.7 XML如何解析？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-1-Step-1"><span class="nav-number">2.6.1.</span> <span class="nav-text">1.7.1 Step 1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#XML文件是一棵树，首先需要找到对应的节点，然后从节点开始解析，比如搜索找到的就是result-weights-weight-和result-weights-weight-2个节点，分别从这个开始解析："><span class="nav-number">2.6.1.0.1.</span> <span class="nav-text">XML文件是一棵树，首先需要找到对应的节点，然后从节点开始解析，比如搜索找到的就是result/weights/weight 和result/weights/weight 2个节点，分别从这个开始解析：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-2-Step-2"><span class="nav-number">2.6.2.</span> <span class="nav-text">1.7.2 Step 2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#找到了对应的Node，即从对应的Node开始递归的查找，直到找到最小的节点，也就是最基本的单元Element。再对每一个Element进行解析："><span class="nav-number">2.6.2.0.1.</span> <span class="nav-text">　找到了对应的Node，即从对应的Node开始递归的查找，直到找到最小的节点，也就是最基本的单元Element。再对每一个Element进行解析：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-3-Step-3"><span class="nav-number">2.6.3.</span> <span class="nav-text">1.7.3 Step 3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#针对获取到的Element，解析出对应的String将数据传递给VideoInfo这个类："><span class="nav-number">2.6.3.0.1.</span> <span class="nav-text">　针对获取到的Element，解析出对应的String将数据传递给VideoInfo这个类：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-4-Step-4"><span class="nav-number">2.6.4.</span> <span class="nav-text">1.7.4 Step 4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#当使用XML解析器将XML数据解析出来之后。需要将这些数据提取出来，也是通过连续2层提取，将数据定位到每个video，-将每个video里的数据传递给SearchVideoInfo这个ArrayList，然后将ArrayList中的数据和对应的Adapter数据关联起来："><span class="nav-number">2.6.4.0.1.</span> <span class="nav-text">　当使用XML解析器将XML数据解析出来之后。需要将这些数据提取出来，也是通过连续2层提取，将数据定位到每个video， 将每个video里的数据传递给SearchVideoInfo这个ArrayList，然后将ArrayList中的数据和对应的Adapter数据关联起来：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以上就是搜索数据的XML的解析和数据展示过程。"><span class="nav-number">2.6.4.0.2.</span> <span class="nav-text">以上就是搜索数据的XML的解析和数据展示过程。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、JSON"><span class="nav-number">3.</span> <span class="nav-text">二、JSON</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-JSON是什么？"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 JSON是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-JSON格式"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 JSON格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON构建于两种结构："><span class="nav-number">3.2.0.1.</span> <span class="nav-text">JSON构建于两种结构：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON具有以下这些形式："><span class="nav-number">3.2.0.2.</span> <span class="nav-text">JSON具有以下这些形式：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-举个栗子"><span class="nav-number">3.3.</span> <span class="nav-text">2.3 举个栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#iQiyi提供的电影频道的JSON电影数据如下："><span class="nav-number">3.3.0.0.1.</span> <span class="nav-text">iQiyi提供的电影频道的JSON电影数据如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#从上面的例子可以很清晰的看出JSON是如何展示一个电影的数据的，当然这是JSON格式化之后的数据。JSON的元数据是不便于阅读的。"><span class="nav-number">3.3.0.0.1.1.</span> <span class="nav-text">从上面的例子可以很清晰的看出JSON是如何展示一个电影的数据的，当然这是JSON格式化之后的数据。JSON的元数据是不便于阅读的。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-如何解析JSON？"><span class="nav-number">3.4.</span> <span class="nav-text">2.4 如何解析JSON？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常见方法"><span class="nav-number">3.4.1.</span> <span class="nav-text">. 常见方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android中如何创建JSON？"><span class="nav-number">3.4.2.</span> <span class="nav-text">. Android中如何创建JSON？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何解析JSON？"><span class="nav-number">3.4.3.</span> <span class="nav-text">. 如何解析JSON？</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#第一步，需要从网络服务器上发起请求，获取到JSON数据："><span class="nav-number">3.4.3.0.0.1.</span> <span class="nav-text">第一步，需要从网络服务器上发起请求，获取到JSON数据：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#第二步，获取到对应的对应的JSONObject数据："><span class="nav-number">3.4.3.0.0.2.</span> <span class="nav-text">第二步，获取到对应的对应的JSONObject数据：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#获取到JSON-Object之后，就对这个JSONObject进行解析："><span class="nav-number">3.4.3.0.0.3.</span> <span class="nav-text">获取到JSON Object之后，就对这个JSONObject进行解析：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#以上展示的就是JSON数据的解析过程。"><span class="nav-number">3.4.3.0.1.</span> <span class="nav-text">以上展示的就是JSON数据的解析过程。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Android-JSON解析库"><span class="nav-number">3.4.4.</span> <span class="nav-text">. Android JSON解析库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-JSON-vs-XML"><span class="nav-number">4.</span> <span class="nav-text">三、 JSON vs. XML</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON相比XML的不同之处"><span class="nav-number">4.0.1.</span> <span class="nav-text">. JSON相比XML的不同之处</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总之：-JSON-比-XML-更小、更快，更易解析。"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">总之： JSON 比 XML 更小、更快，更易解析。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XML和JSON的区别："><span class="nav-number">4.0.2.</span> <span class="nav-text">. XML和JSON的区别：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#One-More-Thing…"><span class="nav-number">4.0.2.0.1.</span> <span class="nav-text">One More Thing…</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、总结"><span class="nav-number">5.</span> <span class="nav-text">四、总结</span></a></li></ol></div>
         
       </div>
       <!--/noindex-->
 
       <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Long Luo</p>
-  <div class="site-description motion-element" itemprop="description">A Curious Programmer.</div>
+  <div class="site-description" itemprop="description">A Curious Programmer.</div>
 </div>
   <nav class="site-state motion-element">
       <div class="site-state-item site-state-posts">
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-count">148</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1725,13 +1728,7 @@ else
         
           
         
-          
-        
-          
-        
-          
-        
-        <span class="site-state-item-count">218</span>
+        <span class="site-state-item-count">215</span>
         <span class="site-state-item-name">标签</span>
         </a>
       </div>
@@ -1790,14 +1787,14 @@ else
   </div>
 
 
-  <div class="links-of-blogroll motion-element links-of-blogroll-block">
+  <div class="links-of-blogroll motion-element">
     <div class="links-of-blogroll-title">
-      <i class="fa  fa-fw fa-link"></i>
+      <i class="fa fa-fw fa-link"></i>
       Links
     </div>
     <ul class="links-of-blogroll-list">
         <li class="links-of-blogroll-item">
-          <a href="http://www.imlongluo.com" title="http://www.imlongluo.com" rel="noopener" target="_blank">Home Page</a>
+          <a href="http://www.imlongluo.com" title="http://www.imlongluo.com" rel="noopener" target="_blank">Home</a>
         </li>
       
         <li class="links-of-blogroll-item">
@@ -1807,7 +1804,6 @@ else
     </ul>
   </div>
 
-        </div>
       </div>
 
     </div>
@@ -1829,12 +1825,12 @@ else
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">488k</span>
+    <span title="站点总字数">482k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">7:23</span>
+    <span title="站点阅读时长">7:18</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
   <span class="post-meta-divider">|</span>
@@ -1980,15 +1976,6 @@ else
         
       </div>
     </footer>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
-
   </div>
 
   
@@ -2001,9 +1988,59 @@ else
   <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
+<script src="/js/utils.js?v=7.3.0"></script><script src="/js/motion.js?v=7.3.0"></script>
 <script src="/js/schemes/pisces.js?v=7.3.0"></script>
-<script src="/js/next-boot.js?v=7.3.0"></script>
+<script src="/js/next-boot.js?v=7.3.0"></script><script src="/js/bookmark.js?v=7.3.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
 
 
 
@@ -2049,11 +2086,6 @@ else
 
   
 
-
-  
-  <script src="/js/post-details.js?v=7.3.0"></script>
-
-
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
 
 <script>
@@ -2074,33 +2106,5 @@ else
 </script>
 
     </div>
-    <script>
-var pjax = new Pjax({
-  selectors: [
-    'head title',
-    '#page-configurations',
-    '.content-wrap',
-    '.post-toc-wrap',
-    '#pjax'
-  ],
-  analytics: false,
-  cacheBust: false,
-  scrollTo: !CONFIG.bookmark.enable
-});
-window.addEventListener('pjax:success', () => {
-  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
-    $(element).parent().append($(element).remove());
-  });
-  // Define Motion Sequence & Bootstrap Motion.
-  if (CONFIG.motion.enable) {
-    NexT.motion.integrator
-      .init()
-      .add(NexT.motion.middleWares.postList)
-      .bootstrap();
-  }
-  NexT.utils.updateSidebarPosition();
-});
-</script>
-
 </body>
 </html>
