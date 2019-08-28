@@ -4,8 +4,8 @@ title: "成电十周年校庆随想"
 date: 2016-05-05 11:15:33 +0800
 comments: true
 tags: [大学, 成电, 回忆]
-categories: Life
-keywords: 大学, 电子科技大学, 校庆, 生活, 青春
+categories: University
+keywords: 大学, 电子科技大学, 校庆, 生活, 青春, University,
 ---
 
 

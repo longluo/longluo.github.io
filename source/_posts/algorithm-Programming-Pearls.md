@@ -3,9 +3,9 @@ layout: post
 title: "《编程珠玑》第二章 “杂技算法” 和 “翻转算法” C语言实现"
 comments: true
 date: 2016-06-06 11:17:49
-tags: [算法, 编程]
+tags: [Algorithm, 编程]
 categories: Data Structures and Algorithms
-keywords: 字符串翻转, 编程珠玑, 杂技算法, 翻转算法, 算法, 编程, 
+keywords: 字符串翻转, 编程珠玑, 杂技算法, 翻转算法, 算法, 编程, Algorithm, 
 ---
 
 

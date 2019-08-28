@@ -5,7 +5,7 @@ comments: true
 date: 2017-11-28 22:22:02
 tags: [Hire, 选择, 风险]
 categories: Work
-keywords: 招聘, 选择, 风险, Hire, 工作, 
+keywords: 招聘, 选择, 风险, Hire, 工作, 招到优秀的员工, 
 ---
 
 

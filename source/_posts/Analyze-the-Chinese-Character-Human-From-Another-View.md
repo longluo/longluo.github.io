@@ -3,7 +3,7 @@ layout: post
 title: "人生的那一“丿”"
 comments: true
 date: 2008-2-28 23:28:12
-tags: [人生, 人, 思考]
+tags: [人生, 思考]
 categories: Life
 keywords: 人生, 哲理, 沉思, 我, I, Life, 
 ---

@@ -4,7 +4,7 @@ title: "Android UI Layout总结系列之篇之5大布局"
 date: 2014-01-23 20:16:36 +0800
 comments: true
 categories: Android
-tags: [Android, Layout]
+tags: [Android, Layout, UI]
 keywords: Android, UI, Layout, 布局,
 ---
 

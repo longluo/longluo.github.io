@@ -4,8 +4,8 @@ title: "Google多线程面试题: 4个线程向4个文件里写入数据, 每个
 date: 2015-04-09 21:04:10 +0800
 comments: true
 categories: Data Structures and Algorithms
-tags: [算法, 多线程, Interview]
-keywords: 算法, 多线程, 互斥, 线程通信, 面试, interview, 
+tags: [Algorithm, 多线程, 面试]
+keywords: 算法, 多线程, 互斥, 线程通信, 面试, interview, Algorithm, Google面试题,
 ---
 
 

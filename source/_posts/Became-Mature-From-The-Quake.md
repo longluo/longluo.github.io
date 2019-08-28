@@ -4,7 +4,7 @@ title: "Became Mature From The Quake"
 comments: true
 date: 2008-07-06 23:53:06 
 tags: [地震, 512, 生活]
-categories: Life
+categories: University
 keywords: Earthquake, Mature, Life, 地震, 512,  四川, 汶川, 
 ---
 
