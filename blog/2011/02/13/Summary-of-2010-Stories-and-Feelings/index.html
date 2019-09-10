@@ -480,9 +480,9 @@
           
           <div class="post-tags">
             
-              <a href="/tags/总结/" rel="tag"><i class="fa fa-tag"></i> 总结</a>
-            
               <a href="/tags/成长/" rel="tag"><i class="fa fa-tag"></i> 成长</a>
+            
+              <a href="/tags/总结/" rel="tag"><i class="fa fa-tag"></i> 总结</a>
             
               <a href="/tags/2010/" rel="tag"><i class="fa fa-tag"></i> 2010</a>
             
@@ -762,8 +762,14 @@
                 console.log('Failed to save visitor count', error);
               })
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
             
           }
         })

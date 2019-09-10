@@ -379,8 +379,8 @@
 
       
         <p><strong><em>By Long Luo</em></strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">	#</span> df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/simfs       10G  3.9G  6.2G  39% /</span><br><span class="line">none             64M  4.0K   64M   1% /dev</span><br><span class="line">none             64M     0   64M   0% /dev/shm</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">	#</span> free -m</span><br><span class="line">             total       used       free     shared    buffers     cached</span><br><span class="line">Mem:           128        125          2          0          0          4</span><br><span class="line">-/+ buffers/cache:        121          6</span><br><span class="line">Swap:          256        211         44</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">	#</span><span class="bash"> df -h</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/simfs       10G  3.9G  6.2G  39% /</span><br><span class="line">none             64M  4.0K   64M   1% /dev</span><br><span class="line">none             64M     0   64M   0% /dev/shm</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">	#</span><span class="bash"> free -m</span></span><br><span class="line">             total       used       free     shared    buffers     cached</span><br><span class="line">Mem:           128        125          2          0          0          4</span><br><span class="line">-/+ buffers/cache:        121          6</span><br><span class="line">Swap:          256        211         44</span><br></pre></td></tr></table></figure>
 
     </div>
 
@@ -694,8 +694,14 @@
                 console.log('Failed to save visitor count', error);
               })
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
             
           }
         })

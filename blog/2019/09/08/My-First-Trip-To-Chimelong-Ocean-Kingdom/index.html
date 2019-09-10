@@ -58,14 +58,14 @@
 </script>
 
   <meta name="description" content="By Long Luo Do you remember the first time going to somewhere that you enjoyed a lot? Well I remember my first time at Chimelong Ocean Kingdom. To be honest this was my first time going to Chimelong R">
-<meta name="keywords" content="Trip, Chimelong, Ocean Kindom, Zhuhai, 长隆, 珠海, 长隆海洋王国, 乐园,">
+<meta name="keywords" content="Trip, Chimelong, Ocean Kindom, Zhuhai, 长隆, 珠海, 长隆海洋王国, 乐园, aquarium, theme park,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="My First Trip To Chimelong Ocean Kindom">
 <meta property="og:url" content="http://longluo.me/blog/2019/09/08/My-First-Trip-To-Chimelong-Ocean-Kingdom/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
 <meta property="og:description" content="By Long Luo Do you remember the first time going to somewhere that you enjoyed a lot? Well I remember my first time at Chimelong Ocean Kingdom. To be honest this was my first time going to Chimelong R">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-09T15:49:32.084Z">
+<meta property="og:updated_time" content="2019-09-10T15:23:39.171Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="My First Trip To Chimelong Ocean Kindom">
 <meta name="twitter:description" content="By Long Luo Do you remember the first time going to somewhere that you enjoyed a lot? Well I remember my first time at Chimelong Ocean Kingdom. To be honest this was my first time going to Chimelong R">
@@ -320,7 +320,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-09 23:49:32" itemprop="dateModified" datetime="2019-09-09T23:49:32+08:00">2019-09-09</time>
+                <time title="修改时间：2019-09-10 23:23:39" itemprop="dateModified" datetime="2019-09-10T23:23:39+08:00">2019-09-10</time>
               </span>
             
           
@@ -690,8 +690,14 @@
                 console.log('Failed to save visitor count', error);
               })
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
             
           }
         })

@@ -319,7 +319,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-09-09 23:49:32" itemprop="dateModified" datetime="2019-09-09T23:49:32+08:00">2019-09-09</time>
+                <time title="修改时间：2019-09-10 23:23:39" itemprop="dateModified" datetime="2019-09-10T23:23:39+08:00">2019-09-10</time>
               </span>
             
           
@@ -444,7 +444,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-08-22 23:29:08" itemprop="dateModified" datetime="2019-08-22T23:29:08+08:00">2019-08-22</time>
+                <time title="修改时间：2019-09-10 23:19:10" itemprop="dateModified" datetime="2019-09-10T23:19:10+08:00">2019-09-10</time>
               </span>
             
           
@@ -502,7 +502,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By LongLuo</em></strong></p>
+          <p><strong><em>By Long Luo</em></strong></p>
 <p>机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。</p>
 <h1 id="一、矩阵乘法"><a href="#一、矩阵乘法" class="headerlink" title="一、矩阵乘法"></a>一、矩阵乘法</h1><p>假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix product）。</p>
 <p>其中矩阵$C$中的第$i$行第$j$列元素可以表示为：</p>
@@ -1838,8 +1838,14 @@
                 console.log('Failed to save visitor count', error);
               })
           } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
             
           }
         })

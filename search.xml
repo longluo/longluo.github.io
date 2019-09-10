@@ -37,7 +37,7 @@
       <link href="//blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/"/>
       <url>//blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/</url>
       
-        <content type="html"><![CDATA[<p><strong><em>By LongLuo</em></strong></p><p>机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。</p><h1 id="一、矩阵乘法"><a href="#一、矩阵乘法" class="headerlink" title="一、矩阵乘法"></a>一、矩阵乘法</h1><p>假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix product）。</p><p>其中矩阵$C$中的第$i$行第$j$列元素可以表示为：</p><script type="math/tex; mode=display"> (AB)_{ij} = \sum_{k=1}^{p}{a_{ik}b_{kj}} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdot\cdot\cdot + a_{ip}b_{pj}</script><p>如下图所示：</p><p><img alt="@Figure 1. Matrix Multiplication | center " data-src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true"></p><p>假如在矩阵$A$和矩阵$B$中，$m = p = n = N$，那么完成$C = AB$需要多少次乘法呢？</p><ol><li>对于每一个行向量$r$ ，总共有$N$行；</li><li>对于每一个列向量$c$，总共有$N$列；</li><li>计算它们的内积，总共有$N$次乘法计算。</li></ol><p>综合可以看出，矩阵乘法的算法复杂度是：$\Theta(N^{3})$。</p><h1 id="二、Strassen算法"><a href="#二、Strassen算法" class="headerlink" title="二、Strassen算法"></a>二、Strassen算法</h1><p>那么有没有比$\Theta(N^{3})$更快的算法呢？</p><a id="more"></a><p>1969年，Volker Strassen提出了第一个算法时间复杂度低于$\Theta(N^{3})$矩阵乘法算法，算法复杂度为$\Theta(n^{log_{2}^{7}}) = \Theta(n^{2.807})$。从下图可知，Strassen算法只有在对于维数比较大的矩阵 ($N &gt; 300$) ，性能上才有很大的优势，可以减少很多乘法计算。</p><p><img alt="@Figure 2. x^3 vs. x^2.807 | center" data-src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/matrixmulti_strassen.jpg?raw=true"></p><p>Strassen算法证明了矩阵乘法存在时间复杂度低于$\Theta(N^{3})$的算法的存在，后续学者不断研究发现新的更快的算法，截止目前时间复杂度最低的矩阵乘法算法是Coppersmith-Winograd方法的一种扩展方法，其算法复杂度为$\Theta(n^{2.375})$。</p><h1 id="三、Strassen原理详解"><a href="#三、Strassen原理详解" class="headerlink" title="三、Strassen原理详解"></a>三、Strassen原理详解</h1><p>假设矩阵$A$ 和矩阵$B$都是$N \times N (N = 2^{n})$的方矩阵，求$C = AB$，如下所示：</p><script type="math/tex; mode=display">A = \left [\begin{matrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{matrix} \right ] ， B = \left [ \begin{matrix} B_{11} & B_{12} \\ B_{21} & B_{22} \\ \end{matrix} \right ] ， C = \left [ \begin{matrix} C_{11} & C_{12} \\ C_{21} & C_{22} \\ \end{matrix} \right ]</script><p>其中 </p><script type="math/tex; mode=display">\begin{bmatrix} C_{11} & C_{12} \\C_{21} & C_{22} \end{bmatrix} = \begin{bmatrix} A_{11} & A_{12} \\A_{21} & A_{22} \end{bmatrix} \cdot \begin{bmatrix} B_{11} & B_{12} \\B_{21} & B_{22} \end{bmatrix}</script><p>矩阵$C$可以通过下列公式求出：</p><script type="math/tex; mode=display">C_{11} = A_{11} \cdot B_{11} + A_{12} \cdot B_{21}\\ C_{12} = A_{11} \cdot B_{12} + A_{22} \cdot B_{21}\\ C_{21} = A_{21} \cdot B_{11} + A_{22} \cdot B_{21}\\ C_{22} = A_{21} \cdot B_{12} + A_{22} \cdot B_{22}</script><p>从上述公式我们可以得出，计算2个$n <em> n$的矩阵相乘需要2个$\frac{n}{2} </em> \frac{n}{2}$的矩阵8次乘法和4次加法。我们使用$T(n)$表示$n*n$矩阵乘法的时间复杂度，那么我们可以根据上面的分解得到下面的递推公式：</p><script type="math/tex; mode=display">T(n) = 8 * T(\frac{n}{2}) + \Theta(n^{2})</script><p>其中，</p><ol><li>$8T(\frac{n}{2})$表示8次矩阵乘法，而且相乘的矩阵规模降到了$\frac{n}{2}$。</li><li>$\Theta(n^{2})$表示4次矩阵加法的时间复杂度以及合并矩阵$C$的时间复杂度。</li></ol><p>最终可计算得到$T(n)=\Theta(n^{log_{2}^{8}})=\Theta(n^{3})$。</p><p>可以看出每次递归操作都需要8次矩阵相乘，而这正是瓶颈的来源。相比加法，矩阵乘法是非常慢的，于是我们想到能不能减少矩阵相乘的次数呢？</p><p><strong><em>答案是当然可以！！！</em></strong></p><p>Strassen算法正是从这个角度出发，实现了降低算法复杂度！</p><h2 id="Strassen实现步骤"><a href="#Strassen实现步骤" class="headerlink" title="Strassen实现步骤"></a>Strassen实现步骤</h2><p>实现步骤可以分为以下4步：</p><ol><li>按上述方法将矩阵$A,B,C$分解（花费时间$\Theta(1)$。</li><li>如下创建10个$\frac{n}{2} × \frac{n}{2}$的矩阵$S_1, S_2, …, S_{10}$(花费时间 $\Theta(n^2)$。<script type="math/tex; mode=display">S_1 = B_{12} - B_{22}\\ S_2 = A_{11} + A_{12}\\S_3 = A_{21} + A_{22}\\S_4 = B_{21} - B_{11}\\S_5 = A_{11} + A_{22}\\S_6 = B_{11} + B_{22}\\S_7 = A_{12} - A_{22}\\S_8 = B_{21} + B_{22}\\S_9 = A_{11} - A_{21}\\S_{10} = B_{11} + B_{12}</script></li><li><p>递归地计算7个矩阵积$P_1, P_2, …, P_7$，每个矩阵$P_i$都是 $\frac{n}{2} × \frac{n}{2}$的。</p><script type="math/tex; mode=display">P_1 = A_{11} \cdot S_1 = A_{11} \cdot B_{12} - A_{11} \cdot B_{22}\\P_2 = S_2 \cdot B_{22} = A_{11} \cdot B_{22} + A_{12} \cdot B_{22}\\P_3 = S_3 \cdot B_{11} = A_{21} \cdot B_{11} + A_{22} \cdot B_{11}\\P_4 = A_{22} \cdot S_4 = A_{22}\cdot B_{21} - A_{22} \cdot B_{11}\\P_5 = S_5 \cdot S_6 = A_{11} \cdot B_{11} + A_{11} \cdot B_{22} + A_{22} \cdot B_{11} + A_{22} \cdot B_{22}\\P_6 = S_7 \cdot S_8 = A_{12} \cdot B_{21} + A{12} \cdot B_{22} - A_{22} \cdot B_{21} - A_{22} \cdot B_{22}\\P_7 = S_9 \cdot S_{10}= A_{11} \cdot B_{11} + A_{11} \cdot B_{12} - A_{21} \cdot B_{11} - A_{21} \cdot B_{12}</script><p>注意，上述公式中只有中间一列需要计算。</p></li><li><p>通过$P_i$计算$C_{11}, C_{12}, C_{21}, C_{22}$，花费时间$\Theta(n^2)$。</p><script type="math/tex; mode=display">C_{11} = P_5 + P_4 - P_2 + P_6\\C_{12} = P_1 + P_2\\C_{21} = P_3 + P_4\\C_{22} = P_5 + P_1 - P_3 - P_7</script><p>综合可得如下递归式：</p><script type="math/tex; mode=display">T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n >1 \end{cases}</script><p>进而求出时间复杂度为：$T(n) = \Theta(n^{log_{2}^{7}})$</p></li></ol><h1 id="四、Strassen算法的代码实现"><a href="#四、Strassen算法的代码实现" class="headerlink" title="四、Strassen算法的代码实现"></a>四、Strassen算法的代码实现</h1><p>我们以MNN中关于Strassen算法源码实现来学习：<a href="https://github.com/alibaba/MNN/blob/master/source/backend/cpu/compute/StrassenMatmulComputor.cpp。" target="_blank" rel="noopener">https://github.com/alibaba/MNN/blob/master/source/backend/cpu/compute/StrassenMatmulComputor.cpp。</a></p><p>类StrassenMatrixComputor提供了3个API供调用：</p><div class="table-container"><table><thead><tr><th style="text-align:center">API</th><th style="text-align:center">说明</th></tr></thead><tbody><tr><td style="text-align:center">_generateTrivalMatMul(const Tensor<em> AT, const Tensor</em> BT, const Tensor* CT);</td><td style="text-align:center">普通矩阵乘法计算</td></tr><tr><td style="text-align:center">_generateMatMul(const Tensor<em> AT, const Tensor</em> BT, const Tensor* CT, int currentDepth);</td><td style="text-align:center">Strassen算法的矩阵乘法</td></tr><tr><td style="text-align:center">_generateMatMulConstB(const Tensor<em> AT, const Tensor</em> BT, const Tensor* CT, int currentDepth);</td><td style="text-align:center">Strassen算法的矩阵乘法（和MatMul的区别在于内存Buffer是否允许复用)</td></tr></tbody></table></div><p>我们以_generateMatMul为例来学习下Strassen算法如何实现，可以分成如下几步：</p><h2 id="第一步：使用Strassen算法收益判断"><a href="#第一步：使用Strassen算法收益判断" class="headerlink" title="第一步：使用Strassen算法收益判断"></a>第一步：使用Strassen算法收益判断</h2><p>在矩阵操作中，因为需要对矩阵的维数进行扩展，涉及大量读写操作，这些读写操作都需要大量循环，如果读写次数超出使用Strassen乘法的收益的话，就得不偿失了，那么就使用普通的矩阵乘法。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">Compute the memory read / write cost for expand Matrix Mul need eSub*lSub*hSub*(1+1.0/CONVOLUTION_TILED_NUMBWR), Matrix Add/Sub need x*y*UNIT*3 (2 read 1 write) </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> saveCost = (eSub * lSub * hSub) * (<span class="number">1.0f</span> + <span class="number">1.0f</span> / CONVOLUTION_TILED_NUMBWR) - <span class="number">4</span> * (eSub * lSub) * <span class="number">3</span> - <span class="number">7</span> * (eSub * hSub * <span class="number">3</span>); </span><br><span class="line"><span class="keyword">if</span> (currentDepth &gt;= mMaxDepth || e &lt;= CONVOLUTION_TILED_NUMBWR || l % <span class="number">2</span> != <span class="number">0</span> || h % <span class="number">2</span> != <span class="number">0</span> || saveCost &lt; <span class="number">0.0f</span>) </span><br><span class="line">&#123; </span><br><span class="line"><span class="keyword">return</span> _generateTrivialMatMul(AT, BT, CT); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="第二步：分块"><a href="#第二步：分块" class="headerlink" title="第二步：分块"></a>第二步：分块</h2><p>将矩阵$A，B，C$3个矩阵都分成4块：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> aStride = AT-&gt;stride(<span class="number">0</span>); </span><br><span class="line"><span class="keyword">auto</span> a11 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">0</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> a12 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">1</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> a21 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">0</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> a22 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">1</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> bStride = BT-&gt;stride(<span class="number">0</span>); </span><br><span class="line"><span class="keyword">auto</span> b11 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * bUnit * lSub + <span class="number">0</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> b12 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * bUnit * lSub + <span class="number">1</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> b21 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * bUnit * lSub + <span class="number">0</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> b22 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * bUnit * lSub + <span class="number">1</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> cStride = CT-&gt;stride(<span class="number">0</span>); <span class="keyword">auto</span> c11 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">0</span> * cStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> c12 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">1</span> * cStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> c21 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">0</span> * cStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> c22 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">1</span> * cStride * hSub;</span><br></pre></td></tr></table></figure><h2 id="第三步：分治和递归"><a href="#第三步：分治和递归" class="headerlink" title="第三步：分治和递归"></a>第三步：分治和递归</h2><p>Strassen算法核心就是分治思想。这一步可以写成下列所示伪代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. If n = 1 Output A × B </span><br><span class="line">2. Else </span><br><span class="line">3. Compute A11,B11, . . . ,A22,B22 % by computing m = n/2 </span><br><span class="line">4. P1 Strassen(A11,B12 − B22) </span><br><span class="line">5. P2 Strassen(A11 + A12,B22) </span><br><span class="line">6. P3 Strassen(A21 + A22,B11) </span><br><span class="line">7. P4 Strassen(A22,B21 − B11) </span><br><span class="line">8. P5 Strassen(A11 + A22,B11 + B22) </span><br><span class="line">9. P6 Strassen(A12 − A22,B21 + B22) </span><br><span class="line">10. P7 Strassen(A11 − A21,B11 + B12) </span><br><span class="line">11. C11 P5 + P4 − P2 + P6 </span><br><span class="line">12. C12 P1 + P2 </span><br><span class="line">13. C21 P3 + P4 </span><br><span class="line">14. C22 P1 + P5 − P3 − P7 </span><br><span class="line">15. Output C </span><br><span class="line">16. End If</span><br></pre></td></tr></table></figure><p>例如其中的一步代码如下所示：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line"><span class="comment">// S1=A21+A22, T1=B12-B11, P5=S1T1 </span></span><br><span class="line"><span class="keyword">auto</span> f = [a22, a21, b11, b12, xAddr, yAddr, eSub, lSub, hSub, aStride, bStride]() &#123; </span><br><span class="line">MNNMatrixAdd(xAddr, a21, a22, eSub * aUnit / <span class="number">4</span>, eSub * aUnit, aStride, aStride, lSub); </span><br><span class="line">MNNMatrixSub(yAddr, b12, b11, lSub * bUnit / <span class="number">4</span>, lSub * bUnit, bStride, bStride, hSub); </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">mFunctions.emplace_back(f); </span><br><span class="line"><span class="keyword">auto</span> code = _generateMatMul(X.get(), Y.get(), C22.get(), currentDepth); </span><br><span class="line"><span class="keyword">if</span> (code != NO_ERROR) </span><br><span class="line">&#123; </span><br><span class="line"><span class="keyword">return</span> code; </span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>递归执行，得到最终结果！</p><p><strong><em>Updated By Long Luo at 19th, Aug. 2019 at Shenzhen.</em></strong></p>]]></content>
+        <content type="html"><![CDATA[<p><strong><em>By Long Luo</em></strong></p><p>机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。</p><h1 id="一、矩阵乘法"><a href="#一、矩阵乘法" class="headerlink" title="一、矩阵乘法"></a>一、矩阵乘法</h1><p>假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix product）。</p><p>其中矩阵$C$中的第$i$行第$j$列元素可以表示为：</p><script type="math/tex; mode=display"> (AB)_{ij} = \sum_{k=1}^{p}{a_{ik}b_{kj}} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdot\cdot\cdot + a_{ip}b_{pj}</script><p>如下图所示：</p><p><img alt="@Figure 1. Matrix Multiplication | center " data-src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true"></p><p>假如在矩阵$A$和矩阵$B$中，$m = p = n = N$，那么完成$C = AB$需要多少次乘法呢？</p><ol><li>对于每一个行向量$r$ ，总共有$N$行；</li><li>对于每一个列向量$c$，总共有$N$列；</li><li>计算它们的内积，总共有$N$次乘法计算。</li></ol><p>综合可以看出，矩阵乘法的算法复杂度是：$\Theta(N^{3})$。</p><h1 id="二、Strassen算法"><a href="#二、Strassen算法" class="headerlink" title="二、Strassen算法"></a>二、Strassen算法</h1><p>那么有没有比$\Theta(N^{3})$更快的算法呢？</p><a id="more"></a><p>1969年，Volker Strassen提出了第一个算法时间复杂度低于$\Theta(N^{3})$矩阵乘法算法，算法复杂度为$\Theta(n^{log_{2}^{7}}) = \Theta(n^{2.807})$。从下图可知，Strassen算法只有在对于维数比较大的矩阵 ($N &gt; 300$) ，性能上才有很大的优势，可以减少很多乘法计算。</p><p><img alt="@Figure 2. x^3 vs. x^2.807 | center" data-src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/matrixmulti_strassen.jpg?raw=true"></p><p>Strassen算法证明了矩阵乘法存在时间复杂度低于$\Theta(N^{3})$的算法的存在，后续学者不断研究发现新的更快的算法，截止目前时间复杂度最低的矩阵乘法算法是Coppersmith-Winograd方法的一种扩展方法，其算法复杂度为$\Theta(n^{2.375})$。</p><h1 id="三、Strassen原理详解"><a href="#三、Strassen原理详解" class="headerlink" title="三、Strassen原理详解"></a>三、Strassen原理详解</h1><p>假设矩阵$A$ 和矩阵$B$都是$N \times N (N = 2^{n})$的方矩阵，求$C = AB$，如下所示：</p><script type="math/tex; mode=display">A = \left [\begin{matrix} A_{11} & A_{12} \\ A_{21} & A_{22} \end{matrix} \right ] ， B = \left [ \begin{matrix} B_{11} & B_{12} \\ B_{21} & B_{22} \\ \end{matrix} \right ] ， C = \left [ \begin{matrix} C_{11} & C_{12} \\ C_{21} & C_{22} \\ \end{matrix} \right ]</script><p>其中 </p><script type="math/tex; mode=display">\begin{bmatrix} C_{11} & C_{12} \\C_{21} & C_{22} \end{bmatrix} = \begin{bmatrix} A_{11} & A_{12} \\A_{21} & A_{22} \end{bmatrix} \cdot \begin{bmatrix} B_{11} & B_{12} \\B_{21} & B_{22} \end{bmatrix}</script><p>矩阵$C$可以通过下列公式求出：</p><script type="math/tex; mode=display">C_{11} = A_{11} \cdot B_{11} + A_{12} \cdot B_{21}\\ C_{12} = A_{11} \cdot B_{12} + A_{22} \cdot B_{21}\\ C_{21} = A_{21} \cdot B_{11} + A_{22} \cdot B_{21}\\ C_{22} = A_{21} \cdot B_{12} + A_{22} \cdot B_{22}</script><p>从上述公式我们可以得出，计算2个$n <em> n$的矩阵相乘需要2个$\frac{n}{2} </em> \frac{n}{2}$的矩阵8次乘法和4次加法。我们使用$T(n)$表示$n*n$矩阵乘法的时间复杂度，那么我们可以根据上面的分解得到下面的递推公式：</p><script type="math/tex; mode=display">T(n) = 8 * T(\frac{n}{2}) + \Theta(n^{2})</script><p>其中，</p><ol><li>$8T(\frac{n}{2})$表示8次矩阵乘法，而且相乘的矩阵规模降到了$\frac{n}{2}$。</li><li>$\Theta(n^{2})$表示4次矩阵加法的时间复杂度以及合并矩阵$C$的时间复杂度。</li></ol><p>最终可计算得到$T(n)=\Theta(n^{log_{2}^{8}})=\Theta(n^{3})$。</p><p>可以看出每次递归操作都需要8次矩阵相乘，而这正是瓶颈的来源。相比加法，矩阵乘法是非常慢的，于是我们想到能不能减少矩阵相乘的次数呢？</p><p><strong><em>答案是当然可以！！！</em></strong></p><p>Strassen算法正是从这个角度出发，实现了降低算法复杂度！</p><h2 id="Strassen实现步骤"><a href="#Strassen实现步骤" class="headerlink" title="Strassen实现步骤"></a>Strassen实现步骤</h2><p>实现步骤可以分为以下4步：</p><ol><li>按上述方法将矩阵$A,B,C$分解（花费时间$\Theta(1)$。</li><li>如下创建10个$\frac{n}{2} × \frac{n}{2}$的矩阵$S_1, S_2, …, S_{10}$(花费时间 $\Theta(n^2)$。<script type="math/tex; mode=display">S_1 = B_{12} - B_{22}\\ S_2 = A_{11} + A_{12}\\S_3 = A_{21} + A_{22}\\S_4 = B_{21} - B_{11}\\S_5 = A_{11} + A_{22}\\S_6 = B_{11} + B_{22}\\S_7 = A_{12} - A_{22}\\S_8 = B_{21} + B_{22}\\S_9 = A_{11} - A_{21}\\S_{10} = B_{11} + B_{12}</script></li><li><p>递归地计算7个矩阵积$P_1, P_2, …, P_7$，每个矩阵$P_i$都是 $\frac{n}{2} × \frac{n}{2}$的。</p><script type="math/tex; mode=display">P_1 = A_{11} \cdot S_1 = A_{11} \cdot B_{12} - A_{11} \cdot B_{22}\\P_2 = S_2 \cdot B_{22} = A_{11} \cdot B_{22} + A_{12} \cdot B_{22}\\P_3 = S_3 \cdot B_{11} = A_{21} \cdot B_{11} + A_{22} \cdot B_{11}\\P_4 = A_{22} \cdot S_4 = A_{22}\cdot B_{21} - A_{22} \cdot B_{11}\\P_5 = S_5 \cdot S_6 = A_{11} \cdot B_{11} + A_{11} \cdot B_{22} + A_{22} \cdot B_{11} + A_{22} \cdot B_{22}\\P_6 = S_7 \cdot S_8 = A_{12} \cdot B_{21} + A{12} \cdot B_{22} - A_{22} \cdot B_{21} - A_{22} \cdot B_{22}\\P_7 = S_9 \cdot S_{10}= A_{11} \cdot B_{11} + A_{11} \cdot B_{12} - A_{21} \cdot B_{11} - A_{21} \cdot B_{12}</script><p>注意，上述公式中只有中间一列需要计算。</p></li><li><p>通过$P_i$计算$C_{11}, C_{12}, C_{21}, C_{22}$，花费时间$\Theta(n^2)$。</p><script type="math/tex; mode=display">C_{11} = P_5 + P_4 - P_2 + P_6\\C_{12} = P_1 + P_2\\C_{21} = P_3 + P_4\\C_{22} = P_5 + P_1 - P_3 - P_7</script><p>综合可得如下递归式：</p><script type="math/tex; mode=display">T(n)  = \begin{cases}\Theta(1) & 若n = 1\\7T(\frac{n}{2}) + \Theta(n^2) & 若n >1 \end{cases}</script><p>进而求出时间复杂度为：$T(n) = \Theta(n^{log_{2}^{7}})$</p></li></ol><h1 id="四、Strassen算法的代码实现"><a href="#四、Strassen算法的代码实现" class="headerlink" title="四、Strassen算法的代码实现"></a>四、Strassen算法的代码实现</h1><p>我们以MNN中关于Strassen算法源码实现来学习：<a href="https://github.com/alibaba/MNN/blob/master/source/backend/cpu/compute/StrassenMatmulComputor.cpp。" target="_blank" rel="noopener">https://github.com/alibaba/MNN/blob/master/source/backend/cpu/compute/StrassenMatmulComputor.cpp。</a></p><p>类StrassenMatrixComputor提供了3个API供调用：</p><div class="table-container"><table><thead><tr><th style="text-align:center">API</th><th style="text-align:center">说明</th></tr></thead><tbody><tr><td style="text-align:center">_generateTrivalMatMul(const Tensor<em> AT, const Tensor</em> BT, const Tensor* CT);</td><td style="text-align:center">普通矩阵乘法计算</td></tr><tr><td style="text-align:center">_generateMatMul(const Tensor<em> AT, const Tensor</em> BT, const Tensor* CT, int currentDepth);</td><td style="text-align:center">Strassen算法的矩阵乘法</td></tr><tr><td style="text-align:center">_generateMatMulConstB(const Tensor<em> AT, const Tensor</em> BT, const Tensor* CT, int currentDepth);</td><td style="text-align:center">Strassen算法的矩阵乘法（和MatMul的区别在于内存Buffer是否允许复用)</td></tr></tbody></table></div><p>我们以_generateMatMul为例来学习下Strassen算法如何实现，可以分成如下几步：</p><h2 id="第一步：使用Strassen算法收益判断"><a href="#第一步：使用Strassen算法收益判断" class="headerlink" title="第一步：使用Strassen算法收益判断"></a>第一步：使用Strassen算法收益判断</h2><p>在矩阵操作中，因为需要对矩阵的维数进行扩展，涉及大量读写操作，这些读写操作都需要大量循环，如果读写次数超出使用Strassen乘法的收益的话，就得不偿失了，那么就使用普通的矩阵乘法。</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">Compute the memory read / write cost for expand Matrix Mul need eSub*lSub*hSub*(1+1.0/CONVOLUTION_TILED_NUMBWR), Matrix Add/Sub need x*y*UNIT*3 (2 read 1 write) </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> saveCost = (eSub * lSub * hSub) * (<span class="number">1.0f</span> + <span class="number">1.0f</span> / CONVOLUTION_TILED_NUMBWR) - <span class="number">4</span> * (eSub * lSub) * <span class="number">3</span> - <span class="number">7</span> * (eSub * hSub * <span class="number">3</span>); </span><br><span class="line"><span class="keyword">if</span> (currentDepth &gt;= mMaxDepth || e &lt;= CONVOLUTION_TILED_NUMBWR || l % <span class="number">2</span> != <span class="number">0</span> || h % <span class="number">2</span> != <span class="number">0</span> || saveCost &lt; <span class="number">0.0f</span>) </span><br><span class="line">&#123; </span><br><span class="line"><span class="keyword">return</span> _generateTrivialMatMul(AT, BT, CT); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="第二步：分块"><a href="#第二步：分块" class="headerlink" title="第二步：分块"></a>第二步：分块</h2><p>将矩阵$A，B，C$3个矩阵都分成4块：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> aStride = AT-&gt;stride(<span class="number">0</span>); </span><br><span class="line"><span class="keyword">auto</span> a11 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">0</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> a12 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">1</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> a21 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">0</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> a22 = AT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">1</span> * aStride * lSub; </span><br><span class="line"><span class="keyword">auto</span> bStride = BT-&gt;stride(<span class="number">0</span>); </span><br><span class="line"><span class="keyword">auto</span> b11 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * bUnit * lSub + <span class="number">0</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> b12 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * bUnit * lSub + <span class="number">1</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> b21 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * bUnit * lSub + <span class="number">0</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> b22 = BT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * bUnit * lSub + <span class="number">1</span> * bStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> cStride = CT-&gt;stride(<span class="number">0</span>); <span class="keyword">auto</span> c11 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">0</span> * cStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> c12 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">0</span> * aUnit * eSub + <span class="number">1</span> * cStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> c21 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">0</span> * cStride * hSub; </span><br><span class="line"><span class="keyword">auto</span> c22 = CT-&gt;host&lt;<span class="keyword">float</span>&gt;() + <span class="number">1</span> * aUnit * eSub + <span class="number">1</span> * cStride * hSub;</span><br></pre></td></tr></table></figure><h2 id="第三步：分治和递归"><a href="#第三步：分治和递归" class="headerlink" title="第三步：分治和递归"></a>第三步：分治和递归</h2><p>Strassen算法核心就是分治思想。这一步可以写成下列所示伪代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. If n = 1 Output A × B </span><br><span class="line">2. Else </span><br><span class="line">3. Compute A11,B11, . . . ,A22,B22 % by computing m = n/2 </span><br><span class="line">4. P1 Strassen(A11,B12 − B22) </span><br><span class="line">5. P2 Strassen(A11 + A12,B22) </span><br><span class="line">6. P3 Strassen(A21 + A22,B11) </span><br><span class="line">7. P4 Strassen(A22,B21 − B11) </span><br><span class="line">8. P5 Strassen(A11 + A22,B11 + B22) </span><br><span class="line">9. P6 Strassen(A12 − A22,B21 + B22) </span><br><span class="line">10. P7 Strassen(A11 − A21,B11 + B12) </span><br><span class="line">11. C11 P5 + P4 − P2 + P6 </span><br><span class="line">12. C12 P1 + P2 </span><br><span class="line">13. C21 P3 + P4 </span><br><span class="line">14. C22 P1 + P5 − P3 − P7 </span><br><span class="line">15. Output C </span><br><span class="line">16. End If</span><br></pre></td></tr></table></figure><p>例如其中的一步代码如下所示：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line"><span class="comment">// S1=A21+A22, T1=B12-B11, P5=S1T1 </span></span><br><span class="line"><span class="keyword">auto</span> f = [a22, a21, b11, b12, xAddr, yAddr, eSub, lSub, hSub, aStride, bStride]() &#123; </span><br><span class="line">MNNMatrixAdd(xAddr, a21, a22, eSub * aUnit / <span class="number">4</span>, eSub * aUnit, aStride, aStride, lSub); </span><br><span class="line">MNNMatrixSub(yAddr, b12, b11, lSub * bUnit / <span class="number">4</span>, lSub * bUnit, bStride, bStride, hSub); </span><br><span class="line">&#125;; </span><br><span class="line"></span><br><span class="line">mFunctions.emplace_back(f); </span><br><span class="line"><span class="keyword">auto</span> code = _generateMatMul(X.get(), Y.get(), C22.get(), currentDepth); </span><br><span class="line"><span class="keyword">if</span> (code != NO_ERROR) </span><br><span class="line">&#123; </span><br><span class="line"><span class="keyword">return</span> code; </span><br><span class="line">&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>递归执行，得到最终结果！</p><p><strong><em>Updated By Long Luo at 19th, Aug. 2019 at Shenzhen.</em></strong></p>]]></content>
       
       
       <categories>
@@ -360,9 +360,9 @@
             
             <tag> Life </tag>
             
-            <tag> 佛学 </tag>
-            
             <tag> Destiny </tag>
+            
+            <tag> 佛学 </tag>
             
         </tags>
       
@@ -387,9 +387,9 @@
       
         <tags>
             
-            <tag> 思考 </tag>
-            
             <tag> Life </tag>
+            
+            <tag> 思考 </tag>
             
             <tag> 总结 </tag>
             
@@ -416,11 +416,11 @@
       
         <tags>
             
+            <tag> 行动 </tag>
+            
             <tag> 成长 </tag>
             
             <tag> 建议 </tag>
-            
-            <tag> 行动 </tag>
             
         </tags>
       
@@ -474,11 +474,11 @@
       
         <tags>
             
+            <tag> 时间 </tag>
+            
             <tag> 工作 </tag>
             
             <tag> 方法 </tag>
-            
-            <tag> 时间 </tag>
             
         </tags>
       
@@ -522,11 +522,11 @@
       
         <tags>
             
+            <tag> 情绪 </tag>
+            
             <tag> 人生 </tag>
             
             <tag> 自卑 </tag>
-            
-            <tag> 情绪 </tag>
             
         </tags>
       
@@ -665,9 +665,9 @@
       
         <tags>
             
-            <tag> 思考 </tag>
-            
             <tag> Life </tag>
+            
+            <tag> 思考 </tag>
             
             <tag> 感言 </tag>
             
@@ -694,9 +694,9 @@
       
         <tags>
             
-            <tag> Hire </tag>
-            
             <tag> 选择 </tag>
+            
+            <tag> Hire </tag>
             
             <tag> 风险 </tag>
             
@@ -868,9 +868,9 @@
       
         <tags>
             
-            <tag> 人生 </tag>
-            
             <tag> 生活 </tag>
+            
+            <tag> 人生 </tag>
             
             <tag> 微博问答 </tag>
             
@@ -1156,9 +1156,9 @@
       
         <tags>
             
-            <tag> Android </tag>
-            
             <tag> 效率 </tag>
+            
+            <tag> Android </tag>
             
             <tag> Tools </tag>
             
@@ -1185,9 +1185,9 @@
       
         <tags>
             
-            <tag> 人生 </tag>
-            
             <tag> 生活 </tag>
+            
+            <tag> 人生 </tag>
             
             <tag> 感悟 </tag>
             
@@ -1301,9 +1301,9 @@
             
             <tag> 效率 </tag>
             
-            <tag> MySQL </tag>
-            
             <tag> Tools </tag>
+            
+            <tag> MySQL </tag>
             
             <tag> 数据库 </tag>
             
@@ -1330,11 +1330,11 @@
       
         <tags>
             
+            <tag> Life </tag>
+            
             <tag> 诗歌 </tag>
             
             <tag> 未来 </tag>
-            
-            <tag> Life </tag>
             
         </tags>
       
@@ -1359,9 +1359,9 @@
       
         <tags>
             
-            <tag> 诗歌 </tag>
-            
             <tag> Life </tag>
+            
+            <tag> 诗歌 </tag>
             
             <tag> 曹操 </tag>
             
@@ -1390,9 +1390,9 @@
             
             <tag> Life </tag>
             
-            <tag> Statup </tag>
-            
             <tag> Work </tag>
+            
+            <tag> Statup </tag>
             
         </tags>
       
@@ -1417,11 +1417,11 @@
       
         <tags>
             
+            <tag> 效率 </tag>
+            
             <tag> git </tag>
             
             <tag> 工具 </tag>
-            
-            <tag> 效率 </tag>
             
         </tags>
       
@@ -1434,7 +1434,7 @@
       <link href="//blog/2016/09/11/Linux-Cheatsheet/"/>
       <url>//blog/2016/09/11/Linux-Cheatsheet/</url>
       
-        <content type="html"><![CDATA[<p><strong><em>By Long Luo</em></strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/simfs       10G  3.9G  6.2G  39% /</span><br><span class="line">none             64M  4.0K   64M   1% /dev</span><br><span class="line">none             64M     0   64M   0% /dev/shm</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> free -m</span><br><span class="line">             total       used       free     shared    buffers     cached</span><br><span class="line">Mem:           128        125          2          0          0          4</span><br><span class="line">-/+ buffers/cache:        121          6</span><br><span class="line">Swap:          256        211         44</span><br></pre></td></tr></table></figure>]]></content>
+        <content type="html"><![CDATA[<p><strong><em>By Long Luo</em></strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> df -h</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/simfs       10G  3.9G  6.2G  39% /</span><br><span class="line">none             64M  4.0K   64M   1% /dev</span><br><span class="line">none             64M     0   64M   0% /dev/shm</span><br></pre></td></tr></table></figure><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> free -m</span></span><br><span class="line">             total       used       free     shared    buffers     cached</span><br><span class="line">Mem:           128        125          2          0          0          4</span><br><span class="line">-/+ buffers/cache:        121          6</span><br><span class="line">Swap:          256        211         44</span><br></pre></td></tr></table></figure>]]></content>
       
       
       <categories>
@@ -1533,11 +1533,11 @@
       
         <tags>
             
-            <tag> 诗歌 </tag>
+            <tag> 沉思 </tag>
             
             <tag> Life </tag>
             
-            <tag> 沉思 </tag>
+            <tag> 诗歌 </tag>
             
         </tags>
       
@@ -2207,9 +2207,9 @@
       
         <tags>
             
-            <tag> 思考 </tag>
-            
             <tag> Life </tag>
+            
+            <tag> 思考 </tag>
             
             <tag> 学区房 </tag>
             
@@ -2354,11 +2354,11 @@
       
         <tags>
             
-            <tag> 思考 </tag>
-            
             <tag> Life </tag>
             
             <tag> 成长 </tag>
+            
+            <tag> 思考 </tag>
             
         </tags>
       
@@ -2794,9 +2794,9 @@
       
         <tags>
             
-            <tag> iOS </tag>
-            
             <tag> App </tag>
+            
+            <tag> iOS </tag>
             
         </tags>
       
@@ -3076,9 +3076,9 @@
       
         <tags>
             
-            <tag> 思考 </tag>
-            
             <tag> Life </tag>
+            
+            <tag> 思考 </tag>
             
             <tag> 眼界 </tag>
             
@@ -3273,9 +3273,9 @@
       
         <tags>
             
-            <tag> 思考 </tag>
-            
             <tag> 成长 </tag>
+            
+            <tag> 思考 </tag>
             
             <tag> 深漂 </tag>
             
@@ -3675,11 +3675,11 @@
       
         <tags>
             
+            <tag> 工作 </tag>
+            
             <tag> 人生 </tag>
             
             <tag> 总结 </tag>
-            
-            <tag> 工作 </tag>
             
         </tags>
       
@@ -3731,9 +3731,9 @@
       
         <tags>
             
-            <tag> 总结 </tag>
-            
             <tag> 成长 </tag>
+            
+            <tag> 总结 </tag>
             
             <tag> 2010 </tag>
             
@@ -3963,9 +3963,9 @@
       
         <tags>
             
-            <tag> 人生 </tag>
-            
             <tag> Life </tag>
+            
+            <tag> 人生 </tag>
             
         </tags>
       
@@ -4017,9 +4017,9 @@
       
         <tags>
             
-            <tag> 音乐 </tag>
-            
             <tag> Game </tag>
+            
+            <tag> 音乐 </tag>
             
             <tag> 仙剑奇侠传 </tag>
             
@@ -4073,11 +4073,11 @@
       
         <tags>
             
+            <tag> 生活 </tag>
+            
             <tag> 地震 </tag>
             
             <tag> 512 </tag>
-            
-            <tag> 生活 </tag>
             
         </tags>
       
