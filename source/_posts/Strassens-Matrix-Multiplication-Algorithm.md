@@ -10,7 +10,7 @@ keywords: Matrix Multiplication, Algorithm, Strassen, 算法, 矩阵乘法,
 ---
 
 
-***By LongLuo***
+***By Long Luo***
 
 机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。
 
