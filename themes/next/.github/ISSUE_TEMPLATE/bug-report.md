@@ -14,10 +14,11 @@ IF YOU DON'T FILL OUT THE FOLLOWING INFORMATION WE MIGHT CLOSE YOUR ISSUE WITHOU
 
 ### I agree and want to create new issue <!-- 我确认我已经查看了 -->
 
-<!-- Check all with [x] (把 [ ] 换成 [x] 来选择) -->
-- [ ] Yes, I was on [Hexo Docs page](https://hexo.io/docs/), especially on [Templates](https://hexo.io/docs/templates.html), [Variables](https://hexo.io/docs/variables.html), [Helpers](https://hexo.io/docs/helpers.html) and [Troubleshooting](https://hexo.io/docs/troubleshooting.html).
-- [ ] Yes, I was on [NexT Documentation Site](http://theme-next.org/docs/).
-- [ ] And yes, I already searched for current [issues](https://github.com/theme-next/hexo-theme-next/issues?utf8=%E2%9C%93&q=is%3Aissue) and this is not help to me.
+<!-- Check all with [x], not [ x] or [x ] (把 [ ] 换成 [x] 来选择，而非 [ x] 或者 [x ]) -->
+- [ ] I have confirmed that this bug only appears in theme NexT, but cannot be reproduced in other themes (e.g. default theme landscape). In other words, prove that this is a NexT bug, not a bug from Hexo.
+- [ ] I have already viewed [Hexo Docs page](https://hexo.io/docs/), especially [Templates](https://hexo.io/docs/templates.html), [Variables](https://hexo.io/docs/variables.html), [Helpers](https://hexo.io/docs/helpers.html) and [Troubleshooting](https://hexo.io/docs/troubleshooting.html).
+- [ ] I have already viewed [NexT Documentation Site](http://theme-next.org/docs/).
+- [ ] I have searched for current [issues](https://github.com/theme-next/hexo-theme-next/issues?utf8=%E2%9C%93&q=is%3Aissue) which does not help me.
 
 ***
 
@@ -64,7 +65,7 @@ IF YOU DON'T FILL OUT THE FOLLOWING INFORMATION WE MIGHT CLOSE YOUR ISSUE WITHOU
 ### NexT Information
 
 **NexT Version:**
-<!-- Check needed with [x] (把 [ ] 换成 [x] 来选择) -->
+<!-- Check needed with [x], not [ x] or [x ] (把 [ ] 换成 [x] 来选择，而非 [ x] 或者 [x ]) -->
 
 - [ ] Latest Master branch
 - [ ] Latest Release version
@@ -72,7 +73,7 @@ IF YOU DON'T FILL OUT THE FOLLOWING INFORMATION WE MIGHT CLOSE YOUR ISSUE WITHOU
 
 
 **NexT Scheme:**
-<!-- Check needed with [x] (把 [ ] 换成 [x] 来选择) -->
+<!-- Check needed with [x], not [ x] or [x ] (把 [ ] 换成 [x] 来选择，而非 [ x] 或者 [x ]) -->
 
 - [ ] All schemes
 - [ ] Muse
