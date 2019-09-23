@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="By Long Luo 继第一篇Android自定义View：如何实现一个模拟时钟？，我们使用Android自定义View实现了一款模拟表盘，第二篇Android自定义View：另一种实现手表指针转动的方法我们又通过另外一种方法实现了手表指针的另外一种转动实现。 在日程生活中，我们常见的挂钟实际都是有个钟摆的，那么，如果我们想在我们所作的模拟时钟实现这种钟摆动画呢？那么具体应该如何实现呢？ 一、钟">
+<meta name="keywords" content="Android, 自定义View, 动画, 摆动动画, 钟摆, Animation, View,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android自定义View: 如何实现类钟摆的动画效果?">
+<meta property="og:url" content="http://longluo.me/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="By Long Luo 继第一篇Android自定义View：如何实现一个模拟时钟？，我们使用Android自定义View实现了一款模拟表盘，第二篇Android自定义View：另一种实现手表指针转动的方法我们又通过另外一种方法实现了手表指针的另外一种转动实现。 在日程生活中，我们常见的挂钟实际都是有个钟摆的，那么，如果我们想在我们所作的模拟时钟实现这种钟摆动画呢？那么具体应该如何实现呢？ 一、钟">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-21T17:46:52.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android自定义View: 如何实现类钟摆的动画效果?">
+<meta name="twitter:description" content="By Long Luo 继第一篇Android自定义View：如何实现一个模拟时钟？，我们使用Android自定义View实现了一款模拟表盘，第二篇Android自定义View：另一种实现手表指针转动的方法我们又通过另外一种方法实现了手表指针的另外一种转动实现。 在日程生活中，我们常见的挂钟实际都是有个钟摆的，那么，如果我们想在我们所作的模拟时钟实现这种钟摆动画呢？那么具体应该如何实现呢？ 一、钟">
+  <link rel="canonical" href="http://longluo.me/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Android自定义View: 如何实现类钟摆的动画效果? | Long Luo's Life Notes</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+  <script pjax>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !false) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-46213499-2');
+    }
+  </script>
+
+
+  <script pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Long Luo's Life Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">每一天都是奇迹</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">Android自定义View: 如何实现类钟摆的动画效果?
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2016-08-26 22:40:34" itemprop="dateCreated datePublished" datetime="2016-08-26T22:40:34+08:00">2016-08-26</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/" class="post-meta-item leancloud_visitors" data-flag-title="Android自定义View: 如何实现类钟摆的动画效果?" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>5.7k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>5 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong><em>By Long Luo</em></strong></p>
+<p>继第一篇<a href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" target="_blank" rel="noopener">Android自定义View：如何实现一个模拟时钟？</a>，我们使用Android自定义View实现了一款模拟表盘，第二篇<a href="http://www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/" target="_blank" rel="noopener">Android自定义View：另一种实现手表指针转动的方法</a>我们又通过另外一种方法实现了手表指针的另外一种转动实现。</p>
+<p>在日程生活中，我们常见的挂钟实际都是有个钟摆的，那么，如果我们想在我们所作的模拟时钟实现这种<strong>钟摆动画</strong>呢？那么具体应该如何实现呢？</p>
+<h1 id="一、钟摆"><a href="#一、钟摆" class="headerlink" title="一、钟摆"></a>一、钟摆</h1><p>遇到问题，我们需要先分析<strong>钟摆动画</strong>的具体动画效果，然后再做下一步工作。</p>
+<blockquote>
+<p>单摆是能够产生往复摆动的一种装置，将无重细杆或不可伸长的细柔绳一端悬于重力场内一定点，另一端固结一个重小球，就构成单摆</p>
+</blockquote>
+<p>那么钟摆就是在一定角度内来回摆动，具体更多细节可以自行Google。</p>
+<a id="more"></a>
+<h1 id="二、Android-Animation分析"><a href="#二、Android-Animation分析" class="headerlink" title="二、Android Animation分析"></a>二、Android Animation分析</h1><p>在这一节里，我们会简单谈谈Android动画。</p>
+<h2 id="2-1-动画分类"><a href="#2-1-动画分类" class="headerlink" title="2.1 动画分类"></a>2.1 动画分类</h2><p>Android动画目前可分为以下3种：</p>
+<h3 id="2-1-1-补间动画-Tween-Animation"><a href="#2-1-1-补间动画-Tween-Animation" class="headerlink" title="2.1.1 补间动画(Tween Animation)"></a>2.1.1 补间动画(Tween Animation)</h3><p>所谓的<strong>补间动画</strong>，其实就是<strong>定义了我们动画的起始点和终止点的状态</strong>，而动画的过程我们是不关心的，只需要达到我们想要的效果就行。</p>
+<ol>
+<li>渐变动画支持四种类型：平移（Translate）、旋转（Rotate）、缩放（Scale）、不透明度（Alpha）</li>
+<li>只是显示的位置变动，View的实际位置未改变，表现为View移动到其他地方，点击事件仍在原处才能响应</li>
+<li>组合使用步骤较复杂。</li>
+<li>View Animation也是指此动画</li>
+</ol>
+<p>对于补间动画来说，无论是用纯java代码构建Animation对象，还是通过xml文件定义Animation，其实最终的结果都是</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Animation a = <span class="keyword">new</span> AlphaAnimation();</span><br><span class="line">Animation b = <span class="keyword">new</span> ScaleAnimation();</span><br><span class="line">Animation c = <span class="keyword">new</span> RotateAnimation();</span><br><span class="line">Animation d = <span class="keyword">new</span> TranslateAnimation();</span><br></pre></td></tr></table></figure>
+<h3 id="2-1-2-帧动画-Frame-Animation"><a href="#2-1-2-帧动画-Frame-Animation" class="headerlink" title="2.1.2 帧动画(Frame Animation)"></a>2.1.2 帧动画(Frame Animation)</h3><p>所谓的<strong>帧动画</strong>就是可以设置我们的动画的每一帧的效果，其实视频或者Gif的效果都是由许多张图片在很短的时间内播放，从而产生动画效果。</p>
+<ol>
+<li>用于生成连续的Gif效果图。</li>
+<li>DrawableAnimation也是指此动画。</li>
+</ol>
+<h3 id="2-1-3-属性动画-Property-Animation"><a href="#2-1-3-属性动画-Property-Animation" class="headerlink" title="2.1.3 属性动画(Property Animation)"></a>2.1.3 属性动画(Property Animation)</h3><p>属性动画是Android动画里面最复杂也是最能做出复杂的动画效果的一种类型。</p>
+<ol>
+<li>支持对所有View能更新的属性的动画（需要属性的setXxx()和getXxx()）。</li>
+<li>更改的是View实际的属性，所以不会影响其在动画执行后所在位置的正常使用。</li>
+<li>Android3.0（API 11）及以后出现的功能，3.0之前的版本可使用github第三方开源库nineoldandroids.jar进行支持。</li>
+</ol>
+<p>属性动画的相关的API：</p>
+<ul>
+<li>ValueAnimator：值动画执行类，常配合AnimatorUpdateListener使用。</li>
+<li>ObjectAnimator：对象动画执行类。</li>
+<li>PropertyValuesHolder: 属性存储器，为两个执行类提供更新多个属性的功能。</li>
+<li>AnimatorListener：动画执行监听，在动画开始、重复、结束、取消时进行回调。</li>
+<li>Keyframe：为PropertyValuesHolder提供多个关键帧的操作值。</li>
+<li>AnimatorSet：一组动画的执行集合类：设置执行的先后顺序，时间等。</li>
+<li>TimeInterpolator：时间插值，用于控制动画执行过程。</li>
+<li>AnimatorUpdateListener：动画更新监听。</li>
+<li>TypeEvaluator：类型估值，用于设置复杂的动画操作属性的值。</li>
+</ul>
+<p>ValueAnimator和ObjectAnimator是属性动画里面经常使用的对象类，ObjectAnimator是 ValueAnimator的子类。</p>
+<p>当然Android属性动画是很复杂，达到熟练运用还需要深入研究，大家想了解可以去网上寻找相关知识学习。</p>
+<h2 id="2-2-自定义动画"><a href="#2-2-自定义动画" class="headerlink" title="2.2 自定义动画"></a>2.2 自定义动画</h2><p>在本文中，我们主要是要实现一个自定义动画：摆动动画。那么，我们有必要了解如何实现自定义动画。</p>
+<p><strong><em>—-如何实现自定义动画？</em></strong></p>
+<p>实现自定义动画，要继承</p>
+<p><code>Animation(android.view.animation.Animation)</code>，然后Override其中的2个方法：</p>
+<p><code>Animation.applyTransformation(float, Transformation)</code>，和<code>initialize()</code>两个方法。</p>
+<p>从方法名和内容可以知道<code>Animation.applyTransformation(float, Transformation)</code>就是最核心的动画实现方法。</p>
+<p>我们在进一步看看这个方法在父类是怎么定义的，在父类Animation类中找到该方法的定义</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Helper for getTransformation. Subclasses should implement this to apply</span></span><br><span class="line"><span class="comment"> * their transforms given an interpolation value.  Implementations of this</span></span><br><span class="line"><span class="comment"> * method should always replace the specified Transformation or document</span></span><br><span class="line"><span class="comment"> * they are doing otherwise.</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> interpolatedTime The value of the normalized time (0.0 to 1.0)</span></span><br><span class="line"><span class="comment"> *        after it has been run through the interpolation function.</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> t The Transformation object to fill in with the current</span></span><br><span class="line"><span class="comment"> *        transforms.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">applyTransformation</span><span class="params">(<span class="keyword">float</span> interpolatedTime, Transformation t)</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过注释我们明白了（也可以结合调试理解）：</p>
+<blockquote>
+<p>在绘制动画的过程中会反复的调用applyTransformation函数，每次调用参数interpolatedTime值都会变化，该参数从0渐变为1，当该参数为1时表明动画结束。通过参数Transformation来获取变换的矩阵（matrix），通过改变矩阵就可以实现各种复杂的效果。</p>
+</blockquote>
+<p><code>Animation.initialize()</code>方法具体就是初始化动画时的一些对象的尺寸以及其父对象的尺寸。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Initialize this animation with the dimensions of the object being</span></span><br><span class="line"><span class="comment"> * animated as well as the objects parents. (This is to support animation</span></span><br><span class="line"><span class="comment"> * sizes being specified relative to these dimensions.)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Objects that interpret Animations should call this method when</span></span><br><span class="line"><span class="comment"> * the sizes of the object being animated and its parent are known, and</span></span><br><span class="line"><span class="comment"> * before calling &#123;<span class="doctag">@link</span> #getTransformation&#125;.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> width Width of the object being animated</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> height Height of the object being animated</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> parentWidth Width of the animated object's parent</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> parentHeight Height of the animated object's parent</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height, <span class="keyword">int</span> parentWidth, <span class="keyword">int</span> parentHeight)</span> </span>&#123;</span><br><span class="line">    reset();</span><br><span class="line">    mInitialized = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="三、SwingAnimation"><a href="#三、SwingAnimation" class="headerlink" title="三、SwingAnimation"></a>三、SwingAnimation</h1><p>实现钟摆动画，那么我们就需要分析其具体实现，再做下一步工作。</p>
+<p><strong><em>Talk is cheap, show me the code.</em></strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">applyTransformation</span><span class="params">(<span class="keyword">float</span> interpolatedTime, Transformation t)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">float</span> degrees;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">float</span> leftPos = (<span class="keyword">float</span>) (<span class="number">1.0</span> / <span class="number">4.0</span>);</span><br><span class="line">    <span class="keyword">float</span> rightPos = (<span class="keyword">float</span>) (<span class="number">3.0</span> / <span class="number">4.0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (interpolatedTime &lt;= leftPos) &#123;</span><br><span class="line">        degrees = mMiddleDegrees + ((mLeftDegrees - mMiddleDegrees) * interpolatedTime * <span class="number">4</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (interpolatedTime &gt; leftPos &amp;&amp; interpolatedTime &lt; rightPos) &#123;</span><br><span class="line">        degrees = mLeftDegrees + ((mRightDegrees - mLeftDegrees) * (interpolatedTime - leftPos) * <span class="number">2</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        degrees = mRightDegrees + ((mMiddleDegrees - mRightDegrees) * (interpolatedTime - rightPos) * <span class="number">4</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">float</span> scale = getScaleFactor();</span><br><span class="line">    <span class="keyword">if</span> (mPivotX == <span class="number">0.0f</span> &amp;&amp; mPivotY == <span class="number">0.0f</span>) &#123;</span><br><span class="line">        t.getMatrix().setRotate(degrees);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        t.getMatrix().setRotate(degrees, mPivotX * scale, mPivotY * scale);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始化就比较简单了，如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height, <span class="keyword">int</span> parentWidth, <span class="keyword">int</span> parentHeight)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.initialize(width, height, parentWidth, parentHeight);</span><br><span class="line">    mPivotX = resolveSize(mPivotXType, mPivotXValue, width, parentWidth);</span><br><span class="line">    mPivotY = resolveSize(mPivotYType, mPivotYValue, height, parentHeight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体使用呢：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数取值说明：中间度数、摆到左侧的度数、摆到右侧的度数、圆心X坐标类型、圆心X坐标相对比例、圆心Y坐标类型、圆心Y坐标相对比例</span></span><br><span class="line"><span class="comment">//坐标类型有三种：ABSOLUTE 绝对坐标，RELATIVE_TO_SELF 相对自身的坐标，RELATIVE_TO_PARENT 相对上级视图的坐标</span></span><br><span class="line"><span class="comment">//X坐标相对比例，为0时表示左边顶点，为1表示右边顶点，为0.5表示水平中心点</span></span><br><span class="line"><span class="comment">//Y坐标相对比例，为0时表示上边顶点，为1表示下边顶点，为0.5表示垂直中心点</span></span><br><span class="line"></span><br><span class="line">mSwingAnimation = <span class="keyword">new</span> SwingAnimation(</span><br><span class="line">        <span class="number">0f</span>, <span class="number">20f</span>, -<span class="number">20f</span>, Animation.RELATIVE_TO_SELF, <span class="number">0.5f</span>, Animation.RELATIVE_TO_SELF, <span class="number">0.5f</span>);</span><br><span class="line">mSwingAnimation.setDuration(<span class="number">3000</span>);     <span class="comment">//动画持续时间</span></span><br><span class="line">mSwingAnimation.setInterpolator(<span class="keyword">new</span> AccelerateDecelerateInterpolator());</span><br><span class="line">mSwingAnimation.setRepeatCount(Animation.INFINITE);  <span class="comment">//动画重播次数</span></span><br><span class="line">mSwingAnimation.setFillAfter(<span class="keyword">false</span>);  <span class="comment">//是否保持动画结束画面</span></span><br><span class="line">mSwingAnimation.setStartOffset(<span class="number">2000</span>);   <span class="comment">//动画播放延迟</span></span><br></pre></td></tr></table></figure>
+<h1 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h1><p>通过如上方法，我们就实现了一个钟摆动画。</p>
+<p>以上。</p>
+<p><strong><em>Modified By Long Luo at 2018年10月1日11点29分 in Shenzhen, China.</em></strong></p>
+
+    </div>
+
+    
+    
+    
+      
+
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Long Luo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://longluo.me/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/" title="Android自定义View: 如何实现类钟摆的动画效果?">http://longluo.me/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a>
+            
+              <a href="/tags/View/" rel="tag"><i class="fa fa-tag"></i> View</a>
+            
+              <a href="/tags/Animation/" rel="tag"><i class="fa fa-tag"></i> Animation</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/blog/2016/08/22/The-Moon-In-The-Well/" rel="next" title="---   井中月   ---">
+                  <i class="fa fa-chevron-left"></i> ---   井中月   ---
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/blog/2016/09/09/How-To-Build-Your-Personal-Website-Step-By-Step/" rel="prev" title="如何一步一步建立一个属于你自己的个人网站？">
+                  如何一步一步建立一个属于你自己的个人网站？ <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、钟摆"><span class="nav-number">1.</span> <span class="nav-text">一、钟摆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、Android-Animation分析"><span class="nav-number">2.</span> <span class="nav-text">二、Android Animation分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-动画分类"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 动画分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-补间动画-Tween-Animation"><span class="nav-number">2.1.1.</span> <span class="nav-text">2.1.1 补间动画(Tween Animation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-帧动画-Frame-Animation"><span class="nav-number">2.1.2.</span> <span class="nav-text">2.1.2 帧动画(Frame Animation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-属性动画-Property-Animation"><span class="nav-number">2.1.3.</span> <span class="nav-text">2.1.3 属性动画(Property Animation)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-自定义动画"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 自定义动画</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、SwingAnimation"><span class="nav-number">3.</span> <span class="nav-text">三、SwingAnimation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、总结"><span class="nav-number">4.</span> <span class="nav-text">四、总结</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">A Curious Programmer.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">285</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/longluo" title="GitHub &rarr; https://github.com/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://weibo.com/imlongluo" title="Weibo &rarr; http://weibo.com/imlongluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://douban.com/people/65242715/" title="DouBan &rarr; http://douban.com/people/65242715/" rel="noopener" target="_blank"><i class="fa fa-fw fa-douban"></i>DouBan</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu &rarr; http://www.zhihu.com/people/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-zhihu"></i>ZhiHu</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com" title="http://www.imlongluo.com" rel="noopener" target="_blank">Home</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http://blog.csdn.net/tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2013 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">481k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:17</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+  <div style="display: none;">
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+  </div>
+
+
+
+
+  
+  <script pjax>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+            
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz',
+            'X-LC-Key': 'p2mNUdDbqxrxOYMjs1xiS0zM',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  <script pjax>
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55523596";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script><script src="/js/bookmark.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'bef8bb01e277ada131df',
+      clientSecret: 'a2ecfff23c41550c39e4c7df335460a947ed2152',
+      repo: 'longluo.github.io',
+      owner: 'longluo',
+      admin: ['longluo'],
+      id: '6a4241fa0899f09a73287f00e7c38c63',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    </div>
+</body>
+</html>

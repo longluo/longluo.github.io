@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="By Long Luo 2014.06.03 Apple举行了万众瞩目的WWDC2014，发布了OS X Yosimite和iOS8，最近几天看了一部分Keynote，从网上搜集了一部分资料，将这次WWDC14的一些新功能点汇总出来，同时加入了自己的一些想法，探讨下码农群体应该注意哪些趋势。 Continuity &amp;amp; Seamlessly总体来说： 系统功能更加完善，更加人性化，更加开放，">
+<meta name="keywords" content="WWDC, Apple, iOS, Develop, iOS8,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WWDC2014总结之iOS8篇">
+<meta property="og:url" content="http://longluo.me/blog/2014/06/05/summary_of_wwdc2014_ios8/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="By Long Luo 2014.06.03 Apple举行了万众瞩目的WWDC2014，发布了OS X Yosimite和iOS8，最近几天看了一部分Keynote，从网上搜集了一部分资料，将这次WWDC14的一些新功能点汇总出来，同时加入了自己的一些想法，探讨下码农群体应该注意哪些趋势。 Continuity &amp;amp; Seamlessly总体来说： 系统功能更加完善，更加人性化，更加开放，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-21T17:46:52.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WWDC2014总结之iOS8篇">
+<meta name="twitter:description" content="By Long Luo 2014.06.03 Apple举行了万众瞩目的WWDC2014，发布了OS X Yosimite和iOS8，最近几天看了一部分Keynote，从网上搜集了一部分资料，将这次WWDC14的一些新功能点汇总出来，同时加入了自己的一些想法，探讨下码农群体应该注意哪些趋势。 Continuity &amp;amp; Seamlessly总体来说： 系统功能更加完善，更加人性化，更加开放，">
+  <link rel="canonical" href="http://longluo.me/blog/2014/06/05/summary_of_wwdc2014_ios8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>WWDC2014总结之iOS8篇 | Long Luo's Life Notes</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+  <script pjax>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !false) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-46213499-2');
+    }
+  </script>
+
+
+  <script pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Long Luo's Life Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">每一天都是奇迹</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/06/05/summary_of_wwdc2014_ios8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">WWDC2014总结之iOS8篇
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2014-06-05 23:30:32" itemprop="dateCreated datePublished" datetime="2014-06-05T23:30:32+08:00">2014-06-05</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Apple/" itemprop="url" rel="index"><span itemprop="name">Apple</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2014/06/05/summary_of_wwdc2014_ios8/" class="post-meta-item leancloud_visitors" data-flag-title="WWDC2014总结之iOS8篇" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>3.7k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong><em>By Long Luo</em></strong></p>
+<p>2014.06.03 Apple举行了万众瞩目的WWDC2014，发布了OS X Yosimite和iOS8，最近几天看了一部分Keynote，从网上搜集了一部分资料，将这次WWDC14的一些新功能点汇总出来，同时加入了自己的一些想法，探讨下码农群体应该注意哪些趋势。</p>
+<h1 id="Continuity-amp-Seamlessly"><a href="#Continuity-amp-Seamlessly" class="headerlink" title="Continuity &amp; Seamlessly"></a>Continuity &amp; Seamlessly</h1><p>总体来说：</p>
+<p><strong><em>系统功能更加完善，更加人性化，更加开放</em></strong>，与其他iOS、Mac设备整合度扩大，并且预示了未来与可穿戴设备、智能家居的紧密结合的趋势，预计Health和Home两大产业将发生重大变革，将有一系列的新App和硬件改变我们的生活。</p>
+<p>WWDC的报道会分别讲解Mac OS Yosemite和iOS 8的各项功能。可是整场看下来，觉得这两个系统的更新都有一个指针：统一。爷就是关键的2个词，<strong>Continuity &amp; Seamlessly</strong>。</p>
+<p>Mac OS Yosemite的扁平化和透明统一了Mac OS和iOS的视觉风格。<br>Mac OS也追加了iOS上特有的功能，比如打电话、IM。</p>
+<p>两个系统在视觉和功能上统一的同时，通过 iCloud 的升级，实现了数据同步。<br>「视觉」，「功能」和「数据」统一了之后， Handoff 实现了Mac OS和iOS工作的无缝切换。</p>
+<p>最终，所有<strong>“苹果设备”</strong>都将无缝的融合到一起。随时拿起iPad，打开Macbook或者掏出 iPhone，你都能看到同样的视觉风格，得到一致的数据，使用同样的功能。</p>
+<a id="more"></a>
+<h1 id="iOS8-新功能点"><a href="#iOS8-新功能点" class="headerlink" title="iOS8 新功能点"></a>iOS8 新功能点</h1><h2 id="HealthKit"><a href="#HealthKit" class="headerlink" title="HealthKit"></a>HealthKit</h2><p><strong>健康管理软件</strong>    </p>
+<p>这是一个私人健康数据平台，它可以整合其他第三方健康应用数据，也就说可以在HealthKit中统一浏览其他应用监测的数据。同时，它也将与梅奥诊所和其他医疗机构合作，允许医疗机构接受或传输你的数据。</p>
+<h2 id="HomeKit"><a href="#HomeKit" class="headerlink" title="HomeKit"></a>HomeKit</h2><p>把iPhone变成智能家居中心控制器<br>可以实现远程遥控智能家居设备，如智能门锁、灯泡或是监控摄像头。操作非常简单，只需对siri说：“我要上床睡觉了”，灯光就会变暗、门就会锁上。</p>
+<h2 id="Mail"><a href="#Mail" class="headerlink" title="Mail"></a>Mail</h2><pre><code>1. 支持直接从邮件中添加日历事件。
+2. 在邮件中将会引入全新的邮件手势，下滑消息可触发新动作。  
+3. 图像编辑和草图分享，能够直接通过浏览器来提供强悍的图片编辑能力，并快速进行邮件分享。
+4. 支持群组通信。群发功能——你可以直接在会话中添加或移除对象。                                                                                   
+5. 轻松切换和快速访问联系人。                                                                   
+6. 当你在手机上写了一半邮件之后，还可以在就近的电脑上继续完成  
+7. 在当前消息中打开另一封邮件，然后再切换回来（工作进度依然保存着）。                                                                                                           
+8. 可以在通知中直接为Facebook上的消息点赞！  
+</code></pre><h2 id="iMessage"><a href="#iMessage" class="headerlink" title="iMessage"></a>iMessage</h2><p>变身为<strong><em>一个没有朋友圈和公众号的微信</em></strong></p>
+<pre><code>1. 支持群组通信。你可以直接在会话中添加或移除对象。                      
+2. 支持多达14个国家和地区的语言，加快打字速度
+3. 发送语音消息的功能很有趣。 
+4. 图片支持以“相册”形式快速查看。
+5. 支持语音信息，与对话的人共享位置。                                               
+6. 支持发短视频                                                                                        
+7. 在群聊短信设置中有“不要打扰”的相关选项
+</code></pre><h2 id="优化输入法"><a href="#优化输入法" class="headerlink" title="优化输入法"></a>优化输入法</h2><h3 id="1-iOS8中在键盘中能够实现的第三方输入法，QuickType可智能预测。"><a href="#1-iOS8中在键盘中能够实现的第三方输入法，QuickType可智能预测。" class="headerlink" title="1. iOS8中在键盘中能够实现的第三方输入法，QuickType可智能预测。"></a>1. iOS8中在键盘中能够实现的第三方输入法，QuickType可智能预测。</h3><p>当用户输入完当前单词之后，QuickType会提供3个智能预测的单词供用户选择。当然，如果你不喜欢这种“输入建议”，也可以轻松移除。</p>
+<h3 id="2-在键盘中还引入了全新的Tap-to-Talk功能"><a href="#2-在键盘中还引入了全新的Tap-to-Talk功能" class="headerlink" title="2. 在键盘中还引入了全新的Tap to Talk功能"></a>2. 在键盘中还引入了全新的Tap to Talk功能</h3><p>新的Tap to Talk功能，语音输入短信，用户能够录制一段音频或视频并将其发送给收件人。</p>
+<h2 id="通知中心"><a href="#通知中心" class="headerlink" title="通知中心"></a>通知中心</h2><p>精致的通知中心    </p>
+<pre><code>1. 通知中心里可以查看各个活动图标，甚至连拍卖信息也可以在通知栏显现，可以做到图文并茂，也可以在通知中心回复消息。                        
+2. 通知中心中包括“日历、提醒、天气等相关图标”都使用全新的“Today视图”，显然，这种变动贯穿始终，系统能够这样，应用也可以
+</code></pre><h2 id="通话功能"><a href="#通话功能" class="headerlink" title="通话功能"></a>通话功能</h2><p>当你输入号码的时候，环境菜单(Contextual Menu)就会自己弹出来，整个通话功能变得更加强大，提供了多种方式来联系好友，甚至能够从网页来拨打电话。</p>
+<h2 id="联系人"><a href="#联系人" class="headerlink" title="联系人"></a>联系人</h2><p>联系人现在已经与搜索紧密相连，信息充分详实，能够与你文档中、日历事件中的朋友和家人进行匹配。</p>
+<h2 id="iCould-Drive"><a href="#iCould-Drive" class="headerlink" title="iCould Drive"></a>iCould Drive</h2><p>1.设备无缝切换                                                                                   2.可以在“夜间模式”(dark mode)下进行了照片编辑<br>在iOS、Mac OS以及windows上共享图片。并且图片编辑也有了很大的提升，iOS 8给出了更精准的数字调试，编辑后的图片也会被无缝同步到别的iOS设备以及Mac。当然，前提是你的网速和云端空间足够用，对于深度用户来说，付费是在所难免的。</p>
+<h2 id="云端"><a href="#云端" class="headerlink" title="云端"></a>云端</h2><p>文件也可以储存在云端，以便访问。<br>当文件太大的时候，MailDrop将能够创建一个安全连接。<br>iCloud提供了免费的5GB储存空间，每个月只需要$0.99就能享受20GB。推出iCloud Drive网盘服务</p>
+<h2 id="桌面壁纸、锁屏"><a href="#桌面壁纸、锁屏" class="headerlink" title="桌面壁纸、锁屏"></a>桌面壁纸、锁屏</h2><p>1.当你更换了桌面壁纸，应用窗口能够敏锐的进行“探知”，进而进行自我调节。<br>2.增加新的壁纸    </p>
+<p>1.全新的锁屏界面。<br>2.锁屏状态下直接快速删除通知</p>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>现在第三方应用程序可以自行定义插件，插件能够整合到通知中心中。<br>小部件的加入极大的扩展了iOS的延展性外，大大提升了分享的乐趣。</p>
+<h2 id="SDK"><a href="#SDK" class="headerlink" title="SDK"></a>SDK</h2><p>该版本是App Store发布以来最大的一次更新，目前有超过4000个 全新开发的API。<br>这项服务将于今年秋季向所有用户开放，这很像Steam和PS平台上的“早期访问”项目。</p>
+<h2 id="TestFlight"><a href="#TestFlight" class="headerlink" title="TestFlight"></a>TestFlight</h2><p>TestFlight是面向开发者和用户的Beta测试服务，是完全免费的。应用介绍页面还可以支持视频，我们甚至还引入了一个全新的beta测试服务——TestFlight。<br>App Store正式支持TestFlight了,开发者可以把测试版放在这里面供用户参与测试,并不需要越狱就可以拿到最新版本</p>
+<h2 id="应用管理"><a href="#应用管理" class="headerlink" title="应用管理"></a>应用管理</h2><p>更完善的iOS应用管理     </p>
+<h2 id="Spotlight"><a href="#Spotlight" class="headerlink" title="Spotlight"></a>Spotlight</h2><p>搜索应用、兴趣点、新闻、歌曲、甚至iTunes。</p>
+<h2 id="优化无线网络"><a href="#优化无线网络" class="headerlink" title="优化无线网络"></a>优化无线网络</h2><p>支持即时无线热点特性，共享无线网络变得更为简单，手机将可以扮演“中继”的角色。</p>
+<h2 id="苹果地图"><a href="#苹果地图" class="headerlink" title="苹果地图"></a>苹果地图</h2><p>中国地区的地图大幅改进，支持导航特性。为了地提高图的准确性和稳定性，修正了诸多数据和错误。</p>
+<h2 id="Siri"><a href="#Siri" class="headerlink" title="Siri"></a>Siri</h2><pre><code>1. 在Siri中整合了Shazam，可以在不碰到手机的情况下就唤醒它
+2. Siri支持流媒体识别，可以直接通过它购买音乐    
+</code></pre><h2 id="Touch-ID"><a href="#Touch-ID" class="headerlink" title="Touch ID"></a>Touch ID</h2><p>能够使用 Touch ID来保护诸如Mint之类的应用Touch ID向开发者开放</p>
+<h2 id="Safari"><a href="#Safari" class="headerlink" title="Safari"></a>Safari</h2><ol>
+<li>在Safari中中出现了用于分享的全新功能Markup，还有一个“tab view”（标签页视图)。</li>
+<li>本地搜索功能更丰富，增加很多互联网服务Safari是目前最快的浏览器，在一段Safari的演示视频中显示浏览速度惊人的快。</li>
+</ol>
+<h2 id="控制面板"><a href="#控制面板" class="headerlink" title="控制面板"></a>控制面板</h2><p>iCloud Drive， iCloud Drive的控制面板能够浮动在应用上，面板是支持环境感知的。</p>
+<h2 id="SpriteKit"><a href="#SpriteKit" class="headerlink" title="SpriteKit"></a>SpriteKit</h2><p><strong>高端3D和休闲游戏方面</strong><br>    这是一个3D场景渲染器，这里物理模拟了5000片花瓣，而且锦鲤池的每条鱼都有自己的AI。当iOS 8正式推出的时候，Zen Garden也会同步免费放出，EA将(寒霜)Frostbite引擎带到了移动端一副《植物大战僵尸》画面上的三角形，可以达到130万个</p>
+<h1 id="个人如何把握大势？"><a href="#个人如何把握大势？" class="headerlink" title="个人如何把握大势？"></a>个人如何把握大势？</h1><p><strong>时间太晚，下次再写！</strong></p>
+<p><strong><em>Long Luo Created at PM23:35 ~ 00:35 @June 06th, 2014 at Shenzhen, China.</em></strong><br><strong><em>Long Luo Modified at PM23:11 ~ 23:18 @June 11th, 2014 at Shenzhen, China.</em></strong><br><strong><em>Long Luo Modified at 2018年9月26日00点10分 at BingJiang, Hangzhou, China.</em></strong></p>
+
+    </div>
+
+    
+    
+    
+      
+
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Long Luo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://longluo.me/blog/2014/06/05/summary_of_wwdc2014_ios8/" title="WWDC2014总结之iOS8篇">http://longluo.me/blog/2014/06/05/summary_of_wwdc2014_ios8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+            
+              <a href="/tags/WWDC/" rel="tag"><i class="fa fa-tag"></i> WWDC</a>
+            
+              <a href="/tags/Apple/" rel="tag"><i class="fa fa-tag"></i> Apple</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/blog/2014/06/02/ideas_about_2014_auto_show/" rel="next" title="我看车展感(tu)想(cao)">
+                  <i class="fa fa-chevron-left"></i> 我看车展感(tu)想(cao)
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" rel="prev" title="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?">
+                  [译]Android音频: 如何使用AudioTrack播放一个WAV格式文件? <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Continuity-amp-Seamlessly"><span class="nav-number">1.</span> <span class="nav-text">Continuity &amp; Seamlessly</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#iOS8-新功能点"><span class="nav-number">2.</span> <span class="nav-text">iOS8 新功能点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HealthKit"><span class="nav-number">2.1.</span> <span class="nav-text">HealthKit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HomeKit"><span class="nav-number">2.2.</span> <span class="nav-text">HomeKit</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mail"><span class="nav-number">2.3.</span> <span class="nav-text">Mail</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iMessage"><span class="nav-number">2.4.</span> <span class="nav-text">iMessage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化输入法"><span class="nav-number">2.5.</span> <span class="nav-text">优化输入法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-iOS8中在键盘中能够实现的第三方输入法，QuickType可智能预测。"><span class="nav-number">2.5.1.</span> <span class="nav-text">1. iOS8中在键盘中能够实现的第三方输入法，QuickType可智能预测。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-在键盘中还引入了全新的Tap-to-Talk功能"><span class="nav-number">2.5.2.</span> <span class="nav-text">2. 在键盘中还引入了全新的Tap to Talk功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通知中心"><span class="nav-number">2.6.</span> <span class="nav-text">通知中心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通话功能"><span class="nav-number">2.7.</span> <span class="nav-text">通话功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#联系人"><span class="nav-number">2.8.</span> <span class="nav-text">联系人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iCould-Drive"><span class="nav-number">2.9.</span> <span class="nav-text">iCould Drive</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#云端"><span class="nav-number">2.10.</span> <span class="nav-text">云端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桌面壁纸、锁屏"><span class="nav-number">2.11.</span> <span class="nav-text">桌面壁纸、锁屏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件"><span class="nav-number">2.12.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SDK"><span class="nav-number">2.13.</span> <span class="nav-text">SDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TestFlight"><span class="nav-number">2.14.</span> <span class="nav-text">TestFlight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用管理"><span class="nav-number">2.15.</span> <span class="nav-text">应用管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spotlight"><span class="nav-number">2.16.</span> <span class="nav-text">Spotlight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化无线网络"><span class="nav-number">2.17.</span> <span class="nav-text">优化无线网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#苹果地图"><span class="nav-number">2.18.</span> <span class="nav-text">苹果地图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Siri"><span class="nav-number">2.19.</span> <span class="nav-text">Siri</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Touch-ID"><span class="nav-number">2.20.</span> <span class="nav-text">Touch ID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Safari"><span class="nav-number">2.21.</span> <span class="nav-text">Safari</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制面板"><span class="nav-number">2.22.</span> <span class="nav-text">控制面板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SpriteKit"><span class="nav-number">2.23.</span> <span class="nav-text">SpriteKit</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#个人如何把握大势？"><span class="nav-number">3.</span> <span class="nav-text">个人如何把握大势？</span></a></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">A Curious Programmer.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">285</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/longluo" title="GitHub &rarr; https://github.com/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://weibo.com/imlongluo" title="Weibo &rarr; http://weibo.com/imlongluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://douban.com/people/65242715/" title="DouBan &rarr; http://douban.com/people/65242715/" rel="noopener" target="_blank"><i class="fa fa-fw fa-douban"></i>DouBan</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu &rarr; http://www.zhihu.com/people/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-zhihu"></i>ZhiHu</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com" title="http://www.imlongluo.com" rel="noopener" target="_blank">Home</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http://blog.csdn.net/tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2013 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">481k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:17</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+  <div style="display: none;">
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+  </div>
+
+
+
+
+  
+  <script pjax>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+            
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz',
+            'X-LC-Key': 'p2mNUdDbqxrxOYMjs1xiS0zM',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  <script pjax>
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55523596";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script><script src="/js/bookmark.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'bef8bb01e277ada131df',
+      clientSecret: 'a2ecfff23c41550c39e4c7df335460a947ed2152',
+      repo: 'longluo.github.io',
+      owner: 'longluo',
+      admin: ['longluo'],
+      id: '4d1b5bea3866c34f800fee3208203bc8',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    </div>
+</body>
+</html>

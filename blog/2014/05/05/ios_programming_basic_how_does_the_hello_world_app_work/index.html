@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+
+
+
+
+
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.0">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.0',
+    exturl: false,
+    sidebar: {"position":"left","width":240,"display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":false,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: true,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="翻译 By Long Luo 原文链接：iOS Programming Basic: How Does the Hello World App Work? 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正. 我希望你享受了第一个iOS编程教程，同时已经创造了你的第一个App。在进入下一教程以及制作一个更">
+<meta name="keywords" content="iOS,App,原理,iOS开发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS编程基础: Hello World App是如何运作的?">
+<meta property="og:url" content="http://longluo.me/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="翻译 By Long Luo 原文链接：iOS Programming Basic: How Does the Hello World App Work? 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正. 我希望你享受了第一个iOS编程教程，同时已经创造了你的第一个App。在进入下一教程以及制作一个更">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-21T17:46:52.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS编程基础: Hello World App是如何运作的?">
+<meta name="twitter:description" content="翻译 By Long Luo 原文链接：iOS Programming Basic: How Does the Hello World App Work? 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正. 我希望你享受了第一个iOS编程教程，同时已经创造了你的第一个App。在进入下一教程以及制作一个更">
+  <link rel="canonical" href="http://longluo.me/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>iOS编程基础: Hello World App是如何运作的? | Long Luo's Life Notes</title>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+  <script pjax>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !false) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-46213499-2');
+    }
+  </script>
+
+
+  <script pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Long Luo's Life Notes</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">每一天都是奇迹</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+      
+      
+      
+        
+        <li class="menu-item menu-item-home">
+      
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-about">
+      
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-tags">
+      
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-categories">
+      
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+      
+      
+      
+        
+        <li class="menu-item menu-item-archives">
+      
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a href="javascript:;" class="popup-trigger">
+        
+          <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+      </li>
+    
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a class="book-mark-link book-mark-link-fixed" href="#"></a>
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+            
+
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+      <article itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block post">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">iOS编程基础: Hello World App是如何运作的?
+
+          
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              
+                
+              
+
+              <time title="创建时间：2014-05-05 19:11:03" itemprop="dateCreated datePublished" datetime="2014-05-05T19:11:03+08:00">2014-05-05</time>
+            </span>
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-08-22 01:46:52" itemprop="dateModified" datetime="2019-08-22T01:46:52+08:00">2019-08-22</time>
+              </span>
+            
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            <span id="/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/" class="post-meta-item leancloud_visitors" data-flag-title="iOS编程基础: Hello World App是如何运作的?" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">本文字数：</span>
+              
+              <span>3.4k</span>
+            </span>
+          
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              
+              <span>3 分钟</span>
+            </span>
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong><em>翻译 By Long Luo</em></strong></p>
+<p>原文链接：<a href="http://www.appcoda.com/ios-programming-basic-how-does-the-hello-world-app-work/" target="_blank" rel="noopener">iOS Programming Basic: How Does the Hello World App Work?</a></p>
+<pre><code>译者注：
+1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
+2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.
+</code></pre><p>我希望你享受了第一个<strong><em>iOS编程教程</em></strong>，同时已经创造了你的第一个App。在进入下一教程以及制作一个更复杂的App之前，我们有必要回过头，分析这个Hello World App。对于你理解一些Objective-C语言的语法和App的内部工作机制有很大帮助。</p>
+<p>目前为止，想必你已经按照教程完成了你的第一个Hello World App。不过，当你完成了这个教程之后，你脑海里肯定冒出了更多疑问：</p>
+<ul>
+<li><strong>xib,.h,.m</strong>文件是做什么用的？</li>
+<li>在<code>showMessage</code>内部的代码是什么？用什么作用？</li>
+<li>当你按下<code>Hello World</code>的按钮发生了什么呢？按钮是如何触发了显示消息的动作呢?</li>
+<li>Xcode中的<code>Run</code>按钮是如何运作的？</li>
+</ul>
+<p>我希望你已经对Xcode IDE开发环境比较熟悉了，这样我就不用再解释一遍上面的内容了。对于每个开发者来说，理解代码的内部细节和抓住基本概念对于iOS编程是很有必要的。对于某些技术概念，如果你没有丝毫的编程背景来说，理解一些技术概念是有一定难度的。但是，别担心，这里仅仅是一个开始。如果你继续学习后续的教程，写出更多的代码，你就能更好的理解iOS编程。尽你所能努力学习更多知识吧！</p>
+<a id="more"></a>
+<h1 id="Interface-Builder-Header-and-Implementation-Files"><a href="#Interface-Builder-Header-and-Implementation-Files" class="headerlink" title="Interface Builder, Header and Implementation Files"></a>Interface Builder, Header and Implementation Files</h1><p>首先，.xib, .h, .m文件是什么呢？这是一位读者提出的一个非常好的问题。在项目导航中，你应该可以找到3种主要的文件类型：<strong>.xib, .h, .m</strong>。(如果你打开“Supporting Files”文件夹，你可以找到其他的文件类型，例如plist和framework。但到目前为此，我们先忘掉它们，在今后课程中我们会讨论它们。)</p>
+<h2 id="xib"><a href="#xib" class="headerlink" title=".xib"></a>.xib</h2><ul>
+<li>如果一个文件也有.xib的扩展名，它们是Interface Builder文件，存储了应用的UI。当你点击了.xib文件，Xcode会自动的打开Interface Builder界面，你可以通过拖动和放下来编辑应用的UI。如下图所示:</li>
+</ul>
+<p><img alt="Interface Builder in Xcode" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Interface-Builder.jpg"></p>
+<p><strong>Interface Builder in Xcode</strong></p>
+<h2 id="h-and-m"><a href="#h-and-m" class="headerlink" title=".h and .m"></a>.h and .m</h2><ul>
+<li><strong>.h</strong>扩展名的文件表示这是<code>头文件</code>，<strong>.m</strong>扩展名表示是具体的<code>实现</code>。和其他大多数编程语言一样，Objective-C的源码也分为2部分：<code>接口</code>和<code>实现</code>。</li>
+</ul>
+<p>为了便于你更好的理解这2者关系，我们拿电视遥控器打比方。我们可以很方便地使用无线遥控器调节电视的音量。你按下音量+按钮增大扬声器的音量。切换频道时，你只需要按下频道数字。那我来问问你，你知道当你按下音量按钮的背后发生了什么吗？估计你不知道吧。我相信大部分人都不知道遥控器和扬声器之间是如何通信的。我们仅仅知道的是，那个按钮是用来调节音量的。在这里，按钮就是<code>接口</code>，而按钮之后的具体细节我们称之为<code>实现</code>。</p>
+<p>现在你应该对接口和实现有了一个更深的理解。让我们回到代码，在Objective-C语言中，一个类的接口是放在<code>.h</code>文件中。我们使用语法标示符<code>@interface</code>来声明一个类的接口。看下<strong>HelloWorldViewController.h</strong>的具体实现：</p>
+<pre><code>@interface HelloWorldViewController : UIViewController
+
+-(IBAction)showMessage;
+
+@end
+</code></pre><p>HelloWorldViewController这个类名以“@interface”开头。内部则声明了一个“showMessage”的实现，也可以称之为<strong>方法</strong>。</p>
+<p>就像音量按钮，显然我们不知道<code>showMessage</code>这个方法是如何运作的。你仅仅知道它是用于在屏幕上显示一条信息。具体的实现则放在HelloWorldViewController.m文件中，如下所示：</p>
+<pre><code>@implementation HelloWorldViewController
+
+// I&#39;ve removed other methods for better reading. Focus on the showMessage method first.
+
+- (IBAction)showMessage 
+{
+    UIAlertView *helloWorldAlert = [[UIAlertView alloc]
+                                initWithTitle:@&quot;My First App&quot; message:@&quot;Hello, World!&quot; delegate:nil cancelButtonTitle:@&quot;OK&quot; otherButtonTitles:nil];
+
+    // Display the Hello World Message
+    [helloWorldAlert show];
+}
+
+@end
+</code></pre><p>正如你上面所示，你使用“@implementation”去声明一个实现。在“showMessage”中，代码用于定义在屏幕中弹出一条警告。你不需要弄明白在“showMessage”的方法中每一行代码具体含义。简单来说，创建了一个以“My First App” 为标题，“Hello, World”作为消息的UIAlertView。然后调用“show”方法去请求iOS用于在屏幕上显示一个弹出消息。如下图所示：</p>
+<p><img alt="Hello World App" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-App.jpg"></p>
+<p><strong>Hello World App</strong></p>
+<p>想必你已经弄明白了接口和实现吧？</p>
+<h1 id="Behind-the-Touch-and-Tap"><a href="#Behind-the-Touch-and-Tap" class="headerlink" title="Behind the Touch and Tap"></a>Behind the Touch and Tap</h1><p>当你按下 “Hello World”按钮实际上发生了什么？ “Hello World” 按钮是如何调用 “showMessage” 方法去显示“Hello World”的消息呢？</p>
+<p>回想起你是如何在Interface Builder建立起“Hello World”按钮和“sendMessage”的具体动作的关联的。再次打开“HelloWorldViewController.xib” ，选择“Hello World” 按钮，在Utility区域点击“Sent Events”按钮打开发生事件。</p>
+<p><img alt="Hello World Button Send Events" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Button-Sent-Events.jpg"></p>
+<p>发送部分展示了所有的关于事件和动作的联系。例如上述图片所示，“Touch Up Inside” 事件就关联到 “showMessage”的动作。在iOS中，app是事件驱动的。控制/目标监听特定的动作，例如触摸和按下。当事件触发之后，目标就会调用预设的关联到事件的动作。</p>
+<p>在我们的Hello World App中，当用户在按钮上抬起手指， “Touch Up Inside”的事件就触发了。结果，它会调用“showMessage”的动作去显示 “Hello World” 的消息。</p>
+<p>下图很直观的展示了刚才所描述的事件流:</p>
+<p><img alt="Event and Message Flow of Hello World App" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/HelloWorld-Message-Flow.jpg"></p>
+<p><strong>Event and Message Flow of Hello World App</strong></p>
+<h1 id="Behind-the-Scene-of-the-“Run”-Button"><a href="#Behind-the-Scene-of-the-“Run”-Button" class="headerlink" title="Behind the Scene of the “Run” Button"></a>Behind the Scene of the “Run” Button</h1><p>当你点击“Run” 按钮，Xcode就会载入模拟器，运行你的App。但是在这个场景之后，发生了什么？作为一名程序员，你需要了解它的整个流程。</p>
+<p><img alt="Event and Message Flow of Hello World App" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Process.jpg"></p>
+<p>整个流程可以分为3部分：<strong>编译、打包和运行</strong>。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><ul>
+<li>你可能会认为iOS可以读懂Objective-C代码。大错特错，实际上，iOS只能读懂机器码。Objective-C代码只是便于程序员去读和写代码。我们需要将Objective-C源码翻译成机器码，这样iOS才可以读懂你的App的源码。这个过程就称之为编程。Xcode已经自带了编译器用于编译源码。</li>
+</ul>
+<h2 id="打包"><a href="#打包" class="headerlink" title="打包"></a>打包</h2><ul>
+<li>不同于其他源码，一个App通常包含大量的资源文件，比如图片，文本，xlib文件等等。所有的这些资源都必须要打包进最终的App中。</li>
+</ul>
+<p>我们通过把上述2个过程称之为<strong>build</strong>。</p>
+<p><img alt="Xcode-Build-Option" data-src="http://www.appcoda.com/wp-content/uploads/2012/04/Xcode-Build-Option.jpg"></p>
+<h2 id="Run"><a href="#Run" class="headerlink" title="Run"></a>Run</h2><ul>
+<li>按下之后，启动模拟器，载入你的App.</li>
+</ul>
+<p><strong><em>Long Luo created at 19:22 ~ 21: 06 May 5th, 2014 @Shenzhen, China.</em></strong></p>
+
+    </div>
+
+    
+    
+    
+      
+
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Long Luo</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://longluo.me/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/" title="iOS编程基础: Hello World App是如何运作的?">http://longluo.me/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+</div>
+
+      
+
+      <footer class="post-footer">
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/App/" rel="tag"><i class="fa fa-tag"></i> App</a>
+            
+              <a href="/tags/iOS/" rel="tag"><i class="fa fa-tag"></i> iOS</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/blog/2014/05/03/tips_of_driving_exam/" rel="next" title="学车科目二要点总结">
+                  <i class="fa fa-chevron-left"></i> 学车科目二要点总结
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+                <a href="/blog/2014/06/02/ideas_about_2014_auto_show/" rel="prev" title="我看车展感(tu)想(cao)">
+                  我看车展感(tu)想(cao) <i class="fa fa-chevron-right"></i>
+                </a>
+              
+            </div>
+          </div>
+        
+      </footer>
+    
+  </div>
+  
+  
+  
+  </article>
+
+  </div>
+
+
+          </div>
+          
+    
+    <div class="comments" id="gitalk-container"></div>
+  
+
+        </div>
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+        
+        
+        
+        
+      
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Interface-Builder-Header-and-Implementation-Files"><span class="nav-number">1.</span> <span class="nav-text">Interface Builder, Header and Implementation Files</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#xib"><span class="nav-number">1.1.</span> <span class="nav-text">.xib</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#h-and-m"><span class="nav-number">1.2.</span> <span class="nav-text">.h and .m</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Behind-the-Touch-and-Tap"><span class="nav-number">2.</span> <span class="nav-text">Behind the Touch and Tap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Behind-the-Scene-of-the-“Run”-Button"><span class="nav-number">3.</span> <span class="nav-text">Behind the Scene of the “Run” Button</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译"><span class="nav-number">3.1.</span> <span class="nav-text">编译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包"><span class="nav-number">3.2.</span> <span class="nav-text">打包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Run"><span class="nav-number">3.3.</span> <span class="nav-text">Run</span></a></li></ol></li></ol></div>
+        
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">A Curious Programmer.</div>
+</div>
+  <nav class="site-state motion-element">
+      <div class="site-state-item site-state-posts">
+        
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">147</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-categories">
+        
+          
+            <a href="/categories/">
+          
+        
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span>
+        </a>
+      </div>
+    
+      
+      
+      <div class="site-state-item site-state-tags">
+        
+          
+            <a href="/tags/">
+          
+        
+        <span class="site-state-item-count">285</span>
+        <span class="site-state-item-name">标签</span>
+        </a>
+      </div>
+    
+  </nav>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="https://github.com/longluo" title="GitHub &rarr; https://github.com/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://weibo.com/imlongluo" title="Weibo &rarr; http://weibo.com/imlongluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://douban.com/people/65242715/" title="DouBan &rarr; http://douban.com/people/65242715/" rel="noopener" target="_blank"><i class="fa fa-fw fa-douban"></i>DouBan</a>
+      </span>
+    
+      <span class="links-of-author-item">
+      
+      
+        
+      
+      
+        
+      
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu &rarr; http://www.zhihu.com/people/longluo" rel="noopener" target="_blank"><i class="fa fa-fw fa-zhihu"></i>ZhiHu</a>
+      </span>
+    
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    
+  
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com" title="http://www.imlongluo.com" rel="noopener" target="_blank">Home</a>
+        </li>
+      
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http://blog.csdn.net/tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+      
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2013 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">481k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">7:17</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.0</div>
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+  
+    <span class="post-meta-divider">|</span>
+  
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+  
+</div>
+
+
+  <div style="display: none;">
+    <script pjax src="//s95.cnzz.com/z_stat.php?id=1258500959&web_id=1258500959"></script>
+  </div>
+
+
+
+
+  
+  <script pjax>
+  function leancloudSelector(url) {
+    return document.getElementById(url).querySelector('.leancloud-visitors-count');
+  }
+  if (CONFIG.page.isPost) {
+    function addCount(Counter) {
+      var visitors = document.querySelector('.leancloud_visitors');
+      var url = visitors.getAttribute('id').trim();
+      var title = visitors.getAttribute('data-flag-title').trim();
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length > 0) {
+            var counter = results[0];
+            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
+              .then(response => response.json())
+              .then(() => {
+                leancloudSelector(url).innerText = counter.time + 1;
+              })
+            
+              .catch(error => {
+                console.log('Failed to save visitor count', error);
+              })
+          } else {
+              Counter('post', '/classes/Counter', { title: title, url: url, time: 1 })
+                .then(response => response.json())
+                .then(() => {
+                  leancloudSelector(url).innerText = 1;
+                })
+                .catch(error => {
+                  console.log('Failed to create', error);
+                });
+            
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  } else {
+    function showTime(Counter) {
+      var visitors = document.querySelectorAll('.leancloud_visitors');
+      var entries = [...visitors].map(element => {
+        return element.getAttribute('id').trim();
+      });
+
+      Counter('get', `/classes/Counter?where=${JSON.stringify({ url: { '$in': entries } })}`)
+        .then(response => response.json())
+        .then(({ results }) => {
+          if (results.length === 0) {
+            document.querySelectorAll('.leancloud_visitors .leancloud-visitors-count').forEach(element => {
+              element.innerText = 0;
+            });
+            return;
+          }
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            leancloudSelector(url).innerText = time;
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = leancloudSelector(url);
+            if (element.innerText == '') {
+              element.innerText = 0;
+            }
+          }
+        })
+        .catch(error => {
+          console.log('LeanCloud Counter Error', error);
+        });
+    }
+  }
+
+  fetch('https://app-router.leancloud.cn/2/route?appId=hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz')
+    .then(response => response.json())
+    .then(({ api_server }) => {
+      var Counter = (method, url, data) => {
+        return fetch(`https://${api_server}/1.1${url}`, {
+          method: method,
+          headers: {
+            'X-LC-Id': 'hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz',
+            'X-LC-Key': 'p2mNUdDbqxrxOYMjs1xiS0zM',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      if (CONFIG.page.isPost) {
+        const localhost = /http:\/\/(localhost|127.0.0.1|0.0.0.0)/;
+        if (localhost.test(document.URL)) return;
+        addCount(Counter);
+      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  <script pjax>
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=55523596";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+
+
+    
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+<script src="/js/utils.js?v=7.4.0"></script><script src="/js/motion.js?v=7.4.0"></script>
+<script src="/js/schemes/pisces.js?v=7.4.0"></script>
+<script src="/js/next-boot.js?v=7.4.0"></script><script src="/js/bookmark.js?v=7.4.0"></script>
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var id = element.id || '';
+    var src = element.src || '';
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (id !=='') {
+      script.id = element.id;
+    }
+    if (src !== '') {
+      script.src = src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  <script src="/js/local-search.js?v=7.4.0"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID: 'bef8bb01e277ada131df',
+      clientSecret: 'a2ecfff23c41550c39e4c7df335460a947ed2152',
+      repo: 'longluo.github.io',
+      owner: 'longluo',
+      admin: ['longluo'],
+      id: 'b8de344ec893be9dc134e8d845754826',
+        language: 'zh-CN',
+      
+      distractionFreeMode: 'true'
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+</script>
+
+    </div>
+</body>
+</html>
