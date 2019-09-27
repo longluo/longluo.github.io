@@ -15,9 +15,9 @@ npm run test lint:stylus
 And make sure that this PR does not cause more warning messages.
 -->
 
-## PR Checklist <!-- ÎÒÈ·ÈÏÎÒÒÑ¾­²é¿´ÁË -->
+## PR Checklist <!-- æˆ‘ç¡®è®¤æˆ‘å·²ç»æŸ¥çœ‹äº† -->
 <!-- Please check if your PR fulfills the following requirements -->
-<!-- Change [ ] to [x] to select, not [ x] or [x ] (½« [ ] »»³É [x] À´Ñ¡Ôñ£¬¶ø·Ç [ x] »òÕß [x ]) -->
+<!-- Change [ ] to [x] to select, not [ x] or [x ] (å°† [ ] æ¢æˆ [x] æ¥é€‰æ‹©ï¼Œè€Œéž [ x] æˆ–è€… [x ]) -->
 
 - [ ] The commit message follows [our guidelines](https://github.com/theme-next/hexo-theme-next/blob/master/.github/CONTRIBUTING.md).
 - [ ] Tests for the changes was maked (for bug fixes / features).
