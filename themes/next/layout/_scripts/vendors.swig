@@ -1,12 +1,5 @@
 {%- set js_vendors = {} %}
-{%- set js_defer_vendors = {} %}
 {%- set js_vendors.anime = 'anime.min.js?v=3.1.0' %}
-
-{# Velocity must be loaded before jQuery #}
-{%- if theme.motion.enable %}
-  {%- set js_vendors.velocity = 'velocity/velocity.min.js?v=1.2.1' %}
-  {%- set js_vendors.velocity_ui = 'velocity/velocity.ui.min.js?v=1.2.1' %}
-{%- endif %}
 
 {%- if theme.pjax %}
   {%- set js_vendors.pjax = 'pjax/pjax.min.js?v=0.2.8' %}
@@ -29,19 +22,9 @@
   {%- set js_vendors.pangu = '//cdn.jsdelivr.net/npm/pangu@4/dist/browser/pangu.min.js' %}
 {%- endif %}
 
-{%- if theme.three.enable and not theme.three.delay %}
-  {%- if theme.three.three_waves %}
-    {%- set js_defer_vendors.three = 'three/three.min.js' %}
-    {%- set js_defer_vendors.three_waves = 'three/three-waves.min.js' %}
-  {%- endif %}
-  {%- if theme.three.canvas_lines %}
-    {%- set js_defer_vendors.three = 'three/three.min.js' %}
-    {%- set js_defer_vendors.canvas_lines = 'three/canvas_lines.min.js' %}
-  {%- endif %}
-  {%- if theme.three.canvas_sphere %}
-    {%- set js_defer_vendors.three = 'three/three.min.js' %}
-    {%- set js_defer_vendors.canvas_sphere = 'three/canvas_sphere.min.js' %}
-  {%- endif %}
+{%- if theme.motion.enable %}
+  {%- set js_vendors.velocity = 'velocity/velocity.min.js?v=1.2.1' %}
+  {%- set js_vendors.velocity_ui = 'velocity/velocity.ui.min.js?v=1.2.1' %}
 {%- endif %}
 
 {%- if theme.canvas_nest.enable %}
@@ -61,9 +44,4 @@
 {%- for name, internal in js_vendors %}
   {%- set internal_script = next_vendors(internal) %}
   <script src="{{ theme.vendors[name] | default(internal_script) }}"></script>
-{%- endfor %}
-
-{%- for name, internal in js_defer_vendors %}
-  {%- set internal_script = next_vendors(internal) %}
-  <script defer src="{{ theme.vendors[name] | default(internal_script) }}"></script>
 {%- endfor %}
