@@ -304,10 +304,10 @@ td {
   line-height: 2;
   padding: 0 20px;
   text-decoration: none;
+  transition-property: background-color;
   transition-delay: 0s;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
-  transition-property: background-color;
 }
 .btn:hover {
   background: #222;
@@ -1138,7 +1138,7 @@ pre .javascript .function {
   box-shadow: inset 0 2px 6px #000;
   position: fixed;
   top: 0;
-  z-index: 1040;
+  z-index: 200;
 }
 .sidebar a,
 .sidebar span.exturl {
@@ -1212,7 +1212,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #002103;
+  background: #fff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1286,7 +1286,7 @@ pre .javascript .function {
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1020;
+    z-index: 100;
   }
   .sidebar-active + #sidebar-dimmer {
     opacity: 0.7;
@@ -1333,7 +1333,7 @@ pre .javascript .function {
   padding: 5px;
   position: fixed;
   width: 14px;
-  z-index: 1050;
+  z-index: 300;
 }
 @media (max-width: 991px) {
   .sidebar-toggle {
@@ -1362,12 +1362,12 @@ pre .javascript .function {
   padding-left: 0;
 }
 .post-toc ol a {
-  transition-delay: 0s;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
   border-bottom-color: #ccc;
   color: #666;
   transition-property: all;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
 .post-toc ol a:hover {
   border-bottom-color: #000;
@@ -1614,7 +1614,7 @@ pre .javascript .function {
   position: fixed;
   text-align: center;
   transition-property: bottom;
-  z-index: 1050;
+  z-index: 300;
   transition-delay: 0s;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
@@ -1643,7 +1643,7 @@ pre .javascript .function {
   position: fixed;
   top: 0;
   width: 0;
-  z-index: 9999;
+  z-index: 500;
 }
 .post-body {
   overflow-wrap: break-word;
@@ -1693,7 +1693,6 @@ pre .javascript .function {
 .posts-collapse {
   margin-left: 55px;
   position: relative;
-  z-index: 1010;
 }
 @media (max-width: 767px) {
   .posts-collapse {
@@ -1735,6 +1734,7 @@ pre .javascript .function {
   width: 8px;
 }
 .posts-collapse .collection-header {
+  display: inline-block;
   margin: 0 0 0 20px;
 }
 .posts-collapse .collection-header small {
@@ -1744,11 +1744,12 @@ pre .javascript .function {
 .posts-collapse .post-header {
   border-bottom: 1px dashed #ccc;
   margin: 30px 0;
+  padding-left: 15px;
   position: relative;
+  transition-property: border;
   transition-delay: 0s;
   transition-duration: 0.2s;
   transition-timing-function: ease-in-out;
-  transition-property: border;
 }
 .posts-collapse .post-header::before {
   background: #bbb;
@@ -1775,7 +1776,6 @@ pre .javascript .function {
 .posts-collapse .post-meta {
   display: inline;
   font-size: 0.75em;
-  margin-left: 15px;
   margin-right: 10px;
 }
 .posts-collapse .post-title {
@@ -1799,7 +1799,6 @@ pre .javascript .function {
   position: absolute;
   top: 1.25em;
   width: 4px;
-  z-index: -1;
 }
 .posts-collapse .fa-external-link {
   font-size: 0.875em;
@@ -1974,6 +1973,7 @@ pre .javascript .function {
 }
 .posts-expand .post-meta time {
   border-bottom: 1px dashed #999;
+  cursor: pointer;
 }
 .post-meta .post-meta-item + .post-meta-item::before {
   content: '|';
@@ -2319,7 +2319,7 @@ ul.breadcrumb li + li:last-child {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 2080;
+  z-index: 400;
 }
 .search-popup {
   background: #fff;
@@ -2333,7 +2333,7 @@ ul.breadcrumb li + li:last-child {
   position: fixed;
   top: 10%;
   width: 700px;
-  z-index: 9999;
+  z-index: 500;
 }
 @media (max-width: 767px) {
   .search-popup {
@@ -2619,7 +2619,6 @@ ul.breadcrumb li + li:last-child {
 .menu .menu-item a:hover,
 .menu .menu-item span.exturl:hover {
   background: #f9f9f9;
-  border-bottom-color: #fff;
 }
 .menu-item-active a::after,
 .menu .menu-item a:hover::after,
@@ -2644,9 +2643,6 @@ ul.breadcrumb li + li:last-child {
   position: relative;
   text-align: left;
   transition-property: background-color;
-  transition-delay: 0s;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
 }
 .menu .menu-item .badge {
   background-color: #ccc;
