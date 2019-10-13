@@ -125,7 +125,6 @@
   .use-motion .post-body,
   .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -143,7 +142,7 @@
   <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
 
@@ -238,10 +237,7 @@
     
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger">
-        
-          <i class="fa fa-search fa-fw"></i>
-        
-        搜索
+          <i class="fa fa-search fa-fw"></i>搜索
         </a>
       </li>
     
@@ -281,12 +277,12 @@
   <a role="button" class="book-mark-link book-mark-link-fixed"></a>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
             
 
-          <div id="content" class="content">
+          <div class="content">
             
 
   <div class="posts-expand">
@@ -697,14 +693,14 @@
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
         
 
 <div class="copyright">
   &copy; 2013 – 
   <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Long Luo</span>
@@ -917,6 +913,12 @@ window.addEventListener('pjax:success', () => {
     var script = document.createElement('script');
     if (element.id) {
       script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
     }
     if (element.src) {
       script.src = element.src;
