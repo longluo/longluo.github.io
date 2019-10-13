@@ -24,6 +24,12 @@ window.addEventListener('pjax:success', () => {
     if (element.id) {
       script.id = element.id;
     }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
     if (element.src) {
       script.src = element.src;
       // Force synchronous loading of peripheral JS.
