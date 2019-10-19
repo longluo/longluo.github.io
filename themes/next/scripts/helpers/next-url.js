@@ -1,7 +1,3 @@
-/**
- * next-url.js | https://theme-next.org/api/helpers/next-url/
- */
-
 /* global hexo */
 
 'use strict';
@@ -10,7 +6,7 @@ const { htmlTag } = require('hexo-util');
 const url = require('url');
 
 hexo.extend.helper.register('next_url', function(path, text, options) {
-  var config = this.config;
+  const { config } = this;
   var data = url.parse(path);
   var siteHost = url.parse(config.url).hostname || config.url;
 
