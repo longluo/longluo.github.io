@@ -29,7 +29,7 @@ Hi, everybody! Welcome to my space. My Name is [Long Luo](http://www.imlongluo.c
 
 你可以在互联网上找到[我的网上小屋](http://www.imlongluo.com)，也可以在[CSDN](http://blog.csdn.net/tcpipstack)看到我的出没；
 
-如果你还能够忍受我的刷屏，欢迎关注我的`微博`: [@imlongluo](http://weibo.com/)
+如果你还能够忍受我的刷屏，欢迎关注我的`微博`: [@imlongluo](http://weibo.com/imlongluo)
 
 也欢迎关注我的微信公众号：![Weixin Public QR Code](http://databank.u.qiniudn.com/images/Me/weixin_mp_irefactoring_qrcode_430x430.jpg)
 

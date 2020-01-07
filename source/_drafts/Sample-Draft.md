@@ -1,6 +1,0 @@
----
-title: Sample Draft
-tags:
----
-
-
