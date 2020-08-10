@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="By Long Luo  前言：    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第五篇: 大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)   引言在上一篇大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上) 中，我们了解到struct ALIGN2和struct ALIGN3的成员变量都是1个int型，1个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)">
+<meta property="og:url" content="http://longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="By Long Luo  前言：    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第五篇: 大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)   引言在上一篇大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上) 中，我们了解到struct ALIGN2和struct ALIGN3的成员变量都是1个int型，1个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355152365_3674.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355152365_5219.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355153534_1992.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355153534_2589.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/11/1355157509_6978.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/11/1355157973_3867.jpg">
+<meta property="og:image" content="http://img.my.csdn.net/uploads/201212/10/1355154279_8492.jpg">
+<meta property="article:published_time" content="2012-12-28T17:08:58.000Z">
+<meta property="article:modified_time" content="2020-08-08T13:35:20.675Z">
+<meta property="article:author" content="Long Luo">
+<meta property="article:tag" content="结构体">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="科普">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201212/10/1355152365_3674.jpg">
+
+<link rel="canonical" href="http://longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下) | Long Luo's Life Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Long Luo's Life Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2012-12-29 01:08:58" itemprop="dateCreated datePublished" datetime="2012-12-29T01:08:58+08:00">2012-12-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-08 21:35:20" itemprop="dateModified" datetime="2020-08-08T21:35:20+08:00">2020-08-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>前言：<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第五篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8272233">大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)</a></p>
+</blockquote>
+<hr>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在上一篇<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/">大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)</a> 中，我们了解到<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的成员变量都是1个int型，1个char型及1个short型，可是它们所占的空间却1个是8字节，一个是12字节。</p>
+<p><strong><em>为什么会有这样的区别呢？</em></strong></p>
+<p>通过上篇关于<strong>对齐</strong>的介绍，我们已经猜测这是<em>因为编译器对其作了对齐的处理</em>所致，但是**<em>编译器处理的细节**</em>具体是什么呢？</p>
+<p>在这一篇里，我们将对程序的<strong>编译，汇编，链接</strong>进行逐一分析，解开这个谜团。</p>
+<p><strong><em>不要走开，下面更精彩！</em></strong></p>
+<h1 id="编译过程："><a href="#编译过程：" class="headerlink" title="编译过程："></a>编译过程：</h1><p>一般情况下，<code>C</code>程序的编译过程为</p>
+<ol>
+<li>预处理</li>
+<li>编译成汇编代码</li>
+<li>汇编成目标代码</li>
+<li>链接</li>
+</ol>
+<p>这一篇我们将使用<code>gcc</code>对上述几个过程进行仔细分析，了解其处理细节。</p>
+<p>首先我们看一个例子，源码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************************************************</span></span><br><span class="line"><span class="comment">** File: - Z:\code\c\Alignment\Align.c</span></span><br><span class="line"><span class="comment">**  </span></span><br><span class="line"><span class="comment">** Copyright (C), Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Description: </span></span><br><span class="line"><span class="comment">**      Align.c --- To learn the details of Alignment by the compiler.</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Version: 1.1</span></span><br><span class="line"><span class="comment">** Date created: 22:33:50,10/12/2012</span></span><br><span class="line"><span class="comment">** Author: Long.Luo</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment">**     &lt;author&gt;    &lt;data&gt;            &lt;desc&gt;</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> mA;</span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">    <span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">    <span class="keyword">char</span> mA;</span><br><span class="line">    <span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span> <span class="title">aln2</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span> <span class="title">aln3</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The size of struct ALIGN2 is: %d\n&quot;</span>, <span class="keyword">sizeof</span>(aln2));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\t aln2.mA=0x%x, aln2.mB=0x%x, aln2.mC=0x%x\n&quot;</span>, &amp;aln2.mA, &amp;aln2.mB, &amp;aln2.mC);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The size of struct ALIGN3 is: %d\n&quot;</span>, <span class="keyword">sizeof</span>(aln3));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\t aln3.mA=0x%x, aln3.mB=0x%x, aln3.mC=0x%x\n&quot;</span>, &amp;aln3.mA, &amp;aln3.mB, &amp;aln3.mC);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p>接下来我们对<code>Align.c</code>按照C程序的编译流程进行一一分析，如下所示：</p>
+<h2 id="1-预处理"><a href="#1-预处理" class="headerlink" title="1. 预处理"></a>1. 预处理</h2><p>输出文件的后缀为：<code>*.cpp</code>文件。</p>
+<p><img src="http://img.my.csdn.net/uploads/201212/10/1355152365_3674.jpg" alt="预处理"></p>
+<h2 id="2-编译成汇编代码"><a href="#2-编译成汇编代码" class="headerlink" title="2. 编译成汇编代码"></a>2. 编译成汇编代码</h2><ol>
+<li><p>使用-x参数说明根据指定的步骤进行工作，<code>cpp-output</code>指明从预处理得到的文件开始编译；</p>
+</li>
+<li><p>使用-S说明生成汇编代码后停止工作</p>
+</li>
+</ol>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc –x cpp-output –S –o align.s align.cpp</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://img.my.csdn.net/uploads/201212/10/1355152365_5219.jpg" alt="汇编处理"></p>
+<p>我们也可以直接编译到汇编代码：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc –S Align.c</span><br></pre></td></tr></table></figure>
+
+<p>得到<code>align.s</code>文件之后，在最开始之处我们可以看到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.file    &quot;Align.c&quot;</span><br><span class="line">.section    .rodata</span><br><span class="line">.align 4</span><br></pre></td></tr></table></figure>
+
+<p>其中的<code>.align 4</code>就表明了<strong>其后面所有的数据都遵守4字节对齐的限制</strong>。</p>
+<h2 id="3-编译成目标代码"><a href="#3-编译成目标代码" class="headerlink" title="3. 编译成目标代码"></a>3. 编译成目标代码</h2><p>汇编代码—&gt;目标代码<br><img src="http://img.my.csdn.net/uploads/201212/10/1355153534_1992.jpg" alt="Object Code"></p>
+<h2 id="4-编译成执行代码"><a href="#4-编译成执行代码" class="headerlink" title="4. 编译成执行代码"></a>4. 编译成执行代码</h2><p>目标代码–&gt;执行代码</p>
+<p>最终的输出结果如下所示：<br><img src="http://img.my.csdn.net/uploads/201212/10/1355153534_2589.jpg" alt="Execute Result:"></p>
+<h1 id="内存分析"><a href="#内存分析" class="headerlink" title="内存分析"></a>内存分析</h1><p>我们可以绘出<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的**<em>内存分配图**</em>：<br><img src="http://img.my.csdn.net/uploads/201212/11/1355157509_6978.jpg" alt="Memory"></p>
+<h2 id="假如我们不对齐？"><a href="#假如我们不对齐？" class="headerlink" title="假如我们不对齐？"></a>假如我们不对齐？</h2><p>上图是<strong>内存对齐</strong>的<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的内存分配情况，但是假如我们不对齐呢？</p>
+<p>其内存分配如下所示：<br><img src="http://img.my.csdn.net/uploads/201212/11/1355157973_3867.jpg" alt="内存不对齐"></p>
+<p>很明显，<code>int mB</code>和<code>short mC</code>都不满足对齐要求。</p>
+<h2 id="对齐的好处是什么呢？"><a href="#对齐的好处是什么呢？" class="headerlink" title="对齐的好处是什么呢？"></a>对齐的好处是什么呢？</h2><p>通过上一节，我们知道了<strong>如果不对齐</strong>，我们可以节省出几个byte的内存空间，在计算机世界中，可以对齐也可以不对齐，但是实际中，都做了对齐。</p>
+<p>那么，**<em>对齐的好处是什么呢**</em>？</p>
+<p>答案是：<strong>对齐</strong>是在*<strong>时间**<em>和</em></strong>空间*<strong>之间做了一个**<em>tradeoff</em></strong>!</p>
+<p>对齐可以<strong>提高取数据的效率</strong>！</p>
+<p>在IA32架构中，数据总线是32位，即一次可以存取4个字节的数据。</p>
+<p>在对齐的情况下，<code>struct ALIGN2</code>的每个成员都可以在一个指令周期内完成；</p>
+<p>而假设我们的<code>struct ALIGN2</code>没有对齐，那么对于<code>struct ALIGN2</code>中<code>char mA</code>，CPU可以一次取出4个字节获得低位的一个字节，同时需要将高位的3个字节保存在寄存器中，之后的<code>int mB</code>，CPU必须再取得低位的1个字节并通之前保存在寄存器中的数据结果组合在一起，**<em>每一个都需要好几条指令**</em>，是不是相当麻烦？</p>
+<h2 id="如何自定义对齐？"><a href="#如何自定义对齐？" class="headerlink" title="如何自定义对齐？"></a>如何自定义对齐？</h2><p>那肯定有同学要问了，有没有办法<strong>让处理器按照自己的要求进行地址对齐</strong>呢？</p>
+<p>—当然可以！</p>
+<p>我们可以通过<strong>预编译命令</strong><code>#pragma pack(n)，n=1,2,4,8,16</code>来改变这一系数，其中的<code>n</code>就是你要指定的“<strong>对齐系数</strong>”。</p>
+<p>比如，我想让处理器按照1个字节的方式对齐，则代码如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************************************************</span></span><br><span class="line"><span class="comment">** File: - Z:\code\c\Alignment\AlignPackOne.c</span></span><br><span class="line"><span class="comment">**  </span></span><br><span class="line"><span class="comment">** Copyright (C), Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Description: </span></span><br><span class="line"><span class="comment">**      Align.c --- To learn the details of Alignment by the compiler.</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Version: 1.1</span></span><br><span class="line"><span class="comment">** Date created: 23:39:05,10/12/2012</span></span><br><span class="line"><span class="comment">** Author: Long.Luo</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment">**     &lt;author&gt;    &lt;data&gt;            &lt;desc&gt;</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> pack(1)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> mA;</span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">    <span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">    <span class="keyword">char</span> mA;</span><br><span class="line">    <span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span> <span class="title">aln2</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span> <span class="title">aln3</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The size of struct ALIGN2 is: %d\n&quot;</span>, <span class="keyword">sizeof</span>(aln2));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\t aln2.mA=0x%x, aln2.mB=0x%x, aln2.mC=0x%x\n&quot;</span>, &amp;aln2.mA, &amp;aln2.mB, &amp;aln2.mC);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The size of struct ALIGN3 is: %d\n&quot;</span>, <span class="keyword">sizeof</span>(aln3));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\t aln3.mA=0x%x, aln3.mB=0x%x, aln3.mC=0x%x\n&quot;</span>, &amp;aln3.mA, &amp;aln3.mB, &amp;aln3.mC);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译之后输出结果如下：<br><img src="http://img.my.csdn.net/uploads/201212/10/1355154279_8492.jpg" alt="自定义对齐内存情况"></p>
+<p>可以看出，在我们要求的1字节对齐方式下，<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的结果都是**<em>7**</em>，只占了<strong>4+2+1</strong>个字节，内存空间一个字节都利用到极致。</p>
+<p>至此，关于<strong>内存对齐</strong>就到此告一段落了，<strong>你弄明白了吗</strong>？</p>
+<p>之前的系列文章，我们的<code>struct</code>都有成员变量，那么你有没有考虑过如果过<code>struct</code>完全是空的情况呢？</p>
+<p>下一篇我们将重点探讨这个问题！</p>
+<p><strong><em>不要走开，后面更精彩！</em></strong></p>
+<p><strong><em>Updated by Long Luo at 2016-6-11 03:44:26 @Shenzhen, China.</em></strong><br><strong><em>Updated by Long Luo at 2018年9月28日23点23分 @Hangzhou, China.</em></strong></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Long Luo
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/" title="大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)">http://longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BB%93%E6%9E%84%E4%BD%93/" rel="tag"># 结构体</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+              <a href="/tags/%E7%A7%91%E6%99%AE/" rel="tag"># 科普</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/" rel="prev" title="大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)">
+      <i class="fa fa-chevron-left"></i> 大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/" rel="next" title="大话结构体之六：无即是有，没有成员变量的Struct(结构体)">
+      大话结构体之六：无即是有，没有成员变量的Struct(结构体) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">编译过程：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E9%A2%84%E5%A4%84%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">1. 预处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E7%BC%96%E8%AF%91%E6%88%90%E6%B1%87%E7%BC%96%E4%BB%A3%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">2. 编译成汇编代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%BC%96%E8%AF%91%E6%88%90%E7%9B%AE%E6%A0%87%E4%BB%A3%E7%A0%81"><span class="nav-number">2.3.</span> <span class="nav-text">3. 编译成目标代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E7%BC%96%E8%AF%91%E6%88%90%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="nav-number">2.4.</span> <span class="nav-text">4. 编译成执行代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">内存分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%81%87%E5%A6%82%E6%88%91%E4%BB%AC%E4%B8%8D%E5%AF%B9%E9%BD%90%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">假如我们不对齐？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E9%BD%90%E7%9A%84%E5%A5%BD%E5%A4%84%E6%98%AF%E4%BB%80%E4%B9%88%E5%91%A2%EF%BC%9F"><span class="nav-number">3.2.</span> <span class="nav-text">对齐的好处是什么呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%B9%E9%BD%90%EF%BC%9F"><span class="nav-number">3.3.</span> <span class="nav-text">如何自定义对齐？</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">A Curious Programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">219</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com/" title="http:&#x2F;&#x2F;www.imlongluo.com" rel="noopener" target="_blank">Home</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http:&#x2F;&#x2F;blog.csdn.net&#x2F;tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2013 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '7ca34d90caaa495d6239',
+      clientSecret: 'c66ccf176e992f9103f86e5d965efe33f5f51114',
+      repo        : 'AppUnion.github.io',
+      owner       : 'AppUnion',
+      admin       : ['AppUnion'],
+      id          : 'a0d3577b23299c9f36c507e5380d4a39',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

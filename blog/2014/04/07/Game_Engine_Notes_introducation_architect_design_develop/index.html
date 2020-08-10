@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="By Long Luo 从小到大，虽然玩过的游戏不少，但是从写程序开始，目前为此仅仅写过2个游戏。其一是2011年在MTK平台下写的贪食蛇，其二是2010年在嵌入式开发板上写过一个迷宫的游戏。第一个代码量大概有3000行左右，第二个有2000行左右。 这2个游戏都很简单，而且网上有很多现成的例子可供参考，因此难度也比较低。 这2天把拖延了好久的**《Android应用开发揭秘》**的游戏引擎的那一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="游戏引擎学习笔记:介绍,架构,设计及实现">
+<meta property="og:url" content="http://longluo.me/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="By Long Luo 从小到大，虽然玩过的游戏不少，但是从写程序开始，目前为此仅仅写过2个游戏。其一是2011年在MTK平台下写的贪食蛇，其二是2010年在嵌入式开发板上写过一个迷宫的游戏。第一个代码量大概有3000行左右，第二个有2000行左右。 这2个游戏都很简单，而且网上有很多现成的例子可供参考，因此难度也比较低。 这2天把拖延了好久的**《Android应用开发揭秘》**的游戏引擎的那一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2014-04-06T16:17:51.000Z">
+<meta property="article:modified_time" content="2020-08-08T13:35:20.666Z">
+<meta property="article:author" content="Long Luo">
+<meta property="article:tag" content="游戏">
+<meta property="article:tag" content="游戏引擎">
+<meta property="article:tag" content="手游">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://longluo.me/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>游戏引擎学习笔记:介绍,架构,设计及实现 | Long Luo's Life Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Long Luo's Life Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          游戏引擎学习笔记:介绍,架构,设计及实现
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-04-07 00:17:51" itemprop="dateCreated datePublished" datetime="2014-04-07T00:17:51+08:00">2014-04-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-08 21:35:20" itemprop="dateModified" datetime="2020-08-08T21:35:20+08:00">2020-08-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Game/" itemprop="url" rel="index"><span itemprop="name">Game</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong><em>By Long Luo</em></strong></p>
+<p>从小到大，虽然玩过的游戏不少，但是从写程序开始，目前为此仅仅写过2个游戏。其一是2011年在MTK平台下写的贪食蛇，其二是2010年在嵌入式开发板上写过一个迷宫的游戏。第一个代码量大概有3000行左右，第二个有2000行左右。</p>
+<p>这2个游戏都很简单，而且网上有很多现成的例子可供参考，因此难度也比较低。</p>
+<p>这2天把拖延了好久的**<em>《Android应用开发揭秘》**</em>的游戏引擎的那一章看完了，收获还是很大，在此写一篇读书笔记。</p>
+<p>关于Game Engine，我能想到的几个问题：</p>
+<ol>
+<li>游戏引擎是什么？</li>
+<li>Game Engine是为了解决什么问题？</li>
+<li>Game Engine的架构是什么？</li>
+<li>如何设计一款游戏引擎？</li>
+<li>游戏引擎包含哪些模块？</li>
+</ol>
+<p>下面就来探讨几个问题：</p>
+<a id="more"></a>
+
+<h1 id="一、Game-Engine是什么？"><a href="#一、Game-Engine是什么？" class="headerlink" title="一、Game Engine是什么？"></a>一、Game Engine是什么？</h1><p>游戏产业在全球来看是一个很大的产业，一款游戏大作包含了非常多的元素。游戏涉及到剧情、人物、任务、关卡、地图、画质、美术、音乐、网络等多种元素。开发一款游戏实际上需要耗费非常多的资源，据说North Star的《GTA V》耗资几亿美元。正因为如此，在开发项目过程中，尽可能复用之前项目成功的东西就非常重要。</p>
+<p>一款游戏中，<em>Game Engine直接控制着剧情、关卡、美工、音乐、操作</em>等内容，将游戏的所有元素捆绑在一起。</p>
+<p>一般来说，一款Game Engine需要包含以下模块：</p>
+<ol>
+<li>基本框架（渲染、逻辑、物理 等等各部分如何组装）</li>
+<li>资源管理</li>
+<li>渲染</li>
+<li>基本逻辑（网游还要解决逻辑的同步问题）</li>
+<li>物理（有时候和逻辑合并）</li>
+</ol>
+<p>———–分割线，以下是重要但较为独立的部分————-<br>    6. <strong>UI</strong><br>    7. <strong>音乐音效</strong><br>    8. <strong>网络</strong><br>    9. <strong>脚本</strong>（有些类型的游戏引擎需要脚本和逻辑的关联性非常强，有些脚本则比较独立）</p>
+<h1 id="二、Game-Engine为了解决什么问题？"><a href="#二、Game-Engine为了解决什么问题？" class="headerlink" title="二、Game Engine为了解决什么问题？"></a>二、Game Engine为了解决什么问题？</h1><p><strong>Game Engine实际上有效的减少开发者编写程序时的冗余劳动，同时增强游戏的可移植性</strong>。</p>
+<p>Engine就是游戏的框架，我们需要往框架中填充内容就可以形成一个游戏。</p>
+<p>引擎，就是一系列的工具和生产链，像Unreal 3，Unity这样的成熟引擎，用起来非常方便，就是因为它的关卡/场景编辑器十分宜用，支持多种脚本语言。这类引擎运用恰当的话，理论上能将关卡调试和物件流水线的大部分工作从程序员那里完全移出。</p>
+<h1 id="三、Game-Engine的架构"><a href="#三、Game-Engine的架构" class="headerlink" title="三、Game Engine的架构"></a>三、Game Engine的架构</h1><pre><code>游戏 = 引擎(程序) + 资源(图像、声音、动画等)</code></pre>
+<p>目前的Game Engine的架构都是Model-View-Controller架构，逻辑和显示分开，由一个逻辑控制流来协调Client的请求和Server的行动。</p>
+<ol>
+<li>View: 负责界面回执</li>
+<li>Controller：处理工作流程的创建和种植，用户输入，各种事件的处理</li>
+<li>Model: 模型、逻辑，程序的功能实现</li>
+</ol>
+<p><strong>消息循环-&gt;更新数据-&gt;绘制各节点</strong> 这是绘制的基本结构基本不会有大的改变。 </p>
+<p>各种引擎的变种很大部分是在游戏逻辑上的封装。脚本也好，直接写代码也好。比如较为古老的数据与函数分离，以C语言为代表。大行其道的类结构。以c++为代表。以及现在光环日耀的CBSE，基于组件的架构</p>
+<h1 id="四、如何设计一款游戏引擎？"><a href="#四、如何设计一款游戏引擎？" class="headerlink" title="四、如何设计一款游戏引擎？"></a>四、如何设计一款游戏引擎？</h1><h2 id="4-1-结构设计及功能设计"><a href="#4-1-结构设计及功能设计" class="headerlink" title="4.1 结构设计及功能设计"></a>4.1 结构设计及功能设计</h2><p>Game Engine的设计包括结构设计、功能设计及注意事项。</p>
+<p>Game Engine包括<strong>图形引擎</strong>、脚本引擎、物理引擎、工具模块、音效引擎、网络组件、事件组件等。</p>
+<p>Android游戏主要包括一个Activity类、流程控制类、游戏线程类和游戏对象类。Activity类是游戏的执行单元，负责游戏生命周期的控制。</p>
+<p>流程控制：提供在游戏中多个界面之间切换方法；</p>
+<p>游戏线程：不断监测可能发生的各种事件，计算游戏状态，刷新屏幕。</p>
+<h2 id="4-2-注意事项："><a href="#4-2-注意事项：" class="headerlink" title="4.2 注意事项："></a>4.2 注意事项：</h2><p>手机游戏的主要问题是 硬件限制 及 电池瓶颈。CPU及内存不足，屏幕大小，音效等多方面限制，在设计时需要注意这些方面。</p>
+<h1 id="五、实现一款游戏引擎"><a href="#五、实现一款游戏引擎" class="headerlink" title="五、实现一款游戏引擎"></a>五、实现一款游戏引擎</h1><p>游戏引擎<strong>只是一款炒菜的炒菜锅，但有了好的炒菜锅不一定能保证炒出好的菜</strong>。</p>
+<p>游戏引擎的实现就很复杂了，需要按照上一节的架构及功能设计去编码实现，目前绝大部分都是面向对象编程，设计好各种类。比如人物、NPC、道具、动画、动植物等等。有余力的同学可以去研究研究。</p>
+<p>最近流行的一些游戏，其实也并不需要多么NB的游戏引擎，充分发掘用户的痛点才能设计出一款好的游戏。</p>
+<p>目前有很多开源的Game Engine可供大家研究，比如Unity3D, Box2D等，大家可以去网上搜索并研究。</p>
+<h1 id="六、对手机游戏的展望"><a href="#六、对手机游戏的展望" class="headerlink" title="六、对手机游戏的展望"></a>六、对手机游戏的展望</h1><p>这2年玩过的手机游戏也不少，我也来谈谈一款好的手机游戏应该具备哪些特征：</p>
+<ol>
+<li><strong>上手容易，精通不易</strong>，且玩且珍惜。手游面向的是大众，所以上手难的游戏就一律pass，必须保证游戏具有简单性，让玩家一安装就可以玩的；</li>
+<li><strong><em>可中断，时间短</em></strong>。一般玩游戏，都是在公交地铁上等碎片时间里，所以提供的是短时间的娱乐效果，允许在游戏和工作模式之间顺利切换；</li>
+<li><strong>必须加入SNS元素</strong>：一款好的手游应该具有社交元素，可以加入LBS寻找周围的玩家，或和好友一起玩游戏及互动，抑或者认识新的好友。因为手游都很简单，所以要留住玩家，加入SNS可以留住玩家；</li>
+<li>充分利用手机的各项优点：手机的优点比如便携性，私密性，即使抵达。手机是我们身体的延伸，所以一款好的游戏应该充分利用手机的一些传感器、摄像头、网络、蓝牙，找出特点，以便设计出一款优秀的游戏。</li>
+<li>…</li>
+</ol>
+<p><strong><em>Long Luo Created at AM00:17 April 07th, 2014 @Shenzhen, China.</em></strong><br><strong><em>Long Luo Completed at PM21:35 April 07th, 2014 @Shenzhen, China.</em></strong><br><strong><em>Long Luo Modified at 2018年10月2日03点38分 in Shenzhen, China.</em></strong></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Long Luo
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://longluo.me/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/" title="游戏引擎学习笔记:介绍,架构,设计及实现">http://longluo.me/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag"># 游戏</a>
+              <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E/" rel="tag"># 游戏引擎</a>
+              <a href="/tags/%E6%89%8B%E6%B8%B8/" rel="tag"># 手游</a>
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/" rel="prev" title="学车思考之一:方向盘转多少,车轮就转多少度对吗?">
+      <i class="fa fa-chevron-left"></i> 学车思考之一:方向盘转多少,车轮就转多少度对吗?
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2014/04/07/tips_for_performances_optimization_on_build_an_android_app_draft/" rel="next" title="Android App性能优化笔记之一:性能优化是什么及为什么?">
+      Android App性能优化笔记之一:性能优化是什么及为什么? <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81Game-Engine%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">一、Game Engine是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Game-Engine%E4%B8%BA%E4%BA%86%E8%A7%A3%E5%86%B3%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">二、Game Engine为了解决什么问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81Game-Engine%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="nav-number">3.</span> <span class="nav-text">三、Game Engine的架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E6%AC%BE%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">四、如何设计一款游戏引擎？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E5%8A%9F%E8%83%BD%E8%AE%BE%E8%AE%A1"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 结构设计及功能设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 注意事项：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%AE%9E%E7%8E%B0%E4%B8%80%E6%AC%BE%E6%B8%B8%E6%88%8F%E5%BC%95%E6%93%8E"><span class="nav-number">5.</span> <span class="nav-text">五、实现一款游戏引擎</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E5%AF%B9%E6%89%8B%E6%9C%BA%E6%B8%B8%E6%88%8F%E7%9A%84%E5%B1%95%E6%9C%9B"><span class="nav-number">6.</span> <span class="nav-text">六、对手机游戏的展望</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">A Curious Programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">219</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com/" title="http:&#x2F;&#x2F;www.imlongluo.com" rel="noopener" target="_blank">Home</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http:&#x2F;&#x2F;blog.csdn.net&#x2F;tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2013 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '7ca34d90caaa495d6239',
+      clientSecret: 'c66ccf176e992f9103f86e5d965efe33f5f51114',
+      repo        : 'AppUnion.github.io',
+      owner       : 'AppUnion',
+      admin       : ['AppUnion'],
+      id          : 'bcdb1ddd998c76a4cec51074dacef6d4',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="In general, Map is a data structure consisting of a set of key-value pairs, and eachkey can only appears once in the map. This post summarizes Top 9 FAQ of howto use Java Map and its implemented class">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Top 9 Questions About Java Maps">
+<meta property="og:url" content="http://longluo.me/blog/2016/08/08/Top-9-Questions-About-Java-Maps/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="In general, Map is a data structure consisting of a set of key-value pairs, and eachkey can only appears once in the map. This post summarizes Top 9 FAQ of howto use Java Map and its implemented class">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-08-08T03:18:22.000Z">
+<meta property="article:modified_time" content="2020-08-08T13:35:20.680Z">
+<meta property="article:author" content="Long Luo">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Map">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://longluo.me/blog/2016/08/08/Top-9-Questions-About-Java-Maps/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Top 9 Questions About Java Maps | Long Luo's Life Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Long Luo's Life Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/08/Top-9-Questions-About-Java-Maps/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Top 9 Questions About Java Maps
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-08 11:18:22" itemprop="dateCreated datePublished" datetime="2016-08-08T11:18:22+08:00">2016-08-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-08 21:35:20" itemprop="dateModified" datetime="2020-08-08T21:35:20+08:00">2020-08-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>In general, Map is a data structure consisting of a set of key-value pairs, and each<br>key can only appears once in the map. This post summarizes Top 9 FAQ of how<br>to use Java Map and its implemented classes. For sake of simplicity, I will use<br>generics in examples. Therefore, I will just write Map instead of specific Map. But<br>you can always assume that both the K and V are comparable, which means K<br>extends Comparable and V extends Comparable.</p>
+<h1 id="1-convert-a-map-to-list"><a href="#1-convert-a-map-to-list" class="headerlink" title="1. convert a map to list"></a>1. convert a map to list</h1><p>In Java, Map interface provides three collection views: key set, value set, and keyvalue set. All of them can be converted to List by using a constructor or addAll()<br>method. The following snippet of code shows how to construct an ArrayList from a map.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// key list</span></span><br><span class="line">List keyList = <span class="keyword">new</span> ArrayList(map.keySet());</span><br><span class="line"><span class="comment">// value list</span></span><br><span class="line">List valueList = <span class="keyword">new</span> ArrayList(map.valueSet());</span><br><span class="line"><span class="comment">// key value list</span></span><br><span class="line">List entryList = <span class="keyword">new</span> ArrayList(map.entrySet());</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-iterate-over-each-entry-in-a-map"><a href="#2-iterate-over-each-entry-in-a-map" class="headerlink" title="2. iterate over each entry in a map"></a>2. iterate over each entry in a map</h1><p>Iterating over every pair of key-value is the most basic operation to traverse a map. In Java, such pair is stored in the map entry called Map.Entry. </p>
+<h1 id="3-SORT-A-MAP-ON-THE-KEYS"><a href="#3-SORT-A-MAP-ON-THE-KEYS" class="headerlink" title="3. SORT A MAP ON THE KEYS"></a>3. SORT A MAP ON THE KEYS</h1><p>Map.entrySet() returns a key-value set, therefore the most efficient way of going through every entry of a map is </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Entry entry:map.entrySet()) &#123;</span><br><span class="line">    <span class="comment">// get key</span></span><br><span class="line">    K key = entry.getKey();</span><br><span class="line">    <span class="comment">// get value</span></span><br><span class="line">    V value = entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Iterator can also be used, especially before JDK 1.5</p>
+<pre><code class="java">Iterator itr = map.entrySet().iterator();
+while(itr.hasNext ( ) ) &#123;
+Entry ent ry = i t r . next ( ) ;
+/ / g e t k ey
+K key = ent ry . getKey ( ) ;
+/ / g e t v a l u e
+V value = ent ry . getValue ( ) ;
+&#125;
+60.3 sort a map on the keys
+Sorting a map on the keys is another frequent operation. One way is to put
+Map.Entry into a list, and sort it using a comparator that sorts the value.
+Li s t l i s t = new Ar rayLi s t (map. ent rySe t ( ) ) ;
+Co l l e c t i ons . s o r t ( l i s t , new Comparator ( ) &#123;
+@Override
+public int compare ( Entry e1 , Entry e2 ) &#123;
+return e1 . getKey ( ) . compareTo ( e2 . getKey ( ) ) ;
+&#125;
+&#125; ) ;
+The other way is to use SortedMap, which further provides a total ordering on its
+keys. Therefore all keys must either implement Comparable or be accepted by the
+comparator.
+60.4. SORT A MAP ON THE VALUES 216
+One implementing class of SortedMap is TreeMap. Its constructor can accept a
+comparator. The following code shows how to transform a general map to a
+sorted map.
+SortedMap sortedMap = new TreeMap (new Comparator ( ) &#123;
+@Override
+public int compare (K k1 , K k2 ) &#123;
+return k1 . compareTo ( k2 ) ;
+&#125;
+&#125; ) ;
+sortedMap . putAll (map) ;
+60.4 sort a map on the values
+Putting the map into a list and sorting it works on this case too, but we need
+to compare Entry.getValue() this time. The code below is almost same as before.
+Li s t l i s t = new Ar rayLi s t (map. ent rySe t ( ) ) ;
+Co l l e c t i ons . s o r t ( l i s t , new Comparator ( ) &#123;
+@Override
+public int compare ( Entry e1 , Entry e2 ) &#123;
+return e1 . getValue ( ) . compareTo ( e2 . getValue ( ) ) ;
+&#125;
+&#125; ) ;
+We can still use a sorted map for this question, but only if the values are unique too.
+Under such condition, you can reverse the key=value pair to value=key. This solution
+has very strong limitation therefore is not really recommended by me.
+60.5 initialize a static/immutable map
+When you expect a map to remain constant, it’s a good practice to copy it into
+an immutable map. Such defensive programming techniques will help you create
+not only safe for use but also safe for thread maps.
+60.6. DIFFERENCE BETWEEN HASHMAP, TREEMAP, AND HASHTABLE 217
+To initialize a static/immutable map, we can use a static initializer (like below).
+The problem of this code is that, although map is declared as static final, we can
+still operate it after initialization, like Test.map.put(3,&quot;three&quot;);. Therefore it is not
+really immutable. To create an immutable map using a static initializer, we need
+an extra anonymous class and copy it into a unmodifiable map at the last step of
+initialization. Please see the second piece of code. Then, an UnsupportedOperationException
+will be thrown if you run Test.map.put(3,&quot;three&quot;);.
+public c l a s s Tes t &#123;
+pr ivate s t a t i c f ina l Map map;
+s t a t i c &#123;
+map = new HashMap ( ) ;
+map. put ( 1 , &quot; one &quot; ) ;
+map. put ( 2 , &quot; two &quot; ) ;
+&#125;
+&#125;
+public c l a s s Tes t &#123;
+pr ivate s t a t i c f ina l Map map;
+s t a t i c &#123;
+Map aMap = new HashMap ( ) ;
+aMap. put ( 1 , &quot; one &quot; ) ;
+aMap. put ( 2 , &quot; two &quot; ) ;
+map = Co l l e c t i ons . unmodifiableMap (aMap) ;
+&#125;
+&#125;
+Guava libraries also support different ways of intilizaing a static and immutable
+collection. To learn more about the benefits of Guava’s immutable collection utilities,
+see Immutable Collections Explained in Guava User Guide.
+60.6 difference between hashmap, treemap, and hashtable
+There are three main implementations of Map interface in Java: HashMap, TreeMap,
+and Hashtable. The most important differences include:
+ The order of iteration. HashMap and HashTable make no guarantees as to
+the order of the map; in particular, they do not guarantee that the order
+60.7. A MAP WITH REVERSE VIEW/LOOKUP 218
+will remain constant over time. But TreeMap will iterate the whole entries
+according the “natural ordering” of the keys or by a comparator.
+ key-value permission. HashMap allows null key and null values. HashTable
+does not allow null key or null values. If TreeMap uses natural ordering or
+its comparator does not allow null keys, an exception will be thrown.
+ Synchronized. Only HashTable is synchronized, others are not. Therefore,
+“if a thread-safe implementation is not needed, it is recommended to use
+HashMap in place of HashTable.”
+A more complete comparison is
+| HashMap | HashTable | TreeMap
+i t e r a t i o n order | no | no | yes
+null key value | yes yes | yes yes | no yes
+synchronized | no | yes | no
+time performance | O( 1 ) | O( 1 ) | O( log n)
+implementation | buckets | buckets | red black t r e e
+Read more about HashMap vs. TreeMap vs. Hashtable vs. LinkedHashMap.
+60.7 a map with reverse view/lookup
+Sometimes, we need a set of key-key pairs, which means the map’s values are
+unique as well as keys (one-to-one map). This constraint enables to create an
+“inverse lookup/view” of a map. So we can lookup a key by its value. Such
+data structure is called bidirectional map, which unfortunetely is not supported
+by JDK.
+60.8 both apache common collections and guava provide implementation
+of bidirectional map, called bidimap and bimap,
+respectively. both enforce the restriction that there is a
+1:1 relation between keys and values. 7. shallow copy of a
+map
+Most implementation of a map in java, if not all, provides a constructor of copy
+of another map. But the copy procedure is not synchronized. That means when
+60.9. FOR THIS REASON, I WILL NOT EVEN TELL YOU HOW TO USE CLONE() METHOD TO COPY one thread copies a map, another one may modify it structurally. To [prevent
+accidental unsynchronized copy, one should use Collections.synchronizedMap()
+in advance.
+Map copiedMap = Co l l e c t i ons . synchronizedMap (map) ;
+Another interesting way of shallow copy is by using clone() method. However it is
+NOT even recommended by the designer of Java collection framework, Josh Bloch.
+In a conversation about “Copy constructor versus cloning“, he said
+I often provide a public clone method on concrete classes because people expect it.
+â˘A ˛e It’s a shame that Cloneable is broken, but it happens. â˘A˛e Cloneable is a weak
+spot, and I think people should be aware of its limitations.
+60.9 for this reason, i will not even tell you how to use clone()
+method to copy a map. 8. create an empty map
+If the map is immutable, use
+map = Co l l e c t i ons . emptyMap ( ) ;
+Otherwise, use whichever implementation. For example
+map = new HashMap ( ) ;
+THE
+
+
+
+</code></pre>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Long Luo
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://longluo.me/blog/2016/08/08/Top-9-Questions-About-Java-Maps/" title="Top 9 Questions About Java Maps">http://longluo.me/blog/2016/08/08/Top-9-Questions-About-Java-Maps/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Map/" rel="tag"># Map</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/" rel="prev" title="关于Java Collections应知应会">
+      <i class="fa fa-chevron-left"></i> 关于Java Collections应知应会
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/" rel="next" title="3分钟速读：图解Java Collections的接口以及类层级关系">
+      3分钟速读：图解Java Collections的接口以及类层级关系 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-convert-a-map-to-list"><span class="nav-number">1.</span> <span class="nav-text">1. convert a map to list</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-iterate-over-each-entry-in-a-map"><span class="nav-number">2.</span> <span class="nav-text">2. iterate over each entry in a map</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-SORT-A-MAP-ON-THE-KEYS"><span class="nav-number">3.</span> <span class="nav-text">3. SORT A MAP ON THE KEYS</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">A Curious Programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">219</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com/" title="http:&#x2F;&#x2F;www.imlongluo.com" rel="noopener" target="_blank">Home</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http:&#x2F;&#x2F;blog.csdn.net&#x2F;tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2013 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '7ca34d90caaa495d6239',
+      clientSecret: 'c66ccf176e992f9103f86e5d965efe33f5f51114',
+      repo        : 'AppUnion.github.io',
+      owner       : 'AppUnion',
+      admin       : ['AppUnion'],
+      id          : '21112bc1564c7adaf082f12beb017035',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

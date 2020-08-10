@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Android Asset Packaging Tool AAPT命令格式.&#x2F;appt 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android AAPT">
+<meta property="og:url" content="http://longluo.me/blog/2016/10/06/Android-Develop-Tools-AAPT-Manual/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="Android Asset Packaging Tool AAPT命令格式.&#x2F;appt 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-10-06T02:23:08.000Z">
+<meta property="article:modified_time" content="2020-08-08T13:35:20.663Z">
+<meta property="article:author" content="Long Luo">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="AAPT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://longluo.me/blog/2016/10/06/Android-Develop-Tools-AAPT-Manual/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Android AAPT | Long Luo's Life Notes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Long Luo's Life Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/10/06/Android-Develop-Tools-AAPT-Manual/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android AAPT
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-10-06 10:23:08" itemprop="dateCreated datePublished" datetime="2016-10-06T10:23:08+08:00">2016-10-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-08 21:35:20" itemprop="dateModified" datetime="2020-08-08T21:35:20+08:00">2020-08-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Android Asset Packaging Tool</p>
+<h1 id="AAPT命令格式"><a href="#AAPT命令格式" class="headerlink" title="AAPT命令格式"></a>AAPT命令格式</h1><p>./appt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br></pre></td><td class="code"><pre><span class="line">E:\Android\SDK\build-tools\24.0.1&gt;aapt</span><br><span class="line">Android Asset Packaging Tool</span><br><span class="line"></span><br><span class="line">Usage:</span><br><span class="line"> aapt l[ist] [-v] [-a] file.&#123;zip,jar,apk&#125;</span><br><span class="line">   List contents of Zip-compatible archive.</span><br><span class="line"></span><br><span class="line"> aapt d[ump] [--values] [--include-meta-data] WHAT file.&#123;apk&#125; [asset [asset ...]]</span><br><span class="line">   strings          Print the contents of the resource table string pool in the APK.</span><br><span class="line">   badging          Print the label and icon for the app declared in APK.</span><br><span class="line">   permissions      Print the permissions from the APK.</span><br><span class="line">   resources        Print the resource table from the APK.</span><br><span class="line">   configurations   Print the configurations in the APK.</span><br><span class="line">   xmltree          Print the compiled xmls in the given assets.</span><br><span class="line">   xmlstrings       Print the strings of the given compiled xml assets.</span><br><span class="line"></span><br><span class="line"> aapt p[ackage] [-d][-f][-m][-u][-v][-x][-z][-M AndroidManifest.xml] \</span><br><span class="line">        [-0 extension [-0 extension ...]] [-g tolerance] [-j jarfile] \</span><br><span class="line">        [--debug-mode] [--min-sdk-version VAL] [--target-sdk-version VAL] \</span><br><span class="line">        [--app-version VAL] [--app-version-name TEXT] [--custom-package VAL] \</span><br><span class="line">        [--rename-manifest-package PACKAGE] \</span><br><span class="line">        [--rename-instrumentation-target-package PACKAGE] \</span><br><span class="line">        [--utf16] [--auto-add-overlay] \</span><br><span class="line">        [--max-res-version VAL] \</span><br><span class="line">        [-I base-package [-I base-package ...]] \</span><br><span class="line">        [-A asset-source-dir]  [-G class-list-file] [-P public-definitions-file] \</span><br><span class="line">        [-D main-dex-class-list-file] \</span><br><span class="line">        [-S resource-sources [-S resource-sources ...]] \</span><br><span class="line">        [-F apk-file] [-J R-file-dir] \</span><br><span class="line">        [--product product1,product2,...] \</span><br><span class="line">        [-c CONFIGS] [--preferred-density DENSITY] \</span><br><span class="line">        [--split CONFIGS [--split CONFIGS]] \</span><br><span class="line">        [--feature-of package [--feature-after package]] \</span><br><span class="line">        [raw-files-dir [raw-files-dir] ...] \</span><br><span class="line">        [--output-text-symbols DIR]</span><br><span class="line"></span><br><span class="line">   Package the android resources.  It will read assets and resources that are</span><br><span class="line">   supplied with the -M -A -S or raw-files-dir arguments.  The -J -P -F and -R</span><br><span class="line">   options control which files are output.</span><br><span class="line"></span><br><span class="line"> aapt r[emove] [-v] file.&#123;zip,jar,apk&#125; file1 [file2 ...]</span><br><span class="line">   Delete specified files from Zip-compatible archive.</span><br><span class="line"></span><br><span class="line"> aapt a[dd] [-v] file.&#123;zip,jar,apk&#125; file1 [file2 ...]</span><br><span class="line">   Add specified files to Zip-compatible archive.</span><br><span class="line"></span><br><span class="line"> aapt c[runch] [-v] -S resource-sources ... -C output-folder ...</span><br><span class="line">   Do PNG preprocessing on one or several resource folders</span><br><span class="line">   and store the results in the output folder.</span><br><span class="line"></span><br><span class="line"> aapt s[ingleCrunch] [-v] -i input-file -o outputfile</span><br><span class="line">   Do PNG preprocessing on a single file.</span><br><span class="line"></span><br><span class="line"> aapt v[ersion]</span><br><span class="line">   Print program version.</span><br><span class="line"></span><br><span class="line"> Modifiers:</span><br><span class="line">   -a  print Android-specific data (resources, manifest) when listing</span><br><span class="line">   -c  specify which configurations to include.  The default is all</span><br><span class="line">       configurations.  The value of the parameter should be a comma</span><br><span class="line">       separated list of configuration values.  Locales should be specified</span><br><span class="line">       as either a language or language-region pair.  Some examples:</span><br><span class="line">            en</span><br><span class="line">            port,en</span><br><span class="line">            port,land,en_US</span><br><span class="line">   -d  one or more device assets to include, separated by commas</span><br><span class="line">   -f  force overwrite of existing files</span><br><span class="line">   -g  specify a pixel tolerance to force images to grayscale, default 0</span><br><span class="line">   -j  specify a jar or zip file containing classes to include</span><br><span class="line">   -k  junk path of file(s) added</span><br><span class="line">   -m  make package directories under location specified by -J</span><br><span class="line">   -u  update existing packages (add new, replace older, remove deleted files)</span><br><span class="line">   -v  verbose output</span><br><span class="line">   -x  create extending (non-application) resource IDs</span><br><span class="line">   -z  require localization of resource attributes marked with</span><br><span class="line">       localization&#x3D;&quot;suggested&quot;</span><br><span class="line">   -A  additional directory in which to find raw asset files</span><br><span class="line">   -G  A file to output proguard options into.</span><br><span class="line">   -D  A file to output proguard options for the main dex into.</span><br><span class="line">   -F  specify the apk file to output</span><br><span class="line">   -I  add an existing package to base include set</span><br><span class="line">   -J  specify where to output R.java resource constant definitions</span><br><span class="line">   -M  specify full path to AndroidManifest.xml to include in zip</span><br><span class="line">   -P  specify where to output public resource definitions</span><br><span class="line">   -S  directory in which to find resources.  Multiple directories will be scanned</span><br><span class="line">       and the first match found (left to right) will take precedence.</span><br><span class="line">   -0  specifies an additional extension for which such files will not</span><br><span class="line">       be stored compressed in the .apk.  An empty string means to not</span><br><span class="line">       compress any files at all.</span><br><span class="line">   --debug-mode</span><br><span class="line">       inserts android:debuggable&#x3D;&quot;true&quot; in to the application node of the</span><br><span class="line">       manifest, making the application debuggable even on production devices.</span><br><span class="line">   --include-meta-data</span><br><span class="line">       when used with &quot;dump badging&quot; also includes meta-data tags.</span><br><span class="line">   --pseudo-localize</span><br><span class="line">       generate resources for pseudo-locales (en-XA and ar-XB).</span><br><span class="line">   --min-sdk-version</span><br><span class="line">       inserts android:minSdkVersion in to manifest.  If the version is 7 or</span><br><span class="line">       higher, the default encoding for resources will be in UTF-8.</span><br><span class="line">   --target-sdk-version</span><br><span class="line">       inserts android:targetSdkVersion in to manifest.</span><br><span class="line">   --max-res-version</span><br><span class="line">       ignores versioned resource directories above the given value.</span><br><span class="line">   --values</span><br><span class="line">       when used with &quot;dump resources&quot; also includes resource values.</span><br><span class="line">   --version-code</span><br><span class="line">       inserts android:versionCode in to manifest.</span><br><span class="line">   --version-name</span><br><span class="line">       inserts android:versionName in to manifest.</span><br><span class="line">   --replace-version</span><br><span class="line">       If --version-code and&#x2F;or --version-name are specified, these</span><br><span class="line">       values will replace any value already in the manifest. By</span><br><span class="line">       default, nothing is changed if the manifest already defines</span><br><span class="line">       these attributes.</span><br><span class="line">   --custom-package</span><br><span class="line">       generates R.java into a different package.</span><br><span class="line">   --extra-packages</span><br><span class="line">       generate R.java for libraries. Separate libraries with &#39;:&#39;.</span><br><span class="line">   --generate-dependencies</span><br><span class="line">       generate dependency files in the same directories for R.java and resource package</span><br><span class="line">   --auto-add-overlay</span><br><span class="line">       Automatically add resources that are only in overlays.</span><br><span class="line">   --preferred-density</span><br><span class="line">       Specifies a preference for a particular density. Resources that do not</span><br><span class="line">       match this density and have variants that are a closer match are removed.</span><br><span class="line">   --split</span><br><span class="line">       Builds a separate split APK for the configurations listed. This can</span><br><span class="line">       be loaded alongside the base APK at runtime.</span><br><span class="line">   --feature-of</span><br><span class="line">       Builds a split APK that is a feature of the apk specified here. Resources</span><br><span class="line">       in the base APK can be referenced from the the feature APK.</span><br><span class="line">   --feature-after</span><br><span class="line">       An app can have multiple Feature Split APKs which must be totally ordered.</span><br><span class="line">       If --feature-of is specified, this flag specifies which Feature Split APK</span><br><span class="line">       comes before this one. The first Feature Split APK should not define</span><br><span class="line">       anything here.</span><br><span class="line">   --rename-manifest-package</span><br><span class="line">       Rewrite the manifest so that its package name is the package name</span><br><span class="line">       given here.  Relative class names (for example .Foo) will be</span><br><span class="line">       changed to absolute names with the old package so that the code</span><br><span class="line">       does not need to change.</span><br><span class="line">   --rename-instrumentation-target-package</span><br><span class="line">       Rewrite the manifest so that all of its instrumentation</span><br><span class="line">       components target the given package.  Useful when used in</span><br><span class="line">       conjunction with --rename-manifest-package to fix tests against</span><br><span class="line">       a package that has been renamed.</span><br><span class="line">   --product</span><br><span class="line">       Specifies which variant to choose for strings that have</span><br><span class="line">       product variants</span><br><span class="line">   --utf16</span><br><span class="line">       changes default encoding for resources to UTF-16.  Only useful when API</span><br><span class="line">       level is set to 7 or higher where the default encoding is UTF-8.</span><br><span class="line">   --non-constant-id</span><br><span class="line">       Make the resources ID non constant. This is required to make an R java class</span><br><span class="line">       that does not contain the final value but is used to make reusable compiled</span><br><span class="line">       libraries that need to access resources.</span><br><span class="line">   --shared-lib</span><br><span class="line">       Make a shared library resource package that can be loaded by an application</span><br><span class="line">       at runtime to access the libraries resources. Implies --non-constant-id.</span><br><span class="line">   --app-as-shared-lib</span><br><span class="line">       Make an app resource package that also can be loaded as shared library at runtime.</span><br><span class="line">       Implies --non-constant-id.</span><br><span class="line">   --error-on-failed-insert</span><br><span class="line">       Forces aapt to return an error if it fails to insert values into the manifest</span><br><span class="line">       with --debug-mode, --min-sdk-version, --target-sdk-version --version-code</span><br><span class="line">       and --version-name.</span><br><span class="line">       Insertion typically fails if the manifest already defines the attribute.</span><br><span class="line">   --error-on-missing-config-entry</span><br><span class="line">       Forces aapt to return an error if it fails to find an entry for a configuration.</span><br><span class="line">   --output-text-symbols</span><br><span class="line">       Generates a text file containing the resource symbols of the R class in the</span><br><span class="line">       specified folder.</span><br><span class="line">   --ignore-assets</span><br><span class="line">       Assets to be ignored. Default pattern is:</span><br><span class="line">       !.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir&gt;_*:!CVS:!thumbs.db:!picasa.ini:!*~</span><br><span class="line">   --skip-symbols-without-default-localization</span><br><span class="line">       Prevents symbols from being generated for strings that do not have a default</span><br><span class="line">       localization</span><br><span class="line">   --no-version-vectors</span><br><span class="line">       Do not automatically generate versioned copies of vector XML resources.</span><br><span class="line">   --private-symbols</span><br><span class="line">       Java package name to use when generating R.java for private resources.</span><br></pre></td></tr></table></figure>
+
+<h1 id="AAPT版本信息"><a href="#AAPT版本信息" class="headerlink" title="AAPT版本信息"></a>AAPT版本信息</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aapt v[ersion] [&lt;APK Path&gt;]</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\Android\SDK\build-tools\24.0.1&gt;aapt v</span><br><span class="line">Android Asset Packaging Tool, v0.2-3051502</span><br></pre></td></tr></table></figure>
+
+<h1 id="修改APK包"><a href="#修改APK包" class="headerlink" title="修改APK包"></a>修改APK包</h1><p>aapt p[ackage]</p>
+<p>aapt r[emove]</p>
+<p>aapt a[dd]</p>
+<h1 id="AAPT"><a href="#AAPT" class="headerlink" title="AAPT"></a>AAPT</h1><p>./aapt l[ist] <APK Path></p>
+<h1 id="AAPT-Source-Code"><a href="#AAPT-Source-Code" class="headerlink" title="AAPT Source Code"></a>AAPT Source Code</h1><p>AAPT的源代码位于 <code>frameworks/base/tools/aapt/</code></p>
+<p>包含的代码文件如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">AaptAssets.cpp    07-Jan-2016    51.4 KiB</span><br><span class="line">AaptAssets.h    07-Jan-2016    19 KiB</span><br><span class="line">AaptConfig.cpp    07-Jan-2016    23.2 KiB</span><br><span class="line">AaptConfig.h    07-Jan-2016    3.7 KiB</span><br><span class="line">AaptUtil.cpp    07-Jan-2016    1.6 KiB</span><br><span class="line">AaptUtil.h    07-Jan-2016    2.1 KiB</span><br><span class="line">AaptXml.cpp    07-Jan-2016    5.7 KiB</span><br><span class="line">AaptXml.h    07-Jan-2016    4.4 KiB</span><br><span class="line">Android.mk    07-Jan-2016    3.6 KiB</span><br><span class="line">ApkBuilder.cpp    07-Jan-2016    4.4 KiB</span><br><span class="line">ApkBuilder.h    07-Jan-2016    3.3 KiB</span><br><span class="line">Bundle.h    07-Jan-2016    15.6 KiB</span><br><span class="line">CacheUpdater.h    07-Jan-2016    3.6 KiB</span><br><span class="line">Command.cpp    07-Jan-2016    122.2 KiB</span><br><span class="line">ConfigDescription.h    07-Jan-2016    2.2 KiB</span><br><span class="line">CrunchCache.cpp    07-Jan-2016    3.6 KiB</span><br><span class="line">CrunchCache.h    07-Jan-2016    3.4 KiB</span><br><span class="line">DirectoryWalker.h    07-Jan-2016    2.5 KiB</span><br><span class="line">FileFinder.cpp    07-Jan-2016    2.8 KiB</span><br><span class="line">FileFinder.h    07-Jan-2016    2.8 KiB</span><br><span class="line">Images.cpp    07-Jan-2016    48.6 KiB</span><br><span class="line">Images.h    07-Jan-2016    680</span><br><span class="line">IndentPrinter.h    07-Jan-2016    1.3 KiB</span><br><span class="line">Main.cpp    07-Jan-2016    30 KiB</span><br><span class="line">Main.h    07-Jan-2016    1.9 KiB</span><br><span class="line">NOTICE    07-Jan-2016    10.4 KiB</span><br><span class="line">OutputSet.h    07-Jan-2016    1.5 KiB</span><br><span class="line">Package.cpp    07-Jan-2016    14.8 KiB</span><br><span class="line">pseudolocalize.cpp    07-Jan-2016    11.7 KiB</span><br><span class="line">pseudolocalize.h    07-Jan-2016    1.5 KiB</span><br><span class="line">Resource.cpp    07-Jan-2016    118 KiB</span><br><span class="line">ResourceFilter.cpp    07-Jan-2016    3.8 KiB</span><br><span class="line">ResourceFilter.h    07-Jan-2016    3.4 KiB</span><br><span class="line">ResourceIdCache.cpp    07-Jan-2016    2.9 KiB</span><br><span class="line">ResourceIdCache.h    07-Jan-2016    598</span><br><span class="line">ResourceTable.cpp    07-Jan-2016    186.5 KiB</span><br><span class="line">ResourceTable.h    07-Jan-2016    22.8 KiB</span><br><span class="line">SdkConstants.h    07-Jan-2016    1.2 KiB</span><br><span class="line">SourcePos.cpp    07-Jan-2016    3 KiB</span><br><span class="line">SourcePos.h    07-Jan-2016    567</span><br><span class="line">StringPool.cpp    07-Jan-2016    19.3 KiB</span><br><span class="line">StringPool.h    07-Jan-2016    6.8 KiB</span><br><span class="line">Symbol.h    07-Jan-2016    2.6 KiB</span><br><span class="line">tests&#x2F;    07-Jan-2016    4 KiB</span><br><span class="line">WorkQueue.cpp    07-Jan-2016    4.1 KiB</span><br><span class="line">WorkQueue.h    07-Jan-2016    3.7 KiB</span><br><span class="line">XMLNode.cpp    07-Jan-2016    53.1 KiB</span><br><span class="line">XMLNode.h    07-Jan-2016    6.1 KiB</span><br><span class="line">ZipEntry.cpp    07-Jan-2016    22.1 KiB</span><br><span class="line">ZipEntry.h    07-Jan-2016    10.2 KiB</span><br><span class="line">ZipFile.cpp    07-Jan-2016    36.3 KiB</span><br><span class="line">ZipFile.h    07-Jan-2016    8.5 KiB</span><br></pre></td></tr></table></figure>
+
+
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Long Luo
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://longluo.me/blog/2016/10/06/Android-Develop-Tools-AAPT-Manual/" title="Android AAPT">http://longluo.me/blog/2016/10/06/Android-Develop-Tools-AAPT-Manual/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/AAPT/" rel="tag"># AAPT</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/blog/2016/10/01/Android-Develop-Tools-ADB-Manual/" rel="prev" title="Android ADB工具">
+      <i class="fa fa-chevron-left"></i> Android ADB工具
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/blog/2016/10/08/wo-yu-di-tuan/" rel="next" title="史铁生：《我与地坛》">
+      史铁生：《我与地坛》 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AAPT%E5%91%BD%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">AAPT命令格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AAPT%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">2.</span> <span class="nav-text">AAPT版本信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9APK%E5%8C%85"><span class="nav-number">3.</span> <span class="nav-text">修改APK包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AAPT"><span class="nav-number">4.</span> <span class="nav-text">AAPT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AAPT-Source-Code"><span class="nav-number">5.</span> <span class="nav-text">AAPT Source Code</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">A Curious Programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">219</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/yourname" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com/" title="http:&#x2F;&#x2F;www.imlongluo.com" rel="noopener" target="_blank">Home</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http:&#x2F;&#x2F;blog.csdn.net&#x2F;tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2013 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '7ca34d90caaa495d6239',
+      clientSecret: 'c66ccf176e992f9103f86e5d965efe33f5f51114',
+      repo        : 'AppUnion.github.io',
+      owner       : 'AppUnion',
+      admin       : ['AppUnion'],
+      id          : '18d1c3c6dd7472abe0f1de489b2794ae',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
