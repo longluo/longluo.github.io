@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="By Long Luo  饮湖上初晴后雨二首·其二   苏轼   水光潋滟晴方好，山色空蒙雨亦奇。欲把西湖比西子，淡妆浓抹总相宜。      年前的雪后环游西湖，只是走马观花匆匆一瞥。西湖真正的美，在于环绕西湖的山，有很多各具特色的路，每一条沿途风景都美不胜收。 这个周末，趁着春光，来一次西湖慢游。">
@@ -161,21 +161,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -281,7 +278,7 @@
 <p>从地图上看，杭州山并不多，但西湖周边的山就是生的巧，恰恰环着西湖，湖映山，山绕湖，西湖及周边的美立刻就无法比拟了。</p>
 <p>如果没有这些山的映衬，西湖绝不会美到如斯。</p>
 <p>西湖周边到处都是人文景观，众多园林庭院、故宅旧居，每一个名字、每一处建筑都可能有悠久绵长的历史，自然和人文的完美融合。</p>
-<p><strong>*Long <a href="mailto:&#x4c;&#117;&#111;&#x40;&#50;&#48;&#x31;&#56;&#x2e;&#48;&#51;&#x2e;&#x32;&#54;">&#x4c;&#117;&#111;&#x40;&#50;&#48;&#x31;&#56;&#x2e;&#48;&#51;&#x2e;&#x32;&#54;</a>于杭州 *</strong></p>
+<p><strong>*Long <a href="mailto:&#76;&#x75;&#111;&#x40;&#50;&#48;&#x31;&#56;&#x2e;&#48;&#x33;&#46;&#x32;&#54;">&#76;&#x75;&#111;&#x40;&#50;&#48;&#x31;&#56;&#x2e;&#48;&#x33;&#46;&#x32;&#54;</a>于杭州 *</strong></p>
 
     </div>
 
@@ -614,7 +611,10 @@
 
 
   
-<script src="/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
 
 
 

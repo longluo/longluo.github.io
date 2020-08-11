@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="By Long Luo 之前一篇文章如何使用Hexo建立一个自己的个人Blog及主页美化？，讲述了如何利用Github Pages建立一个属于自己的静态博客，下面这篇文章主要讲的是hexo的常见指令及说明，定位于Hexo的入门指南。 Hexo 命令命令行中输入： $hexo help 列出了Hexo常用命令： Commands:   clean     Removed generated file">
@@ -162,21 +162,18 @@
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
+  <div class="search-input-container"></div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div id="search-result">
-  <div id="no-result">
-    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
-  </div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
 </div>
 
+      
     </div>
   </div>
 
@@ -436,7 +433,7 @@ tags: - Hexo - node.js</code></pre>
 <p>页面支持文章的大部分属性，除了分类和标签。</p>
 <h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><p>打开主题中的设置文件，即<code>themes\&lt;theme_name&gt;\_config.yml</code>（其中<code>&lt;theme_name&gt;</code>是当前主题的名字，默认为landscape，下同），找到menu:，在列表的末端添加About: 关于。刷新页面，导航栏上就出现了关于链接。</p>
 <h2 id="边栏"><a href="#边栏" class="headerlink" title="边栏"></a>边栏</h2><p>进入<code>themes\&lt;theme_name&gt;\layout\_widget</code>目录中，创建about.ejs文件，模仿其他文件中的模版，输入以下内容：</p>
-<p>&lt;% if (site.tags.length){ %&gt;<br>  <div class="widget-wrap"><br>    <h3 class="widget-title">About</h3><br>    <div class="widget"><br>      邮箱：<a href="mailto:&#x78;&#120;&#x78;&#64;&#120;&#x78;&#x78;&#46;&#99;&#111;&#109;">&#x78;&#120;&#x78;&#64;&#120;&#x78;&#x78;&#46;&#99;&#111;&#109;</a><br /><br>      微博：@xxxxx<br>    </div><br>  </div><br>&lt;% } %&gt;</p>
+<p>&lt;% if (site.tags.length){ %&gt;<br>  <div class="widget-wrap"><br>    <h3 class="widget-title">About</h3><br>    <div class="widget"><br>      邮箱：<a href="mailto:&#x78;&#x78;&#120;&#64;&#120;&#120;&#x78;&#x2e;&#x63;&#111;&#109;">&#x78;&#x78;&#120;&#64;&#120;&#120;&#x78;&#x2e;&#x63;&#111;&#109;</a><br /><br>      微博：@xxxxx<br>    </div><br>  </div><br>&lt;% } %&gt;</p>
 <p>打开<code>themes\&lt;theme_name&gt;\_config.yml</code>，找到#Sidebar，在最后面添加- about。刷新页面。</p>
 <h2 id="底栏"><a href="#底栏" class="headerlink" title="底栏"></a>底栏</h2><p>打开<code>themes\&lt;theme_name&gt;\layout\_partial\footer.ejs</code>修改。</p>
 <h2 id="banner"><a href="#banner" class="headerlink" title="banner"></a>banner</h2><p>打开<code>themes\&lt;theme_name&gt;\source\css\images</code>，把banner.jpg换掉。</p>
@@ -801,7 +798,10 @@ branch: master</code></pre>
 
 
   
-<script src="/js/local-search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
 
 
 
