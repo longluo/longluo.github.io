@@ -255,13 +255,6 @@
             </span>
 
           
-            <span id="/blog/2018/09/09/buddhist-perspective-on-life-and-destiny/" class="post-meta-item leancloud_visitors" data-flag-title="我对人生的点滴看法---游灵隐寺所感" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
             <span class="post-meta-item" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-users"></i>
@@ -299,7 +292,7 @@
 <p>庄子说：“井蛙不可以语于海者, 拘于虚也; 夏虫不可以语于冰者, 笃于时也。”因为我们都是凡人，无法开上帝视角，所以我们永远都有局限性。</p>
 <p>当你开始接受人生有很多事情不在你掌控之中时，其实你就信命了， 尤其是你特别在意，又特别努力的事情时。</p>
 <p>孔子说：“吾十有五，而志于学。三十而立。四十而不惑。五十而知天命。”你看，孔子都说，何时可以真正地顺应天命呢，需要人生五十年呢。</p>
-<p><strong><em>Version 1.0 By Long <a href="mailto:&#x4c;&#x75;&#111;&#64;&#x32;&#x30;&#x31;&#x38;&#x2e;&#x30;&#57;&#x2e;&#x30;&#x39;">&#x4c;&#x75;&#111;&#64;&#x32;&#x30;&#x31;&#x38;&#x2e;&#x30;&#57;&#x2e;&#x30;&#x39;</a> 于杭州灵隐寺</em></strong><br><strong><em>Version 1.1 By Long <a href="mailto:&#x4c;&#117;&#111;&#64;&#50;&#48;&#x31;&#56;&#46;&#48;&#57;&#x2e;&#49;&#49;">&#x4c;&#117;&#111;&#64;&#50;&#48;&#x31;&#56;&#46;&#48;&#57;&#x2e;&#49;&#49;</a> 于杭州滨江歌山品悦酒店</em></strong></p>
+<p><strong><em>Version 1.0 By Long <a href="mailto:&#76;&#x75;&#x6f;&#x40;&#x32;&#48;&#49;&#x38;&#x2e;&#x30;&#57;&#x2e;&#x30;&#57;">&#76;&#x75;&#x6f;&#x40;&#x32;&#48;&#49;&#x38;&#x2e;&#x30;&#57;&#x2e;&#x30;&#57;</a> 于杭州灵隐寺</em></strong><br><strong><em>Version 1.1 By Long <a href="mailto:&#76;&#x75;&#111;&#x40;&#x32;&#48;&#49;&#x38;&#46;&#48;&#x39;&#46;&#49;&#x31;">&#76;&#x75;&#111;&#x40;&#x32;&#48;&#49;&#x38;&#46;&#48;&#x39;&#46;&#49;&#x31;</a> 于杭州滨江歌山品悦酒店</em></strong></p>
 
     </div>
 
@@ -597,92 +590,6 @@
   </script>
 
 
-<script>
-  (function() {
-    function leancloudSelector(url) {
-      url = encodeURI(url);
-      return document.getElementById(url).querySelector('.leancloud-visitors-count');
-    }
-
-    function addCount(Counter) {
-      var visitors = document.querySelector('.leancloud_visitors');
-      var url = decodeURI(visitors.id);
-      var title = visitors.dataset.flagTitle;
-
-      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url })))
-        .then(response => response.json())
-        .then(({ results }) => {
-          if (results.length > 0) {
-            var counter = results[0];
-            leancloudSelector(url).innerText = counter.time + 1;
-            Counter('put', '/classes/Counter/' + counter.objectId, { time: { '__op': 'Increment', 'amount': 1 } })
-              .catch(error => {
-                console.error('Failed to save visitor count', error);
-              });
-          } else {
-              leancloudSelector(url).innerText = 'Counter not initialized! More info at console err msg.';
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
-            
-          }
-        })
-        .catch(error => {
-          console.error('LeanCloud Counter Error', error);
-        });
-    }
-
-    function showTime(Counter) {
-      var visitors = document.querySelectorAll('.leancloud_visitors');
-      var entries = [...visitors].map(element => {
-        return decodeURI(element.id);
-      });
-
-      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
-        .then(response => response.json())
-        .then(({ results }) => {
-          for (let url of entries) {
-            let target = results.find(item => item.url === url);
-            leancloudSelector(url).innerText = target ? target.time : 0;
-          }
-        })
-        .catch(error => {
-          console.error('LeanCloud Counter Error', error);
-        });
-    }
-
-    let { app_id, app_key, server_url } = {"enable":true,"app_id":null,"app_key":null,"server_url":null,"security":true};
-    function fetchData(api_server) {
-      var Counter = (method, url, data) => {
-        return fetch(`${api_server}/1.1${url}`, {
-          method,
-          headers: {
-            'X-LC-Id'     : app_id,
-            'X-LC-Key'    : app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-      if (CONFIG.page.isPost) {
-        if (CONFIG.hostname !== location.hostname) return;
-        addCount(Counter);
-      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
-        showTime(Counter);
-      }
-    }
-
-    let api_server = app_id.slice(-9) !== '-MdYXbMMI' ? server_url : `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com`;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(response => response.json())
-        .then(({ api_server }) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
-</script>
 
 
       </div>
