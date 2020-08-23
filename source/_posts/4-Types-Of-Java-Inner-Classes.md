@@ -3,7 +3,7 @@ layout: post
 title: "《SimpleJava》翻译之17: 4种Java内部类"
 comments: true
 date: 2016-08-09 11:42:14
-tags: [Java, Class, Program]
+tags: [Java, Program]
 categories: Program
 keywords: Java, Class, 类, 内部类, 
 ---
