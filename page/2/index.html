@@ -216,6 +216,105 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2019/09/20/the-algorithm-of-large-number-operations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2019/09/20/the-algorithm-of-large-number-operations/" class="post-title-link" itemprop="url">超大数字的四则运算是如何实现的呢？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-09-20 01:32:43" itemprop="dateCreated datePublished" datetime="2019-09-20T01:32:43+08:00">2019-09-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-08 21:35:20" itemprop="dateModified" datetime="2020-08-08T21:35:20+08:00">2020-08-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>众所周知，计算机系统从16位发展到32位，再从32位发展到64位，与此同时不同的数据类型也随着系统的位数增大而增大。早期的操作系统是16位系统，int用二字节表示，范围是-32768<del>32767，long用4字节表示，范围是-2147483648</del>2147483647；后来发展到32位操作系统，int用4字节表示，与long相同；目前的操作系统已发展到64位操作系统，但因程序编译工艺的不同，两者表现出不同的差别：</p>
+<ul>
+<li>32位编译系统：int占四字节，与long相同。</li>
+<li>64位编译系统：int占四字节，long占8字节，long数据范围变为：-2^63~2^63-1</li>
+</ul>
+<p>具体在标准中，并没有规定long一定要比int长，也没有规定short要比int短，只是规定了长整型至少和整型一样长，整型至少和短整型一样长。这个规则同样适用于浮点型long double至少和double一样长，double至少和float一样长。至于如何实现要看编译器厂商。</p>
+<p>下表所展示的是微软32位和64位编译器所识别的数据类型详细信息：</p>
+<p>Type Name    Bytes    Other Names    Range of Values<br>int    4    signed    -2,147,483,648 to 2,147,483,647<br>unsigned int    4    unsigned    0 to 4,294,967,295<br>__int8    1    char    -128 to 127<br>unsigned __int8    1    unsigned char    0 to 255<br>__int16    2    short, short int, signed short int    -32,768 to 32,767<br>unsigned __int16    2    unsigned short, unsigned short int    0 to 65,535<br>__int32    4    signed, signed int, int    -2,147,483,648 to 2,147,483,647<br>unsigned __int32    4    unsigned, unsigned int    0 to 4,294,967,295<br>__int64    8    long long, signed long long    -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807<br>unsigned __int64    8    unsigned long long    0 to 18,446,744,073,709,551,615<br>bool    1    none    false or true<br>char    1    none    -128 to 127 by default</p>
+<p>0 to 255 when compiled by using /J<br>signed char    1    none    -128 to 127<br>unsigned char    1    none    0 to 255<br>short    2    short int, signed short int    -32,768 to 32,767<br>unsigned short    2    unsigned short int    0 to 65,535<br>long    4    long int, signed long int    -2,147,483,648 to 2,147,483,647<br>unsigned long    4    unsigned long int    0 to 4,294,967,295<br>long long    8    none (but equivalent to __int64)    -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807<br>unsigned long long    8    none (but equivalent to unsigned __int64)    0 to 18,446,744,073,709,551,615<br>enum    varies    none<br>float    4    none    3.4E +/- 38 (7 digits)<br>double    8    none    1.7E +/- 308 (15 digits)<br>long double    same as double    none    Same as double<br>wchar_t    2    __wchar_t    0 to 65,535</p>
+<p>从上述表格中可以看出，普通工作生活中所涉及的数字都不会超过int所能表示的范围，而超过long long类型则少之又少。但是具体到一些行业或者科研中，比如天文，石油开采等，经常需要和天文数字进行打交道。举例来说，50！，10^20这种阶乘或者指数函数轻而易举就突破最大所能表示的范围。</p>
+<p>如何表示这些超大数字以及对其进行数学运算呢？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2019/09/20/the-algorithm-of-large-number-operations/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2019/09/08/My-First-Trip-To-Chimelong-Ocean-Kingdom/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1028,92 +1127,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2018/10/30/Fairy-Tales-and-Chinese-Martial-Arts/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2018/10/30/Fairy-Tales-and-Chinese-Martial-Arts/" class="post-title-link" itemprop="url">金庸先生，武侠和童话</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-10-30 22:58:20" itemprop="dateCreated datePublished" datetime="2018-10-30T22:58:20+08:00">2018-10-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-08 21:35:20" itemprop="dateModified" datetime="2020-08-08T21:35:20+08:00">2020-08-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>刷微博时，看到了金庸先生逝世这个不幸的消息，想起小时候对武侠痴迷的种种经历！</p>
-<p><strong>武侠小说</strong>可以说是成人童话，让成人在金庸先生创造的虚幻世界里翱翔。</p>
-<p>在我看来，童话是将人的理想在文字上现实化，创造出一个虚幻的世界，越是人在现实中所做不到的事情，越是容易在童话里面出现。</p>
-<p>有了童话，这个世界就不会陷入过度的浮躁功利之中！</p>
-<p><strong><em>By Long Luo @2018年10月30日时间 at Shenzhen, China.</em></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1183,7 +1196,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-count">158</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
