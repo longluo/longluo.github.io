@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="A Curious Programmer.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Long Luo&#39;s Life Notes">
+<meta property="og:url" content="http://longluo.me/page/37/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="A Curious Programmer.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Long Luo">
+<meta property="article:tag" content="Software Engineer, AI, Machine Learning, Algorithm, Android, Web, Long Luo, 移动开发, Program, Code, 程序员">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://longluo.me/page/37/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Long Luo's Life Notes</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-46213499-2');
+      }
+    </script>
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Long Luo's Life Notes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container"></div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="algolia-results">
+  <div id="algolia-stats"></div>
+  <div id="algolia-hits"></div>
+  <div id="algolia-pagination" class="algolia-pagination"></div>
+</div>
+
+      
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
+            
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/04/08/build-exception-of-aapt-finished-with-non-zero-exit-value-1-in-Android-Studio/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/04/08/build-exception-of-aapt-finished-with-non-zero-exit-value-1-in-Android-Studio/" class="post-title-link" itemprop="url">Android编译时出现aapt.exe finished with non-zero exit value 1错误的解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-04-08 23:15:56" itemprop="dateCreated datePublished" datetime="2016-04-08T23:15:56+08:00">2016-04-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>昨天在开发一个项目时，在Android Studio中编译时，gradle编译之后出现了如下错误：</p>
+<pre><code>Error:Execution failed for task &#39;:samples-simplevideowidget:processDebugResources&#39;.
+&gt; com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process &#39;command &#39;E:\Android\SDK\build-tools\23.0.1\aapt.exe&#39;&#39; finished with non-zero exit value 1</code></pre>
+<p>首先看到这个错误之后，因为移植的代码在之前的<code>eclipse</code>编译时OK的，所以先检查了下Android Studio项目中资源，代码有无提示的错误，经过确认没有之后，将错误信息在Google中搜索。</p>
+<p>经过搜索之后，在StackOverflow和CSDN上发现有很多人遇到了这个错误，不过解决方法却各不相同。有的建议<code>Clean</code>然后<code>Rebuild</code>，有的建议修改使用内存，有的说是代码问题，也有的说是资源问题，比如本来是jpg图片，文件后缀却是png也会导致问题…</p>
+<p>我按照以上方案一一检查，还是未能解决，于是只能自己动手排查原因了！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/04/08/build-exception-of-aapt-finished-with-non-zero-exit-value-1-in-Android-Studio/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/03/11/the-hexo-handbook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/03/11/the-hexo-handbook/" class="post-title-link" itemprop="url">Hexo入门指北</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-11 23:37:21" itemprop="dateCreated datePublished" datetime="2016-03-11T23:37:21+08:00">2016-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Techniques/" itemprop="url" rel="index"><span itemprop="name">Techniques</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>之前一篇文章<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2016/03/08/the-manual-of-hexo/">如何使用Hexo建立一个自己的个人Blog及主页美化？</a>，讲述了如何利用Github Pages建立一个属于自己的静态博客，下面这篇文章主要讲的是hexo的常见指令及说明，定位于<strong>Hexo的入门指南</strong>。</p>
+<h1 id="Hexo-命令"><a href="#Hexo-命令" class="headerlink" title="Hexo 命令"></a>Hexo 命令</h1><p>命令行中输入：</p>
+<pre><code>$hexo help</code></pre>
+<p>列出了Hexo常用命令：</p>
+<pre><code>Commands:
+  clean     Removed generated files and cache.
+  config    Get or set configurations.
+  deploy    Deploy your website.
+  generate  Generate static files.
+  help      Get help on a command. 查看帮助信息
+  init      Create a new Hexo folder. init [文件夹名]： 创建一个hexo项目，不指定文件夹名，则在当前目录创建
+  list      List the information of the site
+  migrate   Migrate your site from other system to Hexo.
+  new       Create a new post.
+  publish   Moves a draft post from _drafts to _posts folder.
+  render    Render files with renderer plugins.
+  server    Start the server.
+  version   Display version information. 查看hexo的版本
+
+Global Options:
+  --config  Specify config file instead of using _config.yml config-path：指定配置文件，代替默认的_config.yml
+  --cwd     Specify the CWD cwd-path：自定义当前工作目录
+  --debug   Display all verbose messages in the terminal 调试模式，输出所有日志信息
+  --draft   Display draft posts
+  --safe    Disable all plugins and scripts 安全模式，禁用所有的插件和脚本
+  --silent  Hide output on console 无日志输出模式</code></pre>
+<p>Hexo常用命令也可以使用以下缩写：</p>
+<pre><code>hexo n == hexo new
+hexo g == hexo generate
+hexo s == hexo server
+hexo d == hexo deploy</code></pre>
+<p>清除生成内容</p>
+<pre><code>$ hexo clean</code></pre>
+<p>执行此操作会删除 public 文件夹中的内容。</p>
+<p>以上就是经常使用的命令。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/03/11/the-hexo-handbook/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/" class="post-title-link" itemprop="url">学钢琴中最重要的是什么？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-02-22 00:18:56" itemprop="dateCreated datePublished" datetime="2016-02-22T00:18:56+08:00">2016-02-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Music/" itemprop="url" rel="index"><span itemprop="name">Music</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>今天下午去<a target="_blank" rel="noopener" href="http://www.marguerite-art.com/">深圳玛格丽特音乐文化教育中心</a>以地板价试听了一节钢琴课，学到了很多东西，再结合<strong>自己的一些思考</strong>，在此简单记录下来。</p>
+<p>对于<strong>成人学钢琴</strong>来说，一大问题是<strong>时间有限</strong>，如果你是个上班族，不可能有很多时间让你去学习和练习，所以你得用**<em>脑子**</em>去学习。美女老师说，你的脑子里得时时刻刻有钢琴这东西。这种潜意思的学习，你可以在脑海中想象去弹琴，多思考，多分析，多总结，带着疑问去学习，这样才会学得快。</p>
+<p>学习一样新东西，无法就是<strong>学习，模仿，练习，实践</strong>。掌握了正确的学习方法，可以达到事半功倍的效果。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/02/22/what_is_the_most_important_in_learning_play_piano/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/02/09/the_origin_point_of_my_life_part_one/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/" class="post-title-link" itemprop="url">我生命的原点（一）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-02-09 01:52:02" itemprop="dateCreated datePublished" datetime="2016-02-09T01:52:02+08:00">2016-02-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<h1 id="一、"><a href="#一、" class="headerlink" title="一、"></a>一、</h1><p>冬天的太阳，比起夏天的太阳，大了很多倍，从山顶探出头来，漏出一片红色的光，落在结了一层白色的霜的屋顶上。这个时候就是吃完饭准备走去学校的时候了。</p>
+<p>抬头一看，只有一片蓝色，云朵都藏起来了。</p>
+<p>四周没有多少声息，只听到一些叽叽喳喳的鸟叫声。那时的我，穿的严严实实，挑着有光的路走。红色的光在手背停留了许久许久，但就像火柴的火一样，烤不热这一团已经发红发麻的大冰块。直到上完前3节课，冰块才完全融化，所以小学课本里的笔记有的地方一片歪歪扭扭，那就说明是在上午前3节课记下的。</p>
+<p>路边的田里覆盖着一层稀稀疏疏的白色，偶尔可以看见几片青色的野草叶子。一排排白色的稻茬排列在田间，像阅兵的方队，等候着我们的检阅。</p>
+<p>我们看着前方，太阳已经离开山顶几丈高了，照亮了更远处的村落和山坡。模模糊糊的远方，有更高的山，其实也只是几缕山的形状。我不知道何时能走到那山脚，看看那山里面到底是什么？</p>
+<p>当太阳已经挂在学校低矮的屋顶时，我们的心已经蠢蠢欲动了。随着老师的一声下课，我们一边站起来说，“老师再见”，另一边两只手已经抓牢了课桌里的书包。不同于早上的慢慢吞吞，下午我们的精力异常的旺盛，一路追着跑着，跑累了就停下来走一走。</p>
+<p>太阳仍然在离地很近很近的高处挂着，将那一片的云从白色烧成通红。不同于八九月的傍晚，尤其是在下午下了一阵雨以后，那时候有很多的云，被烧成了一片红，将大地镀上了一层金色。云彩也飞快的移动着，变化成不同的形状。多年之后我才在课本里知道这叫火烧云。</p>
+<p>太阳仿佛在和我们玩捉迷藏，将自己藏在山里面，只露出了一个头偷偷地看着我们。我们又努力向前跑着，终于又看见它了，不过一小会，它又藏在更远处的山顶。我想山那边会是什么样子？也有像我一样的孩子么？这个世界上会有另外一个我吗？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/02/09/the_origin_point_of_my_life_part_one/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2015/05/30/buy-the-first-of-my-own-house/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2015/05/30/buy-the-first-of-my-own-house/" class="post-title-link" itemprop="url">我在如何深圳买人生第一套房的</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-05-30 23:36:02" itemprop="dateCreated datePublished" datetime="2015-05-30T23:36:02+08:00">2015-05-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 17:36:00" itemprop="dateModified" datetime="2020-12-04T17:36:00+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          有东西被加密了, 请输入密码查看.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2015/05/30/buy-the-first-of-my-own-house/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2015/04/21/my-necessary-app-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2015/04/21/my-necessary-app-list/" class="post-title-link" itemprop="url">我的必备App清单</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-04-21 23:53:35" itemprop="dateCreated datePublished" datetime="2015-04-21T23:53:35+08:00">2015-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>今天重新刷了下手机，结果之前的备份都是2个月前的，刷完机我就想了下，我手机**<em>必备App**</em>是哪些呢？</p>
+<p>列出了下面这张必备App清单：</p>
+<h1 id="新闻"><a href="#新闻" class="headerlink" title="新闻"></a>新闻</h1><ol>
+<li>ZAKER: 查看新闻，根据你的爱好订阅文章</li>
+<li>新浪微博：作为微博的<strong>重度用户</strong>，微博的媒体属性很强，大于其社交属性。我的不少朋友已经告别微博了，但是我还是喜欢微博。与其在微信上与熟悉的人聊天，不如在微博上和陌生人交流。</li>
+<li>网易新闻：交互做的很好，163评论常有亮点。</li>
+</ol>
+<h1 id="SNS·社交"><a href="#SNS·社交" class="headerlink" title="SNS·社交"></a>SNS·社交</h1><ol>
+<li>QQ： 不用说。超级App，超好的用户体验，本土化，非常强大。</li>
+<li>微信：不用说。腾讯系的很多产品都极大的提高了我们的工作效率和生活效率，一定要用好他们。</li>
+<li>微博：我用微博主要是学习和了解别人的很多观点，还能够结交很多朋友。</li>
+<li>LINE：主要是微博和微信的熟人太多，有些东西不好在朋友圈里吐槽，但LINE没有一个熟人，所以可以很方便的在朋友圈里吐槽发泄:-)</li>
+<li>LinkedIn：工作商务类的，也有很多干货。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2015/04/21/my-necessary-app-list/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2015/04/12/a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2015/04/12/a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/" class="post-title-link" itemprop="url">一道迅雷面试题:求出一个字符串中每个字母出现的次数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-04-12 00:59:54" itemprop="dateCreated datePublished" datetime="2015-04-12T00:59:54+08:00">2015-04-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>上次在<code>迅雷</code>面试的时候，遇到了一个算法题，题目是：</p>
+<blockquote>
+<p>有一个很长很长的字符串，全部都是由大写字母组成，要求求出其中每个字母在这个字符串中出现的次数。<br>不允许使用STL中的方法。</p>
+</blockquote>
+<p>当时拿到这个题目，我首先想到了以下几个方法：</p>
+<ol>
+<li><strong>穷举法</strong>，一个个比较，最后算出每个字母出现的次数，这种方法可行，但不轻巧与优雅。</li>
+<li>每个字符与’A’想减，会得到一个<strong>值</strong>，统计下这个值出现次数，和方法1类似。(事后回顾这个已经很接近了，但是还是没能完美解决。)</li>
+</ol>
+<p>其实这个题目，事后回顾起来，是比较简单的，但遗憾的是，当时未能在规定时间内解答出来，导致未能通过面试，拿到Offer，在此将这个题目记录下来。</p>
+<p>重新认真解答这个题目。</p>
+<h1 id="How"><a href="#How" class="headerlink" title="How?"></a>How?</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2015/04/12/a-ThunderSoft-interview-problem-count-every-alphabet-apperence-times-in-a-string/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2015/04/09/a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2015/04/09/a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/" class="post-title-link" itemprop="url">Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-04-09 21:04:10" itemprop="dateCreated datePublished" datetime="2015-04-09T21:04:10+08:00">2015-04-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>最近在学习<code>Java多线程</code>时，遇到了一个下面的笔试题，题目如下： </p>
+<pre><code>编写一个程序，程序会启动4个线程，向4个文件A，B，C，D里写入数据，每个线程只能写一个值。 
+    线程A：只写A
+    线程B：只写B 
+    线程C：只写C 
+    线程D：只写D 
+
+4个文件A，B，C，D。 
+
+程序运行起来，4个文件的写入结果如下： 
+    A：ABCDABCD... 
+    B：BCDABCDA... 
+    C：CDABCDAB... 
+    D：DABCDABC... </code></pre>
+<p>网上搜索了下，好像还是一个**<em>Google笔试题**</em>，这个问题涉及到的知识点有：<code>多线程</code>, <code>并发</code>, <code>锁</code>, <code>线程间通信</code>。</p>
+<h1 id="个人分析过程："><a href="#个人分析过程：" class="headerlink" title="个人分析过程："></a>个人分析过程：</h1><pre><code>1. 创建4个线程；
+2. 每个线程在输出时都需要加锁；
+3. 操作文件的代码要加锁；
+4. 一个线程完成之后，通知下一个要执行的线程；</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2015/04/09/a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2015/04/06/an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2015/04/06/an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/" class="post-title-link" itemprop="url">面试算法题:爬楼梯，N级楼梯有多少种走法？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-04-06 22:20:50" itemprop="dateCreated datePublished" datetime="2015-04-06T22:20:50+08:00">2015-04-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>最近去面试时，在一家小公司面试时，公司小BOSS给我出了一道算法题：</p>
+<blockquote>
+<p>一个人爬楼梯，一步可以迈一级，二级，三级台阶，如果楼梯有N级，要求编写程序，求总共有多少种走法。</p>
+</blockquote>
+<p>这个问题应该是一个很老的题目了，用中学数学来说，就是一个**<em>排列组合**</em>问题。当时拿到这个题目之后，首先想到使用<strong>递归</strong>的思想去解决这个问题：</p>
+<blockquote>
+<p>N级楼梯问题可以划分为：N-1级楼梯，N-2级楼梯，N-3级楼梯的走法之和。</p>
+</blockquote>
+<p>先计算下0，1，2，3及楼梯有多少种走法：</p>
+<blockquote>
+<p>1 –&gt; 1<br>    2 –&gt; 11 2<br>    3 –&gt; 111 12 21 3</p>
+</blockquote>
+<p>那么，根据以上的分析很容易写出如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">countNumber</span><span class="params">(<span class="keyword">int</span> stepsNum)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (stepsNum == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (stepsNum == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum == <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum == <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum &gt; <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> countNumber(stepsNum - <span class="number">3</span>) + countNumber(stepsNum - <span class="number">2</span>)</span><br><span class="line">                + countNumber(stepsNum - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;楼梯台阶数:&quot;</span> + i + <span class="string">&quot;, 走法有:&quot;</span> + countNumber(i));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再看看输出：</p>
+<pre><code>楼梯台阶数:0, 走法有:0
+楼梯台阶数:1, 走法有:1
+楼梯台阶数:2, 走法有:2
+楼梯台阶数:3, 走法有:4
+楼梯台阶数:4, 走法有:7
+楼梯台阶数:5, 走法有:13
+楼梯台阶数:6, 走法有:24
+楼梯台阶数:7, 走法有:44
+楼梯台阶数:8, 走法有:81
+楼梯台阶数:9, 走法有:149</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2015/04/06/an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/10/31/master-XML-JSON-and-how-to-parse-them-in-10-minutes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2014/10/31/master-XML-JSON-and-how-to-parse-them-in-10-minutes/" class="post-title-link" itemprop="url">10分钟掌握XML、JSON及其解析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-10-31 15:24:33" itemprop="dateCreated datePublished" datetime="2014-10-31T15:24:33+08:00">2014-10-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Techniques/" itemprop="url" rel="index"><span itemprop="name">Techniques</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>NOKIA 有句著名的广告语：“**<em>科技以人为本**</em>”。任何技术都是为了满足人的生产生活需要而产生的。具体到小小的一个手机，里面蕴含的技术也是浩如烟海，是几千年来人类科技的结晶，单个人穷其一生也未必能掌握其一角。不过个人一直认为基本的技术和思想是放之四海而皆准的，许多技术未必需要我们从头到尾再研究一遍，我们要做的就是站在巨人的肩膀上，利用其成果来为人们的需求服务。</p>
+<p>随着移动互联网时代的大潮，越来越多的App<strong>不光是需要和网络服务器进行数据传输和交互，也需要和其他 App 进行数据传递</strong>。承担App与网络来进行传输和存储数据的一般是XML或者JSON。在移动互联网时代，XML和JSON很重要。</p>
+<p>最近一段时间，个人综合了之前对XML、JSON的一些了解，参考了相关资料，再结合视频的代码，把自己的一些思考融入了这篇总结文档中，同时尝试用通俗诙谐的语言风格来阐述，期望能给感兴趣的读者带来帮助。</p>
+<p>为了不和时代落伍，我们必须要学习 XML 和 JSON，但同时它们也很容易学习，Let’s start:-)</p>
+<h1 id="一、XML"><a href="#一、XML" class="headerlink" title="一、XML"></a>一、XML</h1><p>XML即<strong>可扩展标记语言</strong>(<strong><em>eXtensible Markup Language</em></strong>)。标记是指计算机所能理解的信息符号，通过此种标记，计算机之间可以处理包含各种信息的文章等。如何定义这些标记，既可以选择国际通用的标记语言，比如HTML，也可以使用象XML这样由相关人士自由决定的标记语言，这就是语言的可扩展性。XML是从SGML中简化修改出来的。它主要用到的有XML、XSL和XPath等。</p>
+<p>上面这段是对XML的一个基本定义，一个被广泛接受的说明。简单说，XML就是一种数据的描述语言，虽然它是语言，但是通常情况下，它并不具备常见语言的基本功能——被计算机识别并运行。只有依靠另一种语言，来解释它，使它达到你想要的效果或被计算机所接受。</p>
+<p>记住以下几点就行了：</p>
+<ul>
+<li>XML是一种标记语言，很类似HTML</li>
+<li>XML的设计宗旨是传输数据，而非显示数据</li>
+<li>XML标签没有被预定义。您需要自行定义标签。</li>
+<li>XML被设计为具有自我描述性。</li>
+<li>XML是W3C的推荐标准</li>
+</ul>
+<p><strong><em>总结：</em></strong></p>
+<p>XML是独立于软件和硬件的信息传输工具。<br>目前，XML在Web中起到的作用不会亚于一直作为 Web 基石的 HTML。<br><strong>XML无所不在</strong>。XML是各种应用程序之间进行<strong>数据传输的最常用的工具</strong>，并且在信息存储和描述领域变得越来越流行。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/10/31/master-XML-JSON-and-how-to-parse-them-in-10-minutes/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/36/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><span class="page-number current">37</span><a class="page-number" href="/page/38/">38</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/38/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">A Curious Programmer.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">429</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">220</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu → http:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;longluo" rel="noopener" target="_blank"><i class="fab fa-quora fa-fw"></i>ZhiHu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:longluo2005@gmail.com" title="E-Mail → mailto:longluo2005@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/imlongluo" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;imlongluo" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.imlongluo.com/" title="http:&#x2F;&#x2F;www.imlongluo.com" rel="noopener" target="_blank">Home</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.csdn.net/tcpipstack" title="http:&#x2F;&#x2F;blog.csdn.net&#x2F;tcpipstack" rel="noopener" target="_blank">CSDN</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2013 – 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Long Luo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1279206926&web_id=1279206926"></script>
+  </div>
+
+
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
+  <script>
+    firebase.initializeApp({
+      apiKey   : 'AIzaSyCKl5tD01wtLtqbwk9pUvFQ8AXsdAiSibY',
+      projectId: 'longluome'
+    });
+
+    function getCount(doc, increaseCount) {
+      // IncreaseCount will be false when not in article page
+      return doc.get().then(d => {
+        var count = 0;
+        if (!d.exists) { // Has no data, initialize count
+          if (increaseCount) {
+            doc.set({
+              count: 1
+            });
+            count = 1;
+          }
+        } else { // Has data
+          count = d.data().count;
+          if (increaseCount) {
+            // If first view this article
+            doc.set({ // Increase count
+              count: count + 1
+            });
+            count++;
+          }
+        }
+
+        return count;
+      });
+    }
+
+    function appendCountTo(el) {
+      return count => {
+        el.innerText = count;
+      }
+    }
+  </script>
+  <script>
+    (function() {
+      var db = firebase.firestore();
+      var articles = db.collection('articles');
+
+      if (CONFIG.page.isPost) { // Is article page
+        var title = document.querySelector('.post-title').innerText.trim();
+        var doc = articles.doc(title);
+        var increaseCount = CONFIG.hostname === location.hostname;
+        if (localStorage.getItem(title)) {
+          increaseCount = false;
+        } else {
+          // Mark as visited
+          localStorage.setItem(title, true);
+        }
+        getCount(doc, increaseCount).then(appendCountTo(document.querySelector('.firestore-visitors-count')));
+      } else if (CONFIG.page.isHome) { // Is index page
+        var promises = [...document.querySelectorAll('.post-title')].map(element => {
+          var title = element.innerText.trim();
+          var doc = articles.doc(title);
+          return getCount(doc);
+        });
+        Promise.all(promises).then(counts => {
+          var metas = document.querySelectorAll('.firestore-visitors-count');
+          counts.forEach((val, idx) => {
+            appendCountTo(metas[idx])(val);
+          });
+        });
+      }
+    })();
+  </script>
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+<script src="/js/bookmark.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
+<script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://longluo.me/page/37/',]
+      });
+      });
+  </script>
+
+
+</body>
+</html>

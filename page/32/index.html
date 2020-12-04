@@ -217,7 +217,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/02/14/some_tips_about_android_listview_performence/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/11/2016-07-11-193-Week-28-Mon-Need-More-Sleep/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -231,7 +231,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2014/02/14/some_tips_about_android_listview_performence/" class="post-title-link" itemprop="url">提升Android ListView性能的几个技巧</a>
+            <a href="/blog/2016/07/11/2016-07-11-193-Week-28-Mon-Need-More-Sleep/" class="post-title-link" itemprop="url">2016-07-11 193 Week 28 Mon 不要长期睡眠不足！</a>
         </h2>
 
         <div class="post-meta">
@@ -241,14 +241,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2014-02-14 15:22:10" itemprop="dateCreated datePublished" datetime="2014-02-14T15:22:10+08:00">2014-02-14</time>
+              <time title="创建时间：2016-07-11 22:40:18" itemprop="dateCreated datePublished" datetime="2016-07-11T22:40:18+08:00">2016-07-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:51:01" itemprop="dateModified" datetime="2020-12-04T16:51:01+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,7 +256,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
                 </span>
             </span>
 
@@ -278,26 +278,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>翻译 Long Luo</em></strong></p>
-<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2012/04/05/performance-tips-for-androids-listview/">Performance Tips for Android’s ListView</a></p>
-<pre><code>译者注：
-1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
-2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正；
-3. inflation这个词一直找不到特别好的中文翻译。</code></pre>
-<h1 id="ListView如何运作的？"><a href="#ListView如何运作的？" class="headerlink" title="ListView如何运作的？"></a>ListView如何运作的？</h1><p><em>ListView</em>是设计应用于对<strong>可扩展性和高性能要求</strong>的地方。实际上，这就意味着<em>ListView</em>有以下2个要求：</p>
-<ol>
-<li>尽可能少的创建View；</li>
-<li>只是绘制和布局在屏幕上可见的子View。</li>
-</ol>
-<p>理解第一点很简单：通过布局xml文件在创建View并显示是很昂贵耗时耗资源的操作。尽管布局文件已经编译打包成了二进制形式以便于更高效的语法解析，但是创建View仍然需要通过一个特殊的XML树，并实例化所有需要响应的View。</p>
-<p><em>ListView</em>通过回收一些不可见的Views，通常在Android源码中称为“<em>ScrapView</em>(废弃的View)”来解决这个问题。这及意味着开发者只需要简单的更新每行的内容而不需要针对每个单独的行的布局来创建View。</p>
-<p>为了实现第二点，在我们滑动屏幕时，<em>ListView</em>通过使用View回收器来增加低于或者高于当当前窗口的Views，并当前活动的Views移动到一个可回收池中。这样的话，<em>ListView</em>只需要在内存中保持足够多的Views去填充分配空间中的布局和一些额外的可回收Views，即使当你的Adapter有上百个items的适合。它会使用不同的方法去填充行之间的空间，从顶部或者底部等等，具体取决于窗口是如何变化的。</p>
-<p>下面这个图很直观的展示了当你按下ListView的时候发生了什么：</p>
-<p><img src="http://blogresource.qiniudn.com/2014/Android/listview_tips.png" alt="ListView"></p>
-<p>通过上述介绍，相比我们已经熟悉了<em>ListView</em>的这种机制，让我们继续前往技巧部分。正如上述介绍的，在滑动时，<em>ListView</em>通过动态的创建和回收很多View，实现了尽可能地让Adapter的*getView()<em>轻量。所有的技巧都是通过多种方法让</em>getView()*更快。</p>
+          有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2014/02/14/some_tips_about_android_listview_performence/#more" rel="contents">
+              <a class="btn" href="/blog/2016/07/11/2016-07-11-193-Week-28-Mon-Need-More-Sleep/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -321,7 +305,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/01/23/android_ui_layout_summay_5_layouts/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/10/2016-07-10-192-Week-28-Sun-The-Art-Of-Speak/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -335,7 +319,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2014/01/23/android_ui_layout_summay_5_layouts/" class="post-title-link" itemprop="url">Android UI Layout总结系列之篇之5大布局</a>
+            <a href="/blog/2016/07/10/2016-07-10-192-Week-28-Sun-The-Art-Of-Speak/" class="post-title-link" itemprop="url">2016-07-10 192 Week 28 Sun 说话的魅力</a>
         </h2>
 
         <div class="post-meta">
@@ -345,14 +329,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2014-01-23 20:16:36" itemprop="dateCreated datePublished" datetime="2014-01-23T20:16:36+08:00">2014-01-23</time>
+              <time title="创建时间：2016-07-10 21:42:59" itemprop="dateCreated datePublished" datetime="2016-07-10T21:42:59+08:00">2016-07-10</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:50:58" itemprop="dateModified" datetime="2020-12-04T16:50:58+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -360,7 +344,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
                 </span>
             </span>
 
@@ -382,34 +366,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>在一个Android应用中，Layout是开发中的一个很重要环节，Layout是组成UI不可缺少的一部分。</p>
-<h1 id="Android-UI核心类"><a href="#Android-UI核心类" class="headerlink" title="Android UI核心类"></a>Android UI核心类</h1><p>在Android应用构建UI的方法有以下几种：</p>
-<ol>
-<li>单纯使用JAVA代码</li>
-<li>使用XML完全定义界面</li>
-<li>结合使用两者，在XML中定义，在JAVA中引用和修改</li>
-</ol>
-<h2 id="Android-SDK中关于UI的核心类："><a href="#Android-SDK中关于UI的核心类：" class="headerlink" title="Android SDK中关于UI的核心类："></a>Android SDK中关于UI的核心类：</h2><p>Android.view.View和android.view.ViewGroup</p>
-<p>android中的常见UI控件均会扩展View和ViewGroup其中有一部分是专门用来控制其子View位置和大小，这些类我们称为布局管理器。</p>
-<h3 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h3><ol>
-<li>LayoutParams是ViewGroup内部类，包含了ViewGroup的布局参数，用来告诉它们的父类它们想怎么在父类中布局（大小和位置），所有在LayoutParams及其子类中定义的布局参数在xml中定义都是通过layout_***定义的。</li>
-</ol>
-<p>LayoutParams只提供了两个参数设定：</p>
-<pre><code>layout_width  元素的高度(fill_parent | match_parent | wrap_content | *dip)
-layout_height 元素的宽度(同上)                    </code></pre>
-<ol start="2">
-<li>MarginLayoutParams也是ViewGroup一个内部类，它继承了LayoutParams类，用来扩展LayoutParams的属性，设置参数。</li>
-</ol>
-<p>MarginLayoutParams添加了四个参数设定：</p>
-<pre><code>layout_marginLeft       相对于本元素左边界的偏移
-layout_marginRight         相对于本元素右边界的偏移
-layout_marginTop，        相对于本元素上边界的偏移
-layout_marginBottom      相对于本元素下边界的偏移</code></pre>
-<p>以上的两种Layout参数，所有布局中的子ViewGroup和子View都可以使用</p>
+          有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2014/01/23/android_ui_layout_summay_5_layouts/#more" rel="contents">
+              <a class="btn" href="/blog/2016/07/10/2016-07-10-192-Week-28-Sun-The-Art-Of-Speak/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -433,7 +393,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/09/2016-07-09-191-Week-27-Sat-Badminton-Weakness/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -447,7 +407,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/" class="post-title-link" itemprop="url">情歌有多动听，你就有多怀疑?</a>
+            <a href="/blog/2016/07/09/2016-07-09-191-Week-27-Sat-Badminton-Weakness/" class="post-title-link" itemprop="url">2016-07-09 191 Week 27 Sat 羽毛球的几个弱点</a>
         </h2>
 
         <div class="post-meta">
@@ -457,14 +417,14 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2014-01-21 22:41:43" itemprop="dateCreated datePublished" datetime="2014-01-21T22:41:43+08:00">2014-01-21</time>
+              <time title="创建时间：2016-07-09 22:10:56" itemprop="dateCreated datePublished" datetime="2016-07-09T22:10:56+08:00">2016-07-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:50:47" itemprop="dateModified" datetime="2020-12-04T16:50:47+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -472,7 +432,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
                 </span>
             </span>
 
@@ -494,21 +454,10 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>最近没怎么写东西的缘故是因为担心自己<strong>看的东西太少，读的东西太少，而想的太多</strong>。2014年的第一月也很快就要过去了，而我还没有对自己过去的一年里做出一点小结，就在这里随便扯几点吧！</p>
-<p>比如我的大学好友雷大才子，精通几门外语，学富五车，不仅文章写得好，又懂音乐，还会写诗作画，更是一名勤劳的Blogger，每次看他的博文，总能学到很多东西。</p>
-<h1 id="一、Destiny"><a href="#一、Destiny" class="headerlink" title="一、Destiny"></a>一、Destiny</h1><p>年轻的时候我看到网上一些晒东晒西的帖子，总想：“等我到了他那个年纪，应该比TA出色的多吧！”</p>
-<p>但在工作了几年之后，我不得不认识到：<strong>和一些人相比，一方面由于家庭草根身份出身的巨大差距，另外一方面之前20多年的积累，导致除非出现巨大的机遇，否则人生绝无逆转的可能</strong>。关于这种巨大的差距，包括<strong>眼界、资源、机遇、圈子</strong>等，在第三节里面我会再认真的阐述。</p>
-<p>被认为是20世纪最有影响力的经济学家之一的Frank H. Knight有个著名的观点：“<strong>决定一个人富有的三个条件，一是出身，二是机遇，三是努力，而这三者之中，努力是最微不足道的。</strong>” </p>
-<p>我更喜欢英语的Destiny，因为让我想起一个词:Destination，我想一个人的命运也就意味着这个人一生中最终能到达什么样的地方。<strong>一个人就像森林里的一棵树苗，最初你长在什么地方，加上你的天性，除非特别的机遇，你能够长到多高是可以预见的</strong>。</p>
-<p>我很羡慕凤姐，有其是我这种间歇性缺乏自信的人，更需要学习凤姐的自信和强大的内心，相比漂在大城市的广大千千万屌丝蚁族来说，凤姐完成了大改变，不仅不用再重复父辈的贫困，很大程度的改变了社会地位，也不需要像天朝这种Hard模式活动这么累了。</p>
-<p>即使凤姐不去USA，比起绝大多数打工仔打工妹来说，凤姐上电视台，接受各种采访，人生经历也足够丰富。</p>
-<p>2013的经历也许足够丰富，只是自己缺乏总结，导致又被同样的石头绊倒了2次。是时候好好回顾下了，做出改变。</p>
-<pre><code>除了老婆孩子不能变之后，其他的统统都要变。
-                                    ---李健熙</code></pre>
+          有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/#more" rel="contents">
+              <a class="btn" href="/blog/2016/07/09/2016-07-09-191-Week-27-Sat-Badminton-Weakness/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -532,7 +481,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/01/19/Free-Trail-A-Guitar-Lesson-And-Learn-A-Lot/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/08/2016-07-08-190-Week-27-Fri-Need-Work-Harder/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -546,7 +495,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2014/01/19/Free-Trail-A-Guitar-Lesson-And-Learn-A-Lot/" class="post-title-link" itemprop="url">试听了一节吉他课</a>
+            <a href="/blog/2016/07/08/2016-07-08-190-Week-27-Fri-Need-Work-Harder/" class="post-title-link" itemprop="url">2016-07-08 190 Week 27 Fri 需要更有效率的工作！</a>
         </h2>
 
         <div class="post-meta">
@@ -556,14 +505,14 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2014-01-19 19:29:53" itemprop="dateCreated datePublished" datetime="2014-01-19T19:29:53+08:00">2014-01-19</time>
+              <time title="创建时间：2016-07-08 20:22:06" itemprop="dateCreated datePublished" datetime="2016-07-08T20:22:06+08:00">2016-07-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:50:42" itemprop="dateModified" datetime="2020-12-04T16:50:42+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -571,7 +520,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Music/" itemprop="url" rel="index"><span itemprop="name">Music</span></a>
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
                 </span>
             </span>
 
@@ -593,16 +542,10 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>又是一个周末，说明这一周又飞速的过去了，我的时间沙漏的沙子实在是过的太快了，尤其是在这个年龄，<strong>几乎是哭着送走每一天的</strong>。</p>
-<p>上午起床后想把<strong>WordPress Android</strong>客户端自己编译出来的，下载好了之后，可是编译遇到大问题，现在还没用解决,希望再花一个小时可以搞定。</p>
-<p>最近想做一个项目：<strong>主页和博客应用</strong>。可以做到展示我写的博客，给自己2周的时间，我相信我可以完成的。</p>
-<p>这一周发生了很多事，周五晚上的年会，啥大奖都没中。</p>
-<p>我希望下周可以把<strong>《暗时间》</strong>这本书看完，这本书确实写的非常好，相见恨晚。</p>
-<p>下午3点的时候去了世界之窗附近的一家音乐培训机构，体验了45分钟的吉他教程，收获相当大。吉他老师保养的非常好，33岁，但看起来也就20几岁的样子，香港出生，但现在已经移民到枫叶国去了。</p>
+          有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2014/01/19/Free-Trail-A-Guitar-Lesson-And-Learn-A-Lot/#more" rel="contents">
+              <a class="btn" href="/blog/2016/07/08/2016-07-08-190-Week-27-Fri-Need-Work-Harder/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -626,7 +569,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/12/28/Man-Made-Scenery-A-Trip-To-The-OCT-East/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/07/2016-07-07-189-Week-27-Thu-Get-To-The-Point/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -640,7 +583,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2013/12/28/Man-Made-Scenery-A-Trip-To-The-OCT-East/" class="post-title-link" itemprop="url">人造的风景 ---东部华侨城一日游感想与收获</a>
+            <a href="/blog/2016/07/07/2016-07-07-189-Week-27-Thu-Get-To-The-Point/" class="post-title-link" itemprop="url">2016-07-07 189 Week 27th Thu 抓住重点！</a>
         </h2>
 
         <div class="post-meta">
@@ -650,14 +593,14 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2013-12-28 21:24:59" itemprop="dateCreated datePublished" datetime="2013-12-28T21:24:59+08:00">2013-12-28</time>
+              <time title="创建时间：2016-07-07 23:24:43" itemprop="dateCreated datePublished" datetime="2016-07-07T23:24:43+08:00">2016-07-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:50:37" itemprop="dateModified" datetime="2020-12-04T16:50:37+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -665,7 +608,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Travel/" itemprop="url" rel="index"><span itemprop="name">Travel</span></a>
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
                 </span>
             </span>
 
@@ -687,18 +630,10 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By Long Luo</em></strong></p>
-<pre><code>旅行，就是从自己活腻的地方跑到别人活腻的地方去。
-                                 ---题记</code></pre>
-<p>来深已经4年多了，但是东部华侨城一直没去过，一方面是个人一直对一些人造的风景不是特别感冒，然后一方面就是远加门票价格高。部门组织了今天去东部华侨城一日游的活动，于是就顺便游玩了下OCT，在此记录下感想。</p>
-<p>早上6：30爬起来，洗漱完毕，看了下天气，7°~15°，温度不高也不低，但是自己也没有比平常多穿衣服，也确实也没啥衣服，一直都是那几件衣服，再冷的天气都那样。最后证明今天不是游华侨城的好日子。</p>
-<p>好大的风，一天的时间就把我的手吹裂了，护手霜需要get。</p>
-<h1 id="一、人造的风景"><a href="#一、人造的风景" class="headerlink" title="一、人造的风景"></a>一、人造的风景</h1><p>一直以来，喜欢的风景，要么是各大城市的中心区，不管是繁华的商业区，还是车水马龙的主干道，抑或是鳞次栉比的商店，当然少不了美味小吃；要么就是没有人工雕琢痕迹的景区公园，比如九寨沟、雪山、森林公园、海滩等。国内很多景点都把原有的文物古迹给拆了，然后复刻一个，简直是令人发指啊，完全是一堆不懂艺术的公园在胡搞啊！</p>
-<p>对于OCT这种定义在休闲娱乐的主题公园来说，恰恰需要在宣传时宣传其人造风景，比如大峡谷什么亚洲第一大、第一长、第一快等等。没去过茶溪谷，但是对于大部分没去过欧洲旅游的普通大众来说，也是一种廉价体验欧洲小镇的好途径。</p>
-<p>反正对于我来说，惊险刺激性的体验一次就够了，除非特殊原因，不会想参加第二次。</p>
+          有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2013/12/28/Man-Made-Scenery-A-Trip-To-The-OCT-East/#more" rel="contents">
+              <a class="btn" href="/blog/2016/07/07/2016-07-07-189-Week-27-Thu-Get-To-The-Point/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -722,7 +657,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/12/06/Just-An-Ordinary-Weekend-Daily-Record/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/06/2016-07-06-188-Week-27-Wed-Be-Rigorous/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -736,7 +671,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2013/12/06/Just-An-Ordinary-Weekend-Daily-Record/" class="post-title-link" itemprop="url">Just An Ordinary Weekend Daily Record</a>
+            <a href="/blog/2016/07/06/2016-07-06-188-Week-27-Wed-Be-Rigorous/" class="post-title-link" itemprop="url">2016-07-06 188 Week 27th Wed 确保自己说的每句话都经得起推敲！</a>
         </h2>
 
         <div class="post-meta">
@@ -746,14 +681,14 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2013-12-06 23:08:08" itemprop="dateCreated datePublished" datetime="2013-12-06T23:08:08+08:00">2013-12-06</time>
+              <time title="创建时间：2016-07-06 20:50:04" itemprop="dateCreated datePublished" datetime="2016-07-06T20:50:04+08:00">2016-07-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:50:31" itemprop="dateModified" datetime="2020-12-04T16:50:31+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -761,7 +696,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
                 </span>
             </span>
 
@@ -783,101 +718,10 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>While I was watching the live <strong>NBA finals</strong>, the PM gave me a call said that there were two emergency problems needed  to handle.</p>
-<p>As I had lunch in the nearby restaurant, I have to go to office to handle the problems.</p>
-<p>After I completed the problems at about 4 PM. I decide to watch the movie since I have 2 movie tickets left whose deadline is the end of the month. However, there were seldom films in the Pacific Cinema. I made a choice to watch the <a target="_blank" rel="noopener" href="https://movie.douban.com/subject/5364905/">Switch</a> which starred by Andy Lau, Chiling Lin and Jingchu Zhang.</p>
-<p>In terms of plot, action and scripts, the movie is really a tragedy. Its best comes the fascinating Chiling Lin and other charming actress with some splendid view. The chiling lin shows serval models with kinds of roles in the movie. The jingchu zhang with some girls are also attractive. </p>
-<p><strong><em>That is it.</em></strong></p>
-<p><em><strong>—By Long Luo 5th, July, 2013 @Shenzhen</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/11/12/Poem-Sanya-To-The-Tune-Of-Chin-Yuan-Chun/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2013/11/12/Poem-Sanya-To-The-Tune-Of-Chin-Yuan-Chun/" class="post-title-link" itemprop="url">沁园春·三亚</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2013-11-12 23:30:52" itemprop="dateCreated datePublished" datetime="2013-11-12T23:30:52+08:00">2013-11-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>南国风光，<br>千里风吹，<br>万里雨飘。<br>望行人大树，唯有低头。<br>街道上下，顿成滔涛。</p>
-<p>风挟巨浪，<br>雨打狂沙，<br>旅行目标皆取消。<br>最强风，<br>问国各路航班，<br>何时飞高？</p>
-<p>人力如此之渺，<br>徒然闲坐凭栏眺。<br>叹年华渐逝，<br>二十有六。<br>未有寸功，<br>无人可抱。</p>
-<p>双亲已老，<br>匹马赴深，<br>何时回乡让其傲？<br>勤学习，<br>多总结思考，<br>莫负今朝！</p>
+          有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2013/11/12/Poem-Sanya-To-The-Tune-Of-Chin-Yuan-Chun/#more" rel="contents">
+              <a class="btn" href="/blog/2016/07/06/2016-07-06-188-Week-27-Wed-Be-Rigorous/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -901,7 +745,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/10/15/Mastering-The-Markdown/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/05/2016-07-05-187-Week-27-Feb-Remain-Humble/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -915,7 +759,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2013/10/15/Mastering-The-Markdown/" class="post-title-link" itemprop="url">3分钟教你快速入门Markdown</a>
+            <a href="/blog/2016/07/05/2016-07-05-187-Week-27-Feb-Remain-Humble/" class="post-title-link" itemprop="url">2016-07-05 187 Week 27th Feb 虚怀若谷</a>
         </h2>
 
         <div class="post-meta">
@@ -925,14 +769,14 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2013-10-15 01:52:26" itemprop="dateCreated datePublished" datetime="2013-10-15T01:52:26+08:00">2013-10-15</time>
+              <time title="创建时间：2016-07-05 22:03:32" itemprop="dateCreated datePublished" datetime="2016-07-05T22:03:32+08:00">2016-07-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:50:27" itemprop="dateModified" datetime="2020-12-04T16:50:27+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -940,7 +784,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Techniques/" itemprop="url" rel="index"><span itemprop="name">Techniques</span></a>
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
                 </span>
             </span>
 
@@ -962,13 +806,10 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>NOTE:</strong> This is Simplelified  Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to <a target="_blank" rel="noopener" href="http://daringfireball.net/projects/markdown/syntax">Markdown: Syntax</a>.</p>
-<p><strong>声明：</strong> 这份文档派生(fork)于<a target="_blank" rel="noopener" href="http://markdown.tw/">繁体中文版</a>，在此基础上进行了繁体转简体工作，并进行了适当的润色。此文档用 Markdown 语法编写，你可以到这里<a target="_blank" rel="noopener" href="http://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md">查看它的源文件</a>。「繁体中文版的原始文件可以<a target="_blank" rel="noopener" href="https://github.com/othree/markdown-syntax-zhtw/blob/master/syntax.md">查看这里</a> 。」–By @<a target="_blank" rel="noopener" href="http://twitter.com/riku">riku</a></p>
-<p><strong>注：</strong> 本项目托管于 <a target="_blank" rel="noopener" href="http://gitcafe.com/riku/Markdown-Syntax-CN/">GitCafe</a>上，请通过”派生”和”合并请求”来帮忙改进本项目。</p>
-<h1 id="Markdown-语法说明-简体中文版-点击查看快速入门"><a href="#Markdown-语法说明-简体中文版-点击查看快速入门" class="headerlink" title="Markdown 语法说明 (简体中文版) / (点击查看快速入门)"></a>Markdown 语法说明 (简体中文版) / (<a href="./basic.html">点击查看快速入门</a>)</h1>
+          有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2013/10/15/Mastering-The-Markdown/#more" rel="contents">
+              <a class="btn" href="/blog/2016/07/05/2016-07-05-187-Week-27-Feb-Remain-Humble/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -992,7 +833,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/09/24/How-RSA-Encrypt-And-Decrypt-Algorithm-Works/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/04/2016-07-04-186-Week-27-Mon-Tolerent/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1006,7 +847,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2013/09/24/How-RSA-Encrypt-And-Decrypt-Algorithm-Works/" class="post-title-link" itemprop="url">解析RSA加解密算法</a>
+            <a href="/blog/2016/07/04/2016-07-04-186-Week-27-Mon-Tolerent/" class="post-title-link" itemprop="url">2016-07-04 186 Week 27th Mon 宽容</a>
         </h2>
 
         <div class="post-meta">
@@ -1016,14 +857,14 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2013-09-24 12:26:49" itemprop="dateCreated datePublished" datetime="2013-09-24T12:26:49+08:00">2013-09-24</time>
+              <time title="创建时间：2016-07-04 22:30:19" itemprop="dateCreated datePublished" datetime="2016-07-04T22:30:19+08:00">2016-07-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:50:22" itemprop="dateModified" datetime="2020-12-04T16:50:22+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1031,7 +872,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
                 </span>
             </span>
 
@@ -1053,13 +894,10 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By Long Luo</strong></em></p>
-<h1 id="一、RSA说明"><a href="#一、RSA说明" class="headerlink" title="一、RSA说明"></a>一、RSA说明</h1><p><strong><em>RSA</em></strong>公钥加密算法是1977年由Ron Rivest、Adi Shamirh和LenAdleman在（美国麻省理工学院）开发的。RSA取名来自开发他们三者的名字。</p>
-<p>RSA算法基于一个十分简单的数论事实：将两个大素数相乘十分容易，但想要对其乘积进行因式分解却极其困难，因此可以将乘积公开作为加密密钥。</p>
-<h1 id="二、RSA算法实现"><a href="#二、RSA算法实现" class="headerlink" title="二、RSA算法实现"></a>二、RSA算法实现</h1><p>RSA算法是一种非对称密码算法，所谓非对称，就是指该算法需要一对密钥，使用其中一个加密，则需要用另一个才能解密。</p>
+          有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2013/09/24/How-RSA-Encrypt-And-Decrypt-Algorithm-Works/#more" rel="contents">
+              <a class="btn" href="/blog/2016/07/04/2016-07-04-186-Week-27-Mon-Tolerent/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1083,7 +921,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/09/11/growing-drift-thought/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/04/Master-Java-HashMap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1097,7 +935,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2013/09/11/growing-drift-thought/" class="post-title-link" itemprop="url">成长·漂泊·随想</a>
+            <a href="/blog/2016/07/04/Master-Java-HashMap/" class="post-title-link" itemprop="url">掌握Java: HashMap</a>
         </h2>
 
         <div class="post-meta">
@@ -1107,7 +945,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2013-09-11 12:41:11" itemprop="dateCreated datePublished" datetime="2013-09-11T12:41:11+08:00">2013-09-11</time>
+              <time title="创建时间：2016-07-04 10:50:11" itemprop="dateCreated datePublished" datetime="2016-07-04T10:50:11+08:00">2016-07-04</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -1122,7 +960,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
@@ -1144,21 +982,107 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By Long Luo</em></strong></p>
-<blockquote>
-<p>注:<br>本文是从之前<a target="_blank" rel="noopener" href="http://www.imlongluo.com/">个人网站</a>上<a target="_blank" rel="noopener" href="http://www.imlongluo.com/blog/?p=29">成长·漂泊·随想</a>移植过来的。</p>
-</blockquote>
-<h1 id="一、简单与复杂"><a href="#一、简单与复杂" class="headerlink" title="一、简单与复杂"></a>一、简单与复杂</h1><p>一生二，二生三，三生万物。</p>
-<p>三年前，当自己在学校图书馆看书时，突然心里深处涌出的一种冲动，让我重拾幼年时未能发育的音乐细胞时。当时以迅雷不及掩耳之势去借了几本乐理书，认真研读，虽然到现在还是一无所成…</p>
-<p>但音乐那种组合之美，却让我回味至今。从古至今，世间音乐不过是几十个音符组合而已，都在一架钢琴的诠释范围之内。我想起了DNA里面的4对碱基对，地球上缤纷复杂的生命均以其为基础。</p>
-<p><strong>如同五彩缤纷的万花筒拆开之后，却只是一些小纸片和玻璃而已</strong>。</p>
-<p>可是我想通了此节之，却不能流畅地在吉他上弹奏一曲最简单的《欢乐颂》，也分辨不了不同的和弦，听不出歌曲的调式…</p>
-<p>凡此种种， 都需要技术，尤其是复杂艰辛的训练，几年前就期望自己能够在舞台上一展才艺，可是到现在依然达不到登台的水平。</p>
-<p>一边憎恶虚荣，一边找各种机会虚荣，在应该为了虚荣而努力的时候，拖延症又犯了。</p>
-<p>知道复杂是由简单的东西所构成这很容易，但是如何能将简单组合成复杂以实现某种功能这才是道，也是我所追求的。</p>
+          <p>HashMap也是我们使用非常多的Collection，它是基于哈希表的 Map 接口的实现，以key-value的形式存在。在HashMap中，key-value总是会当做一个整体来处理，系统会根据hash算法来来计算key-value的存储位置，我们总是可以通过key快速地存、取value。下面就来分析HashMap的存取。</p>
+<h1 id="一、定义"><a href="#一、定义" class="headerlink" title="一、定义"></a>一、定义</h1><p>HashMap实现了Map接口，继承AbstractMap。其中Map接口定义了键映射到值的规则，而AbstractMap类提供 Map 接口的骨干实现，以最大限度地减少实现此接口所需的工作，其实AbstractMap类已经实现了Map，这里标注Map LZ觉得应该是更加清晰吧！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt;, <span class="title">Cloneable</span>, <span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+
+<h1 id="二、构造函数"><a href="#二、构造函数" class="headerlink" title="二、构造函数"></a>二、构造函数</h1><p>HashMap提供了三个构造函数：</p>
+<p>HashMap()：构造一个具有默认初始容量 (16) 和默认加载因子 (0.75) 的空 HashMap。</p>
+<p>HashMap(int initialCapacity)：构造一个带指定初始容量和默认加载因子 (0.75) 的空 HashMap。</p>
+<p>HashMap(int initialCapacity, float loadFactor)：构造一个带指定初始容量和加载因子的空 HashMap。</p>
+<p>在这里提到了两个参数：初始容量，加载因子。这两个参数是影响HashMap性能的重要参数，其中容量表示哈希表中桶的数量，初始容量是创建哈希表时的容量，加载因子是哈希表在其容量自动增加之前可以达到多满的一种尺度，它衡量的是一个散列表的空间的使用程度，负载因子越大表示散列表的装填程度越高，反之愈小。对于使用链表法的散列表来说，查找一个元素的平均时间是O(1+a)，因此如果负载因子越大，对空间的利用更充分，然而后果是查找效率的降低；如果负载因子太小，那么散列表的数据将过于稀疏，对空间造成严重浪费。系统默认负载因子为0.75，一般情况下我们是无需修改的。</p>
+<p>HashMap是一种支持快速存取的数据结构，要了解它的性能必须要了解它的数据结构。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2013/09/11/growing-drift-thought/#more" rel="contents">
+              <a class="btn" href="/blog/2016/07/04/Master-Java-HashMap/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/03/2016-07-03-185-Week-27-Sun-Daily-Record/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/07/03/2016-07-03-185-Week-27-Sun-Daily-Record/" class="post-title-link" itemprop="url">2016-07-03 185 Week 27th Sun 周末流水账</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-07-03 21:08:13" itemprop="dateCreated datePublished" datetime="2016-07-03T21:08:13+08:00">2016-07-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 16:50:17" itemprop="dateModified" datetime="2020-12-04T16:50:17+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          有东西被加密了, 请输入密码查看.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/07/03/2016-07-03-185-Week-27-Sun-Daily-Record/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1181,7 +1105,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/43/">43</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1247,7 +1171,7 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">351</span>
+          <span class="site-state-item-count">429</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
