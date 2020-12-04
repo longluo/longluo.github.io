@@ -217,6 +217,690 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/02/14/some_tips_about_android_listview_performence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2014/02/14/some_tips_about_android_listview_performence/" class="post-title-link" itemprop="url">提升Android ListView性能的几个技巧</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-02-14 15:22:10" itemprop="dateCreated datePublished" datetime="2014-02-14T15:22:10+08:00">2014-02-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>翻译 Long Luo</em></strong></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2012/04/05/performance-tips-for-androids-listview/">Performance Tips for Android’s ListView</a></p>
+<pre><code>译者注：
+1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
+2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正；
+3. inflation这个词一直找不到特别好的中文翻译。</code></pre>
+<h1 id="ListView如何运作的？"><a href="#ListView如何运作的？" class="headerlink" title="ListView如何运作的？"></a>ListView如何运作的？</h1><p><em>ListView</em>是设计应用于对<strong>可扩展性和高性能要求</strong>的地方。实际上，这就意味着<em>ListView</em>有以下2个要求：</p>
+<ol>
+<li>尽可能少的创建View；</li>
+<li>只是绘制和布局在屏幕上可见的子View。</li>
+</ol>
+<p>理解第一点很简单：通过布局xml文件在创建View并显示是很昂贵耗时耗资源的操作。尽管布局文件已经编译打包成了二进制形式以便于更高效的语法解析，但是创建View仍然需要通过一个特殊的XML树，并实例化所有需要响应的View。</p>
+<p><em>ListView</em>通过回收一些不可见的Views，通常在Android源码中称为“<em>ScrapView</em>(废弃的View)”来解决这个问题。这及意味着开发者只需要简单的更新每行的内容而不需要针对每个单独的行的布局来创建View。</p>
+<p>为了实现第二点，在我们滑动屏幕时，<em>ListView</em>通过使用View回收器来增加低于或者高于当当前窗口的Views，并当前活动的Views移动到一个可回收池中。这样的话，<em>ListView</em>只需要在内存中保持足够多的Views去填充分配空间中的布局和一些额外的可回收Views，即使当你的Adapter有上百个items的适合。它会使用不同的方法去填充行之间的空间，从顶部或者底部等等，具体取决于窗口是如何变化的。</p>
+<p>下面这个图很直观的展示了当你按下ListView的时候发生了什么：</p>
+<p><img src="http://blogresource.qiniudn.com/2014/Android/listview_tips.png" alt="ListView"></p>
+<p>通过上述介绍，相比我们已经熟悉了<em>ListView</em>的这种机制，让我们继续前往技巧部分。正如上述介绍的，在滑动时，<em>ListView</em>通过动态的创建和回收很多View，实现了尽可能地让Adapter的*getView()<em>轻量。所有的技巧都是通过多种方法让</em>getView()*更快。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/02/14/some_tips_about_android_listview_performence/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/01/23/android_ui_layout_summay_5_layouts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2014/01/23/android_ui_layout_summay_5_layouts/" class="post-title-link" itemprop="url">Android UI Layout总结系列之篇之5大布局</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-01-23 20:16:36" itemprop="dateCreated datePublished" datetime="2014-01-23T20:16:36+08:00">2014-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>在一个Android应用中，Layout是开发中的一个很重要环节，Layout是组成UI不可缺少的一部分。</p>
+<h1 id="Android-UI核心类"><a href="#Android-UI核心类" class="headerlink" title="Android UI核心类"></a>Android UI核心类</h1><p>在Android应用构建UI的方法有以下几种：</p>
+<ol>
+<li>单纯使用JAVA代码</li>
+<li>使用XML完全定义界面</li>
+<li>结合使用两者，在XML中定义，在JAVA中引用和修改</li>
+</ol>
+<h2 id="Android-SDK中关于UI的核心类："><a href="#Android-SDK中关于UI的核心类：" class="headerlink" title="Android SDK中关于UI的核心类："></a>Android SDK中关于UI的核心类：</h2><p>Android.view.View和android.view.ViewGroup</p>
+<p>android中的常见UI控件均会扩展View和ViewGroup其中有一部分是专门用来控制其子View位置和大小，这些类我们称为布局管理器。</p>
+<h3 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h3><ol>
+<li>LayoutParams是ViewGroup内部类，包含了ViewGroup的布局参数，用来告诉它们的父类它们想怎么在父类中布局（大小和位置），所有在LayoutParams及其子类中定义的布局参数在xml中定义都是通过layout_***定义的。</li>
+</ol>
+<p>LayoutParams只提供了两个参数设定：</p>
+<pre><code>layout_width  元素的高度(fill_parent | match_parent | wrap_content | *dip)
+layout_height 元素的宽度(同上)                    </code></pre>
+<ol start="2">
+<li>MarginLayoutParams也是ViewGroup一个内部类，它继承了LayoutParams类，用来扩展LayoutParams的属性，设置参数。</li>
+</ol>
+<p>MarginLayoutParams添加了四个参数设定：</p>
+<pre><code>layout_marginLeft       相对于本元素左边界的偏移
+layout_marginRight         相对于本元素右边界的偏移
+layout_marginTop，        相对于本元素上边界的偏移
+layout_marginBottom      相对于本元素下边界的偏移</code></pre>
+<p>以上的两种Layout参数，所有布局中的子ViewGroup和子View都可以使用</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/01/23/android_ui_layout_summay_5_layouts/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/" class="post-title-link" itemprop="url">情歌有多动听，你就有多怀疑?</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-01-21 22:41:43" itemprop="dateCreated datePublished" datetime="2014-01-21T22:41:43+08:00">2014-01-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>最近没怎么写东西的缘故是因为担心自己<strong>看的东西太少，读的东西太少，而想的太多</strong>。2014年的第一月也很快就要过去了，而我还没有对自己过去的一年里做出一点小结，就在这里随便扯几点吧！</p>
+<p>比如我的大学好友雷大才子，精通几门外语，学富五车，不仅文章写得好，又懂音乐，还会写诗作画，更是一名勤劳的Blogger，每次看他的博文，总能学到很多东西。</p>
+<h1 id="一、Destiny"><a href="#一、Destiny" class="headerlink" title="一、Destiny"></a>一、Destiny</h1><p>年轻的时候我看到网上一些晒东晒西的帖子，总想：“等我到了他那个年纪，应该比TA出色的多吧！”</p>
+<p>但在工作了几年之后，我不得不认识到：<strong>和一些人相比，一方面由于家庭草根身份出身的巨大差距，另外一方面之前20多年的积累，导致除非出现巨大的机遇，否则人生绝无逆转的可能</strong>。关于这种巨大的差距，包括<strong>眼界、资源、机遇、圈子</strong>等，在第三节里面我会再认真的阐述。</p>
+<p>被认为是20世纪最有影响力的经济学家之一的Frank H. Knight有个著名的观点：“<strong>决定一个人富有的三个条件，一是出身，二是机遇，三是努力，而这三者之中，努力是最微不足道的。</strong>” </p>
+<p>我更喜欢英语的Destiny，因为让我想起一个词:Destination，我想一个人的命运也就意味着这个人一生中最终能到达什么样的地方。<strong>一个人就像森林里的一棵树苗，最初你长在什么地方，加上你的天性，除非特别的机遇，你能够长到多高是可以预见的</strong>。</p>
+<p>我很羡慕凤姐，有其是我这种间歇性缺乏自信的人，更需要学习凤姐的自信和强大的内心，相比漂在大城市的广大千千万屌丝蚁族来说，凤姐完成了大改变，不仅不用再重复父辈的贫困，很大程度的改变了社会地位，也不需要像天朝这种Hard模式活动这么累了。</p>
+<p>即使凤姐不去USA，比起绝大多数打工仔打工妹来说，凤姐上电视台，接受各种采访，人生经历也足够丰富。</p>
+<p>2013的经历也许足够丰富，只是自己缺乏总结，导致又被同样的石头绊倒了2次。是时候好好回顾下了，做出改变。</p>
+<pre><code>除了老婆孩子不能变之后，其他的统统都要变。
+                                    ---李健熙</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/01/19/Free-Trail-A-Guitar-Lesson-And-Learn-A-Lot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2014/01/19/Free-Trail-A-Guitar-Lesson-And-Learn-A-Lot/" class="post-title-link" itemprop="url">试听了一节吉他课</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-01-19 19:29:53" itemprop="dateCreated datePublished" datetime="2014-01-19T19:29:53+08:00">2014-01-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Music/" itemprop="url" rel="index"><span itemprop="name">Music</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>又是一个周末，说明这一周又飞速的过去了，我的时间沙漏的沙子实在是过的太快了，尤其是在这个年龄，<strong>几乎是哭着送走每一天的</strong>。</p>
+<p>上午起床后想把<strong>WordPress Android</strong>客户端自己编译出来的，下载好了之后，可是编译遇到大问题，现在还没用解决,希望再花一个小时可以搞定。</p>
+<p>最近想做一个项目：<strong>主页和博客应用</strong>。可以做到展示我写的博客，给自己2周的时间，我相信我可以完成的。</p>
+<p>这一周发生了很多事，周五晚上的年会，啥大奖都没中。</p>
+<p>我希望下周可以把<strong>《暗时间》</strong>这本书看完，这本书确实写的非常好，相见恨晚。</p>
+<p>下午3点的时候去了世界之窗附近的一家音乐培训机构，体验了45分钟的吉他教程，收获相当大。吉他老师保养的非常好，33岁，但看起来也就20几岁的样子，香港出生，但现在已经移民到枫叶国去了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/01/19/Free-Trail-A-Guitar-Lesson-And-Learn-A-Lot/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/12/28/Man-Made-Scenery-A-Trip-To-The-OCT-East/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2013/12/28/Man-Made-Scenery-A-Trip-To-The-OCT-East/" class="post-title-link" itemprop="url">人造的风景 ---东部华侨城一日游感想与收获</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-12-28 21:24:59" itemprop="dateCreated datePublished" datetime="2013-12-28T21:24:59+08:00">2013-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Travel/" itemprop="url" rel="index"><span itemprop="name">Travel</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<pre><code>旅行，就是从自己活腻的地方跑到别人活腻的地方去。
+                                 ---题记</code></pre>
+<p>来深已经4年多了，但是东部华侨城一直没去过，一方面是个人一直对一些人造的风景不是特别感冒，然后一方面就是远加门票价格高。部门组织了今天去东部华侨城一日游的活动，于是就顺便游玩了下OCT，在此记录下感想。</p>
+<p>早上6：30爬起来，洗漱完毕，看了下天气，7°~15°，温度不高也不低，但是自己也没有比平常多穿衣服，也确实也没啥衣服，一直都是那几件衣服，再冷的天气都那样。最后证明今天不是游华侨城的好日子。</p>
+<p>好大的风，一天的时间就把我的手吹裂了，护手霜需要get。</p>
+<h1 id="一、人造的风景"><a href="#一、人造的风景" class="headerlink" title="一、人造的风景"></a>一、人造的风景</h1><p>一直以来，喜欢的风景，要么是各大城市的中心区，不管是繁华的商业区，还是车水马龙的主干道，抑或是鳞次栉比的商店，当然少不了美味小吃；要么就是没有人工雕琢痕迹的景区公园，比如九寨沟、雪山、森林公园、海滩等。国内很多景点都把原有的文物古迹给拆了，然后复刻一个，简直是令人发指啊，完全是一堆不懂艺术的公园在胡搞啊！</p>
+<p>对于OCT这种定义在休闲娱乐的主题公园来说，恰恰需要在宣传时宣传其人造风景，比如大峡谷什么亚洲第一大、第一长、第一快等等。没去过茶溪谷，但是对于大部分没去过欧洲旅游的普通大众来说，也是一种廉价体验欧洲小镇的好途径。</p>
+<p>反正对于我来说，惊险刺激性的体验一次就够了，除非特殊原因，不会想参加第二次。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2013/12/28/Man-Made-Scenery-A-Trip-To-The-OCT-East/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/12/06/Just-An-Ordinary-Weekend-Daily-Record/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2013/12/06/Just-An-Ordinary-Weekend-Daily-Record/" class="post-title-link" itemprop="url">Just An Ordinary Weekend Daily Record</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-12-06 23:08:08" itemprop="dateCreated datePublished" datetime="2013-12-06T23:08:08+08:00">2013-12-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>While I was watching the live <strong>NBA finals</strong>, the PM gave me a call said that there were two emergency problems needed  to handle.</p>
+<p>As I had lunch in the nearby restaurant, I have to go to office to handle the problems.</p>
+<p>After I completed the problems at about 4 PM. I decide to watch the movie since I have 2 movie tickets left whose deadline is the end of the month. However, there were seldom films in the Pacific Cinema. I made a choice to watch the <a target="_blank" rel="noopener" href="https://movie.douban.com/subject/5364905/">Switch</a> which starred by Andy Lau, Chiling Lin and Jingchu Zhang.</p>
+<p>In terms of plot, action and scripts, the movie is really a tragedy. Its best comes the fascinating Chiling Lin and other charming actress with some splendid view. The chiling lin shows serval models with kinds of roles in the movie. The jingchu zhang with some girls are also attractive. </p>
+<p><strong><em>That is it.</em></strong></p>
+<p><em><strong>—By Long Luo 5th, July, 2013 @Shenzhen</strong></em></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/11/12/Poem-Sanya-To-The-Tune-Of-Chin-Yuan-Chun/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2013/11/12/Poem-Sanya-To-The-Tune-Of-Chin-Yuan-Chun/" class="post-title-link" itemprop="url">沁园春·三亚</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-11-12 23:30:52" itemprop="dateCreated datePublished" datetime="2013-11-12T23:30:52+08:00">2013-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-users"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="firestore-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>南国风光，<br>千里风吹，<br>万里雨飘。<br>望行人大树，唯有低头。<br>街道上下，顿成滔涛。</p>
+<p>风挟巨浪，<br>雨打狂沙，<br>旅行目标皆取消。<br>最强风，<br>问国各路航班，<br>何时飞高？</p>
+<p>人力如此之渺，<br>徒然闲坐凭栏眺。<br>叹年华渐逝，<br>二十有六。<br>未有寸功，<br>无人可抱。</p>
+<p>双亲已老，<br>匹马赴深，<br>何时回乡让其傲？<br>勤学习，<br>多总结思考，<br>莫负今朝！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2013/11/12/Poem-Sanya-To-The-Tune-Of-Chin-Yuan-Chun/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/10/15/Mastering-The-Markdown/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -494,696 +1178,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/25/How-Printf-Works-The-Fomal-Parameters-List-And-Formatter/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2013/01/25/How-Printf-Works-The-Fomal-Parameters-List-And-Formatter/" class="post-title-link" itemprop="url">深入剖析printf函数(下)：---形参列表和格式化输出是如何做到的？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2013-01-25 00:42:00" itemprop="dateCreated datePublished" datetime="2013-01-25T00:42:00+08:00">2013-01-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="一、引言"><a href="#一、引言" class="headerlink" title="一、引言"></a>一、引言</h1><p>在上一篇 <a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/">深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出”Hello World”?</a> 里，我们已经实现了用汇编语言在屏幕上输出了<code>“Hello World”</code>， 迈出了万里长征的第一步，但是我们知道实际的<code>printf</code>的功能是十分强大的，它和<code>scanf</code>一样属于标准输入输出的一种格式化函数，我们一般是这样使用它的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf()的基本形式：printf(&quot;格式控制字符串&quot;，变量列表)；</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2013/01/25/How-Printf-Works-The-Fomal-Parameters-List-And-Formatter/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/" class="post-title-link" itemprop="url">深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出“Hello World”?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2013-01-11 22:30:00" itemprop="dateCreated datePublished" datetime="2013-01-11T22:30:00+08:00">2013-01-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>—“你为什么要去登珠穆朗玛？”  </p>
-<p>当美国《纽约时报》记者问英国登山家乔治·马洛里。</p>
-<p>—“Because it is there(因为山在那里)。”</p>
-<h1 id="一、-内核的诱惑"><a href="#一、-内核的诱惑" class="headerlink" title="一、 内核的诱惑"></a>一、 内核的诱惑</h1><p><strong>会当凌绝顶，一览众山小。</strong></p>
-<p><strong><em>内核，是一个操作系统的核心。它负责管理系统的进程、内存、设备驱动程序、文件和网络系统，决定着系统的性能和稳定性</em></strong>。</p>
-<p>几十年来，内核以它那深深的魅力吸引着无数的码农为之倾倒，一代又一代的码农们从青青葱葱走向硕果累累，从风华正茂走向耄耋之年，也走出了现在多姿多彩的世界。</p>
-<p>内核就像一位风姿卓约的美女，多少码农欲一亲芳泽而不得。Linux内核是庞大复杂的，超过 600 万行的代码，就如同珠穆朗玛峰一样那样让人望而生畏。初学者一踏入，绝大多数会不自觉地迷失在这座庞大的迷宫里。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/10/Struct-Insight-Article-Indexes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2013/01/10/Struct-Insight-Article-Indexes/" class="post-title-link" itemprop="url">大话结构体系列文章目录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2013-01-10 03:58:28" itemprop="dateCreated datePublished" datetime="2013-01-10T03:58:28+08:00">2013-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p><a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html"><strong>大话Structure(结构体)</strong></a>这一系列文章来的是很偶然的。</p>
-<p>12月初由于奶奶病故，在返家的火车上，心情比较沉重，方圆20米范围内又扫描不到一个美女，百无聊赖，于是就构思了很多文章，这一系列只是其中之一。回深圳之后，就在平时参考了不少资料，尽量用轻松幽默的语言来完成这一系列文章。</p>
-<p>目前这一系列文章中不少内容仍然有很多欠缺，比如共同体、位域、枚举、Struct在tcp/ip中的应用等内容，这些都会在以后的文章中一一补上，敬请关注本人的博客O(∩_∩)O~</p>
-<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h1><ul>
-<li>第一回： <a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/23/Struct-Insight-Chapter-One-Why-Choose-Struct-as-a-girl-choose-a-boyfriend/">从女孩怎么选男朋友开始…Struct是为了解决什么问题？</a></li>
-<li>第二回： <a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/24/Struct-Insight-Chapter-Two-The-Declaration-Definition-And-Initialization-Of-Struct/">名不正则言不顺—Struct(结构体)的声明、定义及初始化</a></li>
-<li>第三回：<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/">借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…</a></li>
-<li>第四回：<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/">以空间换时间，Struct(结构体)中的成员对齐之道(上)</a></li>
-<li>第五回：<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">以空间换时间，Struct(结构体)中的成员对齐之道(下)</a></li>
-<li>第六回：<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">无既是有—没有成员变量的Struct（结构体）</a></li>
-<li>第七回：<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/">Struct中0元素数组的意义在哪里？</a></li>
-<li>第八回：<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/">小个头也有大智慧—C语言Struct中的函数和函数指针</a></li>
-</ul>
-<p><strong><em>Updated by Long Luo at 2016-6-12 23:18:27 @Shenzhen, China.</em></strong><br><strong><em>Modified by Long Luo at 2018年9月28日23点14分 @Hangzhou, China.</em></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/" class="post-title-link" itemprop="url">大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2013-01-09 03:58:28" itemprop="dateCreated datePublished" datetime="2013-01-09T03:58:28+08:00">2013-01-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<blockquote>
-<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第八篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8259225">大话结构体之八：C语言Struct中的函数和函数指针</a></p>
-</blockquote>
-<hr>
-<p>在系列之三<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/">大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…</a>，我们在文章的结尾留了一个悬念：</p>
-<p>我们了解到C语言规范是<code>struct</code>里面是<strong>不能有函数体</strong>的，但是在应用中假如<code>struct</code>中没有函数的话，我们会遇到很多问题，第一数据往往是依附于函数来进行操作的；其二是我们需要<strong>用C来实现面向对象的思想</strong>。</p>
-<p>比如下面这段代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FuncInside</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mA;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Hello, function inside!\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">FuncInside</span> <span class="title">f</span>;</span></span><br><span class="line"></span><br><span class="line">	f.mA = <span class="number">99</span>;</span><br><span class="line">	f.func();</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译会提示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1&gt;e:\learn\vs\struct\struct\funcpointer.c(7) : error C2032: “func”: 函数不能是 struct“FuncInside” 的成员</span><br></pre></td></tr></table></figure>
-
-<p>那么这个问题应该如何解决呢？</p>
-<p>一刹那，一句话在脑海中闪现，“**<em>指针是C语言的精华。**</em>”</p>
-<p><strong><em>啊哈，灵机一动！</em></strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/" class="post-title-link" itemprop="url">大话结构体之七：struct中0元素数组的意义在哪里？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2013-01-03 04:28:58" itemprop="dateCreated datePublished" datetime="2013-01-03T04:28:58+08:00">2013-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<blockquote>
-<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第七篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8271856">大话结构体之七：struct中0元素数组的意义在哪里？</a></p>
-</blockquote>
-<hr>
-<p>上一回<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">大话结构体之六：无即是有，没有成员变量的Struct(结构体)</a>，我们在文章的结尾留了一个悬念：</p>
-<p>—为什么0元素数组在<code>class</code>和<code>struct</code>结构体之外定义就是错误的，而在<code>class</code>和<code>struct</code>中定义就是Okay的，那么<strong>结构体中的0元素数组意义何在</strong>？</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/" class="post-title-link" itemprop="url">大话结构体之六：无即是有，没有成员变量的Struct(结构体)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2013-01-01 03:08:58" itemprop="dateCreated datePublished" datetime="2013-01-01T03:08:58+08:00">2013-01-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<blockquote>
-<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第六篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8249915">大话结构体之六：无即是有，没有成员变量的Struct(结构体)</a></p>
-</blockquote>
-<hr>
-<p>在上一篇<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)</a> 中，我们学习了<code>struct</code>的内存对齐的前世今生。</p>
-<p>在开始本篇之前，想问大家一个问题：</p>
-<pre><code>---0是什么？
----呵呵，就是没有呗！
----那好，这5块钱拿去，就当抵我上次向你借的500块钱。
----什么？这哪和哪啊！这不一样
----可是你自己说的， 0就是“没有”。
----我说不清，反正不行，你必须还我500.</code></pre>
-<p>0是什么？<br>起什么作用呢？<br>为什么500 ≠ 5？</p>
-<p>这节我们来讨论**<em>0的作用**</em>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/" class="post-title-link" itemprop="url">大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2012-12-29 01:08:58" itemprop="dateCreated datePublished" datetime="2012-12-29T01:08:58+08:00">2012-12-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<blockquote>
-<p>前言：<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第五篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8272233">大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)</a></p>
-</blockquote>
-<hr>
-<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在上一篇<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/">大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)</a> 中，我们了解到<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的成员变量都是1个int型，1个char型及1个short型，可是它们所占的空间却1个是8字节，一个是12字节。</p>
-<p><strong><em>为什么会有这样的区别呢？</em></strong></p>
-<p>通过上篇关于<strong>对齐</strong>的介绍，我们已经猜测这是<em>因为编译器对其作了对齐的处理</em>所致，但是**<em>编译器处理的细节**</em>具体是什么呢？</p>
-<p>在这一篇里，我们将对程序的<strong>编译，汇编，链接</strong>进行逐一分析，解开这个谜团。</p>
-<p><strong><em>不要走开，下面更精彩！</em></strong></p>
-<h1 id="编译过程："><a href="#编译过程：" class="headerlink" title="编译过程："></a>编译过程：</h1><p>一般情况下，<code>C</code>程序的编译过程为</p>
-<ol>
-<li>预处理</li>
-<li>编译成汇编代码</li>
-<li>汇编成目标代码</li>
-<li>链接</li>
-</ol>
-<p>这一篇我们将使用<code>gcc</code>对上述几个过程进行仔细分析，了解其处理细节。</p>
-<p>首先我们看一个例子，源码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************************************************</span></span><br><span class="line"><span class="comment">** File: - Z:\code\c\Alignment\Align.c</span></span><br><span class="line"><span class="comment">**  </span></span><br><span class="line"><span class="comment">** Copyright (C), Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Description: </span></span><br><span class="line"><span class="comment">**      Align.c --- To learn the details of Alignment by the compiler.</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Version: 1.1</span></span><br><span class="line"><span class="comment">** Date created: 22:33:50,10/12/2012</span></span><br><span class="line"><span class="comment">** Author: Long.Luo</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment">** 	&lt;author&gt;	&lt;data&gt;			&lt;desc&gt;</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> mA;</span><br><span class="line">	<span class="keyword">int</span> mB;</span><br><span class="line">	<span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> mB;</span><br><span class="line">	<span class="keyword">char</span> mA;</span><br><span class="line">	<span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span> <span class="title">aln2</span>;</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span> <span class="title">aln3</span>;</span></span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;The size of struct ALIGN2 is: %d\n&quot;</span>, <span class="keyword">sizeof</span>(aln2));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\t aln2.mA=0x%x, aln2.mB=0x%x, aln2.mC=0x%x\n&quot;</span>, &amp;aln2.mA, &amp;aln2.mB, &amp;aln2.mC);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;The size of struct ALIGN3 is: %d\n&quot;</span>, <span class="keyword">sizeof</span>(aln3));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\t aln3.mA=0x%x, aln3.mB=0x%x, aln3.mC=0x%x\n&quot;</span>, &amp;aln3.mA, &amp;aln3.mB, &amp;aln3.mC);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/31/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/31/">31</a><span class="page-number current">32</span><a class="page-number" href="/page/33/">33</a><span class="space">&hellip;</span><a class="page-number" href="/page/36/">36</a><a class="extend next" rel="next" href="/page/33/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1249,7 +1247,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">344</span>
+          <span class="site-state-item-count">351</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
