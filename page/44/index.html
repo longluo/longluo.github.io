@@ -217,6 +217,101 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" class="post-title-link" itemprop="url">[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2014-06-21 23:15:30" itemprop="dateCreated datePublished" datetime="2014-06-21T23:15:30+08:00">2014-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" class="post-meta-item leancloud_visitors" data-flag-title="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>翻译 By Long Luo</em></strong></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="http://mindtherobot.com/blog/580/android-audio-play-a-wav-file-on-an-audiotrack/">Android Audio: Play a WAV file on an AudioTrack</a></p>
+<p>译者注：<br>    1. 由于这是技术文章，所以有些词句使用原文，表达更准确。<br>    2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.<br>    3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。</p>
+<hr>
+<p>如果你已经成功地了解了关于<strong>AudioTrack</strong>的<a target="_blank" rel="noopener" href="http://mindtherobot.com/blog/555/android-audio-problems-hidden-limitations-and-opensl-es/" title="Android Audio: Problems, Hidden Limitations and OpenSL ES">一些话题</a>，那么你可能享受它带来的好处，例如低延迟（在STATIC(静态)模式），能够生成流式音频（在STREAM(流)模式）以及在播放之前，就能够访问和修改原始声音数据。</p>
+<p>不过，现在的问题是如何从源获取数据。许多应用需要使用的<strong>AudioTrack</strong>并不能简单的生成PCM音频（一个例子，比如<strong>Ethereal Dialpad</strong>或者其他类似的App）。你可能需要从文件源去加载数据，例如<em>WAV</em>或<em>MP3</em>文件。 </p>
+<p>不要期望使用<strong>MediaPlayer</strong>，去解码<em>WAV</em>文件和<em>MP3</em>音频。虽然<strong>MediaPlayer</strong>播放这些文件非常好，但是其播放逻辑完全在Native层，同时并没有为我们提供额外选项，允许我们使用其他解码器实现我们的目的。因此，我们必须从手动地从音频文件进行解码出<em>PCM</em>。</p>
+<p>在这篇文章中，将会讨论<strong>WAV</strong>格式文件。而在下一课中，我们将会更进一步，讨论如何从<strong>MP3</strong>文件读取音频。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/06/05/summary_of_wwdc2014_ios8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1139,100 +1234,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/" class="post-title-link" itemprop="url">介绍一个提高Android ListView或GridView的Smoothie库</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2014-02-15 11:41:06" itemprop="dateCreated datePublished" datetime="2014-02-15T11:41:06+08:00">2014-02-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/" class="post-meta-item leancloud_visitors" data-flag-title="介绍一个提高Android ListView或GridView的Smoothie库" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>翻译 By Long Luo</em></strong></p>
-<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2013/01/06/introducing-smoothie/">Introducing Smoothie</a></p>
-<p><img src="http://blogresource.qiniudn.com/2014/Android/smoothie.png" alt="smoothie"></p>
-<p><a target="_blank" rel="noopener" href="http://pattrnapp.com/">Pattrn</a> UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie">Smoothie</a>。</p>
-<p><strong><em>Smoothie</em></strong>提供了一个简单的API来异步加载<em>ListView/GridView</em>的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。</p>
-<p><strong><em>Smoothie</em></strong>是<strong>手势识别</strong>：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，**<em>Smoothie**</em>使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。</p>
-<p>那么，怎么使用它呢？很简单：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1302,7 +1303,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">481</span>
+          <span class="site-state-item-count">482</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

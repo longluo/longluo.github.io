@@ -217,6 +217,108 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/" class="post-title-link" itemprop="url">5分钟掌握矩阵乘法的Strassen算法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-21 22:27:04" itemprop="dateCreated datePublished" datetime="2019-06-21T22:27:04+08:00">2019-06-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/" class="post-meta-item leancloud_visitors" data-flag-title="5分钟掌握矩阵乘法的Strassen算法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。</p>
+<h1 id="一、矩阵乘法"><a href="#一、矩阵乘法" class="headerlink" title="一、矩阵乘法"></a>一、矩阵乘法</h1><p>假设$A$为$m \times p$的矩阵，$B$为$p \times n$的矩阵，那么称$m \times n$的矩阵$C$为矩阵$A$与$B$的乘积，记作$C = AB$，称为矩阵积（matrix product）。</p>
+<p>其中矩阵$C$中的第$i$行第$j$列元素可以表示为：</p>
+<p>$$<br> (AB)<em>{ij} = \sum</em>{k=1}^{p}{a_{ik}b_{kj}} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdot\cdot\cdot + a_{ip}b_{pj}<br>$$</p>
+<p>如下图所示：</p>
+<p><img src="https://github.com/AppUnion/DataBank/blob/master/images/blog/strassen/mat6.gif?raw=true" alt="@Figure 1. Matrix Multiplication | center "></p>
+<p>假如在矩阵$A$和矩阵$B$中，$m = p = n = N$，那么完成$C = AB$需要多少次乘法呢？</p>
+<ol>
+<li>对于每一个行向量$r$ ，总共有$N$行；</li>
+<li>对于每一个列向量$c$，总共有$N$列；</li>
+<li>计算它们的内积，总共有$N$次乘法计算。</li>
+</ol>
+<p>综合可以看出，矩阵乘法的算法复杂度是：$\Theta(N^{3})$。</p>
+<h1 id="二、Strassen算法"><a href="#二、Strassen算法" class="headerlink" title="二、Strassen算法"></a>二、Strassen算法</h1><p>那么有没有比$\Theta(N^{3})$更快的算法呢？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2019/06/21/Strassens-Matrix-Multiplication-Algorithm/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2019/03/18/The-Ceiling-of-The-Ordinary-People/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1028,87 +1130,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2018/09/20/review-of-poor-charlies-almanack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2018/09/20/review-of-poor-charlies-almanack/" class="post-title-link" itemprop="url">《穷查理宝典》读书笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2018-09-20 23:10:04" itemprop="dateCreated datePublished" datetime="2018-09-20T23:10:04+08:00">2018-09-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Reading/" itemprop="url" rel="index"><span itemprop="name">Reading</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2018/09/20/review-of-poor-charlies-almanack/" class="post-meta-item leancloud_visitors" data-flag-title="《穷查理宝典》读书笔记" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="挖坑，待填"><a href="#挖坑，待填" class="headerlink" title="挖坑，待填"></a>挖坑，待填</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1178,7 +1199,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">481</span>
+          <span class="site-state-item-count">482</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

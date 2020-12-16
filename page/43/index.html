@@ -217,6 +217,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2015/04/09/a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2015/04/09/a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/" class="post-title-link" itemprop="url">Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-04-09 21:04:10" itemprop="dateCreated datePublished" datetime="2015-04-09T21:04:10+08:00">2015-04-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2015/04/09/a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/" class="post-meta-item leancloud_visitors" data-flag-title="Google多线程面试题: 4个线程向4个文件里写入数据, 每个线程只能写一个值" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>最近在学习<code>Java多线程</code>时，遇到了一个下面的笔试题，题目如下： </p>
+<pre><code>编写一个程序，程序会启动4个线程，向4个文件A，B，C，D里写入数据，每个线程只能写一个值。 
+    线程A：只写A
+    线程B：只写B 
+    线程C：只写C 
+    线程D：只写D 
+
+4个文件A，B，C，D。 
+
+程序运行起来，4个文件的写入结果如下： 
+    A：ABCDABCD... 
+    B：BCDABCDA... 
+    C：CDABCDAB... 
+    D：DABCDABC... </code></pre>
+<p>网上搜索了下，好像还是一个**<em>Google笔试题**</em>，这个问题涉及到的知识点有：<code>多线程</code>, <code>并发</code>, <code>锁</code>, <code>线程间通信</code>。</p>
+<h1 id="个人分析过程："><a href="#个人分析过程：" class="headerlink" title="个人分析过程："></a>个人分析过程：</h1><pre><code>1. 创建4个线程；
+2. 每个线程在输出时都需要加锁；
+3. 操作文件的代码要加锁；
+4. 一个线程完成之后，通知下一个要执行的线程；</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2015/04/09/a-google-interview-multi-threading-program-question-on-4-threads-to-write-to-4-files-once-only/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2015/04/06/an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1105,101 +1212,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" class="post-title-link" itemprop="url">[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2014-06-21 23:15:30" itemprop="dateCreated datePublished" datetime="2014-06-21T23:15:30+08:00">2014-06-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" class="post-meta-item leancloud_visitors" data-flag-title="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>翻译 By Long Luo</em></strong></p>
-<p>原文链接：<a target="_blank" rel="noopener" href="http://mindtherobot.com/blog/580/android-audio-play-a-wav-file-on-an-audiotrack/">Android Audio: Play a WAV file on an AudioTrack</a></p>
-<p>译者注：<br>    1. 由于这是技术文章，所以有些词句使用原文，表达更准确。<br>    2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.<br>    3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。</p>
-<hr>
-<p>如果你已经成功地了解了关于<strong>AudioTrack</strong>的<a target="_blank" rel="noopener" href="http://mindtherobot.com/blog/555/android-audio-problems-hidden-limitations-and-opensl-es/" title="Android Audio: Problems, Hidden Limitations and OpenSL ES">一些话题</a>，那么你可能享受它带来的好处，例如低延迟（在STATIC(静态)模式），能够生成流式音频（在STREAM(流)模式）以及在播放之前，就能够访问和修改原始声音数据。</p>
-<p>不过，现在的问题是如何从源获取数据。许多应用需要使用的<strong>AudioTrack</strong>并不能简单的生成PCM音频（一个例子，比如<strong>Ethereal Dialpad</strong>或者其他类似的App）。你可能需要从文件源去加载数据，例如<em>WAV</em>或<em>MP3</em>文件。 </p>
-<p>不要期望使用<strong>MediaPlayer</strong>，去解码<em>WAV</em>文件和<em>MP3</em>音频。虽然<strong>MediaPlayer</strong>播放这些文件非常好，但是其播放逻辑完全在Native层，同时并没有为我们提供额外选项，允许我们使用其他解码器实现我们的目的。因此，我们必须从手动地从音频文件进行解码出<em>PCM</em>。</p>
-<p>在这篇文章中，将会讨论<strong>WAV</strong>格式文件。而在下一课中，我们将会更进一步，讨论如何从<strong>MP3</strong>文件读取音频。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1269,7 +1281,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">481</span>
+          <span class="site-state-item-count">482</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
