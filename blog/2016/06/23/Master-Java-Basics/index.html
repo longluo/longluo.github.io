@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.0.0">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -99,6 +99,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -336,7 +337,7 @@
 <p>两条new语句创建了两个对象，然后用a,b这两个变量分别指向了其中一个对象，这是两个不同的对象，它们的首地址是不同的，即a和b中存储的数值是不相同的，所以，表达式a==b将返回false，而这两个对象中的内容是相同的，所以，表达式a.equals(b)将返回true。</p>
 <p>在实际开发中，我们经常要比较传递进行来的字符串内容是否等，例如，String input = …;input.equals(“quit”)，许多人稍不注意就使用==进行比较了，这是错误的，记住，字符串的比较基本上都是使用equals方法。</p>
 <p>如果一个类没有自己定义equals方法，那么它将继承Object类的equals方法，Object类的equals方法的实现代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">this</span>==o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>==o;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这说明，如果一个类没有自己定义equals方法，它默认的equals方法（从Object 类继承的）就是使用==操作符，也是在比较两个变量指向的对象是否是同一对象，这时候使用equals和使用==会得到同样的结果，如果比较的是两个独立的对象则总返回false。如果你编写的类希望能够比较该类创建的两个实例对象的内容是否相同，那么你必须覆盖equals方法，由你自己写代码来决定在什么情况即可认为两个对象的内容是相同的。</p>
 <ol start="9">
 <li>静态变量和实例变量的区别？</li>
@@ -432,22 +433,16 @@
 <p>把各个功能按调用流程进行了模块化，模块化带来的好处就是可以随意组合，举例说明：如果要注册一个用户，流程为显示界面并通过界面接收用户的输入，接着进行业务逻辑处理，在处理业务逻辑又访问数据库，如果我们将这些步骤全部按流水帐的方式放在一个方法中编写，这也是可以的，但这其中的坏处就是，当界面要修改时，由于代码全在一个方法内，可能会碰坏业务逻辑和数据库访问的码，同样，当修改业务逻辑或数据库访问的代码时，也会碰坏其他部分的代码。分层就是要把界面部分、业务逻辑部分、数据库访问部分的代码放在各自独立的方法或类中编写，这样就不会出现牵一发而动全身的问题了。这样分层后，还可以方便切换各层，譬如原来的界面是Swing，现在要改成BS界面，如果最初是按分层设计的，这时候不需要涉及业务和数据访问的代码，只需编写一条web界面就可以了。</p>
 <p>分层的好处：</p>
 <ol>
-<li><p>实现了软件之间的解耦；</p>
-</li>
-<li><p>便于进行分工</p>
-</li>
-<li><p>便于维护</p>
-</li>
-<li><p>提高软件组件的重用</p>
-</li>
-<li><p>便于替换某种产品，比如持久层用的是hibernate,需要更换产品用toplink，就不用该其他业务代 码，直接把配置一改。</p>
-</li>
-<li><p>便于产品功能的扩展。</p>
-</li>
-<li><p>便于适用用户需求的不断变化</p>
-</li>
-<li><p>hashCode()方法的作用？</p>
-</li>
+<li>实现了软件之间的解耦；</li>
+<li>便于进行分工</li>
+<li>便于维护</li>
+<li>提高软件组件的重用</li>
+<li>便于替换某种产品，比如持久层用的是hibernate,需要更换产品用toplink，就不用该其他业务代 码，直接把配置一改。</li>
+<li>便于产品功能的扩展。</li>
+<li>便于适用用户需求的不断变化</li>
+</ol>
+<ol start="17">
+<li>hashCode()方法的作用？</li>
 </ol>
 <p>hashcode()这个方法是用来鉴定2个对象是否相等的。</p>
 <p>equals方法和hashCode方法这2个方法都是用来判断2个对象是否相等的，但是他们是有区别的。</p>
@@ -476,6 +471,25 @@
   </li>
 </ul>
 </div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
       <footer class="post-footer">
@@ -569,7 +583,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">490</span>
+          <span class="site-state-item-count">492</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

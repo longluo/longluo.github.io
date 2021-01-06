@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.0.0">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -102,6 +102,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -306,31 +307,31 @@
 <p>—定义是要求编译器填充前面声明没有书写的地址栏。<br>也就是说某变量对应的地址，只有在其定义时才知道。</p>
 <p>因此**<em>实际的在栈上分配内存等工作都是由变量的定义完成的，所以才有声明的变量并不分配内存**</em>。但应注意一个重点，定义是<strong>生成映射元素需要的地址</strong>，因此<strong>定义也就说明了它生成的是哪个映射元素的地址</strong>，而如果此时编译器的映射表（即之前说的编译器内部用于记录映射元素的变量表、函数表等）中没有那个映射元素，即还没有相应元素的声明出现过，那么编译器将报错。</p>
 <p>在这里我们需要说下C和C++在定义Struct的区别， 先看下面2段代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SIMPLE</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	<span class="keyword">char</span> b;</span><br><span class="line">	<span class="keyword">float</span> c;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">SIMPLE x;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SIMPLE</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">char</span> b;</span><br><span class="line">    <span class="keyword">float</span> c;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">SIMPLE x;</span><br></pre></td></tr></table></figure>
 
 <p>再看下面一段源码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S0</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> mName[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">int</span> mBornYear;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">S1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">char</span> mName[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">int</span> mBornYear;</span><br><span class="line">&#125;</span><br><span class="line">S1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">S0 sa;</span><br><span class="line">S1 sb;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S0</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> mName[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">int</span> mBornYear;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">S1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> mName[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">int</span> mBornYear;</span><br><span class="line">&#125;</span><br><span class="line">S1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">S0 sa;</span><br><span class="line">S1 sb;</span><br></pre></td></tr></table></figure>
 
 <p>那么上面的代码中对Struct的定义<strong>都对</strong>了吗？</p>
 <p>熟悉C/C++的同学应该能够马上知道第二段的代码错了。</p>
 <p><strong><em>为什么呢？</em></strong></p>
 <p>因为<strong>C语言中对于Struct的定义</strong>是需要使用<code>struct S0 sa</code>这种方式。</p>
 <h1 id="三、C99标准下的Struct的初始化方法"><a href="#三、C99标准下的Struct的初始化方法" class="headerlink" title="三、C99标准下的Struct的初始化方法"></a>三、C99标准下的Struct的初始化方法</h1><p>Struct的常见初始化方法我们可以在任何一本关于C语言书里面都可以找到，这里就不赘述了。我们先看下面一段代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">usb_driver</span> <span class="title">usb_storage_driver</span> =</span> &#123; </span><br><span class="line">	.owner = THIS_MODULE,    </span><br><span class="line">	.name = \<span class="string">&quot;usb-storage\&quot;,    </span></span><br><span class="line"><span class="string">	.probe = storage_probe,    </span></span><br><span class="line"><span class="string">	.disconnect = storage_disconnect,    </span></span><br><span class="line"><span class="string">	.id_table = storage_usb_ids, &#125;;  </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">usb_driver</span> <span class="title">usb_storage_driver</span> = &#123;</span> </span><br><span class="line">    .owner = THIS_MODULE,    </span><br><span class="line">    .name = \<span class="string">&quot;usb-storage\&quot;,    </span></span><br><span class="line"><span class="string">    .probe = storage_probe,    </span></span><br><span class="line"><span class="string">    .disconnect = storage_disconnect,    </span></span><br><span class="line"><span class="string">    .id_table = storage_usb_ids, &#125;;  </span></span><br></pre></td></tr></table></figure>
 
 <p>我们在阅读GNU/Linux内核代码时，我们会经常遇到上述这样一种特殊的结构初始化方式，这种方式称为指定初始化。这种初始化方法源自C99标准。</p>
 <p>以下文字摘录了C Primer Plus第五版中相关章节的内容，从而就可以很好的理解Linux内核采用这种方式的优势就在于由此初始化不必严格按照定义时的顺序。</p>
 <p>已知一个结构，定义如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> </span></span><br><span class="line"><span class="class">&#123;</span>   </span><br><span class="line">	<span class="keyword">char</span> title[MAXTITLE];   </span><br><span class="line">	<span class="keyword">char</span> author[MAXAUTHOR];   </span><br><span class="line">	<span class="keyword">float</span> value; </span><br><span class="line">&#125;;   </span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> </span></span><br><span class="line"><span class="class">&#123;</span>   </span><br><span class="line">    <span class="keyword">char</span> title[MAXTITLE];   </span><br><span class="line">    <span class="keyword">char</span> author[MAXAUTHOR];   </span><br><span class="line">    <span class="keyword">float</span> value; </span><br><span class="line">&#125;;   </span><br></pre></td></tr></table></figure>
 
 <p>C99支持结构的指定初始化项目，其语法与数组的指定初始化项目近似。只是，结构的指定初始化项目使用点运算符和成员名（而不是方括号和索引值）来标识具体的元素。例如，只初始化<code>book</code>结构的成员<code>value</code>，可以这样做：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">surprise</span> =</span> </span><br><span class="line">&#123;</span><br><span class="line">	.value = <span class="number">10.99</span> </span><br><span class="line">&#125;;   </span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">surprise</span> = </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    .value = <span class="number">10.99</span> </span><br><span class="line">&#125;;   </span><br></pre></td></tr></table></figure>
 
 <p>可以按照任意的顺序使用指定初始化项目：   </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">gift</span> =</span> </span><br><span class="line">&#123; </span><br><span class="line">	.value = <span class="number">25.99</span>,                  </span><br><span class="line">	.author = \<span class="string">&quot;James Broadfool\&quot;,                  </span></span><br><span class="line"><span class="string">	.title = \&quot;Rue for the Toad\&quot;</span></span><br><span class="line"><span class="string">&#125;;  </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">gift</span> = </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">    .value = <span class="number">25.99</span>,                  </span><br><span class="line">    .author = \<span class="string">&quot;James Broadfool\&quot;,                  </span></span><br><span class="line"><span class="string">    .title = \&quot;Rue for the Toad\&quot;</span></span><br><span class="line"><span class="string">&#125;;  </span></span><br></pre></td></tr></table></figure>
 
 <p>正像数组一样，跟在一个指定初始化项目之后的常规初始化项目为跟在指定成员后的成员提供了初始值。另外，对特定成员的最后一次赋值是它实际获得的值。例如，考虑下列声明：   </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">gift</span> =</span> </span><br><span class="line">&#123; </span><br><span class="line">	.value = <span class="number">18.90</span>,                  </span><br><span class="line">	.author = \<span class="string">&quot;hilionna pestle\&quot;,                  </span></span><br><span class="line"><span class="string">	0.25</span></span><br><span class="line"><span class="string">&#125;;  </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">gift</span> = </span></span><br><span class="line"><span class="class">&#123;</span> </span><br><span class="line">    .value = <span class="number">18.90</span>,                  </span><br><span class="line">    .author = \<span class="string">&quot;hilionna pestle\&quot;,                  </span></span><br><span class="line"><span class="string">    0.25</span></span><br><span class="line"><span class="string">&#125;;  </span></span><br></pre></td></tr></table></figure>
 
 <p>这将把值0.25赋给成员value，因为它在结构声明中紧跟在author成员之后。新的值0.25代替了早先的赋值18.90。</p>
 <p>这一篇内容会比较枯燥，大量的代码及大段的文字内容可能会让你比较迷糊，但还是多看看，看懂它们。</p>
@@ -359,6 +360,25 @@
   </li>
 </ul>
 </div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
       <footer class="post-footer">
@@ -454,7 +474,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">490</span>
+          <span class="site-state-item-count">492</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

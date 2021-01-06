@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 5.2.0">
+<meta name="generator" content="Hexo 5.0.0">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -102,6 +102,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -307,7 +308,7 @@
 <li>输出最后一个自杀同学编号</li>
 </ol>
 <p>下面我们就来动手实践下，具体实现代码如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">Josephus</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">	    <span class="keyword">int</span>[] peopleArr = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">	    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">	        peopleArr[i] = i + <span class="number">1</span>;</span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line">	    <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">	    <span class="keyword">int</span> length = n;</span><br><span class="line">	    <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">	</span><br><span class="line">	    <span class="keyword">while</span> (length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	        <span class="keyword">if</span> (peopleArr[index % n] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	            <span class="keyword">if</span> (count % m == <span class="number">0</span>) &#123;</span><br><span class="line">	                <span class="comment">// 找到要出圈的人，并把圈中人数减1</span></span><br><span class="line">	                System.out.print(peopleArr[index % n] + <span class="string">&quot;  &quot;</span>);</span><br><span class="line">	                peopleArr[index % n] = -<span class="number">1</span>;</span><br><span class="line">	                count = <span class="number">1</span>;</span><br><span class="line">	                index++;</span><br><span class="line">	                length--;</span><br><span class="line">	            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	                index++;</span><br><span class="line">	                count++;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	            <span class="comment">// 遇到空位了，就跳到下一位，但count不加1，也就是这个位置没有报数</span></span><br><span class="line">	            index++;</span><br><span class="line">	        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line">	    <span class="keyword">return</span> index;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">Josephus</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] peopleArr = <span class="keyword">new</span> <span class="keyword">int</span>[n];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            peopleArr[i] = i + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> length = n;</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">while</span> (length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (peopleArr[index % n] &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (count % m == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="comment">// 找到要出圈的人，并把圈中人数减1</span></span><br><span class="line">                    System.out.print(peopleArr[index % n] + <span class="string">&quot;  &quot;</span>);</span><br><span class="line">                    peopleArr[index % n] = -<span class="number">1</span>;</span><br><span class="line">                    count = <span class="number">1</span>;</span><br><span class="line">                    index++;</span><br><span class="line">                    length--;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    index++;</span><br><span class="line">                    count++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 遇到空位了，就跳到下一位，但count不加1，也就是这个位置没有报数</span></span><br><span class="line">                index++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="三、递归实现"><a href="#三、递归实现" class="headerlink" title="三、递归实现"></a>三、递归实现</h1><p>这道题也可以使用递归来实现，原理如下：</p>
 <blockquote>
@@ -369,6 +370,25 @@
   </li>
 </ul>
 </div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
 
 
       <footer class="post-footer">
@@ -464,7 +484,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">490</span>
+          <span class="site-state-item-count">492</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
