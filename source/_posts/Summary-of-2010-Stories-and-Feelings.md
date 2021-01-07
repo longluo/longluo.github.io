@@ -1,5 +1,4 @@
 ---
-layout: post
 title: '2010 --- 我的故事及总结'
 comments: true
 date: 2011-2-13 21:27:32
