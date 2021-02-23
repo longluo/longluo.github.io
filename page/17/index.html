@@ -218,7 +218,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/24/2016-09-24-268-Week-38-Sat-Nervous/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/09/4-Types-Of-Java-Inner-Classes/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/09/24/2016-09-24-268-Week-38-Sat-Nervous/" class="post-title-link" itemprop="url">2016-09-24 268 Week 38 Sat 紧张</a>
+            <a href="/blog/2016/08/09/4-Types-Of-Java-Inner-Classes/" class="post-title-link" itemprop="url">《SimpleJava》翻译之17: 4种Java内部类</a>
         </h2>
 
         <div class="post-meta">
@@ -242,14 +242,120 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-09-24 23:31:59" itemprop="dateCreated datePublished" datetime="2016-09-24T23:31:59+08:00">2016-09-24</time>
+              <time title="创建时间：2016-08-09 11:42:14" itemprop="dateCreated datePublished" datetime="2016-08-09T11:42:14+08:00">2016-08-09</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 17:04:25" itemprop="dateModified" datetime="2020-12-04T17:04:25+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/09/4-Types-Of-Java-Inner-Classes/" class="post-meta-item leancloud_visitors" data-flag-title="《SimpleJava》翻译之17: 4种Java内部类" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>翻译 By Long Luo</em></strong></p>
+<p>There are 4 different types of inner classes you can use in Java. The following gives their name and examples.</p>
+<p>Java中有4种不同类型的Java内部类，下面我们将一一用实例</p>
+<h1 id="1-static-nested-classes"><a href="#1-static-nested-classes" class="headerlink" title="1. static nested classes"></a>1. static nested classes</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot; Inner class reference is: &quot;</span> + <span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Outer.Inner n = <span class="keyword">new</span> Outer.Inner();</span><br><span class="line">        n.go();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Output: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Inner class reference is: com.longluo.java.interview.innerclass.Outer$Inner@15db9742</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-member-inner-class"><a href="#2-member-inner-class" class="headerlink" title="2. member inner class"></a>2. member inner class</h1><p>Member class is instance-specific. It has access to all methods, fields, and the<br>Outer’s this reference.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MemberInnerClass</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeInner</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Inner in = <span class="keyword">new</span> Inner();</span><br><span class="line">        in.seeOuter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seeOuter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;MemberInnerClass x is &quot;</span> + x);</span><br><span class="line">            System.out.println(<span class="string">&quot;Inner class reference is &quot;</span> + <span class="keyword">this</span>);</span><br><span class="line">            System.out.println(<span class="string">&quot;Outer class reference is &quot;</span></span><br><span class="line">                    + MemberInnerClass.<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MemberInnerClass o = <span class="keyword">new</span> MemberInnerClass();</span><br><span class="line">        Inner i = o.<span class="function">new <span class="title">Inner</span><span class="params">()</span></span>;</span><br><span class="line">        i.seeOuter();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MemberInnerClass x is 100</span><br><span class="line">Inner class reference is com.longluo.java.interview.innerclass.MemberInnerClass$Inner@15db9742</span><br><span class="line">Outer class reference is com.longluo.java.interview.innerclass.MemberInnerClass@6d06d69c</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="3-method-local-inner-classes"><a href="#3-method-local-inner-classes" class="headerlink" title="3. method-local inner classes"></a>3. method-local inner classes</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String x = <span class="string">&quot;outer&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">MyInner</span> </span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seeOuter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot; x is &quot;</span> + x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        MyInner i = <span class="keyword">new</span> MyInner();</span><br><span class="line">        i.seeOuter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Outer o = <span class="keyword">new</span> Outer();</span><br><span class="line">        o.doStuff();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x is outer</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MethodOuter</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String x = <span class="string">&quot;static outer&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">MyInner</span> </span>&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seeOuter</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                System.out.println(<span class="string">&quot; x is &quot;</span> + x);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        MyInner i = <span class="keyword">new</span> MyInner();</span><br><span class="line">        i.seeOuter();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MethodOuter.doStuff();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x is static outer</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-anonymous-inner-classes"><a href="#4-anonymous-inner-classes" class="headerlink" title="4.anonymous inner classes"></a>4.anonymous inner classes</h1><p>This is frequently used when you add an action listener to a widget in a GUI<br>application.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">button.addActionListener(<span class="keyword">new</span> ActionListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>&#123;</span><br><span class="line">        comp.setText(<span class="string">&quot;Button has been clicked&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/08/2016-08-08-221-Week-32-Mon-A-New-Week-Begin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/08/2016-08-08-221-Week-32-Mon-A-New-Week-Begin/" class="post-title-link" itemprop="url">2016-08-08 221 Week 32 Mon 又是一周的开始</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-08 23:03:16" itemprop="dateCreated datePublished" datetime="2016-08-08T23:03:16+08:00">2016-08-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 16:53:57" itemprop="dateModified" datetime="2020-12-04T16:53:57+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -262,7 +368,7 @@
             </span>
 
           
-            <span id="/blog/2016/09/24/2016-09-24-268-Week-38-Sat-Nervous/" class="post-meta-item leancloud_visitors" data-flag-title="2016-09-24 268 Week 38 Sat 紧张" title="阅读次数">
+            <span id="/blog/2016/08/08/2016-08-08-221-Week-32-Mon-A-New-Week-Begin/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-08 221 Week 32 Mon 又是一周的开始" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -282,7 +388,7 @@
           有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/09/24/2016-09-24-268-Week-38-Sat-Nervous/#more" rel="contents">
+              <a class="btn" href="/blog/2016/08/08/2016-08-08-221-Week-32-Mon-A-New-Week-Begin/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -306,7 +412,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/23/2016-09-23-267-Week-38-Fri-Other-Experience/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -320,7 +426,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/09/23/2016-09-23-267-Week-38-Fri-Other-Experience/" class="post-title-link" itemprop="url">2016-09-23 267 Week 38 Fri 别人的经验</a>
+            <a href="/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/" class="post-title-link" itemprop="url">3分钟速读：图解Java Collections的接口以及类层级关系</a>
         </h2>
 
         <div class="post-meta">
@@ -330,14 +436,462 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-09-23 21:55:49" itemprop="dateCreated datePublished" datetime="2016-09-23T21:55:49+08:00">2016-09-23</time>
+              <time title="创建时间：2016-08-08 18:56:28" itemprop="dateCreated datePublished" datetime="2016-08-08T18:56:28+08:00">2016-08-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 17:04:22" itemprop="dateModified" datetime="2020-12-04T17:04:22+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/" class="post-meta-item leancloud_visitors" data-flag-title="3分钟速读：图解Java Collections的接口以及类层级关系" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>翻译 By Long Luo</em></strong></p>
+<p>本文翻译自<a target="_blank" rel="noopener" href="http://www.programcreek.com/2009/02/the-interface-and-class-hierarchy-for-collections/">The Interface and Class Hierarchy Diagram of Java Collections</a>，主要通过一系列简单易懂的图片让你迅速了解Java容器类，容器接口以及类层级关系。</p>
+<p>大段文字会看得很烦，图片才是王道！</p>
+<h1 id="一、-Collection-vs-Collections"><a href="#一、-Collection-vs-Collections" class="headerlink" title="一、 Collection vs Collections"></a>一、 Collection vs Collections</h1><p>“Collection”和”Collections”是2个完全不同的概念，在Java容器的类层级图中，”Collection”是一个根接口，但是”Collections”仅仅只是一个提供多种静态方法的类用于操作一些Collection类型。</p>
+<p><img src="http://www.programcreek.com/wp-content/uploads/2009/02/CollectionVsCollections.jpeg" alt="Collection Vs Collections"></p>
+<h1 id="二、-Collection的类层级图"><a href="#二、-Collection的类层级图" class="headerlink" title="二、 Collection的类层级图"></a>二、 Collection的类层级图</h1><p>下图展示了Collection的类层级图：</p>
+<p><img src="http://www.programcreek.com/wp-content/uploads/2009/02/java-collection-hierarchy.jpeg" alt="java-collection-hierarchy"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/08/Top-9-Questions-About-Java-Maps/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/08/Top-9-Questions-About-Java-Maps/" class="post-title-link" itemprop="url">Top 9 Questions About Java Maps</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-08 11:18:22" itemprop="dateCreated datePublished" datetime="2016-08-08T11:18:22+08:00">2016-08-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/08/Top-9-Questions-About-Java-Maps/" class="post-meta-item leancloud_visitors" data-flag-title="Top 9 Questions About Java Maps" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>In general, Map is a data structure consisting of a set of key-value pairs, and each<br>key can only appears once in the map. This post summarizes Top 9 FAQ of how<br>to use Java Map and its implemented classes. For sake of simplicity, I will use<br>generics in examples. Therefore, I will just write Map instead of specific Map. But<br>you can always assume that both the K and V are comparable, which means K<br>extends Comparable and V extends Comparable.</p>
+<h1 id="1-convert-a-map-to-list"><a href="#1-convert-a-map-to-list" class="headerlink" title="1. convert a map to list"></a>1. convert a map to list</h1><p>In Java, Map interface provides three collection views: key set, value set, and keyvalue set. All of them can be converted to List by using a constructor or addAll()<br>method. The following snippet of code shows how to construct an ArrayList from a map.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// key list</span></span><br><span class="line">List keyList = <span class="keyword">new</span> ArrayList(map.keySet());</span><br><span class="line"><span class="comment">// value list</span></span><br><span class="line">List valueList = <span class="keyword">new</span> ArrayList(map.valueSet());</span><br><span class="line"><span class="comment">// key value list</span></span><br><span class="line">List entryList = <span class="keyword">new</span> ArrayList(map.entrySet());</span><br></pre></td></tr></table></figure>
+
+<h1 id="2-iterate-over-each-entry-in-a-map"><a href="#2-iterate-over-each-entry-in-a-map" class="headerlink" title="2. iterate over each entry in a map"></a>2. iterate over each entry in a map</h1><p>Iterating over every pair of key-value is the most basic operation to traverse a map. In Java, such pair is stored in the map entry called Map.Entry. </p>
+<h1 id="3-SORT-A-MAP-ON-THE-KEYS"><a href="#3-SORT-A-MAP-ON-THE-KEYS" class="headerlink" title="3. SORT A MAP ON THE KEYS"></a>3. SORT A MAP ON THE KEYS</h1><p>Map.entrySet() returns a key-value set, therefore the most efficient way of going through every entry of a map is </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Entry entry:map.entrySet()) &#123;</span><br><span class="line">    <span class="comment">// get key</span></span><br><span class="line">    K key = entry.getKey();</span><br><span class="line">    <span class="comment">// get value</span></span><br><span class="line">    V value = entry.getValue();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Iterator can also be used, especially before JDK 1.5</p>
+<pre><code class="java">Iterator itr = map.entrySet().iterator();
+while(itr.hasNext ( ) ) &#123;
+Entry ent ry = i t r . next ( ) ;
+/ / g e t k ey
+K key = ent ry . getKey ( ) ;
+/ / g e t v a l u e
+V value = ent ry . getValue ( ) ;
+&#125;
+60.3 sort a map on the keys
+Sorting a map on the keys is another frequent operation. One way is to put
+Map.Entry into a list, and sort it using a comparator that sorts the value.
+Li s t l i s t = new Ar rayLi s t (map. ent rySe t ( ) ) ;
+Co l l e c t i ons . s o r t ( l i s t , new Comparator ( ) &#123;
+@Override
+public int compare ( Entry e1 , Entry e2 ) &#123;
+return e1 . getKey ( ) . compareTo ( e2 . getKey ( ) ) ;
+&#125;
+&#125; ) ;
+The other way is to use SortedMap, which further provides a total ordering on its
+keys. Therefore all keys must either implement Comparable or be accepted by the
+comparator.
+60.4. SORT A MAP ON THE VALUES 216
+One implementing class of SortedMap is TreeMap. Its constructor can accept a
+comparator. The following code shows how to transform a general map to a
+sorted map.
+SortedMap sortedMap = new TreeMap (new Comparator ( ) &#123;
+@Override
+public int compare (K k1 , K k2 ) &#123;
+return k1 . compareTo ( k2 ) ;
+&#125;
+&#125; ) ;
+sortedMap . putAll (map) ;
+60.4 sort a map on the values
+Putting the map into a list and sorting it works on this case too, but we need
+to compare Entry.getValue() this time. The code below is almost same as before.
+Li s t l i s t = new Ar rayLi s t (map. ent rySe t ( ) ) ;
+Co l l e c t i ons . s o r t ( l i s t , new Comparator ( ) &#123;
+@Override
+public int compare ( Entry e1 , Entry e2 ) &#123;
+return e1 . getValue ( ) . compareTo ( e2 . getValue ( ) ) ;
+&#125;
+&#125; ) ;
+We can still use a sorted map for this question, but only if the values are unique too.
+Under such condition, you can reverse the key=value pair to value=key. This solution
+has very strong limitation therefore is not really recommended by me.
+60.5 initialize a static/immutable map
+When you expect a map to remain constant, it’s a good practice to copy it into
+an immutable map. Such defensive programming techniques will help you create
+not only safe for use but also safe for thread maps.
+60.6. DIFFERENCE BETWEEN HASHMAP, TREEMAP, AND HASHTABLE 217
+To initialize a static/immutable map, we can use a static initializer (like below).
+The problem of this code is that, although map is declared as static final, we can
+still operate it after initialization, like Test.map.put(3,&quot;three&quot;);. Therefore it is not
+really immutable. To create an immutable map using a static initializer, we need
+an extra anonymous class and copy it into a unmodifiable map at the last step of
+initialization. Please see the second piece of code. Then, an UnsupportedOperationException
+will be thrown if you run Test.map.put(3,&quot;three&quot;);.
+public c l a s s Tes t &#123;
+pr ivate s t a t i c f ina l Map map;
+s t a t i c &#123;
+map = new HashMap ( ) ;
+map. put ( 1 , &quot; one &quot; ) ;
+map. put ( 2 , &quot; two &quot; ) ;
+&#125;
+&#125;
+public c l a s s Tes t &#123;
+pr ivate s t a t i c f ina l Map map;
+s t a t i c &#123;
+Map aMap = new HashMap ( ) ;
+aMap. put ( 1 , &quot; one &quot; ) ;
+aMap. put ( 2 , &quot; two &quot; ) ;
+map = Co l l e c t i ons . unmodifiableMap (aMap) ;
+&#125;
+&#125;
+Guava libraries also support different ways of intilizaing a static and immutable
+collection. To learn more about the benefits of Guava’s immutable collection utilities,
+see Immutable Collections Explained in Guava User Guide.
+60.6 difference between hashmap, treemap, and hashtable
+There are three main implementations of Map interface in Java: HashMap, TreeMap,
+and Hashtable. The most important differences include:
+ The order of iteration. HashMap and HashTable make no guarantees as to
+the order of the map; in particular, they do not guarantee that the order
+60.7. A MAP WITH REVERSE VIEW/LOOKUP 218
+will remain constant over time. But TreeMap will iterate the whole entries
+according the “natural ordering” of the keys or by a comparator.
+ key-value permission. HashMap allows null key and null values. HashTable
+does not allow null key or null values. If TreeMap uses natural ordering or
+its comparator does not allow null keys, an exception will be thrown.
+ Synchronized. Only HashTable is synchronized, others are not. Therefore,
+“if a thread-safe implementation is not needed, it is recommended to use
+HashMap in place of HashTable.”
+A more complete comparison is
+| HashMap | HashTable | TreeMap
+i t e r a t i o n order | no | no | yes
+null key value | yes yes | yes yes | no yes
+synchronized | no | yes | no
+time performance | O( 1 ) | O( 1 ) | O( log n)
+implementation | buckets | buckets | red black t r e e
+Read more about HashMap vs. TreeMap vs. Hashtable vs. LinkedHashMap.
+60.7 a map with reverse view/lookup
+Sometimes, we need a set of key-key pairs, which means the map’s values are
+unique as well as keys (one-to-one map). This constraint enables to create an
+“inverse lookup/view” of a map. So we can lookup a key by its value. Such
+data structure is called bidirectional map, which unfortunetely is not supported
+by JDK.
+60.8 both apache common collections and guava provide implementation
+of bidirectional map, called bidimap and bimap,
+respectively. both enforce the restriction that there is a
+1:1 relation between keys and values. 7. shallow copy of a
+map
+Most implementation of a map in java, if not all, provides a constructor of copy
+of another map. But the copy procedure is not synchronized. That means when
+60.9. FOR THIS REASON, I WILL NOT EVEN TELL YOU HOW TO USE CLONE() METHOD TO COPY one thread copies a map, another one may modify it structurally. To [prevent
+accidental unsynchronized copy, one should use Collections.synchronizedMap()
+in advance.
+Map copiedMap = Co l l e c t i ons . synchronizedMap (map) ;
+Another interesting way of shallow copy is by using clone() method. However it is
+NOT even recommended by the designer of Java collection framework, Josh Bloch.
+In a conversation about “Copy constructor versus cloning“, he said
+I often provide a public clone method on concrete classes because people expect it.
+â˘A ˛e It’s a shame that Cloneable is broken, but it happens. â˘A˛e Cloneable is a weak
+spot, and I think people should be aware of its limitations.
+60.9 for this reason, i will not even tell you how to use clone()
+method to copy a map. 8. create an empty map
+If the map is immutable, use
+map = Co l l e c t i ons . emptyMap ( ) ;
+Otherwise, use whichever implementation. For example
+map = new HashMap ( ) ;
+THE
+
+
+
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/07/Top-10-Questions-About-Java-Collections/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/" class="post-title-link" itemprop="url">关于Java Collections应知应会</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-07 22:56:28" itemprop="dateCreated datePublished" datetime="2016-08-07T22:56:28+08:00">2016-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/" class="post-meta-item leancloud_visitors" data-flag-title="关于Java Collections应知应会" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>翻译 By Long Luo</em></strong></p>
+<p>下面这些问题<a target="_blank" rel="noopener" href="http://www.stackoverflow.com/">Stackoverflow</a>上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/">3分钟速读：图解Java Collections的接口以及类层级关系</a>。</p>
+<h1 id="1-什么时候用LinkedList？什么时候用ArrayList？"><a href="#1-什么时候用LinkedList？什么时候用ArrayList？" class="headerlink" title="1. 什么时候用LinkedList？什么时候用ArrayList？"></a>1. 什么时候用LinkedList？什么时候用ArrayList？</h1><p><strong><em>ArrayList</em></strong>本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经满了，那么需要重新分配一个更大的数组并且将全部的元素移动到新的数组需要花费**<em>O(n)**</em>的时间。当然从现有的数组中增加或者删除一个元素都需要移动现有的元素。这个可能是使用ArrayList中最大的不便之处。</p>
+<p><strong><em>LinkedList</em></strong>是一个<strong>双端链表</strong>。正因为如此，如果要获取一个链表中间的元素，需要从链表的头部开始查找。另一方面，增加或者删除链表中的元素将会很快，因为只需要在本地修改即可。</p>
+<p>下表总结了最快情况下的比较需要耗费时间：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Method</th>
+<th align="right">Arraylist</th>
+<th align="center">LinkedList</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">get(index)</td>
+<td align="right">O(1)</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="left">add(E)</td>
+<td align="right">O(n)</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="left">add(E, index)</td>
+<td align="right">O(n)</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="left">remove(index)</td>
+<td align="right">O(n)</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="left">Iterator.remove()</td>
+<td align="right">O(n)</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="left">Iterator.add(E)</td>
+<td align="right">O(n)</td>
+<td align="center">O(1)</td>
+</tr>
+</tbody></table>
+<p>不管运行时间，当大型列表需要额外考虑内存占用。LinkedList每个node至少需要2个额外的指针用于连接前后2个node。而在ArrayList中只需要数组存储元素值即可。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/" class="post-title-link" itemprop="url">2016-08-07 220 Week 32 Sun 时间都去哪了？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-07 21:00:33" itemprop="dateCreated datePublished" datetime="2016-08-07T21:00:33+08:00">2016-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 16:53:51" itemprop="dateModified" datetime="2020-12-04T16:53:51+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -350,7 +904,7 @@
             </span>
 
           
-            <span id="/blog/2016/09/23/2016-09-23-267-Week-38-Fri-Other-Experience/" class="post-meta-item leancloud_visitors" data-flag-title="2016-09-23 267 Week 38 Fri 别人的经验" title="阅读次数">
+            <span id="/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-07 220 Week 32 Sun 时间都去哪了？" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -370,7 +924,7 @@
           有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/09/23/2016-09-23-267-Week-38-Fri-Other-Experience/#more" rel="contents">
+              <a class="btn" href="/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -394,7 +948,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/22/2016-09-22-266-Week-38-Thu-Control-Yourself/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -408,7 +962,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/09/22/2016-09-22-266-Week-38-Thu-Control-Yourself/" class="post-title-link" itemprop="url">2016-09-22 266 Week 38 Thu 控制你的心态和情绪！</a>
+            <a href="/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/" class="post-title-link" itemprop="url">Java Array最重要的10个方法</a>
         </h2>
 
         <div class="post-meta">
@@ -418,14 +972,105 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-09-22 23:17:35" itemprop="dateCreated datePublished" datetime="2016-09-22T23:17:35+08:00">2016-09-22</time>
+              <time title="创建时间：2016-08-06 22:26:58" itemprop="dateCreated datePublished" datetime="2016-08-06T22:26:58+08:00">2016-08-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 17:04:16" itemprop="dateModified" datetime="2020-12-04T17:04:16+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/" class="post-meta-item leancloud_visitors" data-flag-title="Java Array最重要的10个方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文将展示Java Array的最重要的10个方法：</p>
+<h1 id="0-声明一个数组"><a href="#0-声明一个数组" class="headerlink" title="0. 声明一个数组"></a>0. 声明一个数组</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String[] aArray = <span class="keyword">new</span> String[<span class="number">5</span>];</span><br><span class="line">String[] bArray = &#123;<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>&#125;;</span><br><span class="line">String[] cArray = <span class="keyword">new</span> String[]&#123;<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>,<span class="string">&quot;d&quot;</span>,<span class="string">&quot;e&quot;</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-打印数组"><a href="#1-打印数组" class="headerlink" title="1. 打印数组"></a>1. 打印数组</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">String intArrayString = Arrays.toString(intArray);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// print directly will print reference value</span></span><br><span class="line">System.out.println(intArray);</span><br><span class="line"><span class="comment">// [I@7150bd4d</span></span><br><span class="line"> </span><br><span class="line">System.out.println(intArrayString);</span><br><span class="line"><span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/" class="post-title-link" itemprop="url">2016-08-06 219 Week 31 Sat 套路!</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-06 21:10:44" itemprop="dateCreated datePublished" datetime="2016-08-06T21:10:44+08:00">2016-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 16:53:45" itemprop="dateModified" datetime="2020-12-04T16:53:45+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -438,7 +1083,7 @@
             </span>
 
           
-            <span id="/blog/2016/09/22/2016-09-22-266-Week-38-Thu-Control-Yourself/" class="post-meta-item leancloud_visitors" data-flag-title="2016-09-22 266 Week 38 Thu 控制你的心态和情绪！" title="阅读次数">
+            <span id="/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-06 219 Week 31 Sat 套路!" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -458,7 +1103,7 @@
           有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/09/22/2016-09-22-266-Week-38-Thu-Control-Yourself/#more" rel="contents">
+              <a class="btn" href="/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -482,7 +1127,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/21/2016-09-21-265-Week-38-Wed-The-Speech-Of-The-Boss/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -496,7 +1141,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/09/21/2016-09-21-265-Week-38-Wed-The-Speech-Of-The-Boss/" class="post-title-link" itemprop="url">2016-09-21 265 Week 38 Wed 老大的演讲</a>
+            <a href="/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/" class="post-title-link" itemprop="url">2016-08-05 218 Week 31 Fri 妈妈，对不起！</a>
         </h2>
 
         <div class="post-meta">
@@ -506,14 +1151,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-09-21 23:52:59" itemprop="dateCreated datePublished" datetime="2016-09-21T23:52:59+08:00">2016-09-21</time>
+              <time title="创建时间：2016-08-05 21:46:10" itemprop="dateCreated datePublished" datetime="2016-08-05T21:46:10+08:00">2016-08-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 17:04:12" itemprop="dateModified" datetime="2020-12-04T17:04:12+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:53:40" itemprop="dateModified" datetime="2020-12-04T16:53:40+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -526,7 +1171,7 @@
             </span>
 
           
-            <span id="/blog/2016/09/21/2016-09-21-265-Week-38-Wed-The-Speech-Of-The-Boss/" class="post-meta-item leancloud_visitors" data-flag-title="2016-09-21 265 Week 38 Wed 老大的演讲" title="阅读次数">
+            <span id="/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-05 218 Week 31 Fri 妈妈，对不起！" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -546,7 +1191,7 @@
           有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/09/21/2016-09-21-265-Week-38-Wed-The-Speech-Of-The-Boss/#more" rel="contents">
+              <a class="btn" href="/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -570,7 +1215,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/20/MySQL-Reference-Manual/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -584,7 +1229,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/09/20/MySQL-Reference-Manual/" class="post-title-link" itemprop="url">MySQL常用操作指南</a>
+            <a href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" class="post-title-link" itemprop="url">关于Java字符串(String)10个最常见问题</a>
         </h2>
 
         <div class="post-meta">
@@ -594,7 +1239,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-09-20 19:51:09" itemprop="dateCreated datePublished" datetime="2016-09-20T19:51:09+08:00">2016-09-20</time>
+              <time title="创建时间：2016-08-05 09:49:42" itemprop="dateCreated datePublished" datetime="2016-08-05T09:49:42+08:00">2016-08-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -609,12 +1254,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DataBase/" itemprop="url" rel="index"><span itemprop="name">DataBase</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
           
-            <span id="/blog/2016/09/20/MySQL-Reference-Manual/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL常用操作指南" title="阅读次数">
+            <span id="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" class="post-meta-item leancloud_visitors" data-flag-title="关于Java字符串(String)10个最常见问题" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -631,484 +1276,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>By Long Luo</em></strong></p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 root  mysql  17987 Jan 15  2016 COPYING</span><br><span class="line">-rw-r--r--  1 root  mysql 151708 Jan 15  2016 INSTALL-BINARY</span><br><span class="line">-rw-r--r--  1 root  mysql   2496 Jan 15  2016 README</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 bin</span><br><span class="line">drwxr-xr-x  3 root  mysql   4096 Sep  9 15:06 data</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 docs</span><br><span class="line">drwxr-xr-x  3 root  mysql   4096 Sep  9 15:06 include</span><br><span class="line">drwxr-xr-x  3 root  mysql   4096 Sep  9 15:06 lib</span><br><span class="line">drwxr-xr-x  4 root  mysql   4096 Sep  9 15:06 man</span><br><span class="line">drwxr-xr-x 10 root  mysql   4096 Sep  9 15:06 mysql-test</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 scripts</span><br><span class="line">drwxr-xr-x 27 root  mysql   4096 Sep  9 15:06 share</span><br><span class="line">drwxr-xr-x  4 root  mysql   4096 Sep  9 15:06 sql-bench</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 support-files</span><br><span class="line">drwxr-xr-x  5 mysql mysql   4096 Sep 14 17:13 var</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="MySQL配置文件"><a href="#MySQL配置文件" class="headerlink" title="MySQL配置文件"></a>MySQL配置文件</h1><h1 id="MySQL数据库表"><a href="#MySQL数据库表" class="headerlink" title="MySQL数据库表"></a>MySQL数据库表</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">drwx------ 2 mysql mysql     4096 Sep 14 09:05 blog</span><br><span class="line">-rw-rw---- 1 mysql mysql  5242880 Sep 21 09:03 ib_logfile0</span><br><span class="line">-rw-rw---- 1 mysql mysql  5242880 Sep 19 23:01 ib_logfile1</span><br><span class="line">-rw-rw---- 1 mysql mysql 27262976 Sep 21 09:03 ibdata1</span><br><span class="line">drwx------ 2 mysql mysql     4096 Sep  9 15:06 mysql</span><br><span class="line">-rw-rw---- 1 mysql mysql    27732 Sep  9 15:06 mysql-bin.000001</span><br><span class="line">-rw-rw---- 1 mysql mysql  1113246 Sep  9 15:06 mysql-bin.000002</span><br><span class="line">-rw-rw---- 1 mysql mysql      264 Sep  9 15:06 mysql-bin.000003</span><br><span class="line">-rw-rw---- 1 mysql mysql     1112 Sep  9 15:06 mysql-bin.000004</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 15:06 mysql-bin.000005</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 16:41 mysql-bin.000006</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 16:45 mysql-bin.000007</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 16:50 mysql-bin.000008</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 17:52 mysql-bin.000009</span><br><span class="line">-rw-rw---- 1 mysql mysql  1082048 Sep 13 19:30 mysql-bin.000010</span><br><span class="line">-rw-rw---- 1 mysql mysql     1806 Sep 13 20:28 mysql-bin.000011</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep 13 20:38 mysql-bin.000012</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep 13 20:40 mysql-bin.000013</span><br><span class="line">-rw-rw---- 1 mysql mysql  1197139 Sep 13 21:45 mysql-bin.000014</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep 13 21:51 mysql-bin.000015</span><br><span class="line">-rw-rw---- 1 mysql mysql  1740852 Sep 14 13:39 mysql-bin.000016</span><br><span class="line">-rw-rw---- 1 mysql mysql   767198 Sep 14 17:13 mysql-bin.000017</span><br><span class="line">-rw-rw---- 1 mysql mysql 11751982 Sep 21 09:02 mysql-bin.000018</span><br><span class="line">-rw-rw---- 1 mysql mysql      342 Sep 14 17:13 mysql-bin.index</span><br><span class="line">drwx------ 2 mysql mysql     4096 Sep  9 15:06 performance_schema</span><br><span class="line">-rw-r----- 1 mysql root     46863 Sep 14 17:13 server.imlongluo.com.err</span><br><span class="line">-rw-rw---- 1 mysql mysql        5 Sep 14 17:13 server.imlongluo.com.pid</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-rw-rw---- 1 mysql mysql    67 Sep 13 21:53 db.opt</span><br><span class="line">-rw-rw---- 1 mysql mysql  8688 Sep 13 21:54 wp_commentmeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13380 Sep 13 21:54 wp_comments.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13176 Sep 13 21:54 wp_links.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8698 Sep 13 21:54 wp_options.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8682 Sep 13 21:54 wp_postmeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13684 Sep 13 21:54 wp_posts.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8776 Sep 14 09:05 wp_slim_events.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8776 Sep 14 09:05 wp_slim_events_archive.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 46598 Sep 14 09:05 wp_slim_stats.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 46598 Sep 14 09:05 wp_slim_stats_archive.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8666 Sep 13 21:54 wp_term_relationships.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8768 Sep 13 21:54 wp_term_taxonomy.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8682 Sep 13 21:54 wp_termmeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8668 Sep 13 21:54 wp_terms.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8684 Sep 13 21:54 wp_usermeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13064 Sep 13 21:54 wp_users.frm</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="MySQL数据库内容"><a href="#MySQL数据库内容" class="headerlink" title="MySQL数据库内容"></a>MySQL数据库内容</h1><h1 id=""><a href="#" class="headerlink" title=""></a></h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/16/Believe-In-Future/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/16/Believe-In-Future/" class="post-title-link" itemprop="url">相信未来</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-16 20:24:05" itemprop="dateCreated datePublished" datetime="2016-09-16T20:24:05+08:00">2016-09-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/16/Believe-In-Future/" class="post-meta-item leancloud_visitors" data-flag-title="相信未来" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>相信未来<br>食指</p>
-</blockquote>
-<blockquote>
-<p>当蜘蛛网无情地查封了我的炉台，<br>当灰烬的余烟叹息着贫困的悲哀，<br>我依然固执地铺平失望的灰烬，<br>用美丽的雪花写下：相信未来。</p>
-</blockquote>
-<blockquote>
-<p>当我的紫葡萄化为深秋的露水，<br>当我的鲜花依偎在别人的情怀，<br>我依然固执地用凝霜的枯藤，<br>在凄凉的大地上写下：相信未来。</p>
-</blockquote>
-<blockquote>
-<p>我要用手指那涌向天边的排浪，<br>我要用手撑那托起太阳的大海，<br>摇曳着曙光那支温暖漂亮的笔杆，<br>用孩子的笔体写下：相信未来。</p>
-</blockquote>
-<blockquote>
-<p>我之所以坚定地相信未来，<br>是我相信未来人们的眼睛——<br>她有拨开历史风尘的睫毛，<br>她有看透岁月篇章的瞳孔。</p>
-</blockquote>
-<blockquote>
-<p>不管人们对于我们腐烂的皮肉，<br>那些迷途的惆怅，失败的苦痛，<br>是寄予感动的热泪，深切的同情，<br>还是给以轻蔑的微笑，辛辣的嘲讽。</p>
-</blockquote>
-<blockquote>
-<p>我坚信人们对于我们的脊骨，<br>那无数次地探索、迷途、失败和成功，<br>一定会给予热情、客观、公正的评定，<br>是的，我焦急地等待着他们的评定。</p>
-</blockquote>
-<blockquote>
-<p>朋友，坚定地相信未来吧，<br>相信不屈不挠的努力，<br>相信战胜死亡的年轻，<br>相信未来，热爱生命。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/16/Gui-Sui-Shou-Cao-Cao/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/16/Gui-Sui-Shou-Cao-Cao/" class="post-title-link" itemprop="url">龟虽寿</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-16 11:17:23" itemprop="dateCreated datePublished" datetime="2016-09-16T11:17:23+08:00">2016-09-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/16/Gui-Sui-Shou-Cao-Cao/" class="post-meta-item leancloud_visitors" data-flag-title="龟虽寿" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>龟虽寿<br>曹操</p>
-</blockquote>
-<p>神龟虽寿，犹有竟时。<br>螣蛇乘雾，终为土灰。<br>老骥伏枥，志在千里。<br>烈士暮年，壮心不已。<br>盈缩之期，不但在天；<br>养怡之福，可得永年。<br>幸甚至哉，歌以咏志。</p>
-<p>曹操是我很喜欢的一个英雄人物。曹操在晚年时写了这么一首这么富有哲理、慷慨激昂、自强不息的诗，现在我们面临什么30岁问题，40岁问题感觉在曹操这首诗面前都是不值一提的事情。</p>
-<p><strong><em>老骥伏枥，志在千里。烈士暮年，壮心不已。</em></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/15/Startup-vs-Work/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/15/Startup-vs-Work/" class="post-title-link" itemprop="url">Startup vs Work</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-15 19:38:49" itemprop="dateCreated datePublished" datetime="2016-09-15T19:38:49+08:00">2016-09-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/15/Startup-vs-Work/" class="post-meta-item leancloud_visitors" data-flag-title="Startup vs Work" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>创业和就业是两种完全不同的生活方式，如果你想要从就业这种生活步入到创业这种生活，需要考虑的不仅仅是创业可能带来更大的财富和自由，更重要的是要考虑你是否适合及适应这种生活方式。创业者和就业者的生活态度和做事方式往往是有天渊之别的，冒然切换，会导致失败。</p>
-<p>创业不一定是要创立一个公司，它体现为一种企业家精神（Entrepreneurship），创立新公司是一种，在公司内部创立新模式，开发新产品等都属于此类，在闹市中摆小摊也属于此类。不是什么拉了风险投资才算创业。创业是一种普遍的现象。</p>
+          <p>Java语言中，String一直很基础，但很多人都很多概念还是很模糊。这里我们选取了网络上最常见的10个问题，希望通过这篇文章让大家对Java String有更深刻的认识。</p>
+<h1 id="1-如何对字符串进行比较？用“-”-还是equals-？"><a href="#1-如何对字符串进行比较？用“-”-还是equals-？" class="headerlink" title="1. 如何对字符串进行比较？用“==” 还是equals()？"></a>1. 如何对字符串进行比较？用“==” 还是<code>equals()</code>？</h1><p>简单来说，如果<strong>引用是否相同</strong>那么使用<code>==</code>， 判断**<em>值是否相等**</em>则用<code>equals()</code>。除非你想判断2个字符串是否是同一对象，否则你都应该使用<code>equals()</code>。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/09/15/Startup-vs-Work/#more" rel="contents">
+              <a class="btn" href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/14/Git-Cheatsheet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/14/Git-Cheatsheet/" class="post-title-link" itemprop="url">Git常用操作指南</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-14 08:55:18" itemprop="dateCreated datePublished" datetime="2016-09-14T08:55:18+08:00">2016-09-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/14/Git-Cheatsheet/" class="post-meta-item leancloud_visitors" data-flag-title="Git常用操作指南" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <pre><code>$ git add .    
-
-$ git add -u .
-
-git reset是指将当前head的内容重置，不会留log信息。</code></pre>
-<p>git reset HEAD filename  从暂存区中移除文件</p>
-<p>git reset –hard HEAD~3  会将最新的3次提交全部重置，就像没有提交过一样。</p>
-<p>git reset –hard commit (38679ed709fd0a3767b79b93d0fba5bb8dd235f8) 回退到 38679ed709fd0a3767b79b93d0fba5bb8dd235f8 版本</p>
-<p>根据–soft   –mixed   –hard，会对working tree和index和HEAD进行重置:<br>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息<br>git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可<br>git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</p>
-<p>git 放弃本地修改 强制更新<br>git fetch –all<br>git reset –hard origin/master<br>git fetch 只是下载远程的库的内容，不做任何的合并 git reset 把HEAD指向刚刚下载的最新的版本</p>
-<p>git新手。本地做了一些修改，我用git rebase说有冲突。我现在想把本地的请求都干掉，可能有的已经commit过了（没有push过），完全同步成远程版本，应该用什么命令？</p>
-<p>使用命令：</p>
-<p>git reset –hard ORIGIN/BRANCH</p>
-<p>比如master分支：</p>
-<p>git reset –hard origin/master</p>
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="Git-dojo"><a href="#Git-dojo" class="headerlink" title="Git dojo"></a>Git dojo</h2><p><a target="_blank" rel="noopener" href="https://www.shortcutfoo.com/">https://www.shortcutfoo.com/</a></p>
-<h2 id="Try-Git"><a href="#Try-Git" class="headerlink" title="Try Git"></a>Try Git</h2><p><a target="_blank" rel="noopener" href="https://try.github.io/levels/1/challenges/1">https://try.github.io/levels/1/challenges/1</a></p>
-<h2 id="LearnGitBranching"><a href="#LearnGitBranching" class="headerlink" title="LearnGitBranching"></a>LearnGitBranching</h2><p><a target="_blank" rel="noopener" href="http://learngitbranching.js.org/">http://learngitbranching.js.org/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/11/Linux-Cheatsheet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/11/Linux-Cheatsheet/" class="post-title-link" itemprop="url">Linux系统操作参考手册</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-11 22:18:33" itemprop="dateCreated datePublished" datetime="2016-09-11T22:18:33+08:00">2016-09-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/11/Linux-Cheatsheet/" class="post-meta-item leancloud_visitors" data-flag-title="Linux系统操作参考手册" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>By Long Luo</em></strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">    #</span><span class="bash"> df -h</span></span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">/dev/simfs       10G  3.9G  6.2G  39% /</span><br><span class="line">none             64M  4.0K   64M   1% /dev</span><br><span class="line">none             64M     0   64M   0% /dev/shm</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">    #</span><span class="bash"> free -m</span></span><br><span class="line">             total       used       free     shared    buffers     cached</span><br><span class="line">Mem:           128        125          2          0          0          4</span><br><span class="line">-/+ buffers/cache:        121          6</span><br><span class="line">Swap:          256        211         44</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
       
     </div>
 
@@ -1126,7 +1303,7 @@ git reset是指将当前head的内容重置，不会留log信息。</code></pre>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/16/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><span class="page-number current">17</span><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/18/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1192,7 +1369,7 @@ git reset是指将当前head的内容重置，不会留log信息。</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">346</span>
+          <span class="site-state-item-count">316</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
