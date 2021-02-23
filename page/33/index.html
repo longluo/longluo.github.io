@@ -218,7 +218,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/07/Top-10-Questions-About-Java-Collections/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/" class="post-title-link" itemprop="url">关于Java Collections应知应会</a>
+            <a href="/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/" class="post-title-link" itemprop="url">大话结构体之六：无即是有，没有成员变量的Struct(结构体)</a>
         </h2>
 
         <div class="post-meta">
@@ -242,7 +242,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-08-07 22:56:28" itemprop="dateCreated datePublished" datetime="2016-08-07T22:56:28+08:00">2016-08-07</time>
+              <time title="创建时间：2013-01-01 03:08:58" itemprop="dateCreated datePublished" datetime="2013-01-01T03:08:58+08:00">2013-01-01</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -257,676 +257,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
                 </span>
             </span>
 
           
-            <span id="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/" class="post-meta-item leancloud_visitors" data-flag-title="关于Java Collections应知应会" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong><em>翻译 By Long Luo</em></strong></p>
-<p>下面这些问题<a target="_blank" rel="noopener" href="http://www.stackoverflow.com/">Stackoverflow</a>上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/">3分钟速读：图解Java Collections的接口以及类层级关系</a>。</p>
-<h1 id="1-什么时候用LinkedList？什么时候用ArrayList？"><a href="#1-什么时候用LinkedList？什么时候用ArrayList？" class="headerlink" title="1. 什么时候用LinkedList？什么时候用ArrayList？"></a>1. 什么时候用LinkedList？什么时候用ArrayList？</h1><p><strong><em>ArrayList</em></strong>本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经满了，那么需要重新分配一个更大的数组并且将全部的元素移动到新的数组需要花费**<em>O(n)**</em>的时间。当然从现有的数组中增加或者删除一个元素都需要移动现有的元素。这个可能是使用ArrayList中最大的不便之处。</p>
-<p><strong><em>LinkedList</em></strong>是一个<strong>双端链表</strong>。正因为如此，如果要获取一个链表中间的元素，需要从链表的头部开始查找。另一方面，增加或者删除链表中的元素将会很快，因为只需要在本地修改即可。</p>
-<p>下表总结了最快情况下的比较需要耗费时间：</p>
-<table>
-<thead>
-<tr>
-<th align="left">Method</th>
-<th align="right">Arraylist</th>
-<th align="center">LinkedList</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">get(index)</td>
-<td align="right">O(1)</td>
-<td align="center">O(n)</td>
-</tr>
-<tr>
-<td align="left">add(E)</td>
-<td align="right">O(n)</td>
-<td align="center">O(1)</td>
-</tr>
-<tr>
-<td align="left">add(E, index)</td>
-<td align="right">O(n)</td>
-<td align="center">O(n)</td>
-</tr>
-<tr>
-<td align="left">remove(index)</td>
-<td align="right">O(n)</td>
-<td align="center">O(n)</td>
-</tr>
-<tr>
-<td align="left">Iterator.remove()</td>
-<td align="right">O(n)</td>
-<td align="center">O(1)</td>
-</tr>
-<tr>
-<td align="left">Iterator.add(E)</td>
-<td align="right">O(n)</td>
-<td align="center">O(1)</td>
-</tr>
-</tbody></table>
-<p>不管运行时间，当大型列表需要额外考虑内存占用。LinkedList每个node至少需要2个额外的指针用于连接前后2个node。而在ArrayList中只需要数组存储元素值即可。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/" class="post-title-link" itemprop="url">2016-08-07 220 Week 32 Sun 时间都去哪了？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-07 21:00:33" itemprop="dateCreated datePublished" datetime="2016-08-07T21:00:33+08:00">2016-08-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 16:53:51" itemprop="dateModified" datetime="2020-12-04T16:53:51+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-07 220 Week 32 Sun 时间都去哪了？" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          有东西被加密了, 请输入密码查看.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/" class="post-title-link" itemprop="url">Java Array最重要的10个方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-06 22:26:58" itemprop="dateCreated datePublished" datetime="2016-08-06T22:26:58+08:00">2016-08-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/" class="post-meta-item leancloud_visitors" data-flag-title="Java Array最重要的10个方法" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本文将展示Java Array的最重要的10个方法：</p>
-<h1 id="0-声明一个数组"><a href="#0-声明一个数组" class="headerlink" title="0. 声明一个数组"></a>0. 声明一个数组</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String[] aArray = <span class="keyword">new</span> String[<span class="number">5</span>];</span><br><span class="line">String[] bArray = &#123;<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>&#125;;</span><br><span class="line">String[] cArray = <span class="keyword">new</span> String[]&#123;<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>,<span class="string">&quot;d&quot;</span>,<span class="string">&quot;e&quot;</span>&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="1-打印数组"><a href="#1-打印数组" class="headerlink" title="1. 打印数组"></a>1. 打印数组</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">String intArrayString = Arrays.toString(intArray);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// print directly will print reference value</span></span><br><span class="line">System.out.println(intArray);</span><br><span class="line"><span class="comment">// [I@7150bd4d</span></span><br><span class="line"> </span><br><span class="line">System.out.println(intArrayString);</span><br><span class="line"><span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/" class="post-title-link" itemprop="url">2016-08-06 219 Week 31 Sat 套路!</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-06 21:10:44" itemprop="dateCreated datePublished" datetime="2016-08-06T21:10:44+08:00">2016-08-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 16:53:45" itemprop="dateModified" datetime="2020-12-04T16:53:45+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-06 219 Week 31 Sat 套路!" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          有东西被加密了, 请输入密码查看.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/" class="post-title-link" itemprop="url">2016-08-05 218 Week 31 Fri 妈妈，对不起！</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-05 21:46:10" itemprop="dateCreated datePublished" datetime="2016-08-05T21:46:10+08:00">2016-08-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 16:53:40" itemprop="dateModified" datetime="2020-12-04T16:53:40+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-05 218 Week 31 Fri 妈妈，对不起！" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          有东西被加密了, 请输入密码查看.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" class="post-title-link" itemprop="url">关于Java字符串(String)10个最常见问题</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-05 09:49:42" itemprop="dateCreated datePublished" datetime="2016-08-05T09:49:42+08:00">2016-08-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" class="post-meta-item leancloud_visitors" data-flag-title="关于Java字符串(String)10个最常见问题" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Java语言中，String一直很基础，但很多人都很多概念还是很模糊。这里我们选取了网络上最常见的10个问题，希望通过这篇文章让大家对Java String有更深刻的认识。</p>
-<h1 id="1-如何对字符串进行比较？用“-”-还是equals-？"><a href="#1-如何对字符串进行比较？用“-”-还是equals-？" class="headerlink" title="1. 如何对字符串进行比较？用“==” 还是equals()？"></a>1. 如何对字符串进行比较？用“==” 还是<code>equals()</code>？</h1><p>简单来说，如果<strong>引用是否相同</strong>那么使用<code>==</code>， 判断**<em>值是否相等**</em>则用<code>equals()</code>。除非你想判断2个字符串是否是同一对象，否则你都应该使用<code>equals()</code>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/04/2016-08-04-217-Week-31-Thu-Medical-Checkup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/08/04/2016-08-04-217-Week-31-Thu-Medical-Checkup/" class="post-title-link" itemprop="url">2016-08-04 217 Week 31 Thu 体检！</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-04 21:22:37" itemprop="dateCreated datePublished" datetime="2016-08-04T21:22:37+08:00">2016-08-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 16:53:35" itemprop="dateModified" datetime="2020-12-04T16:53:35+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/08/04/2016-08-04-217-Week-31-Thu-Medical-Checkup/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-04 217 Week 31 Thu 体检！" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          有东西被加密了, 请输入密码查看.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/04/2016-08-04-217-Week-31-Thu-Medical-Checkup/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" class="post-title-link" itemprop="url">Android自定义View：如何实现一个模拟时钟？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-08-03 22:35:45" itemprop="dateCreated datePublished" datetime="2016-08-03T22:35:45+08:00">2016-08-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" class="post-meta-item leancloud_visitors" data-flag-title="Android自定义View：如何实现一个模拟时钟？" title="阅读次数">
+            <span id="/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/" class="post-meta-item leancloud_visitors" data-flag-title="大话结构体之六：无即是有，没有成员变量的Struct(结构体)" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -944,16 +280,23 @@
 
       
           <p><strong><em>By Long Luo</em></strong></p>
-<p><strong>Android中自定义控件</strong>一直都是Android开发中的一个难点。</p>
-<p>最近看大牛<a target="_blank" rel="noopener" href="http://weibo.com/eclipsexu?s=6cm7D0">@Tomcat的猫</a>写的<a target="_blank" rel="noopener" href="http://blog.csdn.net/eclipsexys">《Android群英传》</a>里面的第六章<strong>Android绘图机制及处理技巧</strong>，里面通过<code>Canvas</code>实现了一个如下所示的仪表盘：</p>
-<p><img src="http://imagesresource.qiniudn.com/clock_still.png" alt="仪表盘"></p>
-<p>在书中详细描述了如何实现这个仪表盘，这里就不赘述了，可以参考其<a target="_blank" rel="noopener" href="https://github.com/xuyisheng/AndroidHeroes/tree/master/6.%E7%BB%98%E5%9B%BE/MyApplication/app/src/main/java/com/yishengxu/myapplication">具体实现代码</a>。</p>
-<p>但是这个表盘的指针是<strong>静止不动</strong>的，如果我们能让这个表盘的指针展示当前时间，随着时间而转动，那么我们就可以一款模拟时钟了。</p>
-<p>那么，问题就来了：</p>
-<p><strong><em>如何才能让时钟的指针动起来呢？</em></strong></p>
+<blockquote>
+<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第六篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8249915">大话结构体之六：无即是有，没有成员变量的Struct(结构体)</a></p>
+</blockquote>
+<hr>
+<p>在上一篇<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)</a> 中，我们学习了<code>struct</code>的内存对齐的前世今生。</p>
+<p>在开始本篇之前，想问大家一个问题：</p>
+<pre><code>---0是什么？
+---呵呵，就是没有呗！
+---那好，这5块钱拿去，就当抵我上次向你借的500块钱。
+---什么？这哪和哪啊！这不一样
+---可是你自己说的， 0就是“没有”。
+---我说不清，反正不行，你必须还我500.</code></pre>
+<p>0是什么？<br>起什么作用呢？<br>为什么500 ≠ 5？</p>
+<p>这节我们来讨论**<em>0的作用**</em>。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/#more" rel="contents">
+              <a class="btn" href="/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -977,7 +320,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/03/2016-08-03-216-Week-31-Wed-Waiting-To-Die/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -991,7 +334,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/08/03/2016-08-03-216-Week-31-Wed-Waiting-To-Die/" class="post-title-link" itemprop="url">2016-08-03 216 Week 31 Wed 混吃等死！</a>
+            <a href="/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/" class="post-title-link" itemprop="url">大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)</a>
         </h2>
 
         <div class="post-meta">
@@ -1001,14 +344,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-08-03 20:45:49" itemprop="dateCreated datePublished" datetime="2016-08-03T20:45:49+08:00">2016-08-03</time>
+              <time title="创建时间：2012-12-29 01:08:58" itemprop="dateCreated datePublished" datetime="2012-12-29T01:08:58+08:00">2012-12-29</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 16:53:28" itemprop="dateModified" datetime="2020-12-04T16:53:28+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1016,12 +359,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
                 </span>
             </span>
 
           
-            <span id="/blog/2016/08/03/2016-08-03-216-Week-31-Wed-Waiting-To-Die/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-03 216 Week 31 Wed 混吃等死！" title="阅读次数">
+            <span id="/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/" class="post-meta-item leancloud_visitors" data-flag-title="大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1038,10 +381,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          有东西被加密了, 请输入密码查看.
+          <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>前言：<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第五篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8272233">大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)</a></p>
+</blockquote>
+<hr>
+<h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在上一篇<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/">大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)</a> 中，我们了解到<code>struct ALIGN2</code>和<code>struct ALIGN3</code>的成员变量都是1个int型，1个char型及1个short型，可是它们所占的空间却1个是8字节，一个是12字节。</p>
+<p><strong><em>为什么会有这样的区别呢？</em></strong></p>
+<p>通过上篇关于<strong>对齐</strong>的介绍，我们已经猜测这是<em>因为编译器对其作了对齐的处理</em>所致，但是**<em>编译器处理的细节**</em>具体是什么呢？</p>
+<p>在这一篇里，我们将对程序的<strong>编译，汇编，链接</strong>进行逐一分析，解开这个谜团。</p>
+<p><strong><em>不要走开，下面更精彩！</em></strong></p>
+<h1 id="编译过程："><a href="#编译过程：" class="headerlink" title="编译过程："></a>编译过程：</h1><p>一般情况下，<code>C</code>程序的编译过程为</p>
+<ol>
+<li>预处理</li>
+<li>编译成汇编代码</li>
+<li>汇编成目标代码</li>
+<li>链接</li>
+</ol>
+<p>这一篇我们将使用<code>gcc</code>对上述几个过程进行仔细分析，了解其处理细节。</p>
+<p>首先我们看一个例子，源码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************************************************</span></span><br><span class="line"><span class="comment">** File: - Z:\code\c\Alignment\Align.c</span></span><br><span class="line"><span class="comment">**  </span></span><br><span class="line"><span class="comment">** Copyright (C), Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Description: </span></span><br><span class="line"><span class="comment">**      Align.c --- To learn the details of Alignment by the compiler.</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Version: 1.1</span></span><br><span class="line"><span class="comment">** Date created: 22:33:50,10/12/2012</span></span><br><span class="line"><span class="comment">** Author: Long.Luo</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment">**     &lt;author&gt;    &lt;data&gt;            &lt;desc&gt;</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> mA;</span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">    <span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">    <span class="keyword">char</span> mA;</span><br><span class="line">    <span class="keyword">short</span> mC;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ALIGN2</span> <span class="title">aln2</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ALIGN3</span> <span class="title">aln3</span>;</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The size of struct ALIGN2 is: %d\n&quot;</span>, <span class="keyword">sizeof</span>(aln2));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\t aln2.mA=0x%x, aln2.mB=0x%x, aln2.mC=0x%x\n&quot;</span>, &amp;aln2.mA, &amp;aln2.mB, &amp;aln2.mC);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The size of struct ALIGN3 is: %d\n&quot;</span>, <span class="keyword">sizeof</span>(aln3));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\t aln3.mA=0x%x, aln3.mB=0x%x, aln3.mC=0x%x\n&quot;</span>, &amp;aln3.mA, &amp;aln3.mB, &amp;aln3.mC);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/08/03/2016-08-03-216-Week-31-Wed-Waiting-To-Die/#more" rel="contents">
+              <a class="btn" href="/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1065,7 +427,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/02/2016-08-02-215-Week-31-Feb-Typhoon-Nida/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1079,7 +441,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/08/02/2016-08-02-215-Week-31-Feb-Typhoon-Nida/" class="post-title-link" itemprop="url">2016-08-02 215 Week 31 Feb 台风妮妲！</a>
+            <a href="/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/" class="post-title-link" itemprop="url">大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)</a>
         </h2>
 
         <div class="post-meta">
@@ -1089,14 +451,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-08-02 20:13:01" itemprop="dateCreated datePublished" datetime="2016-08-02T20:13:01+08:00">2016-08-02</time>
+              <time title="创建时间：2012-12-27 00:32:28" itemprop="dateCreated datePublished" datetime="2012-12-27T00:32:28+08:00">2012-12-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 16:53:16" itemprop="dateModified" datetime="2020-12-04T16:53:16+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1104,12 +466,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
                 </span>
             </span>
 
           
-            <span id="/blog/2016/08/02/2016-08-02-215-Week-31-Feb-Typhoon-Nida/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-02 215 Week 31 Feb 台风妮妲！" title="阅读次数">
+            <span id="/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/" class="post-meta-item leancloud_visitors" data-flag-title="大话结构体之四：以空间换时间，Struct(结构体)中的成员对齐之道(上)" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1126,10 +488,718 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          有东西被加密了, 请输入密码查看.
+          <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第四篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267255">以空间换时间，Struct(结构体)中的成员对齐之道(上)</a></p>
+</blockquote>
+<hr>
+<p>在开始今天的文章之前，请先看下面一道面试题：</p>
+<p>问题： 阅读下面一段代码并回答题目之后的问题：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> mA;</span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>请问在<strong>32位</strong>系统下<code>sizeof(ALIGN)</code>的结果是多少？</p>
+<p>当然这道题目是难不到广大程序员同学们滴！</p>
+<p>在32位机器上int类型占4个字节，<strong>Struct ALIGN</strong>里面有2个int型变量，那么总共就是**<em>8**</em>个字节喽！</p>
+<p>Bingo，在这个例子中，<code>sizeof(ALIGN)</code>的结果的确是**<em>8**</em>。</p>
+<p><img src="http://img.my.csdn.net/uploads/201212/03/1354465795_4041.jpg" alt="结构体对齐"></p>
+<p>下面，我们把代码修改一下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> mA;</span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ALIGN1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> mA;</span><br><span class="line">    <span class="keyword">short</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(<span class="keyword">short</span>)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(ALIGN1)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    getchar();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>请问输出是多少？</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/08/02/2016-08-02-215-Week-31-Feb-Typhoon-Nida/#more" rel="contents">
+              <a class="btn" href="/blog/2012/12/27/Struct-Insight-Chapter-Four-Data-Structure-Alignment-Part-One/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/" class="post-title-link" itemprop="url">大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白...</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2012-12-25 23:52:25" itemprop="dateCreated datePublished" datetime="2012-12-25T23:52:25+08:00">2012-12-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/" class="post-meta-item leancloud_visitors" data-flag-title="大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白..." title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第三篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267346">大话结构体之三: 借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…</a></p>
+</blockquote>
+<hr>
+<p>之前一篇 <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267339">大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化</a>，我们已经了解了<strong>C++**中</strong>Struct<strong>的定义方法和</strong>C<strong>中有点不一样，而且增加了一种新的类型—**<em>Class</em></strong>。从C++的名字我们就可以知道，C++是从C进化而来，“*<em>++<strong>”就是在C的基础上加了一些东西：</strong></em>面向对象的东西***。</p>
+<p>虽然C++作为一种面向对象语言，要区别于面向过程的C语言，但是在设计时，一个很重要的原则是C++必须向前兼容C，必须是C的超集。这样一来就可以带来好多好处：</p>
+<p>第一个嘛，首先呢，C++就可以站在C这个巨人的肩膀上，大量过去用C编写的程序可以不加修改地在C++环境下使用；<br>第二，把很多C程序员忽悠进C++这个大坑里，为C++之崛起而加班，上了贼船可就由不得你了<strong>XD</strong><br>…….</p>
+<p>也正是因为这个原因，C++中保留了Struct结构类型，并使得Struct的功能更强大，不仅仅是简单继承C的结构体，而且扩充了Struct，使得它也具有类的特点，那么<strong>在C++中，Class和Struct到底有什么区别呢</strong>？</p>
+<p><strong><em>Talk is cheap, show me the Code!</em></strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> mA;</span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> mA;</span><br><span class="line">    <span class="keyword">int</span> mB;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    S1 a;</span><br><span class="line">    C2 b;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(a)&lt;&lt;&amp;a&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(b)&lt;&lt;&amp;b&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    getchar();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面这段代码非常简单，分别定义了一个Struct类型和Class类型，并输出其大小和地址，我们先看看输出结果：</p>
+<p><img src="http://img.my.csdn.net/uploads/201212/06/1354804133_7588.jpg" alt="Class And Struct Output"></p>
+<p>从结果我们可以看出，<strong>没啥区别</strong>啊！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2012/12/24/Struct-Insight-Chapter-Two-The-Declaration-Definition-And-Initialization-Of-Struct/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2012/12/24/Struct-Insight-Chapter-Two-The-Declaration-Definition-And-Initialization-Of-Struct/" class="post-title-link" itemprop="url">大话结构体之二：名不正则言不顺---Struct(结构体)的声明、定义及初始化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2012-12-24 00:38:25" itemprop="dateCreated datePublished" datetime="2012-12-24T00:38:25+08:00">2012-12-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2012/12/24/Struct-Insight-Chapter-Two-The-Declaration-Definition-And-Initialization-Of-Struct/" class="post-meta-item leancloud_visitors" data-flag-title="大话结构体之二：名不正则言不顺---Struct(结构体)的声明、定义及初始化" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第二篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267339">大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化</a></p>
+</blockquote>
+<hr>
+<p>在上一篇<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267336">大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？</a>里我们讲了为什么我们要引入Struct这个数据类型，我们了解到Struct是一种聚合数据类型，是为了用户描述和解释一些事物的方便而提出的，Struct是一种用户自定义数据类型，如下图所示：</p>
+<p><img src="http://img.my.csdn.net/uploads/201212/09/1355020124_4311.png" alt="数据类型"></p>
+<p>其实从理论上讲，**<em>数据类型就是人为制订的如何解释内存中的二进制数的协议**</em>，也就是说一个数字对应着一块内存（可能4字节，也可能20字节），而这个数字的类型则是附加信息，<strong>以告诉编译器当发现有对那块内存的操作语句（即某种操作符）时，要如何编写机器指令以实现那个操作</strong>。比如两个char类型的数字进行加法操作符操作，编译器编译出来的机器指令就和两个long类型的数字进行加法操作的不一样，也就是所谓的“如何解释内存中的二进制数的协议”。</p>
+<p>具体到我们之前的例子来说，只是指定了一种结构体类型，它相当于一个模型，但其中并无具体数据，系统也不为之分配实际的内存单元。为了能在程序中使用结构体类型的数据，应当定义结构体类型的变量，并在其中存放具体的数据。 </p>
+<p>本篇将详细对Struct的声明、定义和初始化进行分析。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2012/12/24/Struct-Insight-Chapter-Two-The-Declaration-Definition-And-Initialization-Of-Struct/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2012/12/23/Struct-Insight-Chapter-One-Why-Choose-Struct-as-a-girl-choose-a-boyfriend/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2012/12/23/Struct-Insight-Chapter-One-Why-Choose-Struct-as-a-girl-choose-a-boyfriend/" class="post-title-link" itemprop="url">大话结构体之一: 从女孩怎么选男朋友开始...Struct是为了解决什么问题？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2012-12-23 22:37:20" itemprop="dateCreated datePublished" datetime="2012-12-23T22:37:20+08:00">2012-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2012/12/23/Struct-Insight-Chapter-One-Why-Choose-Struct-as-a-girl-choose-a-boyfriend/" class="post-meta-item leancloud_visitors" data-flag-title="大话结构体之一: 从女孩怎么选男朋友开始...Struct是为了解决什么问题？" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第一篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267336">大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？</a></p>
+</blockquote>
+<hr>
+<p>“关关雎鸠，在河之洲。窈窕淑女，君子好逑”，《诗经》三百篇，开篇就是男女之间的恋情，可见几千年的古人也十分重视爱情。这也难怪，毕竟男女的婚姻是人伦之始，而且含有成家立业的意思。引用生物学的观点来解释，就是“求食求偶是关系到人类生存繁衍的大事”，能不重视么？</p>
+<p>在我们的老祖宗还住在山洞里的那个时代，野外看到一个漂亮的女野人，一棍子敲晕，拖进洞里…不过那个年代已经一去不复返了。随着人类的进步，具体到现在这个社会，现代的女人都要求男方高富帅，有车有房…当然按照进化心理学的观点来看，这些东西都代表着男性获取资源的能力，而智人(人类)的后代是很脆弱的，为了繁衍，所以女性是将男性所获取的资源和获取资源的能力置于第一位的。</p>
+<p>不过，由于拜国内的房地产所赐，身为一名D丝的话，想要追到一个女孩，也变得异常困难，一方面是硬件上的劣势，比如外表、车、房子、一份体面的工作灯；另外一方面又有软件上的劣势，比如幽默感，人品如何、性格等。付出的服务项目也越来越多，既要送花，要帮女孩做这个做那个表决心，还要送这个送那个表付出。</p>
+<p>据说20年后国内将有3000w男性光棍，女孩也就成了卖方市场，眼前这么多追求者，高富帅各方面程度都不一样，应该把哪个放在第一位呢？该怎么选呢？</p>
+<p>比如一位美女，就有3位男性追求者，比较来比较去，某天决定先按照“帅”的程度排个序，选一个最“帅”的：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************************************************</span></span><br><span class="line"><span class="comment">** File: - Z:\work\code\c\Struct\WhyUsingStuct.c</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Copyright (C) Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Description: </span></span><br><span class="line"><span class="comment">**      WhyUsingStruct.c ---</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Version: 1.1</span></span><br><span class="line"><span class="comment">** Date created: 22:25:44,20/12/2012</span></span><br><span class="line"><span class="comment">** Author: Long.Luo</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment">**     &lt;author&gt;    &lt;data&gt;            &lt;desc&gt;</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Number of the boys */</span>    </span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BOYS_NUM    (3)</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Name */</span>        </span><br><span class="line">    <span class="keyword">char</span> name[BOYS_NUM][<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* height */</span></span><br><span class="line">    <span class="keyword">int</span> height[BOYS_NUM];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* rich */</span></span><br><span class="line">    <span class="keyword">int</span> money[BOYS_NUM];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* handsome */</span></span><br><span class="line">    <span class="keyword">int</span> handsome[BOYS_NUM];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* pointer array of the boys&#x27; name */</span></span><br><span class="line">    <span class="keyword">char</span> *pName[BOYS_NUM];</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* the temporary */</span></span><br><span class="line">    <span class="keyword">int</span> heightTemp, moneyTemp, handsomeTemp;</span><br><span class="line">    <span class="keyword">char</span> *nameTemp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; BOYS_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        pName[i] = name[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; BOYS_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Pls input the Name of the No. %d Boys:&quot;</span>, i + <span class="number">1</span>);</span><br><span class="line">        gets(pName[i]);</span><br><span class="line">        <span class="keyword">if</span> (*pName[i] == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            gets(pName[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Pls input the Height of %s ：&quot;</span>, pName[i]);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;height[i]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Pls input the Money of %s ：&quot;</span>, pName[i]);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;money[i]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;Pls input the Handsome of %s ：&quot;</span>, pName[i]);</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;handsome[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* sort by Height */</span></span><br><span class="line">    <span class="comment">/* Only write one item. */</span> </span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; BOYS_NUM - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = i + <span class="number">1</span>; j &lt; BOYS_NUM; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (handsome[i] &lt; handsome[j])</span><br><span class="line">            &#123;</span><br><span class="line">                nameTemp = pName[i];</span><br><span class="line">                pName[i] = pName[j];</span><br><span class="line">                pName[j] = nameTemp;</span><br><span class="line"></span><br><span class="line">                handsomeTemp = handsome[i];</span><br><span class="line">                handsome[i] = handsome[j];</span><br><span class="line">                handsome[j] = handsomeTemp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; BOYS_NUM; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;\nThe Boys&#x27;s info: %s\t, height: %d\t, money: %d\t, handsome: %d\t&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    getchar();</span><br><span class="line">&#125;    </span><br></pre></td></tr></table></figure>
+
+<p>但是上面的代码有很明显缺点：</p>
+<ol>
+<li><p>变量过多，同一追求者的各个数据无联系，没有整体概念，不便管理；</p>
+</li>
+<li><p>操作不便，假如某天想把“<strong>富</strong>”作为第一考虑呢？或者根据不同面采取不同的加权来选择呢？</p>
+</li>
+</ol>
+<p><strong><em>男人，不止一面!</em></strong>(七匹狼广告)</p>
+<p><strong>一个事物往往有很多的特征</strong>，但是人们往往去表达事物的时候，不是*<strong>说特征**<em>，而是</em></strong>讲整体***。零碎的信息、有时候很难替代一个整体信息结构。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2012/12/23/Struct-Insight-Chapter-One-Why-Choose-Struct-as-a-girl-choose-a-boyfriend/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2012/10/23/How-To-Use-MCU-To-Control-Beeper-To-Generate-Music/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2012/10/23/How-To-Use-MCU-To-Control-Beeper-To-Generate-Music/" class="post-title-link" itemprop="url">如何利用单片机控制蜂鸣器播放音乐？---以《梁祝》的实现为例</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2012-10-23 22:37:57" itemprop="dateCreated datePublished" datetime="2012-10-23T22:37:57+08:00">2012-10-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Music/" itemprop="url" rel="index"><span itemprop="name">Music</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2012/10/23/How-To-Use-MCU-To-Control-Beeper-To-Generate-Music/" class="post-meta-item leancloud_visitors" data-flag-title="如何利用单片机控制蜂鸣器播放音乐？---以《梁祝》的实现为例" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>这篇文章是2012年在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上写的，<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8104111">TI EK-LM3S8962开发板使用蜂鸣器播放音乐《梁祝》的实现</a>。</p>
+<hr>
+<p>TI的EK-LM3S8962开发板有着比较丰富的外设，由于个人从小对音乐感兴趣，因此利用其中的蜂鸣器外设来实现音乐播放的功能，下面对此进行逐一解析：</p>
+<p>先上张开发板的Layout图：</p>
+<p><img src="http://img.my.csdn.net/uploads/201210/23/1351003559_1210.JPG" alt="EK-LM3S8962"> </p>
+<p>要实现音乐播放，首先要明白数字音乐是如何播放出来的？</p>
+<p>首先需要了解一个事实，那就是我们所听到的音乐只是一系列不同频率的声音按照一定的节奏播放出来。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2012/10/23/How-To-Use-MCU-To-Control-Beeper-To-Generate-Music/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2012/10/22/How-To-Get-Computer-Hardware-Information-By-Bash-In-Linux-OS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2012/10/22/How-To-Get-Computer-Hardware-Information-By-Bash-In-Linux-OS/" class="post-title-link" itemprop="url">获取电脑配置：一个20行的脚本代码就够了，So Easy！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2012-10-22 20:16:33" itemprop="dateCreated datePublished" datetime="2012-10-22T20:16:33+08:00">2012-10-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2012/10/22/How-To-Get-Computer-Hardware-Information-By-Bash-In-Linux-OS/" class="post-meta-item leancloud_visitors" data-flag-title="获取电脑配置：一个20行的脚本代码就够了，So Easy！" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>这篇文章是2012年在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上写的，<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8100270">Linux下获取电脑硬件配置信息的bash脚本代码</a>。</p>
+</blockquote>
+<hr>
+<p>最近由于要获取几台Linux服务器的硬件配置信息，就写了一个获取硬件配置信息的脚本代码，可以获取CPU、内存、硬盘等硬件信息。</p>
+<p>使用这个脚本文件，就可以一次性输出代码如下所示：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2012/10/22/How-To-Get-Computer-Hardware-Information-By-Bash-In-Linux-OS/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2011/07/14/Two-Years-Anniversary-of-Graduate-from-University/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2011/07/14/Two-Years-Anniversary-of-Graduate-from-University/" class="post-title-link" itemprop="url">一任阶前点滴到天明 --- 纪念毕业两周年</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2011-07-14 20:38:55" itemprop="dateCreated datePublished" datetime="2011-07-14T20:38:55+08:00">2011-07-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2011/07/14/Two-Years-Anniversary-of-Graduate-from-University/" class="post-meta-item leancloud_visitors" data-flag-title="一任阶前点滴到天明 --- 纪念毕业两周年" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<blockquote>
+<p>未觉池塘春草梦，阶前梧叶已秋声。</p>
+</blockquote>
+<h1 id="一、尘事"><a href="#一、尘事" class="headerlink" title="一、尘事"></a>一、尘事</h1><blockquote>
+<p>忆昔午桥桥上饮，<br>坐中多是豪英。<br>长沟流月去无声。<br>杏花疏影里，<br>吹笛到天明。</p>
+</blockquote>
+<blockquote>
+<p>二十余年如一梦，<br>此身虽在堪惊。<br>闲登小阁看新晴。<br>古今多少事，<br>渔唱起三更。</p>
+</blockquote>
+<p>第一次读到这首词的时候，是在4年前大学的图书馆里，不过当时限于阅历，无法领悟，只是觉得意境太优美，直到现在还能完整的写出来。</p>
+<p>眼下是深圳广大无业游民中的一员，个人的七百多个日日夜夜投进深圳的长河里激不起一丝的浪花，而对于自己却是走完了不短的一段路程。遥想当年刚刚走出校门，对未来踌躅满志，意气风发，虽然不能像主席一样指点江山，激扬文字，谈笑间樯橹灰飞烟灭，也曾幻想着指点钞票，喜中大奖，不过却总是离中500万差几个球。待到走入社会，却发现自己是个愣头青，在社会的墙壁上碰的鼻青脸肿，这社会上要学的东西太多太多，不光是技术、做人，还有各种各样的或明或暗的规则…</p>
+<p>想起爸妈还在远方的工地上挥汗如雨，自己的这点辛苦又算得了什么呢？想起爸妈说给我的话，如同一盏灯，越过了那一抹淡淡的天幕，照亮我堆积在心中难言的情愫，也指引着我前行的方向…</p>
+<p><strong><em>没有伞的孩子要学会努力奔跑！</em></strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2011/07/14/Two-Years-Anniversary-of-Graduate-from-University/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2011/05/02/A-Tour-of-Dong-Guan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2011/05/02/A-Tour-of-Dong-Guan/" class="post-title-link" itemprop="url">一个人的东莞之行 --- 见闻及感想</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2011-05-02 22:51:29" itemprop="dateCreated datePublished" datetime="2011-05-02T22:51:29+08:00">2011-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Travel/" itemprop="url" rel="index"><span itemprop="name">Travel</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2011/05/02/A-Tour-of-Dong-Guan/" class="post-meta-item leancloud_visitors" data-flag-title="一个人的东莞之行 --- 见闻及感想" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>既要读万卷书，更要行万里路！由于上周工作太累，最近心事重重，决定自己一个人去散散心。一直想去珠三角电子行业配套最完善的东莞去看看，想一想，思考思考…….</p>
+<h1 id="一、商业和城市的诞生"><a href="#一、商业和城市的诞生" class="headerlink" title="一、商业和城市的诞生"></a>一、商业和城市的诞生</h1><p>命运是一种很奇妙的东西，也许没有改革开放，那些东莞本地土著和内陆的农民没有什么区别。可是邓小平的改革开放，让许多人的人生轨迹发生了太大的转变，他们一跃而成了当地的工厂主，出租房的老板，从而身价倍增………..</p>
+<p>自从远古时候的猴子变成了人之后，主宰这个世界的规律就从物理化学变成了经济学。有的猴子下地后学会了种地，有的继续打猎，有的会做石斧等等生产工具，他们需要交换就集中在一个地方交易，慢慢地发展成了集市，乡镇，城市……..</p>
+<p> <strong><em>（未完待续！）</em></strong></p>
+<h1 id="二、政策改变了深圳和东莞"><a href="#二、政策改变了深圳和东莞" class="headerlink" title="二、政策改变了深圳和东莞"></a>二、政策改变了深圳和东莞</h1><p>政策是一种非常非常强大的资源。</p>
+<p>一个地方的价值升高了，归根结底是这下面沉淀了太多的钱了，不管是公路，铁路，公园，地铁，劳动力……….</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2011/05/02/A-Tour-of-Dong-Guan/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1152,7 +1222,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><a class="page-number" href="/page/35/">35</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1218,7 +1288,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">472</span>
+          <span class="site-state-item-count">346</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
