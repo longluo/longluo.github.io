@@ -218,7 +218,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/25/Family-Happiness-Is-The-Source-Of-All-Happinesses/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/07/Top-10-Questions-About-Java-Collections/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -232,7 +232,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/09/25/Family-Happiness-Is-The-Source-Of-All-Happinesses/" class="post-title-link" itemprop="url">家庭幸福是一切幸福的本源</a>
+            <a href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/" class="post-title-link" itemprop="url">关于Java Collections应知应会</a>
         </h2>
 
         <div class="post-meta">
@@ -242,7 +242,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-09-25 17:05:57" itemprop="dateCreated datePublished" datetime="2016-09-25T17:05:57+08:00">2016-09-25</time>
+              <time title="创建时间：2016-08-07 22:56:28" itemprop="dateCreated datePublished" datetime="2016-08-07T22:56:28+08:00">2016-08-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -257,12 +257,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
           
-            <span id="/blog/2016/09/25/Family-Happiness-Is-The-Source-Of-All-Happinesses/" class="post-meta-item leancloud_visitors" data-flag-title="家庭幸福是一切幸福的本源" title="阅读次数">
+            <span id="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/" class="post-meta-item leancloud_visitors" data-flag-title="关于Java Collections应知应会" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -279,22 +279,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong><em>翻译By Long Luo</em></strong> </p>
-<blockquote>
-<p>Hi, everybody. This Sunday is Father’s Day, and so I wanted to take a moment to talk about the most important job many of us will ever have – and that’s being a dad.</p>
-</blockquote>
-<p>大家好。本周日是父亲节，所以我想花点时间谈谈我们很多人一生最重要的一项工作——做一名父亲。</p>
-<blockquote>
-<p>Today we’re blessed to live in a world where technology allows us to connect instantly with just about anyone on the planet. But no matter how advanced we get, there will never be a substitute for the love and support and, most importantly, the presence of a parent in a child’s life. And in many ways, that’s uniquely true for fathers.</p>
-</blockquote>
-<p>如今，我们有幸生活在一个科技随时都能与全球任何人保持联系的世界里。然而，无论科技多么先进，都永远无法代替关爱和支持，特别是无法代替父母陪伴对于孩子生活的意义。就很多方面而言，对于身为人父者尤其如此。</p>
-<blockquote>
-<p>I never really knew my own father. I was raised by a single mom and two wonderful grandparents who made incredible sacrifices for me. And there are single parents all across the country who do a heroic job raising terrific kids. But I still wish I had a dad who was not only around, but involved; another role model to teach me what my mom did her best to instill – values like hard work and integrity; responsibility and delayed gratification – all the things that give a child the foundation to envision a brighter future for themselves.</p>
-</blockquote>
-<p>我对生身父亲知之甚少，而是由寡母和外祖父母抚养成人，她们为此做出了巨大的牺牲。全国各地也有许多这样的单身父母，他们勇敢面对，养育儿女。然而，我还是情愿父亲在我身边，并参与我的成长。（我希望他）能成为另一个角色，教会我许多（后来不得已）由母亲尽力传授的价值观念。比如，勤奋、正直、责任感和不急于享乐等等，这一切都为他的孩子赢得一个灿烂的未来奠定了基础。</p>
+          <p><strong><em>翻译 By Long Luo</em></strong></p>
+<p>下面这些问题<a target="_blank" rel="noopener" href="http://www.stackoverflow.com/">Stackoverflow</a>上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/">3分钟速读：图解Java Collections的接口以及类层级关系</a>。</p>
+<h1 id="1-什么时候用LinkedList？什么时候用ArrayList？"><a href="#1-什么时候用LinkedList？什么时候用ArrayList？" class="headerlink" title="1. 什么时候用LinkedList？什么时候用ArrayList？"></a>1. 什么时候用LinkedList？什么时候用ArrayList？</h1><p><strong><em>ArrayList</em></strong>本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经满了，那么需要重新分配一个更大的数组并且将全部的元素移动到新的数组需要花费**<em>O(n)**</em>的时间。当然从现有的数组中增加或者删除一个元素都需要移动现有的元素。这个可能是使用ArrayList中最大的不便之处。</p>
+<p><strong><em>LinkedList</em></strong>是一个<strong>双端链表</strong>。正因为如此，如果要获取一个链表中间的元素，需要从链表的头部开始查找。另一方面，增加或者删除链表中的元素将会很快，因为只需要在本地修改即可。</p>
+<p>下表总结了最快情况下的比较需要耗费时间：</p>
+<table>
+<thead>
+<tr>
+<th align="left">Method</th>
+<th align="right">Arraylist</th>
+<th align="center">LinkedList</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">get(index)</td>
+<td align="right">O(1)</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="left">add(E)</td>
+<td align="right">O(n)</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="left">add(E, index)</td>
+<td align="right">O(n)</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="left">remove(index)</td>
+<td align="right">O(n)</td>
+<td align="center">O(n)</td>
+</tr>
+<tr>
+<td align="left">Iterator.remove()</td>
+<td align="right">O(n)</td>
+<td align="center">O(1)</td>
+</tr>
+<tr>
+<td align="left">Iterator.add(E)</td>
+<td align="right">O(n)</td>
+<td align="center">O(1)</td>
+</tr>
+</tbody></table>
+<p>不管运行时间，当大型列表需要额外考虑内存占用。LinkedList每个node至少需要2个额外的指针用于连接前后2个node。而在ArrayList中只需要数组存储元素值即可。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/09/25/Family-Happiness-Is-The-Source-Of-All-Happinesses/#more" rel="contents">
+              <a class="btn" href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -318,7 +350,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/24/2016-09-24-268-Week-38-Sat-Nervous/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -332,7 +364,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/09/24/2016-09-24-268-Week-38-Sat-Nervous/" class="post-title-link" itemprop="url">2016-09-24 268 Week 38 Sat 紧张</a>
+            <a href="/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/" class="post-title-link" itemprop="url">2016-08-07 220 Week 32 Sun 时间都去哪了？</a>
         </h2>
 
         <div class="post-meta">
@@ -342,14 +374,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-09-24 23:31:59" itemprop="dateCreated datePublished" datetime="2016-09-24T23:31:59+08:00">2016-09-24</time>
+              <time title="创建时间：2016-08-07 21:00:33" itemprop="dateCreated datePublished" datetime="2016-08-07T21:00:33+08:00">2016-08-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 17:04:25" itemprop="dateModified" datetime="2020-12-04T17:04:25+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:53:51" itemprop="dateModified" datetime="2020-12-04T16:53:51+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -362,7 +394,7 @@
             </span>
 
           
-            <span id="/blog/2016/09/24/2016-09-24-268-Week-38-Sat-Nervous/" class="post-meta-item leancloud_visitors" data-flag-title="2016-09-24 268 Week 38 Sat 紧张" title="阅读次数">
+            <span id="/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-07 220 Week 32 Sun 时间都去哪了？" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -382,7 +414,7 @@
           有东西被加密了, 请输入密码查看.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/09/24/2016-09-24-268-Week-38-Sat-Nervous/#more" rel="contents">
+              <a class="btn" href="/blog/2016/08/07/2016-08-07-220-Week-32-Sun-Where-Is-The-Time/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -406,7 +438,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/23/2016-09-23-267-Week-38-Fri-Other-Experience/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -420,7 +452,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/09/23/2016-09-23-267-Week-38-Fri-Other-Experience/" class="post-title-link" itemprop="url">2016-09-23 267 Week 38 Fri 别人的经验</a>
+            <a href="/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/" class="post-title-link" itemprop="url">Java Array最重要的10个方法</a>
         </h2>
 
         <div class="post-meta">
@@ -430,271 +462,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-09-23 21:55:49" itemprop="dateCreated datePublished" datetime="2016-09-23T21:55:49+08:00">2016-09-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 17:04:22" itemprop="dateModified" datetime="2020-12-04T17:04:22+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/23/2016-09-23-267-Week-38-Fri-Other-Experience/" class="post-meta-item leancloud_visitors" data-flag-title="2016-09-23 267 Week 38 Fri 别人的经验" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          有东西被加密了, 请输入密码查看.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/09/23/2016-09-23-267-Week-38-Fri-Other-Experience/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/22/2016-09-22-266-Week-38-Thu-Control-Yourself/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/22/2016-09-22-266-Week-38-Thu-Control-Yourself/" class="post-title-link" itemprop="url">2016-09-22 266 Week 38 Thu 控制你的心态和情绪！</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-22 23:17:35" itemprop="dateCreated datePublished" datetime="2016-09-22T23:17:35+08:00">2016-09-22</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 17:04:16" itemprop="dateModified" datetime="2020-12-04T17:04:16+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/22/2016-09-22-266-Week-38-Thu-Control-Yourself/" class="post-meta-item leancloud_visitors" data-flag-title="2016-09-22 266 Week 38 Thu 控制你的心态和情绪！" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          有东西被加密了, 请输入密码查看.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/09/22/2016-09-22-266-Week-38-Thu-Control-Yourself/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/21/2016-09-21-265-Week-38-Wed-The-Speech-Of-The-Boss/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/21/2016-09-21-265-Week-38-Wed-The-Speech-Of-The-Boss/" class="post-title-link" itemprop="url">2016-09-21 265 Week 38 Wed 老大的演讲</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-21 23:52:59" itemprop="dateCreated datePublished" datetime="2016-09-21T23:52:59+08:00">2016-09-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 17:04:12" itemprop="dateModified" datetime="2020-12-04T17:04:12+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/21/2016-09-21-265-Week-38-Wed-The-Speech-Of-The-Boss/" class="post-meta-item leancloud_visitors" data-flag-title="2016-09-21 265 Week 38 Wed 老大的演讲" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          有东西被加密了, 请输入密码查看.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/09/21/2016-09-21-265-Week-38-Wed-The-Speech-Of-The-Boss/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/20/MySQL-Reference-Manual/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/20/MySQL-Reference-Manual/" class="post-title-link" itemprop="url">MySQL常用操作指南</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-20 19:51:09" itemprop="dateCreated datePublished" datetime="2016-09-20T19:51:09+08:00">2016-09-20</time>
+              <time title="创建时间：2016-08-06 22:26:58" itemprop="dateCreated datePublished" datetime="2016-08-06T22:26:58+08:00">2016-08-06</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -709,12 +477,456 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DataBase/" itemprop="url" rel="index"><span itemprop="name">DataBase</span></a>
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
                 </span>
             </span>
 
           
-            <span id="/blog/2016/09/20/MySQL-Reference-Manual/" class="post-meta-item leancloud_visitors" data-flag-title="MySQL常用操作指南" title="阅读次数">
+            <span id="/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/" class="post-meta-item leancloud_visitors" data-flag-title="Java Array最重要的10个方法" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>本文将展示Java Array的最重要的10个方法：</p>
+<h1 id="0-声明一个数组"><a href="#0-声明一个数组" class="headerlink" title="0. 声明一个数组"></a>0. 声明一个数组</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String[] aArray = <span class="keyword">new</span> String[<span class="number">5</span>];</span><br><span class="line">String[] bArray = &#123;<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>, <span class="string">&quot;d&quot;</span>, <span class="string">&quot;e&quot;</span>&#125;;</span><br><span class="line">String[] cArray = <span class="keyword">new</span> String[]&#123;<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>,<span class="string">&quot;d&quot;</span>,<span class="string">&quot;e&quot;</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-打印数组"><a href="#1-打印数组" class="headerlink" title="1. 打印数组"></a>1. 打印数组</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] intArray = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</span><br><span class="line">String intArrayString = Arrays.toString(intArray);</span><br><span class="line"> </span><br><span class="line"><span class="comment">// print directly will print reference value</span></span><br><span class="line">System.out.println(intArray);</span><br><span class="line"><span class="comment">// [I@7150bd4d</span></span><br><span class="line"> </span><br><span class="line">System.out.println(intArrayString);</span><br><span class="line"><span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/06/Top-10-Methods-For-Java-Arrays/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/" class="post-title-link" itemprop="url">2016-08-06 219 Week 31 Sat 套路!</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-06 21:10:44" itemprop="dateCreated datePublished" datetime="2016-08-06T21:10:44+08:00">2016-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 16:53:45" itemprop="dateModified" datetime="2020-12-04T16:53:45+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-06 219 Week 31 Sat 套路!" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          有东西被加密了, 请输入密码查看.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/06/2016-08-06-219-Week-31-Sat-Trap/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/" class="post-title-link" itemprop="url">2016-08-05 218 Week 31 Fri 妈妈，对不起！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-05 21:46:10" itemprop="dateCreated datePublished" datetime="2016-08-05T21:46:10+08:00">2016-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 16:53:40" itemprop="dateModified" datetime="2020-12-04T16:53:40+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-05 218 Week 31 Fri 妈妈，对不起！" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          有东西被加密了, 请输入密码查看.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/05/2016-08-05-218-Week-31-Fri-Mum-I-Am-Sorry/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" class="post-title-link" itemprop="url">关于Java字符串(String)10个最常见问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-05 09:49:42" itemprop="dateCreated datePublished" datetime="2016-08-05T09:49:42+08:00">2016-08-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" class="post-meta-item leancloud_visitors" data-flag-title="关于Java字符串(String)10个最常见问题" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Java语言中，String一直很基础，但很多人都很多概念还是很模糊。这里我们选取了网络上最常见的10个问题，希望通过这篇文章让大家对Java String有更深刻的认识。</p>
+<h1 id="1-如何对字符串进行比较？用“-”-还是equals-？"><a href="#1-如何对字符串进行比较？用“-”-还是equals-？" class="headerlink" title="1. 如何对字符串进行比较？用“==” 还是equals()？"></a>1. 如何对字符串进行比较？用“==” 还是<code>equals()</code>？</h1><p>简单来说，如果<strong>引用是否相同</strong>那么使用<code>==</code>， 判断**<em>值是否相等**</em>则用<code>equals()</code>。除非你想判断2个字符串是否是同一对象，否则你都应该使用<code>equals()</code>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/04/2016-08-04-217-Week-31-Thu-Medical-Checkup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/04/2016-08-04-217-Week-31-Thu-Medical-Checkup/" class="post-title-link" itemprop="url">2016-08-04 217 Week 31 Thu 体检！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-04 21:22:37" itemprop="dateCreated datePublished" datetime="2016-08-04T21:22:37+08:00">2016-08-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 16:53:35" itemprop="dateModified" datetime="2020-12-04T16:53:35+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/04/2016-08-04-217-Week-31-Thu-Medical-Checkup/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-04 217 Week 31 Thu 体检！" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          有东西被加密了, 请输入密码查看.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/04/2016-08-04-217-Week-31-Thu-Medical-Checkup/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" class="post-title-link" itemprop="url">Android自定义View：如何实现一个模拟时钟？</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-03 22:35:45" itemprop="dateCreated datePublished" datetime="2016-08-03T22:35:45+08:00">2016-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" class="post-meta-item leancloud_visitors" data-flag-title="Android自定义View：如何实现一个模拟时钟？" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -732,290 +944,16 @@
 
       
           <p><strong><em>By Long Luo</em></strong></p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-rw-r--r--  1 root  mysql  17987 Jan 15  2016 COPYING</span><br><span class="line">-rw-r--r--  1 root  mysql 151708 Jan 15  2016 INSTALL-BINARY</span><br><span class="line">-rw-r--r--  1 root  mysql   2496 Jan 15  2016 README</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 bin</span><br><span class="line">drwxr-xr-x  3 root  mysql   4096 Sep  9 15:06 data</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 docs</span><br><span class="line">drwxr-xr-x  3 root  mysql   4096 Sep  9 15:06 include</span><br><span class="line">drwxr-xr-x  3 root  mysql   4096 Sep  9 15:06 lib</span><br><span class="line">drwxr-xr-x  4 root  mysql   4096 Sep  9 15:06 man</span><br><span class="line">drwxr-xr-x 10 root  mysql   4096 Sep  9 15:06 mysql-test</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 scripts</span><br><span class="line">drwxr-xr-x 27 root  mysql   4096 Sep  9 15:06 share</span><br><span class="line">drwxr-xr-x  4 root  mysql   4096 Sep  9 15:06 sql-bench</span><br><span class="line">drwxr-xr-x  2 root  mysql   4096 Sep  9 15:06 support-files</span><br><span class="line">drwxr-xr-x  5 mysql mysql   4096 Sep 14 17:13 var</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="MySQL配置文件"><a href="#MySQL配置文件" class="headerlink" title="MySQL配置文件"></a>MySQL配置文件</h1><h1 id="MySQL数据库表"><a href="#MySQL数据库表" class="headerlink" title="MySQL数据库表"></a>MySQL数据库表</h1><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">drwx------ 2 mysql mysql     4096 Sep 14 09:05 blog</span><br><span class="line">-rw-rw---- 1 mysql mysql  5242880 Sep 21 09:03 ib_logfile0</span><br><span class="line">-rw-rw---- 1 mysql mysql  5242880 Sep 19 23:01 ib_logfile1</span><br><span class="line">-rw-rw---- 1 mysql mysql 27262976 Sep 21 09:03 ibdata1</span><br><span class="line">drwx------ 2 mysql mysql     4096 Sep  9 15:06 mysql</span><br><span class="line">-rw-rw---- 1 mysql mysql    27732 Sep  9 15:06 mysql-bin.000001</span><br><span class="line">-rw-rw---- 1 mysql mysql  1113246 Sep  9 15:06 mysql-bin.000002</span><br><span class="line">-rw-rw---- 1 mysql mysql      264 Sep  9 15:06 mysql-bin.000003</span><br><span class="line">-rw-rw---- 1 mysql mysql     1112 Sep  9 15:06 mysql-bin.000004</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 15:06 mysql-bin.000005</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 16:41 mysql-bin.000006</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 16:45 mysql-bin.000007</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 16:50 mysql-bin.000008</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep  9 17:52 mysql-bin.000009</span><br><span class="line">-rw-rw---- 1 mysql mysql  1082048 Sep 13 19:30 mysql-bin.000010</span><br><span class="line">-rw-rw---- 1 mysql mysql     1806 Sep 13 20:28 mysql-bin.000011</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep 13 20:38 mysql-bin.000012</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep 13 20:40 mysql-bin.000013</span><br><span class="line">-rw-rw---- 1 mysql mysql  1197139 Sep 13 21:45 mysql-bin.000014</span><br><span class="line">-rw-rw---- 1 mysql mysql      126 Sep 13 21:51 mysql-bin.000015</span><br><span class="line">-rw-rw---- 1 mysql mysql  1740852 Sep 14 13:39 mysql-bin.000016</span><br><span class="line">-rw-rw---- 1 mysql mysql   767198 Sep 14 17:13 mysql-bin.000017</span><br><span class="line">-rw-rw---- 1 mysql mysql 11751982 Sep 21 09:02 mysql-bin.000018</span><br><span class="line">-rw-rw---- 1 mysql mysql      342 Sep 14 17:13 mysql-bin.index</span><br><span class="line">drwx------ 2 mysql mysql     4096 Sep  9 15:06 performance_schema</span><br><span class="line">-rw-r----- 1 mysql root     46863 Sep 14 17:13 server.imlongluo.com.err</span><br><span class="line">-rw-rw---- 1 mysql mysql        5 Sep 14 17:13 server.imlongluo.com.pid</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-rw-rw---- 1 mysql mysql    67 Sep 13 21:53 db.opt</span><br><span class="line">-rw-rw---- 1 mysql mysql  8688 Sep 13 21:54 wp_commentmeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13380 Sep 13 21:54 wp_comments.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13176 Sep 13 21:54 wp_links.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8698 Sep 13 21:54 wp_options.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8682 Sep 13 21:54 wp_postmeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13684 Sep 13 21:54 wp_posts.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8776 Sep 14 09:05 wp_slim_events.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8776 Sep 14 09:05 wp_slim_events_archive.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 46598 Sep 14 09:05 wp_slim_stats.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 46598 Sep 14 09:05 wp_slim_stats_archive.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8666 Sep 13 21:54 wp_term_relationships.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8768 Sep 13 21:54 wp_term_taxonomy.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8682 Sep 13 21:54 wp_termmeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8668 Sep 13 21:54 wp_terms.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql  8684 Sep 13 21:54 wp_usermeta.frm</span><br><span class="line">-rw-rw---- 1 mysql mysql 13064 Sep 13 21:54 wp_users.frm</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="MySQL数据库内容"><a href="#MySQL数据库内容" class="headerlink" title="MySQL数据库内容"></a>MySQL数据库内容</h1><h1 id=""><a href="#" class="headerlink" title=""></a></h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/16/Believe-In-Future/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/16/Believe-In-Future/" class="post-title-link" itemprop="url">相信未来</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-16 20:24:05" itemprop="dateCreated datePublished" datetime="2016-09-16T20:24:05+08:00">2016-09-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/16/Believe-In-Future/" class="post-meta-item leancloud_visitors" data-flag-title="相信未来" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>相信未来<br>食指</p>
-</blockquote>
-<blockquote>
-<p>当蜘蛛网无情地查封了我的炉台，<br>当灰烬的余烟叹息着贫困的悲哀，<br>我依然固执地铺平失望的灰烬，<br>用美丽的雪花写下：相信未来。</p>
-</blockquote>
-<blockquote>
-<p>当我的紫葡萄化为深秋的露水，<br>当我的鲜花依偎在别人的情怀，<br>我依然固执地用凝霜的枯藤，<br>在凄凉的大地上写下：相信未来。</p>
-</blockquote>
-<blockquote>
-<p>我要用手指那涌向天边的排浪，<br>我要用手撑那托起太阳的大海，<br>摇曳着曙光那支温暖漂亮的笔杆，<br>用孩子的笔体写下：相信未来。</p>
-</blockquote>
-<blockquote>
-<p>我之所以坚定地相信未来，<br>是我相信未来人们的眼睛——<br>她有拨开历史风尘的睫毛，<br>她有看透岁月篇章的瞳孔。</p>
-</blockquote>
-<blockquote>
-<p>不管人们对于我们腐烂的皮肉，<br>那些迷途的惆怅，失败的苦痛，<br>是寄予感动的热泪，深切的同情，<br>还是给以轻蔑的微笑，辛辣的嘲讽。</p>
-</blockquote>
-<blockquote>
-<p>我坚信人们对于我们的脊骨，<br>那无数次地探索、迷途、失败和成功，<br>一定会给予热情、客观、公正的评定，<br>是的，我焦急地等待着他们的评定。</p>
-</blockquote>
-<blockquote>
-<p>朋友，坚定地相信未来吧，<br>相信不屈不挠的努力，<br>相信战胜死亡的年轻，<br>相信未来，热爱生命。</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/16/Gui-Sui-Shou-Cao-Cao/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/16/Gui-Sui-Shou-Cao-Cao/" class="post-title-link" itemprop="url">龟虽寿</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-16 11:17:23" itemprop="dateCreated datePublished" datetime="2016-09-16T11:17:23+08:00">2016-09-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/16/Gui-Sui-Shou-Cao-Cao/" class="post-meta-item leancloud_visitors" data-flag-title="龟虽寿" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>龟虽寿<br>曹操</p>
-</blockquote>
-<p>神龟虽寿，犹有竟时。<br>螣蛇乘雾，终为土灰。<br>老骥伏枥，志在千里。<br>烈士暮年，壮心不已。<br>盈缩之期，不但在天；<br>养怡之福，可得永年。<br>幸甚至哉，歌以咏志。</p>
-<p>曹操是我很喜欢的一个英雄人物。曹操在晚年时写了这么一首这么富有哲理、慷慨激昂、自强不息的诗，现在我们面临什么30岁问题，40岁问题感觉在曹操这首诗面前都是不值一提的事情。</p>
-<p><strong><em>老骥伏枥，志在千里。烈士暮年，壮心不已。</em></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/15/Startup-vs-Work/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/blog/2016/09/15/Startup-vs-Work/" class="post-title-link" itemprop="url">Startup vs Work</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-09-15 19:38:49" itemprop="dateCreated datePublished" datetime="2016-09-15T19:38:49+08:00">2016-09-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/blog/2016/09/15/Startup-vs-Work/" class="post-meta-item leancloud_visitors" data-flag-title="Startup vs Work" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>创业和就业是两种完全不同的生活方式，如果你想要从就业这种生活步入到创业这种生活，需要考虑的不仅仅是创业可能带来更大的财富和自由，更重要的是要考虑你是否适合及适应这种生活方式。创业者和就业者的生活态度和做事方式往往是有天渊之别的，冒然切换，会导致失败。</p>
-<p>创业不一定是要创立一个公司，它体现为一种企业家精神（Entrepreneurship），创立新公司是一种，在公司内部创立新模式，开发新产品等都属于此类，在闹市中摆小摊也属于此类。不是什么拉了风险投资才算创业。创业是一种普遍的现象。</p>
+<p><strong>Android中自定义控件</strong>一直都是Android开发中的一个难点。</p>
+<p>最近看大牛<a target="_blank" rel="noopener" href="http://weibo.com/eclipsexu?s=6cm7D0">@Tomcat的猫</a>写的<a target="_blank" rel="noopener" href="http://blog.csdn.net/eclipsexys">《Android群英传》</a>里面的第六章<strong>Android绘图机制及处理技巧</strong>，里面通过<code>Canvas</code>实现了一个如下所示的仪表盘：</p>
+<p><img src="http://imagesresource.qiniudn.com/clock_still.png" alt="仪表盘"></p>
+<p>在书中详细描述了如何实现这个仪表盘，这里就不赘述了，可以参考其<a target="_blank" rel="noopener" href="https://github.com/xuyisheng/AndroidHeroes/tree/master/6.%E7%BB%98%E5%9B%BE/MyApplication/app/src/main/java/com/yishengxu/myapplication">具体实现代码</a>。</p>
+<p>但是这个表盘的指针是<strong>静止不动</strong>的，如果我们能让这个表盘的指针展示当前时间，随着时间而转动，那么我们就可以一款模拟时钟了。</p>
+<p>那么，问题就来了：</p>
+<p><strong><em>如何才能让时钟的指针动起来呢？</em></strong></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2016/09/15/Startup-vs-Work/#more" rel="contents">
+              <a class="btn" href="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1039,7 +977,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/09/14/Git-Cheatsheet/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/03/2016-08-03-216-Week-31-Wed-Waiting-To-Die/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1053,7 +991,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/blog/2016/09/14/Git-Cheatsheet/" class="post-title-link" itemprop="url">Git常用操作指南</a>
+            <a href="/blog/2016/08/03/2016-08-03-216-Week-31-Wed-Waiting-To-Die/" class="post-title-link" itemprop="url">2016-08-03 216 Week 31 Wed 混吃等死！</a>
         </h2>
 
         <div class="post-meta">
@@ -1063,14 +1001,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2016-09-14 08:55:18" itemprop="dateCreated datePublished" datetime="2016-09-14T08:55:18+08:00">2016-09-14</time>
+              <time title="创建时间：2016-08-03 20:45:49" itemprop="dateCreated datePublished" datetime="2016-08-03T20:45:49+08:00">2016-08-03</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+                <time title="修改时间：2020-12-04 16:53:28" itemprop="dateModified" datetime="2020-12-04T16:53:28+08:00">2020-12-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1078,12 +1016,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
                 </span>
             </span>
 
           
-            <span id="/blog/2016/09/14/Git-Cheatsheet/" class="post-meta-item leancloud_visitors" data-flag-title="Git常用操作指南" title="阅读次数">
+            <span id="/blog/2016/08/03/2016-08-03-216-Week-31-Wed-Waiting-To-Die/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-03 216 Week 31 Wed 混吃等死！" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -1100,25 +1038,103 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <pre><code>$ git add .    
+          有东西被加密了, 请输入密码查看.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/03/2016-08-03-216-Week-31-Wed-Waiting-To-Die/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-$ git add -u .
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-git reset是指将当前head的内容重置，不会留log信息。</code></pre>
-<p>git reset HEAD filename  从暂存区中移除文件</p>
-<p>git reset –hard HEAD~3  会将最新的3次提交全部重置，就像没有提交过一样。</p>
-<p>git reset –hard commit (38679ed709fd0a3767b79b93d0fba5bb8dd235f8) 回退到 38679ed709fd0a3767b79b93d0fba5bb8dd235f8 版本</p>
-<p>根据–soft   –mixed   –hard，会对working tree和index和HEAD进行重置:<br>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息<br>git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可<br>git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</p>
-<p>git 放弃本地修改 强制更新<br>git fetch –all<br>git reset –hard origin/master<br>git fetch 只是下载远程的库的内容，不做任何的合并 git reset 把HEAD指向刚刚下载的最新的版本</p>
-<p>git新手。本地做了一些修改，我用git rebase说有冲突。我现在想把本地的请求都干掉，可能有的已经commit过了（没有push过），完全同步成远程版本，应该用什么命令？</p>
-<p>使用命令：</p>
-<p>git reset –hard ORIGIN/BRANCH</p>
-<p>比如master分支：</p>
-<p>git reset –hard origin/master</p>
-<h1 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h1><h2 id="Git-dojo"><a href="#Git-dojo" class="headerlink" title="Git dojo"></a>Git dojo</h2><p><a target="_blank" rel="noopener" href="https://www.shortcutfoo.com/">https://www.shortcutfoo.com/</a></p>
-<h2 id="Try-Git"><a href="#Try-Git" class="headerlink" title="Try Git"></a>Try Git</h2><p><a target="_blank" rel="noopener" href="https://try.github.io/levels/1/challenges/1">https://try.github.io/levels/1/challenges/1</a></p>
-<h2 id="LearnGitBranching"><a href="#LearnGitBranching" class="headerlink" title="LearnGitBranching"></a>LearnGitBranching</h2><p><a target="_blank" rel="noopener" href="http://learngitbranching.js.org/">http://learngitbranching.js.org/</a></p>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/02/2016-08-02-215-Week-31-Feb-Typhoon-Nida/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/blog/2016/08/02/2016-08-02-215-Week-31-Feb-Typhoon-Nida/" class="post-title-link" itemprop="url">2016-08-02 215 Week 31 Feb 台风妮妲！</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-02 20:13:01" itemprop="dateCreated datePublished" datetime="2016-08-02T20:13:01+08:00">2016-08-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-12-04 16:53:16" itemprop="dateModified" datetime="2020-12-04T16:53:16+08:00">2020-12-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/blog/2016/08/02/2016-08-02-215-Week-31-Feb-Typhoon-Nida/" class="post-meta-item leancloud_visitors" data-flag-title="2016-08-02 215 Week 31 Feb 台风妮妲！" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          有东西被加密了, 请输入密码查看.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/02/2016-08-02-215-Week-31-Feb-Typhoon-Nida/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1136,7 +1152,7 @@ git reset是指将当前head的内容重置，不会留log信息。</code></pre>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/51/">51</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/32/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><a class="extend next" rel="next" href="/page/34/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1202,7 +1218,7 @@ git reset是指将当前head的内容重置，不会留log信息。</code></pre>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">507</span>
+          <span class="site-state-item-count">472</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
