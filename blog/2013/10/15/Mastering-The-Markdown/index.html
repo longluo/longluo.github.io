@@ -20,7 +20,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="NOTE: This is Simplelified  Chinese Edition Document of Markdown Syntax. If you are seeking for English Edition Document. Please refer to Markdown: Syntax. 声明： 这份文档派生(fork)于繁体中文版，在此基础上进行了繁体转简体工作，并进行了适">
@@ -99,6 +99,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
@@ -161,6 +163,11 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/suisuinian" rel="section"><i class="fa fa-sticky-note fa-fw"></i>碎碎念</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -442,7 +449,7 @@ id sem consectetuer libero luctus adipiscing.</code></pre>
 &gt; 
 &gt; 给出一些例子代码：
 &gt; 
-&gt;     return shell_exec(&quot;echo $input | $markdown_script&quot;);</code></pre>
+&gt;     return shell_exec("echo $input | $markdown_script");</code></pre>
 <p>任何像样的文本编辑器都能轻松地建立 email 型的引用。例如在 BBEdit 中，你可以选取文字后然后从选单中选择<em>增加引用阶层</em>。</p>
 <h3 id="list">列表</h3>
 
@@ -522,7 +529,7 @@ Suspendisse id sem consectetuer libero luctus adipiscing.</code></pre>
 <p>如果你每行都有缩进，看起来会看好很多，当然，再次地，如果你很懒惰，Markdown 也允许：</p>
 <pre><code>*   This is a list item with two paragraphs.
 
-    This is the second paragraph in the list item. You&#39;re
+    This is the second paragraph in the list item. You're
 only required to indent the first line. Lorem ipsum dolor
 sit amet, consectetuer adipiscing elit.
 
@@ -555,23 +562,23 @@ sit amet, consectetuer adipiscing elit.
 <p>这个每行一阶的缩进（4 个空格或是 1 个制表符），都会被移除，例如：</p>
 <pre><code>Here is an example of AppleScript:
 
-    tell application &quot;Foo&quot;
+    tell application "Foo"
         beep
     end tell</code></pre>
 <p>会被转换为：</p>
 <pre><code>&lt;p&gt;Here is an example of AppleScript:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;tell application &quot;Foo&quot;
+&lt;pre&gt;&lt;code&gt;tell application "Foo"
     beep
 end tell
 &lt;/code&gt;&lt;/pre&gt;</code></pre>
 <p>一个代码区块会一直持续到没有缩进的那一行（或是文件结尾）。</p>
 <p>在代码区块里面， <code>&amp;</code> 、 <code>&lt;</code> 和 <code>&gt;</code> 会自动转成 HTML 实体，这样的方式让你非常容易使用 Markdown 插入范例用的 HTML 原始码，只需要复制贴上，再加上缩进就可以了，剩下的 Markdown 都会帮你处理，例如：</p>
-<pre><code>    &lt;div class=&quot;footer&quot;&gt;
+<pre><code>    &lt;div class="footer"&gt;
         &amp;copy; 2004 Foo Corporation
     &lt;/div&gt;</code></pre>
 <p>会被转换为：</p>
-<pre><code>&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&quot;footer&quot;&amp;gt;
+<pre><code>&lt;pre&gt;&lt;code&gt;&amp;lt;div class="footer"&amp;gt;
     &amp;amp;copy; 2004 Foo Corporation
 &amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;</code></pre>
@@ -596,14 +603,14 @@ end tell
 <p>Markdown 支持两种形式的链接语法： <em>行内式</em>和<em>参考式</em>两种形式。</p>
 <p>不管是哪一种，链接文字都是用 [方括号] 来标记。</p>
 <p>要建立一个<em>行内式</em>的链接，只要在方块括号后面紧接着圆括号并插入网址链接即可，如果你还想要加上链接的 title 文字，只要在网址后面，用双引号把 title 文字包起来即可，例如：</p>
-<pre><code>This is [an example](http://example.com/ &quot;Title&quot;) inline link.
+<pre><code>This is [an example](http://example.com/ "Title") inline link.
 
 [This link](http://example.net/) has no title attribute.</code></pre>
 <p>会产生：</p>
-<pre><code>&lt;p&gt;This is &lt;a href=&quot;http://example.com/&quot; title=&quot;Title&quot;&gt;
+<pre><code>&lt;p&gt;This is &lt;a href="http://example.com/" title="Title"&gt;
 an example&lt;/a&gt; inline link.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://example.net/&quot;&gt;This link&lt;/a&gt; has no
+&lt;p&gt;&lt;a href="http://example.net/"&gt;This link&lt;/a&gt; has no
 title attribute.&lt;/p&gt;</code></pre>
 <p>如果你是要链接到同样主机的资源，你可以使用相对路径：</p>
 <pre><code>See my [About](/about/) page for details.   </code></pre>
@@ -612,7 +619,7 @@ title attribute.&lt;/p&gt;</code></pre>
 <p>你也可以选择性地在两个方括号中间加上一个空格：</p>
 <pre><code>This is [an example] [id] reference-style link.</code></pre>
 <p>接着，在文件的任意处，你可以把这个标记的链接内容定义出来：</p>
-<pre><code>[id]: http://example.com/  &quot;Optional Title Here&quot;</code></pre>
+<pre><code>[id]: http://example.com/  "Optional Title Here"</code></pre>
 <p>链接内容定义的形式为：</p>
 <ul>
 <li>方括号（前面可以选择性地加上至多三个空格来缩进），里面输入链接文字</li>
@@ -622,15 +629,15 @@ title attribute.&lt;/p&gt;</code></pre>
 <li>选择性地接着 title 内容，可以用单引号、双引号或是括弧包着</li>
 </ul>
 <p>下面这三种链接的定义都是相同：</p>
-<pre><code>[foo]: http://example.com/  &quot;Optional Title Here&quot;
-[foo]: http://example.com/  &#39;Optional Title Here&#39;
+<pre><code>[foo]: http://example.com/  "Optional Title Here"
+[foo]: http://example.com/  'Optional Title Here'
 [foo]: http://example.com/  (Optional Title Here)</code></pre>
 <p><strong>请注意：</strong>有一个已知的问题是 Markdown.pl 1.0.1 会忽略单引号包起来的链接 title。</p>
 <p>链接网址也可以用尖括号包起来：</p>
-<pre><code>[id]: &lt;http://example.com/&gt;  &quot;Optional Title Here&quot;</code></pre>
+<pre><code>[id]: &lt;http://example.com/&gt;  "Optional Title Here"</code></pre>
 <p>你也可以把 title 属性放到下一行，也可以加一些缩进，若网址太长的话，这样会比较好看：</p>
 <pre><code>[id]: http://example.com/longish/path/to/resource/here
-    &quot;Optional Title Here&quot;</code></pre>
+    "Optional Title Here"</code></pre>
 <p>网址定义只有在产生链接的时候用到，并不会直接出现在文件之中。</p>
 <p>链接辨别标签可以有字母、数字、空白和标点符号，但是并<em>不</em>区分大小写，因此下面两个链接是一样的：</p>
 <pre><code>[link text][a]
@@ -648,25 +655,25 @@ title attribute.&lt;/p&gt;</code></pre>
 <pre><code>I get 10 times more traffic from [Google] [1] than from
 [Yahoo] [2] or [MSN] [3].
 
-  [1]: http://google.com/        &quot;Google&quot;
-  [2]: http://search.yahoo.com/  &quot;Yahoo Search&quot;
-  [3]: http://search.msn.com/    &quot;MSN Search&quot;</code></pre>
+  [1]: http://google.com/        "Google"
+  [2]: http://search.yahoo.com/  "Yahoo Search"
+  [3]: http://search.msn.com/    "MSN Search"</code></pre>
 <p>如果改成用链接名称的方式写：</p>
 <pre><code>I get 10 times more traffic from [Google][] than from
 [Yahoo][] or [MSN][].
 
-  [google]: http://google.com/        &quot;Google&quot;
-  [yahoo]:  http://search.yahoo.com/  &quot;Yahoo Search&quot;
-  [msn]:    http://search.msn.com/    &quot;MSN Search&quot;</code></pre>
+  [google]: http://google.com/        "Google"
+  [yahoo]:  http://search.yahoo.com/  "Yahoo Search"
+  [msn]:    http://search.msn.com/    "MSN Search"</code></pre>
 <p>上面两种写法都会产生下面的 HTML。</p>
-<pre><code>&lt;p&gt;I get 10 times more traffic from &lt;a href=&quot;http://google.com/&quot;
-title=&quot;Google&quot;&gt;Google&lt;/a&gt; than from
-&lt;a href=&quot;http://search.yahoo.com/&quot; title=&quot;Yahoo Search&quot;&gt;Yahoo&lt;/a&gt;
-or &lt;a href=&quot;http://search.msn.com/&quot; title=&quot;MSN Search&quot;&gt;MSN&lt;/a&gt;.&lt;/p&gt;</code></pre>
+<pre><code>&lt;p&gt;I get 10 times more traffic from &lt;a href="http://google.com/"
+title="Google"&gt;Google&lt;/a&gt; than from
+&lt;a href="http://search.yahoo.com/" title="Yahoo Search"&gt;Yahoo&lt;/a&gt;
+or &lt;a href="http://search.msn.com/" title="MSN Search"&gt;MSN&lt;/a&gt;.&lt;/p&gt;</code></pre>
 <p>下面是用行内式写的同样一段内容的 Markdown 文件，提供作为比较之用：</p>
-<pre><code>I get 10 times more traffic from [Google](http://google.com/ &quot;Google&quot;)
-than from [Yahoo](http://search.yahoo.com/ &quot;Yahoo Search&quot;) or
-[MSN](http://search.msn.com/ &quot;MSN Search&quot;).</code></pre>
+<pre><code>I get 10 times more traffic from [Google](http://google.com/ "Google")
+than from [Yahoo](http://search.yahoo.com/ "Yahoo Search") or
+[MSN](http://search.msn.com/ "MSN Search").</code></pre>
 <p>参考式的链接其实重点不在于它比较好写，而是它比较好读，比较一下上面的范例，使用参考式的文章本身只有 81 个字符，但是用行内形式的却会增加到 176 个字元，如果是用纯 HTML 格式来写，会有 234 个字元，在 HTML 格式中，标签比文本还要多。</p>
 <p>使用 Markdown 的参考式链接，可以让文件更像是浏览器最后产生的结果，让你可以把一些标记相关的元数据移到段落文字之外，你就可以增加链接而不让文章的阅读感觉被打断。</p>
 <h3 id="em">强调</h3>
@@ -712,9 +719,9 @@ A backtick-delimited string in a code span: `` `foo` ``</code></pre>
 
 &lt;p&gt;A backtick-delimited string in a code span: &lt;code&gt;`foo`&lt;/code&gt;&lt;/p&gt;</code></pre>
 <p>在代码区段内，<code>&amp;</code> 和尖括号<strong>都</strong>会被自动地转成 HTML 实体，这使得插入 HTML 原始码变得很容易，Markdown 会把下面这段：</p>
-<pre><code>Please don&#39;t use any `&lt;blink&gt;` tags.</code></pre>
+<pre><code>Please don't use any `&lt;blink&gt;` tags.</code></pre>
 <p>转为：</p>
-<pre><code>&lt;p&gt;Please don&#39;t use any &lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;</code></pre>
+<pre><code>&lt;p&gt;Please don't use any &lt;code&gt;&amp;lt;blink&amp;gt;&lt;/code&gt; tags.&lt;/p&gt;</code></pre>
 <p>你也可以这样写：</p>
 <pre><code>`&amp;#8212;` is the decimal-encoded equivalent of `&amp;mdash;`.</code></pre>
 <p>以产生：</p>
@@ -727,7 +734,7 @@ equivalent of &lt;code&gt;&amp;amp;mdash;&lt;/code&gt;.&lt;/p&gt;</code></pre>
 <p>行内式的图片语法看起来像是：</p>
 <pre><code>![Alt text](/path/to/img.jpg)
 
-![Alt text](/path/to/img.jpg &quot;Optional title&quot;)</code></pre>
+![Alt text](/path/to/img.jpg "Optional title")</code></pre>
 <p>详细叙述如下：</p>
 <ul>
 <li>一个惊叹号 <code>!</code></li>
@@ -737,7 +744,7 @@ equivalent of &lt;code&gt;&amp;amp;mdash;&lt;/code&gt;.&lt;/p&gt;</code></pre>
 <p>参考式的图片语法则长得像这样：</p>
 <pre><code>![Alt text][id]</code></pre>
 <p>「id」是图片参考的名称，图片参考的定义方式则和连结参考一样：</p>
-<pre><code>[id]: url/to/image  &quot;Optional title attribute&quot;</code></pre>
+<pre><code>[id]: url/to/image  "Optional title attribute"</code></pre>
 <p>到目前为止， Markdown 还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的 <code>&lt;img&gt;</code> 标签。</p>
 <hr>
 <h2 id="misc">其它</h2>
@@ -747,15 +754,15 @@ equivalent of &lt;code&gt;&amp;amp;mdash;&lt;/code&gt;.&lt;/p&gt;</code></pre>
 <p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用尖括号包起来， Markdown 就会自动把它转成链接。一般网址的链接文字就和链接地址一样，例如：</p>
 <pre><code>&lt;http://example.com/&gt;</code></pre>
 <p>Markdown 会转为：</p>
-<pre><code>&lt;a href=&quot;http://example.com/&quot;&gt;http://example.com/&lt;/a&gt;</code></pre>
+<pre><code>&lt;a href="http://example.com/"&gt;http://example.com/&lt;/a&gt;</code></pre>
 <p>邮址的自动链接也很类似，只是 Markdown 会先做一个编码转换的过程，把文字字符转成 16 进位码的 HTML 实体，这样的格式可以糊弄一些不好的邮址收集机器人，例如：</p>
 <pre><code>&lt;address@example.com&gt;</code></pre>
 <p>Markdown 会转成：</p>
-<pre><code>&lt;a href=&quot;&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;
+<pre><code>&lt;a href="&amp;#x6D;&amp;#x61;i&amp;#x6C;&amp;#x74;&amp;#x6F;:&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;
 &amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;&amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;
-&amp;#109;&quot;&gt;&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;
+&amp;#109;"&gt;&amp;#x61;&amp;#x64;&amp;#x64;&amp;#x72;&amp;#x65;&amp;#115;&amp;#115;&amp;#64;&amp;#101;&amp;#120;&amp;#x61;
 &amp;#109;&amp;#x70;&amp;#x6C;e&amp;#x2E;&amp;#99;&amp;#111;&amp;#109;&lt;/a&gt;</code></pre>
-<p>在浏览器里面，这段字串（其实是 <code>&lt;a href=&quot;mailto:address@example.com&quot;&gt;address@example.com&lt;/a&gt;</code>）会变成一个可以点击的「<a href="mailto:&#97;&#x64;&#100;&#114;&#101;&#115;&#115;&#64;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#97;&#x64;&#100;&#114;&#101;&#115;&#115;&#64;&#101;&#x78;&#x61;&#x6d;&#112;&#x6c;&#101;&#x2e;&#99;&#x6f;&#x6d;</a>」链接。</p>
+<p>在浏览器里面，这段字串（其实是 <code>&lt;a href="mailto:address@example.com"&gt;address@example.com&lt;/a&gt;</code>）会变成一个可以点击的「<a href="mailto:address@example.com">address@example.com</a>」链接。</p>
 <p>（这种作法虽然可以糊弄不少的机器人，但并不能全部挡下来，不过总比什么都不做好些。不管怎样，公开你的信箱终究会引来广告信件的。）</p>
 <h3 id="backslash">反斜杠</h3>
 
@@ -766,7 +773,7 @@ equivalent of &lt;code&gt;&amp;amp;mdash;&lt;/code&gt;.&lt;/p&gt;</code></pre>
 `   反引号
 *   星号
 _   底线
-&#123;&#125;  花括号
+{}  花括号
 []  方括号
 ()  括弧
 #   井字号

@@ -20,7 +20,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="By Long Luo 之前一篇文章如何使用Hexo建立一个自己的个人Blog及主页美化？，讲述了如何利用Github Pages建立一个属于自己的静态博客，下面这篇文章主要讲的是hexo的常见指令及说明，定位于Hexo的入门指南。 Hexo 命令命令行中输入： $hexo help 列出了Hexo常用命令： Commands:   clean     Removed generated file">
@@ -100,6 +100,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
@@ -162,6 +164,11 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/suisuinian" rel="section"><i class="fa fa-sticky-note fa-fw"></i>碎碎念</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -354,7 +361,7 @@ author: pomy #你的名字
 language: zh-CN #网站使用的语言
 timezone: Asia/Shanghai #网站时区
 # URL #可以不用配置
-## If your site is put in a subdirectory, set url as &#39;http://yoursite.com/child&#39; and root as &#39;/child/&#39;
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com #网址，搜索时会在搜索引擎中显示
 root: / #网站根目录
 permalink: :year/:month/:day/:title/ #永久链接格式
@@ -406,7 +413,7 @@ theme: landscape #当前主题名称
 deploy:
 type:</code></pre>
 <p>一般主题下有一个 languages 文件夹，用于对应 language 配置项。比如在 ejs 中有：</p>
-<pre><code>&lt;%= __(&#39;tags&#39;) %&gt;</code></pre>
+<pre><code>&lt;%= __('tags') %&gt;</code></pre>
 <p>language的配置项是zh-CN ，则会在 languages 文件夹下找到<code>zh-CN.yml</code>文件中对应的项来解释。</p>
 <p>修改全局配置时，注意缩进，同时注意冒号后面要有一个空格。</p>
 <h1 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h1><p>主题的配置文件在/themes/主题文件夹/_config.yml ，一般包括导航配置(menu)，内容配置(content)，评论插件，图片效果(fancybox)和边栏(sidebar)。</p>
@@ -417,7 +424,7 @@ type:</code></pre>
 theme: 你的主题名称</code></pre>
 <p>主题的文件目录必须在themes目录下</p>
 <h1 id="文章"><a href="#文章" class="headerlink" title="文章"></a>文章</h1><p>命令行中输入：</p>
-<pre><code>$ hexo new &quot;new article&quot;</code></pre>
+<pre><code>$ hexo new "new article"</code></pre>
 <p>之后在source/_posts目录下面，多了一个new-article.md的文件。</p>
 <p>打开之后我们会看到：</p>
 <pre><code>---
@@ -455,7 +462,7 @@ tags: - Hexo - node.js</code></pre>
 :day    Created day (2-digit)    
 :i_day    Created day (Without leading zeros)    </code></pre>
 <h2 id="草稿"><a href="#草稿" class="headerlink" title="草稿"></a>草稿</h2><p>草稿相当于很多博客都有的“私密文章”功能。</p>
-<pre><code>$ hexo new draft &quot;new draft&quot;</code></pre>
+<pre><code>$ hexo new draft "new draft"</code></pre>
 <p>会在source/_drafts目录下生成一个new-draft.md文件。但是这个文件不被显示在页面上，链接也访问不到。也就是说如果你想把某一篇文章移除显示，又不舍得删除，可以把它移动到_drafts目录之中。</p>
 <p>如果你希望强行预览草稿，更改配置文件：</p>
 <pre><code>render_drafts: true</code></pre>
@@ -469,7 +476,7 @@ tags: - Hexo - node.js</code></pre>
 <p>页面支持文章的大部分属性，除了分类和标签。</p>
 <h2 id="导航"><a href="#导航" class="headerlink" title="导航"></a>导航</h2><p>打开主题中的设置文件，即<code>themes\&lt;theme_name&gt;\_config.yml</code>（其中<code>&lt;theme_name&gt;</code>是当前主题的名字，默认为landscape，下同），找到menu:，在列表的末端添加About: 关于。刷新页面，导航栏上就出现了关于链接。</p>
 <h2 id="边栏"><a href="#边栏" class="headerlink" title="边栏"></a>边栏</h2><p>进入<code>themes\&lt;theme_name&gt;\layout\_widget</code>目录中，创建about.ejs文件，模仿其他文件中的模版，输入以下内容：</p>
-<p>&lt;% if (site.tags.length){ %&gt;<br>  <div class="widget-wrap"><br>    <h3 class="widget-title">About</h3><br>    <div class="widget"><br>      邮箱：<a href="mailto:&#120;&#120;&#x78;&#x40;&#x78;&#x78;&#x78;&#x2e;&#99;&#111;&#x6d;">&#120;&#120;&#x78;&#x40;&#x78;&#x78;&#x78;&#x2e;&#99;&#111;&#x6d;</a><br /><br>      微博：@xxxxx<br>    </div><br>  </div><br>&lt;% } %&gt;</p>
+<p>&lt;% if (site.tags.length){ %&gt;<br>  </p><div class="widget-wrap"><br>    <h3 class="widget-title">About</h3><br>    <div class="widget"><br>      邮箱：<a href="mailto:xxx@xxx.com">xxx@xxx.com</a><br><br>      微博：@xxxxx<br>    </div><br>  </div><br>&lt;% } %&gt;<p></p>
 <p>打开<code>themes\&lt;theme_name&gt;\_config.yml</code>，找到#Sidebar，在最后面添加- about。刷新页面。</p>
 <h2 id="底栏"><a href="#底栏" class="headerlink" title="底栏"></a>底栏</h2><p>打开<code>themes\&lt;theme_name&gt;\layout\_partial\footer.ejs</code>修改。</p>
 <h2 id="banner"><a href="#banner" class="headerlink" title="banner"></a>banner</h2><p>打开<code>themes\&lt;theme_name&gt;\source\css\images</code>，把banner.jpg换掉。</p>

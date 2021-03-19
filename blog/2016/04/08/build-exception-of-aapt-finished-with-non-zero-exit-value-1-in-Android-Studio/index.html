@@ -20,15 +20,15 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="By Long Luo 昨天在开发一个项目时，在Android Studio中编译时，gradle编译之后出现了如下错误： Error:Execution failed for task &#39;:samples-simplevideowidget:processDebugResources&#39;. &gt; com.android.ide.common.process.ProcessExc">
+  <meta name="description" content="By Long Luo 昨天在开发一个项目时，在Android Studio中编译时，gradle编译之后出现了如下错误： Error:Execution failed for task &#39;:samples-simplevideowidget:processDebugResources&#39;. &gt; com.android.ide.common.process.ProcessException:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android编译时出现aapt.exe finished with non-zero exit value 1错误的解决方法">
 <meta property="og:url" content="http://longluo.me/blog/2016/04/08/build-exception-of-aapt-finished-with-non-zero-exit-value-1-in-Android-Studio/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo 昨天在开发一个项目时，在Android Studio中编译时，gradle编译之后出现了如下错误： Error:Execution failed for task &#39;:samples-simplevideowidget:processDebugResources&#39;. &gt; com.android.ide.common.process.ProcessExc">
+<meta property="og:description" content="By Long Luo 昨天在开发一个项目时，在Android Studio中编译时，gradle编译之后出现了如下错误： Error:Execution failed for task &#39;:samples-simplevideowidget:processDebugResources&#39;. &gt; com.android.ide.common.process.ProcessException:">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-04-08T15:15:56.000Z">
 <meta property="article:modified_time" content="2020-12-04T03:45:48.338Z">
@@ -100,6 +100,8 @@
   </style>
 </noscript>
 
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 <link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
@@ -162,6 +164,11 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-shuoshuo">
+
+    <a href="/suisuinian" rel="section"><i class="fa fa-sticky-note fa-fw"></i>碎碎念</a>
 
   </li>
         <li class="menu-item menu-item-sitemap">
@@ -299,8 +306,8 @@
       
         <p><strong><em>By Long Luo</em></strong></p>
 <p>昨天在开发一个项目时，在Android Studio中编译时，gradle编译之后出现了如下错误：</p>
-<pre><code>Error:Execution failed for task &#39;:samples-simplevideowidget:processDebugResources&#39;.
-&gt; com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process &#39;command &#39;E:\Android\SDK\build-tools\23.0.1\aapt.exe&#39;&#39; finished with non-zero exit value 1</code></pre>
+<pre><code>Error:Execution failed for task ':samples-simplevideowidget:processDebugResources'.
+&gt; com.android.ide.common.process.ProcessException: org.gradle.process.internal.ExecException: Process 'command 'E:\Android\SDK\build-tools\23.0.1\aapt.exe'' finished with non-zero exit value 1</code></pre>
 <p>首先看到这个错误之后，因为移植的代码在之前的<code>eclipse</code>编译时OK的，所以先检查了下Android Studio项目中资源，代码有无提示的错误，经过确认没有之后，将错误信息在Google中搜索。</p>
 <p>经过搜索之后，在StackOverflow和CSDN上发现有很多人遇到了这个错误，不过解决方法却各不相同。有的建议<code>Clean</code>然后<code>Rebuild</code>，有的建议修改使用内存，有的说是代码问题，也有的说是资源问题，比如本来是jpg图片，文件后缀却是png也会导致问题…</p>
 <p>我按照以上方案一一检查，还是未能解决，于是只能自己动手排查原因了！</p>
@@ -310,16 +317,16 @@
 <pre><code>gradlew processDebugResources --debug</code></pre>
 <p>然后项目开始编译，屏幕上输出大量编译Log信息，从Log中找到了输出的出错信息：</p>
 <pre><code>org.gradle.process.internal.DefaultExecHandle] Changing state to: FAILED
-org.gradle.process.internal.DefaultExecHandle] Process &#39;command &#39;E:\Android\SDK\build-tools\23.0.1\aapt.exe&#39;&#39; finished with exit value 1 (state: FAILED)
+org.gradle.process.internal.DefaultExecHandle] Process 'command 'E:\Android\SDK\build-tools\23.0.1\aapt.exe'' finished with exit value 1 (state: FAILED)
 org.gradle.api.Project] Unknown source file : ERROR: In &lt;declare-styleable&gt; ListItemLinearLayout, unable to find attribute singleLine
 
-org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Finished executing task &#39;:samples-simplevideowidget:processDebugResources&#39;
+org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter] Finished executing task ':samples-simplevideowidget:processDebugResources'
 E] [class org.gradle.TaskExecutionLogger] :samples-simplevideowidget:processDebugResources FAILED</code></pre>
 <p>从上述Log信息，我们可知出错点是<code>ERROR: In &lt;declare-styleable&gt; ListItemLinearLayout, unable to find attribute singleLine</code>，那么肯定是<code>attrs</code>文件的<code>ListItemLinearLayout</code>styleable出错了。</p>
 <h1 id="2-错误原因"><a href="#2-错误原因" class="headerlink" title="2. 错误原因"></a>2. 错误原因</h1><p>经过上述分析，我们进入<code>attrs.xml</code>文件，找到<code>ListItemLinearLayout</code>，如下所示：</p>
-<pre><code>    &lt;declare-styleable name=&quot;ListItemLinearLayout&quot;&gt;
-    &lt;attr name=&quot;singleLine&quot; /&gt;
-    &lt;attr name=&quot;titleSize&quot; format=&quot;dimension&quot; /&gt;</code></pre>
+<pre><code>    &lt;declare-styleable name="ListItemLinearLayout"&gt;
+    &lt;attr name="singleLine" /&gt;
+    &lt;attr name="titleSize" format="dimension" /&gt;</code></pre>
 <p>可以看出<code>singleLine</code>没有对应的<code>format</code>属性，确定<code>singleLine</code>没有在代码中使用之后，将此属性删掉。</p>
 <p>重新编译之后，问题解决。</p>
 <p><strong><em>Completed by Long Luo at 2016-04-09 00:36 @Shenzhen, China.</em></strong></p>
