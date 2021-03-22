@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.0.0">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -15,15 +16,16 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|EB Garamond:300,300italic,400,400italic,700,700italic|Source Code Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CLobster+Two:300,300italic,400,400italic,700,700italic%7CEB+Garamond:300,300italic,400,400italic,700,700italic%7CSource+Code+Pro:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
-<script id="hexo-configurations">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"default"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
-
-  <meta name="description" content="有东西被加密了, 请输入密码查看.">
+<meta name="description" content="有东西被加密了, 请输入密码查看.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2016-07-28 210 Week 30 Thu 找到问题的根源">
 <meta property="og:url" content="http://longluo.me/blog/2016/07/28/2016-07-28-210-Week-30-Thu-Find-The-Root-Cause/index.html">
@@ -36,10 +38,11 @@
 <meta property="article:tag" content="Diary">
 <meta name="twitter:card" content="summary">
 
+
 <link rel="canonical" href="http://longluo.me/blog/2016/07/28/2016-07-28-210-Week-30-Thu-Find-The-Root-Cause/">
 
 
-<script id="page-configurations">
+<script class="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
@@ -48,8 +51,7 @@
     lang   : 'zh-CN'
   };
 </script>
-
-  <title>2016-07-28 210 Week 30 Thu 找到问题的根源 | Long Luo's Life Notes</title>
+<title>2016-07-28 210 Week 30 Thu 找到问题的根源 | Long Luo's Life Notes</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
     <script>
@@ -60,7 +62,6 @@
         gtag('config', 'UA-46213499-2');
       }
     </script>
-
 
   <script>
     var _hmt = _hmt || [];
@@ -74,27 +75,38 @@
 
 
 
-
   <noscript>
   <style>
-  .use-motion .brand,
+  body { margin-top: 2rem; }
+
   .use-motion .menu-item,
-  .sidebar-inner,
+  .use-motion .sidebar,
   .use-motion .post-block,
   .use-motion .pagination,
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
 
   .use-motion .site-title,
-  .use-motion .site-subtitle {
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
     opacity: initial;
     top: initial;
   }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
   </style>
 </noscript>
 
@@ -103,26 +115,26 @@
 <link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
+  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
+      <i class="logo-line"></i>
       <h1 class="site-title">Long Luo's Life Notes</h1>
-      <span class="logo-line-after"><i></i></span>
+      <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
   </div>
@@ -136,44 +148,15 @@
 
 
 
-
 <nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-shuoshuo">
-
-    <a href="/bb" rel="section"><i class="fa fa-volume-up fa-fw"></i>说说</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+        <li class="menu-item menu-item-shuoshuo"><a href="/bb" rel="section"><i class="fa fa-volume-up fa-fw"></i>说说</a></li>
+        <li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -184,234 +167,37 @@
 
 
   <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
+    <div class="popup search-popup"><div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container"></div>
-  <span class="popup-btn-close">
+  <span class="popup-btn-close" role="button">
     <i class="fa fa-times-circle"></i>
   </span>
 </div>
-<div class="algolia-results">
-  <div id="algolia-stats"></div>
-  <div id="algolia-hits"></div>
-  <div id="algolia-pagination" class="algolia-pagination"></div>
+<div class="search-result-container">
+  <div class="algolia-stats"><hr></div>
+  <div class="algolia-hits"></div>
+  <div class="algolia-pagination"></div>
 </div>
 
-      
     </div>
   </div>
 
 </div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
-  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/28/2016-07-28-210-Week-30-Thu-Find-The-Root-Cause/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          2016-07-28 210 Week 30 Thu 找到问题的根源
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-07-28 22:54:40" itemprop="dateCreated datePublished" datetime="2016-07-28T22:54:40+08:00">2016-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-04 16:52:39" itemprop="dateModified" datetime="2020-12-04T16:52:39+08:00">2020-12-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-users"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="firestore-visitors-count"></span>
-            </span><br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>615</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码." /><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="ee2616cd222720440eca8b0ff1172b21598f43b3bd45bca35f02429d3ba18978">a9a021eff8e58198f032c20643219b7d19a4ae3e9f29597f93253e0eb838b8a74ac4baca3abe9eb71f634af98d16fa2fd6902a97050f38f1fdbbb7d4231efb7e43caac9521781d1968436f56cd5b45b6df497be903323e119706cd6495f562715f20ef2df5ebc6df58cb61020d2151cbc27aef1d27776148525e2025f02bce558de7e81a1a2b548715acb25580fb5c623a834ecd245d5f2fb3da7b1c86fe84a709e04448884e4c38758426b0994c8d148efeebc42393cafff64873a419dff24566370f955ec59de539117745df03d34ed9705a032b6434b271a64906a7210aea6a2d4b90092642c5e22f4e69e47005b114f3269cae7f6360c7d20a4c397fc36f437876fbae03a6eaa5064b74330c2356d7b1addd8f99521b3da89a20f407012bd7aa7d8313c4b6993d3070c34631b9f475d57d975737e5bd99abbffd4c7ab23da10fed902d17c57b640d34681ed567840af72e4e8e3c9016ad9c7518bc18f0096ad33c700bf46c4a51589813ca5c45dbfb55c71d4b5cca9bdad6e5cacc36cb2e71f84159adf737b27ae0ed829d4a7db3c684fd44b7d1e24886d8249a01ca8a2ebe8969a3ef4f4dfdb2b4a679d0f4195e14655cbf72e2c14c8649cd631df439e0b1f4648a0897e3281559f94950b2a09b76808389c36a567573ec3c6976680fd5d535b3ae353d82e277e0022032c92a88b5c2e42d55b874ddaa3ed0ed8edc6ff7ec9d7a904c3fb9eb7b3c999873614f213196599a013cba93780b23c207b2f9fa41ef8597057dd1794a379efda5cc735d73cdee12ea007659ed867af252df2f5b73eb906f79f26e4aab909a8e2ff5b856d4071ead92e0a8e958b9116077d0ad05b658360de8e202bc135dae2f4ea0fae4ce9e0ec205ba08cf64f9397ab822b728b53022ebbca6d41e7a8cfd969aef9fae73f96287a793111b3bcee6929ddf5797640ecdfd04279a865b9354c1cea1b92ee2e1566748e13a4fd5ce1843082603508c4f88f1f684fbf80fefbcb5083d1a481794cb0c2beb6860563cb6bf16b85d95606ae3553f9731ebc8161db1e49e9e7695390dc98caa08c2ba168f626db798277e535a5339085ec49d5fb5bcad0f241b97ed6d554ee6587da3722cba4d4d8c01a486f2d9206a7538004b6429f5e402fefb132dd216ad4caa80a83475d16b680560baec8c856be45faaed2d2ab76119e4896ca5bfe9ad9aa803ea22674db9824ad83c897a5b6f97e843055626f45edafcee653e191ac8963e22b0423273537a2a8326b0bc47439af39e3ed4d80ba3f25c1f8335d53276c811360734c4339a4d223a63f5e9958308a1b2823f49086376af7869c0aa43b1ee0c397dceb5fd37d0f132a1ff86c307a32b423c6b791f64adca4429430c896032d590e69dbcb4d1c66f942a0333006a1f81afda944137d15ca1d6c709749612090d0748590c43e2d3433aca3a7c5f807744912b3729d016e4a7c65f067173176665b7a50e51c3f24cb3df617186f962f3d5a34ec459aa17d881462fb586148799b22652e95022b053219d18d42bedeaa230b2313383c631a8c3e312c9bdbb033c4b6b4d87cf3d43793b4582bb20ff1bb889c4d0949fe0f1333f488d536c55761347aca0a4e5406a9f7e3325f418628c9ce47a7a6c8388908cf8370fd644e1ec9b997f107e1d0c0e6f7f68f27df819c6d51e00c0671b0b9c35f782139cff0b9395416ef9d77be8ba4de9ad5e2cdad47457004dedd0a978a16498b49e81a0eacfa05b03b1ac792d0924134c3dc3294c3c29cae24473f32aa29095fc1a22dbda33f89a69b67c75caaa4b70ac6ec82b814dd5998061c561be093f236f29e3ffec12b4d0d2e1f085c0485c4cd490427eab699206cf52a20144614e1858dac61487eab38340b4b61597cdd29543c863682ddaa4ca8576aaac07d2799548c975dee6edc9d71a33d9fc9e41f4d6d99c142b60c7448571003823f51554ef3de5b505351129a2b501cbac4669e22416f8417fb0ccfe9f0e30490d67731f294fce580705cc74d7f87c3b71612a7d735f33a8facb0c0558987e794cbf7d20f4c4dfc164fc92577fe4f68936f0be965036f98c9f5b7c0bd0095c28cba80feeef65c705fe70dd6f61252ac6bb5bffa0ea67d29a60ec46dbce97341a8a9284ae0b137f277092dafc49a32a19525a07c6ca0a9c3e16b3670ec51608d950620a021d4d14384cc907773cffca89e339ffca44635a551d11349d77163c5e8718234cdd2d86cc0b0a2fef30a85fdbd4da265bd6272bc378b7751662b4883b018a2ba0878fdc47403a58a645e4cd75070ee204d1f3661aa3d3b7e11f649b26968478cc6cca70fab36d56e6e0d5bf3ddf0a4ecf49ed2de29a70726657905fa6bf733864cf7dd2119a694c6d96e133d719864e852bf4c4cc08609fb9bf7b2a2f5fb2f9d25aa80f669da7590afc4da17d7c583145ca5df94d5299dde35e1dd20b341af1ddff32ba1d51922ca157cbbe359cafc1f655de9f6e848d02be7339132600383a7c1dc5e29ef6c7bd2256fc3dfd899eff0b6dc1e75888611197adc174a13a40f6e5f995f02f41389c02e558aed110f6ba7675</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
-    </div>
-
-    
-    
-    
         
-
-<div>
-<ul class="post-copyright">
-  <li class="post-copyright-author">
-    <strong>本文作者： </strong>Long Luo
-  </li>
-  <li class="post-copyright-link">
-    <strong>本文链接：</strong>
-    <a href="http://longluo.me/blog/2016/07/28/2016-07-28-210-Week-30-Thu-Find-The-Root-Cause/" title="2016-07-28 210 Week 30 Thu 找到问题的根源">http://longluo.me/blog/2016/07/28/2016-07-28-210-Week-30-Thu-Find-The-Root-Cause/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-        
-
-  <div class="followme">
-    <p>欢迎关注我的其它发布渠道</p>
-
-    <div class="social-list">
-
-        <div class="social-item">
-          <a target="_blank" class="social-link" href="/atom.xml">
-            <span class="icon">
-              <i class="fa fa-rss"></i>
-            </span>
-
-            <span class="label">RSS</span>
-          </a>
-        </div>
-    </div>
-  </div>
-
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/Diary/" rel="tag"># Diary</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/blog/2016/07/27/2016-07-27-209-Week-30-Wed-Xiao-Ma-Guo-He/" rel="prev" title="2016-07-27 209 Week 30 Wed 小马过河">
-      <i class="fa fa-chevron-left"></i> 2016-07-27 209 Week 30 Wed 小马过河
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/blog/2016/07/29/2016-07-29-211-Week-30-Fri-Keep-Your-Head-Up/" rel="next" title="2016-07-29 211 Week 30 Fri Keep Your Head Up!">
-      2016-07-29 211 Week 30 Fri Keep Your Head Up! <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
   
-  
-  
-
-
-
-          </div>
-          
-    <div class="comments" id="gitalk-container"></div>
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
   </div>
 
   <aside class="sidebar">
-    <div class="sidebar-inner">
 
-      <ul class="sidebar-nav motion-element">
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
         </li>
@@ -420,17 +206,18 @@
         </li>
       </ul>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-      </div>
-      <!--/noindex-->
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Long Luo</p>
   <div class="site-description" itemprop="description">A Curious Programmer.</div>
 </div>
-<div class="site-state-wrap motion-element">
+<div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
@@ -453,7 +240,7 @@
       </div>
   </nav>
 </div>
-  <div class="links-of-author motion-element">
+  <div class="links-of-author site-overview-item animated">
       <span class="links-of-author-item">
         <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
@@ -467,13 +254,13 @@
         <a href="https://weibo.com/imlongluo" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;imlongluo" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
       </span>
   </div>
-  <div class="cc-license motion-element" itemprop="license">
+  <div class="cc-license site-overview-item animated" itemprop="license">
     <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
       Links
     </div>
     <ul class="links-of-blogroll-list">
@@ -486,47 +273,237 @@
     </ul>
   </div>
 
+        </div>
       </div>
-
     </div>
   </aside>
-  <div id="sidebar-dimmer"></div>
+  <div class="sidebar-dimmer"></div>
 
 
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/07/28/2016-07-28-210-Week-30-Thu-Find-The-Root-Cause/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          2016-07-28 210 Week 30 Thu 找到问题的根源
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-07-28 22:54:40" itemprop="dateCreated datePublished" datetime="2016-07-28T22:54:40+08:00">2016-07-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 16:52:39" itemprop="dateModified" datetime="2020-12-04T16:52:39+08:00">2020-12-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="firestore-visitors-count"></span>
+    </span>
       </div>
-    </main>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>615</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
 
-    <footer class="footer">
-      <div class="footer-inner">
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码." /><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="ee2616cd222720440eca8b0ff1172b21598f43b3bd45bca35f02429d3ba18978">a9a021eff8e58198f032c20643219b7d19a4ae3e9f29597f93253e0eb838b8a74ac4baca3abe9eb71f634af98d16fa2fd6902a97050f38f1fdbbb7d4231efb7e43caac9521781d1968436f56cd5b45b6df497be903323e119706cd6495f562715f20ef2df5ebc6df58cb61020d2151cbc27aef1d27776148525e2025f02bce558de7e81a1a2b548715acb25580fb5c623a834ecd245d5f2fb3da7b1c86fe84a709e04448884e4c38758426b0994c8d148efeebc42393cafff64873a419dff24566370f955ec59de539117745df03d34ed9705a032b6434b271a64906a7210aea6a2d4b90092642c5e22f4e69e47005b114f3269cae7f6360c7d20a4c397fc36f437876fbae03a6eaa5064b74330c2356d7b1addd8f99521b3da89a20f407012bd7aa7d8313c4b6993d3070c34631b9f475d57d975737e5bd99abbffd4c7ab23da10fed902d17c57b640d34681ed567840af72e4e8e3c9016ad9c7518bc18f0096ad33c700bf46c4a51589813ca5c45dbfb55c71d4b5cca9bdad6e5cacc36cb2e71f84159adf737b27ae0ed829d4a7db3c684fd44b7d1e24886d8249a01ca8a2ebe8969a3ef4f4dfdb2b4a679d0f4195e14655cbf72e2c14c8649cd631df439e0b1f4648a0897e3281559f94950b2a09b76808389c36a567573ec3c6976680fd5d535b3ae353d82e277e0022032c92a88b5c2e42d55b874ddaa3ed0ed8edc6ff7ec9d7a904c3fb9eb7b3c999873614f213196599a013cba93780b23c207b2f9fa41ef8597057dd1794a379efda5cc735d73cdee12ea007659ed867af252df2f5b73eb906f79f26e4aab909a8e2ff5b856d4071ead92e0a8e958b9116077d0ad05b658360de8e202bc135dae2f4ea0fae4ce9e0ec205ba08cf64f9397ab822b728b53022ebbca6d41e7a8cfd969aef9fae73f96287a793111b3bcee6929ddf5797640ecdfd04279a865b9354c1cea1b92ee2e1566748e13a4fd5ce1843082603508c4f88f1f684fbf80fefbcb5083d1a481794cb0c2beb6860563cb6bf16b85d95606ae3553f9731ebc8161db1e49e9e7695390dc98caa08c2ba168f626db798277e535a5339085ec49d5fb5bcad0f241b97ed6d554ee6587da3722cba4d4d8c01a486f2d9206a7538004b6429f5e402fefb132dd216ad4caa80a83475d16b680560baec8c856be45faaed2d2ab76119e4896ca5bfe9ad9aa803ea22674db9824ad83c897a5b6f97e843055626f45edafcee653e191ac8963e22b0423273537a2a8326b0bc47439af39e3ed4d80ba3f25c1f8335d53276c811360734c4339a4d223a63f5e9958308a1b2823f49086376af7869c0aa43b1ee0c397dceb5fd37d0f132a1ff86c307a32b423c6b791f64adca4429430c896032d590e69dbcb4d1c66f942a0333006a1f81afda944137d15ca1d6c709749612090d0748590c43e2d3433aca3a7c5f807744912b3729d016e4a7c65f067173176665b7a50e51c3f24cb3df617186f962f3d5a34ec459aa17d881462fb586148799b22652e95022b053219d18d42bedeaa230b2313383c631a8c3e312c9bdbb033c4b6b4d87cf3d43793b4582bb20ff1bb889c4d0949fe0f1333f488d536c55761347aca0a4e5406a9f7e3325f418628c9ce47a7a6c8388908cf8370fd644e1ec9b997f107e1d0c0e6f7f68f27df819c6d51e00c0671b0b9c35f782139cff0b9395416ef9d77be8ba4de9ad5e2cdad47457004dedd0a978a16498b49e81a0eacfa05b03b1ac792d0924134c3dc3294c3c29cae24473f32aa29095fc1a22dbda33f89a69b67c75caaa4b70ac6ec82b814dd5998061c561be093f236f29e3ffec12b4d0d2e1f085c0485c4cd490427eab699206cf52a20144614e1858dac61487eab38340b4b61597cdd29543c863682ddaa4ca8576aaac07d2799548c975dee6edc9d71a33d9fc9e41f4d6d99c142b60c7448571003823f51554ef3de5b505351129a2b501cbac4669e22416f8417fb0ccfe9f0e30490d67731f294fce580705cc74d7f87c3b71612a7d735f33a8facb0c0558987e794cbf7d20f4c4dfc164fc92577fe4f68936f0be965036f98c9f5b7c0bd0095c28cba80feeef65c705fe70dd6f61252ac6bb5bffa0ea67d29a60ec46dbce97341a8a9284ae0b137f277092dafc49a32a19525a07c6ca0a9c3e16b3670ec51608d950620a021d4d14384cc907773cffca89e339ffca44635a551d11349d77163c5e8718234cdd2d86cc0b0a2fef30a85fdbd4da265bd6272bc378b7751662b4883b018a2ba0878fdc47403a58a645e4cd75070ee204d1f3661aa3d3b7e11f649b26968478cc6cca70fab36d56e6e0d5bf3ddf0a4ecf49ed2de29a70726657905fa6bf733864cf7dd2119a694c6d96e133d719864e852bf4c4cc08609fb9bf7b2a2f5fb2f9d25aa80f669da7590afc4da17d7c583145ca5df94d5299dde35e1dd20b341af1ddff32ba1d51922ca157cbbe359cafc1f655de9f6e848d02be7339132600383a7c1dc5e29ef6c7bd2256fc3dfd899eff0b6dc1e75888611197adc174a13a40f6e5f995f02f41389c02e558aed110f6ba7675</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Long Luo
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://longluo.me/blog/2016/07/28/2016-07-28-210-Week-30-Thu-Find-The-Root-Cause/" title="2016-07-28 210 Week 30 Thu 找到问题的根源">http://longluo.me/blog/2016/07/28/2016-07-28-210-Week-30-Thu-Find-The-Root-Cause/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/atom.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Diary/" rel="tag"># Diary</a>
+          </div>
+
         
 
-        
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2016/07/27/2016-07-27-209-Week-30-Wed-Xiao-Ma-Guo-He/" rel="prev" title="2016-07-27 209 Week 30 Wed 小马过河">
+                  <i class="fa fa-chevron-left"></i> 2016-07-27 209 Week 30 Wed 小马过河
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2016/07/29/2016-07-29-211-Week-30-Fri-Keep-Your-Head-Up/" rel="next" title="2016-07-29 211 Week 30 Fri Keep Your Head Up!">
+                  2016-07-29 211 Week 30 Fri Keep Your Head Up! <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
 
 <div class="copyright">
-  
   &copy; 2013 – 
   <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Long Luo</span>
-    <span class="post-meta-divider">|</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
-      <i class="fa fa-chart-area"></i>
+      <i class="fa fa-chart-line"></i>
     </span>
     <span title="站点总字数">754k</span>
-    <span class="post-meta-divider">|</span>
+  </span>
+  <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
     <span title="站点阅读时长">11:26</span>
+  </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
-  </div>
-
-        
 <div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-user"></i>
@@ -535,7 +512,6 @@
         <span id="busuanzi_value_site_uv"></span>
       </span>
     </span>
-    <span class="post-meta-divider">|</span>
     <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
       <span class="post-meta-item-icon">
         <i class="fa fa-eye"></i>
@@ -545,15 +521,30 @@
       </span>
     </span>
 </div>
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1279206926&web_id=1279206926"></script>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
+    </div>
+  </footer>
 
-  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-firestore.js"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  
+<script src="//cdn.jsdelivr.net/npm/algoliasearch@4.8.3/dist/algoliasearch-lite.umd.js"></script>
+<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4.9.2/dist/instantsearch.production.min.js"></script><script src="/js/algolia-search.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  <script src="//cdn.jsdelivr.net/npm/firebase@8.2.1/firebase-app.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/firebase@8.2.1/firebase-firestore.js"></script>
   <script>
     firebase.initializeApp({
       apiKey   : 'AIzaSyDKvv2ddHfcTTpl3YC2ekCD4Zct-KzoYuc',
@@ -563,25 +554,16 @@
     function getCount(doc, increaseCount) {
       // IncreaseCount will be false when not in article page
       return doc.get().then(d => {
-        var count = 0;
-        if (!d.exists) { // Has no data, initialize count
-          if (increaseCount) {
-            doc.set({
-              count: 1
-            });
-            count = 1;
-          }
-        } else { // Has data
-          count = d.data().count;
-          if (increaseCount) {
-            // If first view this article
-            doc.set({ // Increase count
-              count: count + 1
-            });
-            count++;
-          }
+        // Has no data, initialize count
+        let count = d.exists ? d.data().count : 0;
+        // If first view this article
+        if (increaseCount) {
+          // Increase count
+          count++;
+          doc.set({
+            count
+          });
         }
-
         return count;
       });
     }
@@ -589,18 +571,20 @@
     function appendCountTo(el) {
       return count => {
         el.innerText = count;
-      }
+      };
     }
   </script>
   <script>
     (function() {
-      var db = firebase.firestore();
-      var articles = db.collection('articles');
+      const db = firebase.firestore();
+      const articles = db.collection('articles');
 
-      if (CONFIG.page.isPost) { // Is article page
-        var title = document.querySelector('.post-title').innerText.trim();
-        var doc = articles.doc(title);
-        var increaseCount = CONFIG.hostname === location.hostname;
+      if (CONFIG.page.isPost) {
+        // Fix issue #118
+        // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+        const title = document.querySelector('.post-title').textContent.trim();
+        const doc = articles.doc(title);
+        let increaseCount = CONFIG.hostname === location.hostname;
         if (localStorage.getItem(title)) {
           increaseCount = false;
         } else {
@@ -608,14 +592,14 @@
           localStorage.setItem(title, true);
         }
         getCount(doc, increaseCount).then(appendCountTo(document.querySelector('.firestore-visitors-count')));
-      } else if (CONFIG.page.isHome) { // Is index page
-        var promises = [...document.querySelectorAll('.post-title')].map(element => {
-          var title = element.innerText.trim();
-          var doc = articles.doc(title);
+      } else if (CONFIG.page.isHome) {
+        const promises = [...document.querySelectorAll('.post-title')].map(element => {
+          const title = element.textContent.trim();
+          const doc = articles.doc(title);
           return getCount(doc);
         });
         Promise.all(promises).then(counts => {
-          var metas = document.querySelectorAll('.firestore-visitors-count');
+          const metas = document.querySelectorAll('.firestore-visitors-count');
           counts.forEach((val, idx) => {
             appendCountTo(metas[idx])(val);
           });
@@ -627,87 +611,11 @@
 
 
 
-      </div>
-    </footer>
-  </div>
-
-  
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.1.0/lib/anime.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/velocity-animate@1/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-<script src="/js/bookmark.js"></script>
-
-
-
-
-  
-  <script>
-    (function(){
-      var canonicalURL, curProtocol;
-      //Get the <link> tag
-      var x=document.getElementsByTagName("link");
-		//Find the last canonical URL
-		if(x.length > 0){
-			for (i=0;i<x.length;i++){
-				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
-					canonicalURL=x[i].href;
-				}
-			}
-		}
-    //Get protocol
-	    if (!canonicalURL){
-	    	curProtocol = window.location.protocol.split(':')[0];
-	    }
-	    else{
-	    	curProtocol = canonicalURL.split(':')[0];
-	    }
-      //Get current URL if the canonical URL does not exist
-	    if (!canonicalURL) canonicalURL = window.location.href;
-	    //Assign script content. Replace current URL with the canonical URL
-      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
-  </script>
-
-
-
-
-  
-<script src="//cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
-<script src="//cdn.jsdelivr.net/npm/instantsearch.js@4/dist/instantsearch.production.min.js"></script>
-<script src="/js/algolia-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.css">
 
 <script>
-NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+NexT.utils.loadComments('.gitalk-container', () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1.7.0/dist/gitalk.min.js', () => {
     var gitalk = new Gitalk({
       clientID    : 'bef8bb01e277ada131df',
       clientSecret: 'a2ecfff23c41550c39e4c7df335460a947ed2152',
@@ -718,7 +626,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
         language: 'zh-CN',
       distractionFreeMode: true
     });
-    gitalk.render('gitalk-container');
+    gitalk.render(document.querySelector('.gitalk-container'));
   }, window.Gitalk);
 });
 </script>
