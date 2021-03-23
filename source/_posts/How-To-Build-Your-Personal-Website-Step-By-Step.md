@@ -5,10 +5,12 @@ comments: true
 date: 2016-09-09 22:56:28
 tags: [网站, 个人品牌, 程序员]
 categories: Web
-keywords: 网站, 个人品牌, 程序员, Linux, VPS, 域名
+keywords: 网站, 个人品牌, 程序员, Linux, VPS, 域名, Website, 
 ---
 
 ***By Long Luo***
+
+# LNMP
 
 [LNMP](http://lnmp.org/)
 
@@ -53,12 +55,9 @@ Hi longluo! You've successfully authenticated, but GitHub does not provide shell
 　　出现：(current) UNIX password: 然后输入当前系统登陆用户的密码 回车
 　　出现：New password: 再输入新密码（新的密码必须是字母数字都有，不然的话不成功）
 
+# Hexo
 
 
 
 
-
-
-
-
-
+# 

@@ -13,12 +13,9 @@ body {
   font-family: $font-family-base;
   font-size: $font-size-base;
   line-height: $line-height-base;
-
-  +tablet-mobile() {
-    // Remove the padding of body when the sidebar is open.
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
+  min-height: 100%;
+  position: relative;
+  transition: all $transition-ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -28,17 +25,17 @@ h1, h2, h3, h4, h5, h6 {
   margin: 20px 0 15px;
 }
 
-for headline in (1 .. 6) {
-  h{headline} {
-    font-size: $font-size-headings-base - $font-size-headings-step * headline;
+for $headline in (1 .. 6) {
+  h{$headline} {
+    font-size: $font-size-headings-base - $font-size-headings-step * $headline;
   }
 }
 
 p {
-  margin: 0 0 20px 0;
+  margin: 0 0 20px;
 }
 
-a, span.exturl {
+a {
   border-bottom: 1px solid $link-decoration-color;
   color: var(--link-color);
   outline: 0;
@@ -49,12 +46,9 @@ a, span.exturl {
     border-bottom-color: var(--link-hover-color);
     color: var(--link-hover-color);
   }
-
-  // For spanned external links.
-  cursor: pointer;
 }
 
-iframe, img, video {
+iframe, img, video, embed {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -87,16 +81,4 @@ dt {
 dd {
   margin: 0;
   padding: 0;
-}
-
-kbd {
-  background-color: $whitesmoke;
-  background-image: linear-gradient($gainsboro, white, $gainsboro);
-  border: 1px solid $grey-light;
-  border-radius: .2em;
-  box-shadow: .1em .1em .2em rgba(0, 0, 0, .1);
-  color: $code-foreground;
-  font-family: inherit;
-  padding: .1em .3em;
-  white-space: nowrap;
 }
