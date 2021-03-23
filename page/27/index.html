@@ -223,7 +223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">318</span>
+          <span class="site-state-item-count">312</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -236,7 +236,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">226</span>
+        <span class="site-state-item-count">224</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -297,727 +297,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/09/21/how-to-make-a-personal-android-app/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/21/how-to-make-a-personal-android-app/" class="post-title-link" itemprop="url">如何从零实现一个你的个人博客Android App?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-21 11:43:03" itemprop="dateCreated datePublished" datetime="2014-09-21T11:43:03+08:00">2014-09-21</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2014/09/21/how-to-make-a-personal-android-app/" class="post-meta-item twikoo_visitors" data-flag-title="如何从零实现一个你的个人博客Android App?" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="一、Overview"><a href="#一、Overview" class="headerlink" title="一、Overview"></a>一、Overview</h1><p>最近实现了我的第一个个人博客阅读App，但是**<em>目前存在很多很多Bugo(╯□╰)o  &gt;_&lt;|||**</em>。</p>
-<p>可以通过这个App来实现RSS订阅功能，第一时间阅读我的个人博客文章，同时可实现文章收藏与分享功能。App使用截图如下所示：</p>
-<h2 id="1-1-RSS-订阅最新的20篇文章"><a href="#1-1-RSS-订阅最新的20篇文章" class="headerlink" title="1.1 RSS 订阅最新的20篇文章"></a>1.1 RSS 订阅最新的20篇文章</h2><p><img src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_all.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="All Articles"></p>
-<h2 id="1-2-可以收藏文章"><a href="#1-2-可以收藏文章" class="headerlink" title="1.2 可以收藏文章"></a>1.2 可以收藏文章</h2><p><img src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_favorite.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="Favorite Articles"></p>
-<h2 id="1-3-查看文章全文"><a href="#1-3-查看文章全文" class="headerlink" title="1.3 查看文章全文"></a>1.3 查看文章全文</h2><p><img src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_article_detail.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="Article Detail"></p>
-<h2 id="1-4-支持将文章分享到SNS"><a href="#1-4-支持将文章分享到SNS" class="headerlink" title="1.4 支持将文章分享到SNS"></a>1.4 支持将文章分享到SNS</h2><p><img src="http://blogresource.qiniudn.com/images%2F2014%2FAndroid%2FBlogReader%2Fblogreader_article_share.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="SNS Share"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2014/09/21/how-to-make-a-personal-android-app/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" class="post-title-link" itemprop="url">一个用于批量下载网络图片的Shell脚本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-13 22:26:00" itemprop="dateCreated datePublished" datetime="2014-09-13T22:26:00+08:00">2014-09-13</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" class="post-meta-item twikoo_visitors" data-flag-title="一个用于批量下载网络图片的Shell脚本" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>最近为了做好一个<a target="_blank" rel="noopener" href="http://imlongluo.com/weather">天气预报</a>的项目，需要从Yahoo下载一些天气图标，但是由于图标比较多，有80多张。图标是存储在<a target="_blank" rel="noopener" href="http://yimg.com/">Yahoo Image</a>网站上的。</p>
-<p>迅雷不支持https的下载，虽然可以在浏览器下载，但是在浏览器下载太慢，于是写了一个批量下载图片资源的Shell脚本，完美的解决了这个问题。</p>
-<p>Yahoo天气图标的地址规则如下：<code>https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/</code> + 图标名称</p>
-<p>比如：<img src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/0d.png" alt="Thunder" title="雷电天气"></p>
-<p>我使用了2种方法，解决了下载的难题，虽然好久没有写Shell脚本了，但是意识和底子还在，写即几十行代码还是比较轻松的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/" class="post-title-link" itemprop="url">如何使用Google Volley网络库发起带Header的HTTP请求?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-07 12:20:14" itemprop="dateCreated datePublished" datetime="2014-09-07T12:20:14+08:00">2014-09-07</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/" class="post-meta-item twikoo_visitors" data-flag-title="如何使用Google Volley网络库发起带Header的HTTP请求?" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>由于合作的第三方iQiyi视频的数据源更新速度很慢，通过和iQiyi反馈，于是提供了新的API接口。</p>
-<p>通过阅读新API接口说明，在发起HTTP Get请求时，必须<strong>同时带2个加密的Header参数</strong>，分别是时间戳和MD5加密后的key、时间戳以及客户端参数，否则无法返回正确的请求。</p>
-<p>目前在Android客户端使用的是Google开源Volley库，支持各种HTTP请求，图片缓存，JSON解析，性能十分强大。之前使用的接口都是直接发起HTTP Get请求，附带相关参数即可。</p>
-<p>通过阅读Volley相关资料，找到了下列方法，可以在发起HTTP请求时，附带Header参数，代码如下所示：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/09/07/the_first_web_front_develop_project_weather/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/07/the_first_web_front_develop_project_weather/" class="post-title-link" itemprop="url">第一个前端开发项目: 天气应用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-07 11:32:45" itemprop="dateCreated datePublished" datetime="2014-09-07T11:32:45+08:00">2014-09-07</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2014/09/07/the_first_web_front_develop_project_weather/" class="post-meta-item twikoo_visitors" data-flag-title="第一个前端开发项目: 天气应用" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>147</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>最近几天学习了下网页开发，通过学习，完成了第一个Web前端开发项目：<a target="_blank" rel="noopener" href="http://www.imlongluo.com/weather/"><strong>天气应用</strong></a></p>
-<p>数据源是<a target="_blank" rel="noopener" href="https://weather.yahoo.com/"><strong><em>Yahoo! Weather</em></strong></a></p>
-<p>使用了jQuery库开发，虽然现在啥都不会，也就到处copy。</p>
-<p><strong><em>Created by Long Luo at 2014-09-07 11:36:20 @Shenzhen, China.</em></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/07/02/the-refactor-of-channel-page-of-video/" class="post-title-link" itemprop="url">视频频道页面重构总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-07-02 23:16:42" itemprop="dateCreated datePublished" datetime="2014-07-02T23:16:42+08:00">2014-07-02</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2014/07/02/the-refactor-of-channel-page-of-video/" class="post-meta-item twikoo_visitors" data-flag-title="视频频道页面重构总结" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="一、重构前的一些缺点"><a href="#一、重构前的一些缺点" class="headerlink" title="一、重构前的一些缺点"></a>一、重构前的一些缺点</h1><ol>
-<li>频道显示在VideoListActivity实现的，代码结构不够清晰；</li>
-<li>频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间；</li>
-<li>后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；</li>
-</ol>
-<h1 id="二、重构方案"><a href="#二、重构方案" class="headerlink" title="二、重构方案"></a>二、重构方案</h1><p>重构方案:</p>
-<ol>
-<li>将频道页面独立出来，新建一个ChannelListActivity，作为所有频道页面的Activity，负责所有频道界面的绘制，便于后续扩展；</li>
-<li>针对不同频道，具有不同的布局方式，比如对于需要矩阵式显示的频道，使用矩阵式布局；</li>
-<li>矩阵式布局，替换原有的ListView加GridView显示，提高加载速度；</li>
-</ol>
-<h1 id="三、具体实现"><a href="#三、具体实现" class="headerlink" title="三、具体实现"></a>三、具体实现</h1><p>技术实现方案如下所示：</p>
-<ol>
-<li>新建ChannelListActivity，在VideoListActivity中用进入频道页的接口替换原有的接口，将相关处理在ChannelListActivity中实现；</li>
-<li>根据传入的频道ID不同，使用**setContentView()**加载不同的布局方式，实现不同频道不同布局显示；</li>
-<li>新建ChannelGridAdapter，替换原有的ChannelListAdapter加ChannelGridListAdapter方式，提高加载速度；</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2014/07/02/the-refactor-of-channel-page-of-video/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" class="post-title-link" itemprop="url">视频在线搜索设计与实现</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-07-02 23:04:48" itemprop="dateCreated datePublished" datetime="2014-07-02T23:04:48+08:00">2014-07-02</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" class="post-meta-item twikoo_visitors" data-flag-title="视频在线搜索设计与实现" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>6.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
-<blockquote>
-<p>Agenda<br>    1. 在线搜索现状及发展<br>    2. UI设计及实现<br>    3. 代码逻辑设计及实现<br>    4. 问题及解决</p>
-</blockquote>
-<h1 id="一、在线搜索"><a href="#一、在线搜索" class="headerlink" title="一、在线搜索"></a>一、在线搜索</h1><p>之前搜索页面的一些缺陷：</p>
-<ol>
-<li>具体实现位于VideoListActivity中，一方面会造成VideoListActivity代码过于庞大臃肿，另外一方面**<em>不便于后续功能扩展**</em>，结构不清晰；</li>
-<li>依赖了大量系统控件，不便于<strong>后续解耦</strong>及<strong>界面定制</strong>；</li>
-<li>今后搜索界面会参考第三方视频应用的实现，之前不便于增加搜索记录，或搜索独立出来，用于搜索本地视频，甚至将此搜索移植应用于其他应用中；</li>
-</ol>
-<h2 id="1-1-在线搜索实现效果"><a href="#1-1-在线搜索实现效果" class="headerlink" title="1.1 在线搜索实现效果"></a>1.1 在线搜索实现效果</h2><p>在线搜索因为是和第三方合作，涉及到很多网络相关的操作，简单来说就是利用HTTP协议向相关接口发起一次网络请求，服务器如果返回了正确的响应，App会解析服务器返回的内容，并展示出来。</p>
-<h3 id="1-1-1-热词界面"><a href="#1-1-1-热词界面" class="headerlink" title="1.1.1 热词界面"></a>1.1.1 热词界面</h3><p>热词界面是<strong>当搜索文本框文字为空</strong>时会弹出热词界面，会展示最近一段时间内搜索频率很高的词语。一方面可以节省大家输入文字，另外一方面你也可以了解当前的一些热点。</p>
-<p>当你点击列表中的某个热词时，就会发起一次以此为关键词的搜索。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="热词显示"></p>
-<h3 id="1-1-2-关联词"><a href="#1-1-2-关联词" class="headerlink" title="1.1.2 关联词"></a>1.1.2 关联词</h3><p>当<strong>搜索文本输入框含有文字</strong>时，会获取当前输入文字，以此为关键词获取网络的一些联想词，可以点击此联想词发起一次搜索。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="关联词显示"></p>
-<h3 id="1-1-3-搜索结果分类浏览"><a href="#1-1-3-搜索结果分类浏览" class="headerlink" title="1.1.3 搜索结果分类浏览"></a>1.1.3 搜索结果分类浏览</h3><p>发起一次搜索之后，如果得到了服务器的正确响应，而且确实有相关视频内容。那么我们会将搜索结果展示在手机页面上。</p>
-<p>搜索到的结果可以分<strong>不同频道</strong>浏览，会根据具体内容进行动态变化，有的可能有10几个频道，有的也就1个频道。频道页面可以滑动浏览，也可以选择在顶部页面选中或者滑动。</p>
-<p>分类浏览时，第一个展示的页面是搜索到的全部视频内容，之后的会根据结果动态变化。</p>
-<p>如下图所示：</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果"></p>
-<p>分频道浏览：</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果分类"></p>
-<h3 id="1-1-4-语音搜索"><a href="#1-1-4-语音搜索" class="headerlink" title="1.1.4 语音搜索"></a>1.1.4 语音搜索</h3><p><strong>语音搜索图标只有当搜索框里文字为空才会出现，否则出现搜索图标</strong>。</p>
-<p>点击语音搜索图标将会启动VoiceSearch这个apk，然后你可以说话，如果被正确识别之后，会发起一次搜索，并将结果展示出来。</p>
-<p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索"></p>
-<h3 id="1-1-5-语音搜索结果"><a href="#1-1-5-语音搜索结果" class="headerlink" title="1.1.5 语音搜索结果"></a>1.1.5 语音搜索结果</h3><p><img src="http://blogresource.qiniudn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索结果"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -1543,6 +822,733 @@
 
 
 
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/05/03/tips_of_driving_exam/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/05/03/tips_of_driving_exam/" class="post-title-link" itemprop="url">学车科目二要点总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-05-03 11:59:03" itemprop="dateCreated datePublished" datetime="2014-05-03T11:59:03+08:00">2014-05-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2014/05/03/tips_of_driving_exam/" class="post-meta-item twikoo_visitors" data-flag-title="学车科目二要点总结" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>2014年的51 3天假期，有2个上午都去学车去了，因为不久之后我就要去考试了，总之呢，很多事情都是做的越早越好。今天把科目二考试的一些**<em>注意事项**</em>给记下来：</p>
+<h1 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0. 准备工作"></a>0. 准备工作</h1><p>上车之后，第一步是调好靠背，<code>后视镜</code>，注意座椅不要调到太靠前，系好安全带。后视镜要保持后轮车毂在后视镜中间位置，把手在后视镜上方。</p>
+<p>松手刹，踩住离合器和刹车，离合器踩到底，挂一档起步，<code>慢慢松离合器，直到车头开始震动，离合不动，慢慢松刹车</code>，车辆起步。</p>
+<p>最重要的是要<strong>踩好离合器</strong>，保持<strong>很慢的速度</strong>，因为速度慢了可以慢慢调整，快了的话就没办法调整了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/05/03/tips_of_driving_exam/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/05/02/algorithm_excel_row_number_string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/05/02/algorithm_excel_row_number_string/" class="post-title-link" itemprop="url">一道有趣的算法题:仿照Excel的列编号,给定一个数字,输出该列编号字符串</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-05-02 22:15:57" itemprop="dateCreated datePublished" datetime="2014-05-02T22:15:57+08:00">2014-05-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2014/05/02/algorithm_excel_row_number_string/" class="post-meta-item twikoo_visitors" data-flag-title="一道有趣的算法题:仿照Excel的列编号,给定一个数字,输出该列编号字符串" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>最近遇到一个算法题：</p>
+<blockquote>
+<p>仿照Excel的列编号，给出一个数字，输出该列编号字符串。<br>例如：A对应1，Z对应26，AA对应27，AZ对应52 ……</p>
+</blockquote>
+<p>这个题目是一个典型的**<em>26进制**</em>思路去处理，一个整数除26然后但是这个题目里面有很多陷阱，在1, 26, 52等特殊情况进行考虑，经过晚上接近半个多小时的编写，完成的代码如下：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/05/02/algorithm_excel_row_number_string/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/04/09/android_develop_references/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/04/09/android_develop_references/" class="post-title-link" itemprop="url">Android学习资源(持续更新中)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-04-09 22:26:13" itemprop="dateCreated datePublished" datetime="2014-04-09T22:26:13+08:00">2014-04-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2014/04/09/android_develop_references/" class="post-meta-item twikoo_visitors" data-flag-title="Android学习资源(持续更新中)" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>414</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>下面列举一些收藏的资源，用于学习参考：</p>
+<h1 id="1-Android-API-Guides"><a href="#1-Android-API-Guides" class="headerlink" title="1. Android API Guides"></a>1. Android API Guides</h1><ol>
+<li><a target="_blank" rel="noopener" href="http://developer.android.com/guide/components/index.html" title="Android API Guides"><strong>Android</strong> API Guides:</a></li>
+<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=android/reference" title="OSChina Android API Guides"><strong>OSChina</strong> Android API Guides：</a></li>
+</ol>
+<h1 id="2-Java-Develop-Kit-References"><a href="#2-Java-Develop-Kit-References" class="headerlink" title="2. Java Develop Kit References"></a>2. Java Develop Kit References</h1><ol>
+<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" title="JDK7 English"><strong>JDK7</strong> English：</a></li>
+<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=jdk-zh" title="JDK6 Chinese API"><strong>JDK6</strong> Chinese API：</a></li>
+</ol>
+<h1 id="3-Performances"><a href="#3-Performances" class="headerlink" title="3. Performances"></a>3. Performances</h1><ol>
+<li><a target="_blank" rel="noopener" href="http://developer.android.com/training/best-performance.html" title="Best Practices for Performance">Best Practices for Performance：</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/performance/" title="性能优化系列总篇">性能优化系列总篇</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/android-imagecache/">图片ImageCache技术</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/android-imagesdcardcache/" title="图片SD卡缓存优化">图片SD卡缓存技术</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/database-performance/" title="性能优化之数据库优化">性能优化之数据库优化</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/android-http-cache/" title="Android网络缓存">Android网络缓存</a></li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/04/09/android_develop_references/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/04/07/tips_for_performances_optimization_on_build_an_android_app_draft/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/04/07/tips_for_performances_optimization_on_build_an_android_app_draft/" class="post-title-link" itemprop="url">Android App性能优化笔记之一:性能优化是什么及为什么?</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-04-07 14:19:28" itemprop="dateCreated datePublished" datetime="2014-04-07T14:19:28+08:00">2014-04-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2014/04/07/tips_for_performances_optimization_on_build_an_android_app_draft/" class="post-meta-item twikoo_visitors" data-flag-title="Android App性能优化笔记之一:性能优化是什么及为什么?" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>周星驰的电影《功夫》里面借火云邪神之口说出了一句至理名言：“<strong>天下武功，唯快不破</strong>”。</p>
+<p>在移动互联网时代，同样如此，留给一个公司的窗口往往只有很短的时间，如何把握住这个时机，迅速开发出产品，成为至关重要的一环。相对传统互联网时代的PC产品，<strong>用户对移动端产品的容忍度更低</strong>。而一款移动应用在推出的时候可能只是接近完成的状态，这就需要通过<strong>快速的迭代开发来更新产品，不断完善产品来留住用户</strong>。同时，通过更新产品也能唤醒一些沉默用户，让一些原本下载了应用但使用次数非常少的用户给该应用多一次机会。</p>
+<p>所以**<em>快速迭代**</em>成为移动互联网时代的一个重要生存法则。</p>
+<h1 id="1-为什么需要性能优化？"><a href="#1-为什么需要性能优化？" class="headerlink" title="1. 为什么需要性能优化？"></a>1. 为什么需要性能优化？</h1><p>上面说到，在时间窗口期内开发出产品是极端重要的，但是虽然基本功能我们实现了，但是开发出来的产品代码运行的效率怎么样呢？我们的App用户给用户的体验如何呢？</p>
+<ul>
+<li>我们的App在低端机上经常ANR、闪退、卡顿等</li>
+<li>我们的App在其他分辨率上显示惨不忍睹？</li>
+<li>我们的App在不同网络的情况下如何处理的</li>
+<li>…</li>
+</ul>
+<p>我们的App体验如此之差，导致大量的用户流失。这些迫使我们认识到性能优化是非常重要，某种程度上甚至超过了新功能的开发。</p>
+<p>也验证了一句话：“**<em>别人有的我们也有，而且比他们的要好要快。**</em>”</p>
+<p>做Android开发已经3年了，期间也开发了不少App了，最开始写App的时候，只追求迅速完成所需要的功能，后来随着对相关知识的熟悉，再回头看之前写的代码，也知道有哪些改进和优化的手段了。**<em>性能优化**</em>，一方面需要自身能力的提高，另外一方面，也需要有意识去学习优化技术，并应用于自身项目的开发中。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/04/07/tips_for_performances_optimization_on_build_an_android_app_draft/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/" class="post-title-link" itemprop="url">游戏引擎学习笔记:介绍,架构,设计及实现</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-04-07 00:17:51" itemprop="dateCreated datePublished" datetime="2014-04-07T00:17:51+08:00">2014-04-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Game/" itemprop="url" rel="index"><span itemprop="name">Game</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/" class="post-meta-item twikoo_visitors" data-flag-title="游戏引擎学习笔记:介绍,架构,设计及实现" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>从小到大，虽然玩过的游戏不少，但是从写程序开始，目前为此仅仅写过2个游戏。其一是2011年在MTK平台下写的贪食蛇，其二是2010年在嵌入式开发板上写过一个迷宫的游戏。第一个代码量大概有3000行左右，第二个有2000行左右。</p>
+<p>这2个游戏都很简单，而且网上有很多现成的例子可供参考，因此难度也比较低。</p>
+<p>这2天把拖延了好久的**<em>《Android应用开发揭秘》**</em>的游戏引擎的那一章看完了，收获还是很大，在此写一篇读书笔记。</p>
+<p>关于Game Engine，我能想到的几个问题：</p>
+<ol>
+<li>游戏引擎是什么？</li>
+<li>Game Engine是为了解决什么问题？</li>
+<li>Game Engine的架构是什么？</li>
+<li>如何设计一款游戏引擎？</li>
+<li>游戏引擎包含哪些模块？</li>
+</ol>
+<p>下面就来探讨几个问题：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/04/07/Game_Engine_Notes_introducation_architect_design_develop/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/" class="post-title-link" itemprop="url">学车思考之一:方向盘转多少,车轮就转多少度对吗?</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-04-06 19:43:27" itemprop="dateCreated datePublished" datetime="2014-04-06T19:43:27+08:00">2014-04-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/" class="post-meta-item twikoo_visitors" data-flag-title="学车思考之一:方向盘转多少,车轮就转多少度对吗?" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>936</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>最近一个月在驾校学车，前2次去练车，总是**<em>不得要领**</em>，连曲线行驶开不好，被教练狂K。经历了当学渣的痛苦之后，痛定思痛，立志成为<strong>学霸</strong>。</p>
+<h1 id="一、-面临问题："><a href="#一、-面临问题：" class="headerlink" title="一、 面临问题："></a>一、 面临问题：</h1><p>我分析遇到的问题之后，得出我面临的几个问题：</p>
+<ol>
+<li>方向盘打法不规范；</li>
+<li>离合器踩的不到位，车速偏快；</li>
+<li>不清楚方向盘转的度数和车轮转的度数关系；</li>
+<li>不记得当前车轮方向。</li>
+</ol>
+<p>清楚自己的问题就好办了，那就各个击破。</p>
+<p>昨天去实际操作了半个小时，果然大有进展。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/26/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/26/">26</a><span class="page-number current">27</span><a class="page-number" href="/page/28/">28</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/28/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1589,13 +1595,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">755k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:26</span>
   </span>
 </div>
 <div class="busuanzi-count">
