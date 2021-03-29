@@ -3,9 +3,9 @@ layout: post
 title: "与《仙剑奇侠传四》音乐对话"
 comments: true
 date: 2009-03-05 23::39:28
-tags: [仙剑奇侠传, 音乐, Game]
-categories: Music
-keywords: 仙剑奇侠传, 原声音乐, 游戏, 音乐赏析, Music, Game, 
+tags: [仙剑奇侠传, 音乐, 游戏, OST]
+categories: Life
+keywords: 仙剑奇侠传, 原声音乐, 游戏, 音乐赏析, Music, Game, Life, OST, 音乐,
 ---
 
 

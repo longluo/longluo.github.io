@@ -4,8 +4,8 @@ title: '罗大佑：《童年》'
 comments: true
 date: 2009-12-29 21:29:29
 tags: [罗大佑, 歌曲, 童年]
-categories: Music
-keywords: 罗大佑, 歌曲, 童年, 时光, Song, Music, Childhood, Time,
+categories: Life
+keywords: 罗大佑, 歌曲, 童年, 时光, Song, Music, Childhood, Time, 音乐, 
 ---
 
 # 童年
