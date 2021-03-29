@@ -3,9 +3,9 @@ layout: post
 title: "10分钟掌握XML、JSON及其解析"
 date: 2014-10-31 15:24:33 +0800
 comments: true
-categories: Techniques
+categories: Program
 tags: [XML, JSON, Android]
-keywords: Android, App, JSON解析, XML解析
+keywords: Android, App, JSON解析, XML解析, 
 ---
 
 ***By Long Luo***

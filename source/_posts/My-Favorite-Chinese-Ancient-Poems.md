@@ -3,8 +3,8 @@ layout: post
 title: '我喜欢的中国古诗词'
 comments: true
 date: 2016-12-03 22:39:03
-tags: [诗词, 中文]
-categories: Poem
+tags: [诗词, 中文, 生活, 语文]
+categories: Life
 keywords: 中国, 语文, 诗词, Poem, 
 ---
 

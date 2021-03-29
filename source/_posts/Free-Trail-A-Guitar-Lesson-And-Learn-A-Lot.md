@@ -4,8 +4,8 @@ title: "试听了一节吉他课"
 comments: true
 date: 2014-01-19 19:29:53
 tags: [Guitar, Music, Life]
-categories: Music
-keywords: Guitar, 吉他, 老师, 体验, Life, 
+categories: Life
+keywords: Guitar, 吉他, 老师, 体验, Life, 生活, 
 ---
 
 ***By Long Luo***

@@ -4,7 +4,7 @@ title: "收藏的一些博客及网站"
 comments: true
 date: 2016-10-14 17:06:27
 tags: [Blog, Website, Funny]
-categories: Reading
+categories: Web
 keywords: Blog, Website, funny, 博客, 网址, 技术, 程序员, Program, Code, 
 ---
 

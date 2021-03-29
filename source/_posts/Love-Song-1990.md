@@ -4,7 +4,7 @@ title: '罗大佑: 《恋曲1990》'
 comments: true
 date: 2010-10-15 22:18:26
 tags: [罗大佑, 歌曲, Love]
-categories: Music
+categories: Life
 keywords: 罗大佑, 歌曲, 恋曲1990, 时光, Song, Music, Love, Time,
 ---
 

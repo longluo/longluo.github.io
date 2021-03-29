@@ -4,8 +4,8 @@ title: '与深圳音乐厅的第一次亲密接触'
 comments: true
 date: 2010-4-4 17:36:05
 tags: [音乐, 钢琴, 陈萨]
-categories: Music
-keywords:  音乐, 钢琴, 陈萨, 深圳音乐厅,
+categories: Life
+keywords:  音乐, 钢琴, 陈萨, 深圳音乐厅, Shenzhen, Music, Shenzhen Music Concert, Music,
 ---
 
 ***By Long Luo***

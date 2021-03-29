@@ -3,8 +3,8 @@ layout: post
 title: '你真的了解帕累托法则（二八定律）吗？'
 comments: true
 date: 2018-11-18 23:21:22
-tags: [Pareto, Business, Economy]
-categories:  Business
+tags: [帕累托, 二八定律, 生活]
+categories: Thought
 keywords: 帕累托法则, Pareto, Pareto Principle, 二八定律,  Business, 经济, 
 ---
 

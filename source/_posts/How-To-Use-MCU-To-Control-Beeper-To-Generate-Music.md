@@ -3,9 +3,9 @@ layout: post
 title: "如何利用单片机控制蜂鸣器播放音乐？---以《梁祝》的实现为例"
 comments: true
 date: 2012-10-23 22:37:57  
-tags: [单片机, Music, 乐理]
-categories: Music
-keywords: 单片机, Music, 技术, 乐理, 
+tags: [单片机, 音乐, PWM, 编程]
+categories: Program
+keywords: 单片机, Music, 音乐, 技术, 乐理, MCU, ButterflyLove, 梁祝, 
 ---
 
 ***By Long Luo***

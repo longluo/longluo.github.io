@@ -3,9 +3,9 @@ layout: post
 title: '一些喜欢的现代诗歌'
 comments: true
 date: 2009-02-26 23:08:21
-tags: [诗歌, 现代]
-categories: Poem
-keywords: 诗歌, 现代诗, Poem, 人生, 
+tags: [诗歌, 生活]
+categories: Life
+keywords: 诗歌, 现代诗, Poem, 人生, Life, 生活, 
 ---
 
 我喜欢的一些现代诗:

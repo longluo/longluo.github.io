@@ -4,7 +4,7 @@ title: '摩拜红包单车的阳谋'
 comments: true
 date: 2017-04-15 00:05:30
 tags: [Mobike, Idea, Operation]
-categories: Idea
+categories: Thought
 keywords: Mobike, Idea, Operation, Red Packet,
 ---
 

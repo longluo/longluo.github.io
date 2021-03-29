@@ -4,8 +4,8 @@ title: '罗大佑: 《光阴的故事》'
 comments: true
 date: 2010-06-22 23:28:27
 tags: [罗大佑, 歌曲, 岁月]
-categories: Music
-keywords: 罗大佑, 歌曲, 光阴的故事, 时光, Song, Music, 岁月, Time, Story,
+categories: Life
+keywords: 罗大佑, 歌曲, 光阴的故事, 时光, Song, Music, 岁月, Time, Story, Life,
 ---
 
 # 光阴的故事
