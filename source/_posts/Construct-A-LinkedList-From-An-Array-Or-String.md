@@ -1,16 +1,14 @@
 ---
 title: '如何根据数组或者字符串创建链表？'
 comments: true
-date: 2020-12-23 21:51:08
+date: 2020-12-10 22:50:55
 tags: [Leetcode, 链表, 测试, 数组]
 categories: Program
 keywords: Leetcode, 链表, 测试, 数组, 编程, 字符串, String, LinkedList, Array,
 ---
 
 
-
 ***By Long Luo***
-
 
 在[Leetcode](https://leetcode-cn.com/problemset/all/)做[链表](https://leetcode-cn.com/tag/linked-list/)相关的题时，给出的测试用例总是数组或者字符串形式，比如[61. 旋转链表](https://leetcode-cn.com/problems/rotate-list/)这道题，Testcase如下所示：
 
@@ -74,8 +72,6 @@ Leetcode上链表最后输出形式：
 
 # 如何创建一个链表?
 
-
-
 ## 通过int数组创建链表
 
 由一个给定的数组来创建一个链表，这个很简单，只需要遍历输入的数组，然后根据各个元素创建链表的节点的对象，然后把各个对象链接起来即可。
@@ -120,7 +116,6 @@ Leetcode上链表最后输出形式：
 有了上一节构造链表的方法，我们可以先将字符串处理成整型数组，然后调用`constructListNode(int[] numbers)`来构造链表。
 
 处理思路如下：
-
 1. 去除字符串中全部空格；
 2. 如果前后有中括号`[]`，先去除括号，再按照逗号`,`调用`split`进行分割数组；
 3. 如果中间有箭头`->`，调用`split`进行分割数组；
@@ -182,13 +177,5 @@ Leetcode上链表最后输出形式：
 # 小结
 
 上述代码集成在LinkedListUtils类中，包含：
-
 1. `printLinkedList(ListNode head)`，打印一个链表的方法；
 2. 两个创建链表的方法： `constructListNode(int[] numbers)`，由整型数组创建；`constructListNode(String str)`，由字符串创建。
-
-
-
-
-
-
-
