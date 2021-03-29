@@ -230,13 +230,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">226</span>
+        <span class="site-state-item-count">228</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -663,7 +663,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-25 16:26:06" itemprop="dateModified" datetime="2021-03-25T16:26:06+08:00">2021-03-25</time>
+        <time title="修改时间：2021-03-28 18:22:42" itemprop="dateModified" datetime="2021-03-28T18:22:42+08:00">2021-03-28</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -691,7 +691,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>39</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -710,7 +710,12 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="链表-LinkedList-的数据结构"><a href="#链表-LinkedList-的数据结构" class="headerlink" title="链表(LinkedList)的数据结构"></a>链表(LinkedList)的数据结构</h1><h2 id="链表大小"><a href="#链表大小" class="headerlink" title="链表大小"></a>链表大小</h2><h1 id="链表的遍历"><a href="#链表的遍历" class="headerlink" title="链表的遍历"></a>链表的遍历</h1><h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1>
+<h1 id="链表-LinkedList-的数据结构"><a href="#链表-LinkedList-的数据结构" class="headerlink" title="链表(LinkedList)的数据结构"></a>链表(LinkedList)的数据结构</h1><h2 id="链表大小"><a href="#链表大小" class="headerlink" title="链表大小"></a>链表大小</h2><h1 id="链表的遍历"><a href="#链表的遍历" class="headerlink" title="链表的遍历"></a>链表的遍历</h1><h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="61-旋转链表"><a href="#61-旋转链表" class="headerlink" title="61. 旋转链表"></a>61. 旋转链表</h2><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-list/">https://leetcode-cn.com/problems/rotate-list/</a></p>
+<p>解题思路：</p>
+<p> 代码：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Problem61_rotateLinkedList</span> </span>{</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title">rotateRight</span><span class="params">(ListNode head, <span class="keyword">int</span> k)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="keyword">null</span> || head.next == <span class="keyword">null</span> || k == <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        ListNode curr = head;</span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (curr.next != <span class="keyword">null</span>) {</span><br><span class="line">            n++;</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">int</span> step = n - k % n;</span><br><span class="line">        <span class="keyword">if</span> (step == n) {</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        }</span><br><span class="line">        curr.next = head;</span><br><span class="line">        <span class="keyword">while</span> (step-- &gt; <span class="number">0</span>) {</span><br><span class="line">            curr = curr.next;</span><br><span class="line">        }</span><br><span class="line">        ListNode ans = curr.next;</span><br><span class="line">        curr.next = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        ListNode test1 = Utils.makeListNode(<span class="keyword">new</span> <span class="keyword">int</span>[]{<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>});</span><br><span class="line">        System.out.println(<span class="string">"[4,5,1,2,3] ?="</span> + Utils.printLinkedList(rotateRight(test1, <span class="number">2</span>)));</span><br><span class="line"></span><br><span class="line">        ListNode test2 = Utils.makeListNode(<span class="keyword">new</span> <span class="keyword">int</span>[]{<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>});</span><br><span class="line">        System.out.println(<span class="string">"[2,0,1] ?="</span> + Utils.printLinkedList(rotateRight(test2, <span class="number">4</span>)));</span><br><span class="line"></span><br><span class="line">        ListNode test3 = Utils.makeListNode(<span class="keyword">new</span> <span class="keyword">int</span>[]{<span class="number">1</span>, <span class="number">2</span>});</span><br><span class="line">        System.out.println(<span class="string">"[2,1] ?="</span> + Utils.printLinkedList(rotateRight(test3, <span class="number">1</span>)));</span><br><span class="line"></span><br><span class="line">        ListNode test4 = Utils.makeListNode(<span class="keyword">new</span> <span class="keyword">int</span>[]{<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>});</span><br><span class="line">        System.out.println(<span class="string">"[2,3,1] ?="</span> + Utils.printLinkedList(rotateRight(test4, <span class="number">2000000000</span>)));</span><br><span class="line"></span><br><span class="line">        ListNode test5 = Utils.makeListNode(<span class="keyword">new</span> <span class="keyword">int</span>[]{<span class="number">1</span>, <span class="number">2</span>});</span><br><span class="line">        System.out.println(<span class="string">"[1,2] ?="</span> + Utils.printLinkedList(rotateRight(test5, <span class="number">2</span>)));</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+
       
     </div>
 
@@ -1285,7 +1290,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2020/12/20/Metacognition-and-See-Further/">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2020/12/23/Leetcode-Tools-of-Constructing-A-LinkedList-From-An-Array-Or-String/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1298,7 +1303,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2020/12/20/Metacognition-and-See-Further/" class="post-title-link" itemprop="url">对这个世界的元认知</a>
+          <a href="/blog/2020/12/23/Leetcode-Tools-of-Constructing-A-LinkedList-From-An-Array-Or-String/" class="post-title-link" itemprop="url">如何根据数组或者字符串创建链表？</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1309,14 +1314,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2020-12-20 23:51:46" itemprop="dateCreated datePublished" datetime="2020-12-20T23:51:46+08:00">2020-12-20</time>
+      <time title="创建时间：2020-12-23 21:51:08" itemprop="dateCreated datePublished" datetime="2020-12-23T21:51:08+08:00">2020-12-23</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-23 10:39:38" itemprop="dateModified" datetime="2021-03-23T10:39:38+08:00">2021-03-23</time>
+        <time title="修改时间：2021-03-29 11:58:18" itemprop="dateModified" datetime="2021-03-29T11:58:18+08:00">2021-03-29</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1324,12 +1329,12 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+          <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
         </span>
     </span>
 
   
-    <span id="/blog/2020/12/20/Metacognition-and-See-Further/" class="post-meta-item twikoo_visitors" data-flag-title="对这个世界的元认知" title="阅读次数">
+    <span id="/blog/2020/12/23/Leetcode-Tools-of-Constructing-A-LinkedList-From-An-Array-Or-String/" class="post-meta-item twikoo_visitors" data-flag-title="如何根据数组或者字符串创建链表？" title="阅读次数">
       <span class="post-meta-item-icon">
         <i class="far fa-eye"></i>
       </span>
@@ -1344,14 +1349,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>58</span>
+      <span>4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -1363,9 +1368,21 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><strong><em>By Long Luo</em></strong></p>
-<p>这几天花了2天时间来认真阅读完了<a target="_blank" rel="noopener" href="http://blog.udn.com/MengyuanWang">王孟源</a>写的文章，确实有点刷新世界观的感觉。</p>
-<p>如何更好的认知这个世界？</p>
-
+<p>在<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problemset/all/">Leetcode</a>做<a target="_blank" rel="noopener" href="https://leetcode-cn.com/tag/linked-list/">链表</a>相关的题时，给出的测试用例总是数组或者字符串形式，比如<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/rotate-list/">61. 旋转链表</a>这道题，Testcase如下所示：</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/13/rotate1.jpg" alt="img"></p>
+<blockquote>
+<p>输入：head = [1,2,3,4,5], k = 2<br>输出：[4,5,1,2,3]</p>
+</blockquote>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>如果在本地测试代码时，每次测试代码的时候，都需要自己创建测试用例，或者调用leetcode给的例子，都需要手动去创建一个链表的话，但这样效率太低！针对这种情况，写了几个工具函数用来处理链表的代码，可供大家参考。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2020/12/23/Leetcode-Tools-of-Constructing-A-LinkedList-From-An-Array-Or-String/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1429,13 +1446,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">741k</span>
+    <span title="站点总字数">743k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:14</span>
+    <span title="站点阅读时长">11:16</span>
   </span>
 </div>
 <div class="busuanzi-count">
