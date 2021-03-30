@@ -223,7 +223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">315</span>
+          <span class="site-state-item-count">316</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -236,7 +236,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">229</span>
+        <span class="site-state-item-count">231</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1099,6 +1099,126 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2019/01/28/Binary-Search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2019/01/28/Binary-Search/" class="post-title-link" itemprop="url">二分查找算法：迭代和递归</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-01-28 22:21:49" itemprop="dateCreated datePublished" datetime="2019-01-28T22:21:49+08:00">2019-01-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-03-30 15:15:24" itemprop="dateModified" datetime="2021-03-30T15:15:24+08:00">2021-03-30</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2019/01/28/Binary-Search/" class="post-meta-item twikoo_visitors" data-flag-title="二分查找算法：迭代和递归" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><strong><em>By Long Luo</em></strong></p>
+<p>二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法，<strong>算法复杂度</strong>为：O(log2n)。但是，折半查找要求线性表必须采用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/1347176">顺序存储结构</a>，而且表中元素按关键字有序排列。</p>
+<p>1.必须采用顺序存储结构；<br>2.必须按关键字大小有序排列。</p>
+<p>二分查找充分利用了元素间的次序关系，采用分治策略。算法的基本思想是(假设数组arr呈升序排列)：</p>
+<ol>
+<li>将n个元素分成个数大致相同的两半；</li>
+<li>取arr[n/2]与欲查找的x作比较，如果x=a[n/2]则找到x，算法终止；</li>
+<li>如果x &lt; a[n/2]，则只要在数组arr的左半部继续搜索x；如果x&gt;a[n/2]，则我们只要在数组a的右半部继续搜索x。</li>
+</ol>
+<p>二分查找常见有2种实现方式，迭代和递归，下面我们来实现这2种方式：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2019/01/28/Binary-Search/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2019/01/01/farewell-2018-hello-2019/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1310,122 +1430,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2018/11/28/notes-of-calculus/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2018/11/28/notes-of-calculus/" class="post-title-link" itemprop="url">微积分学习笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-11-28 23:50:07" itemprop="dateCreated datePublished" datetime="2018-11-28T23:50:07+08:00">2018-11-28</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2018/11/28/notes-of-calculus/" class="post-meta-item twikoo_visitors" data-flag-title="微积分学习笔记" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="twikoo_visitors"></span>
-    </span>
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>353</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
-<ol>
-<li>积分可以理解为就是求面积。</li>
-<li>积分和微分互为逆操作，微分是降维，积分则是升维。</li>
-<li>微分定义为Δx-&gt;0时，Δy/Δx的比值。</li>
-<li>微分时需要主动忽略一些项，而积分时却不能忽略一些无穷小量，这是比较难理解的地方。</li>
-<li>指数函数ex的微分仍然是其本身，这是最神奇的地方。</li>
-<li>中学物理里的万有引力平方反比关系，本质是因为我们身处三维空间(这里时间没有列入一个维度)，三维空间下的球表面积公式为4πR²。</li>
-<li>对一个数求N次方容易，但开根号却很难，那么如何将复杂的开根号转换成平方操作，我们就引入了对数。对数是为了解决复杂的运算而产生。</li>
-<li>自然常数e的含义是单位时间内，持续的翻倍增长所能达到的极限值。 </li>
-<li>复利告诉我们很小的改变就会造成结果巨大的差异。</li>
-</ol>
-<p><strong><em>Updated By Long Luo 2018年12月23日 at Shenzhen.</em></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1472,13 +1476,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">750k</span>
+    <span title="站点总字数">752k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:22</span>
+    <span title="站点阅读时长">11:23</span>
   </span>
 </div>
 <div class="busuanzi-count">
