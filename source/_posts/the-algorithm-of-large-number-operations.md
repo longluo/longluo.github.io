@@ -12,45 +12,29 @@ keywords: Large Numbers, Algorithm, 算法,
 
 ***By Long Luo***
 
-众所周知，计算机系统从16位发展到32位，再从32位发展到64位，与此同时不同的数据类型也随着系统的位数增大而增大。早期的操作系统是16位系统，int用二字节表示，范围是-32768~32767，long用4字节表示，范围是-2147483648~2147483647；后来发展到32位操作系统，int用4字节表示，与long相同；目前的操作系统已发展到64位操作系统，但因程序编译工艺的不同，两者表现出不同的差别：
+众所周知，计算机系统从16位发展到32位，再从32位发展到64位，与此同时不同的数据类型也随着系统的位数增大而增大。早期的操作系统是16位系统，`int`用`2字节`表示，范围是`-32768~32767`，`long`用`4字节`表示，范围是`-2147483648~2147483647`；后来发展到32位操作系统，`int`用`4字节`表示，与`long`相同。
+
+目前的操作系统已发展到64位操作系统，但因程序编译工艺的不同，两者表现出不同的差别：
 - 32位编译系统：int占四字节，与long相同。
 - 64位编译系统：int占四字节，long占8字节，long数据范围变为：-2^63~2^63-1
 
 具体在标准中，并没有规定long一定要比int长，也没有规定short要比int短，只是规定了长整型至少和整型一样长，整型至少和短整型一样长。这个规则同样适用于浮点型long double至少和double一样长，double至少和float一样长。至于如何实现要看编译器厂商。
 
-下表所展示的是微软32位和64位编译器所识别的数据类型详细信息：
+下表所展示的是Java的8种基本数据类型的详细数据：
 
-Type Name	Bytes	Other Names	Range of Values
-int	4	signed	-2,147,483,648 to 2,147,483,647
-unsigned int	4	unsigned	0 to 4,294,967,295
-__int8	1	char	-128 to 127
-unsigned __int8	1	unsigned char	0 to 255
-__int16	2	short, short int, signed short int	-32,768 to 32,767
-unsigned __int16	2	unsigned short, unsigned short int	0 to 65,535
-__int32	4	signed, signed int, int	-2,147,483,648 to 2,147,483,647
-unsigned __int32	4	unsigned, unsigned int	0 to 4,294,967,295
-__int64	8	long long, signed long long	-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
-unsigned __int64	8	unsigned long long	0 to 18,446,744,073,709,551,615
-bool	1	none	false or true
-char	1	none	-128 to 127 by default
-
-0 to 255 when compiled by using /J
-signed char	1	none	-128 to 127
-unsigned char	1	none	0 to 255
-short	2	short int, signed short int	-32,768 to 32,767
-unsigned short	2	unsigned short int	0 to 65,535
-long	4	long int, signed long int	-2,147,483,648 to 2,147,483,647
-unsigned long	4	unsigned long int	0 to 4,294,967,295
-long long	8	none (but equivalent to __int64)	-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
-unsigned long long	8	none (but equivalent to unsigned __int64)	0 to 18,446,744,073,709,551,615
-enum	varies	none	
-float	4	none	3.4E +/- 38 (7 digits)
-double	8	none	1.7E +/- 308 (15 digits)
-long double	same as double	none	Same as double
-wchar_t	2	__wchar_t	0 to 65,535
+|  基本类型 |  大小 |	最小值 | 最大值 |	包装器类型 | 默认值 |
+|   ----   | ---- | ----  | ----  |  ----    | ----  |  
+| boolean  | /    |  /	  |  /	  | Boolean  | false |
+| char     | 2 | Unicode 0 | Unicode 2^16-1 | Character | 'u0000' |
+| byte     | 1 | -128 |	127	| Byte | 0 |
+| short	   | 2 | -2^15 | +2^15-1 |	Short | 0 |
+| int      | 4 | -2^31 | +2^31-1 | Integer | 0 |
+| long	   | 8 | -2^63 | +2^63-1 | Long  | 0 |
+| float	   | 4 | IEEE754 | IEEE754 | Float | 0 |
+| double   | 8 | IEEE754 | IEEE754 | Double | 0 |
 
 
-从上述表格中可以看出，普通工作生活中所涉及的数字都不会超过int所能表示的范围，而超过long long类型则少之又少。但是具体到一些行业或者科研中，比如天文，石油开采等，经常需要和天文数字进行打交道。举例来说，50！，10^20这种阶乘或者指数函数轻而易举就突破最大所能表示的范围。
+从上述表格中可以看出，普通工作生活中所涉及的数字都不会超过int所能表示的范围，而超过`long long`类型则少之又少。但是具体到一些行业或者科研中，比如天文，石油开采等，经常需要和天文数字进行打交道。举例来说，50！，10^20这种阶乘或者指数函数轻而易举就突破最大所能表示的范围。
 
 如何表示这些超大数字以及对其进行数学运算呢？
 
