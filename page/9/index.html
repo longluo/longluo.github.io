@@ -1057,7 +1057,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>406</span>
+      <span>404</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1643,6 +1643,7 @@ document.addEventListener('pjax:success', () => {
         });
       };
       if (CONFIG.page.isPost) {
+	    if (CONFIG.hostname !== location.hostname) return;
         addCount(Counter);
       } else if (document.querySelectorAll('.post-title-link').length >= 1) {
         showTime(Counter);
