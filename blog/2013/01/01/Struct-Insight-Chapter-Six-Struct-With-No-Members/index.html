@@ -23,12 +23,12 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第六篇: 大话结构体之六：无即是有，没有成员变量的Struct(结构体)   在上一篇大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下) 中，我们学习了struct的内存对齐的前世今生。 在开始本篇之前，想问大家一个问题： ---0是什么？ ---呵呵，就">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大话结构体之六：无即是有，没有成员变量的Struct(结构体)">
-<meta property="og:url" content="http://longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/index.html">
+<meta property="og:url" content="www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
 <meta property="og:description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第六篇: 大话结构体之六：无即是有，没有成员变量的Struct(结构体)   在上一篇大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下) 中，我们学习了struct的内存对齐的前世今生。 在开始本篇之前，想问大家一个问题： ---0是什么？ ---呵呵，就">
 <meta property="og:locale" content="zh_CN">
@@ -47,7 +47,7 @@
 <meta name="twitter:image" content="http://img.my.csdn.net/uploads/201212/03/1354466907_1355.jpg">
 
 
-<link rel="canonical" href="http://longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">
+<link rel="canonical" href="www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">
 
 
 <script data-pjax class="page-configurations">
@@ -317,7 +317,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -398,7 +398,7 @@
 <p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第六篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8249915">大话结构体之六：无即是有，没有成员变量的Struct(结构体)</a></p>
 </blockquote>
 <hr>
-<p>在上一篇<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)</a> 中，我们学习了<code>struct</code>的内存对齐的前世今生。</p>
+<p>在上一篇<a href="http://www.longluo.me/blog/2012/12/29/Struct-Insight-Chapter-Five-Data-Structure-Alignment-Part-Two/">大话结构体之五：以空间换时间，Struct(结构体)中的成员对齐之道(下)</a> 中，我们学习了<code>struct</code>的内存对齐的前世今生。</p>
 <p>在开始本篇之前，想问大家一个问题：</p>
 <pre><code>---0是什么？
 ---呵呵，就是没有呗！
@@ -481,7 +481,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/" title="大话结构体之六：无即是有，没有成员变量的Struct(结构体)">http://longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/</a>
+      <a href="/www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/" title="大话结构体之六：无即是有，没有成员变量的Struct(结构体)">www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！

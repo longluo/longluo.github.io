@@ -23,12 +23,12 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第七篇: 大话结构体之七：struct中0元素数组的意义在哪里？   上一回大话结构体之六：无即是有，没有成员变量的Struct(结构体)，我们在文章的结尾留了一个悬念： —为什么0元素数组在class和struct结构体之外定义就是错误的，而在class和struct中定义就是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大话结构体之七：struct中0元素数组的意义在哪里？">
-<meta property="og:url" content="http://longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/index.html">
+<meta property="og:url" content="www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
 <meta property="og:description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第七篇: 大话结构体之七：struct中0元素数组的意义在哪里？   上一回大话结构体之六：无即是有，没有成员变量的Struct(结构体)，我们在文章的结尾留了一个悬念： —为什么0元素数组在class和struct结构体之外定义就是错误的，而在class和struct中定义就是">
 <meta property="og:locale" content="zh_CN">
@@ -41,7 +41,7 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/">
+<link rel="canonical" href="www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/">
 
 
 <script data-pjax class="page-configurations">
@@ -311,7 +311,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -392,7 +392,7 @@
 <p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第七篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8271856">大话结构体之七：struct中0元素数组的意义在哪里？</a></p>
 </blockquote>
 <hr>
-<p>上一回<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">大话结构体之六：无即是有，没有成员变量的Struct(结构体)</a>，我们在文章的结尾留了一个悬念：</p>
+<p>上一回<a href="http://www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">大话结构体之六：无即是有，没有成员变量的Struct(结构体)</a>，我们在文章的结尾留了一个悬念：</p>
 <p>—为什么0元素数组在<code>class</code>和<code>struct</code>结构体之外定义就是错误的，而在<code>class</code>和<code>struct</code>中定义就是Okay的，那么<strong>结构体中的0元素数组意义何在</strong>？</p>
 <a id="more"></a>
 
@@ -421,7 +421,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/" title="大话结构体之七：struct中0元素数组的意义在哪里？">http://longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/</a>
+      <a href="/www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/" title="大话结构体之七：struct中0元素数组的意义在哪里？">www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！

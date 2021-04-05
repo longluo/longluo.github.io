@@ -23,12 +23,12 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第八篇: 大话结构体之八：C语言Struct中的函数和函数指针   在系列之三大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…，我们在文章的结尾留了一个悬念： 我们了解到C语言规范是struct里面是不能有函数体的，但是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针">
-<meta property="og:url" content="http://longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/index.html">
+<meta property="og:url" content="www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
 <meta property="og:description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第八篇: 大话结构体之八：C语言Struct中的函数和函数指针   在系列之三大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…，我们在文章的结尾留了一个悬念： 我们了解到C语言规范是struct里面是不能有函数体的，但是">
 <meta property="og:locale" content="zh_CN">
@@ -44,7 +44,7 @@
 <meta name="twitter:image" content="http://img.my.csdn.net/uploads/201212/09/1354984449_3322.jpg">
 
 
-<link rel="canonical" href="http://longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/">
+<link rel="canonical" href="www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/">
 
 
 <script data-pjax class="page-configurations">
@@ -314,7 +314,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -395,7 +395,7 @@
 <p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第八篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8259225">大话结构体之八：C语言Struct中的函数和函数指针</a></p>
 </blockquote>
 <hr>
-<p>在系列之三<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/">大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…</a>，我们在文章的结尾留了一个悬念：</p>
+<p>在系列之三<a href="http://www.longluo.me/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/">大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…</a>，我们在文章的结尾留了一个悬念：</p>
 <p>我们了解到C语言规范是<code>struct</code>里面是<strong>不能有函数体</strong>的，但是在应用中假如<code>struct</code>中没有函数的话，我们会遇到很多问题，第一数据往往是依附于函数来进行操作的；其二是我们需要<strong>用C来实现面向对象的思想</strong>。</p>
 <p>比如下面这段代码：</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FuncInside</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">    <span class="keyword">int</span> mA;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>{</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Hello, function inside!\n"</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">FuncInside</span> <span class="title">f</span>;</span></span><br><span class="line"></span><br><span class="line">    f.mA = <span class="number">99</span>;</span><br><span class="line">    f.func();</span><br><span class="line"></span><br><span class="line">    getchar();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
@@ -453,7 +453,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/" title="大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针">http://longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/</a>
+      <a href="/www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/" title="大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针">www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！

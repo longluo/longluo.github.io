@@ -23,12 +23,12 @@
 
 <script class="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
+    var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
 <meta name="description" content="By Long Luo 在上一篇Android自定义View：如何实现一个模拟时钟？中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的canvas.rotate()方法让坐标系旋转从而绘制出指针。 但是，其实我们也可以使用另外一种方法去实现指针绘制，这种更直观，更容易理解。 一. 绘制指针要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的sin及cos值及圆心">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android自定义View：另一种实现手表指针转动的方法">
-<meta property="og:url" content="http://longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/index.html">
+<meta property="og:url" content="www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
 <meta property="og:description" content="By Long Luo 在上一篇Android自定义View：如何实现一个模拟时钟？中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的canvas.rotate()方法让坐标系旋转从而绘制出指针。 但是，其实我们也可以使用另外一种方法去实现指针绘制，这种更直观，更容易理解。 一. 绘制指针要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的sin及cos值及圆心">
 <meta property="og:locale" content="zh_CN">
@@ -40,7 +40,7 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/">
+<link rel="canonical" href="www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/">
 
 
 <script data-pjax class="page-configurations">
@@ -311,7 +311,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -388,7 +388,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <p><strong><em>By Long Luo</em></strong></p>
-<p>在上一篇<a target="_blank" rel="noopener" href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/">Android自定义View：如何实现一个模拟时钟？</a>中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的<code>canvas.rotate()</code>方法让坐标系旋转从而绘制出指针。</p>
+<p>在上一篇<a href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/">Android自定义View：如何实现一个模拟时钟？</a>中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的<code>canvas.rotate()</code>方法让坐标系旋转从而绘制出指针。</p>
 <p>但是，其实我们也可以使用另外一种方法去实现指针绘制，这种更直观，更容易理解。</p>
 <h1 id="一-绘制指针"><a href="#一-绘制指针" class="headerlink" title="一. 绘制指针"></a>一. 绘制指针</h1><p>要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的<code>sin</code>及<code>cos</code>值及圆心进行对应的计算。</p>
 <h2 id="1-1-弧度"><a href="#1-1-弧度" class="headerlink" title="1.1 弧度"></a>1.1 弧度</h2><p>要计算指针对应的<code>sin</code>及<code>cos</code>值，区别于上一篇的*<strong>角度**<em>，这一篇我们使用</em></strong>弧度***。具体弧度是什么以及角度弧度换算关系可自行Google。</p>
@@ -426,7 +426,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/" title="Android自定义View：另一种实现手表指针转动的方法">http://longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/</a>
+      <a href="/www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/" title="Android自定义View：另一种实现手表指针转动的方法">www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
