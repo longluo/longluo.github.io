@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "Android AAPT"
+title: "Android AAPT工具指南"
 comments: true
 date: 2016-10-06 10:23:08
 tags: [Android, AAPT]
 categories: Android
-keywords:
+keywords: Android, AAPT, Tools, Develop, Apk, 
 ---
 
 Android Asset Packaging Tool
@@ -198,6 +198,8 @@ Usage:
    --private-symbols
        Java package name to use when generating R.java for private resources.
 ```
+
+<!--more-->
 
 # AAPT版本信息
 
