@@ -216,7 +216,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%BB%98%E5%88%B6%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text">一、绘制当前时间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 获取当前时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E8%8E%B7%E5%8F%96%E6%8C%87%E9%92%88%E8%A7%92%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 获取指针角度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E7%BB%98%E5%88%B6%E6%8C%87%E9%92%88"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 绘制指针</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%AF%8F%E4%B8%80%E7%A7%92%E5%88%B7%E6%96%B0%E7%95%8C%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text">二、每一秒刷新界面</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E7%BB%98%E5%88%B6%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text"> 一、绘制当前时间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.1 获取当前时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E8%8E%B7%E5%8F%96%E6%8C%87%E9%92%88%E8%A7%92%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text"> 1.2 获取指针角度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E7%BB%98%E5%88%B6%E6%8C%87%E9%92%88"><span class="nav-number">1.3.</span> <span class="nav-text"> 1.3 绘制指针</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E6%AF%8F%E4%B8%80%E7%A7%92%E5%88%B7%E6%96%B0%E7%95%8C%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text"> 二、每一秒刷新界面</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,14 +230,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -390,38 +390,41 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>By Long Luo</em></strong></p>
+        <p><em><strong>By Long Luo</strong></em></p>
 <p><strong>Android中自定义控件</strong>一直都是Android开发中的一个难点。</p>
 <p>最近看大牛<a target="_blank" rel="noopener" href="http://weibo.com/eclipsexu?s=6cm7D0">@Tomcat的猫</a>写的<a target="_blank" rel="noopener" href="http://blog.csdn.net/eclipsexys">《Android群英传》</a>里面的第六章<strong>Android绘图机制及处理技巧</strong>，里面通过<code>Canvas</code>实现了一个如下所示的仪表盘：</p>
 <p><img src="http://imagesresource.qiniudn.com/clock_still.png" alt="仪表盘"></p>
 <p>在书中详细描述了如何实现这个仪表盘，这里就不赘述了，可以参考其<a target="_blank" rel="noopener" href="https://github.com/xuyisheng/AndroidHeroes/tree/master/6.%E7%BB%98%E5%9B%BE/MyApplication/app/src/main/java/com/yishengxu/myapplication">具体实现代码</a>。</p>
 <p>但是这个表盘的指针是<strong>静止不动</strong>的，如果我们能让这个表盘的指针展示当前时间，随着时间而转动，那么我们就可以一款模拟时钟了。</p>
 <p>那么，问题就来了：</p>
-<p><strong><em>如何才能让时钟的指针动起来呢？</em></strong></p>
+<p><em><strong>如何才能让时钟的指针动起来呢？</strong></em></p>
 <a id="more"></a>
-
 <p>这个问题，我们可以考虑分为2步去实现，第一步先绘制出当前的时间，第二部再让指针动起来。通过这样我们就可以实现一款<strong>模拟时钟</strong>。</p>
-<h1 id="一、绘制当前时间"><a href="#一、绘制当前时间" class="headerlink" title="一、绘制当前时间"></a>一、绘制当前时间</h1><h2 id="1-1-获取当前时间"><a href="#1-1-获取当前时间" class="headerlink" title="1.1 获取当前时间"></a>1.1 获取当前时间</h2><p>要绘制当前时间，我们要先获取当前时间。</p>
+<h1 id="一-绘制当前时间"><a class="markdownIt-Anchor" href="#一-绘制当前时间"></a> 一、绘制当前时间</h1>
+<h2 id="11-获取当前时间"><a class="markdownIt-Anchor" href="#11-获取当前时间"></a> 1.1 获取当前时间</h2>
+<p>要绘制当前时间，我们要先获取当前时间。</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mTime.setToNow();</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="1-2-获取指针角度"><a href="#1-2-获取指针角度" class="headerlink" title="1.2 获取指针角度"></a>1.2 获取指针角度</h2><p>当前时间可分为**<em>时，分，秒**</em>。</p>
+<h2 id="12-获取指针角度"><a class="markdownIt-Anchor" href="#12-获取指针角度"></a> 1.2 获取指针角度</h2>
+<p>当前时间可分为***时，分，秒***。</p>
 <p>我们最终要获取的是时分秒3个指针对应的<strong>精确角度</strong>。</p>
 <blockquote>
-<p>秒针角度：最简单，直接乘以6即可获得。<br>分针角度：当前分钟 * 6 + 6 * 秒 / 60F<br>时针角度：(当前小时 % 12) * 30 + 30 * 当前分钟角度 / 360F;</p>
+<p>秒针角度：最简单，直接乘以6即可获得。<br>
+分针角度：当前分钟 * 6 + 6 * 秒 / 60F<br>
+时针角度：(当前小时 % 12) * 30 + 30 * 当前分钟角度 / 360F;</p>
 </blockquote>
-<h2 id="1-3-绘制指针"><a href="#1-3-绘制指针" class="headerlink" title="1.3 绘制指针"></a>1.3 绘制指针</h2><p>获取到指针角度之后，接下来就是在表盘绘制指针了。这里我们要利用<code>canvas.rotate()</code>这个方法来实现绘制指针，具体实现代码如下所示：</p>
+<h2 id="13-绘制指针"><a class="markdownIt-Anchor" href="#13-绘制指针"></a> 1.3 绘制指针</h2>
+<p>获取到指针角度之后，接下来就是在表盘绘制指针了。这里我们要利用<code>canvas.rotate()</code>这个方法来实现绘制指针，具体实现代码如下所示：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">drawTime</span><span class="params">(Canvas canvas)</span> </span>{</span><br><span class="line">    <span class="comment">// 当前时间</span></span><br><span class="line">    mTime.setToNow();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当前时间对应的角度</span></span><br><span class="line">    <span class="keyword">float</span> secRot = mTime.second * <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">float</span> minRot = mTime.minute * <span class="number">6</span> + <span class="number">6</span> * mTime.second / <span class="number">60F</span>;</span><br><span class="line">    <span class="keyword">float</span> hrRot = (mTime.hour % <span class="number">12</span>) * <span class="number">30</span> + <span class="number">30</span> * minRot / <span class="number">360F</span>;</span><br><span class="line"></span><br><span class="line">    Log.d(TAG, <span class="string">"hrRot="</span> + hrRot + <span class="string">",minRot="</span> + minRot + <span class="string">",secRot="</span> + secRot);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 画指针</span></span><br><span class="line">    Paint paintHour = <span class="keyword">new</span> Paint();</span><br><span class="line">    paintHour.setStrokeWidth(<span class="number">20</span>);</span><br><span class="line">    Paint paintMinute = <span class="keyword">new</span> Paint();</span><br><span class="line">    paintMinute.setStrokeWidth(<span class="number">10</span>);</span><br><span class="line">    Paint paintSecond = <span class="keyword">new</span> Paint();</span><br><span class="line">    paintSecond.setStrokeWidth(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    canvas.save();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 时针</span></span><br><span class="line">    canvas.rotate(hrRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line">    canvas.drawLine(mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span> - mWidth / <span class="number">2</span> + <span class="number">320</span>,</span><br><span class="line">            paintHour);</span><br><span class="line">    canvas.rotate(-hrRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 分针</span></span><br><span class="line">    canvas.rotate(minRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line">    canvas.drawLine(mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span> - mWidth / <span class="number">2</span> + <span class="number">230</span>,</span><br><span class="line">            paintMinute);</span><br><span class="line">    canvas.rotate(-minRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 秒针</span></span><br><span class="line">    canvas.rotate(secRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line">    canvas.drawLine(mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span> - mWidth / <span class="number">2</span> + <span class="number">150</span>,</span><br><span class="line">            paintSecond);</span><br><span class="line">    canvas.rotate(-secRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    canvas.restore();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="二、每一秒刷新界面"><a href="#二、每一秒刷新界面" class="headerlink" title="二、每一秒刷新界面"></a>二、每一秒刷新界面</h1><p>完成了第一步之后，我们要做的就是实现<strong>每隔1s去刷新界面</strong>。这个实现很简单，通过<strong>Handler</strong>就可以实现。</p>
+<h1 id="二-每一秒刷新界面"><a class="markdownIt-Anchor" href="#二-每一秒刷新界面"></a> 二、每一秒刷新界面</h1>
+<p>完成了第一步之后，我们要做的就是实现<strong>每隔1s去刷新界面</strong>。这个实现很简单，通过<strong>Handler</strong>就可以实现。</p>
 <p>首先在自定义View<code>Clock</code>中添加一个刷新界面的接口：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">refreshClock</span><span class="params">()</span> </span>{</span><br><span class="line">    postInvalidate();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>添加接口之后，我们再在Activity中使用Handler实现1s调用一次该接口即可：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>{</span><br><span class="line">    <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">    mClock = <span class="keyword">new</span> Clock(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    mHandler = <span class="keyword">new</span> Handler();</span><br><span class="line"></span><br><span class="line">    mHandler.post(updateTime);</span><br><span class="line"></span><br><span class="line">    setContentView(mClock);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> Runnable updateTime = <span class="keyword">new</span> Runnable() {</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>{</span><br><span class="line">        mClock.refreshClock();</span><br><span class="line">        mHandler.postDelayed(updateTime, <span class="number">1000</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
-
-<p>运行效果图如下所示：<br><img src="http://imagesresource.qiniudn.com/clock_move.png" alt="模拟时钟"></p>
-<p>通过以上方法，我们使用<strong>Android自定义View</strong>实现了一个**<em>模拟时钟**</em>了。</p>
-<p><strong><em>Modified By Long Luo at 2018年10月1日10点40分 in Shenzhen, China.</em></strong></p>
+<p>运行效果图如下所示：<br>
+<img src="http://imagesresource.qiniudn.com/clock_move.png" alt="模拟时钟"></p>
+<p>通过以上方法，我们使用<strong>Android自定义View</strong>实现了一个***模拟时钟***了。</p>
+<p><em><strong>Modified By Long Luo at 2018年10月1日10点40分 in Shenzhen, China.</strong></em></p>
 
     </div>
 
@@ -535,13 +538,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -711,6 +714,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

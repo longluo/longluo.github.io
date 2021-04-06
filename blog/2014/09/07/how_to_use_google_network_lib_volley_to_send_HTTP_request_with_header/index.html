@@ -226,14 +226,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -386,21 +386,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>By Long Luo</em></strong></p>
+        <p><em><strong>By Long Luo</strong></em></p>
 <p>由于合作的第三方iQiyi视频的数据源更新速度很慢，通过和iQiyi反馈，于是提供了新的API接口。</p>
 <p>通过阅读新API接口说明，在发起HTTP Get请求时，必须<strong>同时带2个加密的Header参数</strong>，分别是时间戳和MD5加密后的key、时间戳以及客户端参数，否则无法返回正确的请求。</p>
 <p>目前在Android客户端使用的是Google开源Volley库，支持各种HTTP请求，图片缓存，JSON解析，性能十分强大。之前使用的接口都是直接发起HTTP Get请求，附带相关参数即可。</p>
 <p>通过阅读Volley相关资料，找到了下列方法，可以在发起HTTP请求时，附带Header参数，代码如下所示：</p>
 <a id="more"></a>
-
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeHTTPrequest</span><span class="params">(String url)</span> </span>{</span><br><span class="line">    MyLog.d(TAG, <span class="string">"makeHTTPrequest, url="</span> + url);</span><br><span class="line"></span><br><span class="line">    JsonObjectRequest jsonObjRequest = <span class="keyword">new</span> JsonObjectRequest(Request.Method.GET, url, <span class="keyword">null</span>,</span><br><span class="line">            <span class="keyword">new</span> Response.Listener&lt;JSONObject&gt;() {</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(JSONObject response)</span> </span>{</span><br><span class="line">                    <span class="keyword">try</span> {</span><br><span class="line">                        MyLog.d(TAG, <span class="string">"response="</span> + response);</span><br><span class="line">                        parseiQiyiInterfaceResponse(response);</span><br><span class="line">                    } <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }, <span class="keyword">new</span> Response.ErrorListener() {</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onErrorResponse</span><span class="params">(VolleyError error)</span> </span>{</span><br><span class="line">                    <span class="keyword">if</span> (error <span class="keyword">instanceof</span> NetworkError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> ClientError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> ServerError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> AuthFailureError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> ParseError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> NoConnectionError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> TimeoutError) {</span><br><span class="line">                    }</span><br><span class="line"></span><br><span class="line">                    MyLog.e(TAG, <span class="string">"onErrorResponse, error="</span> + error);</span><br><span class="line">                }</span><br><span class="line">            }) {</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Map&lt;String, String&gt; <span class="title">getHeaders</span><span class="params">()</span> <span class="keyword">throws</span> AuthFailureError </span>{</span><br><span class="line">            HashMap&lt;String, String&gt; headers = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</span><br><span class="line">            headers.put(<span class="string">"t"</span>, iQiyiInterface.getEncryptTimestamp());</span><br><span class="line">            headers.put(<span class="string">"sign"</span>, iQiyiInterface.getSign());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// MyLog.d(TAG, "headers=" + headers);</span></span><br><span class="line">            <span class="keyword">return</span> headers;</span><br><span class="line">        }</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set a retry policy in case of SocketTimeout &amp; ConnectionTimeout</span></span><br><span class="line">    <span class="comment">// Exceptions. Volley does retry for you if you have specified the</span></span><br><span class="line">    <span class="comment">// policy.</span></span><br><span class="line">    jsonObjRequest.setRetryPolicy(<span class="keyword">new</span> DefaultRetryPolicy(<span class="number">5000</span>,</span><br><span class="line">            DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));</span><br><span class="line">    jsonObjRequest.setTag(TAG);</span><br><span class="line">    jsonObjRequest.setShouldCache(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">    mQueue.add(jsonObjRequest);</span><br><span class="line">    mQueue.start();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p><strong>Header参数使用HashMap存储。</strong></p>
 <p>获取到JSON数据之后，剩下的就是解析数据了，在这里就不赘述了。</p>
 <p>在完成这个过程中，还遇到了很多小插曲，比如Header的sign值不支持大写字母，结果前后也白费了不少力气。apk烧写到手机之后，还需要使用tcpdump抓取数据包，看是否返回了正确的数据。</p>
 <p>最后发现了Chrome的一个Smart Header插件，完美的解决了以上问题，不需要每次抓包验证返回结果了，直接在Chrome浏览器即可，节省了大量时间。</p>
 <p>总之，希望这篇文章对大家能有所帮助。谢谢！</p>
-<p><strong><em>Created by Long Luo at 2014-09-07 12:30:03 @Shenzhen, China.</em></strong></p>
+<p><em><strong>Created by Long Luo at 2014-09-07 12:30:03 @Shenzhen, China.</strong></em></p>
 
     </div>
 
@@ -514,13 +512,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -690,6 +688,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

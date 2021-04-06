@@ -25,12 +25,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="翻译 By Long Luo 下面这些问题Stackoverflow上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章3分钟速读：图解Java Collections的接口以及类层级关系。 1. 什么时候用LinkedList？什么时候用ArrayList？ArrayList本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经">
+<meta name="description" content="翻译 By Long Luo 下面这些问题Stackoverflow上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章3分钟速读：图解Java Collections的接口以及类层级关系。  1. 什么时候用LinkedList？什么时候用ArrayList？ ***ArrayList***本质上是一个数组。它的元素可以直接通过索引值直接访问。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Java Collections应知应会">
 <meta property="og:url" content="www.longluo.me/blog/2016/08/07/Top-10-Questions-About-Java-Collections/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="翻译 By Long Luo 下面这些问题Stackoverflow上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章3分钟速读：图解Java Collections的接口以及类层级关系。 1. 什么时候用LinkedList？什么时候用ArrayList？ArrayList本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经">
+<meta property="og:description" content="翻译 By Long Luo 下面这些问题Stackoverflow上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章3分钟速读：图解Java Collections的接口以及类层级关系。  1. 什么时候用LinkedList？什么时候用ArrayList？ ***ArrayList***本质上是一个数组。它的元素可以直接通过索引值直接访问。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-08-07T14:56:28.000Z">
 <meta property="article:modified_time" content="2020-12-04T03:45:48.308Z">
@@ -214,7 +214,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8LinkedList%EF%BC%9F%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8ArrayList%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. 什么时候用LinkedList？什么时候用ArrayList？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%BD%93%E9%81%8D%E5%8E%86%E5%AE%B9%E5%99%A8%E6%97%B6%EF%BC%8C%E9%AB%98%E6%95%88%E7%AD%89%E4%BB%B7%E4%BA%8E%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">2. 当遍历容器时，高效等价于移除元素的操作？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95%E5%B0%86List%E8%BD%AC%E6%8D%A2%E6%88%90int-%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">3. 如何将List转换成int[]？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%A6%82%E4%BD%95%E5%B0%86int-%E8%BD%AC%E6%8D%A2%E6%88%90List%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">4. 如何将int[]转换成List？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E8%BF%87%E6%BB%A4%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8%E6%9C%80%E4%BD%B3%E6%96%B9%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">5. 过滤一个容器最佳方式是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E4%BB%80%E4%B9%88%E6%98%AF%E5%B0%86%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E8%BD%AC%E6%8D%A2%E6%88%90Set%E6%9C%80%E8%BD%BB%E6%9D%BE%E6%96%B9%E5%BC%8F%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">6. 什么是将一个列表转换成Set最轻松方式？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E5%A6%82%E4%BD%95%E5%B0%86ArrayList%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E5%85%83%E7%B4%A0%E7%A7%BB%E9%99%A4%EF%BC%9F"><span class="nav-number">7.</span> <span class="nav-text">7. 如何将ArrayList中重复的元素移除？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E5%AE%B9%E5%99%A8%E6%8E%92%E5%BA%8F"><span class="nav-number">8.</span> <span class="nav-text">8. 容器排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-Collections-emptyList-vs-new-instance"><span class="nav-number">9.</span> <span class="nav-text">9. Collections.emptyList() vs new instance</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-Collections-copy"><span class="nav-number">10.</span> <span class="nav-text">10. Collections.copy</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8linkedlist%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8arraylist"><span class="nav-number">1.</span> <span class="nav-text"> 1. 什么时候用LinkedList？什么时候用ArrayList？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%BD%93%E9%81%8D%E5%8E%86%E5%AE%B9%E5%99%A8%E6%97%B6%E9%AB%98%E6%95%88%E7%AD%89%E4%BB%B7%E4%BA%8E%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text"> 2. 当遍历容器时，高效等价于移除元素的操作？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E5%A6%82%E4%BD%95%E5%B0%86list%E8%BD%AC%E6%8D%A2%E6%88%90int"><span class="nav-number">3.</span> <span class="nav-text"> 3. 如何将List转换成int[]？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%A6%82%E4%BD%95%E5%B0%86int%E8%BD%AC%E6%8D%A2%E6%88%90list"><span class="nav-number">4.</span> <span class="nav-text"> 4. 如何将int[]转换成List？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E8%BF%87%E6%BB%A4%E4%B8%80%E4%B8%AA%E5%AE%B9%E5%99%A8%E6%9C%80%E4%BD%B3%E6%96%B9%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">5.</span> <span class="nav-text"> 5. 过滤一个容器最佳方式是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E4%BB%80%E4%B9%88%E6%98%AF%E5%B0%86%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E8%BD%AC%E6%8D%A2%E6%88%90set%E6%9C%80%E8%BD%BB%E6%9D%BE%E6%96%B9%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text"> 6. 什么是将一个列表转换成Set最轻松方式？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7-%E5%A6%82%E4%BD%95%E5%B0%86arraylist%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E5%85%83%E7%B4%A0%E7%A7%BB%E9%99%A4"><span class="nav-number">7.</span> <span class="nav-text"> 7. 如何将ArrayList中重复的元素移除？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#8-%E5%AE%B9%E5%99%A8%E6%8E%92%E5%BA%8F"><span class="nav-number">8.</span> <span class="nav-text"> 8. 容器排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#9-collectionsemptylist-vs-new-instance"><span class="nav-number">9.</span> <span class="nav-text"> 9. Collections.emptyList() vs new instance</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-collectionscopy"><span class="nav-number">10.</span> <span class="nav-text"> 10. Collections.copy</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -228,14 +228,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -370,7 +370,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.4k</span>
+      <span>4.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -388,103 +388,101 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>翻译 By Long Luo</em></strong></p>
-<p>下面这些问题<a target="_blank" rel="noopener" href="http://www.stackoverflow.com/">Stackoverflow</a>上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章<a href="http://www.longluo.me/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/">3分钟速读：图解Java Collections的接口以及类层级关系</a>。</p>
-<h1 id="1-什么时候用LinkedList？什么时候用ArrayList？"><a href="#1-什么时候用LinkedList？什么时候用ArrayList？" class="headerlink" title="1. 什么时候用LinkedList？什么时候用ArrayList？"></a>1. 什么时候用LinkedList？什么时候用ArrayList？</h1><p><strong><em>ArrayList</em></strong>本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经满了，那么需要重新分配一个更大的数组并且将全部的元素移动到新的数组需要花费**<em>O(n)**</em>的时间。当然从现有的数组中增加或者删除一个元素都需要移动现有的元素。这个可能是使用ArrayList中最大的不便之处。</p>
-<p><strong><em>LinkedList</em></strong>是一个<strong>双端链表</strong>。正因为如此，如果要获取一个链表中间的元素，需要从链表的头部开始查找。另一方面，增加或者删除链表中的元素将会很快，因为只需要在本地修改即可。</p>
+        <p><em><strong>翻译 By Long Luo</strong></em></p>
+<p>下面这些问题<a target="_blank" rel="noopener" href="http://www.stackoverflow.com">Stackoverflow</a>上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章<a href="http://www.longluo.me/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/">3分钟速读：图解Java Collections的接口以及类层级关系</a>。</p>
+<h1 id="1-什么时候用linkedlist什么时候用arraylist"><a class="markdownIt-Anchor" href="#1-什么时候用linkedlist什么时候用arraylist"></a> 1. 什么时候用LinkedList？什么时候用ArrayList？</h1>
+<p>***ArrayList***本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经满了，那么需要重新分配一个更大的数组并且将全部的元素移动到新的数组需要花费***O(n)***的时间。当然从现有的数组中增加或者删除一个元素都需要移动现有的元素。这个可能是使用ArrayList中最大的不便之处。</p>
+<p>**<em>LinkedList<em><strong>是一个</strong>双端链表</em></em>。正因为如此，如果要获取一个链表中间的元素，需要从链表的头部开始查找。另一方面，增加或者删除链表中的元素将会很快，因为只需要在本地修改即可。</p>
 <p>下表总结了最快情况下的比较需要耗费时间：</p>
 <table>
 <thead>
 <tr>
-<th align="left">Method</th>
-<th align="right">Arraylist</th>
-<th align="center">LinkedList</th>
+<th style="text-align:left">Method</th>
+<th style="text-align:right">Arraylist</th>
+<th style="text-align:center">LinkedList</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="left">get(index)</td>
-<td align="right">O(1)</td>
-<td align="center">O(n)</td>
+<tbody>
+<tr>
+<td style="text-align:left">get(index)</td>
+<td style="text-align:right">O(1)</td>
+<td style="text-align:center">O(n)</td>
 </tr>
 <tr>
-<td align="left">add(E)</td>
-<td align="right">O(n)</td>
-<td align="center">O(1)</td>
+<td style="text-align:left">add(E)</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(1)</td>
 </tr>
 <tr>
-<td align="left">add(E, index)</td>
-<td align="right">O(n)</td>
-<td align="center">O(n)</td>
+<td style="text-align:left">add(E, index)</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(n)</td>
 </tr>
 <tr>
-<td align="left">remove(index)</td>
-<td align="right">O(n)</td>
-<td align="center">O(n)</td>
+<td style="text-align:left">remove(index)</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(n)</td>
 </tr>
 <tr>
-<td align="left">Iterator.remove()</td>
-<td align="right">O(n)</td>
-<td align="center">O(1)</td>
+<td style="text-align:left">Iterator.remove()</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(1)</td>
 </tr>
 <tr>
-<td align="left">Iterator.add(E)</td>
-<td align="right">O(n)</td>
-<td align="center">O(1)</td>
+<td style="text-align:left">Iterator.add(E)</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(1)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>不管运行时间，当大型列表需要额外考虑内存占用。LinkedList每个node至少需要2个额外的指针用于连接前后2个node。而在ArrayList中只需要数组存储元素值即可。</p>
 <a id="more"></a>
-
-<h1 id="2-当遍历容器时，高效等价于移除元素的操作？"><a href="#2-当遍历容器时，高效等价于移除元素的操作？" class="headerlink" title="2. 当遍历容器时，高效等价于移除元素的操作？"></a>2. 当遍历容器时，高效等价于移除元素的操作？</h1><p>最正确的方式就是在遍历容器时用<code>Iterator.remove()</code>去修改一个容器，如下代码所示：</p>
+<h1 id="2-当遍历容器时高效等价于移除元素的操作"><a class="markdownIt-Anchor" href="#2-当遍历容器时高效等价于移除元素的操作"></a> 2. 当遍历容器时，高效等价于移除元素的操作？</h1>
+<p>最正确的方式就是在遍历容器时用<code>Iterator.remove()</code>去修改一个容器，如下代码所示：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Integer&gt; itr = list.iterator();</span><br><span class="line"><span class="keyword">while</span>(itr.hasNext()) {</span><br><span class="line">   <span class="comment">// do something</span></span><br><span class="line">   itr.remove();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<p>另外一个非常高频的使用但是**<em>不正确**</em>的代码是这样的：</p>
+<p>另外一个非常高频的使用但是***不正确***的代码是这样的：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Integer i: list) {</span><br><span class="line">  list.remove(i);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>运行上面的代码时你会得到一个<code>ConcurrentModificationException</code>。原因是因为一个迭代器自生成之后(在for循环中)，用于横贯这个列表。与此同时，这个列表同时也被<code>Iterator.remove()</code>修改了。在Java语言中，当一个线程在修改一个容器时而另外一个线程在遍历它是不允许的。</p>
-<h1 id="3-如何将List转换成int-？"><a href="#3-如何将List转换成int-？" class="headerlink" title="3. 如何将List转换成int[]？"></a>3. 如何将List转换成int[]？</h1><p>最快捷的方式可能是用Apache Commons Lang库中的**<em>ArrayUtils**</em>。</p>
+<h1 id="3-如何将list转换成int"><a class="markdownIt-Anchor" href="#3-如何将list转换成int"></a> 3. 如何将List转换成int[]？</h1>
+<p>最快捷的方式可能是用Apache Commons Lang库中的***ArrayUtils***。</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array = ArrayUtils.toPrimitive(list.toArray(<span class="keyword">new</span> Integer[<span class="number">0</span>]));</span><br></pre></td></tr></tbody></table></figure>
-
 <p>在JDK中，没有快捷方式。请注意你不能使用<code>List.toArray()</code>，因为那会将列表转换成<code>Integer[]</code>。正确的方式应该是这样的：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i &lt; list.size(); i++) {</span><br><span class="line">  array[i] = list.get(i);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="4-如何将int-转换成List？"><a href="#4-如何将int-转换成List？" class="headerlink" title="4. 如何将int[]转换成List？"></a>4. 如何将int[]转换成List？</h1><p>最快捷的方式可能是用Apache Commons Lang库中的**<em>ArrayUtils**</em>，如下所示：</p>
+<h1 id="4-如何将int转换成list"><a class="markdownIt-Anchor" href="#4-如何将int转换成list"></a> 4. 如何将int[]转换成List？</h1>
+<p>最快捷的方式可能是用Apache Commons Lang库中的***ArrayUtils***，如下所示：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List list = Arrays.asList(ArrayUtils.toObject(array));</span><br></pre></td></tr></tbody></table></figure>
-
 <p>JDK中，同样没有快捷方式：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>};</span><br><span class="line">List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i: array) {</span><br><span class="line">  list.add(i);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="5-过滤一个容器最佳方式是什么？"><a href="#5-过滤一个容器最佳方式是什么？" class="headerlink" title="5. 过滤一个容器最佳方式是什么？"></a>5. 过滤一个容器最佳方式是什么？</h1><p>你可以使用第三方包，比如Guava或者Apache Commons Lang来填充这个功能，他们都提供了一个<code>filter()</code>方法(in Collections2 of Guava and in CollectionUtils of Apache)。<code>filter()</code>方法会返回一个预先判断的元素。</p>
+<h1 id="5-过滤一个容器最佳方式是什么"><a class="markdownIt-Anchor" href="#5-过滤一个容器最佳方式是什么"></a> 5. 过滤一个容器最佳方式是什么？</h1>
+<p>你可以使用第三方包，比如Guava或者Apache Commons Lang来填充这个功能，他们都提供了一个<code>filter()</code>方法(in Collections2 of Guava and in CollectionUtils of Apache)。<code>filter()</code>方法会返回一个预先判断的元素。</p>
 <p>JDK中，实现就会困难多了。一个好消息是Java 8中，会加入断言。但是现在，你必须使用迭代器用于遍历整个容器。</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Integer&gt; itr = list.iterator();</span><br><span class="line"><span class="keyword">while</span>(itr.hasNext()) {</span><br><span class="line">   <span class="keyword">int</span> i = itr.next();</span><br><span class="line">   <span class="keyword">if</span> (i &gt; <span class="number">5</span>) { <span class="comment">// filter all ints bigger than 5</span></span><br><span class="line">      itr.remove();</span><br><span class="line">   }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>当然你也可以模仿Guava或者Apache的实现方式去实现，通过引入一个新的Predicate接口。大部分高级开发者会这样做。</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Predicate</span>&lt;<span class="title">T</span>&gt; </span>{</span><br><span class="line">   <span class="function"><span class="keyword">boolean</span> <span class="title">test</span><span class="params">(T o)</span></span>;</span><br><span class="line">}</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; <span class="function"><span class="keyword">void</span> <span class="title">filter</span><span class="params">(Collection&lt;T&gt; collection, Predicate&lt;T&gt; predicate)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> ((collection != <span class="keyword">null</span>) &amp;&amp; (predicate != <span class="keyword">null</span>)) {</span><br><span class="line">       Iterator&lt;T&gt; itr = collection.iterator();</span><br><span class="line">          <span class="keyword">while</span>(itr.hasNext()) {</span><br><span class="line">            T obj = itr.next();</span><br><span class="line">            <span class="keyword">if</span> (!predicate.test(obj)) {</span><br><span class="line">               itr.remove();</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>你可以使用下面的代码去过滤一个容器：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filter(list, <span class="keyword">new</span> Predicate&lt;Integer&gt;() {</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">test</span><span class="params">(Integer i)</span> </span>{ </span><br><span class="line">       <span class="keyword">return</span> i &lt;= <span class="number">5</span>; </span><br><span class="line">    }</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="6-什么是将一个列表转换成Set最轻松方式？"><a href="#6-什么是将一个列表转换成Set最轻松方式？" class="headerlink" title="6. 什么是将一个列表转换成Set最轻松方式？"></a>6. 什么是将一个列表转换成Set最轻松方式？</h1><p>有2种方法都可以做到，取决于你如何定义相等。第一种方法是将一个列表放入HashSet中，然后通过<code>hashCode()</code>去识别进行复制。在大部分情况下，可以正常运行。但是如果你需要指定一种比较方式的话，当你可以定义你自己的比较器的话你需要使用第二种方法。</p>
+<h1 id="6-什么是将一个列表转换成set最轻松方式"><a class="markdownIt-Anchor" href="#6-什么是将一个列表转换成set最轻松方式"></a> 6. 什么是将一个列表转换成Set最轻松方式？</h1>
+<p>有2种方法都可以做到，取决于你如何定义相等。第一种方法是将一个列表放入HashSet中，然后通过<code>hashCode()</code>去识别进行复制。在大部分情况下，可以正常运行。但是如果你需要指定一种比较方式的话，当你可以定义你自己的比较器的话你需要使用第二种方法。</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;Integer&gt;(list);</span><br><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> TreeSet&lt;Integer&gt;(aComparator);</span><br><span class="line">set.addAll(list);</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="7-如何将ArrayList中重复的元素移除？"><a href="#7-如何将ArrayList中重复的元素移除？" class="headerlink" title="7. 如何将ArrayList中重复的元素移除？"></a>7. 如何将ArrayList中重复的元素移除？</h1><p>这个问题和上一个问题非常有关系。</p>
-<p>如果你不关心**<em>ArrayList**</em>中元素的顺序，聪明的方式是将列表放入set中，用于移除重复的元素，然后重新移回list中。代码如下所示：</p>
+<h1 id="7-如何将arraylist中重复的元素移除"><a class="markdownIt-Anchor" href="#7-如何将arraylist中重复的元素移除"></a> 7. 如何将ArrayList中重复的元素移除？</h1>
+<p>这个问题和上一个问题非常有关系。</p>
+<p>如果你不关心***ArrayList***中元素的顺序，聪明的方式是将列表放入set中，用于移除重复的元素，然后重新移回list中。代码如下所示：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList** list = ... <span class="comment">// initial a list with duplicate elements</span></span><br><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> HashSet&lt;Integer&gt;(list);</span><br><span class="line">list.clear();</span><br><span class="line">list.addAll(set);</span><br></pre></td></tr></tbody></table></figure>
-
-<p>如果你不关心顺序，在标准JDK中，你可以将列表放入LinkedHashSet中，那样元素顺序不变。﻿</p>
-<h1 id="8-容器排序"><a href="#8-容器排序" class="headerlink" title="8. 容器排序"></a>8. 容器排序</h1><p>Java语言中，对容器排序有好几种方法。所有的方法都是基于容器的姿容顺序或者特定的比较器。自然顺序下，你也需要去实现元素的比较接口。</p>
+<p>如果你不关心顺序，在标准JDK中，你可以将列表放入LinkedHashSet中，那样元素顺序不变。</p>
+<h1 id="8-容器排序"><a class="markdownIt-Anchor" href="#8-容器排序"></a> 8. 容器排序</h1>
+<p>Java语言中，对容器排序有好几种方法。所有的方法都是基于容器的姿容顺序或者特定的比较器。自然顺序下，你也需要去实现元素的比较接口。</p>
 <p><code>Collections.sort()</code>可以遍历列表。javadoc中说明了这种排序是稳定的，同时性能是<code>nlog(n)</code>。</p>
 <p><em>PriorityQueue</em>提供了一个排好序的队列。<em>PriorityQueue</em>和<code>Collections.sort()</code>的不同点在于，<em>PriorityQueue</em>一直都维持着一个排好序的队列，但是你只能从队列中获取到头结点。你不可以随机获取其内部元素，比如使用<code>PriorityQueue.get(4)</code>。</p>
 <p>如果在容器中不存在重复，<em>TreeSet</em>是另外一个选择。和<em>PriorityQueue</em>一样，在生命周期内都维持着排好序的set。你可以从<em>TreeSet</em>中获取到最低和最高的元素，但是你仍然不能随机访问其元素。</p>
 <p>简单来说， <code>Collections.sort()</code>只是一个临时的排好序列表。<em>PriorityQueue</em>和<em>TreeSet</em>始终是排好序的，但是代价就是不能通过索引访问其元素。</p>
-<h1 id="9-Collections-emptyList-vs-new-instance"><a href="#9-Collections-emptyList-vs-new-instance" class="headerlink" title="9. Collections.emptyList() vs new instance"></a>9. Collections.emptyList() vs new instance</h1><p>这个问题同样适用于比较<code>emptyMap()</code>和<code>emptySet()</code>。</p>
+<h1 id="9-collectionsemptylist-vs-new-instance"><a class="markdownIt-Anchor" href="#9-collectionsemptylist-vs-new-instance"></a> 9. Collections.emptyList() vs new instance</h1>
+<p>这个问题同样适用于比较<code>emptyMap()</code>和<code>emptySet()</code>。</p>
 <p>2个方法都会返回一个空的列表，但是 <code>Collections.emptyList()</code>返回了一个不变的列表。这意味着你不可以忘<code>空</code>的列表中增加新的元素。在此背景下，每次<code>Collections.emptyList()</code>调用实际上并不会创造一个空表的实例。同时，它会服用已存在的空的实例。如果你对设计模式的Singleton熟悉的话，你会明白我说的意思。如果你频繁调用的话，会有更好的性能。</p>
-<h1 id="10-Collections-copy"><a href="#10-Collections-copy" class="headerlink" title="10. Collections.copy"></a>10. Collections.copy</h1><p>有2种方法可以实现复制源列表到目的列表。一种方法是使用ArrayList的构造器：</p>
+<h1 id="10-collectionscopy"><a class="markdownIt-Anchor" href="#10-collectionscopy"></a> 10. Collections.copy</h1>
+<p>有2种方法可以实现复制源列表到目的列表。一种方法是使用ArrayList的构造器：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; dstList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(srcList);</span><br></pre></td></tr></tbody></table></figure>
-
 <p>另外一种方法是使用<code>Collections.copy()</code>。注意第一行，我们首先分配了一个列表，这个列表最少长度就是目的列表长度。按照javadoc稳定，目的列表最少也是源列表长度。</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; dstList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;(srcList.size());</span><br><span class="line">Collections.copy(dstList, srcList);</span><br></pre></td></tr></tbody></table></figure>
-
 <p>2种方法都市浅拷贝，那么这2种方法的不同点在哪里？</p>
 <p>首先，<code>Collections.copy()</code>不会重新分配目的列表的容量，即使目的列表没有足够的空间去容纳全部的源列表。当然，会抛出IndexOutOfBoundsException异常。你可能会问这样做的好处是什么？原因之一就是可以保证方法可以在线性的时间内跑完，同时当你想复用数组而不是重新在ArrayList中分配出一个新列表来的更加合适。</p>
 <p><code>Collections.copy()</code>只能用于列表，但是ArrayList的参数可以是容器类，所以应用更广泛。</p>
@@ -603,13 +601,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -779,6 +777,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

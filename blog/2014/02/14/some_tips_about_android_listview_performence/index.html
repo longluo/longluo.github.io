@@ -25,12 +25,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="翻译 Long Luo 原文链接：Performance Tips for Android’s ListView 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正； 3. inflation这个词一直找不到特别好的中文翻译。 ListView如何运作的？ListView是设计应用于对可扩展性和高性能要求">
+<meta name="description" content="翻译 Long Luo 原文链接：Performance Tips for Android’s ListView 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正； 3. inflation这个词一直找不到特别好的中文翻译。   ListView如何运作的？ ListView是设计应用于对可扩展性和高性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="提升Android ListView性能的几个技巧">
 <meta property="og:url" content="www.longluo.me/blog/2014/02/14/some_tips_about_android_listview_performence/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="翻译 Long Luo 原文链接：Performance Tips for Android’s ListView 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正； 3. inflation这个词一直找不到特别好的中文翻译。 ListView如何运作的？ListView是设计应用于对可扩展性和高性能要求">
+<meta property="og:description" content="翻译 Long Luo 原文链接：Performance Tips for Android’s ListView 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正； 3. inflation这个词一直找不到特别好的中文翻译。   ListView如何运作的？ ListView是设计应用于对可扩展性和高性">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blogresource.qiniudn.com/2014/Android/listview_tips.png">
 <meta property="article:published_time" content="2014-02-14T07:22:10.000Z">
@@ -216,7 +216,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ListView%E5%A6%82%E4%BD%95%E8%BF%90%E4%BD%9C%E7%9A%84%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">ListView如何运作的？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#View%E7%9A%84%E5%9B%9E%E6%94%B6"><span class="nav-number">2.</span> <span class="nav-text">View的回收</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#View-Holder%E5%A6%82%E4%BD%95%E5%86%99%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="nav-number">3.</span> <span class="nav-text">View Holder如何写的模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD"><span class="nav-number">4.</span> <span class="nav-text">异步加载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92%E7%9F%A5%E8%AF%86"><span class="nav-number">5.</span> <span class="nav-text">人机交互知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8A"><span class="nav-number">6.</span> <span class="nav-text">以上</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#listview%E5%A6%82%E4%BD%95%E8%BF%90%E4%BD%9C%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text"> ListView如何运作的？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#view%E7%9A%84%E5%9B%9E%E6%94%B6"><span class="nav-number">2.</span> <span class="nav-text"> View的回收</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#view-holder%E5%A6%82%E4%BD%95%E5%86%99%E7%9A%84%E6%A8%A1%E6%9D%BF"><span class="nav-number">3.</span> <span class="nav-text"> View Holder如何写的模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD"><span class="nav-number">4.</span> <span class="nav-text"> 异步加载</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%BA%E6%9C%BA%E4%BA%A4%E4%BA%92%E7%9F%A5%E8%AF%86"><span class="nav-number">5.</span> <span class="nav-text"> 人机交互知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8A"><span class="nav-number">6.</span> <span class="nav-text"> 以上</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,14 +230,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -390,13 +390,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>翻译 Long Luo</em></strong></p>
+        <p><em><strong>翻译 Long Luo</strong></em></p>
 <p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2012/04/05/performance-tips-for-androids-listview/">Performance Tips for Android’s ListView</a></p>
 <pre><code>译者注：
 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正；
-3. inflation这个词一直找不到特别好的中文翻译。</code></pre>
-<h1 id="ListView如何运作的？"><a href="#ListView如何运作的？" class="headerlink" title="ListView如何运作的？"></a>ListView如何运作的？</h1><p><em>ListView</em>是设计应用于对<strong>可扩展性和高性能要求</strong>的地方。实际上，这就意味着<em>ListView</em>有以下2个要求：</p>
+3. inflation这个词一直找不到特别好的中文翻译。
+</code></pre>
+<h1 id="listview如何运作的"><a class="markdownIt-Anchor" href="#listview如何运作的"></a> ListView如何运作的？</h1>
+<p><em>ListView</em>是设计应用于对<strong>可扩展性和高性能要求</strong>的地方。实际上，这就意味着<em>ListView</em>有以下2个要求：</p>
 <ol>
 <li>尽可能少的创建View；</li>
 <li>只是绘制和布局在屏幕上可见的子View。</li>
@@ -408,27 +410,28 @@
 <p><img src="http://blogresource.qiniudn.com/2014/Android/listview_tips.png" alt="ListView"></p>
 <p>通过上述介绍，相比我们已经熟悉了<em>ListView</em>的这种机制，让我们继续前往技巧部分。正如上述介绍的，在滑动时，<em>ListView</em>通过动态的创建和回收很多View，实现了尽可能地让Adapter的*getView()<em>轻量。所有的技巧都是通过多种方法让</em>getView()*更快。</p>
 <a id="more"></a>
-
-<h1 id="View的回收"><a href="#View的回收" class="headerlink" title="View的回收"></a>View的回收</h1><p>当<em>ListView</em>每次需要在屏幕上显示新的一行的时候，会从其Adapter中调用*getView()<em>的方法。众所周知，</em>getView()*方法有3个参数：行的位置， convertView以及父ViewGroup。</p>
+<h1 id="view的回收"><a class="markdownIt-Anchor" href="#view的回收"></a> View的回收</h1>
+<p>当<em>ListView</em>每次需要在屏幕上显示新的一行的时候，会从其Adapter中调用*getView()*的方法。众所周知，*getView()*方法有3个参数：行的位置， convertView以及父ViewGroup。</p>
 <p>参数<em>convertView</em>说穿来就是之前讲述的ScrapView。当<em>ListView</em>要求更新一行的布局时，<em>convertView</em>是一个非空值。因此，当<em>convertView</em>值非空时，你仅仅需要<em>更新内容</em>即可，而不需要重新一个新行的布局。*getView()*在Adapter中一般是如下的形式：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>{</span><br><span class="line">    <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) {</span><br><span class="line">        convertView = mInflater.inflate(R.layout.your_layout, <span class="keyword">null</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    TextView text = (TextView) convertView.findViewById(R.id.text);</span><br><span class="line">    text.setText(<span class="string">"Position "</span> + position);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> convertView;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="View-Holder如何写的模板"><a href="#View-Holder如何写的模板" class="headerlink" title="View Holder如何写的模板"></a>View Holder如何写的模板</h1><p>Android很常见的一个操作就是在布局文件中找到一个内部的View。通常是使用一个*<strong>findViewById()**<em>的View方法来实现的。这个</em></strong>findViewById()<strong><em>方法在View树中，根据一个View ID，会递归的被调用来找到其子树。虽然在静态UI布局中使用</em></strong>findViewById()<strong><em>是完全正常的。但是，在滑动时，</em>ListView<em>调用其Adapter中的</em>getView()<em>是非常频繁的。</em></strong>findViewById()**<em>可能会影响</em>ListView*滑动时的性能，尤其是你的行布局是很复杂的时候。</p>
+<h1 id="view-holder如何写的模板"><a class="markdownIt-Anchor" href="#view-holder如何写的模板"></a> View Holder如何写的模板</h1>
+<p>Android很常见的一个操作就是在布局文件中找到一个内部的View。通常是使用一个***findViewById()***的View方法来实现的。这个***findViewById()***方法在View树中，根据一个View ID，会递归的被调用来找到其子树。虽然在静态UI布局中使用***findViewById()**<em>是完全正常的。但是，在滑动时，<em>ListView</em>调用其Adapter中的</em>getView()*是非常频繁的。***findViewById()*<em><em>可能会影响</em>ListView</em>滑动时的性能，尤其是你的行布局是很复杂的时候。</p>
 <p>寻找一个充气布局内的内部观点是在Android上最常用的操作之一。这通常是通过一个名为findViewById（查看方法完成）。此方法将递归经过视图树寻找一个孩子用给定的ID码。静态的UI布局使用findViewById（）是完全正常，但正如你所看到的，ListView中滚动时调用适配器的getView（）非常频繁。 findViewById（）可能perceivably击中ListViews，尤其是滚动的性能，如果你行的布局是不平凡的。</p>
-<p>View Holder的模式就是减少在Adapter中<em>getView()<em>方法中调用</em>findViewById()<em>次数。实际上，View Holder是一个轻量级的内部类，用于直接引用到所有内部views。在创建View之后，你可以在每行的View存储为一个标签。通过这种方法，只需要在初次创建布局的时候调用**</em>findViewById()**</em>。下面是一个使用上述方法的View Holder模板的代码示例：</p>
+<p>View Holder的模式就是减少在Adapter中<em>getView()<em>方法中调用</em>findViewById()<em>次数。实际上，View Holder是一个轻量级的内部类，用于直接引用到所有内部views。在创建View之后，你可以在每行的View存储为一个标签。通过这种方法，只需要在初次创建布局的时候调用</em></em>*findViewById()***。下面是一个使用上述方法的View Holder模板的代码示例：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView, ViewGroup parent)</span> </span>{</span><br><span class="line">    ViewHolder holder;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (convertView == <span class="keyword">null</span>) {</span><br><span class="line">        convertView = mInflater.inflate(R.layout.your_layout, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">        holder = <span class="keyword">new</span> ViewHolder();</span><br><span class="line">        holder.text = (TextView) convertView.findViewById(R.id.text);</span><br><span class="line"></span><br><span class="line">        convertView.setTag(holder);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        holder = convertView.getTag();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    holder.text.setText(<span class="string">"Position "</span> + position);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> convertView;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> TextView text;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="异步加载"><a href="#异步加载" class="headerlink" title="异步加载"></a>异步加载</h1><p>很多时候，Android应用在<em>ListView</em>每行中显示一些多媒体内容，比如图片等。在Adapter中的<em>getView()<em>使用应用内置的图片资源还是不会出什么问题的，因为可以存储在Android的高速缓存中。但当你想多态的显示来自本地磁盘或网络的内容时，例如缩略图，简历图片等。在这种情况下，你可能不希望直接在Adapter中的</em>getView()<em>加载它们，因为<a target="_blank" rel="noopener" href="http://blog.ometer.com/2008/09/07/synchronous-io-never-ok/">IO进程会阻塞UI线程</a>。如果这样做的话，</em>ListView</em>就看起来非常卡顿。</p>
+<h1 id="异步加载"><a class="markdownIt-Anchor" href="#异步加载"></a> 异步加载</h1>
+<p>很多时候，Android应用在<em>ListView</em>每行中显示一些多媒体内容，比如图片等。在Adapter中的*getView()<em>使用应用内置的图片资源还是不会出什么问题的，因为可以存储在Android的高速缓存中。但当你想多态的显示来自本地磁盘或网络的内容时，例如缩略图，简历图片等。在这种情况下，你可能不希望直接在Adapter中的</em>getView()*加载它们，因为<a target="_blank" rel="noopener" href="http://blog.ometer.com/2008/09/07/synchronous-io-never-ok/">IO进程会阻塞UI线程</a>。如果这样做的话，<em>ListView</em>就看起来非常卡顿。</p>
 <p>在一个单独的线程，如果想要运行的所有行的IO操作或任何高负载CPU限制的异步操作。其中的技巧就是要做到符合<em>ListView</em>的回收行为。例如，如果在Adapter中的<em>getView()<em>中，使用</em>AsyncTask</em>的加载去加载资料图片，在<em>AsyncTask</em>完成之前，你正在加载的图片View就有可能被回收用于其他地方。所以，一旦异步操作完成的同时，需要一种机制来知道如果相应的View有没有被回收。</p>
 <p>一个简单的方法来实现这一目标是通过附加一些标识该行与它相关的View的信息。然后，当异步操作完成的适合，检查目标行的View和标识的View是否一致。实现这一目标的方法很多。下面是实现这种方法的一个很简单的示例：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> View <span class="title">getView</span><span class="params">(<span class="keyword">int</span> position, View convertView,</span></span></span><br><span class="line"><span class="function"><span class="params">        ViewGroup parent)</span> </span>{</span><br><span class="line">    ViewHolder holder;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    holder.position = position;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">new</span> ThumbnailTask(position, holder)</span><br><span class="line">            .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, <span class="keyword">null</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> convertView;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ThumbnailTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> mPosition;</span><br><span class="line">    <span class="keyword">private</span> ViewHolder mHolder;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ThumbnailTask</span><span class="params">(<span class="keyword">int</span> position, ViewHolder holder)</span> </span>{</span><br><span class="line">        mPosition = position;</span><br><span class="line">        mHolder = holder;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Cursor <span class="title">doInBackground</span><span class="params">(Void... arg0)</span> </span>{</span><br><span class="line">        <span class="comment">// Download bitmap here</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Bitmap bitmap)</span> </span>{</span><br><span class="line">        <span class="keyword">if</span> (mHolder.position == mPosition) {</span><br><span class="line">            mHolder.thumbnail.setImageBitmap(bitmap);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ViewHolder</span> </span>{</span><br><span class="line">    <span class="keyword">public</span> ImageView thumbnail;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> position;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="人机交互知识"><a href="#人机交互知识" class="headerlink" title="人机交互知识"></a>人机交互知识</h1><p>做到在每一行异步加载很多资源，是一个高性能的<em>ListView</em>的必经之路。但是，在滑动屏幕时，如果你一味的在每一个*getView()*调用里面都去启动一个异步的操作，造成的结果就是你会浪费大量资源。因为行被频繁回收，造成大部分返回的结果会被丢弃。</p>
+<h1 id="人机交互知识"><a class="markdownIt-Anchor" href="#人机交互知识"></a> 人机交互知识</h1>
+<p>做到在每一行异步加载很多资源，是一个高性能的<em>ListView</em>的必经之路。但是，在滑动屏幕时，如果你一味的在每一个*getView()*调用里面都去启动一个异步的操作，造成的结果就是你会浪费大量资源。因为行被频繁回收，造成大部分返回的结果会被丢弃。</p>
 <p>考虑到实际的人机交互情况，在<em>ListView</em>适配器中，在每一行中都不应该去触发任何异步操作。也就是说，在<em>ListView</em>中有fling(快速滑动)操作时，启动任何异步操作都没有任何意义。一旦滚动停止或即将停止，才是开始真正显示每行的内容的时候。</p>
-<p>我不会发布一个代码示例贴在这里，因为其中涉及到的代码太多。Romain Guy写了一个很经典的应用：<a target="_blank" rel="noopener" href="http://code.google.com/p/shelves/">Shelves app</a>，其中有一个很好的的<a target="_blank" rel="noopener" href="https://code.google.com/p/shelves/source/browse/trunk/Shelves/src/org/curiouscreature/android/shelves/activity/ShelvesActivity.java">示例</a>。当**<em>GridView**</em>停止滑动时不做其他事情时，它就开始触发从而去异步加载书的封面资源。即使在滑动时，你也可以展示缓存中的内容，通过使用memory cache来平衡交互。这真是个好主意！</p>
-<h1 id="以上"><a href="#以上" class="headerlink" title="以上"></a>以上</h1><p>我强烈推荐你看下Romain Guy和Adam Powell的关于<em>ListView</em>的<a target="_blank" rel="noopener" href="http://www.youtube.com/watch?v=wDBM6wVEO70">讨论</a>，里面涵盖了很多这篇文章的东西。你可以看看<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=org.lucasr.pattrn">Pattrn</a>，可以看到这里面的几个技巧是如何在应用中运用的。</p>
+<p>我不会发布一个代码示例贴在这里，因为其中涉及到的代码太多。Romain Guy写了一个很经典的应用：<a target="_blank" rel="noopener" href="http://code.google.com/p/shelves/">Shelves app</a>，其中有一个很好的的<a target="_blank" rel="noopener" href="https://code.google.com/p/shelves/source/browse/trunk/Shelves/src/org/curiouscreature/android/shelves/activity/ShelvesActivity.java">示例</a>。当***GridView***停止滑动时不做其他事情时，它就开始触发从而去异步加载书的封面资源。即使在滑动时，你也可以展示缓存中的内容，通过使用memory cache来平衡交互。这真是个好主意！</p>
+<h1 id="以上"><a class="markdownIt-Anchor" href="#以上"></a> 以上</h1>
+<p>我强烈推荐你看下Romain Guy和Adam Powell的关于<em>ListView</em>的<a target="_blank" rel="noopener" href="http://www.youtube.com/watch?v=wDBM6wVEO70">讨论</a>，里面涵盖了很多这篇文章的东西。你可以看看<a target="_blank" rel="noopener" href="https://play.google.com/store/apps/details?id=org.lucasr.pattrn">Pattrn</a>，可以看到这里面的几个技巧是如何在应用中运用的。</p>
 <p>希望它是你在Android开发中一个很有用的参考:-)</p>
-<p><strong><em>Long Luo at PM17:30 Feb. 14th, 2014 @Shenzhen, China.</em></strong></p>
+<p><em><strong>Long Luo at PM17:30 Feb. 14th, 2014 @Shenzhen, China.</strong></em></p>
 
     </div>
 
@@ -543,13 +546,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -719,6 +722,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

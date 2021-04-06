@@ -25,12 +25,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第七篇: 大话结构体之七：struct中0元素数组的意义在哪里？   上一回大话结构体之六：无即是有，没有成员变量的Struct(结构体)，我们在文章的结尾留了一个悬念： —为什么0元素数组在class和struct结构体之外定义就是错误的，而在class和struct中定义就是">
+<meta name="description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第七篇: 大话结构体之七：struct中0元素数组的意义在哪里？   上一回大话结构体之六：无即是有，没有成员变量的Struct(结构体)，我们在文章的结尾留了一个悬念： —为什么0元素数组在class和struct结构体之外定义就是错误的，而在class和struct中定义就是Oka">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大话结构体之七：struct中0元素数组的意义在哪里？">
 <meta property="og:url" content="www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第七篇: 大话结构体之七：struct中0元素数组的意义在哪里？   上一回大话结构体之六：无即是有，没有成员变量的Struct(结构体)，我们在文章的结尾留了一个悬念： —为什么0元素数组在class和struct结构体之外定义就是错误的，而在class和struct中定义就是">
+<meta property="og:description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第七篇: 大话结构体之七：struct中0元素数组的意义在哪里？   上一回大话结构体之六：无即是有，没有成员变量的Struct(结构体)，我们在文章的结尾留了一个悬念： —为什么0元素数组在class和struct结构体之外定义就是错误的，而在class和struct中定义就是Oka">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2013-01-02T20:28:58.000Z">
 <meta property="article:modified_time" content="2020-12-04T03:45:48.278Z">
@@ -227,14 +227,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -387,23 +387,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>By Long Luo</em></strong></p>
+        <p><em><strong>By Long Luo</strong></em></p>
 <blockquote>
-<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第七篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8271856">大话结构体之七：struct中0元素数组的意义在哪里？</a></p>
+<p>前言<br>
+<a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第七篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8271856">大话结构体之七：struct中0元素数组的意义在哪里？</a></p>
 </blockquote>
 <hr>
 <p>上一回<a href="http://www.longluo.me/blog/2013/01/01/Struct-Insight-Chapter-Six-Struct-With-No-Members/">大话结构体之六：无即是有，没有成员变量的Struct(结构体)</a>，我们在文章的结尾留了一个悬念：</p>
 <p>—为什么0元素数组在<code>class</code>和<code>struct</code>结构体之外定义就是错误的，而在<code>class</code>和<code>struct</code>中定义就是Okay的，那么<strong>结构体中的0元素数组意义何在</strong>？</p>
 <a id="more"></a>
-
 <p>打个通俗的比喻，比如一个部门，有部门经理、PM、以及数量众多的苦逼程序猿们，某天部门接到一个项目，于是乎，拉出一个PM及数量未知的程序猿们，开工了：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Department</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">    <span class="keyword">int</span> Manager;</span><br><span class="line">    <span class="keyword">int</span> PM;</span><br><span class="line">    <span class="keyword">int</span> ProgrammerNo[<span class="number">0</span>];</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    Department *pt = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">int</span> Num = <span class="number">5</span>;</span><br><span class="line">    pt = (Department *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Department) + <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * Num);</span><br><span class="line"></span><br><span class="line">    pt-&gt;ProgrammerNo[<span class="number">0</span>] = <span class="number">006</span>;</span><br><span class="line">    pt-&gt;ProgrammerNo[<span class="number">1</span>] = <span class="number">99</span>;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    getchar();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Department</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">int</span> Manager;</span><br><span class="line">	<span class="keyword">int</span> PM;</span><br><span class="line">	<span class="keyword">int</span> ProgrammerNo[<span class="number">0</span>];</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	Department *pt = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">int</span> Num = <span class="number">5</span>;</span><br><span class="line">	pt = (Department *)<span class="built_in">malloc</span>(<span class="keyword">sizeof</span>(Department) + <span class="keyword">sizeof</span>(<span class="keyword">int</span>) * Num);</span><br><span class="line"></span><br><span class="line">	pt-&gt;ProgrammerNo[<span class="number">0</span>] = <span class="number">006</span>;</span><br><span class="line">	pt-&gt;ProgrammerNo[<span class="number">1</span>] = <span class="number">99</span>;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>做一个项目，<strong>程序猿的数量是变化的</strong>，因此我们也就知道</p>
-<p><code>struct</code>中<strong>0元素数组意义就是可以作数量未知的扩展</strong>，所以也称为<strong>flexible arrays</strong>。 </p>
+<p><code>struct</code>中<strong>0元素数组意义就是可以作数量未知的扩展</strong>，所以也称为<strong>flexible arrays</strong>。</p>
 <p>通过系列之五和之六，我们了解了0元素数组的意义。在下一篇中我们将试图揭开<code>struct</code>最复杂和最难的部分：<strong>Struct中的函数和函数指针</strong>。</p>
-<p><strong><em>不要走开，后面更精彩！</em></strong></p>
-<p><strong><em>Updated by Long Luo at 2016-6-11 04:42:01 @Shenzhen, China.</em></strong></p>
+<p><em><strong>不要走开，后面更精彩！</strong></em></p>
+<p><em><strong>Updated by Long Luo at 2016-6-11 04:42:01 @Shenzhen, China.</strong></em></p>
 
     </div>
 
@@ -518,13 +517,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -694,6 +693,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

@@ -25,12 +25,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="By Long Luo 一、重构前的一些缺点 频道显示在VideoListActivity实现的，代码结构不够清晰； 频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间； 后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；  二、重构方案重构方案:  将频道页面独立出">
+<meta name="description" content="By Long Luo  一、重构前的一些缺点  频道显示在VideoListActivity实现的，代码结构不够清晰； 频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间； 后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；   二、重构方案 重构方案:  将频道页">
 <meta property="og:type" content="article">
 <meta property="og:title" content="视频频道页面重构总结">
 <meta property="og:url" content="www.longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo 一、重构前的一些缺点 频道显示在VideoListActivity实现的，代码结构不够清晰； 频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间； 后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；  二、重构方案重构方案:  将频道页面独立出">
+<meta property="og:description" content="By Long Luo  一、重构前的一些缺点  频道显示在VideoListActivity实现的，代码结构不够清晰； 频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间； 后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；   二、重构方案 重构方案:  将频道页">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/Channel_startupTime.png">
 <meta property="og:image" content="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png">
@@ -218,7 +218,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%87%8D%E6%9E%84%E5%89%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BC%BA%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text">一、重构前的一些缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text">二、重构方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text">三、具体实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94"><span class="nav-number">4.</span> <span class="nav-text">四、数据对比</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%EF%BC%9A"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 启动时间：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-TraceView%E5%AF%B9%E6%AF%94%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 TraceView对比：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-%E9%87%8D%E6%9E%84%E4%B9%8B%E5%89%8D%EF%BC%9A"><span class="nav-number">4.2.1.</span> <span class="nav-text">4.2.1 重构之前：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-%E9%87%8D%E6%9E%84%E4%B9%8B%E5%90%8E%EF%BC%9A"><span class="nav-number">4.2.2.</span> <span class="nav-text">4.2.2 重构之后：</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E9%87%8D%E6%9E%84%E5%89%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BC%BA%E7%82%B9"><span class="nav-number">1.</span> <span class="nav-text"> 一、重构前的一些缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88"><span class="nav-number">2.</span> <span class="nav-text"> 二、重构方案</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.</span> <span class="nav-text"> 三、具体实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94"><span class="nav-number">4.</span> <span class="nav-text"> 四、数据对比</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#41-%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4"><span class="nav-number">4.1.</span> <span class="nav-text"> 4.1 启动时间：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#42-traceview%E5%AF%B9%E6%AF%94"><span class="nav-number">4.2.</span> <span class="nav-text"> 4.2 TraceView对比：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#421-%E9%87%8D%E6%9E%84%E4%B9%8B%E5%89%8D"><span class="nav-number">4.2.1.</span> <span class="nav-text"> 4.2.1 重构之前：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#422-%E9%87%8D%E6%9E%84%E4%B9%8B%E5%90%8E"><span class="nav-number">4.2.2.</span> <span class="nav-text"> 4.2.2 重构之后：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -232,14 +232,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -392,39 +392,48 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>By Long Luo</em></strong></p>
-<h1 id="一、重构前的一些缺点"><a href="#一、重构前的一些缺点" class="headerlink" title="一、重构前的一些缺点"></a>一、重构前的一些缺点</h1><ol>
+        <p><em><strong>By Long Luo</strong></em></p>
+<h1 id="一-重构前的一些缺点"><a class="markdownIt-Anchor" href="#一-重构前的一些缺点"></a> 一、重构前的一些缺点</h1>
+<ol>
 <li>频道显示在VideoListActivity实现的，代码结构不够清晰；</li>
 <li>频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间；</li>
 <li>后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；</li>
 </ol>
-<h1 id="二、重构方案"><a href="#二、重构方案" class="headerlink" title="二、重构方案"></a>二、重构方案</h1><p>重构方案:</p>
+<h1 id="二-重构方案"><a class="markdownIt-Anchor" href="#二-重构方案"></a> 二、重构方案</h1>
+<p>重构方案:</p>
 <ol>
 <li>将频道页面独立出来，新建一个ChannelListActivity，作为所有频道页面的Activity，负责所有频道界面的绘制，便于后续扩展；</li>
 <li>针对不同频道，具有不同的布局方式，比如对于需要矩阵式显示的频道，使用矩阵式布局；</li>
 <li>矩阵式布局，替换原有的ListView加GridView显示，提高加载速度；</li>
 </ol>
-<h1 id="三、具体实现"><a href="#三、具体实现" class="headerlink" title="三、具体实现"></a>三、具体实现</h1><p>技术实现方案如下所示：</p>
+<h1 id="三-具体实现"><a class="markdownIt-Anchor" href="#三-具体实现"></a> 三、具体实现</h1>
+<p>技术实现方案如下所示：</p>
 <ol>
 <li>新建ChannelListActivity，在VideoListActivity中用进入频道页的接口替换原有的接口，将相关处理在ChannelListActivity中实现；</li>
 <li>根据传入的频道ID不同，使用**setContentView()**加载不同的布局方式，实现不同频道不同布局显示；</li>
 <li>新建ChannelGridAdapter，替换原有的ChannelListAdapter加ChannelGridListAdapter方式，提高加载速度；</li>
 </ol>
 <a id="more"></a>
-
-<h1 id="四、数据对比"><a href="#四、数据对比" class="headerlink" title="四、数据对比"></a>四、数据对比</h1><p>我们通过TraceView工具比较前后2种方案的区别：</p>
-<h2 id="4-1-启动时间："><a href="#4-1-启动时间：" class="headerlink" title="4.1 启动时间："></a>4.1 启动时间：</h2><p>比较两者启动时间，可以看出重构之后的方案是有大概20ms的提升。</p>
+<h1 id="四-数据对比"><a class="markdownIt-Anchor" href="#四-数据对比"></a> 四、数据对比</h1>
+<p>我们通过TraceView工具比较前后2种方案的区别：</p>
+<h2 id="41-启动时间"><a class="markdownIt-Anchor" href="#41-启动时间"></a> 4.1 启动时间：</h2>
+<p>比较两者启动时间，可以看出重构之后的方案是有大概20ms的提升。</p>
 <p><img src="http://blogresource.qiniudn.com/images/2014/Android/Channel/Channel_startupTime.png" alt="Startup Time"></p>
 <hr>
-<h2 id="4-2-TraceView对比："><a href="#4-2-TraceView对比：" class="headerlink" title="4.2 TraceView对比："></a>4.2 TraceView对比：</h2><p>通过DDMS TraceView工具，我们再比较下2者性能上的区别：</p>
-<h3 id="4-2-1-重构之前："><a href="#4-2-1-重构之前：" class="headerlink" title="4.2.1 重构之前："></a>4.2.1 重构之前：</h3><p>重构之前的在绘制页面时需要绘制ListView，然后在每一个List中在绘制GridView，在TraceView获取到的数据如下：</p>
+<h2 id="42-traceview对比"><a class="markdownIt-Anchor" href="#42-traceview对比"></a> 4.2 TraceView对比：</h2>
+<p>通过DDMS TraceView工具，我们再比较下2者性能上的区别：</p>
+<h3 id="421-重构之前"><a class="markdownIt-Anchor" href="#421-重构之前"></a> 4.2.1 重构之前：</h3>
+<p>重构之前的在绘制页面时需要绘制ListView，然后在每一个List中在绘制GridView，在TraceView获取到的数据如下：</p>
 <p><img src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png" alt="ChannelListAdapter"></p>
 <p><img src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridListAdapter_getView.png" alt="ChannelGridListAdapter"></p>
-<p>从以上可以分析，在ChannelListAdapter的getView()就占据了<strong>1.0%**的Incl Cpu Time, GridView的getView()占据了</strong>6.9%<strong>的Incl Cpu Time，合计占用了</strong>7.9%**的CPU Time。</p>
-<h3 id="4-2-2-重构之后："><a href="#4-2-2-重构之后：" class="headerlink" title="4.2.2 重构之后："></a>4.2.2 重构之后：</h3><p>重构之后，我们仅需要在ChannelGridAdapter中绘制View，测量数据如下：</p>
+<p>从以上可以分析，在ChannelListAdapter的getView()就占据了**1.0%<strong>的Incl Cpu Time, GridView的getView()占据了</strong>6.9%<strong>的Incl Cpu Time，合计占用了</strong>7.9%**的CPU Time。</p>
+<h3 id="422-重构之后"><a class="markdownIt-Anchor" href="#422-重构之后"></a> 4.2.2 重构之后：</h3>
+<p>重构之后，我们仅需要在ChannelGridAdapter中绘制View，测量数据如下：</p>
 <p><img src="http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png" alt="ChannelGridAdapter"></p>
-<p>从上图可以看出，getView()占据的CPU时间仅为**3.2%**，效率大大提高。</p>
-<p><strong><em>Created by Long Luo at 2014/7/1 15:45:01</em></strong><br><strong><em>Completed by Long Luo at 2014/7/2 14:42:29</em></strong><br><strong><em>Modified by Long Luo at 2018年9月27日22点40分 at Hangzhou, China.</em></strong></p>
+<p>从上图可以看出，getView()占据的CPU时间仅为<strong>3.2%</strong>，效率大大提高。</p>
+<p><em><strong>Created by Long Luo at 2014/7/1 15:45:01</strong></em><br>
+<em><strong>Completed by Long Luo at 2014/7/2 14:42:29</strong></em><br>
+<em><strong>Modified by Long Luo at 2018年9月27日22点40分 at Hangzhou, China.</strong></em></p>
 
     </div>
 
@@ -538,13 +547,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -714,6 +723,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

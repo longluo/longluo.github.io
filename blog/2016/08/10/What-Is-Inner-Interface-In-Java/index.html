@@ -25,12 +25,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="1. what is inner interface in java?Inner interface is also called nested interface, which means declare an interfaceinside of another interface. For example, the Entry interface is declared in theMap">
+<meta name="description" content="1. what is inner interface in java? Inner interface is also called nested interface, which means declare an interface inside of another interface. For example, the Entry interface is declared in the">
 <meta property="og:type" content="article">
 <meta property="og:title" content="What Is Inner Interface In Java?">
 <meta property="og:url" content="www.longluo.me/blog/2016/08/10/What-Is-Inner-Interface-In-Java/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="1. what is inner interface in java?Inner interface is also called nested interface, which means declare an interfaceinside of another interface. For example, the Entry interface is declared in theMap">
+<meta property="og:description" content="1. what is inner interface in java? Inner interface is also called nested interface, which means declare an interface inside of another interface. For example, the Entry interface is declared in the">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-08-10T03:45:12.000Z">
 <meta property="article:modified_time" content="2020-12-04T03:45:48.318Z">
@@ -213,7 +213,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-what-is-inner-interface-in-java"><span class="nav-number">1.</span> <span class="nav-text">1. what is inner interface in java?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-why-use-inner-interface"><span class="nav-number">2.</span> <span class="nav-text">2. why use inner interface?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-HOW-INNER-INTERFACE-WORKS-65"><span class="nav-number">3.</span> <span class="nav-text">3. HOW INNER INTERFACE WORKS? 65</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-what-is-inner-interface-in-java"><span class="nav-number">1.</span> <span class="nav-text"> 1. what is inner interface in java?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-why-use-inner-interface"><span class="nav-number">2.</span> <span class="nav-text"> 2. why use inner interface?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-how-inner-interface-works-65"><span class="nav-number">3.</span> <span class="nav-text"> 3. HOW INNER INTERFACE WORKS? 65</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,14 +227,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -387,17 +387,57 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="1-what-is-inner-interface-in-java"><a href="#1-what-is-inner-interface-in-java" class="headerlink" title="1. what is inner interface in java?"></a>1. what is inner interface in java?</h1><p>Inner interface is also called nested interface, which means declare an interface<br>inside of another interface. For example, the Entry interface is declared in the<br>Map interface.</p>
+        <h1 id="1-what-is-inner-interface-in-java"><a class="markdownIt-Anchor" href="#1-what-is-inner-interface-in-java"></a> 1. what is inner interface in java?</h1>
+<p>Inner interface is also called nested interface, which means declare an interface<br>
+inside of another interface. For example, the Entry interface is declared in the<br>
+Map interface.</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Map</span> </span>{</span><br><span class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">Entry</span> </span>{</span><br><span class="line">        <span class="function"><span class="keyword">int</span> <span class="title">getKey</span><span class="params">()</span></span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span>;</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="2-why-use-inner-interface"><a href="#2-why-use-inner-interface" class="headerlink" title="2. why use inner interface?"></a>2. why use inner interface?</h1><p>There are several compelling reasons for using inner interface:</p>
+<h1 id="2-why-use-inner-interface"><a class="markdownIt-Anchor" href="#2-why-use-inner-interface"></a> 2. why use inner interface?</h1>
+<p>There are several compelling reasons for using inner interface:</p>
 <ol>
 <li>It is a way of logically grouping interfaces that are only used in one place.</li>
 <li>It increases encapsulation.</li>
 <li>Nested interfaces can lead to more readable and maintainable code.</li>
 </ol>
-<p>One example of inner interface used in java standard library is <code>java.util.Map</code> and<br><code>Java.util.Map.Entry</code>. Here <code>java.util.Map</code> is used also as a namespace. Entry does<br>not belong to the global scope, which means there are many other entities that are<br>64</p>
-<h1 id="3-HOW-INNER-INTERFACE-WORKS-65"><a href="#3-HOW-INNER-INTERFACE-WORKS-65" class="headerlink" title="3. HOW INNER INTERFACE WORKS? 65"></a>3. HOW INNER INTERFACE WORKS? 65</h1><p>Entries and are not necessary Map’s entries. This indicates that Entry represents<br>entries related to the Map.<br>18.3 how inner interface works?<br>To figure out how inner interface works, we can compare it with nested classes.<br>Nested classes can be considered as a regular method declared in outer class.<br>Since a method can be declared as static or non-static, similarly nested classes can<br>be static and non-static. Static class is like a static method, it can only access outer<br>class members through objects. Non-static class can access any member of the<br>outer class.<br>18.4. A SIMPLE EXAMPLE OF INNER INTERFACE? 66<br>Because an interface can not be instantiated, the inner interface only makes sense<br>if it is static. Therefore, by default inter interface is static, no matter you manually<br>add static or not.<br>18.4 a simple example of inner interface?<br>Map.java<br>public int e r f a c e Map {<br>18.4. A SIMPLE EXAMPLE OF INNER INTERFACE? 67<br>int e r f a c e Entry {<br>int getKey ( ) ;<br>}<br>void c l e a r ( ) ;<br>}<br>MapImpl.java<br>public c l a s s MapImpl implements Map {<br>c l a s s ImplEntry implements Map. Entry {<br>public int getKey ( ) {<br>return 0 ;<br>}<br>}<br>@Override<br>public void c l e a r ( ) {<br>/ / c l e a r<br>}<br>}</p>
+<p>One example of inner interface used in java standard library is <code>java.util.Map</code> and<br>
+<code>Java.util.Map.Entry</code>. Here <code>java.util.Map</code> is used also as a namespace. Entry does<br>
+not belong to the global scope, which means there are many other entities that are<br>
+64</p>
+<h1 id="3-how-inner-interface-works-65"><a class="markdownIt-Anchor" href="#3-how-inner-interface-works-65"></a> 3. HOW INNER INTERFACE WORKS? 65</h1>
+<p>Entries and are not necessary Map’s entries. This indicates that Entry represents<br>
+entries related to the Map.<br>
+18.3 how inner interface works?<br>
+To figure out how inner interface works, we can compare it with nested classes.<br>
+Nested classes can be considered as a regular method declared in outer class.<br>
+Since a method can be declared as static or non-static, similarly nested classes can<br>
+be static and non-static. Static class is like a static method, it can only access outer<br>
+class members through objects. Non-static class can access any member of the<br>
+outer class.<br>
+18.4. A SIMPLE EXAMPLE OF INNER INTERFACE? 66<br>
+Because an interface can not be instantiated, the inner interface only makes sense<br>
+if it is static. Therefore, by default inter interface is static, no matter you manually<br>
+add static or not.<br>
+18.4 a simple example of inner interface?<br>
+Map.java<br>
+public int e r f a c e Map {<br>
+18.4. A SIMPLE EXAMPLE OF INNER INTERFACE? 67<br>
+int e r f a c e Entry {<br>
+int getKey ( ) ;<br>
+}<br>
+void c l e a r ( ) ;<br>
+}<br>
+MapImpl.java<br>
+public c l a s s MapImpl implements Map {<br>
+c l a s s ImplEntry implements Map. Entry {<br>
+public int getKey ( ) {<br>
+return 0 ;<br>
+}<br>
+}<br>
+@Override<br>
+public void c l e a r ( ) {<br>
+/ / c l e a r<br>
+}<br>
+}</p>
 
     </div>
 
@@ -511,13 +551,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -687,6 +727,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

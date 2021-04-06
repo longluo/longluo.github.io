@@ -25,12 +25,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第二篇: 大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化   在上一篇大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？里我们讲了为什么我们要引入Struct这个数据类型，我们了解到Struct是一种聚合数据类型，是为了用户描">
+<meta name="description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第二篇: 大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化   在上一篇大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？里我们讲了为什么我们要引入Struct这个数据类型，我们了解到Struct是一种聚合数据类型，是为了用户描述和解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大话结构体之二：名不正则言不顺---Struct(结构体)的声明、定义及初始化">
 <meta property="og:url" content="www.longluo.me/blog/2012/12/24/Struct-Insight-Chapter-Two-The-Declaration-Definition-And-Initialization-Of-Struct/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo  前言    “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第二篇: 大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化   在上一篇大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？里我们讲了为什么我们要引入Struct这个数据类型，我们了解到Struct是一种聚合数据类型，是为了用户描">
+<meta property="og:description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第二篇: 大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化   在上一篇大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？里我们讲了为什么我们要引入Struct这个数据类型，我们了解到Struct是一种聚合数据类型，是为了用户描述和解">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201212/09/1355020124_4311.png">
 <meta property="article:published_time" content="2012-12-23T16:38:25.000Z">
@@ -216,7 +216,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81Struct%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text">一、Struct的声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Struct%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">二、Struct的定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81C99%E6%A0%87%E5%87%86%E4%B8%8B%E7%9A%84Struct%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">三、C99标准下的Struct的初始化方法</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-struct%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text"> 一、Struct的声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-struct%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text"> 二、Struct的定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-c99%E6%A0%87%E5%87%86%E4%B8%8B%E7%9A%84struct%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text"> 三、C99标准下的Struct的初始化方法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,14 +230,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -390,59 +390,55 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>By Long Luo</em></strong></p>
+        <p><em><strong>By Long Luo</strong></em></p>
 <blockquote>
-<p>前言<br>    <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第二篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267339">大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化</a></p>
+<p>前言<br>
+<a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第二篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267339">大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化</a></p>
 </blockquote>
 <hr>
 <p>在上一篇<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267336">大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？</a>里我们讲了为什么我们要引入Struct这个数据类型，我们了解到Struct是一种聚合数据类型，是为了用户描述和解释一些事物的方便而提出的，Struct是一种用户自定义数据类型，如下图所示：</p>
 <p><img src="http://img.my.csdn.net/uploads/201212/09/1355020124_4311.png" alt="数据类型"></p>
-<p>其实从理论上讲，**<em>数据类型就是人为制订的如何解释内存中的二进制数的协议**</em>，也就是说一个数字对应着一块内存（可能4字节，也可能20字节），而这个数字的类型则是附加信息，<strong>以告诉编译器当发现有对那块内存的操作语句（即某种操作符）时，要如何编写机器指令以实现那个操作</strong>。比如两个char类型的数字进行加法操作符操作，编译器编译出来的机器指令就和两个long类型的数字进行加法操作的不一样，也就是所谓的“如何解释内存中的二进制数的协议”。</p>
-<p>具体到我们之前的例子来说，只是指定了一种结构体类型，它相当于一个模型，但其中并无具体数据，系统也不为之分配实际的内存单元。为了能在程序中使用结构体类型的数据，应当定义结构体类型的变量，并在其中存放具体的数据。 </p>
+<p>其实从理论上讲，<em><strong>数据类型就是人为制订的如何解释内存中的二进制数的协议</strong></em>，也就是说一个数字对应着一块内存（可能4字节，也可能20字节），而这个数字的类型则是附加信息，<strong>以告诉编译器当发现有对那块内存的操作语句（即某种操作符）时，要如何编写机器指令以实现那个操作</strong>。比如两个char类型的数字进行加法操作符操作，编译器编译出来的机器指令就和两个long类型的数字进行加法操作的不一样，也就是所谓的“如何解释内存中的二进制数的协议”。</p>
+<p>具体到我们之前的例子来说，只是指定了一种结构体类型，它相当于一个模型，但其中并无具体数据，系统也不为之分配实际的内存单元。为了能在程序中使用结构体类型的数据，应当定义结构体类型的变量，并在其中存放具体的数据。</p>
 <p>本篇将详细对Struct的声明、定义和初始化进行分析。</p>
 <a id="more"></a>
-
-<h1 id="一、Struct的声明"><a href="#一、Struct的声明" class="headerlink" title="一、Struct的声明"></a>一、Struct的声明</h1><p>要了解Struct的声明，我们需要首先了解<strong>声明的含义</strong>到底是什么？</p>
-<p>—<strong><em>声明是要求编译器产生映射元素的语句</em></strong>。</p>
+<h1 id="一-struct的声明"><a class="markdownIt-Anchor" href="#一-struct的声明"></a> 一、Struct的声明</h1>
+<p>要了解Struct的声明，我们需要首先了解<strong>声明的含义</strong>到底是什么？</p>
+<p>—<em><strong>声明是要求编译器产生映射元素的语句</strong></em>。</p>
 <p>所谓的映射元素，就是前面介绍过的变量及函数，都只有3栏（或3个字段）：类型栏、名字栏和地址栏（成员变量类型的这一栏就放偏移值）。即编译器每当看到声明语句，就生成一个映射元素，并且将对应的地址栏空着，然后留下一些信息以告诉连接器——此*.obj文件（编译器编译源文件后生成的文件）需要一些符号，将这些符号找到后再修改并完善此*.obj文件，最后链接。</p>
 <p>具体到上一回的例子，我们假如在另外一个源文件中需要使用<code>struct ExpectedBoyFriend</code>，那么就需要在该源文件使用之前处使用下面的声明语句：</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">ExpectedBoyFriend</span>;</span></span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="二、Struct的定义"><a href="#二、Struct的定义" class="headerlink" title="二、Struct的定义"></a>二、Struct的定义</h1><p>上一小节我们了解了声明的定义，那么定义是什么呢？</p>
-<p>—定义是要求编译器填充前面声明没有书写的地址栏。<br>也就是说某变量对应的地址，只有在其定义时才知道。</p>
-<p>因此**<em>实际的在栈上分配内存等工作都是由变量的定义完成的，所以才有声明的变量并不分配内存**</em>。但应注意一个重点，定义是<strong>生成映射元素需要的地址</strong>，因此<strong>定义也就说明了它生成的是哪个映射元素的地址</strong>，而如果此时编译器的映射表（即之前说的编译器内部用于记录映射元素的变量表、函数表等）中没有那个映射元素，即还没有相应元素的声明出现过，那么编译器将报错。</p>
+<h1 id="二-struct的定义"><a class="markdownIt-Anchor" href="#二-struct的定义"></a> 二、Struct的定义</h1>
+<p>上一小节我们了解了声明的定义，那么定义是什么呢？</p>
+<p>—定义是要求编译器填充前面声明没有书写的地址栏。<br>
+也就是说某变量对应的地址，只有在其定义时才知道。</p>
+<p>因此<em><strong>实际的在栈上分配内存等工作都是由变量的定义完成的，所以才有声明的变量并不分配内存***。但应注意一个重点，定义是</strong>生成映射元素需要的地址</em>*，因此<strong>定义也就说明了它生成的是哪个映射元素的地址</strong>，而如果此时编译器的映射表（即之前说的编译器内部用于记录映射元素的变量表、函数表等）中没有那个映射元素，即还没有相应元素的声明出现过，那么编译器将报错。</p>
 <p>在这里我们需要说下C和C++在定义Struct的区别， 先看下面2段代码：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SIMPLE</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="keyword">char</span> b;</span><br><span class="line">    <span class="keyword">float</span> c;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">SIMPLE x;</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SIMPLE</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">int</span> a;</span><br><span class="line">	<span class="keyword">char</span> b;</span><br><span class="line">	<span class="keyword">float</span> c;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line">SIMPLE x;</span><br></pre></td></tr></tbody></table></figure>
 <p>再看下面一段源码：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S0</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">    <span class="keyword">char</span> mName[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">int</span> mBornYear;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">S1</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">    <span class="keyword">char</span> mName[<span class="number">10</span>];</span><br><span class="line">    <span class="keyword">int</span> mBornYear;</span><br><span class="line">}</span><br><span class="line">S1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">S0 sa;</span><br><span class="line">S1 sb;</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">S0</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">char</span> mName[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">int</span> mBornYear;</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">S1</span></span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	<span class="keyword">char</span> mName[<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">int</span> mBornYear;</span><br><span class="line">}</span><br><span class="line">S1;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">S0 sa;</span><br><span class="line">S1 sb;</span><br></pre></td></tr></tbody></table></figure>
 <p>那么上面的代码中对Struct的定义<strong>都对</strong>了吗？</p>
 <p>熟悉C/C++的同学应该能够马上知道第二段的代码错了。</p>
-<p><strong><em>为什么呢？</em></strong></p>
+<p><em><strong>为什么呢？</strong></em></p>
 <p>因为<strong>C语言中对于Struct的定义</strong>是需要使用<code>struct S0 sa</code>这种方式。</p>
-<h1 id="三、C99标准下的Struct的初始化方法"><a href="#三、C99标准下的Struct的初始化方法" class="headerlink" title="三、C99标准下的Struct的初始化方法"></a>三、C99标准下的Struct的初始化方法</h1><p>Struct的常见初始化方法我们可以在任何一本关于C语言书里面都可以找到，这里就不赘述了。我们先看下面一段代码：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">usb_driver</span> <span class="title">usb_storage_driver</span> = {</span> </span><br><span class="line">    .owner = THIS_MODULE,    </span><br><span class="line">    .name = \<span class="string">"usb-storage\",    </span></span><br><span class="line"><span class="string">    .probe = storage_probe,    </span></span><br><span class="line"><span class="string">    .disconnect = storage_disconnect,    </span></span><br><span class="line"><span class="string">    .id_table = storage_usb_ids, };  </span></span><br></pre></td></tr></tbody></table></figure>
-
+<h1 id="三-c99标准下的struct的初始化方法"><a class="markdownIt-Anchor" href="#三-c99标准下的struct的初始化方法"></a> 三、C99标准下的Struct的初始化方法</h1>
+<p>Struct的常见初始化方法我们可以在任何一本关于C语言书里面都可以找到，这里就不赘述了。我们先看下面一段代码：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">usb_driver</span> <span class="title">usb_storage_driver</span> = {</span> </span><br><span class="line">	.owner = THIS_MODULE,    </span><br><span class="line">	.name = \<span class="string">"usb-storage\",    </span></span><br><span class="line"><span class="string">	.probe = storage_probe,    </span></span><br><span class="line"><span class="string">	.disconnect = storage_disconnect,    </span></span><br><span class="line"><span class="string">	.id_table = storage_usb_ids, };  </span></span><br></pre></td></tr></tbody></table></figure>
 <p>我们在阅读GNU/Linux内核代码时，我们会经常遇到上述这样一种特殊的结构初始化方式，这种方式称为指定初始化。这种初始化方法源自C99标准。</p>
 <p>以下文字摘录了C Primer Plus第五版中相关章节的内容，从而就可以很好的理解Linux内核采用这种方式的优势就在于由此初始化不必严格按照定义时的顺序。</p>
 <p>已知一个结构，定义如下：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> </span></span><br><span class="line"><span class="class">{</span>   </span><br><span class="line">    <span class="keyword">char</span> title[MAXTITLE];   </span><br><span class="line">    <span class="keyword">char</span> author[MAXAUTHOR];   </span><br><span class="line">    <span class="keyword">float</span> value; </span><br><span class="line">};   </span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> </span></span><br><span class="line"><span class="class">{</span>   </span><br><span class="line">	<span class="keyword">char</span> title[MAXTITLE];   </span><br><span class="line">	<span class="keyword">char</span> author[MAXAUTHOR];   </span><br><span class="line">	<span class="keyword">float</span> value; </span><br><span class="line">};   </span><br></pre></td></tr></tbody></table></figure>
 <p>C99支持结构的指定初始化项目，其语法与数组的指定初始化项目近似。只是，结构的指定初始化项目使用点运算符和成员名（而不是方括号和索引值）来标识具体的元素。例如，只初始化<code>book</code>结构的成员<code>value</code>，可以这样做：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">surprise</span> = </span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">    .value = <span class="number">10.99</span> </span><br><span class="line">};   </span><br></pre></td></tr></tbody></table></figure>
-
-<p>可以按照任意的顺序使用指定初始化项目：   </p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">gift</span> = </span></span><br><span class="line"><span class="class">{</span> </span><br><span class="line">    .value = <span class="number">25.99</span>,                  </span><br><span class="line">    .author = \<span class="string">"James Broadfool\",                  </span></span><br><span class="line"><span class="string">    .title = \"Rue for the Toad\"</span></span><br><span class="line"><span class="string">};  </span></span><br></pre></td></tr></tbody></table></figure>
-
-<p>正像数组一样，跟在一个指定初始化项目之后的常规初始化项目为跟在指定成员后的成员提供了初始值。另外，对特定成员的最后一次赋值是它实际获得的值。例如，考虑下列声明：   </p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">gift</span> = </span></span><br><span class="line"><span class="class">{</span> </span><br><span class="line">    .value = <span class="number">18.90</span>,                  </span><br><span class="line">    .author = \<span class="string">"hilionna pestle\",                  </span></span><br><span class="line"><span class="string">    0.25</span></span><br><span class="line"><span class="string">};  </span></span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">surprise</span> = </span></span><br><span class="line"><span class="class">{</span></span><br><span class="line">	.value = <span class="number">10.99</span> </span><br><span class="line">};   </span><br></pre></td></tr></tbody></table></figure>
+<p>可以按照任意的顺序使用指定初始化项目：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">gift</span> = </span></span><br><span class="line"><span class="class">{</span> </span><br><span class="line">	.value = <span class="number">25.99</span>,                  </span><br><span class="line">	.author = \<span class="string">"James Broadfool\",                  </span></span><br><span class="line"><span class="string">	.title = \"Rue for the Toad\"</span></span><br><span class="line"><span class="string">};  </span></span><br></pre></td></tr></tbody></table></figure>
+<p>正像数组一样，跟在一个指定初始化项目之后的常规初始化项目为跟在指定成员后的成员提供了初始值。另外，对特定成员的最后一次赋值是它实际获得的值。例如，考虑下列声明：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Book</span> <span class="title">gift</span> = </span></span><br><span class="line"><span class="class">{</span> </span><br><span class="line">	.value = <span class="number">18.90</span>,                  </span><br><span class="line">	.author = \<span class="string">"hilionna pestle\",                  </span></span><br><span class="line"><span class="string">	0.25</span></span><br><span class="line"><span class="string">};  </span></span><br></pre></td></tr></tbody></table></figure>
 <p>这将把值0.25赋给成员value，因为它在结构声明中紧跟在author成员之后。新的值0.25代替了早先的赋值18.90。</p>
 <p>这一篇内容会比较枯燥，大量的代码及大段的文字内容可能会让你比较迷糊，但还是多看看，看懂它们。</p>
 <p>我们知道<code>C</code>里面只有<code>Struct</code>，而在<code>C++</code>里面则引入了<strong>Class</strong>和<strong>Struct</strong>，那么我们就要问了，<code>C++</code>中的<strong>Class</strong>和<strong>Struct</strong>有什么区别呢？</p>
 <p>答案将在下一篇里揭晓！</p>
-<p><strong><em>By Long Luo transfer at 2016-6-8 21:11:36 @Shenzhen, China.</em></strong></p>
+<p><em><strong>By Long Luo transfer at 2016-6-8 21:11:36 @Shenzhen, China.</strong></em></p>
 
     </div>
 
@@ -557,13 +553,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -733,6 +729,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

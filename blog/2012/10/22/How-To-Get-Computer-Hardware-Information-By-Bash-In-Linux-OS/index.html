@@ -227,14 +227,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -387,7 +387,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>By Long Luo</em></strong></p>
+        <p><em><strong>By Long Luo</strong></em></p>
 <blockquote>
 <p>这篇文章是2012年在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上写的，<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8100270">Linux下获取电脑硬件配置信息的bash脚本代码</a>。</p>
 </blockquote>
@@ -395,12 +395,9 @@
 <p>最近由于要获取几台Linux服务器的硬件配置信息，就写了一个获取硬件配置信息的脚本代码，可以获取CPU、内存、硬盘等硬件信息。</p>
 <p>使用这个脚本文件，就可以一次性输出代码如下所示：</p>
 <a id="more"></a>
-
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#    Description:</span></span><br><span class="line"><span class="comment">#        Used to get the hardware config information.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#    History:</span></span><br><span class="line"><span class="comment">#        tcpipstack, 2012/09/04, created.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------------------------------------------------------------------------------------------</span></span><br><span class="line">fn_get_cpu_info()</span><br><span class="line">{</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"\n    CPU Num is: "</span>`grep -c <span class="string">'model name'</span> /proc/cpuinfo`</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"`cat /proc/cpuinfo | grep processor | wc -l`"</span></span><br><span class="line">    <span class="comment">#echo `cat /proc/cpuinfo | grep 'model name' | sed 's'`</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">fn_get_disk_info()</span><br><span class="line">{</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"\n    Disk Information: "</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> `df -h | grep /dev | awk <span class="string">'{print $5 "-" $6 "-" $2 "-" $4}'</span> | sed <span class="string">'s/%//g'</span>`</span><br><span class="line">    <span class="keyword">do</span></span><br><span class="line">        disk_status=(<span class="variable">${x//"-"/" "}</span>)</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"Disk Directory <span class="variable">${disk_status[1]}</span>    DiskTotal=<span class="variable">${disk_status[2]}</span>    DiskUsed=<span class="variable">${disk_status[3]}</span>"</span></span><br><span class="line">    <span class="keyword">done</span>    </span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">fn_get_mem_info()</span><br><span class="line">{</span><br><span class="line">    MemTotal=`free -m | grep Mem | awk <span class="string">'{print  $2}'</span>`</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"\n    Memory is: <span class="variable">${MemTotal}</span> MB "</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\n -----------This Computer's Hardware Config Information is: -----------\n"</span></span><br><span class="line">fn_get_disk_info</span><br><span class="line">fn_get_cpu_info</span><br><span class="line">fn_get_mem_info</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\n -----------End -----------\n"</span></span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#	Description:</span></span><br><span class="line"><span class="comment">#		Used to get the hardware config information.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#	History:</span></span><br><span class="line"><span class="comment">#		tcpipstack, 2012/09/04, created.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------------------------------------------------------------------------------------------</span></span><br><span class="line">fn_get_cpu_info()</span><br><span class="line">{</span><br><span class="line">	<span class="built_in">echo</span> -e <span class="string">"\n	CPU Num is: "</span>`grep -c <span class="string">'model name'</span> /proc/cpuinfo`</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"`cat /proc/cpuinfo | grep processor | wc -l`"</span></span><br><span class="line">	<span class="comment">#echo `cat /proc/cpuinfo | grep 'model name' | sed 's'`</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">fn_get_disk_info()</span><br><span class="line">{</span><br><span class="line">	<span class="built_in">echo</span> -e <span class="string">"\n	Disk Information: "</span></span><br><span class="line">	<span class="keyword">for</span> x <span class="keyword">in</span> `df -h | grep /dev | awk <span class="string">'{print $5 "-" $6 "-" $2 "-" $4}'</span> | sed <span class="string">'s/%//g'</span>`</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">		disk_status=(<span class="variable">${x//"-"/" "}</span>)</span><br><span class="line">		<span class="built_in">echo</span> <span class="string">"Disk Directory <span class="variable">${disk_status[1]}</span>	DiskTotal=<span class="variable">${disk_status[2]}</span>	DiskUsed=<span class="variable">${disk_status[3]}</span>"</span></span><br><span class="line">	<span class="keyword">done</span>	</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">fn_get_mem_info()</span><br><span class="line">{</span><br><span class="line">	MemTotal=`free -m | grep Mem | awk <span class="string">'{print  $2}'</span>`</span><br><span class="line">	<span class="built_in">echo</span> -e <span class="string">"\n	Memory is: <span class="variable">${MemTotal}</span> MB "</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">#-----------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\n -----------This Computer's Hardware Config Information is: -----------\n"</span></span><br><span class="line">fn_get_disk_info</span><br><span class="line">fn_get_cpu_info</span><br><span class="line">fn_get_mem_info</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"\n -----------End -----------\n"</span></span><br></pre></td></tr></tbody></table></figure>
 <p>在一台Win7电脑上运行此脚本，输出硬件配置信息如下所示：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-----------This Computer's Hardware Config Information is: -----------</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">       Disk Information: </span><br><span class="line"></span><br><span class="line">       CPU Num is: 4</span><br><span class="line"></span><br><span class="line">       Memory is:  8096 MB</span><br><span class="line"></span><br><span class="line">-----------End -----------</span><br></pre></td></tr></tbody></table></figure>
-
 <p>以上。</p>
 
     </div>
@@ -516,13 +513,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -692,6 +689,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

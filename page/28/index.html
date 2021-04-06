@@ -223,14 +223,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -297,129 +297,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/" class="post-title-link" itemprop="url">iOS编程基础: Hello World App是如何运作的?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-05-05 19:11:03" itemprop="dateCreated datePublished" datetime="2014-05-05T19:11:03+08:00">2014-05-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/" class="post-meta-item leancloud_visitors" data-flag-title="iOS编程基础: Hello World App是如何运作的?" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>翻译 By Long Luo</em></strong></p>
-<p>原文链接：<a target="_blank" rel="noopener" href="http://www.appcoda.com/ios-programming-basic-how-does-the-hello-world-app-work/">iOS Programming Basic: How Does the Hello World App Work?</a></p>
-<pre><code>译者注：
-1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
-2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.</code></pre>
-<p>我希望你享受了第一个**<em>iOS编程教程**</em>，同时已经创造了你的第一个App。在进入下一教程以及制作一个更复杂的App之前，我们有必要回过头，分析这个Hello World App。对于你理解一些Objective-C语言的语法和App的内部工作机制有很大帮助。</p>
-<p>目前为止，想必你已经按照教程完成了你的第一个Hello World App。不过，当你完成了这个教程之后，你脑海里肯定冒出了更多疑问：</p>
-<ul>
-<li><strong>xib,.h,.m</strong>文件是做什么用的？</li>
-<li>在<code>showMessage</code>内部的代码是什么？用什么作用？</li>
-<li>当你按下<code>Hello World</code>的按钮发生了什么呢？按钮是如何触发了显示消息的动作呢?</li>
-<li>Xcode中的<code>Run</code>按钮是如何运作的？</li>
-</ul>
-<p>我希望你已经对Xcode IDE开发环境比较熟悉了，这样我就不用再解释一遍上面的内容了。对于每个开发者来说，理解代码的内部细节和抓住基本概念对于iOS编程是很有必要的。对于某些技术概念，如果你没有丝毫的编程背景来说，理解一些技术概念是有一定难度的。但是，别担心，这里仅仅是一个开始。如果你继续学习后续的教程，写出更多的代码，你就能更好的理解iOS编程。尽你所能努力学习更多知识吧！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2014/05/05/ios_programming_basic_how_does_the_hello_world_app_work/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -505,9 +382,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>2014年的51 3天假期，有2个上午都去学车去了，因为不久之后我就要去考试了，总之呢，很多事情都是做的越早越好。今天把科目二考试的一些**<em>注意事项**</em>给记下来：</p>
-<h1 id="0-准备工作"><a href="#0-准备工作" class="headerlink" title="0. 准备工作"></a>0. 准备工作</h1><p>上车之后，第一步是调好靠背，<code>后视镜</code>，注意座椅不要调到太靠前，系好安全带。后视镜要保持后轮车毂在后视镜中间位置，把手在后视镜上方。</p>
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>2014年的51 3天假期，有2个上午都去学车去了，因为不久之后我就要去考试了，总之呢，很多事情都是做的越早越好。今天把科目二考试的一些***注意事项***给记下来：</p>
+<h1 id="0-准备工作"><a class="markdownIt-Anchor" href="#0-准备工作"></a> 0. 准备工作</h1>
+<p>上车之后，第一步是调好靠背，<code>后视镜</code>，注意座椅不要调到太靠前，系好安全带。后视镜要保持后轮车毂在后视镜中间位置，把手在后视镜上方。</p>
 <p>松手刹，踩住离合器和刹车，离合器踩到底，挂一档起步，<code>慢慢松离合器，直到车头开始震动，离合不动，慢慢松刹车</code>，车辆起步。</p>
 <p>最重要的是要<strong>踩好离合器</strong>，保持<strong>很慢的速度</strong>，因为速度慢了可以慢慢调整，快了的话就没办法调整了。</p>
           <!--noindex-->
@@ -619,12 +497,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
+          <p><em><strong>By Long Luo</strong></em></p>
 <p>最近遇到一个算法题：</p>
 <blockquote>
-<p>仿照Excel的列编号，给出一个数字，输出该列编号字符串。<br>例如：A对应1，Z对应26，AA对应27，AZ对应52 ……</p>
+<p>仿照Excel的列编号，给出一个数字，输出该列编号字符串。<br>
+例如：A对应1，Z对应26，AA对应27，AZ对应52 …</p>
 </blockquote>
-<p>这个题目是一个典型的**<em>26进制**</em>思路去处理，一个整数除26然后但是这个题目里面有很多陷阱，在1, 26, 52等特殊情况进行考虑，经过晚上接近半个多小时的编写，完成的代码如下：</p>
+<p>这个题目是一个典型的***26进制***思路去处理，一个整数除26然后但是这个题目里面有很多陷阱，在1, 26, 52等特殊情况进行考虑，经过晚上接近半个多小时的编写，完成的代码如下：</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2014/05/02/algorithm_excel_row_number_string/#more" rel="contents">
@@ -734,17 +613,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
+          <p><em><strong>By Long Luo</strong></em></p>
 <p>下面列举一些收藏的资源，用于学习参考：</p>
-<h1 id="1-Android-API-Guides"><a href="#1-Android-API-Guides" class="headerlink" title="1. Android API Guides"></a>1. Android API Guides</h1><ol>
+<h1 id="1-android-api-guides"><a class="markdownIt-Anchor" href="#1-android-api-guides"></a> 1. Android API Guides</h1>
+<ol>
 <li><a target="_blank" rel="noopener" href="http://developer.android.com/guide/components/index.html" title="Android API Guides"><strong>Android</strong> API Guides:</a></li>
 <li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=android/reference" title="OSChina Android API Guides"><strong>OSChina</strong> Android API Guides：</a></li>
 </ol>
-<h1 id="2-Java-Develop-Kit-References"><a href="#2-Java-Develop-Kit-References" class="headerlink" title="2. Java Develop Kit References"></a>2. Java Develop Kit References</h1><ol>
+<h1 id="2-java-develop-kit-references"><a class="markdownIt-Anchor" href="#2-java-develop-kit-references"></a> 2. Java Develop Kit References</h1>
+<ol>
 <li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" title="JDK7 English"><strong>JDK7</strong> English：</a></li>
 <li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=jdk-zh" title="JDK6 Chinese API"><strong>JDK6</strong> Chinese API：</a></li>
 </ol>
-<h1 id="3-Performances"><a href="#3-Performances" class="headerlink" title="3. Performances"></a>3. Performances</h1><ol>
+<h1 id="3-performances"><a class="markdownIt-Anchor" href="#3-performances"></a> 3. Performances</h1>
+<ol>
 <li><a target="_blank" rel="noopener" href="http://developer.android.com/training/best-performance.html" title="Best Practices for Performance">Best Practices for Performance：</a></li>
 <li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/performance/" title="性能优化系列总篇">性能优化系列总篇</a></li>
 <li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/android-imagecache/">图片ImageCache技术</a></li>
@@ -861,11 +743,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
+          <p><em><strong>By Long Luo</strong></em></p>
 <p>周星驰的电影《功夫》里面借火云邪神之口说出了一句至理名言：“<strong>天下武功，唯快不破</strong>”。</p>
 <p>在移动互联网时代，同样如此，留给一个公司的窗口往往只有很短的时间，如何把握住这个时机，迅速开发出产品，成为至关重要的一环。相对传统互联网时代的PC产品，<strong>用户对移动端产品的容忍度更低</strong>。而一款移动应用在推出的时候可能只是接近完成的状态，这就需要通过<strong>快速的迭代开发来更新产品，不断完善产品来留住用户</strong>。同时，通过更新产品也能唤醒一些沉默用户，让一些原本下载了应用但使用次数非常少的用户给该应用多一次机会。</p>
-<p>所以**<em>快速迭代**</em>成为移动互联网时代的一个重要生存法则。</p>
-<h1 id="1-为什么需要性能优化？"><a href="#1-为什么需要性能优化？" class="headerlink" title="1. 为什么需要性能优化？"></a>1. 为什么需要性能优化？</h1><p>上面说到，在时间窗口期内开发出产品是极端重要的，但是虽然基本功能我们实现了，但是开发出来的产品代码运行的效率怎么样呢？我们的App用户给用户的体验如何呢？</p>
+<p>所以***快速迭代***成为移动互联网时代的一个重要生存法则。</p>
+<h1 id="1-为什么需要性能优化"><a class="markdownIt-Anchor" href="#1-为什么需要性能优化"></a> 1. 为什么需要性能优化？</h1>
+<p>上面说到，在时间窗口期内开发出产品是极端重要的，但是虽然基本功能我们实现了，但是开发出来的产品代码运行的效率怎么样呢？我们的App用户给用户的体验如何呢？</p>
 <ul>
 <li>我们的App在低端机上经常ANR、闪退、卡顿等</li>
 <li>我们的App在其他分辨率上显示惨不忍睹？</li>
@@ -873,8 +756,8 @@
 <li>…</li>
 </ul>
 <p>我们的App体验如此之差，导致大量的用户流失。这些迫使我们认识到性能优化是非常重要，某种程度上甚至超过了新功能的开发。</p>
-<p>也验证了一句话：“**<em>别人有的我们也有，而且比他们的要好要快。**</em>”</p>
-<p>做Android开发已经3年了，期间也开发了不少App了，最开始写App的时候，只追求迅速完成所需要的功能，后来随着对相关知识的熟悉，再回头看之前写的代码，也知道有哪些改进和优化的手段了。**<em>性能优化**</em>，一方面需要自身能力的提高，另外一方面，也需要有意识去学习优化技术，并应用于自身项目的开发中。</p>
+<p>也验证了一句话：“***别人有的我们也有，而且比他们的要好要快。***”</p>
+<p>做Android开发已经3年了，期间也开发了不少App了，最开始写App的时候，只追求迅速完成所需要的功能，后来随着对相关知识的熟悉，再回头看之前写的代码，也知道有哪些改进和优化的手段了。<em><strong>性能优化</strong></em>，一方面需要自身能力的提高，另外一方面，也需要有意识去学习优化技术，并应用于自身项目的开发中。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2014/04/07/tips_for_performances_optimization_on_build_an_android_app_draft/#more" rel="contents">
@@ -984,10 +867,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
+          <p><em><strong>By Long Luo</strong></em></p>
 <p>从小到大，虽然玩过的游戏不少，但是从写程序开始，目前为此仅仅写过2个游戏。其一是2011年在MTK平台下写的贪食蛇，其二是2010年在嵌入式开发板上写过一个迷宫的游戏。第一个代码量大概有3000行左右，第二个有2000行左右。</p>
 <p>这2个游戏都很简单，而且网上有很多现成的例子可供参考，因此难度也比较低。</p>
-<p>这2天把拖延了好久的**<em>《Android应用开发揭秘》**</em>的游戏引擎的那一章看完了，收获还是很大，在此写一篇读书笔记。</p>
+<p>这2天把拖延了好久的***《Android应用开发揭秘》***的游戏引擎的那一章看完了，收获还是很大，在此写一篇读书笔记。</p>
 <p>关于Game Engine，我能想到的几个问题：</p>
 <ol>
 <li>游戏引擎是什么？</li>
@@ -1088,7 +971,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>936</span>
+      <span>934</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1106,9 +989,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
-<p>最近一个月在驾校学车，前2次去练车，总是**<em>不得要领**</em>，连曲线行驶开不好，被教练狂K。经历了当学渣的痛苦之后，痛定思痛，立志成为<strong>学霸</strong>。</p>
-<h1 id="一、-面临问题："><a href="#一、-面临问题：" class="headerlink" title="一、 面临问题："></a>一、 面临问题：</h1><p>我分析遇到的问题之后，得出我面临的几个问题：</p>
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>最近一个月在驾校学车，前2次去练车，总是<em><strong>不得要领***，连曲线行驶开不好，被教练狂K。经历了当学渣的痛苦之后，痛定思痛，立志成为</strong>学霸</em>*。</p>
+<h1 id="一-面临问题"><a class="markdownIt-Anchor" href="#一-面临问题"></a> 一、 面临问题：</h1>
+<p>我分析遇到的问题之后，得出我面临的几个问题：</p>
 <ol>
 <li>方向盘打法不规范；</li>
 <li>离合器踩的不到位，车速偏快；</li>
@@ -1208,7 +1092,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>959</span>
+      <span>967</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1226,12 +1110,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong><em>翻译 By Long Luo</em></strong></p>
+          <p><em><strong>翻译 By Long Luo</strong></em></p>
 <p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2013/01/06/introducing-smoothie/">Introducing Smoothie</a></p>
 <p><img src="http://blogresource.qiniudn.com/2014/Android/smoothie.png" alt="smoothie"></p>
 <p><a target="_blank" rel="noopener" href="http://pattrnapp.com/">Pattrn</a> UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie">Smoothie</a>。</p>
-<p><strong><em>Smoothie</em></strong>提供了一个简单的API来异步加载<em>ListView/GridView</em>的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。</p>
-<p><strong><em>Smoothie</em></strong>是<strong>手势识别</strong>：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，**<em>Smoothie**</em>使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。</p>
+<p>***Smoothie*<em><em>提供了一个简单的API来异步加载</em>ListView/GridView</em>的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。</p>
+<p>**<em>Smoothie<em><strong>是</strong>手势识别</em></em>：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，***Smoothie***使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。</p>
 <p>那么，怎么使用它呢？很简单：</p>
           <!--noindex-->
             <div class="post-button">
@@ -1342,13 +1226,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong><em>翻译 Long Luo</em></strong></p>
+          <p><em><strong>翻译 Long Luo</strong></em></p>
 <p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2012/04/05/performance-tips-for-androids-listview/">Performance Tips for Android’s ListView</a></p>
 <pre><code>译者注：
 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正；
-3. inflation这个词一直找不到特别好的中文翻译。</code></pre>
-<h1 id="ListView如何运作的？"><a href="#ListView如何运作的？" class="headerlink" title="ListView如何运作的？"></a>ListView如何运作的？</h1><p><em>ListView</em>是设计应用于对<strong>可扩展性和高性能要求</strong>的地方。实际上，这就意味着<em>ListView</em>有以下2个要求：</p>
+3. inflation这个词一直找不到特别好的中文翻译。
+</code></pre>
+<h1 id="listview如何运作的"><a class="markdownIt-Anchor" href="#listview如何运作的"></a> ListView如何运作的？</h1>
+<p><em>ListView</em>是设计应用于对<strong>可扩展性和高性能要求</strong>的地方。实际上，这就意味着<em>ListView</em>有以下2个要求：</p>
 <ol>
 <li>尽可能少的创建View；</li>
 <li>只是绘制和布局在屏幕上可见的子View。</li>
@@ -1450,7 +1336,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5k</span>
+      <span>5.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1468,34 +1354,162 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong><em>By Long Luo</em></strong></p>
+          <p><em><strong>By Long Luo</strong></em></p>
 <p>在一个Android应用中，Layout是开发中的一个很重要环节，Layout是组成UI不可缺少的一部分。</p>
-<h1 id="Android-UI核心类"><a href="#Android-UI核心类" class="headerlink" title="Android UI核心类"></a>Android UI核心类</h1><p>在Android应用构建UI的方法有以下几种：</p>
+<h1 id="android-ui核心类"><a class="markdownIt-Anchor" href="#android-ui核心类"></a> Android UI核心类</h1>
+<p>在Android应用构建UI的方法有以下几种：</p>
 <ol>
 <li>单纯使用JAVA代码</li>
 <li>使用XML完全定义界面</li>
 <li>结合使用两者，在XML中定义，在JAVA中引用和修改</li>
 </ol>
-<h2 id="Android-SDK中关于UI的核心类："><a href="#Android-SDK中关于UI的核心类：" class="headerlink" title="Android SDK中关于UI的核心类："></a>Android SDK中关于UI的核心类：</h2><p>Android.view.View和android.view.ViewGroup</p>
+<h2 id="android-sdk中关于ui的核心类"><a class="markdownIt-Anchor" href="#android-sdk中关于ui的核心类"></a> Android SDK中关于UI的核心类：</h2>
+<p>Android.view.View和android.view.ViewGroup</p>
 <p>android中的常见UI控件均会扩展View和ViewGroup其中有一部分是专门用来控制其子View位置和大小，这些类我们称为布局管理器。</p>
-<h3 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h3><ol>
+<h3 id="viewgroup"><a class="markdownIt-Anchor" href="#viewgroup"></a> ViewGroup</h3>
+<ol>
 <li>LayoutParams是ViewGroup内部类，包含了ViewGroup的布局参数，用来告诉它们的父类它们想怎么在父类中布局（大小和位置），所有在LayoutParams及其子类中定义的布局参数在xml中定义都是通过layout_***定义的。</li>
 </ol>
 <p>LayoutParams只提供了两个参数设定：</p>
 <pre><code>layout_width  元素的高度(fill_parent | match_parent | wrap_content | *dip)
-layout_height 元素的宽度(同上)                    </code></pre>
+layout_height 元素的宽度(同上)		 		   
+</code></pre>
 <ol start="2">
 <li>MarginLayoutParams也是ViewGroup一个内部类，它继承了LayoutParams类，用来扩展LayoutParams的属性，设置参数。</li>
 </ol>
 <p>MarginLayoutParams添加了四个参数设定：</p>
 <pre><code>layout_marginLeft       相对于本元素左边界的偏移
-layout_marginRight         相对于本元素右边界的偏移
-layout_marginTop，        相对于本元素上边界的偏移
-layout_marginBottom      相对于本元素下边界的偏移</code></pre>
+layout_marginRight     	相对于本元素右边界的偏移
+layout_marginTop，    	相对于本元素上边界的偏移
+layout_marginBottom  	相对于本元素下边界的偏移
+</code></pre>
 <p>以上的两种Layout参数，所有布局中的子ViewGroup和子View都可以使用</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2014/01/23/android_ui_layout_summay_5_layouts/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/" class="post-title-link" itemprop="url">情歌有多动听，你就有多怀疑?</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-01-21 22:41:43" itemprop="dateCreated datePublished" datetime="2014-01-21T22:41:43+08:00">2014-01-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/" class="post-meta-item leancloud_visitors" data-flag-title="情歌有多动听，你就有多怀疑?" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>最近没怎么写东西的缘故是因为担心自己<strong>看的东西太少，读的东西太少，而想的太多</strong>。2014年的第一月也很快就要过去了，而我还没有对自己过去的一年里做出一点小结，就在这里随便扯几点吧！</p>
+<p>比如我的大学好友雷大才子，精通几门外语，学富五车，不仅文章写得好，又懂音乐，还会写诗作画，更是一名勤劳的Blogger，每次看他的博文，总能学到很多东西。</p>
+<h1 id="一-destiny"><a class="markdownIt-Anchor" href="#一-destiny"></a> 一、Destiny</h1>
+<p>年轻的时候我看到网上一些晒东晒西的帖子，总想：“等我到了他那个年纪，应该比TA出色的多吧！”</p>
+<p>但在工作了几年之后，我不得不认识到：<strong>和一些人相比，一方面由于家庭草根身份出身的巨大差距，另外一方面之前20多年的积累，导致除非出现巨大的机遇，否则人生绝无逆转的可能</strong>。关于这种巨大的差距，包括<strong>眼界、资源、机遇、圈子</strong>等，在第三节里面我会再认真的阐述。</p>
+<p>被认为是20世纪最有影响力的经济学家之一的Frank H. Knight有个著名的观点：“<strong>决定一个人富有的三个条件，一是出身，二是机遇，三是努力，而这三者之中，努力是最微不足道的。</strong>”</p>
+<p>我更喜欢英语的Destiny，因为让我想起一个词:Destination，我想一个人的命运也就意味着这个人一生中最终能到达什么样的地方。<strong>一个人就像森林里的一棵树苗，最初你长在什么地方，加上你的天性，除非特别的机遇，你能够长到多高是可以预见的</strong>。</p>
+<p>我很羡慕凤姐，有其是我这种间歇性缺乏自信的人，更需要学习凤姐的自信和强大的内心，相比漂在大城市的广大千千万屌丝蚁族来说，凤姐完成了大改变，不仅不用再重复父辈的贫困，很大程度的改变了社会地位，也不需要像天朝这种Hard模式活动这么累了。</p>
+<p>即使凤姐不去USA，比起绝大多数打工仔打工妹来说，凤姐上电视台，接受各种采访，人生经历也足够丰富。</p>
+<p>2013的经历也许足够丰富，只是自己缺乏总结，导致又被同样的石头绊倒了2次。是时候好好回顾下了，做出改变。</p>
+<pre><code>除了老婆孩子不能变之后，其他的统统都要变。
+									---李健熙
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1564,13 +1578,13 @@ layout_marginBottom      相对于本元素下边界的偏移</code></pre>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -1740,6 +1754,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
   <script src="//cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
   <script>

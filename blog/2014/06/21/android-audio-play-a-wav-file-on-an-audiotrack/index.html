@@ -25,12 +25,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="翻译 By Long Luo 原文链接：Android Audio: Play a WAV file on an AudioTrack 译者注：    1. 由于这是技术文章，所以有些词句使用原文，表达更准确。    2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.    3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。  如果你已经成功地了解了关">
+<meta name="description" content="翻译 By Long Luo 原文链接：Android Audio: Play a WAV file on an AudioTrack 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正. 3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。  如果你已经成功地了解了关于AudioTra">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?">
 <meta property="og:url" content="www.longluo.me/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="翻译 By Long Luo 原文链接：Android Audio: Play a WAV file on an AudioTrack 译者注：    1. 由于这是技术文章，所以有些词句使用原文，表达更准确。    2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.    3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。  如果你已经成功地了解了关">
+<meta property="og:description" content="翻译 By Long Luo 原文链接：Android Audio: Play a WAV file on an AudioTrack 译者注： 1. 由于这是技术文章，所以有些词句使用原文，表达更准确。 2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正. 3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。  如果你已经成功地了解了关于AudioTra">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2014-06-21T15:15:30.000Z">
 <meta property="article:modified_time" content="2020-12-04T03:45:48.328Z">
@@ -213,7 +213,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86-%E4%B8%80%E4%BA%9B%E6%95%B0%E5%AD%97%E9%9F%B3%E9%A2%91%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.</span> <span class="nav-text">背景知识: 一些数字音频术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WAV%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">WAV文件格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86PCM%E4%BC%A0%E5%85%A5AudioTrack"><span class="nav-number">3.</span> <span class="nav-text">将PCM传入AudioTrack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E7%9F%A5%E8%AF%86-%E4%B8%80%E4%BA%9B%E6%95%B0%E5%AD%97%E9%9F%B3%E9%A2%91%E6%9C%AF%E8%AF%AD"><span class="nav-number">1.</span> <span class="nav-text"> 背景知识: 一些数字音频术语</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wav%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text"> WAV文件格式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86pcm%E4%BC%A0%E5%85%A5audiotrack"><span class="nav-number">3.</span> <span class="nav-text"> 将PCM传入AudioTrack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text"> 总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,14 +227,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -387,25 +387,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>翻译 By Long Luo</em></strong></p>
+        <p><em><strong>翻译 By Long Luo</strong></em></p>
 <p>原文链接：<a target="_blank" rel="noopener" href="http://mindtherobot.com/blog/580/android-audio-play-a-wav-file-on-an-audiotrack/">Android Audio: Play a WAV file on an AudioTrack</a></p>
-<p>译者注：<br>    1. 由于这是技术文章，所以有些词句使用原文，表达更准确。<br>    2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.<br>    3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。</p>
+<p>译者注：<br>
+1. 由于这是技术文章，所以有些词句使用原文，表达更准确。<br>
+2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.<br>
+3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。</p>
 <hr>
 <p>如果你已经成功地了解了关于<strong>AudioTrack</strong>的<a target="_blank" rel="noopener" href="http://mindtherobot.com/blog/555/android-audio-problems-hidden-limitations-and-opensl-es/" title="Android Audio: Problems, Hidden Limitations and OpenSL ES">一些话题</a>，那么你可能享受它带来的好处，例如低延迟（在STATIC(静态)模式），能够生成流式音频（在STREAM(流)模式）以及在播放之前，就能够访问和修改原始声音数据。</p>
-<p>不过，现在的问题是如何从源获取数据。许多应用需要使用的<strong>AudioTrack</strong>并不能简单的生成PCM音频（一个例子，比如<strong>Ethereal Dialpad</strong>或者其他类似的App）。你可能需要从文件源去加载数据，例如<em>WAV</em>或<em>MP3</em>文件。 </p>
+<p>不过，现在的问题是如何从源获取数据。许多应用需要使用的<strong>AudioTrack</strong>并不能简单的生成PCM音频（一个例子，比如<strong>Ethereal Dialpad</strong>或者其他类似的App）。你可能需要从文件源去加载数据，例如<em>WAV</em>或<em>MP3</em>文件。</p>
 <p>不要期望使用<strong>MediaPlayer</strong>，去解码<em>WAV</em>文件和<em>MP3</em>音频。虽然<strong>MediaPlayer</strong>播放这些文件非常好，但是其播放逻辑完全在Native层，同时并没有为我们提供额外选项，允许我们使用其他解码器实现我们的目的。因此，我们必须从手动地从音频文件进行解码出<em>PCM</em>。</p>
 <p>在这篇文章中，将会讨论<strong>WAV</strong>格式文件。而在下一课中，我们将会更进一步，讨论如何从<strong>MP3</strong>文件读取音频。</p>
 <a id="more"></a>
-
-<h1 id="背景知识-一些数字音频术语"><a href="#背景知识-一些数字音频术语" class="headerlink" title="背景知识: 一些数字音频术语"></a>背景知识: 一些数字音频术语</h1><p>如果你的App不是专门为数字音频设计，那么在继续我们的讨论之前，你可能需要先了解一些基本的缩略语。别担心，都很简单，我们不需要对此做深入挖掘。</p>
+<h1 id="背景知识-一些数字音频术语"><a class="markdownIt-Anchor" href="#背景知识-一些数字音频术语"></a> 背景知识: 一些数字音频术语</h1>
+<p>如果你的App不是专门为数字音频设计，那么在继续我们的讨论之前，你可能需要先了解一些基本的缩略语。别担心，都很简单，我们不需要对此做深入挖掘。</p>
 <ul>
-<li><p>PCM(<strong>脉冲调制方式</strong>) - 实现一个物理音频信号变成数字化最简单方法。基本原理就是信号变成了一个数字阵列，而其中<strong>每个数字代表的是声音在特定的时间瞬间的电平</strong>也可以说是能量（振幅）。(如果这种解释在科学上可能不会很准确，那我就只能说声抱歉了）。信不信由你，你可以使用这种方法表示<strong>任何复杂</strong>的声音，而且回放出来也非常精准。在这里，我们将只会谈到线性PCM。在线性PCM中，其中阵列中的每个数字都是原始声音振幅的<strong>线性表示</strong>。在某些情况下，对数映射能够更好地表示原来的声音幅度比例情况 - 但是我们不会讨论那些情况。</p>
+<li>
+<p>PCM(<strong>脉冲调制方式</strong>) - 实现一个物理音频信号变成数字化最简单方法。基本原理就是信号变成了一个数字阵列，而其中<strong>每个数字代表的是声音在特定的时间瞬间的电平</strong>也可以说是能量（振幅）。(如果这种解释在科学上可能不会很准确，那我就只能说声抱歉了）。信不信由你，你可以使用这种方法表示<strong>任何复杂</strong>的声音，而且回放出来也非常精准。在这里，我们将只会谈到线性PCM。在线性PCM中，其中阵列中的每个数字都是原始声音振幅的<strong>线性表示</strong>。在某些情况下，对数映射能够更好地表示原来的声音幅度比例情况 - 但是我们不会讨论那些情况。</p>
 </li>
-<li><p>Sampling rate(采样率)：- 每秒你的数字声音有多少样本（声音幅度用数字表示）。样本越多，你能得到声音质量越好。目前在消费类音频系统目前使用的采样率通常是22050，44100和48000Hz/s。</p>
+<li>
+<p>Sampling rate(采样率)：- 每秒你的数字声音有多少样本（声音幅度用数字表示）。样本越多，你能得到声音质量越好。目前在消费类音频系统目前使用的采样率通常是22050，44100和48000Hz/s。</p>
 </li>
-<li><p>每个样品分辨率/采样大小/位 - 定义表示振幅数字的大小和格式。例如，如果您使用的是8位整数，你只能表达出256级的幅度，所以原来的物理波形将被简化为256个离散电平，与此同时，你将失去一些声音精度也可以说是质量。如果你使用16位，那么声音质量变得更好。事实上，大部分时间你可能会使用16位音频。其他选项包括24位，32位（这些都是Android现在不支持的），或是使用浮点数。</p>
+<li>
+<p>每个样品分辨率/采样大小/位 - 定义表示振幅数字的大小和格式。例如，如果您使用的是8位整数，你只能表达出256级的幅度，所以原来的物理波形将被简化为256个离散电平，与此同时，你将失去一些声音精度也可以说是质量。如果你使用16位，那么声音质量变得更好。事实上，大部分时间你可能会使用16位音频。其他选项包括24位，32位（这些都是Android现在不支持的），或是使用浮点数。</p>
 </li>
-<li><p>声道 - 既可以是单声道，也可以是立体声(2个声道)，或者更多声道(但是Android不支持)。如果你想要有立体声，你需要有立体声音频，就必须要在每个声道都需要有一个独立的PCM数组，相应的信息量也会翻倍。</p>
+<li>
+<p>声道 - 既可以是单声道，也可以是立体声(2个声道)，或者更多声道(但是Android不支持)。如果你想要有立体声，你需要有立体声音频，就必须要在每个声道都需要有一个独立的PCM数组，相应的信息量也会翻倍。</p>
 </li>
 </ul>
 <p>上述定义也有助于你理解特定的格式和长度的音频缓冲区的数据量，以便提前预备缓冲区。也就是你需要一个缓冲区，以用于存储5秒长度以44100Hz采样率的立体声16-bit线性PCM数据。数据计算公式如下所示：</p>
@@ -413,28 +420,30 @@
 <p>这一数额所需的内存可能会让初学者感到惊讶，因为当你往你的磁盘上存储的音频时，一个MP3文件，一个880KB的文件就可以容纳以相同的采样率和分辨率1分钟时长的音轨。这是为什么呢？因为先进的格式，比如MP3格式。因为我们大脑无法分辨识别出一些音频的内容，所以使用了很多复杂的方式在压缩的过程中去掉了这些内容。然而，大多数低等级的音频API，包括Android的<strong>AudioTrack</strong>只能接受线性<strong>PCM</strong>。这就是为什么如果我们不能把整个样品都放在内存中，我们需要将要处理的数据流，循环缓冲区和其他聪明的方式来使用音频API。</p>
 <p>希望这样的解释并没有让你产生困惑，现在让我们继续来实际做一些与Android上的数字音频有关的工作吧！</p>
 <!--more-->
-
-<h1 id="WAV文件格式"><a href="#WAV文件格式" class="headerlink" title="WAV文件格式"></a>WAV文件格式</h1><p>我们的目标是用一个<strong>InputStream</strong>，由其从一个<em>WAV</em>文件加载PCM数据，来提供原始字节数据。然后我们就可以将原始的PCM数据直接推送到使用已经正确的配置好了的<strong>AudioTrack.write</strong>，通过使用**<em>AudioTrack.write()**</em>这个API。</p>
+<h1 id="wav文件格式"><a class="markdownIt-Anchor" href="#wav文件格式"></a> WAV文件格式</h1>
+<p>我们的目标是用一个<strong>InputStream</strong>，由其从一个<em>WAV</em>文件加载PCM数据，来提供原始字节数据。然后我们就可以将原始的PCM数据直接推送到使用已经正确的配置好了的<strong>AudioTrack.write</strong>，通过使用***AudioTrack.write()***这个API。</p>
 <p><em>WAV</em>文件包含一个文件头和具体数据会。我们需要读取文件头以知道诸如采样速率，分辨率等信息。另外，我们通过文件头，也可以知道此格式是否支持。<em>WAV</em>可以封装成多种格式，我们无法全部支持。也许，只是合理的采样率，分辨率和通道的线性<strong>PCM</strong>格式。</p>
 <p><em>WAV</em>格式的细节在互联网上都可以找到，你仅仅需要在Google上搜索下。但是，遗憾的是，我并没有搜索到一个很好的Java库来读取WAV文件，而且可以移植到<strong>Android</strong>下。因此，我自己写了一些简单的代码。</p>
 <p>下面这个方法就是如何读取一个WAV文件的头部：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String RIFF_HEADER = <span class="string">"RIFF"</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String WAVE_HEADER = <span class="string">"WAVE"</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String FMT_HEADER = <span class="string">"fmt "</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DATA_HEADER = <span class="string">"data"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HEADER_SIZE = <span class="number">44</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CHARSET = <span class="string">"ASCII"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* ... */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> WavInfo <span class="title">readHeader</span><span class="params">(InputStream wavStream)</span> <span class="keyword">throws</span> IOException,</span></span><br><span class="line"><span class="function">        DecoderException </span>{</span><br><span class="line"></span><br><span class="line">    ByteBuffer buffer = ByteBuffer.allocate(HEADER_SIZE);</span><br><span class="line">    buffer.order(ByteOrder.LITTLE_ENDIAN);</span><br><span class="line"></span><br><span class="line">    wavStream.read(buffer.array(), buffer.arrayOffset(), buffer.capacity());</span><br><span class="line"></span><br><span class="line">    buffer.rewind();</span><br><span class="line">    buffer.position(buffer.position() + <span class="number">20</span>);</span><br><span class="line">    <span class="keyword">int</span> format = buffer.getShort();</span><br><span class="line">    checkFormat(format == <span class="number">1</span>, <span class="string">"Unsupported encoding: "</span> + format); <span class="comment">// 1 means</span></span><br><span class="line">                                                                    <span class="comment">// Linear</span></span><br><span class="line">                                                                    <span class="comment">// PCM</span></span><br><span class="line">    <span class="keyword">int</span> channels = buffer.getShort();</span><br><span class="line">    checkFormat(channels == <span class="number">1</span> || channels == <span class="number">2</span>, <span class="string">"Unsupported channels: "</span></span><br><span class="line">            + channels);</span><br><span class="line">    <span class="keyword">int</span> rate = buffer.getInt();</span><br><span class="line">    checkFormat(rate &lt;= <span class="number">48000</span> &amp;&amp; rate &gt;= <span class="number">11025</span>, <span class="string">"Unsupported rate: "</span> + rate);</span><br><span class="line">    buffer.position(buffer.position() + <span class="number">6</span>);</span><br><span class="line">    <span class="keyword">int</span> bits = buffer.getShort();</span><br><span class="line">    checkFormat(bits == <span class="number">16</span>, <span class="string">"Unsupported bits: "</span> + bits);</span><br><span class="line">    <span class="keyword">int</span> dataSize = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (buffer.getInt() != <span class="number">0x61746164</span>) { <span class="comment">// "data" marker</span></span><br><span class="line">        Log.d(TAG, <span class="string">"Skipping non-data chunk"</span>);</span><br><span class="line">        <span class="keyword">int</span> size = buffer.getInt();</span><br><span class="line">        wavStream.skip(size);</span><br><span class="line"></span><br><span class="line">        buffer.rewind();</span><br><span class="line">        wavStream.read(buffer.array(), buffer.arrayOffset(), <span class="number">8</span>);</span><br><span class="line">        buffer.rewind();</span><br><span class="line">    }</span><br><span class="line">    dataSize = buffer.getInt();</span><br><span class="line">    checkFormat(dataSize &gt; <span class="number">0</span>, <span class="string">"wrong datasize: "</span> + dataSize);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> WavInfo(<span class="keyword">new</span> FormatSpec(rate, channels == <span class="number">2</span>), dataSize);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String RIFF_HEADER = <span class="string">"RIFF"</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String WAVE_HEADER = <span class="string">"WAVE"</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String FMT_HEADER = <span class="string">"fmt "</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DATA_HEADER = <span class="string">"data"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> HEADER_SIZE = <span class="number">44</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CHARSET = <span class="string">"ASCII"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* ... */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> WavInfo <span class="title">readHeader</span><span class="params">(InputStream wavStream)</span> <span class="keyword">throws</span> IOException,</span></span><br><span class="line"><span class="function">		DecoderException </span>{</span><br><span class="line"></span><br><span class="line">	ByteBuffer buffer = ByteBuffer.allocate(HEADER_SIZE);</span><br><span class="line">	buffer.order(ByteOrder.LITTLE_ENDIAN);</span><br><span class="line"></span><br><span class="line">	wavStream.read(buffer.array(), buffer.arrayOffset(), buffer.capacity());</span><br><span class="line"></span><br><span class="line">	buffer.rewind();</span><br><span class="line">	buffer.position(buffer.position() + <span class="number">20</span>);</span><br><span class="line">	<span class="keyword">int</span> format = buffer.getShort();</span><br><span class="line">	checkFormat(format == <span class="number">1</span>, <span class="string">"Unsupported encoding: "</span> + format); <span class="comment">// 1 means</span></span><br><span class="line">																	<span class="comment">// Linear</span></span><br><span class="line">																	<span class="comment">// PCM</span></span><br><span class="line">	<span class="keyword">int</span> channels = buffer.getShort();</span><br><span class="line">	checkFormat(channels == <span class="number">1</span> || channels == <span class="number">2</span>, <span class="string">"Unsupported channels: "</span></span><br><span class="line">			+ channels);</span><br><span class="line">	<span class="keyword">int</span> rate = buffer.getInt();</span><br><span class="line">	checkFormat(rate &lt;= <span class="number">48000</span> &amp;&amp; rate &gt;= <span class="number">11025</span>, <span class="string">"Unsupported rate: "</span> + rate);</span><br><span class="line">	buffer.position(buffer.position() + <span class="number">6</span>);</span><br><span class="line">	<span class="keyword">int</span> bits = buffer.getShort();</span><br><span class="line">	checkFormat(bits == <span class="number">16</span>, <span class="string">"Unsupported bits: "</span> + bits);</span><br><span class="line">	<span class="keyword">int</span> dataSize = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (buffer.getInt() != <span class="number">0x61746164</span>) { <span class="comment">// "data" marker</span></span><br><span class="line">		Log.d(TAG, <span class="string">"Skipping non-data chunk"</span>);</span><br><span class="line">		<span class="keyword">int</span> size = buffer.getInt();</span><br><span class="line">		wavStream.skip(size);</span><br><span class="line"></span><br><span class="line">		buffer.rewind();</span><br><span class="line">		wavStream.read(buffer.array(), buffer.arrayOffset(), <span class="number">8</span>);</span><br><span class="line">		buffer.rewind();</span><br><span class="line">	}</span><br><span class="line">	dataSize = buffer.getInt();</span><br><span class="line">	checkFormat(dataSize &gt; <span class="number">0</span>, <span class="string">"wrong datasize: "</span> + dataSize);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> WavInfo(<span class="keyword">new</span> FormatSpec(rate, channels == <span class="number">2</span>), dataSize);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>上面的代码中，缺少的部分应该是显而易见的。正如你所看到的，仅仅支持16位，但在你可以修改代码以支持8位（<strong>AudioTrack</strong>不支持任何其他分辨率的）。</p>
 <p>下面这个方法，则是用来读取文件剩余的部分 - <strong>音频数据</strong>。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] readWavPcm(WavInfo info, InputStream stream)</span><br><span class="line">        <span class="keyword">throws</span> IOException {</span><br><span class="line">    <span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[info.getDataSize()];</span><br><span class="line">    stream.read(data, <span class="number">0</span>, data.length);</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">byte</span>[] readWavPcm(WavInfo info, InputStream stream)</span><br><span class="line">		<span class="keyword">throws</span> IOException {</span><br><span class="line">	<span class="keyword">byte</span>[] data = <span class="keyword">new</span> <span class="keyword">byte</span>[info.getDataSize()];</span><br><span class="line">	stream.read(data, <span class="number">0</span>, data.length);</span><br><span class="line">	<span class="keyword">return</span> data;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>我们读取的<strong>WavInfo</strong>结构体，包含采样率，分辨率和声道数已经足够让我们去播放我们读取的音频了。</p>
-<p>如果我们不需要将全部音频数据一次性放入内存中，我们可以使用一个**<em>InputStream**</em>，一点一点地读取。</p>
-<h1 id="将PCM传入AudioTrack"><a href="#将PCM传入AudioTrack" class="headerlink" title="将PCM传入AudioTrack"></a>将PCM传入AudioTrack</h1><p>我们现在面临2种情况，新建一个适合这种格式的<strong>AudioTrack</strong>，或者使用一个已存在的<strong>AudioTrack</strong>，但是可能和我们<em>WAV</em>音频数据的格式不一致。</p>
+<p>如果我们不需要将全部音频数据一次性放入内存中，我们可以使用一个***InputStream***，一点一点地读取。</p>
+<h1 id="将pcm传入audiotrack"><a class="markdownIt-Anchor" href="#将pcm传入audiotrack"></a> 将PCM传入AudioTrack</h1>
+<p>我们现在面临2种情况，新建一个适合这种格式的<strong>AudioTrack</strong>，或者使用一个已存在的<strong>AudioTrack</strong>，但是可能和我们<em>WAV</em>音频数据的格式不一致。</p>
 <p>在第一种情况，事情就很简单了，我们仅仅需要使用<strong>AudioTrack</strong>构造器构造一个我们已经从WAV头部对应的即可。</p>
 <p>第二种情况，我们就需要将我们的音频变成<strong>AudioTrack</strong>需要的目标格式。我们需要做一下几种转换方式：</p>
-<p>如果采样率不同，要么丢弃或复制一个样本以便和目标速率相匹配。如果分辨率是不同的，将源信号分辨率映射到目标分辨率，从16位到8位，反之亦然。如果信道不同，我们要么将立体声声道混合成一个单声道或重复单声道的数据把它变成准立体声。（请考虑将这些算法的实现放在Native层，因为Native层在做这类处理有很大的优势。） </p>
+<p>如果采样率不同，要么丢弃或复制一个样本以便和目标速率相匹配。如果分辨率是不同的，将源信号分辨率映射到目标分辨率，从16位到8位，反之亦然。如果信道不同，我们要么将立体声声道混合成一个单声道或重复单声道的数据把它变成准立体声。（请考虑将这些算法的实现放在Native层，因为Native层在做这类处理有很大的优势。）</p>
 <p>在其他情况下，我们已经确定格式已经匹配。我们使用**AudioTrack.write()**写入缓冲区，以便实现回放。</p>
-<p>记住，如果你使用静态模式，你需要在<strong>play()**之前，新建一个包含准确的缓冲区大小的</strong>AudioTrack** ，同时写入<strong>write()**音频数据。而在流模式下，我们可以先使用</strong>AudioTrack<strong>的</strong>play()<strong>，然后在使用</strong>write()**写入数据部分</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>你想实现*<strong>AudioTrack**<em>上播放</em></strong>WAV***音频可能有很多原因。有时候，可能是SoundPool有尺寸限制，或是MediaPlayer会有延迟和对资源占用太高，让你考虑使用这种方式。有时候你需要修改音频或者混合音频。不管任何情况，这篇文章试图告诉你应该如何做。</p>
+<p>记住，如果你使用静态模式，你需要在<strong>play()<strong>之前，新建一个包含准确的缓冲区大小的</strong>AudioTrack</strong> ，同时写入<strong>write()<strong>音频数据。而在流模式下，我们可以先使用</strong>AudioTrack</strong>的<strong>play()</strong>，然后在使用**write()**写入数据部分</p>
+<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+<p>你想实现***AudioTrack***上播放***WAV***音频可能有很多原因。有时候，可能是SoundPool有尺寸限制，或是MediaPlayer会有延迟和对资源占用太高，让你考虑使用这种方式。有时候你需要修改音频或者混合音频。不管任何情况，这篇文章试图告诉你应该如何做。</p>
 <p>在下一篇中，我们将会讨论MP3音频，敬请期待:-)</p>
-<p><strong><em>Long Luo for Part 1 created at 23:15 ~ 00: 33 June 21th, 2014 @Shenzhen, China.</em></strong><br><strong><em>Long Luo for Part 2 created at 16:00 ~ 17: 15 June 22th, 2014 @Shenzhen, China.</em></strong><br><strong><em>Modified By Long Luo at 2018年10月1日10点36分 in Shenzhen, China.</em></strong></p>
+<p><em><strong>Long Luo for Part 1 created at 23:15 ~ 00: 33 June 21th, 2014 @Shenzhen, China.</strong></em><br>
+<em><strong>Long Luo for Part 2 created at 16:00 ~ 17: 15 June 22th, 2014 @Shenzhen, China.</strong></em><br>
+<em><strong>Modified By Long Luo at 2018年10月1日10点36分 in Shenzhen, China.</strong></em></p>
 
     </div>
 
@@ -548,13 +557,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -724,6 +733,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

@@ -25,12 +25,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="In general, Map is a data structure consisting of a set of key-value pairs, and eachkey can only appears once in the map. This post summarizes Top 9 FAQ of howto use Java Map and its implemented class">
+<meta name="description" content="In general, Map is a data structure consisting of a set of key-value pairs, and each key can only appears once in the map. This post summarizes Top 9 FAQ of how to use Java Map and its implemented cla">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Top 9 Questions About Java Maps">
 <meta property="og:url" content="www.longluo.me/blog/2016/08/08/Top-9-Questions-About-Java-Maps/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="In general, Map is a data structure consisting of a set of key-value pairs, and eachkey can only appears once in the map. This post summarizes Top 9 FAQ of howto use Java Map and its implemented class">
+<meta property="og:description" content="In general, Map is a data structure consisting of a set of key-value pairs, and each key can only appears once in the map. This post summarizes Top 9 FAQ of how to use Java Map and its implemented cla">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-08-08T03:18:22.000Z">
 <meta property="article:modified_time" content="2020-12-04T03:45:48.308Z">
@@ -213,7 +213,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-convert-a-map-to-list"><span class="nav-number">1.</span> <span class="nav-text">1. convert a map to list</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-iterate-over-each-entry-in-a-map"><span class="nav-number">2.</span> <span class="nav-text">2. iterate over each entry in a map</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-SORT-A-MAP-ON-THE-KEYS"><span class="nav-number">3.</span> <span class="nav-text">3. SORT A MAP ON THE KEYS</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-convert-a-map-to-list"><span class="nav-number">1.</span> <span class="nav-text"> 1. convert a map to list</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-iterate-over-each-entry-in-a-map"><span class="nav-number">2.</span> <span class="nav-text"> 2. iterate over each entry in a map</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-sort-a-map-on-the-keys"><span class="nav-number">3.</span> <span class="nav-text"> 3. SORT A MAP ON THE KEYS</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,14 +227,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -387,117 +387,124 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>In general, Map is a data structure consisting of a set of key-value pairs, and each<br>key can only appears once in the map. This post summarizes Top 9 FAQ of how<br>to use Java Map and its implemented classes. For sake of simplicity, I will use<br>generics in examples. Therefore, I will just write Map instead of specific Map. But<br>you can always assume that both the K and V are comparable, which means K<br>extends Comparable and V extends Comparable.</p>
-<h1 id="1-convert-a-map-to-list"><a href="#1-convert-a-map-to-list" class="headerlink" title="1. convert a map to list"></a>1. convert a map to list</h1><p>In Java, Map interface provides three collection views: key set, value set, and keyvalue set. All of them can be converted to List by using a constructor or addAll()<br>method. The following snippet of code shows how to construct an ArrayList from a map.</p>
+        <p>In general, Map is a data structure consisting of a set of key-value pairs, and each<br>
+key can only appears once in the map. This post summarizes Top 9 FAQ of how<br>
+to use Java Map and its implemented classes. For sake of simplicity, I will use<br>
+generics in examples. Therefore, I will just write Map instead of specific Map. But<br>
+you can always assume that both the K and V are comparable, which means K<br>
+extends Comparable and V extends Comparable.</p>
+<h1 id="1-convert-a-map-to-list"><a class="markdownIt-Anchor" href="#1-convert-a-map-to-list"></a> 1. convert a map to list</h1>
+<p>In Java, Map interface provides three collection views: key set, value set, and keyvalue set. All of them can be converted to List by using a constructor or addAll()<br>
+method. The following snippet of code shows how to construct an ArrayList from a map.</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// key list</span></span><br><span class="line">List keyList = <span class="keyword">new</span> ArrayList(map.keySet());</span><br><span class="line"><span class="comment">// value list</span></span><br><span class="line">List valueList = <span class="keyword">new</span> ArrayList(map.valueSet());</span><br><span class="line"><span class="comment">// key value list</span></span><br><span class="line">List entryList = <span class="keyword">new</span> ArrayList(map.entrySet());</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="2-iterate-over-each-entry-in-a-map"><a href="#2-iterate-over-each-entry-in-a-map" class="headerlink" title="2. iterate over each entry in a map"></a>2. iterate over each entry in a map</h1><p>Iterating over every pair of key-value is the most basic operation to traverse a map. In Java, such pair is stored in the map entry called Map.Entry. </p>
-<h1 id="3-SORT-A-MAP-ON-THE-KEYS"><a href="#3-SORT-A-MAP-ON-THE-KEYS" class="headerlink" title="3. SORT A MAP ON THE KEYS"></a>3. SORT A MAP ON THE KEYS</h1><p>Map.entrySet() returns a key-value set, therefore the most efficient way of going through every entry of a map is </p>
+<h1 id="2-iterate-over-each-entry-in-a-map"><a class="markdownIt-Anchor" href="#2-iterate-over-each-entry-in-a-map"></a> 2. iterate over each entry in a map</h1>
+<p>Iterating over every pair of key-value is the most basic operation to traverse a map. In Java, such pair is stored in the map entry called Map.Entry.</p>
+<h1 id="3-sort-a-map-on-the-keys"><a class="markdownIt-Anchor" href="#3-sort-a-map-on-the-keys"></a> 3. SORT A MAP ON THE KEYS</h1>
+<p>Map.entrySet() returns a key-value set, therefore the most efficient way of going through every entry of a map is</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Entry entry:map.entrySet()) {</span><br><span class="line">    <span class="comment">// get key</span></span><br><span class="line">    K key = entry.getKey();</span><br><span class="line">    <span class="comment">// get value</span></span><br><span class="line">    V value = entry.getValue();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-
 <p>Iterator can also be used, especially before JDK 1.5</p>
-<pre><code class="java">Iterator itr = map.entrySet().iterator();
-while(itr.hasNext ( ) ) {
+<pre class="highlight"><code class="java">Iterator itr = map.entrySet().iterator();
+<span class="hljs-keyword">while</span>(itr.hasNext ( ) ) {
 Entry ent ry = i t r . next ( ) ;
 / / g e t k ey
 K key = ent ry . getKey ( ) ;
 / / g e t v a l u e
 V value = ent ry . getValue ( ) ;
 }
-60.3 sort a map on the keys
+<span class="hljs-number">60.3</span> sort a map on the keys
 Sorting a map on the keys is another frequent operation. One way is to put
 Map.Entry into a list, and sort it using a comparator that sorts the value.
-Li s t l i s t = new Ar rayLi s t (map. ent rySe t ( ) ) ;
-Co l l e c t i ons . s o r t ( l i s t , new Comparator ( ) {
-@Override
-public int compare ( Entry e1 , Entry e2 ) {
-return e1 . getKey ( ) . compareTo ( e2 . getKey ( ) ) ;
+Li s t l i s t = <span class="hljs-keyword">new</span> <span class="hljs-function">Ar rayLi s <span class="hljs-title">t</span> <span class="hljs-params">(map. ent rySe t ( )</span> ) </span>;
+Co l l e c t i ons . <span class="hljs-function">s o r <span class="hljs-title">t</span> <span class="hljs-params">( l i s t , new Comparator ( )</span> </span>{
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span> <span class="hljs-params">( Entry e1 , Entry e2 )</span> </span>{
+<span class="hljs-keyword">return</span> e1 . getKey ( ) . compareTo ( e2 . getKey ( ) ) ;
 }
 } ) ;
 The other way is to use SortedMap, which further provides a total ordering on its
 keys. Therefore all keys must either implement Comparable or be accepted by the
 comparator.
-60.4. SORT A MAP ON THE VALUES 216
-One implementing class of SortedMap is TreeMap. Its constructor can accept a
-comparator. The following code shows how to transform a general map to a
-sorted map.
-SortedMap sortedMap = new TreeMap (new Comparator ( ) {
-@Override
-public int compare (K k1 , K k2 ) {
-return k1 . compareTo ( k2 ) ;
+<span class="hljs-number">60.4</span>. SORT A MAP ON THE VALUES <span class="hljs-number">216</span>
+One implementing <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">of</span> <span class="hljs-title">SortedMap</span> <span class="hljs-title">is</span> <span class="hljs-title">TreeMap</span>. <span class="hljs-title">Its</span> <span class="hljs-title">constructor</span> <span class="hljs-title">can</span> <span class="hljs-title">accept</span> <span class="hljs-title">a</span>
+<span class="hljs-title">comparator</span>. <span class="hljs-title">The</span> <span class="hljs-title">following</span> <span class="hljs-title">code</span> <span class="hljs-title">shows</span> <span class="hljs-title">how</span> <span class="hljs-title">to</span> <span class="hljs-title">transform</span> <span class="hljs-title">a</span> <span class="hljs-title">general</span> <span class="hljs-title">map</span> <span class="hljs-title">to</span> <span class="hljs-title">a</span>
+<span class="hljs-title">sorted</span> <span class="hljs-title">map</span>.
+<span class="hljs-title">SortedMap</span> <span class="hljs-title">sortedMap</span> </span>= <span class="hljs-keyword">new</span> TreeMap (<span class="hljs-keyword">new</span> Comparator ( ) {
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span> <span class="hljs-params">(K k1 , K k2 )</span> </span>{
+<span class="hljs-keyword">return</span> k1 . compareTo ( k2 ) ;
 }
 } ) ;
 sortedMap . putAll (map) ;
-60.4 sort a map on the values
-Putting the map into a list and sorting it works on this case too, but we need
-to compare Entry.getValue() this time. The code below is almost same as before.
-Li s t l i s t = new Ar rayLi s t (map. ent rySe t ( ) ) ;
-Co l l e c t i ons . s o r t ( l i s t , new Comparator ( ) {
-@Override
-public int compare ( Entry e1 , Entry e2 ) {
-return e1 . getValue ( ) . compareTo ( e2 . getValue ( ) ) ;
+<span class="hljs-number">60.4</span> sort a map on the values
+Putting the map into a list and sorting it works on <span class="hljs-keyword">this</span> <span class="hljs-keyword">case</span> too, but we need
+to compare Entry.getValue() <span class="hljs-keyword">this</span> time. The code below is almost same as before.
+Li s t l i s t = <span class="hljs-keyword">new</span> <span class="hljs-function">Ar rayLi s <span class="hljs-title">t</span> <span class="hljs-params">(map. ent rySe t ( )</span> ) </span>;
+Co l l e c t i ons . <span class="hljs-function">s o r <span class="hljs-title">t</span> <span class="hljs-params">( l i s t , new Comparator ( )</span> </span>{
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">compare</span> <span class="hljs-params">( Entry e1 , Entry e2 )</span> </span>{
+<span class="hljs-keyword">return</span> e1 . getValue ( ) . compareTo ( e2 . getValue ( ) ) ;
 }
 } ) ;
-We can still use a sorted map for this question, but only if the values are unique too.
+We can still use a sorted map <span class="hljs-keyword">for</span> <span class="hljs-keyword">this</span> question, but only <span class="hljs-keyword">if</span> the values are unique too.
 Under such condition, you can reverse the key=value pair to value=key. This solution
 has very strong limitation therefore is not really recommended by me.
-60.5 initialize a static/immutable map
+<span class="hljs-number">60.5</span> initialize a <span class="hljs-keyword">static</span>/immutable map
 When you expect a map to remain constant, it’s a good practice to copy it into
 an immutable map. Such defensive programming techniques will help you create
-not only safe for use but also safe for thread maps.
-60.6. DIFFERENCE BETWEEN HASHMAP, TREEMAP, AND HASHTABLE 217
-To initialize a static/immutable map, we can use a static initializer (like below).
-The problem of this code is that, although map is declared as static final, we can
-still operate it after initialization, like Test.map.put(3,"three");. Therefore it is not
-really immutable. To create an immutable map using a static initializer, we need
-an extra anonymous class and copy it into a unmodifiable map at the last step of
-initialization. Please see the second piece of code. Then, an UnsupportedOperationException
-will be thrown if you run Test.map.put(3,"three");.
-public c l a s s Tes t {
+not only safe <span class="hljs-keyword">for</span> use but also safe <span class="hljs-keyword">for</span> thread maps.
+<span class="hljs-number">60.6</span>. DIFFERENCE BETWEEN HASHMAP, TREEMAP, AND HASHTABLE <span class="hljs-number">217</span>
+To initialize a <span class="hljs-keyword">static</span>/immutable map, <span class="hljs-function">we can use a <span class="hljs-keyword">static</span> <span class="hljs-title">initializer</span> <span class="hljs-params">(like below)</span>.
+The problem of <span class="hljs-keyword">this</span> code is that, although map is declared as <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span>, we can
+still operate it after initialization, like Test.map.<span class="hljs-title">put</span><span class="hljs-params">(<span class="hljs-number">3</span>,<span class="hljs-string">"three"</span>)</span></span>;. Therefore it is not
+really immutable. To create an immutable map using a <span class="hljs-keyword">static</span> initializer, we need
+an extra anonymous <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">and</span> <span class="hljs-title">copy</span> <span class="hljs-title">it</span> <span class="hljs-title">into</span> <span class="hljs-title">a</span> <span class="hljs-title">unmodifiable</span> <span class="hljs-title">map</span> <span class="hljs-title">at</span> <span class="hljs-title">the</span> <span class="hljs-title">last</span> <span class="hljs-title">step</span> <span class="hljs-title">of</span>
+<span class="hljs-title">initialization</span>. <span class="hljs-title">Please</span> <span class="hljs-title">see</span> <span class="hljs-title">the</span> <span class="hljs-title">second</span> <span class="hljs-title">piece</span> <span class="hljs-title">of</span> <span class="hljs-title">code</span>. <span class="hljs-title">Then</span>, <span class="hljs-title">an</span> <span class="hljs-title">UnsupportedOperationException</span>
+<span class="hljs-title">will</span> <span class="hljs-title">be</span> <span class="hljs-title">thrown</span> <span class="hljs-title">if</span> <span class="hljs-title">you</span> <span class="hljs-title">run</span> <span class="hljs-title">Test</span>.<span class="hljs-title">map</span>.<span class="hljs-title">put</span>(3,"<span class="hljs-title">three</span>")</span>;.
+<span class="hljs-keyword">public</span> c l a s s Tes t {
 pr ivate s t a t i c f ina l Map map;
 s t a t i c {
-map = new HashMap ( ) ;
-map. put ( 1 , " one " ) ;
-map. put ( 2 , " two " ) ;
+map = <span class="hljs-keyword">new</span> HashMap ( ) ;
+map. put ( <span class="hljs-number">1</span> , <span class="hljs-string">" one "</span> ) ;
+map. put ( <span class="hljs-number">2</span> , <span class="hljs-string">" two "</span> ) ;
 }
 }
-public c l a s s Tes t {
+<span class="hljs-keyword">public</span> c l a s s Tes t {
 pr ivate s t a t i c f ina l Map map;
 s t a t i c {
-Map aMap = new HashMap ( ) ;
-aMap. put ( 1 , " one " ) ;
-aMap. put ( 2 , " two " ) ;
+Map aMap = <span class="hljs-keyword">new</span> HashMap ( ) ;
+aMap. put ( <span class="hljs-number">1</span> , <span class="hljs-string">" one "</span> ) ;
+aMap. put ( <span class="hljs-number">2</span> , <span class="hljs-string">" two "</span> ) ;
 map = Co l l e c t i ons . unmodifiableMap (aMap) ;
 }
 }
-Guava libraries also support different ways of intilizaing a static and immutable
+Guava libraries also support different ways of intilizaing a <span class="hljs-keyword">static</span> and immutable
 collection. To learn more about the benefits of Guava’s immutable collection utilities,
 see Immutable Collections Explained in Guava User Guide.
-60.6 difference between hashmap, treemap, and hashtable
-There are three main implementations of Map interface in Java: HashMap, TreeMap,
-and Hashtable. The most important differences include:
- The order of iteration. HashMap and HashTable make no guarantees as to
-the order of the map; in particular, they do not guarantee that the order
-60.7. A MAP WITH REVERSE VIEW/LOOKUP 218
+<span class="hljs-number">60.6</span> difference between hashmap, treemap, and hashtable
+There are three main implementations of Map <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">in</span> <span class="hljs-title">Java</span>: <span class="hljs-title">HashMap</span>, <span class="hljs-title">TreeMap</span>,
+<span class="hljs-title">and</span> <span class="hljs-title">Hashtable</span>. <span class="hljs-title">The</span> <span class="hljs-title">most</span> <span class="hljs-title">important</span> <span class="hljs-title">differences</span> <span class="hljs-title">include</span>:
+ <span class="hljs-title">The</span> <span class="hljs-title">order</span> <span class="hljs-title">of</span> <span class="hljs-title">iteration</span>. <span class="hljs-title">HashMap</span> <span class="hljs-title">and</span> <span class="hljs-title">HashTable</span> <span class="hljs-title">make</span> <span class="hljs-title">no</span> <span class="hljs-title">guarantees</span> <span class="hljs-title">as</span> <span class="hljs-title">to</span>
+<span class="hljs-title">the</span> <span class="hljs-title">order</span> <span class="hljs-title">of</span> <span class="hljs-title">the</span> <span class="hljs-title">map</span></span>; in particular, they <span class="hljs-keyword">do</span> not guarantee that the order
+<span class="hljs-number">60.7</span>. A MAP WITH REVERSE VIEW/LOOKUP <span class="hljs-number">218</span>
 will remain constant over time. But TreeMap will iterate the whole entries
 according the “natural ordering” of the keys or by a comparator.
- key-value permission. HashMap allows null key and null values. HashTable
-does not allow null key or null values. If TreeMap uses natural ordering or
-its comparator does not allow null keys, an exception will be thrown.
- Synchronized. Only HashTable is synchronized, others are not. Therefore,
-“if a thread-safe implementation is not needed, it is recommended to use
+ key-value permission. HashMap allows <span class="hljs-keyword">null</span> key and <span class="hljs-keyword">null</span> values. HashTable
+does not allow <span class="hljs-keyword">null</span> key or <span class="hljs-keyword">null</span> values. If TreeMap uses natural ordering or
+its comparator does not allow <span class="hljs-keyword">null</span> keys, an exception will be thrown.
+ Synchronized. Only HashTable is <span class="hljs-keyword">synchronized</span>, others are not. Therefore,
+“<span class="hljs-keyword">if</span> a thread-safe implementation is not needed, it is recommended to use
 HashMap in place of HashTable.”
 A more complete comparison is
 | HashMap | HashTable | TreeMap
 i t e r a t i o n order | no | no | yes
-null key value | yes yes | yes yes | no yes
-synchronized | no | yes | no
-time performance | O( 1 ) | O( 1 ) | O( log n)
+<span class="hljs-keyword">null</span> key value | yes yes | yes yes | no yes
+<span class="hljs-keyword">synchronized</span> | no | yes | no
+time performance | O( <span class="hljs-number">1</span> ) | O( <span class="hljs-number">1</span> ) | O( log n)
 implementation | buckets | buckets | red black t r e e
 Read more about HashMap vs. TreeMap vs. Hashtable vs. LinkedHashMap.
-60.7 a map with reverse view/lookup
-Sometimes, we need a set of key-key pairs, which means the map’s values are
-unique as well as keys (one-to-one map). This constraint enables to create an
+<span class="hljs-number">60.7</span> a map with reverse view/lookup
+Sometimes, we need a set of key-key pairs, which means the map’<span class="hljs-function">s values are
+unique as well as <span class="hljs-title">keys</span> <span class="hljs-params">(one-to-one map)</span>. This constraint enables to create an
 “inverse lookup/view” of a map. So we can lookup a key by its value. Such
 data structure is called bidirectional map, which unfortunetely is not supported
 by JDK.
@@ -506,25 +513,26 @@ of bidirectional map, called bidimap and bimap,
 respectively. both enforce the restriction that there is a
 1:1 relation between keys and values. 7. shallow copy of a
 map
-Most implementation of a map in java, if not all, provides a constructor of copy
-of another map. But the copy procedure is not synchronized. That means when
-60.9. FOR THIS REASON, I WILL NOT EVEN TELL YOU HOW TO USE CLONE() METHOD TO COPY one thread copies a map, another one may modify it structurally. To [prevent
-accidental unsynchronized copy, one should use Collections.synchronizedMap()
+Most implementation of a map in java, <span class="hljs-keyword">if</span> not all, provides a constructor of copy
+of another map. But the copy procedure is not <span class="hljs-keyword">synchronized</span>. That means when
+60.9. FOR THIS REASON, I WILL NOT EVEN TELL YOU HOW TO USE <span class="hljs-title">CLONE</span><span class="hljs-params">()</span> METHOD TO COPY one thread copies a map, another one may modify it structurally. To [prevent
+accidental unsynchronized copy, one should use Collections.<span class="hljs-title">synchronizedMap</span><span class="hljs-params">()</span>
 in advance.
-Map copiedMap = Co l l e c t i ons . synchronizedMap (map) ;
-Another interesting way of shallow copy is by using clone() method. However it is
+Map copiedMap </span>= Co l l e c t i ons . synchronizedMap (map) ;
+<span class="hljs-function">Another interesting way of shallow copy is by using <span class="hljs-title">clone</span><span class="hljs-params">()</span> method. However it is
 NOT even recommended by the designer of Java collection framework, Josh Bloch.
 In a conversation about “Copy constructor versus cloning“, he said
-I often provide a public clone method on concrete classes because people expect it.
+I often provide a <span class="hljs-keyword">public</span> clone method on concrete classes because people expect it.
 â˘A ˛e It’s a shame that Cloneable is broken, but it happens. â˘A˛e Cloneable is a weak
 spot, and I think people should be aware of its limitations.
-60.9 for this reason, i will not even tell you how to use clone()
+60.9 <span class="hljs-keyword">for</span> <span class="hljs-keyword">this</span> reason, i will not even tell you how to use <span class="hljs-title">clone</span><span class="hljs-params">()</span>
 method to copy a map. 8. create an empty map
 If the map is immutable, use
-map = Co l l e c t i ons . emptyMap ( ) ;
+map </span>= Co l l e c t i ons . emptyMap ( ) ;
 Otherwise, use whichever implementation. For example
-map = new HashMap ( ) ;
+map = <span class="hljs-keyword">new</span> HashMap ( ) ;
 THE
+
 
 
 
@@ -642,13 +650,13 @@ THE
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -818,6 +826,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {

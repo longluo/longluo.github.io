@@ -25,12 +25,12 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="By Long Luo 在上一篇Android自定义View：如何实现一个模拟时钟？中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的canvas.rotate()方法让坐标系旋转从而绘制出指针。 但是，其实我们也可以使用另外一种方法去实现指针绘制，这种更直观，更容易理解。 一. 绘制指针要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的sin及cos值及圆心">
+<meta name="description" content="By Long Luo 在上一篇Android自定义View：如何实现一个模拟时钟？中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的canvas.rotate()方法让坐标系旋转从而绘制出指针。 但是，其实我们也可以使用另外一种方法去实现指针绘制，这种更直观，更容易理解。  一. 绘制指针 要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的sin及cos值及">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android自定义View：另一种实现手表指针转动的方法">
 <meta property="og:url" content="www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo 在上一篇Android自定义View：如何实现一个模拟时钟？中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的canvas.rotate()方法让坐标系旋转从而绘制出指针。 但是，其实我们也可以使用另外一种方法去实现指针绘制，这种更直观，更容易理解。 一. 绘制指针要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的sin及cos值及圆心">
+<meta property="og:description" content="By Long Luo 在上一篇Android自定义View：如何实现一个模拟时钟？中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的canvas.rotate()方法让坐标系旋转从而绘制出指针。 但是，其实我们也可以使用另外一种方法去实现指针绘制，这种更直观，更容易理解。  一. 绘制指针 要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的sin及cos值及">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-08-19T09:01:19.000Z">
 <meta property="article:modified_time" content="2020-12-04T03:45:48.197Z">
@@ -213,7 +213,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E7%BB%98%E5%88%B6%E6%8C%87%E9%92%88"><span class="nav-number">1.</span> <span class="nav-text">一. 绘制指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E5%BC%A7%E5%BA%A6"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 弧度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E7%BB%98%E5%88%B6"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%B0%8F%E6%8F%92%E6%9B%B2"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 小插曲</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E7%95%8C%E9%9D%A2%E5%88%B7%E6%96%B0"><span class="nav-number">2.</span> <span class="nav-text">二. 界面刷新</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E7%BB%98%E5%88%B6%E6%8C%87%E9%92%88"><span class="nav-number">1.</span> <span class="nav-text"> 一. 绘制指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%BC%A7%E5%BA%A6"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.1 弧度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E7%BB%98%E5%88%B6"><span class="nav-number">1.2.</span> <span class="nav-text"> 1.2 绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E5%B0%8F%E6%8F%92%E6%9B%B2"><span class="nav-number">1.3.</span> <span class="nav-text"> 1.3 小插曲</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E7%95%8C%E9%9D%A2%E5%88%B7%E6%96%B0"><span class="nav-number">2.</span> <span class="nav-text"> 二. 界面刷新</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,14 +227,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">319</span>
+          <span class="site-state-item-count">318</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -387,28 +387,29 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><strong><em>By Long Luo</em></strong></p>
+        <p><em><strong>By Long Luo</strong></em></p>
 <p>在上一篇<a href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/">Android自定义View：如何实现一个模拟时钟？</a>中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的<code>canvas.rotate()</code>方法让坐标系旋转从而绘制出指针。</p>
 <p>但是，其实我们也可以使用另外一种方法去实现指针绘制，这种更直观，更容易理解。</p>
-<h1 id="一-绘制指针"><a href="#一-绘制指针" class="headerlink" title="一. 绘制指针"></a>一. 绘制指针</h1><p>要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的<code>sin</code>及<code>cos</code>值及圆心进行对应的计算。</p>
-<h2 id="1-1-弧度"><a href="#1-1-弧度" class="headerlink" title="1.1 弧度"></a>1.1 弧度</h2><p>要计算指针对应的<code>sin</code>及<code>cos</code>值，区别于上一篇的*<strong>角度**<em>，这一篇我们使用</em></strong>弧度***。具体弧度是什么以及角度弧度换算关系可自行Google。</p>
+<h1 id="一-绘制指针"><a class="markdownIt-Anchor" href="#一-绘制指针"></a> 一. 绘制指针</h1>
+<p>要绘制指针，需要知道指针的起点和终点，而起点就是圆心，终点就需要根据指针的<code>sin</code>及<code>cos</code>值及圆心进行对应的计算。</p>
+<h2 id="11-弧度"><a class="markdownIt-Anchor" href="#11-弧度"></a> 1.1 弧度</h2>
+<p>要计算指针对应的<code>sin</code>及<code>cos</code>值，区别于上一篇的***角度***，这一篇我们使用***弧度***。具体弧度是什么以及角度弧度换算关系可自行Google。</p>
 <p>下面我们给出对应指针弧度如何计算的，如下所示：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> secRot = mCalendar.get(Calendar.SECOND) / <span class="number">30f</span> * (<span class="keyword">float</span>) Math.PI;</span><br><span class="line"><span class="keyword">float</span> minRot = mCalendar.get(Calendar.MINUTE) / <span class="number">30f</span> * (<span class="keyword">float</span>) Math.PI;</span><br><span class="line"><span class="keyword">float</span> hrRot = (((mCalendar.get(Calendar.HOUR_OF_DAY) + (mCalendar.get(Calendar.MINUTE) / <span class="number">60f</span>))) / <span class="number">6f</span>) * (<span class="keyword">float</span>) Math.PI;</span><br></pre></td></tr></tbody></table></figure>
-
 <a id="more"></a>
-
-<h2 id="1-2-绘制"><a href="#1-2-绘制" class="headerlink" title="1.2 绘制"></a>1.2 绘制</h2><p>知道对应指针的弧度之后，我们就很容易计算出对应的指针坐标了，那么绘制也变得简单了，如下所示：</p>
+<h2 id="12-绘制"><a class="markdownIt-Anchor" href="#12-绘制"></a> 1.2 绘制</h2>
+<p>知道对应指针的弧度之后，我们就很容易计算出对应的指针坐标了，那么绘制也变得简单了，如下所示：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> secLength = centerX - <span class="number">60</span>;</span><br><span class="line"><span class="keyword">float</span> minLength = centerX - <span class="number">80</span>;</span><br><span class="line"><span class="keyword">float</span> hrLength = centerX - <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> hrX = (<span class="keyword">float</span>) Math.sin(hrRot) * hrLength;</span><br><span class="line"><span class="keyword">float</span> hrY = (<span class="keyword">float</span>) -Math.cos(hrRot) * hrLength;</span><br><span class="line">canvas.drawLine(centerX, centerY, centerX + hrX, centerY + hrY, paintHour);</span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> minX = (<span class="keyword">float</span>) Math.sin(minRot) * minLength;</span><br><span class="line"><span class="keyword">float</span> minY = (<span class="keyword">float</span>) -Math.cos(minRot) * minLength;</span><br><span class="line">canvas.drawLine(centerX, centerY, centerX + minX, centerY + minY, paintMinute);</span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> secX = (<span class="keyword">float</span>) Math.sin(secRot) * secLength;</span><br><span class="line"><span class="keyword">float</span> secY = (<span class="keyword">float</span>) -Math.cos(secRot) * secLength;</span><br><span class="line">canvas.drawLine(centerX, centerY, centerX + secX, centerY + secY, paintSecond);</span><br></pre></td></tr></tbody></table></figure>
-
-<h2 id="1-3-小插曲"><a href="#1-3-小插曲" class="headerlink" title="1.3 小插曲"></a>1.3 小插曲</h2><p>开发完成之后，发现了一个Bug，指针一直不动，打印Log发现对应的弧度一直不变，那么很明显就是时间没有刷新，在计算弧度前，设置为当前时间即可。</p>
+<h2 id="13-小插曲"><a class="markdownIt-Anchor" href="#13-小插曲"></a> 1.3 小插曲</h2>
+<p>开发完成之后，发现了一个Bug，指针一直不动，打印Log发现对应的弧度一直不变，那么很明显就是时间没有刷新，在计算弧度前，设置为当前时间即可。</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mCalendar.setTimeInMillis(System.currentTimeMillis());</span><br></pre></td></tr></tbody></table></figure>
-
-<h1 id="二-界面刷新"><a href="#二-界面刷新" class="headerlink" title="二. 界面刷新"></a>二. 界面刷新</h1><p>界面刷新也可以不使用Activity中使用<strong>Handler</strong>去实现，而直接在自定义View中<code>void onDraw(Canvas canvas)</code>方法中调用<code>postInvalidateDelayed()</code>实现界面自动刷新，更简洁，更优雅。</p>
+<h1 id="二-界面刷新"><a class="markdownIt-Anchor" href="#二-界面刷新"></a> 二. 界面刷新</h1>
+<p>界面刷新也可以不使用Activity中使用<strong>Handler</strong>去实现，而直接在自定义View中<code>void onDraw(Canvas canvas)</code>方法中调用<code>postInvalidateDelayed()</code>实现界面自动刷新，更简洁，更优雅。</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//刷新</span></span><br><span class="line">postInvalidateDelayed(<span class="number">1000</span>);</span><br></pre></td></tr></tbody></table></figure>
-
 <p>通过上述方法，我们就成功的让时钟转起来了。</p>
 <p>下一次，你就把TA用在你的一些项目中去吧！</p>
-<p><strong><em>By Long Luo 2016-08-24 10:39 at Shenzhen.</em></strong><br><strong><em>Modified By Long Luo at 2018年10月1日10点38分 in Shenzhen, China.</em></strong></p>
+<p><em><strong>By Long Luo 2016-08-24 10:39 at Shenzhen.</strong></em><br>
+<em><strong>Modified By Long Luo at 2018年10月1日10点38分 in Shenzhen, China.</strong></em></p>
 
     </div>
 
@@ -522,13 +523,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">757k</span>
+    <span title="站点总字数">759k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:28</span>
+    <span title="站点阅读时长">11:30</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -698,6 +699,8 @@ document.addEventListener('pjax:success', () => {
 </script>
 
     <div class="pjax">
+
+  
 
 <script>
 NexT.utils.loadComments('#twikoo-comments', () => {
