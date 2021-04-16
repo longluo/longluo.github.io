@@ -126,9 +126,9 @@
                 {%- endif %}
 
 
-
-          <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.5.3/dist/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/buddys/qq-wechat-emotion-parser@master/dist/qq-wechat-emotion-parser.min.js"></script>
  
 <script type="text/javascript">
     var {
@@ -166,6 +166,7 @@
         str = str.replace(re_forpic, function (imgurl) {
             return "<img src='" + imgurl + "'  /> ";
         });
+		str = qqWechatEmotionParser(str)
         return str;
     }
     //友好地显示时间

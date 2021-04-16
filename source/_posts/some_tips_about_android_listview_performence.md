@@ -34,7 +34,7 @@ keywords: Android, ListView, Layout, 性能, Adapter, 技巧
 
 下面这个图很直观的展示了当你按下ListView的时候发生了什么：
 
-![ListView](http://blogresource.qiniudn.com/2014/Android/listview_tips.png)
+![ListView](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/listview_tips.png)
 
 通过上述介绍，相比我们已经熟悉了*ListView*的这种机制，让我们继续前往技巧部分。正如上述介绍的，在滑动时，*ListView*通过动态的创建和回收很多View，实现了尽可能地让Adapter的*getView()*轻量。所有的技巧都是通过多种方法让*getView()*更快。
 

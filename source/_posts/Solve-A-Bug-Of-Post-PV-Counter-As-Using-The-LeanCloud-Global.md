@@ -226,12 +226,29 @@ busuanzi_count:
 
 Bingo，***问题根源找到了！！！***
 
+--------------- 2021.04.05 Update ---------------
+
+在网站主配置文件`_config.yml`中，之前的配置文件的url地址如下：
+
+```yaml
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://longluo.me
+```
+
+调试时发现`location.hostname`的值为`www.longluo.me`，而`CONFIG.hostname`的值为`http://longluo.me`，所以就会出现上述问题。
+
 
 # 问题是如何解决的？
 
 解决方法也很简单，去除`if (CONFIG.hostname !== location.hostname) return;`这行代码。
 
 重新编译发布，Okay，阅读次数有了，后台查看数据也存在，问题解决。
+
+--------------- 2021.04.05 Update ---------------
+
+将网站主配置文件`_config.yml`中的`url`值从`http://longluo.me`修改为`www.longluo.me`即可，问题即得以解决。
+
 
 # 小结
 

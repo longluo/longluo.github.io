@@ -13,7 +13,7 @@ keywords: Android, ListView, GridView, Layout, 库
 原文链接：[Introducing Smoothie](http://lucasr.org/2013/01/06/introducing-smoothie/)
 
 
-![smoothie](http://blogresource.qiniudn.com/2014/Android/smoothie.png)
+![smoothie](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/smoothie.png)
 
 [Pattrn](http://pattrnapp.com/) UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：[Smoothie](https://github.com/lucasr/smoothie)。
 

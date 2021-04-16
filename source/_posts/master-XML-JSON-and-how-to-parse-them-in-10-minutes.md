@@ -623,23 +623,23 @@ JSON采用完全独立于语言的文本格式，但是也使用了类似于C语
 
 + 对象是一个无序的“'名称/值'对”集合。一个对象以“{”（左括号）开始，“}”（右括号）结束。每个“名称”后跟一个“:”（冒号）；“‘名称/值’ 对”之间使用“,”（逗号）分隔。
 
-![JSON Object](http://www.json.org/object.gif)
+![JSON Object](https://www.json.org/img/object.png)
 
 + 数组是值(value)的有序集合。一个数组以“[”（左中括号）开始，“]”（右中括号）结束。值之间使用“,”（逗号）分隔。
 
-![JSON Array](http://www.json.org/array.gif)
+![JSON Array](https://www.json.org/img/array.png)
 
 + 值(value)可以是双引号括起来的字符串（string）、数值(number)、true、false、 null、对象（object）或者数组（array）。这些结构可以嵌套。
 
-![JSON Value](http://www.json.org/value.gif)
+![JSON Value](https://www.json.org/img/value.png)
 
 + 字符串（string）是由0到多个Unicode字符组成的序列，封装在双引号（""）中, 可以使用反斜杠（‘\’）来进行转义。一个字符可以表示为一个单一字符的字符串。
 
-![JSON String](http://www.json.org/string.gif)
+![JSON String](https://www.json.org/img/string.png)
 
 + 数字(number)类似C或者Java里面的数，没有用到的8进制和16进制数除外。
 
-![JSON Number](http://www.json.org/number.gif)
+![JSON Number](https://www.json.org/img/number.png)
 
 
 ## 2.3 举个栗子

@@ -29,27 +29,27 @@ keywords: 驾驶, 汽车, 学车, 方向盘，车轮
 
 # 二、 转向理论：
 
-我学习新东西的时候，往往会学习下理论，就是搞清楚***“为什么”***的问题，目的是为了做到理论和实践相结合，才能真正掌握一个东西。
+我学习新东西的时候，往往会学习下理论，就是搞清楚***为什么**的问题，目的是为了做到理论和实践相结合，才能真正掌握一个东西。
 
 首先目前的小汽车都是**前置发动机前轮驱动**的，之前我一直认为小汽车也是后驱的，这纠正了我的一个错误认识，简而言之，就是前轮带着汽车往前跑。
 
 **汽车前轮是转向轮，只有前轮才能改变方向**，后轮是不能转变方向的，请看下面一张动态图：
 
-![后轮无法左右移动](http://blogresource.qiniudn.com/images/2014/Car/car_houlun.gif)
+![后轮无法左右移动](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Car/car_houlun.gif)
 
 汽车转弯时车轮状态：
 
-![前置前驱](http://blogresource.qiniudn.com/images/2014/Car/zhuanxiang.gif)
+![前置前驱](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Car/zhuanxiang.gif)
 
 我们在倒车和转弯各项操作的时候，就必须弄明白汽车转弯的机制和轨迹是什么？
 
-![转弯轨迹](http://blogresource.qiniudn.com/images/2014/Car/zhuanwan.gif)
+![转弯轨迹](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Car/zhuanwan.gif)
 
 上面这张图很直观的展示了汽车在转弯的时候车辆的旋转中心和前后轮的轨迹。
 
 了解了理论知识，那么在倒车时应该注意些什么呢？
 
-![倒车注意事项](http://blogresource.qiniudn.com/images/2014/Car/daoche_xiazai.gif)
+![倒车注意事项](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Car/daoche_xiazai.gif)
 
 # 三、 方向盘与转向：
 

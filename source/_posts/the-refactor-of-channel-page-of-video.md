@@ -43,7 +43,7 @@ keywords: Android,视频,重构,性能优化,软件
 
 比较两者启动时间，可以看出重构之后的方案是有大概20ms的提升。
 
-![Startup Time](http://blogresource.qiniudn.com/images/2014/Android/Channel/Channel_startupTime.png)
+![Startup Time](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/Channel_startupTime.png)
 
 --------
 
@@ -55,9 +55,9 @@ keywords: Android,视频,重构,性能优化,软件
 
 重构之前的在绘制页面时需要绘制ListView，然后在每一个List中在绘制GridView，在TraceView获取到的数据如下：
 
-![ChannelListAdapter](http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png)
+![ChannelListAdapter](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png)
 
-![ChannelGridListAdapter](http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridListAdapter_getView.png)
+![ChannelGridListAdapter](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/traceview_ChannelGridListAdapter_getView.png)
 
 从以上可以分析，在ChannelListAdapter的getView()就占据了**1.0%**的Incl Cpu Time, GridView的getView()占据了**6.9%**的Incl Cpu Time，合计占用了**7.9%**的CPU Time。
 
@@ -65,7 +65,7 @@ keywords: Android,视频,重构,性能优化,软件
 
 重构之后，我们仅需要在ChannelGridAdapter中绘制View，测量数据如下：
 
-![ChannelGridAdapter](http://blogresource.qiniudn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png)
+![ChannelGridAdapter](http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png)
 
 从上图可以看出，getView()占据的CPU时间仅为**3.2%**，效率大大提高。
 
