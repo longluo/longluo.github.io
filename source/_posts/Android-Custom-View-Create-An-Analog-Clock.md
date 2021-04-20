@@ -15,7 +15,7 @@ keywords: Android, View, 自定义View, 自定义控件,
 
 最近看大牛[@Tomcat的猫](http://weibo.com/eclipsexu?s=6cm7D0)写的[《Android群英传》](http://blog.csdn.net/eclipsexys)里面的第六章**Android绘图机制及处理技巧**，里面通过`Canvas`实现了一个如下所示的仪表盘：
 
-![仪表盘](http://imagesresource.qiniudn.com/clock_still.png)
+![仪表盘](http://qrn8zhq7m.bkt.clouddn.com/clock_still.png)
 
 在书中详细描述了如何实现这个仪表盘，这里就不赘述了，可以参考其[具体实现代码](https://github.com/xuyisheng/AndroidHeroes/tree/master/6.%E7%BB%98%E5%9B%BE/MyApplication/app/src/main/java/com/yishengxu/myapplication)。
 
@@ -134,7 +134,7 @@ public void refreshClock() {
 ```
 
 运行效果图如下所示：
-![模拟时钟](http://imagesresource.qiniudn.com/clock_move.png)
+![模拟时钟](http://qrn8zhq7m.bkt.clouddn.com/clock_move.png)
 
 通过以上方法，我们使用**Android自定义View**实现了一个***模拟时钟***了。
 

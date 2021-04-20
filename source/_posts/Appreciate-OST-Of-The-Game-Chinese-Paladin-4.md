@@ -73,7 +73,7 @@ keywords: 仙剑奇侠传, 原声音乐, 游戏, 音乐赏析, Music, Game, Life
 
 --------------- 附上当年校报发表照片 ----------
 
-<img src="http://databank.u.qiniudn.com/blog/images/2013/09/pal4_ost_review.jpg?imageView/2/w/600/h/800/q/60/format/JPG" alt="仙剑四校报发表" />
+![仙剑四校报发表](http://qrn8zhq7m.bkt.clouddn.com/blog/images/2013/09/pal4_ost_review.jpg?imageView/2/w/600/h/800/q/60/format/JPG)
 
 --------2018.10.28 更新--------
 

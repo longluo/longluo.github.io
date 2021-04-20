@@ -44,7 +44,7 @@ keywords: 三亚, 沁园春, 台风, Travel, 旅行, Sanya, Sea, Typhoon,
 
 # The Hand Writing of this Chinese Poem To The Tune Of Chin Yuan Chun:
 
-<img src="http://databank.u.qiniudn.com/blog/images/2013/11/qinyuanchun_sanya.jpg?imageView/2/w/600/h/800/q/60/format/JPG" alt="沁园春·三亚 手写" />
+![沁园春·三亚 手写](http://qrn8zhq7m.bkt.clouddn.com/blog/images/2013/11/qinyuanchun_sanya.jpg?imageView/2/w/600/h/800/q/60/format/JPG)
 
 # 创作背景
 

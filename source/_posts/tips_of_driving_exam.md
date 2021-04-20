@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "学车科目二要点总结"
+title: "学车一直过不了科目二？掌握以下几个要点，让你轻松过！"
 date: 2014-05-03 11:59:03 +0800
 comments: true
 categories: Life

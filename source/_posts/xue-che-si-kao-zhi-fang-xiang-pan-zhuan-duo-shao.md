@@ -1,6 +1,6 @@
 ﻿---
 layout: post
-title: "学车思考之一:方向盘转多少,车轮就转多少度对吗?"
+title: "学车思考之一：方向盘转多少，车轮就转多少度对吗？"
 date: 2014-04-06 19:43:27 +0800
 comments: true
 categories: Life

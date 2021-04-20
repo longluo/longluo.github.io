@@ -1,15 +1,15 @@
 ---
 layout: page
-title: 'About | 关于我'
+title: 'About Me | 关于我'
 date: 2016-04-11 00:22:24 +0800
 comments: true
 type: "about"
 tags: [about, myself]
 keywords: Long Luo, Frank Luo, Program, Code, 程序员, Android, iOS, App Develop, Java 
-description: "About Me"
+description: "老骥伏枥，志在千里。烈士暮年，壮心不已。"
 ---
 
-![Computer Programmer](https://github.com/AppUnion/DataBank/blob/master/images/wallpaper/math-1.jpg?raw=true)
+![Computer Programmer](http://qrn8zhq7m.bkt.clouddn.com/math_wp.jpg?imageView/2/w/1280/h/800/q/60/format/JPG)
 
 ### About:
 ---------------------------------------
@@ -31,9 +31,9 @@ Hi, everybody! Welcome to my space. My Name is [Long Luo](http://www.imlongluo.c
 
 如果你还能够忍受我的刷屏，欢迎关注我的`微博`: [@imlongluo](http://weibo.com/imlongluo)
 
-也欢迎关注我的微信公众号：![Weixin Public QR Code](http://databank.u.qiniudn.com/images/Me/weixin_mp_irefactoring_qrcode_430x430.jpg)
+也欢迎关注我的微信公众号：![Weixin Public QR Code](http://qrn8zhq7m.bkt.clouddn.com/images/Me/weixin_mp_irefactoring_qrcode_430x430.jpg)
 
-如果你还对我有兴趣的话，也可以加我的`个人微信` [imlongluo](http://databank.u.qiniudn.com/images/Me/weixin_my_qrcode_512x512.jpeg)
+如果你还对我有兴趣的话，也可以加我的`个人微信` [imlongluo](http://qrn8zhq7m.bkt.clouddn.com/images/Me/weixin_my_qrcode_512x512.jpeg)
 
 ### Keywords:
 ---------------------------------------
