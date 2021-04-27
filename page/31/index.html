@@ -223,7 +223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">321</span>
+          <span class="site-state-item-count">322</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -236,7 +236,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">237</span>
+        <span class="site-state-item-count">238</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -641,6 +641,131 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2012/10/22/How-To-Get-Computer-Hardware-Information-By-Bash-In-Linux-OS/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2011/10/15/Implement-A-Chat-Room-By-Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2011/10/15/Implement-A-Chat-Room-By-Java/" class="post-title-link" itemprop="url">Java网络聊天室的设计与实现</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2011-10-15 23:27:22" itemprop="dateCreated datePublished" datetime="2011-10-15T23:27:22+08:00">2011-10-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-27 18:38:46" itemprop="dateModified" datetime="2021-04-27T18:38:46+08:00">2021-04-27</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2011/10/15/Implement-A-Chat-Room-By-Java/" class="post-meta-item leancloud_visitors" data-flag-title="Java网络聊天室的设计与实现" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<h1 id="一-问题描述"><a class="markdownIt-Anchor" href="#一-问题描述"></a> 一、 问题描述</h1>
+<p>Java聊天室是用Java程序实现的，由客户端和服务器端组成。先启动服务器端，再启动客户端，服务器验证身份后客户便可登陆聊天室。</p>
+<p>对于客户来说：</p>
+<ul>
+<li>注册、登陆和退出聊天室时都有相关提示信息；</li>
+<li>用户应该可以看到所有在线的用户；</li>
+<li>聊天时可以群聊，也可以选择某个聊天对象私聊。</li>
+</ul>
+<p>对于服务器来说：</p>
+<ul>
+<li>登录聊天室时必须输入正确的用户名和密码，未注册用户必须先注册；</li>
+<li>可以显示当前使用的端口，IP地址及在线人数；</li>
+<li>可以显示所有用户注册、登陆及退出等信息，且在用户登陆和退出时可以实时刷新在线用户列表</li>
+<li>可以显示所有聊天记录，并可以将记录保存在文件中。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2011/10/15/Implement-A-Chat-Room-By-Java/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1413,137 +1538,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2010/06/22/The-Story-of-Time/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2010/06/22/The-Story-of-Time/" class="post-title-link" itemprop="url">罗大佑: 《光阴的故事》</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2010-06-22 23:28:27" itemprop="dateCreated datePublished" datetime="2010-06-22T23:28:27+08:00">2010-06-22</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-29 12:13:48" itemprop="dateModified" datetime="2021-03-29T12:13:48+08:00">2021-03-29</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2010/06/22/The-Story-of-Time/" class="post-meta-item leancloud_visitors" data-flag-title="罗大佑: 《光阴的故事》" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>331</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="光阴的故事"><a class="markdownIt-Anchor" href="#光阴的故事"></a> 光阴的故事</h1>
-<p><em><strong>罗大佑词曲</strong></em></p>
-<h2 id="play"><a class="markdownIt-Anchor" href="#play"></a> <a target="_blank" rel="noopener" href="https://music.163.com/#/song?id=5232465&amp;market=baiduqk">Play</a></h2>
-<blockquote>
-<p>春天的花开秋天的风以及冬天的落阳<br>
-忧郁的青春年少的我曾经无知的这么想<br>
-风车在四季轮回的歌里它天天地流转<br>
-风花雪月的诗句里我在年年的成长<br>
-流水他带走光阴的故事改变了一个人<br>
-就在那多愁善感而初次等待的青春</p>
-</blockquote>
-<blockquote>
-<p>发黄的相片古老的信以及褪色的圣诞卡<br>
-年轻时为你写的歌恐怕你早已忘了吧<br>
-过去的誓言就像那课本里缤纷的书签<br>
-刻划着多少美丽的诗可是终究是一阵烟<br>
-流水它带走光阴的故事改变了两个人<br>
-就在那多愁善感而初次流泪的青春</p>
-</blockquote>
-<blockquote>
-<p>遥远的路程昨日的梦以及远去的笑声<br>
-再次的见面我们又历经了多少的路程<br>
-不再是旧日熟悉的我有着旧日狂热的梦<br>
-也不是旧日熟悉的你有着依然的笑容<br>
-流水它带走光阴的故事改变了我们<br>
-就在那多愁善感而初次回忆的青春<br>
-流水它带走光阴的故事改变了我们<br>
-就在那多愁善感而初次回忆的青春</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/30/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/32/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1590,13 +1584,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">766k</span>
+    <span title="站点总字数">768k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">11:37</span>
+    <span title="站点阅读时长">11:39</span>
   </span>
 </div>
 <div class="busuanzi-count">
