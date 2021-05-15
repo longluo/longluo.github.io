@@ -25,15 +25,15 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="By Long Luo 继第一篇Android自定义View：如何实现一个模拟时钟？，我们使用Android自定义View实现了一款模拟表盘，第二篇Android自定义View：另一种实现手表指针转动的方法我们又通过另外一种方法实现了手表指针的另外一种转动实现。 在日程生活中，我们常见的挂钟实际都是有个钟摆的，那么，如果我们想在我们所作的模拟时钟实现这种钟摆动画呢？那么具体应该如何实现呢？  一、">
+<meta name="description" content="By Long Luo   一、钟摆 二、Android Animation分析  2.1 动画分类  2.1.1 补间动画(Tween Animation) 2.1.2 帧动画(Frame Animation) 2.1.3 属性动画(Property Animation)   2.2 自定义动画   三、SwingAnimation 四、总结   继第一篇Android自定义View：如何实现一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android自定义View: 如何实现类钟摆的动画效果?">
 <meta property="og:url" content="www.longluo.me/blog/2016/08/26/Android-Custom-View-The-Clock-Pendulum-Swing-Animation/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo 继第一篇Android自定义View：如何实现一个模拟时钟？，我们使用Android自定义View实现了一款模拟表盘，第二篇Android自定义View：另一种实现手表指针转动的方法我们又通过另外一种方法实现了手表指针的另外一种转动实现。 在日程生活中，我们常见的挂钟实际都是有个钟摆的，那么，如果我们想在我们所作的模拟时钟实现这种钟摆动画呢？那么具体应该如何实现呢？  一、">
+<meta property="og:description" content="By Long Luo   一、钟摆 二、Android Animation分析  2.1 动画分类  2.1.1 补间动画(Tween Animation) 2.1.2 帧动画(Frame Animation) 2.1.3 属性动画(Property Animation)   2.2 自定义动画   三、SwingAnimation 四、总结   继第一篇Android自定义View：如何实现一">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2016-08-26T14:40:34.000Z">
-<meta property="article:modified_time" content="2020-12-04T03:45:48.197Z">
+<meta property="article:modified_time" content="2021-05-15T12:20:27.648Z">
 <meta property="article:author" content="Long Luo">
 <meta property="article:tag" content="Android">
 <meta property="article:tag" content="View">
@@ -112,9 +112,9 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -214,7 +214,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E9%92%9F%E6%91%86"><span class="nav-number">1.</span> <span class="nav-text"> 一、钟摆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-android-animation%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text"> 二、Android Animation分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#21-%E5%8A%A8%E7%94%BB%E5%88%86%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text"> 2.1 动画分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#211-%E8%A1%A5%E9%97%B4%E5%8A%A8%E7%94%BBtween-animation"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 2.1.1 补间动画(Tween Animation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#212-%E5%B8%A7%E5%8A%A8%E7%94%BBframe-animation"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 2.1.2 帧动画(Frame Animation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#213-%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BBproperty-animation"><span class="nav-number">2.1.3.</span> <span class="nav-text"> 2.1.3 属性动画(Property Animation)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%A8%E7%94%BB"><span class="nav-number">2.2.</span> <span class="nav-text"> 2.2 自定义动画</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-swinganimation"><span class="nav-number">3.</span> <span class="nav-text"> 三、SwingAnimation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text"> 四、总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"> 一、钟摆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text"> 二、Android Animation分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text"> 2.1 动画分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.1.</span> <span class="nav-text"> 2.1.1 补间动画(Tween Animation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.2.</span> <span class="nav-text"> 2.1.2 帧动画(Frame Animation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.3.</span> <span class="nav-text"> 2.1.3 属性动画(Property Animation)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text"> 2.2 自定义动画</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text"> 三、SwingAnimation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"> 四、总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -228,7 +228,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-count">329</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -343,7 +343,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+        <time title="修改时间：2021-05-15 20:20:27" itemprop="dateModified" datetime="2021-05-15T20:20:27+08:00">2021-05-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -370,7 +370,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.2k</span>
+      <span>5.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -389,20 +389,39 @@
     
     <div class="post-body" itemprop="articleBody">
         <p><em><strong>By Long Luo</strong></em></p>
+<!-- TOC -->
+<ul>
+<li><a href="#%E4%B8%80%E9%92%9F%E6%91%86">一、钟摆</a></li>
+<li><a href="#%E4%BA%8Candroid-animation%E5%88%86%E6%9E%90">二、Android Animation分析</a>
+<ul>
+<li><a href="#21-%E5%8A%A8%E7%94%BB%E5%88%86%E7%B1%BB">2.1 动画分类</a>
+<ul>
+<li><a href="#211-%E8%A1%A5%E9%97%B4%E5%8A%A8%E7%94%BBtween-animation">2.1.1 补间动画(Tween Animation)</a></li>
+<li><a href="#212-%E5%B8%A7%E5%8A%A8%E7%94%BBframe-animation">2.1.2 帧动画(Frame Animation)</a></li>
+<li><a href="#213-%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BBproperty-animation">2.1.3 属性动画(Property Animation)</a></li>
+</ul>
+</li>
+<li><a href="#22-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%A8%E7%94%BB">2.2 自定义动画</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89swinganimation">三、SwingAnimation</a></li>
+<li><a href="#%E5%9B%9B%E6%80%BB%E7%BB%93">四、总结</a></li>
+</ul>
+<!-- /TOC -->
 <p>继第一篇<a href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/">Android自定义View：如何实现一个模拟时钟？</a>，我们使用Android自定义View实现了一款模拟表盘，第二篇<a href="http://www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/">Android自定义View：另一种实现手表指针转动的方法</a>我们又通过另外一种方法实现了手表指针的另外一种转动实现。</p>
 <p>在日程生活中，我们常见的挂钟实际都是有个钟摆的，那么，如果我们想在我们所作的模拟时钟实现这种<strong>钟摆动画</strong>呢？那么具体应该如何实现呢？</p>
-<h1 id="一-钟摆"><a class="markdownIt-Anchor" href="#一-钟摆"></a> 一、钟摆</h1>
+<h1><span id="一-钟摆"> 一、钟摆</span></h1>
 <p>遇到问题，我们需要先分析<strong>钟摆动画</strong>的具体动画效果，然后再做下一步工作。</p>
 <blockquote>
 <p>单摆是能够产生往复摆动的一种装置，将无重细杆或不可伸长的细柔绳一端悬于重力场内一定点，另一端固结一个重小球，就构成单摆</p>
 </blockquote>
 <p>那么钟摆就是在一定角度内来回摆动，具体更多细节可以自行Google。</p>
 <a id="more"></a>
-<h1 id="二-android-animation分析"><a class="markdownIt-Anchor" href="#二-android-animation分析"></a> 二、Android Animation分析</h1>
+<h1><span id="二-android-animation分析"> 二、Android Animation分析</span></h1>
 <p>在这一节里，我们会简单谈谈Android动画。</p>
-<h2 id="21-动画分类"><a class="markdownIt-Anchor" href="#21-动画分类"></a> 2.1 动画分类</h2>
+<h2><span id="21-动画分类"> 2.1 动画分类</span></h2>
 <p>Android动画目前可分为以下3种：</p>
-<h3 id="211-补间动画tween-animation"><a class="markdownIt-Anchor" href="#211-补间动画tween-animation"></a> 2.1.1 补间动画(Tween Animation)</h3>
+<h3><span id="211-补间动画tween-animation"> 2.1.1 补间动画(Tween Animation)</span></h3>
 <p>所谓的<strong>补间动画</strong>，其实就是<strong>定义了我们动画的起始点和终止点的状态</strong>，而动画的过程我们是不关心的，只需要达到我们想要的效果就行。</p>
 <ol>
 <li>渐变动画支持四种类型：平移（Translate）、旋转（Rotate）、缩放（Scale）、不透明度（Alpha）</li>
@@ -412,13 +431,13 @@
 </ol>
 <p>对于补间动画来说，无论是用纯java代码构建Animation对象，还是通过xml文件定义Animation，其实最终的结果都是</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Animation a = <span class="keyword">new</span> AlphaAnimation();</span><br><span class="line">Animation b = <span class="keyword">new</span> ScaleAnimation();</span><br><span class="line">Animation c = <span class="keyword">new</span> RotateAnimation();</span><br><span class="line">Animation d = <span class="keyword">new</span> TranslateAnimation();</span><br></pre></td></tr></tbody></table></figure>
-<h3 id="212-帧动画frame-animation"><a class="markdownIt-Anchor" href="#212-帧动画frame-animation"></a> 2.1.2 帧动画(Frame Animation)</h3>
+<h3><span id="212-帧动画frame-animation"> 2.1.2 帧动画(Frame Animation)</span></h3>
 <p>所谓的<strong>帧动画</strong>就是可以设置我们的动画的每一帧的效果，其实视频或者Gif的效果都是由许多张图片在很短的时间内播放，从而产生动画效果。</p>
 <ol>
 <li>用于生成连续的Gif效果图。</li>
 <li>DrawableAnimation也是指此动画。</li>
 </ol>
-<h3 id="213-属性动画property-animation"><a class="markdownIt-Anchor" href="#213-属性动画property-animation"></a> 2.1.3 属性动画(Property Animation)</h3>
+<h3><span id="213-属性动画property-animation"> 2.1.3 属性动画(Property Animation)</span></h3>
 <p>属性动画是Android动画里面最复杂也是最能做出复杂的动画效果的一种类型。</p>
 <ol>
 <li>支持对所有View能更新的属性的动画（需要属性的setXxx()和getXxx()）。</li>
@@ -439,7 +458,7 @@
 </ul>
 <p>ValueAnimator和ObjectAnimator是属性动画里面经常使用的对象类，ObjectAnimator是 ValueAnimator的子类。</p>
 <p>当然Android属性动画是很复杂，达到熟练运用还需要深入研究，大家想了解可以去网上寻找相关知识学习。</p>
-<h2 id="22-自定义动画"><a class="markdownIt-Anchor" href="#22-自定义动画"></a> 2.2 自定义动画</h2>
+<h2><span id="22-自定义动画"> 2.2 自定义动画</span></h2>
 <p>在本文中，我们主要是要实现一个自定义动画：摆动动画。那么，我们有必要了解如何实现自定义动画。</p>
 <p><em><strong>—如何实现自定义动画？</strong></em></p>
 <p>实现自定义动画，要继承</p>
@@ -454,7 +473,7 @@
 </blockquote>
 <p><code>Animation.initialize()</code>方法具体就是初始化动画时的一些对象的尺寸以及其父对象的尺寸。</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Initialize this animation with the dimensions of the object being</span></span><br><span class="line"><span class="comment"> * animated as well as the objects parents. (This is to support animation</span></span><br><span class="line"><span class="comment"> * sizes being specified relative to these dimensions.)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Objects that interpret Animations should call this method when</span></span><br><span class="line"><span class="comment"> * the sizes of the object being animated and its parent are known, and</span></span><br><span class="line"><span class="comment"> * before calling {<span class="doctag">@link</span> #getTransformation}.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> width Width of the object being animated</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> height Height of the object being animated</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> parentWidth Width of the animated object's parent</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> parentHeight Height of the animated object's parent</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height, <span class="keyword">int</span> parentWidth, <span class="keyword">int</span> parentHeight)</span> </span>{</span><br><span class="line">    reset();</span><br><span class="line">    mInitialized = <span class="keyword">true</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="三-swinganimation"><a class="markdownIt-Anchor" href="#三-swinganimation"></a> 三、SwingAnimation</h1>
+<h1><span id="三-swinganimation"> 三、SwingAnimation</span></h1>
 <p>实现钟摆动画，那么我们就需要分析其具体实现，再做下一步工作。</p>
 <p><em><strong>Talk is cheap, show me the code.</strong></em></p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">applyTransformation</span><span class="params">(<span class="keyword">float</span> interpolatedTime, Transformation t)</span> </span>{</span><br><span class="line">    <span class="keyword">float</span> degrees;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">float</span> leftPos = (<span class="keyword">float</span>) (<span class="number">1.0</span> / <span class="number">4.0</span>);</span><br><span class="line">    <span class="keyword">float</span> rightPos = (<span class="keyword">float</span>) (<span class="number">3.0</span> / <span class="number">4.0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (interpolatedTime &lt;= leftPos) {</span><br><span class="line">        degrees = mMiddleDegrees + ((mLeftDegrees - mMiddleDegrees) * interpolatedTime * <span class="number">4</span>);</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (interpolatedTime &gt; leftPos &amp;&amp; interpolatedTime &lt; rightPos) {</span><br><span class="line">        degrees = mLeftDegrees + ((mRightDegrees - mLeftDegrees) * (interpolatedTime - leftPos) * <span class="number">2</span>);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        degrees = mRightDegrees + ((mMiddleDegrees - mRightDegrees) * (interpolatedTime - rightPos) * <span class="number">4</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">float</span> scale = getScaleFactor();</span><br><span class="line">    <span class="keyword">if</span> (mPivotX == <span class="number">0.0f</span> &amp;&amp; mPivotY == <span class="number">0.0f</span>) {</span><br><span class="line">        t.getMatrix().setRotate(degrees);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        t.getMatrix().setRotate(degrees, mPivotX * scale, mPivotY * scale);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
@@ -462,7 +481,7 @@
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">int</span> width, <span class="keyword">int</span> height, <span class="keyword">int</span> parentWidth, <span class="keyword">int</span> parentHeight)</span> </span>{</span><br><span class="line">    <span class="keyword">super</span>.initialize(width, height, parentWidth, parentHeight);</span><br><span class="line">    mPivotX = resolveSize(mPivotXType, mPivotXValue, width, parentWidth);</span><br><span class="line">    mPivotY = resolveSize(mPivotYType, mPivotYValue, height, parentHeight);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>具体使用呢：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数取值说明：中间度数、摆到左侧的度数、摆到右侧的度数、圆心X坐标类型、圆心X坐标相对比例、圆心Y坐标类型、圆心Y坐标相对比例</span></span><br><span class="line"><span class="comment">//坐标类型有三种：ABSOLUTE 绝对坐标，RELATIVE_TO_SELF 相对自身的坐标，RELATIVE_TO_PARENT 相对上级视图的坐标</span></span><br><span class="line"><span class="comment">//X坐标相对比例，为0时表示左边顶点，为1表示右边顶点，为0.5表示水平中心点</span></span><br><span class="line"><span class="comment">//Y坐标相对比例，为0时表示上边顶点，为1表示下边顶点，为0.5表示垂直中心点</span></span><br><span class="line"></span><br><span class="line">mSwingAnimation = <span class="keyword">new</span> SwingAnimation(</span><br><span class="line">        <span class="number">0f</span>, <span class="number">20f</span>, -<span class="number">20f</span>, Animation.RELATIVE_TO_SELF, <span class="number">0.5f</span>, Animation.RELATIVE_TO_SELF, <span class="number">0.5f</span>);</span><br><span class="line">mSwingAnimation.setDuration(<span class="number">3000</span>);     <span class="comment">//动画持续时间</span></span><br><span class="line">mSwingAnimation.setInterpolator(<span class="keyword">new</span> AccelerateDecelerateInterpolator());</span><br><span class="line">mSwingAnimation.setRepeatCount(Animation.INFINITE);  <span class="comment">//动画重播次数</span></span><br><span class="line">mSwingAnimation.setFillAfter(<span class="keyword">false</span>);  <span class="comment">//是否保持动画结束画面</span></span><br><span class="line">mSwingAnimation.setStartOffset(<span class="number">2000</span>);   <span class="comment">//动画播放延迟</span></span><br></pre></td></tr></tbody></table></figure>
-<h1 id="四-总结"><a class="markdownIt-Anchor" href="#四-总结"></a> 四、总结</h1>
+<h1><span id="四-总结"> 四、总结</span></h1>
 <p>通过如上方法，我们就实现了一个钟摆动画。</p>
 <p>以上。</p>
 <p><em><strong>Modified By Long Luo at 2018年10月1日11点29分 in Shenzhen, China.</strong></em></p>
@@ -580,13 +599,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">806k</span>
+    <span title="站点总字数">823k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:13</span>
+    <span title="站点阅读时长">12:28</span>
   </span>
 </div>
 <div class="busuanzi-count">

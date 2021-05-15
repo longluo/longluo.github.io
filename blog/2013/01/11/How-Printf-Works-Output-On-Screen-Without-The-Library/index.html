@@ -25,17 +25,17 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="By Long Luo  前言 —“你为什么要去登珠穆朗玛？” 当美国《纽约时报》记者问英国登山家乔治·马洛里。 —“Because it is there(因为山在那里)。”  一、 内核的诱惑 会当凌绝顶，一览众山小。 内核，是一个操作系统的核心。它负责管理系统的进程、内存、设备驱动程序、文件和网络系统，决定着系统的性能和稳定性。 几十年来，内核以它那深深的魅力吸引着无数的码农为之倾倒，一代又">
+<meta name="description" content="By Long Luo   前言 一、 内核的诱惑 二、用printf撕开一个小小的口子… 三、Linux系统调用 四、如何使用Linux系统调用？ 五、用汇编语言实现&quot;Hello World&quot; 六、胜利的果实 更多疑问    前言 —“你为什么要去登珠穆朗玛？” 当美国《纽约时报》记者问英国登山家乔治·马洛里。 —“Because it is there(因为山在那里)。”  一、 内核的诱惑">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出“Hello World”?">
 <meta property="og:url" content="www.longluo.me/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo  前言 —“你为什么要去登珠穆朗玛？” 当美国《纽约时报》记者问英国登山家乔治·马洛里。 —“Because it is there(因为山在那里)。”  一、 内核的诱惑 会当凌绝顶，一览众山小。 内核，是一个操作系统的核心。它负责管理系统的进程、内存、设备驱动程序、文件和网络系统，决定着系统的性能和稳定性。 几十年来，内核以它那深深的魅力吸引着无数的码农为之倾倒，一代又">
+<meta property="og:description" content="By Long Luo   前言 一、 内核的诱惑 二、用printf撕开一个小小的口子… 三、Linux系统调用 四、如何使用Linux系统调用？ 五、用汇编语言实现&quot;Hello World&quot; 六、胜利的果实 更多疑问    前言 —“你为什么要去登珠穆朗玛？” 当美国《纽约时报》记者问英国登山家乔治·马洛里。 —“Because it is there(因为山在那里)。”  一、 内核的诱惑">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201301/11/1357914874_7219.png">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201301/11/1357914883_4293.png">
 <meta property="article:published_time" content="2013-01-11T14:30:00.000Z">
-<meta property="article:modified_time" content="2020-12-04T03:45:48.228Z">
+<meta property="article:modified_time" content="2021-05-15T12:16:58.349Z">
 <meta property="article:author" content="Long Luo">
 <meta property="article:tag" content="Printf">
 <meta property="article:tag" content="Kernel">
@@ -114,9 +114,9 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -216,7 +216,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E5%86%85%E6%A0%B8%E7%9A%84%E8%AF%B1%E6%83%91"><span class="nav-number">2.</span> <span class="nav-text"> 一、 内核的诱惑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E7%94%A8printf%E6%92%95%E5%BC%80%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%B0%8F%E7%9A%84%E5%8F%A3%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text"> 二、用printf撕开一个小小的口子…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text"> 三、Linux系统调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text"> 四、如何使用Linux系统调用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94-%E7%94%A8%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0hello-world"><span class="nav-number">6.</span> <span class="nav-text"> 五、用汇编语言实现&quot;Hello World&quot;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD-%E8%83%9C%E5%88%A9%E7%9A%84%E6%9E%9C%E5%AE%9E"><span class="nav-number">7.</span> <span class="nav-text"> 六、胜利的果实</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A%E7%96%91%E9%97%AE"><span class="nav-number">8.</span> <span class="nav-text"> 更多疑问</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"> 前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text"> 一、 内核的诱惑</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text"> 二、用printf撕开一个小小的口子…</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text"> 三、Linux系统调用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text"> 四、如何使用Linux系统调用？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text"> 五、用汇编语言实现&quot;Hello World&quot;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text"> 六、胜利的果实</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">8.</span> <span class="nav-text"> 更多疑问</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,7 +230,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-count">329</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -345,7 +345,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+        <time title="修改时间：2021-05-15 20:16:58" itemprop="dateModified" datetime="2021-05-15T20:16:58+08:00">2021-05-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -372,7 +372,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.5k</span>
+      <span>5.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -391,17 +391,29 @@
     
     <div class="post-body" itemprop="articleBody">
         <p><em><strong>By Long Luo</strong></em></p>
-<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<!-- TOC -->
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E4%B8%80-%E5%86%85%E6%A0%B8%E7%9A%84%E8%AF%B1%E6%83%91">一、 内核的诱惑</a></li>
+<li><a href="#%E4%BA%8C%E7%94%A8printf%E6%92%95%E5%BC%80%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%B0%8F%E7%9A%84%E5%8F%A3%E5%AD%90">二、用printf撕开一个小小的口子…</a></li>
+<li><a href="#%E4%B8%89linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8">三、Linux系统调用</a></li>
+<li><a href="#%E5%9B%9B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8">四、如何使用Linux系统调用？</a></li>
+<li><a href="#%E4%BA%94%E7%94%A8%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0hello-world">五、用汇编语言实现"Hello World"</a></li>
+<li><a href="#%E5%85%AD%E8%83%9C%E5%88%A9%E7%9A%84%E6%9E%9C%E5%AE%9E">六、胜利的果实</a></li>
+<li><a href="#%E6%9B%B4%E5%A4%9A%E7%96%91%E9%97%AE">更多疑问</a></li>
+</ul>
+<!-- /TOC -->
+<h1><span id="前言"> 前言</span></h1>
 <p>—“你为什么要去登珠穆朗玛？”</p>
 <p>当美国《纽约时报》记者问英国登山家乔治·马洛里。</p>
 <p>—“Because it is there(因为山在那里)。”</p>
-<h1 id="一-内核的诱惑"><a class="markdownIt-Anchor" href="#一-内核的诱惑"></a> 一、 内核的诱惑</h1>
+<h1><span id="一-内核的诱惑"> 一、 内核的诱惑</span></h1>
 <p><strong>会当凌绝顶，一览众山小。</strong></p>
 <p><em><strong>内核，是一个操作系统的核心。它负责管理系统的进程、内存、设备驱动程序、文件和网络系统，决定着系统的性能和稳定性</strong></em>。</p>
 <p>几十年来，内核以它那深深的魅力吸引着无数的码农为之倾倒，一代又一代的码农们从青青葱葱走向硕果累累，从风华正茂走向耄耋之年，也走出了现在多姿多彩的世界。</p>
 <p>内核就像一位风姿卓约的美女，多少码农欲一亲芳泽而不得。Linux内核是庞大复杂的，超过 600 万行的代码，就如同珠穆朗玛峰一样那样让人望而生畏。初学者一踏入，绝大多数会不自觉地迷失在这座庞大的迷宫里。</p>
 <a id="more"></a>
-<h1 id="二-用printf撕开一个小小的口子"><a class="markdownIt-Anchor" href="#二-用printf撕开一个小小的口子"></a> 二、用printf撕开一个小小的口子…</h1>
+<h1><span id="二-用printf撕开一个小小的口子"> 二、用printf撕开一个小小的口子…</span></h1>
 <p>作为一名内核小白，我也期望着那天能登上Linux内核这座高峰，一览其风采，但高原反应可不是闹着玩的。<br>
 既然等不了珠穆朗玛峰，那就先试试攀登莲花山吧…</p>
 <p>每一位初学者都学习过下面这个例子，</p>
@@ -421,10 +433,10 @@
 <p>事实上，<code>printf</code>是作为C语言的标准输入输出库里面的一个函数提供给我们的，已经被我们习以为常了。</p>
 <p>这些C语言函数库是随Linux核心提供给我们的，这些库对系统调用进行了一些包装和扩展。</p>
 <p>而实际上，很多已经被我们习以为常的C语言标准函数，在Linux平台上的实现都是靠<strong>系统调用</strong>完成的，所以如果想对系统底层的原理作深入的了解，必须先掌握各种系统调用。</p>
-<h1 id="三-linux系统调用"><a class="markdownIt-Anchor" href="#三-linux系统调用"></a> 三、Linux系统调用</h1>
+<h1><span id="三-linux系统调用"> 三、Linux系统调用</span></h1>
 <p>Linux内核中设置了一组用于实现各种系统功能的子程序，称为<strong>系统调用</strong>。用户可以通过系统调用命令在自己的应用程序中调用它们。</p>
 <p>从某种角度来看，系统调用和普通的函数调用非常相似。区别仅仅在于，<strong>系统调用由操作系统核心提供，运行于核心态；而普通的函数调用由函数库或用户自己提供，运行于用户态</strong>。二者在使用方式上也有相似之处，在下面将会提到。</p>
-<h1 id="四-如何使用linux系统调用"><a class="markdownIt-Anchor" href="#四-如何使用linux系统调用"></a> 四、如何使用Linux系统调用？</h1>
+<h1><span id="四-如何使用linux系统调用"> 四、如何使用Linux系统调用？</span></h1>
 <p>好了，了解到这些之后，来看下我们***不使用C语言标准库***完成的<code>app.c</code> 1.0版：</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************************************************</span></span><br><span class="line"><span class="comment">** File: - Z:\code\c\LLprintf\print1.0\app.c</span></span><br><span class="line"><span class="comment">**  </span></span><br><span class="line"><span class="comment">** Copyright (C), Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Description: </span></span><br><span class="line"><span class="comment">**      app.c</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Version: 1.0</span></span><br><span class="line"><span class="comment">** Date created: 21:48:18,10/01/2013</span></span><br><span class="line"><span class="comment">** Author: Long.Luo</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment">** 	&lt;author&gt;	&lt;data&gt;			&lt;desc&gt;</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LLprint</span><span class="params">(<span class="keyword">char</span> *msg, <span class="keyword">int</span> len)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	LLprint(<span class="string">"Hello, LLprint!\n"</span>, <span class="number">16</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>从代码可以看出，这一次我们没有包含任何头文件，只是调用了一个<code>void LLprint(char *msg, int len)</code> 函数来实现在屏幕上输出的工作，那么<code>void LLprint(char *msg, int len)</code>的实现呢？</p>
@@ -432,7 +444,7 @@
 <p>—我们必须实现一个纯正的<code>printf</code>，不借助任何第三方库，完全调用Linux的系统调用，甚至直接自己写…</p>
 <p>—<em><strong>NO!</strong></em></p>
 <p>完全实现<code>printf</code>的功能，目前来说还是一个Mission Impossible，但是我们可以完全可以降低难度，只是在屏幕上输出一段我们自己想要的字符，这完全是可以办到的。</p>
-<h1 id="五-用汇编语言实现hello-world"><a class="markdownIt-Anchor" href="#五-用汇编语言实现hello-world"></a> 五、用汇编语言实现"Hello World"</h1>
+<h1><span id="五-用汇编语言实现hello-world"> 五、用汇编语言实现"Hello World"</span></h1>
 <p>我们可以用<strong>纯汇编语言</strong>来实现它， Look：</p>
 <figure class="highlight x86asm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">;************************************************************************************</span></span><br><span class="line"><span class="comment">;   File: - Z:\code\c\LLprintf\print1.0\LLprint.asm</span></span><br><span class="line"><span class="comment">;   </span></span><br><span class="line"><span class="comment">;   Copyright (C), Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">;   Description: </span></span><br><span class="line"><span class="comment">;       LLprint.asm</span></span><br><span class="line"><span class="comment">;  </span></span><br><span class="line"><span class="comment">;   Version: 1.0</span></span><br><span class="line"><span class="comment">;   Date created: 21:45:04,10/01/2013</span></span><br><span class="line"><span class="comment">;   Author: Long.Luo</span></span><br><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">; --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment">; 	&lt;author&gt;	&lt;data&gt;			&lt;desc&gt;</span></span><br><span class="line"><span class="comment">; </span></span><br><span class="line"><span class="comment">;************************************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="meta">extern</span> main</span><br><span class="line"></span><br><span class="line">[<span class="meta">section</span> .data]	<span class="comment">; Data start here</span></span><br><span class="line"></span><br><span class="line">[<span class="meta">section</span> .text]	<span class="comment">; Code start here</span></span><br><span class="line"></span><br><span class="line"><span class="meta">global</span> _start	<span class="comment">; import ENTRY: _start, for the LD.</span></span><br><span class="line"><span class="meta">global</span> LLprint	<span class="comment">; import the function for app.c.</span></span><br><span class="line"></span><br><span class="line"><span class="symbol">_start:</span></span><br><span class="line">		<span class="keyword">call</span> main			<span class="comment">;  main</span></span><br><span class="line">		<span class="keyword">add</span>	<span class="built_in">esp</span>, <span class="number">8</span>			<span class="comment">; </span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">mov</span> <span class="built_in">ebx</span>, <span class="number">0</span>      	<span class="comment">; 参数一：退出代码</span></span><br><span class="line">		<span class="keyword">mov</span> <span class="built_in">eax</span>, <span class="number">1</span>       	<span class="comment">; 系统调用号(sys_exit) </span></span><br><span class="line">		<span class="keyword">int</span> <span class="number">0x80</span>         	<span class="comment">; 调用内核功能	</span></span><br><span class="line"></span><br><span class="line"><span class="comment">; ====================================================================================</span></span><br><span class="line"><span class="comment">;                          void LLprint(char* msg, int len);</span></span><br><span class="line"><span class="comment">; ====================================================================================</span></span><br><span class="line"><span class="symbol">LLprint:</span></span><br><span class="line">		<span class="keyword">mov</span> <span class="built_in">edx</span>, [<span class="built_in">esp</span> + <span class="number">8</span>]  <span class="comment">; 参数三：字符串长度</span></span><br><span class="line">		<span class="keyword">mov</span> <span class="built_in">ecx</span>, [<span class="built_in">esp</span> + <span class="number">4</span>]  <span class="comment">; 参数二：要显示的字符串</span></span><br><span class="line">		<span class="keyword">mov</span> <span class="built_in">ebx</span>, <span class="number">1</span>       	<span class="comment">; 参数一：文件描述符(stdout) </span></span><br><span class="line">		<span class="keyword">mov</span> <span class="built_in">eax</span>, <span class="number">4</span>       	<span class="comment">; 系统调用号(sys_write) </span></span><br><span class="line">		<span class="keyword">int</span> <span class="number">0x80</span>         	<span class="comment">; 调用内核功能</span></span><br><span class="line">		<span class="keyword">ret</span>              	<span class="comment">; 退出程序</span></span><br><span class="line">		</span><br></pre></td></tr></tbody></table></figure>
 <p>代码中的注释已经写的挺详细的了，简单来说:</p>
@@ -445,11 +457,11 @@
 <p>最终完成的<code>Makefile</code>如下所示：</p>
 <figure class="highlight makefile"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#************************************************************************************</span></span><br><span class="line"><span class="comment"># File: - Z:\code\c\LLprintf\print1.0\Makefile</span></span><br><span class="line"><span class="comment">#  </span></span><br><span class="line"><span class="comment"># Copyright (C), Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># Description: </span></span><br><span class="line"><span class="comment">#      Makefile</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># Version: 1.0</span></span><br><span class="line"><span class="comment"># Date created: 21:49:10,10/01/2013</span></span><br><span class="line"><span class="comment"># Author: Long.Luo</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment"># --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment"># 	&lt;author&gt;	&lt;data&gt;			&lt;desc&gt;</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment">#************************************************************************************</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Programs, flags, etc.</span></span><br><span class="line">ASM		= nasm</span><br><span class="line">CC		= gcc</span><br><span class="line">LD		= ld</span><br><span class="line">ASMFLAGS	= -f elf</span><br><span class="line">CFLAGS		= -c</span><br><span class="line"><span class="comment">#CFLAGS		= -m32 -c</span></span><br><span class="line">LDFLAGS		= -s</span><br><span class="line"><span class="comment">#LDFLAGS		=-m elf_i386 -s</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># This Program</span></span><br><span class="line">BIN		= AppPrint</span><br><span class="line">OBJS	= LLprint.o app.o </span><br><span class="line"></span><br><span class="line"><span class="comment"># All Phony Targets</span></span><br><span class="line">.PHONY : everything final image clean realclean disasm all buildimg</span><br><span class="line"></span><br><span class="line"><span class="comment"># Default starting position</span></span><br><span class="line">everything : <span class="variable">$(BIN)</span></span><br><span class="line"></span><br><span class="line">all : realclean everything</span><br><span class="line"></span><br><span class="line">final : all clean</span><br><span class="line"></span><br><span class="line">clean :</span><br><span class="line">	rm -f <span class="variable">$(OBJS)</span></span><br><span class="line"></span><br><span class="line">realclean :</span><br><span class="line">	rm -f <span class="variable">$(OBJS)</span> <span class="variable">$(BIN)</span></span><br><span class="line">	</span><br><span class="line"><span class="variable">$(BIN)</span> : <span class="variable">$(OBJS)</span></span><br><span class="line">	<span class="variable">$(LD)</span> <span class="variable">$(LDFLAGS)</span> -o <span class="variable">$(BIN)</span> <span class="variable">$(OBJS)</span></span><br><span class="line">		</span><br><span class="line">LLprint.o : LLprint.asm</span><br><span class="line">	<span class="variable">$(ASM)</span> <span class="variable">$(ASMFLAGS)</span> -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br><span class="line"></span><br><span class="line"><span class="section">app.o: app.c</span></span><br><span class="line">	<span class="variable">$(CC)</span> <span class="variable">$(CFLAGS)</span> -o <span class="variable">$@</span> <span class="variable">$&lt;</span></span><br></pre></td></tr></tbody></table></figure>
 <p>这样我们每次都只需要在命令行输入make all就会自动化编译连接了。</p>
-<h1 id="六-胜利的果实"><a class="markdownIt-Anchor" href="#六-胜利的果实"></a> 六、胜利的果实</h1>
+<h1><span id="六-胜利的果实"> 六、胜利的果实</span></h1>
 <p>来看看我们最终的成果：</p>
 <p><img src="http://img.my.csdn.net/uploads/201301/11/1357914883_4293.png" alt="Printf Output"></p>
 <p><em><strong>Bingo!</strong></em></p>
-<h1 id="更多疑问"><a class="markdownIt-Anchor" href="#更多疑问"></a> 更多疑问</h1>
+<h1><span id="更多疑问"> 更多疑问</span></h1>
 <p>我们只是完成了使用汇编语言来实现在屏幕上输出我们想要的字符，</p>
 <p>But，<code>printf</code>那么复杂的功能到底是如何实现的呢？</p>
 <p><em><strong>欲知后事如何，且听下回分解…</strong></em></p>
@@ -570,13 +582,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">806k</span>
+    <span title="站点总字数">823k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:13</span>
+    <span title="站点阅读时长">12:28</span>
   </span>
 </div>
 <div class="busuanzi-count">

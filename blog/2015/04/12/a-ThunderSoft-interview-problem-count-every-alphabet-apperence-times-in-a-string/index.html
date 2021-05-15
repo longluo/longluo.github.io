@@ -111,9 +111,9 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -213,7 +213,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#how"><span class="nav-number">1.</span> <span class="nav-text"> How?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%B3%E4%B8%8E%E6%89%A9%E5%B1%95%E4%B8%80"><span class="nav-number">2.</span> <span class="nav-text"> 引申与扩展一</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%B3%E4%B8%8E%E6%89%A9%E5%B1%95%E4%BA%8C"><span class="nav-number">3.</span> <span class="nav-text"> 引申与扩展二</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"> How?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text"> 引申与扩展一</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text"> 引申与扩展二</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -227,7 +227,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-count">329</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -400,16 +400,16 @@
 </ol>
 <p>其实这个题目，事后回顾起来，是比较简单的，但遗憾的是，当时未能在规定时间内解答出来，导致未能通过面试，拿到Offer，在此将这个题目记录下来。</p>
 <p>重新认真解答这个题目。</p>
-<h1 id="how"><a class="markdownIt-Anchor" href="#how"></a> How?</h1>
+<h1><span id="how"> How?</span></h1>
 <a id="more"></a>
 <p>其实这个题目有一个很简单的解决防范，新建一个数组，大小为26，将字符串中每个字符都与<code>'A'</code>相减，得到的就是每个字母在数组中的<code>元素下标值</code>，我们最后得到的这个数组就是每个字母在这个字符串中出现的次数。</p>
 <p>根据以上分析，可以写出如下代码：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.algorithm.alphabetSort;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 有一个很长的字符串，其中都是一些字母，求其中每个字母出现的次数(大小写区分)。</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> luolong</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>: 2015-04-12 00:54:17</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AlphabetSort</span> </span>{</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> String str = <span class="string">"AWQEYIOAHDHDKKLDLAHFHJALAFHANNAFGJCXCKBZCQIEOPADHAZBZVCFGCSHDJCKCLDMDHFAKAIIAYQO"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span>[] outArray = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">        AlphabetSortString(str);</span><br><span class="line">        printSortArray(outArray);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">AlphabetSortString</span><span class="params">(String str)</span> </span>{</span><br><span class="line">        <span class="keyword">char</span> cTemp;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++) {</span><br><span class="line">            cTemp = str.charAt(i);</span><br><span class="line">            </span><br><span class="line">            outArray[cTemp - <span class="string">'A'</span>]++;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">printSortArray</span><span class="params">(<span class="keyword">int</span>[] arr)</span> </span>{</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++) {</span><br><span class="line">            <span class="keyword">char</span> c = (<span class="keyword">char</span>) (<span class="string">'A'</span> + i);</span><br><span class="line">            System.out.print(<span class="string">""</span> + c + <span class="string">"="</span> + arr[i] + <span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="引申与扩展一"><a class="markdownIt-Anchor" href="#引申与扩展一"></a> 引申与扩展一</h1>
+<h1><span id="引申与扩展一"> 引申与扩展一</span></h1>
 <p>如果字符串不仅仅是大写字母，而是大小写字母都存在的情况下，那应该如何写呢？</p>
 <p>其实也很简单，如下所示：</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (cTemp &gt;= <span class="string">'A'</span> &amp;&amp; cTemp &lt;= <span class="string">'Z'</span>) {</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	* 大写字母</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	outArray[cTemp - <span class="string">'A'</span>]++;</span><br><span class="line">} <span class="keyword">else</span> <span class="keyword">if</span> (cTemp &gt;= <span class="string">'a'</span> &amp;&amp; cTemp &lt;= <span class="string">'z'</span>) {</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	* 小写字母</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	outArray[cTemp - <span class="string">'a'</span> + <span class="number">26</span>]++;</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">   </span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="引申与扩展二"><a class="markdownIt-Anchor" href="#引申与扩展二"></a> 引申与扩展二</h1>
+<h1><span id="引申与扩展二"> 引申与扩展二</span></h1>
 <p>如果字符串，假如<code>所有字符</code>都需要统计呢？</p>
 <p>那又应该如何做呢？</p>
 <p>后来我发现了用HashMap来存储也是可以的，也可以完美解决这个问题，代码如下所示：</p>
@@ -531,13 +531,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">806k</span>
+    <span title="站点总字数">823k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:13</span>
+    <span title="站点阅读时长">12:28</span>
   </span>
 </div>
 <div class="busuanzi-count">

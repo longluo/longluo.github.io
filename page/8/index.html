@@ -108,9 +108,9 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -223,7 +223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-count">329</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -297,6 +297,214 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2019/09/20/the-algorithm-of-large-number-operations/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2019/09/20/the-algorithm-of-large-number-operations/" class="post-title-link" itemprop="url">超大数字的四则运算是如何实现的呢？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-09-20 01:32:43" itemprop="dateCreated datePublished" datetime="2019-09-20T01:32:43+08:00">2019-09-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-15 20:04:08" itemprop="dateModified" datetime="2021-05-15T20:04:08+08:00">2021-05-15</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2019/09/20/the-algorithm-of-large-number-operations/" class="post-meta-item leancloud_visitors" data-flag-title="超大数字的四则运算是如何实现的呢？" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<!-- TOC -->
+<ul>
+<li><a href="#%E5%A4%A7%E6%95%B0%E5%AD%97%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA">大数字如何表示？</a></li>
+<li><a href="#%E5%8A%A0%E6%B3%95">加法</a></li>
+<li><a href="#%E5%87%8F%E6%B3%95">减法</a></li>
+<li><a href="#%E4%B9%98%E6%B3%95">乘法</a></li>
+<li><a href="#%E9%99%A4%E6%B3%95">除法</a></li>
+<li><a href="#%E6%80%BB%E7%BB%93">总结</a></li>
+</ul>
+<!-- /TOC -->
+<p>众所周知，计算机系统从16位发展到32位，再从32位发展到64位，与此同时不同的数据类型也随着系统的位数增大而增大。早期的操作系统是16位系统，<code>int</code>用<code>2字节</code>表示，范围是<code>-32768~32767</code>，<code>long</code>用<code>4字节</code>表示，范围是<code>-2147483648~2147483647</code>；后来发展到32位操作系统，<code>int</code>用<code>4字节</code>表示，与<code>long</code>相同。</p>
+<p>目前的操作系统已发展到64位操作系统，但因程序编译工艺的不同，两者表现出不同的差别：</p>
+<ul>
+<li>32位编译系统：int占四字节，与long相同。</li>
+<li>64位编译系统：int占四字节，long占8字节，long数据范围变为：-2<sup>63~2</sup>63-1</li>
+</ul>
+<p>具体在标准中，并没有规定long一定要比int长，也没有规定short要比int短，只是规定了长整型至少和整型一样长，整型至少和短整型一样长。这个规则同样适用于浮点型long double至少和double一样长，double至少和float一样长。至于如何实现要看编译器厂商。</p>
+<p>下表所展示的是Java的8种基本数据类型的详细数据：</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>大小</th>
+<th>最小值</th>
+<th>最大值</th>
+<th>包装器类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>/</td>
+<td>/</td>
+<td>/</td>
+<td>Boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>char</td>
+<td>2</td>
+<td>Unicode 0</td>
+<td>Unicode 2^16-1</td>
+<td>Character</td>
+<td>‘u0000’</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>1</td>
+<td>-128</td>
+<td>127</td>
+<td>Byte</td>
+<td>0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+<td>-2^15</td>
+<td>+2^15-1</td>
+<td>Short</td>
+<td>0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+<td>-2^31</td>
+<td>+2^31-1</td>
+<td>Integer</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8</td>
+<td>-2^63</td>
+<td>+2^63-1</td>
+<td>Long</td>
+<td>0</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+<td>IEEE754</td>
+<td>IEEE754</td>
+<td>Float</td>
+<td>0</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+<td>IEEE754</td>
+<td>IEEE754</td>
+<td>Double</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>从上述表格中可以看出，普通工作生活中所涉及的数字都不会超过int所能表示的范围，而超过<code>long long</code>类型则少之又少。但是具体到一些行业或者科研中，比如天文，石油开采等，经常需要和天文数字进行打交道。举例来说，50！，10^20这种阶乘或者指数函数轻而易举就突破最大所能表示的范围。</p>
+<p>如何表示这些超大数字以及对其进行数学运算呢？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2019/09/20/the-algorithm-of-large-number-operations/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -772,7 +980,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+        <time title="修改时间：2021-05-15 19:58:45" itemprop="dateModified" datetime="2021-05-15T19:58:45+08:00">2021-05-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -799,7 +1007,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>7.8k</span>
+      <span>7.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -818,6 +1026,24 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><em><strong>By Long Luo</strong></em></p>
+<!-- TOC -->
+<ul>
+<li><a href="#%E4%B8%80%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95">一、矩阵乘法</a></li>
+<li><a href="#%E4%BA%8Cstrassen%E7%AE%97%E6%B3%95">二、Strassen算法</a></li>
+<li><a href="#%E4%B8%89strassen%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3">三、Strassen原理详解</a>
+<ul>
+<li><a href="#strassen%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4">Strassen实现步骤</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9Bstrassen%E7%AE%97%E6%B3%95%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0">四、Strassen算法的代码实现</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E4%BD%BF%E7%94%A8strassen%E7%AE%97%E6%B3%95%E6%94%B6%E7%9B%8A%E5%88%A4%E6%96%AD">第一步：使用Strassen算法收益判断</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%E5%88%86%E5%9D%97">第二步：分块</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%E5%88%86%E6%B2%BB%E5%92%8C%E9%80%92%E5%BD%92">第三步：分治和递归</a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
 <p>机器学习中需要训练大量数据，涉及大量复杂运算，例如卷积、矩阵等。这些复杂运算不仅多，而且每次计算的数据量很大，如果能针对这些运算进行优化，可以大幅提高性能。</p>
 <h1 id="一-矩阵乘法"><a class="markdownIt-Anchor" href="#一-矩阵乘法"></a> 一、矩阵乘法</h1>
 <p>假设<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>×</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">m \times p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span></span></span></span>的矩阵，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">p \times n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7777700000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>的矩阵，那么称<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi><mo>×</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">m \times n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>的矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi></mrow><annotation encoding="application/x-tex">C</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span>为矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>与<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>的乘积，记作<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>C</mi><mo>=</mo><mi>A</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">C = AB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span>，称为矩阵积（matrix product）。</p>
@@ -945,7 +1171,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><em><strong>By LongLuo</strong></em></p>
-<h1 id="一"><a class="markdownIt-Anchor" href="#一"></a> 一、</h1>
+<h1><span id="一"> 一、</span></h1>
 <p>最近在思考普通人的天花板能有多高？</p>
 <p>如果一个人，出生时没被基因彩票砸中，一路上也没有逆天的运气，那他天花板能有多高？地板又有多低？</p>
 <p>从统计来看，绝大多数人35岁以后确实没有什么大的改变，因为随着年龄增大，身体机能下降，人生可能性越来越小。历史上的天才在做出巨大发明贡献时也都在30岁之前，所以国内职场非常不待见35岁以上的老同志也在情理之中。</p>
@@ -1006,7 +1232,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+        <time title="修改时间：2021-05-15 20:19:11" itemprop="dateModified" datetime="2021-05-15T20:19:11+08:00">2021-05-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1033,7 +1259,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>8.3k</span>
+      <span>8.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1051,7 +1277,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <hr>
+          <ul>
+<li>[<a target="_blank" rel="noopener" href="https://weibo.com/ttwenda/p/show?id=2310684309871058142352&amp;is_all=1#_0">1. 褚老师经历过人生最低谷吗？你信命信风水吗？未来哪些行业有赚钱机会？</a>](#1-褚老师经历过人生最低谷吗你信命信风水吗未来哪些行业有赚钱机会httpsweibocomttwendapshowid2310684309871058142352is_all1_0)
+<ul>
+<li><a href="#%E4%B8%80">一</a></li>
+<li><a href="#%E4%BA%8C">二</a></li>
+<li><a href="#%E4%B8%89">三</a></li>
+</ul>
+</li>
+<li>[<a target="_blank" rel="noopener" href="https://weibo.com/ttwenda/p/show?id=2310684408806774800541#_0">2. 如何度过低谷期? 褚老师好，知道您一贯讨厌鸡汤，揭露鸡汤，最近自己“运气”很不好，事事都不顺，用老话说就是“喝凉水都塞牙”。 我想问的是，这种状态在“科学”上是否真实存在？又应该如何面对、度过呢？或者随便聊聊吧，什么都好。</a>](#2-如何度过低谷期-褚老师好知道您一贯讨厌鸡汤揭露鸡汤最近自己运气很不好事事都不顺用老话说就是喝凉水都塞牙-我想问的是这种状态在科学上是否真实存在又应该如何面对度过呢或者随便聊聊吧什么都好httpsweibocomttwendapshowid2310684408806774800541_0)</li>
+</ul>
+<!-- /TOC -->
+<hr>
 <h1 id="1-褚老师经历过人生最低谷吗你信命信风水吗未来哪些行业有赚钱机会"><a class="markdownIt-Anchor" href="#1-褚老师经历过人生最低谷吗你信命信风水吗未来哪些行业有赚钱机会"></a> <a target="_blank" rel="noopener" href="https://weibo.com/ttwenda/p/show?id=2310684309871058142352&amp;is_all=1#_0">1. 褚老师经历过人生最低谷吗？你信命信风水吗？未来哪些行业有赚钱机会？</a></h1>
 <hr>
 <h2 id="一"><a class="markdownIt-Anchor" href="#一"></a> 一</h2>
@@ -1129,7 +1366,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-30 15:15:24" itemprop="dateModified" datetime="2021-03-30T15:15:24+08:00">2021-03-30</time>
+        <time title="修改时间：2021-05-15 20:19:53" itemprop="dateModified" datetime="2021-05-15T20:19:53+08:00">2021-05-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1175,6 +1412,12 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><em><strong>By Long Luo</strong></em></p>
+<!-- TOC -->
+<ul>
+<li><a href="#%E8%BF%AD%E4%BB%A3">迭代</a></li>
+<li><a href="#%E9%80%92%E5%BD%92">递归</a></li>
+</ul>
+<!-- /TOC -->
 <p>二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法，<strong>算法复杂度</strong>为：O(log2n)。但是，折半查找要求线性表必须采用<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84/1347176">顺序存储结构</a>，而且表中元素按关键字有序排列。</p>
 <p>1.必须采用顺序存储结构；<br>
 2.必须按关键字大小有序排列。</p>
@@ -1313,120 +1556,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2018/12/09/A-Tour-of-Europe-Town-From-The-View-of-An-Architecture/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2018/12/09/A-Tour-of-Europe-Town-From-The-View-of-An-Architecture/" class="post-title-link" itemprop="url">假装在欧洲：溪村确实很美，但一名建筑爱好者来看...</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2018-12-09 01:02:56" itemprop="dateCreated datePublished" datetime="2018-12-09T01:02:56+08:00">2018-12-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2018/12/09/A-Tour-of-Europe-Town-From-The-View-of-An-Architecture/" class="post-meta-item leancloud_visitors" data-flag-title="假装在欧洲：溪村确实很美，但一名建筑爱好者来看..." title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>767</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>上周末去了趟南方工厂，下午顺便逛了下朋友圈网红之地：<strong>华为欧洲小镇</strong>，大名<strong>溪流背坡村</strong>。</p>
-<p>作为一名业余建筑爱好者，不用出国门就可以体验十多个不同风格的欧洲小镇，确实不虚此行。既能体验浓浓的地中海风情，也有精致考究的法式巴黎大学城，更有学院风温和宁静的海德尔堡…</p>
-<p>从美观角度来看，溪村确实很美，但如果从建筑学角度来看，其实不足之处也不少。任何建筑都脱离不了形成它的文化和环境，但这些建筑群只是在钢筋混凝土的骨架上再套上一层欧式风情的外壳，内涵还不够。</p>
-<p>相比欧美，国内小城市和小镇，却总给人脏乱差的感觉，为什么呢？看完欧洲小镇，有了部分答案。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2018/12/09/A-Tour-of-Europe-Town-From-The-View-of-An-Architecture/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1473,13 +1602,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">806k</span>
+    <span title="站点总字数">823k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:13</span>
+    <span title="站点阅读时长">12:28</span>
   </span>
 </div>
 <div class="busuanzi-count">

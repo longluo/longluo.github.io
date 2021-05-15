@@ -25,16 +25,16 @@
     var NexT = window.NexT || {};
     var CONFIG = {"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","version":"8.2.0","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}};
   </script>
-<meta name="description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第二篇: 大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化   在上一篇大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？里我们讲了为什么我们要引入Struct这个数据类型，我们了解到Struct是一种聚合数据类型，是为了用户描述和解">
+<meta name="description" content="By Long Luo   一、Struct的声明 二、Struct的定义 三、C99标准下的Struct的初始化方法    前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第二篇: 大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化   在上一篇大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？里我们讲了为">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大话结构体之二：名不正则言不顺---Struct(结构体)的声明、定义及初始化">
 <meta property="og:url" content="www.longluo.me/blog/2012/12/24/Struct-Insight-Chapter-Two-The-Declaration-Definition-And-Initialization-Of-Struct/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第二篇: 大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化   在上一篇大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？里我们讲了为什么我们要引入Struct这个数据类型，我们了解到Struct是一种聚合数据类型，是为了用户描述和解">
+<meta property="og:description" content="By Long Luo   一、Struct的声明 二、Struct的定义 三、C99标准下的Struct的初始化方法    前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第二篇: 大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化   在上一篇大话结构体之一: 从女孩怎么选男朋友开始…Struct是为了解决什么问题？里我们讲了为">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201212/09/1355020124_4311.png">
 <meta property="article:published_time" content="2012-12-23T16:38:25.000Z">
-<meta property="article:modified_time" content="2020-12-04T03:45:48.287Z">
+<meta property="article:modified_time" content="2021-05-15T12:04:56.345Z">
 <meta property="article:author" content="Long Luo">
 <meta property="article:tag" content="结构体">
 <meta property="article:tag" content="技术">
@@ -114,9 +114,9 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -216,7 +216,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-struct%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="nav-number">1.</span> <span class="nav-text"> 一、Struct的声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-struct%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text"> 二、Struct的定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-c99%E6%A0%87%E5%87%86%E4%B8%8B%E7%9A%84struct%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text"> 三、C99标准下的Struct的初始化方法</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"> 一、Struct的声明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text"> 二、Struct的定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text"> 三、C99标准下的Struct的初始化方法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,7 +230,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-count">329</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -345,7 +345,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+        <time title="修改时间：2021-05-15 20:04:56" itemprop="dateModified" datetime="2021-05-15T20:04:56+08:00">2021-05-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -391,6 +391,13 @@
     
     <div class="post-body" itemprop="articleBody">
         <p><em><strong>By Long Luo</strong></em></p>
+<!-- TOC -->
+<ul>
+<li><a href="#%E4%B8%80struct%E7%9A%84%E5%A3%B0%E6%98%8E">一、Struct的声明</a></li>
+<li><a href="#%E4%BA%8Cstruct%E7%9A%84%E5%AE%9A%E4%B9%89">二、Struct的定义</a></li>
+<li><a href="#%E4%B8%89c99%E6%A0%87%E5%87%86%E4%B8%8B%E7%9A%84struct%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95">三、C99标准下的Struct的初始化方法</a></li>
+</ul>
+<!-- /TOC -->
 <blockquote>
 <p>前言<br>
 <a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第二篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8267339">大话结构体之二: 名不正则言不顺—Struct(结构体)的声明、定义及初始化</a></p>
@@ -402,13 +409,13 @@
 <p>具体到我们之前的例子来说，只是指定了一种结构体类型，它相当于一个模型，但其中并无具体数据，系统也不为之分配实际的内存单元。为了能在程序中使用结构体类型的数据，应当定义结构体类型的变量，并在其中存放具体的数据。</p>
 <p>本篇将详细对Struct的声明、定义和初始化进行分析。</p>
 <a id="more"></a>
-<h1 id="一-struct的声明"><a class="markdownIt-Anchor" href="#一-struct的声明"></a> 一、Struct的声明</h1>
+<h1><span id="一-struct的声明"> 一、Struct的声明</span></h1>
 <p>要了解Struct的声明，我们需要首先了解<strong>声明的含义</strong>到底是什么？</p>
 <p>—<em><strong>声明是要求编译器产生映射元素的语句</strong></em>。</p>
 <p>所谓的映射元素，就是前面介绍过的变量及函数，都只有3栏（或3个字段）：类型栏、名字栏和地址栏（成员变量类型的这一栏就放偏移值）。即编译器每当看到声明语句，就生成一个映射元素，并且将对应的地址栏空着，然后留下一些信息以告诉连接器——此*.obj文件（编译器编译源文件后生成的文件）需要一些符号，将这些符号找到后再修改并完善此*.obj文件，最后链接。</p>
 <p>具体到上一回的例子，我们假如在另外一个源文件中需要使用<code>struct ExpectedBoyFriend</code>，那么就需要在该源文件使用之前处使用下面的声明语句：</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">extern</span> <span class="class"><span class="keyword">struct</span> <span class="title">ExpectedBoyFriend</span>;</span></span><br></pre></td></tr></tbody></table></figure>
-<h1 id="二-struct的定义"><a class="markdownIt-Anchor" href="#二-struct的定义"></a> 二、Struct的定义</h1>
+<h1><span id="二-struct的定义"> 二、Struct的定义</span></h1>
 <p>上一小节我们了解了声明的定义，那么定义是什么呢？</p>
 <p>—定义是要求编译器填充前面声明没有书写的地址栏。<br>
 也就是说某变量对应的地址，只有在其定义时才知道。</p>
@@ -421,7 +428,7 @@
 <p>熟悉C/C++的同学应该能够马上知道第二段的代码错了。</p>
 <p><em><strong>为什么呢？</strong></em></p>
 <p>因为<strong>C语言中对于Struct的定义</strong>是需要使用<code>struct S0 sa</code>这种方式。</p>
-<h1 id="三-c99标准下的struct的初始化方法"><a class="markdownIt-Anchor" href="#三-c99标准下的struct的初始化方法"></a> 三、C99标准下的Struct的初始化方法</h1>
+<h1><span id="三-c99标准下的struct的初始化方法"> 三、C99标准下的Struct的初始化方法</span></h1>
 <p>Struct的常见初始化方法我们可以在任何一本关于C语言书里面都可以找到，这里就不赘述了。我们先看下面一段代码：</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> <span class="title">usb_driver</span> <span class="title">usb_storage_driver</span> = {</span> </span><br><span class="line">	.owner = THIS_MODULE,    </span><br><span class="line">	.name = \<span class="string">"usb-storage\",    </span></span><br><span class="line"><span class="string">	.probe = storage_probe,    </span></span><br><span class="line"><span class="string">	.disconnect = storage_disconnect,    </span></span><br><span class="line"><span class="string">	.id_table = storage_usb_ids, };  </span></span><br></pre></td></tr></tbody></table></figure>
 <p>我们在阅读GNU/Linux内核代码时，我们会经常遇到上述这样一种特殊的结构初始化方式，这种方式称为指定初始化。这种初始化方法源自C99标准。</p>
@@ -553,13 +560,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">806k</span>
+    <span title="站点总字数">823k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:13</span>
+    <span title="站点阅读时长">12:28</span>
   </span>
 </div>
 <div class="busuanzi-count">

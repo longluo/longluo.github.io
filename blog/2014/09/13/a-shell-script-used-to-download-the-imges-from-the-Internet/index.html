@@ -113,9 +113,9 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -215,7 +215,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%B3%951"><span class="nav-number">1.</span> <span class="nav-text"> 方法1:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%B9%E6%B3%952"><span class="nav-number">2.</span> <span class="nav-text"> 方法2：</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text"> 方法1:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text"> 方法2：</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -229,7 +229,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-count">329</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -396,9 +396,9 @@
 <p>比如：<img src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/0d.png" alt="Thunder" title="雷电天气"></p>
 <p>我使用了2种方法，解决了下载的难题，虽然好久没有写Shell脚本了，但是意识和底子还在，写即几十行代码还是比较轻松的。</p>
 <a id="more"></a>
-<h1 id="方法1"><a class="markdownIt-Anchor" href="#方法1"></a> 方法1:</h1>
+<h1><span id="方法1"> 方法1:</span></h1>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment">#  Decription: </span></span><br><span class="line"><span class="comment">#		A Shell script used to download the imges from Internet.</span></span><br><span class="line"><span class="comment">#  Author:</span></span><br><span class="line"><span class="comment">#       Long Luo</span></span><br><span class="line"><span class="comment">#  Date:</span></span><br><span class="line"><span class="comment">#       2014-09-11 00:16:59</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">BASE_URL=<span class="string">"https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># declare STIRNG variable</span></span><br><span class="line">STRING=<span class="string">"Beginning Image download..."</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#print var on screen </span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$STRING</span></span><br><span class="line"></span><br><span class="line">sleep 1</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"...."</span></span><br><span class="line"></span><br><span class="line">BIG_PNG=<span class="string">"ds.png"</span></span><br><span class="line">PNG=<span class="string">".png"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"url="</span><span class="variable">${BASE_URL}</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"big png="</span><span class="variable">${BIG_PNG}</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ((i=0; i&lt;49;i++)); <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> IMG_URL=<span class="variable">${BASE_URL}</span><span class="variable">${i}</span><span class="variable">${BIG_PNG}</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"final url="</span><span class="variable">${IMG_URL}</span></span><br><span class="line"></span><br><span class="line">	curl <span class="variable">${BASE_URL}</span><span class="variable">${i}</span><span class="variable">${BIG_PNG}</span> -o small/<span class="variable">${i}</span><span class="variable">${PNG}</span></span><br><span class="line">	sleep 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></tbody></table></figure>
-<h1 id="方法2"><a class="markdownIt-Anchor" href="#方法2"></a> 方法2：</h1>
+<h1><span id="方法2"> 方法2：</span></h1>
 <p>方法2将图片URL地址都写在一个数组里，然后从数组中读取，并重命名，相对来说，不如第一种方法简单：</p>
 <figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Method 2</span></span><br><span class="line"></span><br><span class="line">URL_ARRAY=(</span><br><span class="line"><span class="string">'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/0d.png'</span></span><br><span class="line"><span class="string">'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/1d.png'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">NAME_ARRAY=(</span><br><span class="line"><span class="string">'file1.jpg'</span></span><br><span class="line"><span class="string">'file2.jpg'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ELEMENTS=<span class="variable">${#URL_ARRAY[@]}</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (( i=0;i&lt;ELEMENTS;i++)); <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">${URL_ARRAY[${i}</span>]}</span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"saved as <span class="variable">${NAME_ARRAY[${i}</span>]}"</span></span><br><span class="line"> 	curl <span class="variable">${URL_ARRAY[${i}</span>]} -o images/<span class="variable">${NAME_ARRAY[${i}</span>]}</span><br><span class="line">	sleep 1</span><br><span class="line">	</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></tbody></table></figure>
 <p>以上，希望有需要的同学可以采用:-）</p>
@@ -517,13 +517,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">806k</span>
+    <span title="站点总字数">823k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:13</span>
+    <span title="站点阅读时长">12:28</span>
   </span>
 </div>
 <div class="busuanzi-count">

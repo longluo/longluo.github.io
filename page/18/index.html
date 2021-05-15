@@ -108,9 +108,9 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -223,7 +223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-count">329</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -297,6 +297,166 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2016/08/09/Learn-Java-Reflection-Tutorial-In-5-Minutes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2016/08/09/Learn-Java-Reflection-Tutorial-In-5-Minutes/" class="post-title-link" itemprop="url">5分钟学会Java反射</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-08-09 22:26:08" itemprop="dateCreated datePublished" datetime="2016-08-09T22:26:08+08:00">2016-08-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-15 20:14:26" itemprop="dateModified" datetime="2021-05-15T20:14:26+08:00">2021-05-15</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2016/08/09/Learn-Java-Reflection-Tutorial-In-5-Minutes/" class="post-meta-item leancloud_visitors" data-flag-title="5分钟学会Java反射" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<!-- TOC -->
+<ul>
+<li><a href="#%E4%B8%80%E5%8F%8D%E5%B0%84%E6%98%AF%E4%BB%80%E4%B9%88">一、反射是什么？</a>
+<ul>
+<li><a href="#1-%E8%87%AA%E7%9C%81introspection-vs-%E5%8F%8D%E5%B0%84reflection">1. 自省(Introspection) vs. 反射(Reflection)</a></li>
+<li><a href="#2-%E8%87%AA%E7%9C%81%E7%A4%BA%E4%BE%8B-vs-%E5%8F%8D%E5%B0%84%E7%A4%BA%E4%BE%8B">2. 自省示例 vs. 反射示例</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%8F%8D%E5%B0%84">二、 为什么需要反射？</a>
+<ul>
+<li><a href="#%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6%E6%8F%90%E4%BE%9B%E7%9A%84%E5%8A%9F%E8%83%BD">反射机制提供的功能：</a></li>
+<li><a href="#%E8%A7%A3%E8%80%A6">解耦</a></li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E5%8F%8D%E5%B0%84api">三、 反射API</a>
+<ul>
+<li><a href="#java%E5%8F%8D%E5%B0%84%E7%9B%B8%E5%85%B3%E7%B1%BB">Java反射相关类</a></li>
+<li><a href="#classt">Class<t></t></a>
+<ul>
+<li><a href="#class%E7%9A%84%E6%96%B9%E6%B3%95">Class的方法</a></li>
+</ul>
+</li>
+<li><a href="#constructor">Constructor</a></li>
+<li><a href="#field">Field</a></li>
+<li><a href="#method">Method</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B%E5%8F%8D%E5%B0%84%E6%80%8E%E4%B9%88%E7%94%A8">四、反射怎么用？</a>
+<ul>
+<li><a href="#example-1-%E4%BB%8E%E5%AF%B9%E8%B1%A1%E4%B8%AD%E8%8E%B7%E5%8F%96%E7%B1%BB%E5%90%8D">Example 1: 从对象中获取类名</a></li>
+<li><a href="#example-2-%E8%B0%83%E7%94%A8%E6%9C%AA%E7%9F%A5%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B9%E6%B3%95">Example 2: 调用未知对象的方法</a></li>
+<li><a href="#example-3-%E4%BB%8Eclass%E5%AE%9E%E4%BE%8B%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1">Example 3: 从Class实例创建对象</a></li>
+<li><a href="#example-4-%E8%8E%B7%E5%8F%96%E6%9E%84%E9%80%A0%E5%99%A8%E5%B9%B6%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B">Example 4: 获取构造器并创建实例</a></li>
+<li><a href="#example-5-%E9%80%9A%E8%BF%87%E5%8F%8D%E5%B0%84%E4%BF%AE%E6%94%B9%E6%95%B0%E7%BB%84%E5%A4%A7%E5%B0%8F">Example 5: 通过反射修改数组大小</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E6%80%BB%E7%BB%93">五、 总结</a></li>
+</ul>
+<!-- /TOC -->
+<p>最近在部门内部做了一次知识分享，关于***Java反射***，因此有了这篇文章：《5分钟学会Java反射》。这篇文章篇幅不长，用了大量示例，力求在很短的时间里让大家明白Java反射知识。</p>
+<p>关于Java反射，我们需要弄懂以下几个问题：</p>
+<ol>
+<li>反射是什么？</li>
+<li>反射有什么用？</li>
+<li>怎么用反射？</li>
+</ol>
+<p>下面我们来一一进行讲解：</p>
+<h1 id="一-反射是什么"><a class="markdownIt-Anchor" href="#一-反射是什么"></a> 一、反射是什么？</h1>
+<p>Reflection的意思是“反射、映象、倒影”，用在Java身上指的是我们可以于***运行时***加载、探知、使用编译期间完全未知的classes。换句话说，Java程序可以加载一个运行时才得知名称的class，获悉其完整构造（但不包括methods定义），并生成其对象实体、或对其fields设值、或唤起其methods。</p>
+<p>Java反射机制是在运行状态中，对于任意一个类，都能够知道这个类的所有属性及方法；对于任何一个对象，都能够调用它的任意一个方法；这种动态获取信息以及动态调用对象的方法的功能称为Java的反射机制。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/09/Learn-Java-Reflection-Tutorial-In-5-Minutes/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -385,22 +545,22 @@
           <p><em><strong>翻译 By Long Luo</strong></em></p>
 <p>There are 4 different types of inner classes you can use in Java. The following gives their name and examples.</p>
 <p>Java中有4种不同类型的Java内部类，下面我们将一一用实例</p>
-<h1 id="1-static-nested-classes"><a class="markdownIt-Anchor" href="#1-static-nested-classes"></a> 1. static nested classes</h1>
+<h1><span id="1-static-nested-classes"> 1. static nested classes</span></h1>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>{</span><br><span class="line">	<span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>{</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>{</span><br><span class="line">			System.out.println(<span class="string">" Inner class reference is: "</span> + <span class="keyword">this</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>{</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">		Outer.Inner n = <span class="keyword">new</span> Outer.Inner();</span><br><span class="line">		n.go();</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>Output:</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Inner class reference is: com.longluo.java.interview.innerclass.Outer$Inner@15db9742</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="2-member-inner-class"><a class="markdownIt-Anchor" href="#2-member-inner-class"></a> 2. member inner class</h1>
+<h1><span id="2-member-inner-class"> 2. member inner class</span></h1>
 <p>Member class is instance-specific. It has access to all methods, fields, and the<br>
 Outer’s this reference.</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MemberInnerClass</span> </span>{</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> x = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">makeInner</span><span class="params">()</span> </span>{</span><br><span class="line">		Inner in = <span class="keyword">new</span> Inner();</span><br><span class="line">		in.seeOuter();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>{</span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seeOuter</span><span class="params">()</span> </span>{</span><br><span class="line">			System.out.println(<span class="string">"MemberInnerClass x is "</span> + x);</span><br><span class="line">			System.out.println(<span class="string">"Inner class reference is "</span> + <span class="keyword">this</span>);</span><br><span class="line">			System.out.println(<span class="string">"Outer class reference is "</span></span><br><span class="line">					+ MemberInnerClass.<span class="keyword">this</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">		MemberInnerClass o = <span class="keyword">new</span> MemberInnerClass();</span><br><span class="line">		Inner i = o.<span class="function">new <span class="title">Inner</span><span class="params">()</span></span>;</span><br><span class="line">		i.seeOuter();</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>输出为：</p>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MemberInnerClass x is 100</span><br><span class="line">Inner class reference is com.longluo.java.interview.innerclass.MemberInnerClass$Inner@15db9742</span><br><span class="line">Outer class reference is com.longluo.java.interview.innerclass.MemberInnerClass@6d06d69c</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="3-method-local-inner-classes"><a class="markdownIt-Anchor" href="#3-method-local-inner-classes"></a> 3. method-local inner classes</h1>
+<h1><span id="3-method-local-inner-classes"> 3. method-local inner classes</span></h1>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>{</span><br><span class="line">	<span class="keyword">private</span> String x = <span class="string">"outer"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="class"><span class="keyword">class</span> <span class="title">MyInner</span> </span>{</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seeOuter</span><span class="params">()</span> </span>{</span><br><span class="line">				System.out.println(<span class="string">" x is "</span> + x);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		MyInner i = <span class="keyword">new</span> MyInner();</span><br><span class="line">		i.seeOuter();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">		Outer o = <span class="keyword">new</span> Outer();</span><br><span class="line">		o.doStuff();</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x is outer</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MethodOuter</span> </span>{</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> String x = <span class="string">"static outer"</span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">doStuff</span><span class="params">()</span> </span>{</span><br><span class="line">		<span class="class"><span class="keyword">class</span> <span class="title">MyInner</span> </span>{</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seeOuter</span><span class="params">()</span> </span>{</span><br><span class="line">				System.out.println(<span class="string">" x is "</span> + x);</span><br><span class="line">			}</span><br><span class="line">		}</span><br><span class="line">		MyInner i = <span class="keyword">new</span> MyInner();</span><br><span class="line">		i.seeOuter();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">		MethodOuter.doStuff();</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x is static outer</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="4anonymous-inner-classes"><a class="markdownIt-Anchor" href="#4anonymous-inner-classes"></a> 4.anonymous inner classes</h1>
+<h1><span id="4anonymous-inner-classes"> 4.anonymous inner classes</span></h1>
 <p>This is frequently used when you add an action listener to a widget in a GUI<br>
 application.</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">button.addActionListener(<span class="keyword">new</span> ActionListener() {</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">actionPerformed</span><span class="params">(ActionEvent e)</span> </span>{</span><br><span class="line">		comp.setText(<span class="string">"Button has been clicked"</span>);</span><br><span class="line">	}</span><br><span class="line">});</span><br></pre></td></tr></tbody></table></figure>
@@ -571,7 +731,7 @@ application.</p>
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
+        <time title="修改时间：2021-05-15 20:03:04" itemprop="dateModified" datetime="2021-05-15T20:03:04+08:00">2021-05-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -740,13 +900,13 @@ to use Java Map and its implemented classes. For sake of simplicity, I will use<
 generics in examples. Therefore, I will just write Map instead of specific Map. But<br>
 you can always assume that both the K and V are comparable, which means K<br>
 extends Comparable and V extends Comparable.</p>
-<h1 id="1-convert-a-map-to-list"><a class="markdownIt-Anchor" href="#1-convert-a-map-to-list"></a> 1. convert a map to list</h1>
+<h1><span id="1-convert-a-map-to-list"> 1. convert a map to list</span></h1>
 <p>In Java, Map interface provides three collection views: key set, value set, and keyvalue set. All of them can be converted to List by using a constructor or addAll()<br>
 method. The following snippet of code shows how to construct an ArrayList from a map.</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// key list</span></span><br><span class="line">List keyList = <span class="keyword">new</span> ArrayList(map.keySet());</span><br><span class="line"><span class="comment">// value list</span></span><br><span class="line">List valueList = <span class="keyword">new</span> ArrayList(map.valueSet());</span><br><span class="line"><span class="comment">// key value list</span></span><br><span class="line">List entryList = <span class="keyword">new</span> ArrayList(map.entrySet());</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="2-iterate-over-each-entry-in-a-map"><a class="markdownIt-Anchor" href="#2-iterate-over-each-entry-in-a-map"></a> 2. iterate over each entry in a map</h1>
+<h1><span id="2-iterate-over-each-entry-in-a-map"> 2. iterate over each entry in a map</span></h1>
 <p>Iterating over every pair of key-value is the most basic operation to traverse a map. In Java, such pair is stored in the map entry called Map.Entry.</p>
-<h1 id="3-sort-a-map-on-the-keys"><a class="markdownIt-Anchor" href="#3-sort-a-map-on-the-keys"></a> 3. SORT A MAP ON THE KEYS</h1>
+<h1><span id="3-sort-a-map-on-the-keys"> 3. SORT A MAP ON THE KEYS</span></h1>
 <p>Map.entrySet() returns a key-value set, therefore the most efficient way of going through every entry of a map is</p>
 <figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (Entry entry:map.entrySet()) {</span><br><span class="line">    <span class="comment">// get key</span></span><br><span class="line">    K key = entry.getKey();</span><br><span class="line">    <span class="comment">// get value</span></span><br><span class="line">    V value = entry.getValue();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>Iterator can also be used, especially before JDK 1.5</p>
@@ -1503,118 +1663,6 @@ THE
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" class="post-title-link" itemprop="url">关于Java字符串(String)10个最常见问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-08-05 09:49:42" itemprop="dateCreated datePublished" datetime="2016-08-05T09:49:42+08:00">2016-08-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-12-04 11:45:48" itemprop="dateModified" datetime="2020-12-04T11:45:48+08:00">2020-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" class="post-meta-item leancloud_visitors" data-flag-title="关于Java字符串(String)10个最常见问题" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Java语言中，String一直很基础，但很多人都很多概念还是很模糊。这里我们选取了网络上最常见的10个问题，希望通过这篇文章让大家对Java String有更深刻的认识。</p>
-<h1 id="1-如何对字符串进行比较用-还是equals"><a class="markdownIt-Anchor" href="#1-如何对字符串进行比较用-还是equals"></a> 1. 如何对字符串进行比较？用“==” 还是<code>equals()</code>？</h1>
-<p>简单来说，如果<strong>引用是否相同</strong>那么使用<code>==</code>， 判断***值是否相等***则用<code>equals()</code>。除非你想判断2个字符串是否是同一对象，否则你都应该使用<code>equals()</code>。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" href="/page/17/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/19/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1661,13 +1709,13 @@ THE
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">806k</span>
+    <span title="站点总字数">823k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:13</span>
+    <span title="站点阅读时长">12:28</span>
   </span>
 </div>
 <div class="busuanzi-count">
