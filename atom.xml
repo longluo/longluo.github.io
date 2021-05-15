@@ -6,7 +6,7 @@
   <link href="www.longluo.me/atom.xml" rel="self"/>
   
   <link href="www.longluo.me/"/>
-  <updated>2021-05-15T11:53:32.421Z</updated>
+  <updated>2021-05-15T12:29:46.287Z</updated>
   <id>www.longluo.me/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="www.longluo.me/blog/2021/05/15/2020-03-01-Week-9-Record/"/>
+    <id>www.longluo.me/blog/2021/05/15/2020-03-01-Week-9-Record/</id>
+    <published>2021-05-15T12:29:46.287Z</published>
+    <updated>2021-05-15T12:29:46.287Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>几篇名家关于母亲的文章</title>
@@ -285,12 +298,26 @@
     <link href="www.longluo.me/blog/2021/03/26/Try-Hugo/"/>
     <id>www.longluo.me/blog/2021/03/26/Try-Hugo/</id>
     <published>2021-03-26T14:50:25.000Z</published>
-    <updated>2021-05-15T12:00:47.055Z</updated>
+    <updated>2021-05-15T12:28:28.458Z</updated>
     
-    <content type="html"><![CDATA[<p><em><strong>By Long Luo</strong></em></p><h1><span id="hugo-vs-hexo"> Hugo vs. Hexo</span></h1><p>目前我的个人网站使用的是: Hexo + Next，这也是目前绝大多数个人网站的标配。<a href="https://gohugo.io">Hugo</a>官网号称是最快的网站框架，构建速度快，因为我的文章数比较多，以后考虑切换成Hugo，今天花了点时间来学习了下。</p><p>以下是学习过程：</p><h1><span id="hugo使用指南"> Hugo使用指南</span></h1><h2><span id="下载hugo"> 下载Hugo</span></h2><p>因为是Windows 10系统，先去下载：<a href="https://github.com/gohugoio/hugo/releases">https://github.com/gohugoio/hugo/releases</a></p><p>选择Windows版本，下载之后解压，解压可以得到<code>hugo.exe</code>，将<code>hugo.exe</code>所在文件路径添加到Windows的Path变量中:</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\Website&gt;hugo version</span><br><span class="line">hugo v0.82.0-9D960784+extended windows/amd64 BuildDate=2021-03-21T17:28:04Z VendorInfo=gohugoio</span><br></pre></td></tr></tbody></table></figure><a id="more"></a><h2><span id="创建站点项目"> 创建站点项目</span></h2><p>以我为例， 假设要创建站点存放在<code>F:\Hugo\Website\</code>目录中，在命令行中切换到该目录下执行：</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\Website&gt;hugo new site mywebsite</span><br><span class="line">Congratulations! Your new Hugo site is created <span class="keyword">in</span> E:\Website\mywebsite.</span><br></pre></td></tr></tbody></table></figure><p>出现上述信息，创建出了<code>mywebsite</code>站点项目，其文件列表如下：</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2021/03/28  15:52    &lt;DIR&gt;          .</span><br><span class="line">2021/03/28  15:52    &lt;DIR&gt;          ..</span><br><span class="line">2021/03/28  15:51    &lt;DIR&gt;          archetypes</span><br><span class="line">2021/03/28  16:09               103 config.toml</span><br><span class="line">2021/03/28  16:12    &lt;DIR&gt;          content</span><br><span class="line">2021/03/28  15:51    &lt;DIR&gt;          data</span><br><span class="line">2021/03/28  15:51    &lt;DIR&gt;          layouts</span><br><span class="line">2021/03/28  15:52    &lt;DIR&gt;          resources</span><br><span class="line">2021/03/28  15:51    &lt;DIR&gt;          static</span><br><span class="line">2021/03/28  16:08    &lt;DIR&gt;          themes</span><br></pre></td></tr></tbody></table></figure><h2><span id="添加主题"> 添加主题</span></h2><p>有了文件之后，还无法构建网站，因为hugo默认是没有主题文件的。这里选取一个简洁的主题</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/yihui/hugo-prose.git themes/prose</span><br></pre></td></tr></tbody></table></figure><p>当前项目目录内打开<code>config.toml</code>配置文件，在最后添加一行<code>theme = "prose"</code>，即将这个网站设置为prose主题。</p><h2><span id="运行站点"> 运行站点</span></h2><p>在站点项目内执行命令<code>hugo server -D</code></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">E:\Website\mywebsite&gt;hugo server -D</span><br><span class="line">Start building sites …</span><br><span class="line"></span><br><span class="line">                   | EN</span><br><span class="line">-------------------+-----</span><br><span class="line">  Pages            | 10</span><br><span class="line">  Paginator pages  |  0</span><br><span class="line">  Non-page files   |  0</span><br><span class="line">  Static files     |  4</span><br><span class="line">  Processed images |  0</span><br><span class="line">  Aliases          |  1</span><br><span class="line">  Sitemaps         |  1</span><br><span class="line">  Cleaned          |  0</span><br><span class="line"></span><br><span class="line">Built <span class="keyword">in</span> 30 ms</span><br><span class="line">Watching <span class="keyword">for</span> changes <span class="keyword">in</span> E:\Website\mywebsite\{archetypes,content,data,layouts,static,themes}</span><br><span class="line">Watching <span class="keyword">for</span> config changes <span class="keyword">in</span> E:\Website\mywebsite\config.toml</span><br><span class="line">Environment: <span class="string">"development"</span></span><br><span class="line">Serving pages from memory</span><br><span class="line">Running <span class="keyword">in</span> Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender</span><br><span class="line">Web Server is available at http://localhost:1313/ (<span class="built_in">bind</span> address 127.0.0.1)</span><br><span class="line">Press Ctrl+C to stop</span><br></pre></td></tr></tbody></table></figure><p>然后在浏览器界面中输入：<a href="http://localhost:1313/">http://localhost:1313/</a></p><p>如果顺利打开之后，出现了Hugo网站界面，那说明安装好了！</p><p>不过这个时候还是没有内容的，因为我们还没有添加内容:-)</p><h1><span id="小结"> 小结</span></h1><p>从hugo初体验来看，Hugo确实很快。不过由于目前缺乏时间，无法一一去美化。以后有时间精力之后，再折腾！</p>]]></content>
+    <content type="html"><![CDATA[<p><em><strong>By Long Luo</strong></em></p><!-- TOC --><ul><li><a href="#hugo-vs-hexo">Hugo vs. Hexo</a></li><li><a href="#hugo%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97">Hugo使用指南</a><ul><li><a href="#%E4%B8%8B%E8%BD%BDhugo">下载Hugo</a></li><li><a href="#%E5%88%9B%E5%BB%BA%E7%AB%99%E7%82%B9%E9%A1%B9%E7%9B%AE">创建站点项目</a></li><li><a href="#%E6%B7%BB%E5%8A%A0%E4%B8%BB%E9%A2%98">添加主题</a></li><li><a href="#%E8%BF%90%E8%A1%8C%E7%AB%99%E7%82%B9">运行站点</a></li></ul></li><li><a href="#%E5%B0%8F%E7%BB%93">小结</a></li></ul><!-- /TOC --><h1><span id="hugo-vs-hexo"> Hugo vs. Hexo</span></h1><p>目前我的个人网站使用的是: Hexo + Next，这也是目前绝大多数个人网站的标配。<a href="https://gohugo.io">Hugo</a>官网号称是最快的网站框架，构建速度快，因为我的文章数比较多，以后考虑切换成Hugo，今天花了点时间来学习了下。</p><p>以下是学习过程：</p><h1><span id="hugo使用指南"> Hugo使用指南</span></h1><h2><span id="下载hugo"> 下载Hugo</span></h2><p>因为是Windows 10系统，先去下载：<a href="https://github.com/gohugoio/hugo/releases">https://github.com/gohugoio/hugo/releases</a></p><p>选择Windows版本，下载之后解压，解压可以得到<code>hugo.exe</code>，将<code>hugo.exe</code>所在文件路径添加到Windows的Path变量中:</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\Website&gt;hugo version</span><br><span class="line">hugo v0.82.0-9D960784+extended windows/amd64 BuildDate=2021-03-21T17:28:04Z VendorInfo=gohugoio</span><br></pre></td></tr></tbody></table></figure><a id="more"></a><h2><span id="创建站点项目"> 创建站点项目</span></h2><p>以我为例， 假设要创建站点存放在<code>F:\Hugo\Website\</code>目录中，在命令行中切换到该目录下执行：</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">E:\Website&gt;hugo new site mywebsite</span><br><span class="line">Congratulations! Your new Hugo site is created <span class="keyword">in</span> E:\Website\mywebsite.</span><br></pre></td></tr></tbody></table></figure><p>出现上述信息，创建出了<code>mywebsite</code>站点项目，其文件列表如下：</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2021/03/28  15:52    &lt;DIR&gt;          .</span><br><span class="line">2021/03/28  15:52    &lt;DIR&gt;          ..</span><br><span class="line">2021/03/28  15:51    &lt;DIR&gt;          archetypes</span><br><span class="line">2021/03/28  16:09               103 config.toml</span><br><span class="line">2021/03/28  16:12    &lt;DIR&gt;          content</span><br><span class="line">2021/03/28  15:51    &lt;DIR&gt;          data</span><br><span class="line">2021/03/28  15:51    &lt;DIR&gt;          layouts</span><br><span class="line">2021/03/28  15:52    &lt;DIR&gt;          resources</span><br><span class="line">2021/03/28  15:51    &lt;DIR&gt;          static</span><br><span class="line">2021/03/28  16:08    &lt;DIR&gt;          themes</span><br></pre></td></tr></tbody></table></figure><h2><span id="添加主题"> 添加主题</span></h2><p>有了文件之后，还无法构建网站，因为hugo默认是没有主题文件的。这里选取一个简洁的主题</p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/yihui/hugo-prose.git themes/prose</span><br></pre></td></tr></tbody></table></figure><p>当前项目目录内打开<code>config.toml</code>配置文件，在最后添加一行<code>theme = "prose"</code>，即将这个网站设置为prose主题。</p><h2><span id="运行站点"> 运行站点</span></h2><p>在站点项目内执行命令<code>hugo server -D</code></p><figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">E:\Website\mywebsite&gt;hugo server -D</span><br><span class="line">Start building sites …</span><br><span class="line"></span><br><span class="line">                   | EN</span><br><span class="line">-------------------+-----</span><br><span class="line">  Pages            | 10</span><br><span class="line">  Paginator pages  |  0</span><br><span class="line">  Non-page files   |  0</span><br><span class="line">  Static files     |  4</span><br><span class="line">  Processed images |  0</span><br><span class="line">  Aliases          |  1</span><br><span class="line">  Sitemaps         |  1</span><br><span class="line">  Cleaned          |  0</span><br><span class="line"></span><br><span class="line">Built <span class="keyword">in</span> 30 ms</span><br><span class="line">Watching <span class="keyword">for</span> changes <span class="keyword">in</span> E:\Website\mywebsite\{archetypes,content,data,layouts,static,themes}</span><br><span class="line">Watching <span class="keyword">for</span> config changes <span class="keyword">in</span> E:\Website\mywebsite\config.toml</span><br><span class="line">Environment: <span class="string">"development"</span></span><br><span class="line">Serving pages from memory</span><br><span class="line">Running <span class="keyword">in</span> Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender</span><br><span class="line">Web Server is available at http://localhost:1313/ (<span class="built_in">bind</span> address 127.0.0.1)</span><br><span class="line">Press Ctrl+C to stop</span><br></pre></td></tr></tbody></table></figure><p>然后在浏览器界面中输入：<a href="http://localhost:1313/">http://localhost:1313/</a></p><p>如果顺利打开之后，出现了Hugo网站界面，那说明安装好了！</p><p>不过这个时候还是没有内容的，因为我们还没有添加内容:-)</p><h1><span id="小结"> 小结</span></h1><p>从hugo初体验来看，Hugo确实很快。不过由于目前缺乏时间，无法一一去美化。以后有时间精力之后，再折腾！</p>]]></content>
     
     
     <summary type="html">&lt;p&gt;&lt;em&gt;&lt;strong&gt;By Long Luo&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;!-- TOC --&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#hugo-vs-hexo&quot;&gt;Hugo vs. Hexo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#hugo%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97&quot;&gt;Hugo使用指南&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#%E4%B8%8B%E8%BD%BDhugo&quot;&gt;下载Hugo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E5%88%9B%E5%BB%BA%E7%AB%99%E7%82%B9%E9%A1%B9%E7%9B%AE&quot;&gt;创建站点项目&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E6%B7%BB%E5%8A%A0%E4%B8%BB%E9%A2%98&quot;&gt;添加主题&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E8%BF%90%E8%A1%8C%E7%AB%99%E7%82%B9&quot;&gt;运行站点&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#%E5%B0%8F%E7%BB%93&quot;&gt;小结&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- /TOC --&gt;
 &lt;h1 id=&quot;hugo-vs-hexo&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#hugo-vs-hexo&quot;&gt;&lt;/a&gt; Hugo vs. Hexo&lt;/h1&gt;
 &lt;p&gt;目前我的个人网站使用的是: Hexo + Next，这也是目前绝大多数个人网站的标配。&lt;a href=&quot;https://gohugo.io&quot;&gt;Hugo&lt;/a&gt;官网号称是最快的网站框架，构建速度快，因为我的文章数比较多，以后考虑切换成Hugo，今天花了点时间来学习了下。&lt;/p&gt;
 &lt;p&gt;以下是学习过程：&lt;/p&gt;
@@ -696,27 +723,6 @@
     <category term="Program" scheme="www.longluo.me/tags/Program/"/>
     
     <category term="LinkedList" scheme="www.longluo.me/tags/LinkedList/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>2021-01-24 Week 4 Journals</title>
-    <link href="www.longluo.me/blog/2021/01/24/2021-01-24-Week-4-Journals/"/>
-    <id>www.longluo.me/blog/2021/01/24/2021-01-24-Week-4-Journals/</id>
-    <published>2021-01-24T14:35:29.000Z</published>
-    <updated>2021-02-23T07:10:28.216Z</updated>
-    
-    <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容."><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="您好, 这里需要密码." /><label>您好, 这里需要密码.</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="cffe78e55e6342737a77e1281f770342865d9831d1d130132f183a7b6d8f174a">b0d1a914d624b46a3a9d4363e9177ae7f6d73b2271f8535c947835e5bc4f76cef55cfaee044b16e69f8003b39c97792e8a7e7a573595d926764738bc153e553ab682aaa7cce1d307e34d1a7485f1bf537bef82beca7eff033fda222eb2cd221307376c051fbf629857b0a19bec6bbaeefa4ec6827cad6ec53d6c8fd30323dceb71753c374a2d6f907622861e3869c350e8fe1bcdd4ac8303d6845f56b31210c8abb9b3f18aed3e328ab746933ba6f984cc84adceef7edcd7548d61e775f281b7733665c2bdc552330cf686071415581b884f6cc6c4bbae30e0cc60ecd54c6bbfdce8a30a0c3ff4cccf5239bf066b0d15b86bd2975d18fb2509363552ffb25a053b3e2caaac32cb276d1b443d16411bbaeff16d52548c664d7020806028912942268d7246ac819fd2b053183f073d13e457dab246d496fbf6ffd21962a5f496214281dbf3a11f721715dd79c724f08c41039d4ef8706bd957308866821d9255452a6b7e236c9b5ae917ff4b473713030bf0768ca9ea7ea544e144ba65d13f9e65c9ab097829c41b4ad174fa58278387728ecd4ff54d8fedec8e908b898c881377</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
-    
-    
-    <summary type="html">有东西被加密了, 请输入密码查看.</summary>
-    
-    
-    
-    <category term="Diary" scheme="www.longluo.me/categories/Diary/"/>
-    
-    
-    <category term="Diary" scheme="www.longluo.me/tags/Diary/"/>
     
   </entry>
   
