@@ -108,9 +108,9 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -223,7 +223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">330</span>
+          <span class="site-state-item-count">331</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -297,6 +297,137 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/" class="post-title-link" itemprop="url">深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出“Hello World”?</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2013-01-11 22:30:00" itemprop="dateCreated datePublished" datetime="2013-01-11T22:30:00+08:00">2013-01-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-15 20:16:58" itemprop="dateModified" datetime="2021-05-15T20:16:58+08:00">2021-05-15</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/" class="post-meta-item leancloud_visitors" data-flag-title="深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出“Hello World”?" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<!-- TOC -->
+<ul>
+<li><a href="#%E5%89%8D%E8%A8%80">前言</a></li>
+<li><a href="#%E4%B8%80-%E5%86%85%E6%A0%B8%E7%9A%84%E8%AF%B1%E6%83%91">一、 内核的诱惑</a></li>
+<li><a href="#%E4%BA%8C%E7%94%A8printf%E6%92%95%E5%BC%80%E4%B8%80%E4%B8%AA%E5%B0%8F%E5%B0%8F%E7%9A%84%E5%8F%A3%E5%AD%90">二、用printf撕开一个小小的口子…</a></li>
+<li><a href="#%E4%B8%89linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8">三、Linux系统调用</a></li>
+<li><a href="#%E5%9B%9B%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8linux%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8">四、如何使用Linux系统调用？</a></li>
+<li><a href="#%E4%BA%94%E7%94%A8%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0hello-world">五、用汇编语言实现"Hello World"</a></li>
+<li><a href="#%E5%85%AD%E8%83%9C%E5%88%A9%E7%9A%84%E6%9E%9C%E5%AE%9E">六、胜利的果实</a></li>
+<li><a href="#%E6%9B%B4%E5%A4%9A%E7%96%91%E9%97%AE">更多疑问</a></li>
+</ul>
+<!-- /TOC -->
+<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<p>—“你为什么要去登珠穆朗玛？”</p>
+<p>当美国《纽约时报》记者问英国登山家乔治·马洛里。</p>
+<p>—“Because it is there(因为山在那里)。”</p>
+<h1 id="一-内核的诱惑"><a class="markdownIt-Anchor" href="#一-内核的诱惑"></a> 一、 内核的诱惑</h1>
+<p><strong>会当凌绝顶，一览众山小。</strong></p>
+<p><em><strong>内核，是一个操作系统的核心。它负责管理系统的进程、内存、设备驱动程序、文件和网络系统，决定着系统的性能和稳定性</strong></em>。</p>
+<p>几十年来，内核以它那深深的魅力吸引着无数的码农为之倾倒，一代又一代的码农们从青青葱葱走向硕果累累，从风华正茂走向耄耋之年，也走出了现在多姿多彩的世界。</p>
+<p>内核就像一位风姿卓约的美女，多少码农欲一亲芳泽而不得。Linux内核是庞大复杂的，超过 600 万行的代码，就如同珠穆朗玛峰一样那样让人望而生畏。初学者一踏入，绝大多数会不自觉地迷失在这座庞大的迷宫里。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2013/01/11/How-Printf-Works-Output-On-Screen-Without-The-Library/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1430,125 +1561,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2012/10/23/How-To-Use-MCU-To-Control-Beeper-To-Generate-Music/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2012/10/23/How-To-Use-MCU-To-Control-Beeper-To-Generate-Music/" class="post-title-link" itemprop="url">如何利用单片机控制蜂鸣器播放音乐？---以《梁祝》的实现为例</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2012-10-23 22:37:57" itemprop="dateCreated datePublished" datetime="2012-10-23T22:37:57+08:00">2012-10-23</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-03-29 12:10:58" itemprop="dateModified" datetime="2021-03-29T12:10:58+08:00">2021-03-29</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Program/" itemprop="url" rel="index"><span itemprop="name">Program</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2012/10/23/How-To-Use-MCU-To-Control-Beeper-To-Generate-Music/" class="post-meta-item leancloud_visitors" data-flag-title="如何利用单片机控制蜂鸣器播放音乐？---以《梁祝》的实现为例" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>6.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>这篇文章是2012年在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上写的，<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8104111">TI EK-LM3S8962开发板使用蜂鸣器播放音乐《梁祝》的实现</a>。</p>
-<hr>
-<p>TI的EK-LM3S8962开发板有着比较丰富的外设，由于个人从小对音乐感兴趣，因此利用其中的蜂鸣器外设来实现音乐播放的功能，下面对此进行逐一解析：</p>
-<p>先上张开发板的Layout图：</p>
-<p><img src="http://img.my.csdn.net/uploads/201210/23/1351003559_1210.JPG" alt="EK-LM3S8962"></p>
-<p>要实现音乐播放，首先要明白数字音乐是如何播放出来的？</p>
-<p>首先需要了解一个事实，那就是我们所听到的音乐只是一系列不同频率的声音按照一定的节奏播放出来。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2012/10/23/How-To-Use-MCU-To-Control-Beeper-To-Generate-Music/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/30/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><a class="page-number" href="/page/33/">33</a><a class="extend next" rel="next" href="/page/32/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/30/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/34/">34</a><a class="extend next" rel="next" href="/page/32/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
