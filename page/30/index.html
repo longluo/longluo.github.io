@@ -223,7 +223,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">332</span>
+          <span class="site-state-item-count">333</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -297,6 +297,122 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+      <meta itemprop="description" content="A Curious Programmer.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/" class="post-title-link" itemprop="url">介绍一个提高Android ListView或GridView的Smoothie库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-02-15 11:41:06" itemprop="dateCreated datePublished" datetime="2014-02-15T11:41:06+08:00">2014-02-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-15 20:15:28" itemprop="dateModified" datetime="2021-05-15T20:15:28+08:00">2021-05-15</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/" class="post-meta-item leancloud_visitors" data-flag-title="介绍一个提高Android ListView或GridView的Smoothie库" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="leancloud-visitors-count"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>967</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>翻译 By Long Luo</strong></em></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2013/01/06/introducing-smoothie/">Introducing Smoothie</a></p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/smoothie.png" alt="smoothie"></p>
+<p><a target="_blank" rel="noopener" href="http://pattrnapp.com/">Pattrn</a> UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie">Smoothie</a>。</p>
+<p>***Smoothie*<em><em>提供了一个简单的API来异步加载</em>ListView/GridView</em>的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。</p>
+<p>**<em>Smoothie<em><strong>是</strong>手势识别</em></em>：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，***Smoothie***使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。</p>
+<p>那么，怎么使用它呢？很简单：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1433,141 +1549,6 @@ layout_marginBottom  	相对于本元素下边界的偏移
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2013/09/24/How-RSA-Encrypt-And-Decrypt-Algorithm-Works/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="www.longluo.me/blog/2013/09/11/growing-drift-thought/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-      <meta itemprop="description" content="A Curious Programmer.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2013/09/11/growing-drift-thought/" class="post-title-link" itemprop="url">成长·漂泊·随想</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2013-09-11 12:41:11" itemprop="dateCreated datePublished" datetime="2013-09-11T12:41:11+08:00">2013-09-11</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-05-15 19:55:07" itemprop="dateModified" datetime="2021-05-15T19:55:07+08:00">2021-05-15</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-    <span id="/blog/2013/09/11/growing-drift-thought/" class="post-meta-item leancloud_visitors" data-flag-title="成长·漂泊·随想" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="leancloud-visitors-count"></span>
-    </span>
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.8k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<blockquote>
-<p>注:<br>
-本文是从之前<a target="_blank" rel="noopener" href="http://www.imlongluo.com">个人网站</a>上<a target="_blank" rel="noopener" href="http://www.imlongluo.com/blog/?p=29">成长·漂泊·随想</a>移植过来的。</p>
-</blockquote>
-<!-- TOC -->
-<ul>
-<li><a href="#%E4%B8%80%E7%AE%80%E5%8D%95%E4%B8%8E%E5%A4%8D%E6%9D%82">一、简单与复杂</a></li>
-<li><a href="#%E4%BA%8C%E7%A8%8B%E5%BA%8F%E4%B8%8E%E4%BB%A3%E7%A0%81">二、程序与代码</a></li>
-<li><a href="#%E4%B8%89%E6%97%B6%E5%85%89">三、时光</a></li>
-<li><a href="#%E5%9B%9B%E8%AF%BB%E4%B9%A6%E4%B8%8E%E7%BB%8F%E5%8E%86">四、读书与经历</a></li>
-<li><a href="#%E4%BA%94%E8%88%8D%E4%B8%8E%E5%BE%97">五、舍与得</a></li>
-<li><a href="#%E5%85%AD%E6%BC%82%E6%B3%8A">六、漂泊</a></li>
-<li><a href="#%E4%B8%83%E6%88%90%E9%95%BF">七、成长</a></li>
-<li><a href="#%E5%85%AB%E6%B8%BA%E5%B0%8F">八、渺小</a></li>
-</ul>
-<!-- /TOC -->
-<h1 id="一-简单与复杂"><a class="markdownIt-Anchor" href="#一-简单与复杂"></a> 一、简单与复杂</h1>
-<p>一生二，二生三，三生万物。</p>
-<p>三年前，当自己在学校图书馆看书时，突然心里深处涌出的一种冲动，让我重拾幼年时未能发育的音乐细胞时。当时以迅雷不及掩耳之势去借了几本乐理书，认真研读，虽然到现在还是一无所成…</p>
-<p>但音乐那种组合之美，却让我回味至今。从古至今，世间音乐不过是几十个音符组合而已，都在一架钢琴的诠释范围之内。我想起了DNA里面的4对碱基对，地球上缤纷复杂的生命均以其为基础。</p>
-<p><strong>如同五彩缤纷的万花筒拆开之后，却只是一些小纸片和玻璃而已</strong>。</p>
-<p>可是我想通了此节之，却不能流畅地在吉他上弹奏一曲最简单的《欢乐颂》，也分辨不了不同的和弦，听不出歌曲的调式…</p>
-<p>凡此种种， 都需要技术，尤其是复杂艰辛的训练，几年前就期望自己能够在舞台上一展才艺，可是到现在依然达不到登台的水平。</p>
-<p>一边憎恶虚荣，一边找各种机会虚荣，在应该为了虚荣而努力的时候，拖延症又犯了。</p>
-<p>知道复杂是由简单的东西所构成这很容易，但是如何能将简单组合成复杂以实现某种功能这才是道，也是我所追求的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2013/09/11/growing-drift-thought/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
