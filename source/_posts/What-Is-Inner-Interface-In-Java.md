@@ -10,6 +10,7 @@ keywords: Java, Interface, Inner Interface,
 
 
 # 1. what is inner interface in java?
+
 Inner interface is also called nested interface, which means declare an interface
 inside of another interface. For example, the Entry interface is declared in the
 Map interface.

@@ -10,6 +10,14 @@ keywords: 大话结构体, Struct, 结构体, Cpp, C, 科普
 
 ***By Long Luo***
 
+<!-- TOC -->
+
+- [一、Struct的声明](#一struct的声明)
+- [二、Struct的定义](#二struct的定义)
+- [三、C99标准下的Struct的初始化方法](#三c99标准下的struct的初始化方法)
+
+<!-- /TOC -->
+
 >前言
 	[“大话结构体”](http://blog.csdn.net/column/details/structure.html)系列文章写于2012年，在我的[CSDN Blog](http://blog.csdn.net/tcpipstack)上连载的，这是系列的第二篇: [大话结构体之二: 名不正则言不顺---Struct(结构体)的声明、定义及初始化](http://blog.csdn.net/tcpipstack/article/details/8267339)
 

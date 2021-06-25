@@ -16,6 +16,19 @@ keywords: iOS,App,原理,iOS开发
 	1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
 	2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.
 
+<!-- TOC -->
+
+- [Interface Builder, Header and Implementation Files](#interface-builder-header-and-implementation-files)
+	- [.xib](#xib)
+	- [.h and .m](#h-and-m)
+- [Behind the Touch and Tap](#behind-the-touch-and-tap)
+- [Behind the Scene of the “Run” Button](#behind-the-scene-of-the-run-button)
+	- [编译](#编译)
+	- [打包](#打包)
+	- [Run](#run)
+
+<!-- /TOC -->
+
 我希望你享受了第一个***iOS编程教程***，同时已经创造了你的第一个App。在进入下一教程以及制作一个更复杂的App之前，我们有必要回过头，分析这个Hello World App。对于你理解一些Objective-C语言的语法和App的内部工作机制有很大帮助。
 
 目前为止，想必你已经按照教程完成了你的第一个Hello World App。不过，当你完成了这个教程之后，你脑海里肯定冒出了更多疑问：

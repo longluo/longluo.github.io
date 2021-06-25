@@ -79,7 +79,7 @@ System.out.print("\t" + m1);
 
 输出如下：
 
-```
+```txt
 ArrayList Elements
 	[Program, Creek, Java, Java]
 LinkedList Elements

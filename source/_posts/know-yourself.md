@@ -10,6 +10,14 @@ keywords: Life, 思考, Character, 性格, 生活, 人生,
 
 ***By Long Luo***
 
+<!-- TOC -->
+
+- [一、Know Yourself](#一know-yourself)
+- [二、Character](#二character)
+- [三、Simplicity](#三simplicity)
+
+<!-- /TOC -->
+
 # 一、Know Yourself
 
 >我是谁？

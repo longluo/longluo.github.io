@@ -8,6 +8,25 @@ categories: Web
 keywords: Blog, Website, funny, 博客, 网址, 技术, 程序员, Program, Code, 
 ---
 
+<!-- TOC -->
+
+- [Java基础：](#java基础)
+  - [计算机基础：](#计算机基础)
+  - [图像识别：](#图像识别)
+- [Java Image Process](#java-image-process)
+- [Design Patterns](#design-patterns)
+- [搞学习](#搞学习)
+- [冷知识 / 黑科技](#冷知识--黑科技)
+- [资源搜索](#资源搜索)
+- [小工具](#小工具)
+- [导航页（工具集）](#导航页工具集)
+- [看视频](#看视频)
+- [学设计](#学设计)
+- [搞文档](#搞文档)
+- [找图片](#找图片)
+
+<!-- /TOC -->
+
 # Java基础：
 
 ## 计算机基础：

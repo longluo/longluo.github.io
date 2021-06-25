@@ -11,6 +11,23 @@ keywords: Android, UI, Layout, 布局,
 
 ***By Long Luo***
 
+<!-- TOC -->
+
+- [Android UI核心类](#android-ui核心类)
+	- [Android SDK中关于UI的核心类：](#android-sdk中关于ui的核心类)
+		- [ViewGroup](#viewgroup)
+- [5种Layout](#5种layout)
+	- [1. Linear Layout (线性布局)](#1-linear-layout-线性布局)
+	- [2. Relative Layout (相对布局)](#2-relative-layout-相对布局)
+		- [2.1 属性值为true或false](#21-属性值为true或false)
+		- [2.2 属性值必须为id的引用名"@id/id-name"](#22-属性值必须为id的引用名idid-name)
+		- [2.3 属性值为具体的像素值，如30dip，40px](#23-属性值为具体的像素值如30dip40px)
+	- [3. TableLayout (表格布局)](#3-tablelayout-表格布局)
+	- [4. AbsoluteLayout (绝对布局)](#4-absolutelayout-绝对布局)
+	- [5. FrameLayout ( 帧布局 )](#5-framelayout--帧布局-)
+
+<!-- /TOC -->
+
 在一个Android应用中，Layout是开发中的一个很重要环节，Layout是组成UI不可缺少的一部分。
 
 # Android UI核心类

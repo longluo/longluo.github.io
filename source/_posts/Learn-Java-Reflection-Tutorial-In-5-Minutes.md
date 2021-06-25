@@ -10,6 +10,31 @@ keywords: Java, Reflection, 反射, 教程, 自省,
 
 ***By Long Luo***
 
+<!-- TOC -->
+
+- [一、反射是什么？](#一反射是什么)
+	- [1. 自省(Introspection) vs. 反射(Reflection)](#1-自省introspection-vs-反射reflection)
+	- [2. 自省示例 vs. 反射示例](#2-自省示例-vs-反射示例)
+- [二、 为什么需要反射？](#二-为什么需要反射)
+	- [反射机制提供的功能：](#反射机制提供的功能)
+	- [解耦](#解耦)
+- [三、 反射API](#三-反射api)
+	- [Java反射相关类](#java反射相关类)
+	- [Class<T>](#classt)
+		- [Class的方法](#class的方法)
+	- [Constructor](#constructor)
+	- [Field](#field)
+	- [Method](#method)
+- [四、反射怎么用？](#四反射怎么用)
+	- [Example 1: 从对象中获取类名](#example-1-从对象中获取类名)
+	- [Example 2: 调用未知对象的方法](#example-2-调用未知对象的方法)
+	- [Example 3: 从Class实例创建对象](#example-3-从class实例创建对象)
+	- [Example 4: 获取构造器并创建实例](#example-4-获取构造器并创建实例)
+	- [Example 5: 通过反射修改数组大小](#example-5-通过反射修改数组大小)
+- [五、 总结](#五-总结)
+
+<!-- /TOC -->
+
 最近在部门内部做了一次知识分享，关于***Java反射***，因此有了这篇文章：《5分钟学会Java反射》。这篇文章篇幅不长，用了大量示例，力求在很短的时间里让大家明白Java反射知识。
 
 关于Java反射，我们需要弄懂以下几个问题：

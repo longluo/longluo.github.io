@@ -11,6 +11,20 @@ keywords: Android, 自定义View, 动画, 摆动动画, 钟摆, Animation, View,
 
 ***By Long Luo***
 
+<!-- TOC -->
+
+- [一、钟摆](#一钟摆)
+- [二、Android Animation分析](#二android-animation分析)
+  - [2.1 动画分类](#21-动画分类)
+    - [2.1.1 补间动画(Tween Animation)](#211-补间动画tween-animation)
+    - [2.1.2 帧动画(Frame Animation)](#212-帧动画frame-animation)
+    - [2.1.3 属性动画(Property Animation)](#213-属性动画property-animation)
+  - [2.2 自定义动画](#22-自定义动画)
+- [三、SwingAnimation](#三swinganimation)
+- [四、总结](#四总结)
+
+<!-- /TOC -->
+
 继第一篇[Android自定义View：如何实现一个模拟时钟？](http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/)，我们使用Android自定义View实现了一款模拟表盘，第二篇[Android自定义View：另一种实现手表指针转动的方法](http://www.longluo.me/blog/2016/08/19/Android-Custom-View-Another-Way-To-Draw-The-Pointer/)我们又通过另外一种方法实现了手表指针的另外一种转动实现。
 
 在日程生活中，我们常见的挂钟实际都是有个钟摆的，那么，如果我们想在我们所作的模拟时钟实现这种**钟摆动画**呢？那么具体应该如何实现呢？

@@ -9,6 +9,13 @@ keywords: 二分查找, 迭代, 递归, 算法, Data Structures and Algorithms, 
 
 ***By Long Luo***
 
+<!-- TOC -->
+
+- [迭代](#迭代)
+- [递归](#递归)
+
+<!-- /TOC -->
+
 二分查找也称折半查找（Binary Search），它是一种效率较高的查找方法，**算法复杂度**为：O(log2n)。但是，折半查找要求线性表必须采用[顺序存储结构](https://baike.baidu.com/item/顺序存储结构/1347176)，而且表中元素按关键字有序排列。
 
 1.必须采用顺序存储结构；

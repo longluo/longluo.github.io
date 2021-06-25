@@ -11,6 +11,16 @@ keywords: Android, View, 自定义View, 自定义控件, 表盘,
 
 ***By Long Luo***
 
+<!-- TOC -->
+
+- [一. 绘制指针](#一-绘制指针)
+  - [1.1 弧度](#11-弧度)
+  - [1.2 绘制](#12-绘制)
+  - [1.3 小插曲](#13-小插曲)
+- [二. 界面刷新](#二-界面刷新)
+
+<!-- /TOC -->
+
 在上一篇[Android自定义View：如何实现一个模拟时钟？](http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/)中我们实现了一款模拟时钟。在上一篇中，我们使用了Canvas中的`canvas.rotate()`方法让坐标系旋转从而绘制出指针。
 
 但是，其实我们也可以使用另外一种方法去实现指针绘制，这种更直观，更容易理解。

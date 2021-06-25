@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "2020-05-31 Week 22 Record"
+title: "2020-05-31 Week 22 Journals"
 comments: true
 date: 2020-05-31 22:58:36
 tags:

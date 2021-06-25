@@ -13,6 +13,16 @@ keywords: Android, 学习, 资源, Learn, Develop,
 
 下面列举一些收藏的资源，用于学习参考：
 
+<!-- TOC -->
+
+- [1. Android API Guides](#1-android-api-guides)
+- [2. Java Develop Kit References](#2-java-develop-kit-references)
+- [3. Performances](#3-performances)
+- [4. Developing](#4-developing)
+- [5. OpenSource App](#5-opensource-app)
+
+<!-- /TOC -->
+
 # 1. Android API Guides
 
 1. [**Android** API Guides:](http://developer.android.com/guide/components/index.html "Android API Guides")

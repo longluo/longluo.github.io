@@ -20,6 +20,15 @@ keywords: Android, Audio, 音频, AudioTrack,
 
 ----------------
 
+<!-- TOC -->
+
+- [背景知识: 一些数字音频术语](#背景知识-一些数字音频术语)
+- [WAV文件格式](#wav文件格式)
+- [将PCM传入AudioTrack](#将pcm传入audiotrack)
+- [总结](#总结)
+
+<!-- /TOC -->
+
 如果你已经成功地了解了关于**AudioTrack**的[一些话题](http://mindtherobot.com/blog/555/android-audio-problems-hidden-limitations-and-opensl-es/ "Android Audio: Problems, Hidden Limitations and OpenSL ES")，那么你可能享受它带来的好处，例如低延迟（在STATIC(静态)模式），能够生成流式音频（在STREAM(流)模式）以及在播放之前，就能够访问和修改原始声音数据。
 
 不过，现在的问题是如何从源获取数据。许多应用需要使用的**AudioTrack**并不能简单的生成PCM音频（一个例子，比如**Ethereal Dialpad**或者其他类似的App）。你可能需要从文件源去加载数据，例如*WAV*或*MP3*文件。 

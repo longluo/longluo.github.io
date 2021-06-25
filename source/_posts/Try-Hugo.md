@@ -9,7 +9,20 @@ keywords: Hugo, Web, Website, 个人网站, 网站, Hexo,
 
 ***By Long Luo***
 
+<!-- TOC -->
+
+- [Hugo vs. Hexo](#hugo-vs-hexo)
+- [Hugo使用指南](#hugo使用指南)
+  - [下载Hugo](#下载hugo)
+  - [创建站点项目](#创建站点项目)
+  - [添加主题](#添加主题)
+  - [运行站点](#运行站点)
+- [小结](#小结)
+
+<!-- /TOC -->
+
 # Hugo vs. Hexo 
+
 目前我的个人网站使用的是: Hexo + Next，这也是目前绝大多数个人网站的标配。[Hugo](https://gohugo.io)官网号称是最快的网站框架，构建速度快，因为我的文章数比较多，以后考虑切换成Hugo，今天花了点时间来学习了下。
 
 以下是学习过程：
@@ -26,6 +39,7 @@ E:\Website>hugo version
 hugo v0.82.0-9D960784+extended windows/amd64 BuildDate=2021-03-21T17:28:04Z VendorInfo=gohugoio
 ```
 <!--more-->
+
 ## 创建站点项目
 
 以我为例， 假设要创建站点存放在`F:\Hugo\Website\`目录中，在命令行中切换到该目录下执行：

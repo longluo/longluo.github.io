@@ -11,6 +11,16 @@ keywords: Android, View, 自定义View, 自定义控件,
 
 ***By Long Luo***
 
+<!-- TOC -->
+
+- [一、绘制当前时间](#一绘制当前时间)
+  - [1.1 获取当前时间](#11-获取当前时间)
+  - [1.2 获取指针角度](#12-获取指针角度)
+  - [1.3 绘制指针](#13-绘制指针)
+- [二、每一秒刷新界面](#二每一秒刷新界面)
+
+<!-- /TOC -->
+
 **Android中自定义控件**一直都是Android开发中的一个难点。
 
 最近看大牛[@Tomcat的猫](http://weibo.com/eclipsexu?s=6cm7D0)写的[《Android群英传》](http://blog.csdn.net/eclipsexys)里面的第六章**Android绘图机制及处理技巧**，里面通过`Canvas`实现了一个如下所示的仪表盘：

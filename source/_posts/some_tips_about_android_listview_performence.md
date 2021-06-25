@@ -8,7 +8,18 @@ tags: [Android, ListView, 性能优化]
 keywords: Android, ListView, Layout, 性能, Adapter, 技巧
 ---
 
-***翻译 Long Luo***
+***翻译By Long Luo***
+
+<!-- TOC -->
+
+- [ListView如何运作的？](#listview如何运作的)
+- [View的回收](#view的回收)
+- [View Holder如何写的模板](#view-holder如何写的模板)
+- [异步加载](#异步加载)
+- [人机交互知识](#人机交互知识)
+- [以上](#以上)
+
+<!-- /TOC -->
 
 原文链接：[Performance Tips for Android’s ListView](http://lucasr.org/2012/04/05/performance-tips-for-androids-listview/)
 

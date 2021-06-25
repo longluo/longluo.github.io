@@ -1,6 +1,6 @@
 ---
 title: 碎碎念
-comments: false
+comments: true
 ---
 
 <script src="https://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
