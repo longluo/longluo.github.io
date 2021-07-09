@@ -383,13 +383,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">833k</span>
+    <span title="站点总字数">835k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">12:37</span>
+    <span title="站点阅读时长">12:39</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -461,85 +461,6 @@
                   leancloudSelector(url).innerText = 1;
                 })
                 .catch(error => {
-                  console.error('Failed to create', error);
-                });
-          }
-        })
-        .catch(error => {
-          console.error('LeanCloud Counter Error', error);
-        });
-    }
-
-    function showTime(Counter) {
-      const visitors = document.querySelectorAll('.leancloud_visitors');
-      const entries = [...visitors].map(element => {
-        return decodeURI(element.id);
-      });
-
-      Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({ url: { '$in': entries } })))
-        .then(response => response.json())
-        .then(({ results }) => {
-          for (let url of entries) {
-            const target = results.find(item => item.url === url);
-            leancloudSelector(url).innerText = target ? target.time : 0;
-          }
-        })
-        .catch(error => {
-          console.error('LeanCloud Counter Error', error);
-        });
-    }
-
-    const { app_id, app_key, server_url } = {"enable":true,"app_id":"9syDiDXvMyjnNmRtXRgzIMsm-MdYXbMMI","app_key":"lGf3LrjWEh7b61UqmPVTqlTO","server_url":"http://www.longluo.me","security":false};
-    function fetchData(api_server) {
-      const Counter = (method, url, data) => {
-        return fetch(`${api_server}/1.1${url}`, {
-          method,
-          headers: {
-            'X-LC-Id'     : app_id,
-            'X-LC-Key'    : app_key,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data)
-        });
-      };
-      if (CONFIG.page.isPost) {
-	    if (CONFIG.hostname !== location.hostname) return;
-        addCount(Counter);
-      } else if (document.querySelectorAll('.post-title-link').length >= 1) {
-        showTime(Counter);
-      }
-    }
-
-    const api_server = app_id.slice(-9) === '-MdYXbMMI' ? `https://${app_id.slice(0, 8).toLowerCase()}.api.lncldglobal.com` : server_url;
-
-    if (api_server) {
-      fetchData(api_server);
-    } else {
-      fetch('https://app-router.leancloud.cn/2/route?appId=' + app_id)
-        .then(response => response.json())
-        .then(({ api_server }) => {
-          fetchData('https://' + api_server);
-        });
-    }
-  })();
-</script>
-
-
-  
-
-<script>
-NexT.utils.loadComments('#twikoo-comments', () => {
-  NexT.utils.getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js', () => {
-    twikoo.init(Object.assign({"enable":true,"visitor":false,"envId":"comments-1groqj1sf9dd57d8"}, {
-      el: '#twikoo-comments'
-    }));
-  }, window.twikoo);
-});
-</script>
-
-</body>
-</html>
-
                   console.error('Failed to create', error);
                 });
           }
