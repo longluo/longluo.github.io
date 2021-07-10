@@ -219,3 +219,31 @@ toggle-close($position) {
     }
   }
 }
+
+site-nav-hide-by-default() {
+  --scroll-height: 0;
+  height: 0;
+  overflow: hidden;
+  transition: height $transition-ease;
+
+  body:not(.site-nav-on) & .animated {
+    animation: none;
+  }
+
+  body.site-nav-on & {
+    height: var(--scroll-height);
+  }
+}
+
+button($color) {
+  background: transparent;
+  color: $color;
+  cursor: pointer;
+  line-height: 2;
+  padding: 0 15px;
+
+  &:hover {
+    background: $color;
+    color: white;
+  }
+}

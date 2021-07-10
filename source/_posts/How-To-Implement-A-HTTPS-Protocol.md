@@ -1,13 +1,15 @@
 ---
-title: '如何在面试中回答好HTTPS协议的问题？'
+title: '常见面试题：HTTPS协议和HTTP协议有什么区别？HTTPS如何实现安全的？'
 comments: true
 date: 2021-05-15 23:42:19
-tags: [HTTPS, Network, TCPIP]
+tags: [HTTPS, HTTP, Interview, 网络, 协议]
 categories: Network
-keywords: https, http, protocol, Network, TCP/IP, 协议, Interview,  
+keywords: https, http, protocol, Network, TCP/IP, 协议, Interview, 网络, 协议, 面试, 安全, 
 ---
 
 ***By LongLuo***
+
+面试时，经常会遇到一道题，说说HTTPS
 
 HTTP的缺点：
 
@@ -16,7 +18,6 @@ HTTP的缺点：
 不验证通信方的身份，因此有可能遭遇伪装
 
 无法证明报文的完整性，所以有可能已遭篡改
-
 
 
 来说说当初设计HTTPS是为了满足哪些需求？
@@ -95,4 +96,6 @@ HTTPS需要做到足够好的保密性。
 小结
 
 以上就是设计 SSL 协议时，必须兼顾的各种需求。后面聊协议的实现时，俺会拿SSL协议的特点跟前面的需求作对照。看看这些需求是如何被逐一满足滴。
+
+
 

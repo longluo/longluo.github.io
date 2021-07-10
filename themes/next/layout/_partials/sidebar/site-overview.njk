@@ -60,17 +60,16 @@
 </div>
 {%- endif %}
 
-{%- if theme.chat.enable and theme.chat.service !== '' %}
+{%- if theme.chat.enable and (theme.chatra.enable or theme.tidio.enable or theme.gitter.enable) %}
   <div class="sidebar-button site-overview-item animated">
-  {%- if theme.chat.service == 'chatra' and theme.chatra.enable %}
-    <a onclick="Chatra('openChat', true);">
-  {%- endif %}
-  {%- if theme.chat.service == 'tidio' and theme.tidio.enable %}
-    <a onclick="tidioChatApi.open();">
+  {%- if theme.chatra.enable or theme.tidio.enable %}
+    <button>
+  {%- elif theme.gitter.enable %}
+    <button class="js-gitter-toggle-chat-button">
   {%- endif %}
   {%- if theme.chat.icon %}<i class="{{ theme.chat.icon }}"></i>{%- endif %}
     {{ theme.chat.text }}
-  </a>
+  </button>
   </div>
 {%- endif %}
 
@@ -89,7 +88,7 @@
 
 {%- if theme.creative_commons.license and theme.creative_commons.sidebar %}
   <div class="cc-license site-overview-item animated" itemprop="license">
-  {%- set ccImage = '<img src="' + url_for(theme.images + '/cc-' + theme.creative_commons.license + '.svg') + '" alt="Creative Commons">' %}
+    {%- set ccImage = '<img src="' + theme.vendors.creative_commons.url + '" alt="Creative Commons">' %}
     {{ next_url(ccURL, ccImage, {class: 'cc-opacity'}) }}
   </div>
 {%- endif %}

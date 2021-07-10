@@ -2,7 +2,7 @@
 title: '二分查找算法：迭代和递归'
 comments: true
 date: 2019-01-28 22:21:49
-tags: [Algorithms, 二分查找, ]
+tags: [Algorithms, 二分查找, 递归]
 categories: Data Structures and Algorithms
 keywords: 二分查找, 迭代, 递归, 算法, Data Structures and Algorithms, 数据结构, Algorithms,
 ---

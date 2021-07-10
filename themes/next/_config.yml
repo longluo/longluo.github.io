@@ -62,13 +62,15 @@ custom_logo: #/uploads/custom-logo.jpg
 
 # Creative Commons 4.0 International License.
 # See: https://creativecommons.org/about/cclicenses/
-# Available values of license: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
-# You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
-# CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
 creative_commons:
+  # Available values: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | cc-zero
   license: by-nc-sa
+  # Available values: big | small
+  size: small
   sidebar: true
   post: true
+  # You can set a language value if you prefer a translated version of CC license, e.g. deed.zh
+  # CC licenses are available in 39 languages, you can find the specific and correct abbreviation you need on https://creativecommons.org
   language: deed.zh
 
 
@@ -185,15 +187,6 @@ toc:
   expand_all: false
   # Maximum heading depth of generated toc.
   max_depth: 6
-
-# A button to open designated chat widget in sidebar.
-# Firstly, you need enable the chat service you want to activate its sidebar button.
-chat:
-  enable: false
-  #service: chatra
-  #service: tidio
-  icon: fa fa-comment # Icon name in Font Awesome, set false to disable icon.
-  text: Chat # Button text, change it as you wish.
 
 
 # ---------------------------------------------------------------
@@ -360,6 +353,13 @@ mobile_layout_economy: true
 # Android Chrome header panel color ($brand-bg / $headband-bg => $black-deep).
 android_chrome_color: "#222"
 
+# Override browsers' default behavior.
+body_scrollbar:
+  # Place the scrollbar over the content.
+  overlay: false
+  # Present the scrollbar even if the content is not overflowing.
+  stable: false
+
 codeblock:
   # Code Highlight theme
   # All available themes: https://theme-next.js.org/highlight/
@@ -385,8 +385,11 @@ back2top:
 # Reading progress bar
 reading_progress:
   enable: true
+  # Available values: left | right
+  start_at: left
   # Available values: top | bottom
   position: top
+  reversed: false
   color: "#37c6c0"
   height: 3px
 
@@ -477,6 +480,8 @@ index_with_subtitle: false
 
 # Automatically add external URL with Base64 encrypt & decrypt.
 exturl: false
+# If true, an icon will be attached to each external URL
+exturl_icon: true
 
 # Google Webmaster tools verification.
 # See: https://developers.google.com/search
@@ -561,10 +566,6 @@ quicklink:
   timeout: 3000
   # Default (true) will attempt to use the fetch() API if supported (rather than link[rel=prefetch]).
   priority: true
-
-  # For more flexibility you can add some patterns (RegExp, Function, or Array) to ignores.
-  # See: https://github.com/GoogleChromeLabs/quicklink#custom-ignore-patterns
-  ignores:
 
 
 # ---------------------------------------------------------------
@@ -768,6 +769,13 @@ local_search:
 # See: https://theme-next.js.org/docs/third-party-services/chat-services
 # ---------------------------------------------------------------
 
+# A button to open designated chat widget in sidebar.
+# Firstly, you need to enable and configure the chat service.
+chat:
+  enable: false
+  icon: fa fa-comment # Icon name in Font Awesome, set false to disable icon.
+  text: Chat # Button text, change it as you wish.
+
 # Chatra Support
 # For more information: https://chatra.com
 # Dashboard: https://app.chatra.io/settings/general
@@ -783,6 +791,12 @@ chatra:
 tidio:
   enable: false
   key: # Public Key, get it from dashboard. See: https://www.tidio.com/panel/settings/developer
+
+# Gitter Support
+# For more information: https://gitter.im
+gitter:
+  enable: false
+  room:
 
 
 # ---------------------------------------------------------------
@@ -881,77 +895,77 @@ vendors:
 
   # Anime.js
   # For more information: https://animejs.com
-  anime: 
+  anime:
 
   # Font Awesome
   # For more information: https://fontawesome.com
-  fontawesome: 
+  fontawesome:
 
   # Prism
-  prism: 
-  prism_autoloader: 
-  prism_line_numbers: 
+  prism:
+  prism_autoloader:
+  prism_line_numbers:
 
   # MathJax
-  mathjax: 
+  mathjax:
 
   # KaTeX
-  katex: 
-  copy_tex_js: 
-  copy_tex_css: 
+  katex:
+  copy_tex_js:
+  copy_tex_css:
 
   # Pjax
-  pjax: 
+  pjax:
 
   # FancyBox
-  jquery: 
-  fancybox_js: 
-  fancybox_css: 
+  jquery:
+  fancybox_js:
+  fancybox_css:
 
   # Medium-zoom
-  mediumzoom: 
+  mediumzoom:
 
   # Lazyload
-  lazyload: 
+  lazyload:
 
   # Pangu
-  pangu: 
+  pangu:
 
   # Quicklink
-  quicklink: 
+  quicklink:
 
   # DisqusJS
-  disqusjs_js: 
+  disqusjs_js:
   disqusjs_css:
 
   # Gitalk
-  gitalk_js: 
-  gitalk_css: 
+  gitalk_js:
+  gitalk_css:
 
   # Firebase
-  firebase_app: 
-  firebase_firestore: 
+  firebase_app:
+  firebase_firestore:
 
   # Algolia Search
-  algolia_search: 
-  instant_search: 
+  algolia_search:
+  instant_search:
 
   # PDF
-  pdfobject: 
+  pdfobject:
 
   # Mermaid
-  mermaid: 
+  mermaid:
 
   # Animate.css
   # Warning: motion won't work with animate.css version 3.2.0 or later
-  animate_css: 
+  animate_css:
 
   # NProgress.js
-  nprogress_js: 
-  nprogress_css: 
+  nprogress_js:
+  nprogress_css:
 
   # Canvas ribbon
-  canvas_ribbon: 
+  canvas_ribbon:
 
 # Assets
 # Accelerate delivery of static files using a CDN
