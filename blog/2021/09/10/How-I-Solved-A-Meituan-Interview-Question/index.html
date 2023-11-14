@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
+  <meta name="baidu-site-verification" content="www.longluo.me">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.proxy.ustclug.org/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/config.min.js"></script>
+
+    <meta name="description" content="By Long Luo 最近在做 Leetcode学习计划 中的 2021届秋季校招笔试真题 时，在这道题上 meituan-002. 小美的仓库整理 卡了一点时间，在此记录下自己从困惑到最终解决的全过程，吸取经验教训，提高自己知识水平。  题目 这是一道Medium难度的题目，如下所示： 123456789101112131415161718192021222324252627282930313">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记一道美团面试编程题的解题过程：从暴力到优化">
+<meta property="og:url" content="http://www.longluo.me/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="By Long Luo 最近在做 Leetcode学习计划 中的 2021届秋季校招笔试真题 时，在这道题上 meituan-002. 小美的仓库整理 卡了一点时间，在此记录下自己从困惑到最终解决的全过程，吸取经验教训，提高自己知识水平。  题目 这是一道Medium难度的题目，如下所示： 123456789101112131415161718192021222324252627282930313">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-10T15:55:56.000Z">
+<meta property="article:modified_time" content="2023-09-17T07:29:33.421Z">
+<meta property="article:author" content="Long Luo">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="Hash">
+<meta property="article:tag" content="Prefix Sum">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.longluo.me/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/","path":"/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/","title":"记一道美团面试编程题的解题过程：从暴力到优化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>记一道美团面试编程题的解题过程：从暴力到优化 | Long Luo's Life Notes</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-46213499-2","only_pageview":false}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be"></script>
+
+  <script async src="//assets.growingio.com/2.1/gio.js"></script>
+  <script class="next-config" data-name="growingio_analytics" type="application/json">"bc65befc551b6d70"</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/growingio.min.js"></script>
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "gz2vdkhgvh");
+</script>
+
+  <script class="next-config" data-name="matomo" type="application/json">{"enable":true,"server_url":"http://www.longluo.me","site_id":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/matomo.min.js"></script>
+
+
+<link rel="dns-prefetch" href="https://waline.longluo.me/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Long Luo's Life Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-works"><a href="/works" rel="section"><i class="fa fa-code fa-fw"></i>作品</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text"> 题目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF"><span class="nav-number">2.</span> <span class="nav-text"> 解决思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#21-%E6%9A%B4%E5%8A%9B%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text"> 2.1 暴力法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-%E5%89%8D%E7%BC%80%E5%92%8C"><span class="nav-number">2.2.</span> <span class="nav-text"> 2.2 前缀和</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#treeset"><span class="nav-number">2.2.1.</span> <span class="nav-text"> TreeSet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#treemap"><span class="nav-number">2.2.2.</span> <span class="nav-text"> TreeMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-%E9%80%86%E5%90%91%E6%80%9D%E8%80%83"><span class="nav-number">2.3.</span> <span class="nav-text"> 2.3 逆向思考</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text"> 总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. </div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">335</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">309</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu → http:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;longluo" rel="noopener me" target="_blank"><i class="fab fa-quora fa-fw"></i>ZhiHu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/longluo/" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;longluo&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:longluo2005@gmail.com" title="E-Mail → mailto:longluo2005@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://blog.csdn.net/tcpipstack" title="http:&#x2F;&#x2F;blog.csdn.net&#x2F;tcpipstack" rel="noopener" target="_blank">CSDN</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="记一道美团面试编程题的解题过程：从暴力到优化 | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          记一道美团面试编程题的解题过程：从暴力到优化<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2023/source/_posts/How-I-Solved-A-Meituan-Interview-Question.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-10 23:55:56" itemprop="dateCreated datePublished" datetime="2021-09-10T23:55:56+08:00">2021-09-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-17 15:29:33" itemprop="dateModified" datetime="2023-09-17T15:29:33+08:00">2023-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><em><strong>By Long Luo</strong></em></p>
+<p>最近在做 <a target="_blank" rel="noopener" href="https://leetcode.cn/study-plan">Leetcode学习计划</a> 中的 <a target="_blank" rel="noopener" href="https://leetcode.cn/study-plan/meituan">2021届秋季校招笔试真题</a> 时，在这道题上 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/TJZLyC/">meituan-002. 小美的仓库整理</a> 卡了一点时间，在此记录下自己从困惑到最终解决的全过程，吸取经验教训，提高自己知识水平。</p>
+<h1 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h1>
+<p>这是一道<strong>Medium</strong>难度的题目，如下所示：</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">meituan-002. 小美的仓库整理</span><br><span class="line"></span><br><span class="line">小美是美团仓库的管理员，她会根据单据的要求按顺序取出仓库中的货物，每取出一件货物后会把剩余货物重新堆放，使得自己方便查找。已知货物入库的时候是按顺序堆放在一起的。如果小美取出其中一件货物，则会把货物所在的一堆物品以取出的货物为界分成两堆，这样可以保证货物局部的顺序不变。</span><br><span class="line">已知货物最初是按1~n的顺序堆放的，每件货物的重量为w[i] ,小美会根据单据依次不放回的取出货物。请问根据上述操作，小美每取出一件货物之后，重量和最大的一堆货物重量是多少？</span><br><span class="line"></span><br><span class="line">格式：</span><br><span class="line"></span><br><span class="line">	输入：</span><br><span class="line">		- 输入第一行包含一个正整数 n ，表示货物的数量。</span><br><span class="line">		- 输入第二行包含n个正整数，表示1~n号货物的重量w[i]。</span><br><span class="line">		- 输入第三行有n个数，表示小美按顺序取出的货物的编号，也就是一个1~n的全排列。</span><br><span class="line"></span><br><span class="line">	输出：</span><br><span class="line">		- 输出包含n行，每行一个整数，表示每取出一件货物以后，对于重量和最大的一堆货物，其重量和为多少。</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"></span><br><span class="line">	输入：</span><br><span class="line">		5</span><br><span class="line">		3 2 4 4 5 </span><br><span class="line">		4 3 5 2 1</span><br><span class="line">	 </span><br><span class="line">	输出：</span><br><span class="line">		9</span><br><span class="line">		5</span><br><span class="line">		5</span><br><span class="line">		3</span><br><span class="line">		0</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">	原本的状态是{{3,2,4,4,5}}，取出4号货物后，得到{{3,2,4},{5}}，第一堆货物的和是9，然后取出3号货物得到{{3,2}{5}}，此时第一堆和第二堆的和都是5，以此类推。</span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">	1 &lt;= n &lt;= 50000</span><br><span class="line">	1 &lt;= w[i] &lt;= 100</span><br><span class="line"></span><br><span class="line">请注意，本题需要自行编写「标准输入」和「标准输出」逻辑，以及自行import/include需要的library。了解书写规则</span><br></pre></td></tr></tbody></table></figure>
+<p>从题意来看，这道题目并不难，所以当时看到题目之后，马上刷刷开始做题，觉得太简单了！</p>
+<span id="more"></span>
+<h1 id="解决思路"><a class="markdownIt-Anchor" href="#解决思路"></a> 解决思路</h1>
+<p>首先想到的肯定是<strong>暴力法</strong>：</p>
+<h2 id="21-暴力法"><a class="markdownIt-Anchor" href="#21-暴力法"></a> 2.1 暴力法</h2>
+<p>根据题意，就是求数组某个区间的<strong>区间和</strong>。求区间和最简单的方式当然是遍历了，复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，而全部结果计算的时间复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，于是就有了下面的这个解法：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">      <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">      <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">      scanner.nextLine();</span><br><span class="line">      <span class="type">int</span>[] weight = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">          weight[i] = scanner.nextInt();</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="type">int</span>[] number = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">          number[i] = scanner.nextInt();</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="type">int</span>[] ans = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">          weight[number[i] - <span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">          ans[i] = getMax(weight, number[i]);</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">          System.out.println(ans[i]);</span><br><span class="line">      }</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getMax</span><span class="params">(<span class="type">int</span>[] weight, <span class="type">int</span> no)</span> {</span><br><span class="line">      <span class="type">int</span> <span class="variable">leftTotal</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">      <span class="type">int</span> <span class="variable">rightTotal</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; (no - <span class="number">1</span>); i++) {</span><br><span class="line">          leftTotal += weight[i];</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> no; i &lt; weight.length; i++) {</span><br><span class="line">          rightTotal += weight[i];</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> Math.max(leftTotal, rightTotal);</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
+<p>这个答案只通过了示例中的测试用例，其他的都没有通过，那么<strong>问题出在什么地方</strong>呢？</p>
+<p>通过重新读题，再加上题目给的示例的迷惑下，我明白了错在什么地方了！</p>
+<p>我以为只需要每次拿掉一个货物之后，以此货物为界，分成左右<strong>2</strong>堆，然后返回更大的一堆的值，而且示例中连续拿了相邻的货物，也让我产生了错觉，因为错的离谱！</p>
+<p>这可是一道<strong>中等题</strong>啊！肯定不是这么简单的啊！</p>
+<p>重新完成了正确的暴力解决法如下：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">    scanner.nextLine();</span><br><span class="line">    <span class="type">int</span>[] weight = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        weight[i] = scanner.nextInt();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>[] number = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        number[i] = scanner.nextInt();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>[] ans = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        weight[number[i] - <span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        ans[i] = getMax(weight);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        System.out.println(ans[i]);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getMax</span><span class="params">(<span class="type">int</span>[] weight)</span> {</span><br><span class="line">    <span class="type">int</span> <span class="variable">maxSum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> weight.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">idx</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (idx &lt; n) {</span><br><span class="line">        <span class="keyword">while</span> (idx &lt; n &amp;&amp; weight[idx] == <span class="number">0</span>) {</span><br><span class="line">            idx++;</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (idx &lt; n &amp;&amp; weight[idx] != <span class="number">0</span>) {</span><br><span class="line">            <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (idx &lt; n &amp;&amp; weight[idx] != <span class="number">0</span>) {</span><br><span class="line">                sum += weight[idx];</span><br><span class="line">                idx++;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            maxSum = Math.max(sum, maxSum);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> maxSum;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>因为上述时间复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，铁定超时，所以需要寻找更优的解决方案！</p>
+<h2 id="22-前缀和"><a class="markdownIt-Anchor" href="#22-前缀和"></a> 2.2 前缀和</h2>
+<p>很明显暴力法具有很大的优化空间，因为很多求和操作都是重复的。因此我们将货物进行预处理一下，使用前缀和数组便可做到花费<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>的时间来查询<strong>区间和</strong>了！</p>
+<h3 id="treeset"><a class="markdownIt-Anchor" href="#treeset"></a> TreeSet</h3>
+<p>快速查询区间和做到了，已知前缀和，求区间和还需要什么呢？</p>
+<p>对了，<strong>左边界与右边界</strong>。</p>
+<p>以示例中的第1次取货来说：[3, 2, 4, 4, 5]。取了4号货物后，数组将以4号位置为轴心，分割为左区间[3, 2, 4]和右区间[5]。</p>
+<p>前缀和数组分割后对应为：[0, 3, 5, 9] [13] [18]。</p>
+<p>此时，左区间中的左边界为 0，右边界为 3，可得leftSum = 9 - 0 = 9。<br>
+右区间中的左边界为 4，右边界为5，可得rightSum = 18 - 13 = 5。</p>
+<p>此时，可以快速插入与查找的有序容器<code>Set</code>派上了用场。</p>
+<p><code>Set</code>将完成以下工作：<strong>查询分割点的左右边界</strong>。</p>
+<p>在完成分割工作后，将<strong>分割点</strong>加入其中，因为其将成为后续分割点查询所在的子数组的边界。</p>
+<h3 id="treemap"><a class="markdownIt-Anchor" href="#treemap"></a> TreeMap</h3>
+<p>在完成分割与分割点左右区间和的计算后，需要将左右区间和放入容器中，然后查询容器中区间和的最大值。</p>
+<p>若使用无序容器，则每次查找最大值需要消耗<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>的时间，这样的话前面的优化算是白做了。</p>
+<p>因此，我们将所有区间和放入有序容器中进行查询，此时需要考虑 多个区间和的值 相等的问题，于是我们自然而然地想到了<code>Map</code>。</p>
+<p><code>Map</code>将完成以下工作：</p>
+<ol>
+<li>首先将包含分割点的区间和<code>SegSum</code>的数量减1，因为它将被分割点拆开，若数量为 1，则直接删除；</li>
+<li>将分割后得到的 左右区间和加入其中；</li>
+<li>返回容器中的最大key，其为当前场上存在的 最大区间和。</li>
+</ol>
+<p>代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> scanner.nextInt();</span><br><span class="line">    scanner.nextLine();</span><br><span class="line">    <span class="type">int</span>[] weight = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        weight[i] = scanner.nextInt();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>[] number = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        number[i] = scanner.nextInt();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>[] prefixSum = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        prefixSum[i + <span class="number">1</span>] = weight[i] + prefixSum[i];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>[] ans = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line"></span><br><span class="line">    TreeSet&lt;Integer&gt; boundSet = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;();</span><br><span class="line">    boundSet.add(<span class="number">0</span>);</span><br><span class="line">    boundSet.add(n + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    TreeMap&lt;Integer, Integer&gt; sumMap = <span class="keyword">new</span> <span class="title class_">TreeMap</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> number[i];</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> boundSet.lower(pos);</span><br><span class="line">        <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> boundSet.higher(pos);</span><br><span class="line">        boundSet.add(pos);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">segSum</span> <span class="operator">=</span> prefixSum[right - <span class="number">1</span>] - prefixSum[left];</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">count</span> <span class="operator">=</span> sumMap.get(segSum);</span><br><span class="line">        <span class="keyword">if</span> (count != <span class="literal">null</span>) {</span><br><span class="line">            <span class="keyword">if</span> (count == <span class="number">1</span>) {</span><br><span class="line">                sumMap.remove(segSum);</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                sumMap.put(segSum, count - <span class="number">1</span>);</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">leftSum</span> <span class="operator">=</span> prefixSum[pos - <span class="number">1</span>] - prefixSum[left];</span><br><span class="line">        <span class="type">int</span> <span class="variable">rightSum</span> <span class="operator">=</span> prefixSum[right - <span class="number">1</span>] - prefixSum[pos];</span><br><span class="line">        sumMap.put(leftSum, sumMap.getOrDefault(leftSum, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        sumMap.put(rightSum, sumMap.getOrDefault(rightSum, <span class="number">0</span>) + <span class="number">1</span>);</span><br><span class="line">        ans[i] = sumMap.lastKey();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        System.out.println(ans[i]);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(NlogN)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>来自<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span>次询问，有序容器的查找、插入和删除操作均摊为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mi>N</mi></mrow><annotation encoding="application/x-tex">logN</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span>。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
+<h2 id="23-逆向思考"><a class="markdownIt-Anchor" href="#23-逆向思考"></a> 2.3 逆向思考</h2>
+<p>我们不妨逆向操作，一开始仓库里没有货物，我们按小美抽取货物的顺序倒序插入。</p>
+<p>那么，初始化最大重量<code>maxWeight</code>为0，我们每次插入后，只会改变插入点下标的左右相邻两堆货物，将它们连成一堆货物。</p>
+<p>因此，只需要求出新产生的货物堆的重量之和，更新<code>maxWeight</code>。</p>
+<p>如果采取遍历的方式获取当前插入点的连通区域，时间复杂度是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>会超时，对于如何快速获取我们可以使用一个<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>∗</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">n*2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>的数组<code>bounds</code>，用于记录一个堆货物的左右边界下标。</p>
+<p>对于这道题，每次操作必然不会在重复的位置。因此，只需要维护一堆货物的左边界和右边界，无需关心中间区域，每次操作的位置一定相邻货物或远离货物，不会存在重叠。而对于求任意区间内的和，我们可以使用前缀和数组实现<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>的时间复杂度。</p>
+<p>如果<code>bounds[x + 1][0] != -1</code>，说明右边有一堆相邻的货物，将右边界<code>right</code>更新为<code>bounds[x + 1][1]</code>，并使当前新产生的堆重量cur加上prev[bounds[x + 1][1]] - prev[bounds[x + 1][0] - 1]<br>
+如果<code>bounds[x - 1][1] != -1</code>，说明左边有一堆相邻的货物，将左边界left更新为<code>bounds[x - 1][0]</code>，并使当前新产生的堆重量cur加上prev[bounds[x - 1][1]] - prev[bounds[x - 1][0] - 1]</p>
+<p>例如：<br>
+5<br>
+3 2 4 4 5<br>
+4 3 5 2 1</p>
+<p>这个例子<br>
+初始化maxW = 0,  bounds{ {-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1},{-1,-1} },<br>
+前缀和数组prev={0, 3, 5, 9, 13, 18},<br>
+原始货物weight={0, 3, 5, 9, 13, 18}</p>
+<p>第一次操作： x为1，先记录一次maxW(因为是倒着操作的，先记录再做改变)</p>
+<p>初始化新产生的一堆货物的左边界left = x，右边界right = x，重量cur = arr[1] = 3。<br>
+然后判断左右有无一堆相邻的货物<br>
+得到cur = 3，更新maxW = max(maxW, cur) = 3,<br>
+更新新产生的堆的左边界bounds[left][0] = left;bounds[left][1] = right;<br>
+更新堆的左边界 bounds[right][0] = left;bounds[right][1] = right;</p>
+<p>第二次操作： x为2，先记录一次maxW</p>
+<p>初始化新产生的一堆货物的左边界left = 2，右边界right = 2，重量cur = 2。</p>
+<p>然后判断，由于bounds[x + 1][0] != -1,说明左边有一堆相邻的货物，cur += 3，left = 1。</p>
+<p>得到cur = 5，更新maxW = max(maxW,cur) = 5,<br>
+更新新产生的堆的左边界bounds[left][0] = left;bounds[left][1] = right;<br>
+更新堆的左边界 bounds[right][0] = left;bounds[right][1] = right;</p>
+<p>之后操作同理可得。</p>
+<p>代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    <span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">    <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> Integer.parseInt(scanner.nextLine());</span><br><span class="line"></span><br><span class="line">    String[] weights = scanner.nextLine().split(<span class="string">" "</span>);</span><br><span class="line">    <span class="type">int</span>[] weight = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="type">int</span>[] prefixSum = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        weight[i] = Integer.parseInt(weights[i - <span class="number">1</span>]);</span><br><span class="line">        prefixSum[i] = prefixSum[i - <span class="number">1</span>] + weight[i];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    String[] number = scanner.nextLine().split(<span class="string">" "</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>[][] bounds = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= n; i++) {</span><br><span class="line">        bounds[i] = <span class="keyword">new</span> <span class="title class_">int</span>[]{-<span class="number">1</span>, -<span class="number">1</span>};</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span>[] ans = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">maxWeight</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) {</span><br><span class="line">        <span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> Integer.parseInt(number[i]);</span><br><span class="line">        ans[i] = maxWeight;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>) {</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 更新最大重量</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">cur</span> <span class="operator">=</span> weight[x];</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> x;</span><br><span class="line">        <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> x;<span class="comment">//左边界和右边界,注意如果左右无连通区域则区间为[x,x],所以初始化为x</span></span><br><span class="line">        <span class="comment">//每次只会将左右两块区域连成一块,我们只需关心一段区间的左边界和右边界,就能通过前缀和数组查询到区间和</span></span><br><span class="line">        <span class="keyword">if</span> (x + <span class="number">1</span> &lt;= n &amp;&amp; bounds[x + <span class="number">1</span>][<span class="number">0</span>] != -<span class="number">1</span>) {</span><br><span class="line">            cur += prefixSum[bounds[x + <span class="number">1</span>][<span class="number">1</span>]] - prefixSum[bounds[x + <span class="number">1</span>][<span class="number">0</span>] - <span class="number">1</span>];</span><br><span class="line">            right = bounds[x + <span class="number">1</span>][<span class="number">1</span>]; <span class="comment">//更新右边界</span></span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">if</span> (x - <span class="number">1</span> &gt; <span class="number">0</span> &amp;&amp; bounds[x - <span class="number">1</span>][<span class="number">1</span>] != -<span class="number">1</span>) {</span><br><span class="line">            cur += prefixSum[bounds[x - <span class="number">1</span>][<span class="number">1</span>]] - prefixSum[bounds[x - <span class="number">1</span>][<span class="number">0</span>] - <span class="number">1</span>];</span><br><span class="line">            left = bounds[x - <span class="number">1</span>][<span class="number">0</span>]; <span class="comment">//更新左边界</span></span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        maxWeight = Math.max(maxWeight, cur);</span><br><span class="line">        <span class="comment">// 更新两端点的左右区间</span></span><br><span class="line">        bounds[left][<span class="number">0</span>] = left;</span><br><span class="line">        bounds[left][<span class="number">1</span>] = right;</span><br><span class="line">        bounds[right][<span class="number">0</span>] = left;</span><br><span class="line">        bounds[right][<span class="number">1</span>] = right;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; i++) {</span><br><span class="line">        System.out.println(ans[i]);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h1>
+<p>通过这道题，学习到了几个道理：</p>
+<ol>
+<li>首先必须<strong>读懂题意</strong>，不要搞错题意，这是前提；</li>
+<li>先使用最直观的暴力法，看能否解决问题；</li>
+<li>暴力法不可行的话，想一想如何<strong>用空间换时间</strong>，减少时间复杂度；</li>
+<li>学会逆向思考，想一想还有没有其他方法可以解决这个问题，提高自己融会贯通的能力。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Long Luo
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.longluo.me/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/" title="记一道美团面试编程题的解题过程：从暴力到优化">http://www.longluo.me/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+              <a href="/tags/Hash/" rel="tag"># Hash</a>
+              <a href="/tags/Prefix-Sum/" rel="tag"># Prefix Sum</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2021/09/03/KMP/" rel="prev" title="理解KMP算法：从入门到推导">
+                  <i class="fa fa-angle-left"></i> 理解KMP算法：从入门到推导
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2021/09/20/Coding-Interviews-2/" rel="next" title="《剑指Offer（专项突击版）》刷题记录">
+                  《剑指Offer（专项突击版）》刷题记录 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2013 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Long Luo</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.4m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">21:36</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/bookmark.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2021/09/10/How-I-Solved-A-Meituan-Interview-Question/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

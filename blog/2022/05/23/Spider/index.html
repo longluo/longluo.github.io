@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
+  <meta name="baidu-site-verification" content="www.longluo.me">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.proxy.ustclug.org/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/config.min.js"></script>
+
+    <meta name="description" content="By Long Luo  微博热搜爬虫 前几天外甥女要我帮她完成一个小作业，用 Python 完成一个爬虫，于是在网上找了点资料[1] 和 Github 上找了个爬虫[2] 的例子，改简单了点，只爬取 微博热搜 数据并存储到 Excel 中，使用 Python Jupyter 编写。 具体代码见：https:&#x2F;&#x2F;github.com&#x2F;longluo&#x2F;spider&#x2F;blob&#x2F;master&#x2F;weibo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python爬虫练习：微博热搜爬虫，微博爬虫 和 主页博文爬虫">
+<meta property="og:url" content="http://www.longluo.me/blog/2022/05/23/Spider/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="By Long Luo  微博热搜爬虫 前几天外甥女要我帮她完成一个小作业，用 Python 完成一个爬虫，于是在网上找了点资料[1] 和 Github 上找了个爬虫[2] 的例子，改简单了点，只爬取 微博热搜 数据并存储到 Excel 中，使用 Python Jupyter 编写。 具体代码见：https:&#x2F;&#x2F;github.com&#x2F;longluo&#x2F;spider&#x2F;blob&#x2F;master&#x2F;weibo">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-23T10:05:32.000Z">
+<meta property="article:modified_time" content="2023-09-17T07:38:43.564Z">
+<meta property="article:author" content="Long Luo">
+<meta property="article:tag" content="微博">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Website">
+<meta property="article:tag" content="Spider">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://www.longluo.me/blog/2022/05/23/Spider/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2022/05/23/Spider/","path":"/blog/2022/05/23/Spider/","title":"Python爬虫练习：微博热搜爬虫，微博爬虫 和 主页博文爬虫"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Python爬虫练习：微博热搜爬虫，微博爬虫 和 主页博文爬虫 | Long Luo's Life Notes</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-46213499-2","only_pageview":false}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be"></script>
+
+  <script async src="//assets.growingio.com/2.1/gio.js"></script>
+  <script class="next-config" data-name="growingio_analytics" type="application/json">"bc65befc551b6d70"</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/growingio.min.js"></script>
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "gz2vdkhgvh");
+</script>
+
+  <script class="next-config" data-name="matomo" type="application/json">{"enable":true,"server_url":"http://www.longluo.me","site_id":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/matomo.min.js"></script>
+
+
+<link rel="dns-prefetch" href="https://waline.longluo.me/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Long Luo's Life Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-works"><a href="/works" rel="section"><i class="fa fa-code fa-fw"></i>作品</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E5%8D%9A%E7%83%AD%E6%90%9C%E7%88%AC%E8%99%AB"><span class="nav-number">1.</span> <span class="nav-text"> 微博热搜爬虫</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E5%8D%9A%E7%88%AC%E8%99%AB"><span class="nav-number">2.</span> <span class="nav-text"> 微博爬虫</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%8D%9Aapi"><span class="nav-number">2.1.</span> <span class="nav-text"> 微博API</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%9A%E5%AE%A2%E7%88%AC%E8%99%AB"><span class="nav-number">3.</span> <span class="nav-text"> 博客爬虫</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">3.1.</span> <span class="nav-text"> 功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">3.2.</span> <span class="nav-text"> 分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.3.</span> <span class="nav-text"> 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%85%A8%E9%83%A8%E5%8D%9A%E6%96%87%E6%A0%87%E9%A2%98-%E5%8F%91%E5%B8%83%E6%97%B6%E9%97%B4%E5%92%8C%E9%93%BE%E6%8E%A5"><span class="nav-number">3.3.1.</span> <span class="nav-text"> 获取全部博文标题、发布时间和链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E9%A1%B5%E6%95%B0"><span class="nav-number">3.3.1.1.</span> <span class="nav-text"> 总页数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%9A%E6%96%87%E4%BF%A1%E6%81%AF"><span class="nav-number">3.3.1.2.</span> <span class="nav-text"> 博文信息</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%9D%E5%AD%98%E6%96%87%E7%AB%A0%E8%AF%A6%E6%83%85"><span class="nav-number">3.3.2.</span> <span class="nav-text"> 保存文章详情</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E6%96%87%E7%AB%A0%E6%A0%87%E9%A2%98-%E5%8F%91%E5%B8%83%E6%97%B6%E9%97%B4%E5%92%8C%E6%96%87%E7%AB%A0%E9%93%BE%E6%8E%A5%E5%88%B0excel%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD"><span class="nav-number">3.4.</span> <span class="nav-text"> 存储文章标题、发布时间和文章链接到Excel和数据库中</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text"> 参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. </div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">335</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">309</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu → http:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;longluo" rel="noopener me" target="_blank"><i class="fab fa-quora fa-fw"></i>ZhiHu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/longluo/" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;longluo&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:longluo2005@gmail.com" title="E-Mail → mailto:longluo2005@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://blog.csdn.net/tcpipstack" title="http:&#x2F;&#x2F;blog.csdn.net&#x2F;tcpipstack" rel="noopener" target="_blank">CSDN</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/05/23/Spider/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Python爬虫练习：微博热搜爬虫，微博爬虫 和 主页博文爬虫 | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python爬虫练习：微博热搜爬虫，微博爬虫 和 主页博文爬虫<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2023/source/_posts/Spider.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-23 18:05:32" itemprop="dateCreated datePublished" datetime="2022-05-23T18:05:32+08:00">2022-05-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-17 15:38:43" itemprop="dateModified" datetime="2023-09-17T15:38:43+08:00">2023-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2022/05/23/Spider/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/05/23/Spider/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2022/05/23/Spider/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><em><strong>By Long Luo</strong></em></p>
+<h1 id="微博热搜爬虫"><a class="markdownIt-Anchor" href="#微博热搜爬虫"></a> 微博热搜爬虫</h1>
+<p>前几天外甥女要我帮她完成一个小作业，用 Python 完成一个爬虫，于是在网上找了点资料<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> 和 Github 上找了个爬虫<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> 的例子，改简单了点，只爬取 <a target="_blank" rel="noopener" href="https://s.weibo.com/top/summary?cate=realtimehot">微博热搜</a> 数据并存储到 Excel 中，使用 Python Jupyter 编写。</p>
+<p>具体代码见：<a target="_blank" rel="noopener" href="https://github.com/longluo/spider/blob/master/weibohot.ipynb">https://github.com/longluo/spider/blob/master/weibohot.ipynb</a> 。</p>
+<h1 id="微博爬虫"><a class="markdownIt-Anchor" href="#微博爬虫"></a> 微博爬虫</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/dataabc/weiboSpider">微博爬虫</a> <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> 的代码及功能太多太复杂，但我目前只需要爬取下列信息：</p>
+<ol>
+<li>个人信息</li>
+<li>具体时间段全部博文；</li>
+<li>将数据存入 Excel 和数据库中。</li>
+</ol>
+<p>所以需要精简其代码。</p>
+<h2 id="微博api"><a class="markdownIt-Anchor" href="#微博api"></a> 微博API</h2>
+<p>微博获取个人信息API：<a target="_blank" rel="noopener" href="https://weibo.cn/1565668374/info">https://weibo.cn/1565668374/info</a></p>
+<p>微博获取个人全部博文API：<a target="_blank" rel="noopener" href="https://weibo.cn/1565668374?page=1">https://weibo.cn/1565668374?page=1</a></p>
+<p>具体代码见：<a target="_blank" rel="noopener" href="https://github.com/longluo/spider/blob/master/weibo.py">https://github.com/longluo/spider/blob/master/weibo.py</a> 。</p>
+<h1 id="博客爬虫"><a class="markdownIt-Anchor" href="#博客爬虫"></a> 博客爬虫</h1>
+<p>在写完上述两个爬虫之后，趁热打铁，也把之前自己一直想做完的功能做完了！</p>
+<h2 id="功能"><a class="markdownIt-Anchor" href="#功能"></a> 功能</h2>
+<ol>
+<li>获取某网站的全部博文比如 <a href="http://www.longluo.me/">http://www.longluo.me/</a> 。</li>
+<li>爬取内容：文章标题、发布时间、分类、链接、正文（HTML格式）等。</li>
+</ol>
+<h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h2>
+<ol>
+<li>向目标网页发出请求</li>
+</ol>
+<p><strong>Header</strong> 是请求头信息的，添加的键值对越多，目标网站就越认为你是真实的用户，但我的网站没有反爬虫措施，所以 <strong>Header</strong> 里面就只有 <strong>User-Agent</strong> 键值对，用来描述你的操作系统、浏览器等信息。</p>
+<ol start="2">
+<li>获取网站博客的文章标题、发布时间和链接；</li>
+<li>数据写入Excel中；</li>
+<li>数据存入数据库中。</li>
+</ol>
+<h2 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h2>
+<h3 id="获取全部博文标题-发布时间和链接"><a class="markdownIt-Anchor" href="#获取全部博文标题-发布时间和链接"></a> 获取全部博文标题、发布时间和链接</h3>
+<p>全部博文列表位于 <a href="http://www.longluo.me/archives/">http://www.longluo.me/archives/</a> 中，首先我们要获取的是总共有多少页呢？</p>
+<h4 id="总页数"><a class="markdownIt-Anchor" href="#总页数"></a> 总页数</h4>
+<p>查看网页源代码，我们可以看见全部页数为 <code>&lt;span class="space"&gt;&amp;hellip;&lt;/span&gt;&lt;a class="page-number" href="/archives/page/48/"&gt;48&lt;/a&gt;</code>，所以我们只需要解析出来即可。</p>
+<p>参考网络代码<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup> ，利用BeautifulSoup解析HTML，然后利用正则表达式匹配，代码如下所示：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_total_page</span>(<span class="params">self</span>):</span><br><span class="line">    html = self.get_html(self.archivesUrl)</span><br><span class="line"></span><br><span class="line">    page_number = re.<span class="built_in">compile</span>(<span class="string">'[0-9]+'</span>)</span><br><span class="line"></span><br><span class="line">    soap = BeautifulSoup(html, <span class="string">'html.parser'</span>)</span><br><span class="line"></span><br><span class="line">    page_item = soap.find_all(<span class="string">'a'</span>, class_=<span class="string">"page-number"</span>)</span><br><span class="line">    total_pages = re.findall(page_number, <span class="built_in">str</span>(page_item))[-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(total_pages)</span><br></pre></td></tr></tbody></table></figure>
+<span id="more"></span>
+<h4 id="博文信息"><a class="markdownIt-Anchor" href="#博文信息"></a> 博文信息</h4>
+<p>查看每页源代码，可以看出博文发布日期：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"post-meta-container"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">time</span> <span class="attr">itemprop</span>=<span class="string">"dateCreated"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">datetime</span>=<span class="string">"2022-05-30T07:26:25+08:00"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">content</span>=<span class="string">"2022-05-30"</span>&gt;</span></span><br><span class="line">    05-30</span><br><span class="line">  <span class="tag">&lt;/<span class="name">time</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>博文标题及链接：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"post-title"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"post-title-link"</span> <span class="attr">href</span>=<span class="string">"/blog/2022/05/30/Leetcode-divide-two-integers-en/"</span> <span class="attr">itemprop</span>=<span class="string">"url"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">itemprop</span>=<span class="string">"name"</span>&gt;</span>[LeetCode][29. Divide Two Integers] 5 Approaches: BF use Long, BF use Int, Binary Search use Long, Binary Search use Int, Recursion<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>很容易写出下面代码：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_page</span>(<span class="params">self</span>):</span><br><span class="line">    data_list = []</span><br><span class="line">    data_date = []</span><br><span class="line">    data_link = []</span><br><span class="line"></span><br><span class="line">    page_post_link = re.<span class="built_in">compile</span>(<span class="string">'&lt;a class="post-title-link" href="(.*)" itemprop="url"&gt;'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, self.total_pages):</span><br><span class="line">        page_post_title = re.<span class="built_in">compile</span>(<span class="string">'&lt;span itemprop="name"&gt;(.*)&lt;/span&gt;'</span>)</span><br><span class="line">        page_post_date = re.<span class="built_in">compile</span>(<span class="string">'[0-9]{4}-[0-9]{2}-[0-9]{2}'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> i == <span class="number">1</span>:</span><br><span class="line">            page_url = self.archivesUrl</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            page_url = self.archivesUrl + <span class="string">'/page/'</span> + <span class="built_in">str</span>(i) + <span class="string">'/'</span></span><br><span class="line"></span><br><span class="line">        html = self.get_html(page_url)</span><br><span class="line"></span><br><span class="line">        soap = BeautifulSoup(html, <span class="string">'html.parser'</span>)  <span class="comment"># 用html.parser来解析该html网页</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> title_item <span class="keyword">in</span> soap.find_all(<span class="string">'span'</span>, itemprop=<span class="string">"name"</span>):</span><br><span class="line">            post_title = re.findall(page_post_title, <span class="built_in">str</span>(title_item))[<span class="number">0</span>]</span><br><span class="line">            data_list.append(post_title)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> date_item <span class="keyword">in</span> soap.find_all(<span class="string">'time'</span>, itemprop=<span class="string">'dateCreated'</span>):</span><br><span class="line">            post_date = re.findall(page_post_date, <span class="built_in">str</span>(date_item))[<span class="number">0</span>]</span><br><span class="line">            data_date.append(post_date)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> link_item <span class="keyword">in</span> soap.find_all(<span class="string">'a'</span>, class_=<span class="string">"post-title-link"</span>):</span><br><span class="line">            post_link = re.findall(page_post_link, <span class="built_in">str</span>(link_item))[<span class="number">0</span>]</span><br><span class="line">            data_link.append(self.baseUrl + post_link)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data_list, data_date, data_link</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="保存文章详情"><a class="markdownIt-Anchor" href="#保存文章详情"></a> 保存文章详情</h3>
+<p>之前我们已经获取到了文章链接列表，列表循环，然后返回响应数据，使用 CSS 选择器匹配具体文章内容，再将文章内容都保存到 markdown 文件中。</p>
+<h2 id="存储文章标题-发布时间和文章链接到excel和数据库中"><a class="markdownIt-Anchor" href="#存储文章标题-发布时间和文章链接到excel和数据库中"></a> 存储文章标题、发布时间和文章链接到Excel和数据库中</h2>
+<ol>
+<li>
+<p>存储到 Excel 可以直接使用 Pandas 的 <code>to_csv</code> ；</p>
+</li>
+<li>
+<p>数据库</p>
+<ul>
+<li>初始化数据库 <code>init_db()</code></li>
+<li>将数据存储到 <code>save_data_2_db()</code></li>
+</ul>
+</li>
+</ol>
+<p>具体代码见：<a target="_blank" rel="noopener" href="https://github.com/longluo/spider/blob/master/blog.py">https://github.com/longluo/spider/blob/master/blog.py</a> 。</p>
+<h1 id="参考资料"><a class="markdownIt-Anchor" href="#参考资料"></a> 参考资料</h1>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://github.com/jobbole/awesome-python-cn">awesome-python-cn</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://github.com/facert/awesome-spider">awesome-spider</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://github.com/dataabc/weiboSpider">Weibo Spider</a> <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://github.com/wistbean/learn_python3_spider">Learn Python3 Spider</a> <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Long Luo
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.longluo.me/blog/2022/05/23/Spider/" title="Python爬虫练习：微博热搜爬虫，微博爬虫 和 主页博文爬虫">http://www.longluo.me/blog/2022/05/23/Spider/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%BE%AE%E5%8D%9A/" rel="tag"># 微博</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/Website/" rel="tag"># Website</a>
+              <a href="/tags/Spider/" rel="tag"># Spider</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2022/05/22/Leetcode-valid-palindrome/" rel="prev" title="[LeetCode][125. Valid Palindrome] Simple Two Pointers Solution">
+                  <i class="fa fa-angle-left"></i> [LeetCode][125. Valid Palindrome] Simple Two Pointers Solution
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2022/05/26/Leetcode-valid-palindrome-ii/" rel="next" title="[LeetCode][680. Valid Palindrome II] 3 Approaches: Brute Force, Recursion and Two Pointers">
+                  [LeetCode][680. Valid Palindrome II] 3 Approaches: Brute Force, Recursion and Two Pointers <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2013 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Long Luo</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.4m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">21:36</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/bookmark.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2022/05/23/Spider/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

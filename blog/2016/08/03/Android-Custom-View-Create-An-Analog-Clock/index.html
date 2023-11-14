@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
+  <meta name="baidu-site-verification" content="www.longluo.me">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.proxy.ustclug.org/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/config.min.js"></script>
+
+    <meta name="description" content="By Long Luo Android中自定义控件一直都是Android开发中的一个难点。 最近看大牛 @Tomcat的猫 写的 《Android群英传》 里面的第六章Android绘图机制及处理技巧，里面通过Canvas实现了一个如下所示的仪表盘：  在书中详细描述了如何实现这个仪表盘，这里就不赘述了，可以参考其 具体实现代码 。 但是这个表盘的指针是静止不动的，如果我们能让这个表盘的指针展示当">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android自定义View：如何实现一个模拟时钟？">
+<meta property="og:url" content="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="By Long Luo Android中自定义控件一直都是Android开发中的一个难点。 最近看大牛 @Tomcat的猫 写的 《Android群英传》 里面的第六章Android绘图机制及处理技巧，里面通过Canvas实现了一个如下所示的仪表盘：  在书中详细描述了如何实现这个仪表盘，这里就不赘述了，可以参考其 具体实现代码 。 但是这个表盘的指针是静止不动的，如果我们能让这个表盘的指针展示当">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qrn8zhq7m.bkt.clouddn.com/clock_still.png">
+<meta property="og:image" content="http://qrn8zhq7m.bkt.clouddn.com/clock_move.png">
+<meta property="article:published_time" content="2016-08-03T14:35:45.000Z">
+<meta property="article:modified_time" content="2023-09-17T07:21:07.943Z">
+<meta property="article:author" content="Long Luo">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="View">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qrn8zhq7m.bkt.clouddn.com/clock_still.png">
+
+
+<link rel="canonical" href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/","path":"/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/","title":"Android自定义View：如何实现一个模拟时钟？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Android自定义View：如何实现一个模拟时钟？ | Long Luo's Life Notes</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-46213499-2","only_pageview":false}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be"></script>
+
+  <script async src="//assets.growingio.com/2.1/gio.js"></script>
+  <script class="next-config" data-name="growingio_analytics" type="application/json">"bc65befc551b6d70"</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/growingio.min.js"></script>
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "gz2vdkhgvh");
+</script>
+
+  <script class="next-config" data-name="matomo" type="application/json">{"enable":true,"server_url":"http://www.longluo.me","site_id":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/matomo.min.js"></script>
+
+
+<link rel="dns-prefetch" href="https://waline.longluo.me/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Long Luo's Life Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-works"><a href="/works" rel="section"><i class="fa fa-code fa-fw"></i>作品</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E7%BB%98%E5%88%B6%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4"><span class="nav-number">1.</span> <span class="nav-text"> 一、绘制当前时间</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.</span> <span class="nav-text"> 1.1 获取当前时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E8%8E%B7%E5%8F%96%E6%8C%87%E9%92%88%E8%A7%92%E5%BA%A6"><span class="nav-number">1.2.</span> <span class="nav-text"> 1.2 获取指针角度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E7%BB%98%E5%88%B6%E6%8C%87%E9%92%88"><span class="nav-number">1.3.</span> <span class="nav-text"> 1.3 绘制指针</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E6%AF%8F%E4%B8%80%E7%A7%92%E5%88%B7%E6%96%B0%E7%95%8C%E9%9D%A2"><span class="nav-number">2.</span> <span class="nav-text"> 二、每一秒刷新界面</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. </div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">335</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">309</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu → http:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;longluo" rel="noopener me" target="_blank"><i class="fab fa-quora fa-fw"></i>ZhiHu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/longluo/" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;longluo&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:longluo2005@gmail.com" title="E-Mail → mailto:longluo2005@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://blog.csdn.net/tcpipstack" title="http:&#x2F;&#x2F;blog.csdn.net&#x2F;tcpipstack" rel="noopener" target="_blank">CSDN</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Android自定义View：如何实现一个模拟时钟？ | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android自定义View：如何实现一个模拟时钟？<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2023/source/_posts/Android-Custom-View-Create-An-Analog-Clock.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-08-03 22:35:45" itemprop="dateCreated datePublished" datetime="2016-08-03T22:35:45+08:00">2016-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-17 15:21:07" itemprop="dateModified" datetime="2023-09-17T15:21:07+08:00">2023-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><em><strong>By Long Luo</strong></em></p>
+<p><strong>Android中自定义控件</strong>一直都是Android开发中的一个难点。</p>
+<p>最近看大牛 <a target="_blank" rel="noopener" href="http://weibo.com/eclipsexu?s=6cm7D0">@Tomcat的猫</a> 写的 <a target="_blank" rel="noopener" href="http://blog.csdn.net/eclipsexys">《Android群英传》</a> 里面的第六章<strong>Android绘图机制及处理技巧</strong>，里面通过<code>Canvas</code>实现了一个如下所示的仪表盘：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/clock_still.png" alt="仪表盘"></p>
+<p>在书中详细描述了如何实现这个仪表盘，这里就不赘述了，可以参考其 <a target="_blank" rel="noopener" href="https://github.com/xuyisheng/AndroidHeroes/tree/master/6.%E7%BB%98%E5%9B%BE/MyApplication/app/src/main/java/com/yishengxu/myapplication">具体实现代码</a> 。</p>
+<p>但是这个表盘的指针是<strong>静止不动</strong>的，如果我们能让这个表盘的指针展示当前时间，随着时间而转动，那么我们就可以一款模拟时钟了。</p>
+<p>那么，问题就来了：</p>
+<p><em><strong>如何才能让时钟的指针动起来呢？</strong></em></p>
+<p>这个问题，我们可以考虑分为2步去实现，第一步先绘制出当前的时间，第二部再让指针动起来。通过这样我们就可以实现一款<strong>模拟时钟</strong>。</p>
+<h1 id="一-绘制当前时间"><a class="markdownIt-Anchor" href="#一-绘制当前时间"></a> 一、绘制当前时间</h1>
+<h2 id="11-获取当前时间"><a class="markdownIt-Anchor" href="#11-获取当前时间"></a> 1.1 获取当前时间</h2>
+<p>要绘制当前时间，我们要先获取当前时间。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mTime.setToNow();</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="12-获取指针角度"><a class="markdownIt-Anchor" href="#12-获取指针角度"></a> 1.2 获取指针角度</h2>
+<p>当前时间可分为<em><strong>时，分，秒</strong></em>。</p>
+<p>我们最终要获取的是时分秒3个指针对应的<strong>精确角度</strong>。</p>
+<blockquote>
+<p>秒针角度：最简单，直接乘以6即可获得。<br>
+分针角度：当前分钟 * 6 + 6 * 秒 / 60F<br>
+时针角度：(当前小时 % 12) * 30 + 30 * 当前分钟角度 / 360F;</p>
+</blockquote>
+<h2 id="13-绘制指针"><a class="markdownIt-Anchor" href="#13-绘制指针"></a> 1.3 绘制指针</h2>
+<p>获取到指针角度之后，接下来就是在表盘绘制指针了。这里我们要利用<code>canvas.rotate()</code>这个方法来实现绘制指针，具体实现代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">drawTime</span><span class="params">(Canvas canvas)</span> {</span><br><span class="line">    <span class="comment">// 当前时间</span></span><br><span class="line">    mTime.setToNow();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当前时间对应的角度</span></span><br><span class="line">    <span class="type">float</span> <span class="variable">secRot</span> <span class="operator">=</span> mTime.second * <span class="number">6</span>;</span><br><span class="line">    <span class="type">float</span> <span class="variable">minRot</span> <span class="operator">=</span> mTime.minute * <span class="number">6</span> + <span class="number">6</span> * mTime.second / <span class="number">60F</span>;</span><br><span class="line">    <span class="type">float</span> <span class="variable">hrRot</span> <span class="operator">=</span> (mTime.hour % <span class="number">12</span>) * <span class="number">30</span> + <span class="number">30</span> * minRot / <span class="number">360F</span>;</span><br><span class="line"></span><br><span class="line">    Log.d(TAG, <span class="string">"hrRot="</span> + hrRot + <span class="string">",minRot="</span> + minRot + <span class="string">",secRot="</span> + secRot);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 画指针</span></span><br><span class="line">    <span class="type">Paint</span> <span class="variable">paintHour</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Paint</span>();</span><br><span class="line">    paintHour.setStrokeWidth(<span class="number">20</span>);</span><br><span class="line">    <span class="type">Paint</span> <span class="variable">paintMinute</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Paint</span>();</span><br><span class="line">    paintMinute.setStrokeWidth(<span class="number">10</span>);</span><br><span class="line">    <span class="type">Paint</span> <span class="variable">paintSecond</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Paint</span>();</span><br><span class="line">    paintSecond.setStrokeWidth(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    canvas.save();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 时针</span></span><br><span class="line">    canvas.rotate(hrRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line">    canvas.drawLine(mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span> - mWidth / <span class="number">2</span> + <span class="number">320</span>,</span><br><span class="line">            paintHour);</span><br><span class="line">    canvas.rotate(-hrRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 分针</span></span><br><span class="line">    canvas.rotate(minRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line">    canvas.drawLine(mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span> - mWidth / <span class="number">2</span> + <span class="number">230</span>,</span><br><span class="line">            paintMinute);</span><br><span class="line">    canvas.rotate(-minRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 秒针</span></span><br><span class="line">    canvas.rotate(secRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line">    canvas.drawLine(mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span> - mWidth / <span class="number">2</span> + <span class="number">150</span>,</span><br><span class="line">            paintSecond);</span><br><span class="line">    canvas.rotate(-secRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    canvas.restore();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<span id="more"></span>
+<h1 id="二-每一秒刷新界面"><a class="markdownIt-Anchor" href="#二-每一秒刷新界面"></a> 二、每一秒刷新界面</h1>
+<p>完成了第一步之后，我们要做的就是实现<strong>每隔1s去刷新界面</strong>。这个实现很简单，通过<strong>Handler</strong>就可以实现。</p>
+<p>首先在自定义View<code>Clock</code>中添加一个刷新界面的接口：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">refreshClock</span><span class="params">()</span> {</span><br><span class="line">    postInvalidate();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>添加接口之后，我们再在Activity中使用Handler实现1s调用一次该接口即可：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(Bundle savedInstanceState)</span> {</span><br><span class="line">    <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line"></span><br><span class="line">    mClock = <span class="keyword">new</span> <span class="title class_">Clock</span>(<span class="built_in">this</span>);</span><br><span class="line"></span><br><span class="line">    mHandler = <span class="keyword">new</span> <span class="title class_">Handler</span>();</span><br><span class="line"></span><br><span class="line">    mHandler.post(updateTime);</span><br><span class="line"></span><br><span class="line">    setContentView(mClock);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">Runnable</span> <span class="variable">updateTime</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Runnable</span>() {</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> {</span><br><span class="line">        mClock.refreshClock();</span><br><span class="line">        mHandler.postDelayed(updateTime, <span class="number">1000</span>);</span><br><span class="line">    }</span><br><span class="line">};</span><br></pre></td></tr></tbody></table></figure>
+<p>运行效果图如下所示：<br>
+<img src="http://qrn8zhq7m.bkt.clouddn.com/clock_move.png" alt="模拟时钟"></p>
+<p>通过以上方法，我们使用<strong>Android自定义View</strong>实现了一个<em><strong>模拟时钟</strong></em>了。</p>
+<p><em><strong>Modified By Long Luo at 2018年10月1日10点40分 in Shenzhen, China.</strong></em></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Long Luo
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" title="Android自定义View：如何实现一个模拟时钟？">http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/View/" rel="tag"># View</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2016/07/24/The-Stick-Notes-Of-Win7-A-Simple-GTD-Tools/" rel="prev" title="一个简单的时间管理工具: Win 7自带的便签">
+                  <i class="fa fa-angle-left"></i> 一个简单的时间管理工具: Win 7自带的便签
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" rel="next" title="关于Java字符串(String)10个最常见问题">
+                  关于Java字符串(String)10个最常见问题 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2013 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Long Luo</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.4m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">21:36</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/bookmark.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

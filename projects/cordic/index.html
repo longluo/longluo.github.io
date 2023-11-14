@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RPEZRT39ZS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-RPEZRT39ZS');
+    </script>
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "gz2vdkhgvh");
+    </script>
+
+    <meta charset="UTF-8"/>
+
+    <title>CORDIC Algorithm</title>
+
+    <meta name="description" content="CORDIC Algorithm, Coordinate Rotation Digital Computer"/>
+    <meta name="keywords" content="CORDIC Algorithm, Coordinate Rotation Digital Computer"/>
+    <meta name="author" content="Long Luo, Frank Luo"/>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="format-detection" content="telephone=no,email=no,address=no"/>
+    <meta name="apple-mobile-web-app-title" content="Fourier Series"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts-gstatic.proxy.ustclug.org"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Noto+Sans+SC" rel="stylesheet"/>
+
+    <!-- custom styles -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" media="screen">
+
+    <!-- custom script -->
+    <script type="text/javascript" src="js/cordic.js" defer></script>
+</head>
+
+<body>
+
+<h1 class="heading">CORDIC Algorithm</h1>
+<h3 class="author">By Long Luo</h3>
+
+<section align="center">
+    <!-- Inputs -->
+    <p>
+        请输入角度值(0 ~ 90°) :
+        <span>
+        <input id="alpha" type="number" min="0" max="90" step="0.01" value="70"
+               style="width:100px; height: 40px; font-size:36px;">
+        <output id="errorAlpha"></output>
+        </span>
+    </p>
+
+    <p>
+        请输入迭代次数(1 ~ 666) :
+        <span>
+            <input id="iteration" type="number" min="1" max="666" step="1" value="66"
+                   style="width:100px; height: 40px; font-size:36px;">
+            <output id="errorIteration"></output>
+        </span>
+    </p>
+
+    <p>
+        <button class="button buttonReset" onclick="run()">Run</button>
+<!--        <button class="button buttonClear" onclick="clearTable()">Clear</button>-->
+    </p>
+
+    <!-- Results -->
+    <div align="center">
+        <table>
+            <tr>
+                <th></th>
+                <th>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mi>cos</mi>
+                        <mo>(</mo>
+                        <mi>x</mi>
+                        <mo>)</mo>
+                    </math>
+                </th>
+                <th>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mi>sin</mi>
+                        <mo>(</mo>
+                        <mi>x</mi>
+                        <mo>)</mo>
+                    </math>
+                </th>
+                <th>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <mi>tan</mi>
+                        <mo>(</mo>
+                        <mi>x</mi>
+                        <mo>)</mo>
+                    </math>
+                </th>
+            </tr>
+
+            <tr>
+                <th>CORDIC Algorithm</th>
+                <td class="table-output">
+                    <output id="cordicCos"></output>
+                </td>
+                <td class="table-output">
+                    <output id="cordicSin"></output>
+                </td>
+                <td class="table-output">
+                    <output id="cordicTan"></output>
+                </td>
+            </tr>
+
+            <tr>
+                <th>JS Math</th>
+                <td class="table-output">
+                    <output id="jsCos"></output>
+                </td>
+                <td class="table-output">
+                    <output id="jsSin"></output>
+                </td>
+                <td class="table-output">
+                    <output id="jsTan"></output>
+                </td>
+            </tr>
+
+            <tr>
+                <th>差值(Difference)</th>
+                <td class="table-output">
+                    <output id="diffCos"></output>
+                </td>
+                <td class="table-output">
+                    <output id="diffSin"></output>
+                </td>
+                <td class="table-output">
+                    <output id="diffTan"></output>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <p>
+        <output id="cordicTime"></output>
+    </p>
+</section>
+
+<wiki>
+    <p>Read more about <a href="http://www.longluo.me/blog/2023/06/07/CORDIC-algorithm/" target="_blank">CORDIC
+        Algorithm</a>
+    </p>
+</wiki>
+
+<footer>
+    <p>Copyright &copy; 2022 - 2023 <a href="http://www.longluo.me" target="_blank">Long Luo</a>. All Rights
+        Reserved.
+    </p>
+</footer>
+
+<!-- Baidu Statistics -->
+<p style="text-indent: -9999px;">
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</p>
+
+</body>
+</html>

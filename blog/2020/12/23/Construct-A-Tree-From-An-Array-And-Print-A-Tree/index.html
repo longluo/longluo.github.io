@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+<link rel="preconnect" href="https://fonts.proxy.ustclug.org" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="n6mekvZa-QaR3EnDD-CzJymq7mGubpU7rvoGpKROHLE">
+  <meta name="msvalidate.01" content="6BFBD4DDDB3B6F4FDD26CF82BADDB931">
+  <meta name="baidu-site-verification" content="www.longluo.me">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.proxy.ustclug.org/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/config.min.js"></script>
+
+    <meta name="description" content="By Long Luo 之前的如何根据数组或者字符串创建链表？ 详述了Leetcode 中链表 相关算法题的测试方法。在Leetcode中关于树 的算法题中，很多树的题目，测试用例都是一个数组，比如102. 二叉树的层序遍历 中所示： 123456给定二叉树: [3,9,20,null,null,15,7]    3   &#x2F; \  9  20    &#x2F;  \   15   7 那么问题来了，如何根">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何根据数组创建二叉树？">
+<meta property="og:url" content="http://www.longluo.me/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/index.html">
+<meta property="og:site_name" content="Long Luo&#39;s Life Notes">
+<meta property="og:description" content="By Long Luo 之前的如何根据数组或者字符串创建链表？ 详述了Leetcode 中链表 相关算法题的测试方法。在Leetcode中关于树 的算法题中，很多树的题目，测试用例都是一个数组，比如102. 二叉树的层序遍历 中所示： 123456给定二叉树: [3,9,20,null,null,15,7]    3   &#x2F; \  9  20    &#x2F;  \   15   7 那么问题来了，如何根">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.leetcode-cn.com/9471645b117e0fb4c569d1f8ce1e849cc494fa536e161247617484568c7a9f2b-image.png">
+<meta property="article:published_time" content="2020-12-23T13:51:08.000Z">
+<meta property="article:modified_time" content="2023-09-17T07:26:11.493Z">
+<meta property="article:author" content="Long Luo">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="Tree">
+<meta property="article:tag" content="Binary Tree">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/9471645b117e0fb4c569d1f8ce1e849cc494fa536e161247617484568c7a9f2b-image.png">
+
+
+<link rel="canonical" href="http://www.longluo.me/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/","path":"/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/","title":"如何根据数组创建二叉树？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>如何根据数组创建二叉树？ | Long Luo's Life Notes</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-46213499-2","only_pageview":false}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/google-analytics.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/baidu-analytics.min.js"></script>
+  <script async src="https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be"></script>
+
+  <script async src="//assets.growingio.com/2.1/gio.js"></script>
+  <script class="next-config" data-name="growingio_analytics" type="application/json">"bc65befc551b6d70"</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/growingio.min.js"></script>
+
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "gz2vdkhgvh");
+</script>
+
+  <script class="next-config" data-name="matomo" type="application/json">{"enable":true,"server_url":"http://www.longluo.me","site_id":null}</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/analytics/matomo.min.js"></script>
+
+
+<link rel="dns-prefetch" href="https://waline.longluo.me/">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Long Luo's Life Notes</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">每一天都是奇迹</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-works"><a href="/works" rel="section"><i class="fa fa-code fa-fw"></i>作品</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text"> 树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%89%93%E5%8D%B0%E4%B8%80%E6%A3%B5%E6%A0%91"><span class="nav-number">2.</span> <span class="nav-text"> 如何打印一棵树？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">2.1.</span> <span class="nav-text"> 思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B0%B4%E5%B9%B3%E6%A0%91"><span class="nav-number">2.2.</span> <span class="nav-text"> 水平树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%82%E7%9B%B4%E6%A0%91"><span class="nav-number">2.3.</span> <span class="nav-text"> 垂直树</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E6%95%B0%E7%BB%84%E6%9E%84%E5%BB%BA%E4%B8%80%E6%A3%B5%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">3.</span> <span class="nav-text"> 从数组构建一棵二叉树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-number">4.</span> <span class="nav-text"> 测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text"> 小结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Long Luo</p>
+  <div class="site-description" itemprop="description">The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. </div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">335</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">309</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/longluo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;longluo" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://www.zhihu.com/people/longluo" title="ZhiHu → http:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;longluo" rel="noopener me" target="_blank"><i class="fab fa-quora fa-fw"></i>ZhiHu</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.linkedin.com/in/longluo/" title="LinkedIn → https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;longluo&#x2F;" rel="noopener me" target="_blank"><i class="fa fa-linkedin fa-fw"></i>LinkedIn</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:longluo2005@gmail.com" title="E-Mail → mailto:longluo2005@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="http://blog.csdn.net/tcpipstack" title="http:&#x2F;&#x2F;blog.csdn.net&#x2F;tcpipstack" rel="noopener" target="_blank">CSDN</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="如何根据数组创建二叉树？ | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          如何根据数组创建二叉树？<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2023/source/_posts/Construct-A-Tree-From-An-Array-And-Print-A-Tree.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-23 21:51:08" itemprop="dateCreated datePublished" datetime="2020-12-23T21:51:08+08:00">2020-12-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-09-17 15:26:11" itemprop="dateModified" datetime="2023-09-17T15:26:11+08:00">2023-09-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><em><strong>By Long Luo</strong></em></p>
+<p>之前的<a href="http://www.longluo.me/blog/2020/12/10/Construct-A-LinkedList-From-An-Array-Or-String/">如何根据数组或者字符串创建链表？</a> 详述了<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problemset/all/">Leetcode</a> 中<a target="_blank" rel="noopener" href="https://leetcode-cn.com/tag/linked-list/">链表</a> 相关算法题的测试方法。在Leetcode中关于<a target="_blank" rel="noopener" href="https://leetcode-cn.com/tag/tree/">树</a> 的算法题中，很多树的题目，测试用例都是一个数组，比如<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/">102. 二叉树的层序遍历</a> 中所示：</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">给定二叉树: [3,9,20,null,null,15,7]</span><br><span class="line">    3</span><br><span class="line">   / \</span><br><span class="line">  9  20</span><br><span class="line">    /  \</span><br><span class="line">   15   7</span><br></pre></td></tr></tbody></table></figure>
+<p>那么问题来了，如何根据数组构造一颗树呢？<br>
+为了加快刷题，我们需要一个工具来实现构造树和打印树结构这2个问题。</p>
+<h1 id="树"><a class="markdownIt-Anchor" href="#树"></a> 树</h1>
+<p>树是一种抽象数据类型（ADT）或是实现这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由 n(n&gt;0)个有限节点组成一个具有层次关系的集合。</p>
+<p><img src="https://pic.leetcode-cn.com/9471645b117e0fb4c569d1f8ce1e849cc494fa536e161247617484568c7a9f2b-image.png" alt="Tree"></p>
+<p>如上图所示，把它叫做「树」是因为它看起来像一棵倒挂的树，也就是说它是根朝上，而叶朝下的。</p>
+<p>树具有以下的特点：</p>
+<ul>
+<li>每个节点都只有有限个子节点或无子节点；</li>
+<li>没有父节点的节点称为根节点；</li>
+<li>每一个非根节点有且只有一个父节点；</li>
+<li>除了根节点外，每个子节点可以分为多个不相交的子树；</li>
+<li>树里面没有环路。</li>
+</ul>
+<p>当我们完成一棵树的构建之后，虽然我们已经有树的前序、中序和后序遍历这种可以遍历树，但是如果我们如上图一样展示这棵树的结构，如何才能直观地打印出来呢？</p>
+<h1 id="如何打印一棵树"><a class="markdownIt-Anchor" href="#如何打印一棵树"></a> 如何打印一棵树？</h1>
+<p>这里我们借用Leetcode中二叉树的数据结构定义：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TreeNode</span> {</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> val;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> TreeNode left;</span><br><span class="line">    <span class="keyword">public</span> TreeNode right;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">TreeNode</span><span class="params">(<span class="type">int</span> x)</span> {</span><br><span class="line">        <span class="built_in">this</span>.val = x;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">TreeNode</span><span class="params">(<span class="type">int</span> val, TreeNode left, TreeNode right)</span> {</span><br><span class="line">        <span class="built_in">this</span>.val = val;</span><br><span class="line">        <span class="built_in">this</span>.left = left;</span><br><span class="line">        <span class="built_in">this</span>.right = right;</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="思路"><a class="markdownIt-Anchor" href="#思路"></a> 思路</h2>
+<p>树的展示方式有2种，水平展示和竖直展示。竖直展示比较直观，水平展示更适合用于节点元素大小长短不一致的情况，Linux下展示文件结构就是水平展示。</p>
+<span id="more"></span>
+<h2 id="水平树"><a class="markdownIt-Anchor" href="#水平树"></a> 水平树</h2>
+<p>代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getTreeDepth</span><span class="params">(TreeNode root)</span> {</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + Math.max(getTreeDepth(root.left), getTreeDepth(root.right));</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title function_">traversePreOrder</span><span class="params">(TreeNode root)</span> {</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">    sb.append(root.val);</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">pointerRight</span> <span class="operator">=</span> <span class="string">"└──"</span>;</span><br><span class="line">    String pointerLeft;</span><br><span class="line">    <span class="keyword">if</span> (root.right != <span class="literal">null</span>) {</span><br><span class="line">        pointerLeft = <span class="string">"├──"</span>;</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        pointerLeft = <span class="string">"└──"</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    traverseNodes(sb, <span class="string">""</span>, pointerLeft, root.left, root.right != <span class="literal">null</span>);</span><br><span class="line">    traverseNodes(sb, <span class="string">""</span>, pointerRight, root.right, <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">traverseNodes</span><span class="params">(StringBuilder sb, String padding, String pointer, TreeNode node,</span></span><br><span class="line"><span class="params">                                  <span class="type">boolean</span> hasRightSibling)</span> {</span><br><span class="line">    <span class="keyword">if</span> (node == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    sb.append(<span class="string">"\n"</span>);</span><br><span class="line">    sb.append(padding);</span><br><span class="line">    sb.append(pointer);</span><br><span class="line">    sb.append(node.val);</span><br><span class="line"></span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">paddingBuilder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>(padding);</span><br><span class="line">    <span class="keyword">if</span> (hasRightSibling) {</span><br><span class="line">        paddingBuilder.append(<span class="string">"│  "</span>);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        paddingBuilder.append(<span class="string">"   "</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">paddingForBoth</span> <span class="operator">=</span> paddingBuilder.toString();</span><br><span class="line">    <span class="type">String</span> <span class="variable">pointerRight</span> <span class="operator">=</span> <span class="string">"└──"</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">pointerLeft</span> <span class="operator">=</span> (node.right != <span class="literal">null</span>) ? <span class="string">"├──"</span> : <span class="string">"└──"</span>;</span><br><span class="line"></span><br><span class="line">    traverseNodes(sb, paddingForBoth, pointerLeft, node.left, node.right != <span class="literal">null</span>);</span><br><span class="line">    traverseNodes(sb, paddingForBoth, pointerRight, node.right, <span class="literal">false</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printTreeHorizontal</span><span class="params">(TreeNode root)</span> {</span><br><span class="line">    System.out.print(traversePreOrder(root));</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="垂直树"><a class="markdownIt-Anchor" href="#垂直树"></a> 垂直树</h2>
+<p>代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printTree</span><span class="params">(TreeNode root)</span> {</span><br><span class="line">    <span class="type">int</span> <span class="variable">maxLevel</span> <span class="operator">=</span> getTreeDepth(root);</span><br><span class="line">    printNodeInternal(Collections.singletonList(root), <span class="number">1</span>, maxLevel);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printNodeInternal</span><span class="params">(List&lt;TreeNode&gt; nodes, <span class="type">int</span> level, <span class="type">int</span> maxLevel)</span> {</span><br><span class="line">    <span class="keyword">if</span> (nodes == <span class="literal">null</span> || nodes.isEmpty() || isAllElementsNull(nodes)) {</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">floor</span> <span class="operator">=</span> maxLevel - level;</span><br><span class="line">    <span class="type">int</span> <span class="variable">endgeLines</span> <span class="operator">=</span> (<span class="type">int</span>) Math.pow(<span class="number">2</span>, (Math.max(floor - <span class="number">1</span>, <span class="number">0</span>)));</span><br><span class="line">    <span class="type">int</span> <span class="variable">firstSpaces</span> <span class="operator">=</span> (<span class="type">int</span>) Math.pow(<span class="number">2</span>, (floor)) - <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">betweenSpaces</span> <span class="operator">=</span> (<span class="type">int</span>) Math.pow(<span class="number">2</span>, (floor + <span class="number">1</span>)) - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    printWhitespaces(firstSpaces);</span><br><span class="line"></span><br><span class="line">    List&lt;TreeNode&gt; newNodes = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;TreeNode&gt;();</span><br><span class="line">    <span class="keyword">for</span> (TreeNode node : nodes) {</span><br><span class="line">        <span class="keyword">if</span> (node != <span class="literal">null</span>) {</span><br><span class="line">            System.out.print(node.val);</span><br><span class="line">            newNodes.add(node.left);</span><br><span class="line">            newNodes.add(node.right);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            newNodes.add(<span class="literal">null</span>);</span><br><span class="line">            newNodes.add(<span class="literal">null</span>);</span><br><span class="line">            System.out.print(<span class="string">" "</span>);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        printWhitespaces(betweenSpaces);</span><br><span class="line">    }</span><br><span class="line">    System.out.println(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= endgeLines; i++) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; nodes.size(); j++) {</span><br><span class="line">            printWhitespaces(firstSpaces - i);</span><br><span class="line">            <span class="keyword">if</span> (nodes.get(j) == <span class="literal">null</span>) {</span><br><span class="line">                printWhitespaces(endgeLines + endgeLines + i + <span class="number">1</span>);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (nodes.get(j).left != <span class="literal">null</span>) {</span><br><span class="line">                System.out.print(<span class="string">"/"</span>);</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                printWhitespaces(<span class="number">1</span>);</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            printWhitespaces(i + i - <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span> (nodes.get(j).right != <span class="literal">null</span>) {</span><br><span class="line">                System.out.print(<span class="string">"\\"</span>);</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                printWhitespaces(<span class="number">1</span>);</span><br><span class="line">            }</span><br><span class="line">            printWhitespaces(endgeLines + endgeLines - i);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">""</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    printNodeInternal(newNodes, level + <span class="number">1</span>, maxLevel);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">printWhitespaces</span><span class="params">(<span class="type">int</span> count)</span> {</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; count; i++) {</span><br><span class="line">        System.out.print(<span class="string">" "</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> &lt;T&gt; <span class="type">boolean</span> <span class="title function_">isAllElementsNull</span><span class="params">(List&lt;T&gt; list)</span> {</span><br><span class="line">    <span class="keyword">for</span> (Object object : list) {</span><br><span class="line">        <span class="keyword">if</span> (object != <span class="literal">null</span>) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="从数组构建一棵二叉树"><a class="markdownIt-Anchor" href="#从数组构建一棵二叉树"></a> 从数组构建一棵二叉树</h1>
+<p>代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title function_">constructTree</span><span class="params">(Integer[] array)</span> {</span><br><span class="line">    <span class="keyword">if</span> (array == <span class="literal">null</span> || array.length == <span class="number">0</span> || array[<span class="number">0</span>] == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> array.length;</span><br><span class="line"></span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">root</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TreeNode</span>(array[<span class="number">0</span>]);</span><br><span class="line">    Deque&lt;TreeNode&gt; nodeQueue = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">    nodeQueue.offer(root);</span><br><span class="line">    TreeNode currNode;</span><br><span class="line">    <span class="keyword">while</span> (index &lt; length) {</span><br><span class="line">        index++;</span><br><span class="line">        <span class="keyword">if</span> (index &gt;= length) {</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        }</span><br><span class="line">        currNode = nodeQueue.poll();</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">leftChild</span> <span class="operator">=</span> array[index];</span><br><span class="line">        <span class="keyword">if</span> (leftChild != <span class="literal">null</span>) {</span><br><span class="line">            currNode.left = <span class="keyword">new</span> <span class="title class_">TreeNode</span>(leftChild);</span><br><span class="line">            nodeQueue.offer(currNode.left);</span><br><span class="line">        }</span><br><span class="line">        index++;</span><br><span class="line">        <span class="keyword">if</span> (index &gt;= length) {</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        }</span><br><span class="line">        <span class="type">Integer</span> <span class="variable">rightChild</span> <span class="operator">=</span> array[index];</span><br><span class="line">        <span class="keyword">if</span> (rightChild != <span class="literal">null</span>) {</span><br><span class="line">            currNode.right = <span class="keyword">new</span> <span class="title class_">TreeNode</span>(rightChild);</span><br><span class="line">            nodeQueue.offer(currNode.right);</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="测试"><a class="markdownIt-Anchor" href="#测试"></a> 测试</h1>
+<p>下面就来测试下代码吧：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    Integer[] tstData1 = {<span class="number">1</span>, <span class="literal">null</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">32</span>, <span class="number">31</span>, <span class="number">3</span>, <span class="number">23</span>, <span class="number">1</span>, <span class="number">23</span>, <span class="number">123</span>, <span class="number">12</span>, <span class="number">3</span>, <span class="number">12</span>, <span class="number">31</span>, <span class="number">23</span>, <span class="number">2</span>};</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">tstNode1</span> <span class="operator">=</span> constructTree(tstData1);</span><br><span class="line">    System.out.println(<span class="string">"\nTree:"</span>);</span><br><span class="line">    printTree(tstNode1);</span><br><span class="line">    System.out.println(<span class="string">"\nHorizontal Tree:"</span>);</span><br><span class="line">    printTreeHorizontal(tstNode1);</span><br><span class="line">    System.out.println(<span class="string">"\nPreOrder:"</span>);</span><br><span class="line">    preOrderPrint(tstNode1);</span><br><span class="line"></span><br><span class="line">    Integer[] tstData2 = {<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="literal">null</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="literal">null</span>};</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">tstNode2</span> <span class="operator">=</span> constructTree(tstData2);</span><br><span class="line">    System.out.println(<span class="string">"\nTree:"</span>);</span><br><span class="line">    printTree(tstNode2);</span><br><span class="line">    System.out.println(<span class="string">"\nHorizontal Tree:"</span>);</span><br><span class="line">    printTreeHorizontal(tstNode2);</span><br><span class="line">    System.out.println(<span class="string">"\nPreOrder:"</span>);</span><br><span class="line">    preOrderPrint(tstNode2);</span><br><span class="line">    System.out.println(<span class="string">"\nInOrder:"</span>);</span><br><span class="line">    inOrderPrint(tstNode2);</span><br><span class="line">    System.out.println(<span class="string">"\nPostOrder:"</span>);</span><br><span class="line">    postOrderPrint(tstNode2);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>输出如下所示：</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">Tree:</span><br><span class="line">               1                               </span><br><span class="line">                \               </span><br><span class="line">                 \              </span><br><span class="line">                  \             </span><br><span class="line">                   \            </span><br><span class="line">                    \           </span><br><span class="line">                     \          </span><br><span class="line">                      \         </span><br><span class="line">                       \        </span><br><span class="line">                       2               </span><br><span class="line">                      / \       </span><br><span class="line">                     /   \      </span><br><span class="line">                    /     \     </span><br><span class="line">                   /       \    </span><br><span class="line">                   2       32       </span><br><span class="line">                  / \     / \   </span><br><span class="line">                 /   \   /   \  </span><br><span class="line">                 31   3   23   1   </span><br><span class="line">                / \ / \ / \ / \ </span><br><span class="line">                23 123 12 3 12 31 23 2                                                   </span><br><span class="line">Horizontal Tree:</span><br><span class="line">1</span><br><span class="line">└──2</span><br><span class="line">   ├──2</span><br><span class="line">   │  ├──31</span><br><span class="line">   │  │  ├──23</span><br><span class="line">   │  │  └──123</span><br><span class="line">   │  └──3</span><br><span class="line">   │     ├──12</span><br><span class="line">   │     └──3</span><br><span class="line">   └──32</span><br><span class="line">      ├──23</span><br><span class="line">      │  ├──12</span><br><span class="line">      │  └──31</span><br><span class="line">      └──1</span><br><span class="line">         ├──23</span><br><span class="line">         └──2</span><br><span class="line">PreOrder:</span><br><span class="line">1,2,2,31,23,123,3,12,3,32,23,12,31,1,23,2,</span><br><span class="line"></span><br><span class="line">Tree:</span><br><span class="line">       1               </span><br><span class="line">      / \       </span><br><span class="line">     /   \      </span><br><span class="line">    /     \     </span><br><span class="line">   /       \    </span><br><span class="line">   2       3       </span><br><span class="line">    \     / \   </span><br><span class="line">     \   /   \  </span><br><span class="line">     4   5   6   </span><br><span class="line">    /           </span><br><span class="line">    7                                     </span><br><span class="line">Horizontal Tree:</span><br><span class="line">1</span><br><span class="line">├──2</span><br><span class="line">│  └──4</span><br><span class="line">│     └──7</span><br><span class="line">└──3</span><br><span class="line">   ├──5</span><br><span class="line">   └──6</span><br><span class="line">PreOrder:</span><br><span class="line">1,2,4,7,3,5,6,</span><br><span class="line">InOrder:</span><br><span class="line">2,7,4,1,5,3,6,</span><br><span class="line">PostOrder:</span><br><span class="line">7,4,2,5,6,3,1,</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h1>
+<p>通过上述，我们最终就完成了我们的任务。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Long Luo
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://www.longluo.me/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/" title="如何根据数组创建二叉树？">http://www.longluo.me/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+              <a href="/tags/Tree/" rel="tag"># Tree</a>
+              <a href="/tags/Binary-Tree/" rel="tag"># Binary Tree</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/blog/2020/12/20/Coding-Interviews/" rel="prev" title="《剑指Offer》刷题记录">
+                  <i class="fa fa-angle-left"></i> 《剑指Offer》刷题记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/blog/2021/01/20/Solutions-Of-The-Leetcode-Linked-List-Problems/" rel="next" title="如何求解LeetCode中链表(Linked List)问题？">
+                  如何求解LeetCode中链表(Linked List)问题？ <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2013 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Long Luo</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">1.4m</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">21:36</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/comments.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/utils.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/motion.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/next-boot.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/bookmark.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.18.2/third-party/search/local-search.min.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2020/12/23/Construct-A-Tree-From-An-Array-And-Print-A-Tree/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+
+</body>
+</html>

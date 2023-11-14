@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RPEZRT39ZS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-RPEZRT39ZS');
+    </script>
+
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () {
+                (c[a].q = c[a].q || []).push(arguments)
+            };
+            t = l.createElement(r);
+            t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0];
+            y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "gz2vdkhgvh");
+    </script>
+
+    <meta charset="UTF-8"/>
+
+    <title>Simple PID Simulator</title>
+
+    <meta name="description"
+          content="PID Interactive Simulation, PID Algoritm, proportional, integral, derivative, Control Theory, closed-loop control system, 闭环控制, 控制论, 自动化"/>
+    <meta name="keywords" content="PID, proportional, integral, derivative, Interactive, Simulation, PID算法"/>
+    <meta name="author" content="Long Luo, Frank Luo"/>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="format-detection" content="telephone=no,email=no,address=no"/>
+    <meta name="apple-mobile-web-app-title" content="Fourier Series"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts-gstatic.proxy.ustclug.org"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Noto+Sans+SC" rel="stylesheet"/>
+
+    <!-- custom styles -->
+    <link type="text/css" rel="stylesheet" href="css/main.css" media="screen"/>
+
+    <!-- custom script -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js" defer></script>
+    <script type="text/javascript" src="js/pid.min.js" defer></script>
+</head>
+
+<body>
+
+<span class="caption">
+        Read more about <a href="http://www.longluo.me/blog/2023/05/05/pid/">PID controller</a>.
+        The ball represent <a href="https://en.wikipedia.org/wiki/WALL-E">Wall-E</a>. Click to Set the Target.
+        Let's FLY! The Red Line represent the thrusters in X and Y(红线表示当前X和Y轴的动力), the Blue is the Velocity(蓝线为当前速度),
+        the Green is the Acceleration(绿线是当前加速度). 2副图表分别表示X和Y方向上的PID分量变化曲线图。
+    </span>
+
+<span class="control">
+        <label for="kp" style="color: red;">Kp</label>
+        <input type="range" id="slider_kp" min="0" max="100" value="5">
+        <input type="number" id="kp" size="3" min="0" max="100" value="5">
+
+        <label for="ki" style="color: red;">Ki</label>
+        <input type="range" id="slider_ki" min="0" max="100" value="0.01">
+        <input type="number" id="ki" size="3" min="0" max="100" value="0.01">
+
+        <label for="kd" style="color: red;">Kd</label>
+        <input type="range" id="slider_kd" min="0" max="100" value="10">
+        <input type="number" id="kd" size="3" min="0" max="100" value="10">
+    </span>
+
+<canvas id="cvs_track"></canvas>
+
+<div id="plot_pid_x"></div>
+
+<div id="plot_pid_y"></div>
+
+<!-- Baidu Statistics -->
+<p style="text-indent: -9999px;">
+    <script type="text/javascript">
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?a75fb5d0c0ef1e36c34b7f52bb7c48be";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+</p>
+
+</body>
+</html>

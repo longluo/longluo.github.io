@@ -1,0 +1,575 @@
+@charset "utf-8";
+
+/* = Designed and Developed By Long Luo */
+/* = Global CSS */
+/* ----------------------------------------------- */
+body {
+    overflow-x: hidden;
+    background-color: #999;
+    background-image: url(data:image/jpeg;base64,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);
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a:not(.btn) {
+    color: #00699E;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    transition: 300ms;
+}
+
+a:hover:not(.btn),
+a:active:not(.btn) {
+    color: #9E0000;
+    text-decoration: none;
+}
+
+img, p {
+    -webkit-touch-callout: none;
+}
+
+p {
+    font: 500 15px/1.8 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
+}
+
+h1, h2, h3, h4, h5, p, span {
+    cursor: default;
+}
+
+/* = Header
+----------------------------------------------- */
+#header-camarts-entry {
+    margin: 0;
+    text-align: center;
+    line-height: 35px;
+    font-size: 12px;
+}
+
+#header-camarts-entry a {
+    color: #999;
+    font: 500 12px/1.8 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    transition: 300ms;
+}
+
+#header-camarts-entry a:hover {
+    color: #fff;
+}
+
+#header-camarts-entry .navbar-inner {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+#header-text {
+    position: absolute;
+    width: 100%;
+    z-index: 99999;
+    text-rendering: optimizeLegibility;
+}
+
+#ie #header,
+#mobile #header {
+    background: url("../images/travel_title.png") no-repeat;
+    background-size: 100%;
+    background-size: cover;
+    filter: alpha(opacity=80) progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../images/travel_title.png', sizingMethod='scale') \9;
+}
+
+#ie #handle,
+#mobile #handle {
+    display: none;
+    visibility: hidden;
+}
+
+.jumbotron {
+    position: relative;
+    padding: 30px 0;
+    width: 100%;
+    min-height: 280px;
+    color: #fff;
+    text-align: center;
+    /*
+    -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+       -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+            box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+    */
+    -webkit-transition: all .8s ease-in-out;
+    -moz-transition: all .8s ease-in-out;
+    transition: all .8s ease-in-out;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.jumbotron h1 {
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, .6), 0 3px 30px rgba(0, 0, 0, .1);
+    margin-bottom: 20px;
+    z-index: 999;
+}
+
+.jumbotron h1 img {
+    max-width: 280px;
+}
+
+.jumbotron p {
+    color: #F3EFE8;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, .8), 1px 3px 20px rgba(0, 0, 0, .8);
+    z-index: 999;
+}
+
+.jumbotron a {
+    color: #fff;
+    color: rgba(255, 255, 255, .5);
+    -webkit-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+.jumbotron a.lead-link {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.jumbotron a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, .25);
+}
+
+.jumbotron-extended {
+    height: 480px;
+}
+
+.jumbotron-shadow {
+    -webkit-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2), inset 0 -3px 7px rgba(0, 0, 0, 0.2), inset 0px -5px 50px 3px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2), inset 0 -3px 7px rgba(0, 0, 0, 0.2), inset 0px -5px 50px 3px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 3px 7px rgba(0, 0, 0, 0.2), inset 0 -3px 7px rgba(0, 0, 0, 0.2), inset 0px -5px 50px 3px rgba(0, 0, 0, 0.5);
+}
+
+.jumbotron .am-container {
+    position: absolute;
+    top: 0;
+    margin: 0px auto;
+    background: rgba(0, 0, 0, 0.8) url("../images/mooning.jpg") repeat;
+
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+.jumbotron .am-container a:hover {
+
+}
+
+.jumbotron .am-wrapper {
+    box-shadow: 0px 1px 3px 1.5px rgba(0, 0, 0, 0.4);
+    /* opacity: .8; */
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.jumbotron .am-wrapper:hover {
+    z-index: 9999;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 1px 8px 2px rgba(255, 255, 255, 0.8), 0px 5px 50px 10px rgba(255, 255, 255, 0.8);
+    -moz-box-shadow: 0px 1px 8px 2px rgba(255, 255, 255, 0.8), 0px 5px 50px 10px rgba(255, 255, 255, 0.8);
+    -ms-box-shadow: 0px 1px 8px 2px rgba(255, 255, 255, 0.8), 0px 5px 50px 10px rgba(255, 255, 255, 0.8);
+    -o-box-shadow: 0px 1px 8px 2px rgba(255, 255, 255, 0.8), 0px 5px 50px 10px rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 1px 8px 2px rgba(255, 255, 255, 0.8), 0px 5px 50px 10px rgba(255, 255, 255, 0.8);
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#handle {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 1;
+}
+
+#handle, #handle img {
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+#handle-chevron {
+    width: 50px;
+    opacity: .5;
+}
+
+#handle-chevron:hover {
+    opacity: .8;
+}
+
+#handle.actived {
+    bottom: -21px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.montage-copyright {
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font: 500 12px/1.8 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, .8), 1px 3px 20px rgba(0, 0, 0, .8);
+}
+
+.montage-copyright a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.shadow {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(30%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(0, 0, 0, .1)));
+    /* z-index: -999; */
+}
+
+.shadow-main {
+    top: -1px;
+    border-top: #555 solid 1px;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.7)), color-stop(20%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(0, 0, 0, 0)));
+    z-index: 0;
+}
+
+.blur {
+    -webkit-filter: blur(8px);
+}
+
+.blur-thinner {
+    -webkit-filter: blur(3px);
+}
+
+.under {
+    z-index: -9999;
+}
+
+.tooltip {
+    font: 300 12px/1.8 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
+    color: white;
+    z-index: 99999;
+}
+
+.tooltip.bottom {
+    margin-top: 8px;
+}
+
+/* = Components
+----------------------------------------------- */
+
+.main {
+    position: relative;
+    width: 100%;
+    background: #999 url("../images/white_wall_hash.jpg") repeat;
+    border-top: #E6E6E6 solid 1px;
+    -webkit-box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, 0.35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25), 0px 5px 30px 3px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, 0.35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25), 0px 5px 30px 3px rgba(0, 0, 0, 0.2) inset;
+    -ms-box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, 0.35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25), 0px 5px 30px 3px rgba(0, 0, 0, 0.2) inset;
+    -o-box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, 0.35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25), 0px 5px 30px 3px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, 0.35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25), 0px 5px 30px 3px rgba(0, 0, 0, 0.2) inset;
+}
+
+.nav-maps {
+    width: 230px;
+    margin: auto;
+}
+
+.about {
+    margin-top: 50px;
+    margin-bottom: 80px;
+}
+
+.about p {
+    color: #666;
+    font: 500 13px/1.65 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
+}
+
+.about small {
+    color: #969696;
+    font-size: 10px;
+}
+
+.side-shadow {
+    position: absolute;
+    height: 100%;
+    width: 100px;
+    top: -1px;
+}
+
+.side-shadow.left {
+    left: 0;
+    background: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0%, rgba(0, 0, 0, 0.25)), color-stop(30%, rgba(0, 0, 0, .1)), color-stop(100%, rgba(0, 0, 0, 0)));
+}
+
+.side-shadow.right {
+    right: 0;
+    background: -webkit-gradient(linear, 100% 0, 0 0, color-stop(0%, rgba(0, 0, 0, 0.25)), color-stop(30%, rgba(0, 0, 0, .1)), color-stop(100%, rgba(0, 0, 0, 0)));
+}
+
+#loading {
+    display: none;
+    position: fixed;
+    background: -webkit-gradient(linear, left bottom, left top, color-stop(0.2, rgba(0, 0, 0, 0.8)), color-stop(0.50, rgba(0, 0, 0, 0.7)), color-stop(0.80, rgba(0, 0, 0, 0.6)));
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    margin-top: -80px;
+    left: 50%;
+    margin-left: -50px;
+    z-index: 99999;
+    color: #FFF;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.35), 1px 1px 50px 8px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.35), 1px 1px 50px 8px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.35), 1px 1px 50px 8px rgba(0, 0, 0, 0.4);
+    -webkit-animation: spinner-in 200ms linear 0 1 forwards;
+}
+
+#loading .spinner {
+    position: absolute;
+    max-width: 80px;
+    left: 10px;
+    top: -15px;
+}
+
+#loading span {
+    position: absolute;
+    display: block;
+    width: 100%;
+    bottom: 10px;
+    white-space: nowrap;
+    text-shadow: 1px 1px 3px #000;
+    font: 200 12px/2 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
+    color: #E5E5E5;
+    cursor: default;
+}
+
+@-webkit-keyframes spinner-in {
+    /*
+    0% {
+        -webkit-transform: translateY(60px);
+        -webkit-filter: blur(5px);
+    }
+    100% {
+        -webkit-transform: translateY(0);
+        -webkit-filter: blur(1px);
+    }
+    */
+    0% {
+        -webkit-filter: grayscale(0.8) blur(5px);
+    }
+    50% {
+        -webkit-filter: grayscale(0.3) blur(3px);
+    }
+    100% {
+        -webkit-filter: none;
+    }
+}
+
+footer {
+    color: white;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0px 3px 5px #000;
+}
+
+/* = Map Effects
+----------------------------------------------- */
+
+#map {
+    height: 800px;
+    width: 100%;
+    background: url("../images/map/map_bg_fit.jpg");
+    background-size: cover;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.24) inset;
+    -moz-box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.24) inset;
+    box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.24) inset;
+}
+
+#map svg {
+    -webkit-animation: map-in 1s linear 0 1;
+    -webkit-border-top-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    -moz-border-top-right-radius: 6px;
+    -moz-border-bottom-right-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+#map path,
+#map circle {
+    -webkit-transition: all .25s linear;
+    -moz-transition: all .25s linear;
+    transition: all .25s linear;
+}
+
+@-webkit-keyframes map-in {
+    0% {
+        -webkit-filter: grayscale(0.8) blur(5px);
+    }
+    50% {
+        -webkit-filter: grayscale(0.3) blur(3px);
+    }
+    100% {
+        -webkit-filter: none;
+    }
+}
+
+
+/* = Responsive
+----------------------------------------------- */
+
+@media (max-width: 979px) {
+    #subtitle {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    body {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .jumbotron {
+        padding: 10px 0;
+    }
+
+    .jumbotron p {
+        font-size: 15px;
+        line-height: 1.8;
+        text-align: left;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .jumbotron h1 {
+        margin-bottom: 20px;
+    }
+
+    #map {
+        height: 500px;
+        width: auto;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    .about {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+
+    .about .span6 {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    p {
+        font: 500 13px/1.5 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
+    }
+
+    #header {
+        background: url("../images/travel_title.png") no-repeat;
+        background-size: 100%;
+        background-size: cover;
+    }
+
+    #header-text {
+        position: relative;
+    }
+
+    .jumbotron {
+        min-height: 100%;
+    }
+
+    .jumbotron h1 img {
+        max-width: 230px;
+    }
+
+    #map {
+        height: 400px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    footer {
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        text-align: left;
+    }
+
+    #handle,
+    #header-shadow,
+    #am-container,
+    .am-wrapper {
+        display: none;
+        visibility: hidden;
+    }
+
+}
+
+/* = Pseudo
+----------------------------------------------- */
+::-webkit-scrollbar {
+    width: 10px;
+    background: #cacaca url("../images/mooning.jpg");
+    opacity: .8;
+    -webkit-transition: .25s;
+}
+
+::-webkit-scrollbar-button {
+    width: 10px;
+    height: 5px;
+    -webkit-transition: .25s;
+}
+
+::-webkit-scrollbar-track {
+    background: #cacaca url("../images/mooning.jpg");
+    /* border: thin solid lightgray;
+box-shadow: 0px 0px 3px #dfdfdf inset; */
+    border-radius: 10px;
+    -webkit-transition: .25s;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #969696;
+    /* border: thin solid gray; */
+    border-radius: 10px;
+    -webkit-transition: .25s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #7d7d7d;
+    -webkit-transition: .25s;
+}
