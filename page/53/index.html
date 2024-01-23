@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">323</span>
+          <span class="site-state-item-count">325</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">294</span>
+        <span class="site-state-item-count">301</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,548 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2015/04/06/an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2015/04/06/an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/" class="post-title-link" itemprop="url">面试算法题:爬楼梯，N级楼梯有多少种走法？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-04-06 22:20:50" itemprop="dateCreated datePublished" datetime="2015-04-06T22:20:50+08:00">2015-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2015/04/06/an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2015/04/06/an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2015/04/06/an-algorithms-interview-problem-how-many-methods-to-a-N-steps-stairs/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>最近去面试时，在一家小公司面试时，公司小BOSS给我出了一道算法题：</p>
+<blockquote>
+<p>一个人爬楼梯，一步可以迈一级，二级，三级台阶，如果楼梯有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span></span></span></span> 级，要求编写程序，求总共有多少种走法。</p>
+</blockquote>
+<p>这个问题应该是一个很老的题目了，用中学数学来说，就是一个<em><strong>排列组合</strong></em>问题。当时拿到这个题目之后，首先想到使用<strong>递归</strong>的思想去解决这个问题：</p>
+<blockquote>
+<p>N级楼梯问题可以划分为：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">N-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 级楼梯，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">N-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 级楼梯，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">N-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 级楼梯的走法之和。</p>
+</blockquote>
+<p>先计算下0，1，2，3及楼梯有多少种走法：</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 --&gt; 1</span><br><span class="line">2 --&gt; 11 2</span><br><span class="line">3 --&gt; 111 12 21 3</span><br></pre></td></tr></tbody></table></figure>
+<p>那么，根据以上的分析很容易写出如下代码：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">countNumber</span><span class="params">(<span class="type">int</span> stepsNum)</span> {</span><br><span class="line">    <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (stepsNum == <span class="number">0</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (stepsNum == <span class="number">1</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum == <span class="number">2</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum == <span class="number">3</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">4</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (stepsNum &gt; <span class="number">3</span>) {</span><br><span class="line">        <span class="keyword">return</span> countNumber(stepsNum - <span class="number">3</span>) + countNumber(stepsNum - <span class="number">2</span>)</span><br><span class="line">                + countNumber(stepsNum - <span class="number">1</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt;= <span class="number">10</span>; i++) {</span><br><span class="line">        System.out.println(<span class="string">"楼梯台阶数:"</span> + i + <span class="string">", 走法有:"</span> + countNumber(i));</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>再看看输出：</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">楼梯台阶数:0, 走法有:0</span><br><span class="line">楼梯台阶数:1, 走法有:1</span><br><span class="line">楼梯台阶数:2, 走法有:2</span><br><span class="line">楼梯台阶数:3, 走法有:4</span><br><span class="line">楼梯台阶数:4, 走法有:7</span><br><span class="line">楼梯台阶数:5, 走法有:13</span><br><span class="line">楼梯台阶数:6, 走法有:24</span><br><span class="line">楼梯台阶数:7, 走法有:44</span><br><span class="line">楼梯台阶数:8, 走法有:81</span><br><span class="line">楼梯台阶数:9, 走法有:149</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="如果求解具体全部走法呢"><a class="markdownIt-Anchor" href="#如果求解具体全部走法呢"></a> 如果求解具体全部走法呢？</h1>
+<p>仅仅算出有多少种走法是很容易的，如果更近一步呢？基于这个基础，如何输出<strong>具体的走法</strong>呢？</p>
+<p>我们可以使用<code>Stack</code>数据结构和<strong>递归</strong>的思想去完成这个题目：<code>Stack&lt;T&gt;</code>用于保存每一步的走法。</p>
+<p>代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 一个人爬楼梯，一步可以迈一级，二级，三级台阶，如果楼梯有N级，编写程序，输出所有走法。</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> args</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    Stack&lt;Integer&gt; stt = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;Integer&gt;();</span><br><span class="line">    </span><br><span class="line">    buileT(stt, <span class="number">3</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">buileT</span><span class="params">(Stack&lt;Integer&gt; stt, <span class="type">int</span> N)</span> {</span><br><span class="line">    <span class="keyword">if</span> (N &gt;= <span class="number">1</span>) {</span><br><span class="line">        stt.push(<span class="number">1</span>);</span><br><span class="line">        buileT(stt, N - <span class="number">1</span>);</span><br><span class="line">        stt.pop();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (N &gt;= <span class="number">2</span>) {</span><br><span class="line">        stt.push(<span class="number">2</span>);</span><br><span class="line">        buileT(stt, N - <span class="number">2</span>);</span><br><span class="line">        stt.pop();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (N &gt;= <span class="number">3</span>) {</span><br><span class="line">        stt.push(<span class="number">3</span>);</span><br><span class="line">        buileT(stt, N - <span class="number">3</span>);</span><br><span class="line">        stt.pop();</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (N == <span class="number">0</span>) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i : stt) {</span><br><span class="line">            System.out.print(<span class="string">"Step:"</span> + i + <span class="string">"--&gt;"</span>);</span><br><span class="line">        }</span><br><span class="line">        System.out.println(<span class="string">"完成"</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>以上。</p>
+<p>---------- Updated at 2022.04.21 ----------</p>
+<p>这篇文章写于2015年，其实这个题就是 Leetcode <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/n-th-tribonacci-number/">1137. 第 N 个泰波那契数</a> ，是 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/climbing-stairs/">70. 爬楼梯</a> 的变体，解决方法可参考 <a href="http://www.longluo.me/blog/2021/07/24/9-Algorithms-for-nth-Fibonacci-Number/">9种求斐波那契数(Fibonacci Numbers)的算法</a> 。</p>
+<p><em><strong>Created by Long Luo at 2015-04-08 00:40:12 @Shenzhen, China.</strong></em><br>
+<em><strong>Completed By Long Luo at 2015-04-08 18:15:38 @Shenzhen, China.</strong></em><br>
+<em><strong>Updated By Long Luo at 2022年4月21日 14点51分 @Shenzhen, China.</strong></em></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2015/03/23/Create-A-404-Page/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2015/03/23/Create-A-404-Page/" class="post-title-link" itemprop="url">在Hexo博客上创建一个有趣的404页面</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2015-03-23 23:57:25" itemprop="dateCreated datePublished" datetime="2015-03-23T23:57:25+08:00">2015-03-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2015/03/23/Create-A-404-Page/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2015/03/23/Create-A-404-Page/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2015/03/23/Create-A-404-Page/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By LongLuo</strong></em></p>
+<h1 id="一-什么是404页面"><a class="markdownIt-Anchor" href="#一-什么是404页面"></a> 一、什么是404页面？</h1>
+<p>想必大家都有过这样的经历，好不容易看到搜索引擎出现了我们想要找了很久的内容，兴冲冲点进去，然而出现在屏幕上的却是一个大大404？仿佛在逗你玩？WTF？</p>
+<p>不用怀疑，你想要的页面丢失了。</p>
+<p>404错误信息通常是在目标页面被更改或移除，或客户端输入页面地址错误后显示的页面。</p>
+<p>那么，404除了代表你所要浏览的页面丢失外，你是否知道它的产生原理呢？</p>
+<p>不仅如此，在庞大的互联网中除了404还有哪些HTTP状态码？它们又分别代表着什么？</p>
+<p>正如上面所述，404是一种标准的HTTP返回代码，官方称其为HTTP状态码，用来<strong>表示网页服务器HTTP的响应状态</strong>。</p>
+<p>由于网站日志通常会记录下HTTP状态码，因此通过查看网站日志中的HTTP状态码，便可清楚地看到网站服务器与客户端之间的信息交换情况。</p>
+<h2 id="11-http状态码"><a class="markdownIt-Anchor" href="#11-http状态码"></a> 1.1 HTTP状态码</h2>
+<p>下面是常见的HTTP状态码：</p>
+<ul>
+<li>200 - 请求成功</li>
+<li>301 - 资源（网页等）被永久转移到其它URL</li>
+<li>404 - 请求的资源（网页等）不存在</li>
+<li>500 - 内部服务器错误</li>
+</ul>
+<h3 id="111-http状态码分类"><a class="markdownIt-Anchor" href="#111-http状态码分类"></a> 1.1.1 HTTP状态码分类</h3>
+<p>HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。</p>
+<p>HTTP状态码共分为5种类型：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分类</th>
+<th style="text-align:left">分类描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1xx</td>
+<td style="text-align:left">信息，服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td style="text-align:center">2xx</td>
+<td style="text-align:left">成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td style="text-align:center">3xx</td>
+<td style="text-align:left">重定向，需要进一步的操作以完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">4xx</td>
+<td style="text-align:left">客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">5xx</td>
+<td style="text-align:left">服务器错误，服务器在处理请求的过程中发生了错误</td>
+</tr>
+</tbody>
+</table>
+<p>HTTP状态码列表:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">状态码</th>
+<th style="text-align:left">状态码英文名称</th>
+<th style="text-align:left">中文描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">100</td>
+<td style="text-align:left">Continue</td>
+<td style="text-align:left">继续。客户端应继续其请求</td>
+</tr>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:left">Switching Protocols</td>
+<td style="text-align:left">切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到HTTP的新版本协议</td>
+</tr>
+<tr>
+<td style="text-align:center">200</td>
+<td style="text-align:left">OK</td>
+<td style="text-align:left">请求成功。一般用于GET与POST请求</td>
+</tr>
+<tr>
+<td style="text-align:center">201</td>
+<td style="text-align:left">Created</td>
+<td style="text-align:left">已创建。成功请求并创建了新的资源</td>
+</tr>
+<tr>
+<td style="text-align:center">202</td>
+<td style="text-align:left">Accepted</td>
+<td style="text-align:left">已接受。已经接受请求，但未处理完成</td>
+</tr>
+<tr>
+<td style="text-align:center">203</td>
+<td style="text-align:left">Non-Authoritative Information</td>
+<td style="text-align:left">非授权信息。请求成功。但返回的meta信息不在原始的服务器，而是一个副本</td>
+</tr>
+<tr>
+<td style="text-align:center">204</td>
+<td style="text-align:left">No Content</td>
+<td style="text-align:left">无内容。服务器成功处理，但未返回内容。在未更新网页的情况下，可确保浏览器继续显示当前文档</td>
+</tr>
+<tr>
+<td style="text-align:center">205</td>
+<td style="text-align:left">Reset Content</td>
+<td style="text-align:left">重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域</td>
+</tr>
+<tr>
+<td style="text-align:center">206</td>
+<td style="text-align:left">Partial Content</td>
+<td style="text-align:left">部分内容。服务器成功处理了部分GET请求</td>
+</tr>
+<tr>
+<td style="text-align:center">300</td>
+<td style="text-align:left">Multiple Choices</td>
+<td style="text-align:left">多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择</td>
+</tr>
+<tr>
+<td style="text-align:center">301</td>
+<td style="text-align:left">Moved Permanently</td>
+<td style="text-align:left">永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替</td>
+</tr>
+<tr>
+<td style="text-align:center">302</td>
+<td style="text-align:left">Found</td>
+<td style="text-align:left">临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI</td>
+</tr>
+<tr>
+<td style="text-align:center">303</td>
+<td style="text-align:left">See Other</td>
+<td style="text-align:left">查看其它地址。与301类似。使用GET和POST请求查看</td>
+</tr>
+<tr>
+<td style="text-align:center">304</td>
+<td style="text-align:left">Not Modified</td>
+<td style="text-align:left">未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源</td>
+</tr>
+<tr>
+<td style="text-align:center">305</td>
+<td style="text-align:left">Use Proxy</td>
+<td style="text-align:left">使用代理。所请求的资源必须通过代理访问</td>
+</tr>
+<tr>
+<td style="text-align:center">306</td>
+<td style="text-align:left">Unused</td>
+<td style="text-align:left">已经被废弃的HTTP状态码</td>
+</tr>
+<tr>
+<td style="text-align:center">307</td>
+<td style="text-align:left">Temporary Redirect</td>
+<td style="text-align:left">临时重定向。与302类似。使用GET请求重定向</td>
+</tr>
+<tr>
+<td style="text-align:center">400</td>
+<td style="text-align:left">Bad Request</td>
+<td style="text-align:left">客户端请求的语法错误，服务器无法理解</td>
+</tr>
+<tr>
+<td style="text-align:center">401</td>
+<td style="text-align:left">Unauthorized</td>
+<td style="text-align:left">请求要求用户的身份认证</td>
+</tr>
+<tr>
+<td style="text-align:center">402</td>
+<td style="text-align:left">Payment Required</td>
+<td style="text-align:left">保留，将来使用</td>
+</tr>
+<tr>
+<td style="text-align:center">403</td>
+<td style="text-align:left">Forbidden</td>
+<td style="text-align:left">服务器理解请求客户端的请求，但是拒绝执行此请求</td>
+</tr>
+<tr>
+<td style="text-align:center">404</td>
+<td style="text-align:left">Not Found</td>
+<td style="text-align:left">服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置"您所请求的资源无法找到"的个性页面</td>
+</tr>
+<tr>
+<td style="text-align:center">405</td>
+<td style="text-align:left">Method Not Allowed</td>
+<td style="text-align:left">客户端请求中的方法被禁止</td>
+</tr>
+<tr>
+<td style="text-align:center">406</td>
+<td style="text-align:left">Not Acceptable</td>
+<td style="text-align:left">服务器无法根据客户端请求的内容特性完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">407</td>
+<td style="text-align:left">Proxy Authentication Required</td>
+<td style="text-align:left">请求要求代理的身份认证，与401类似，但请求者应当使用代理进行授权</td>
+</tr>
+<tr>
+<td style="text-align:center">408</td>
+<td style="text-align:left">Request Time-out</td>
+<td style="text-align:left">服务器等待客户端发送的请求时间过长，超时</td>
+</tr>
+<tr>
+<td style="text-align:center">409</td>
+<td style="text-align:left">Conflict</td>
+<td style="text-align:left">服务器完成客户端的 PUT 请求时可能返回此代码，服务器处理请求时发生了冲突</td>
+</tr>
+<tr>
+<td style="text-align:center">410</td>
+<td style="text-align:left">Gone</td>
+<td style="text-align:left">客户端请求的资源已经不存在。410不同于404，如果资源以前有现在被永久删除了可使用410代码，网站设计人员可通过301代码指定资源的新位置</td>
+</tr>
+<tr>
+<td style="text-align:center">411</td>
+<td style="text-align:left">Length Required</td>
+<td style="text-align:left">服务器无法处理客户端发送的不带Content-Length的请求信息</td>
+</tr>
+<tr>
+<td style="text-align:center">412</td>
+<td style="text-align:left">Precondition Failed</td>
+<td style="text-align:left">客户端请求信息的先决条件错误</td>
+</tr>
+<tr>
+<td style="text-align:center">413</td>
+<td style="text-align:left">Request Entity Too Large</td>
+<td style="text-align:left">由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个Retry-After的响应信息</td>
+</tr>
+<tr>
+<td style="text-align:center">414</td>
+<td style="text-align:left">Request-URI Too Large</td>
+<td style="text-align:left">请求的URI过长（URI通常为网址），服务器无法处理</td>
+</tr>
+<tr>
+<td style="text-align:center">415</td>
+<td style="text-align:left">Unsupported Media Type</td>
+<td style="text-align:left">服务器无法处理请求附带的媒体格式</td>
+</tr>
+<tr>
+<td style="text-align:center">416</td>
+<td style="text-align:left">Requested range not satisfiable</td>
+<td style="text-align:left">客户端请求的范围无效</td>
+</tr>
+<tr>
+<td style="text-align:center">417</td>
+<td style="text-align:left">Expectation Failed</td>
+<td style="text-align:left">服务器无法满足Expect的请求头信息</td>
+</tr>
+<tr>
+<td style="text-align:center">500</td>
+<td style="text-align:left">Internal Server Error</td>
+<td style="text-align:left">服务器内部错误，无法完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">501</td>
+<td style="text-align:left">Not Implemented</td>
+<td style="text-align:left">服务器不支持请求的功能，无法完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">502</td>
+<td style="text-align:left">Bad Gateway</td>
+<td style="text-align:left">作为网关或者代理工作的服务器尝试执行请求时，从远程服务器接收到了一个无效的响应</td>
+</tr>
+<tr>
+<td style="text-align:center">503</td>
+<td style="text-align:left">Service Unavailable</td>
+<td style="text-align:left">由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中</td>
+</tr>
+<tr>
+<td style="text-align:center">504</td>
+<td style="text-align:left">Gateway Time-out</td>
+<td style="text-align:left">充当网关或代理的服务器，未及时从远端服务器获取请求</td>
+</tr>
+<tr>
+<td style="text-align:center">505</td>
+<td style="text-align:left">HTTP Version not supported</td>
+<td style="text-align:left">服务器不支持请求的HTTP协议的版本，无法完成处理</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2015/03/23/Create-A-404-Page/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -740,274 +1282,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" class="post-title-link" itemprop="url">一个用于批量下载网络图片的Shell脚本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-13 22:26:00" itemprop="dateCreated datePublished" datetime="2014-09-13T22:26:00+08:00">2014-09-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>最近为了做好一个 <a target="_blank" rel="noopener" href="http://www.imlongluo.com/weather">天气预报</a> 的项目，需要从Yahoo下载一些天气图标，但是由于图标比较多，有80多张。图标是存储在 <a target="_blank" rel="noopener" href="http://yimg.com">Yahoo Image</a> 网站上的。</p>
-<p>迅雷不支持https的下载，虽然可以在浏览器下载，但是在浏览器下载太慢，于是写了一个批量下载图片资源的Shell脚本，完美的解决了这个问题。</p>
-<p>Yahoo天气图标的地址规则如下：<code>https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/</code> + 图标名称</p>
-<p>比如：<img src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/0d.png" alt="Thunder" title="雷电天气"></p>
-<p>我使用了2种方法，解决了下载的难题，虽然好久没有写Shell脚本了，但是意识和底子还在，写即几十行代码还是比较轻松的。</p>
-<h1 id="方法1"><a class="markdownIt-Anchor" href="#方法1"></a> 方法1:</h1>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment">#  Decription: </span></span><br><span class="line"><span class="comment">#		A Shell script used to download the imges from Internet.</span></span><br><span class="line"><span class="comment">#  Author:</span></span><br><span class="line"><span class="comment">#       Long Luo</span></span><br><span class="line"><span class="comment">#  Date:</span></span><br><span class="line"><span class="comment">#       2014-09-11 00:16:59</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">BASE_URL=<span class="string">"https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># declare STIRNG variable</span></span><br><span class="line">STRING=<span class="string">"Beginning Image download..."</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#print var on screen </span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$STRING</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sleep</span> 1</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"...."</span></span><br><span class="line"></span><br><span class="line">BIG_PNG=<span class="string">"ds.png"</span></span><br><span class="line">PNG=<span class="string">".png"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"url="</span><span class="variable">${BASE_URL}</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"big png="</span><span class="variable">${BIG_PNG}</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ((i=<span class="number">0</span>; i&lt;<span class="number">49</span>;i++)); <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> IMG_URL=<span class="variable">${BASE_URL}</span><span class="variable">${i}</span><span class="variable">${BIG_PNG}</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"final url="</span><span class="variable">${IMG_URL}</span></span><br><span class="line"></span><br><span class="line">	curl <span class="variable">${BASE_URL}</span><span class="variable">${i}</span><span class="variable">${BIG_PNG}</span> -o small/<span class="variable">${i}</span><span class="variable">${PNG}</span></span><br><span class="line">	<span class="built_in">sleep</span> 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></tbody></table></figure>
-<h1 id="方法2"><a class="markdownIt-Anchor" href="#方法2"></a> 方法2：</h1>
-<p>方法2将图片URL地址都写在一个数组里，然后从数组中读取，并重命名，相对来说，不如第一种方法简单：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Method 2</span></span><br><span class="line"></span><br><span class="line">URL_ARRAY=(</span><br><span class="line"><span class="string">'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/0d.png'</span></span><br><span class="line"><span class="string">'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/1d.png'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">NAME_ARRAY=(</span><br><span class="line"><span class="string">'file1.jpg'</span></span><br><span class="line"><span class="string">'file2.jpg'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ELEMENTS=<span class="variable">${#URL_ARRAY[@]}</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (( i=<span class="number">0</span>;i&lt;ELEMENTS;i++)); <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">${URL_ARRAY[<span class="variable">${i}</span>]}</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"saved as <span class="variable">${NAME_ARRAY[<span class="variable">${i}</span>]}</span>"</span></span><br><span class="line"> 	curl <span class="variable">${URL_ARRAY[<span class="variable">${i}</span>]}</span> -o images/<span class="variable">${NAME_ARRAY[<span class="variable">${i}</span>]}</span></span><br><span class="line">	<span class="built_in">sleep</span> 1</span><br><span class="line">	</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></tbody></table></figure>
-<p>以上，希望有需要的同学可以采用:-）</p>
-<p><em><strong>Created by Long Luo at 2014-09-13 22:44:52 @Shenzhen, China.</strong></em><br>
-<em><strong>Completed By Long Luo at 2014-09-13 23:01:05 @Shenzhen, China.</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/" class="post-title-link" itemprop="url">如何使用Google Volley网络库发起带Header的HTTP请求?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-07 12:20:14" itemprop="dateCreated datePublished" datetime="2014-09-07T12:20:14+08:00">2014-09-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/09/07/how_to_use_google_network_lib_volley_to_send_HTTP_request_with_header/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>由于合作的第三方iQiyi视频的数据源更新速度很慢，通过和iQiyi反馈，于是提供了新的API接口。</p>
-<p>通过阅读新API接口说明，在发起HTTP Get请求时，必须<strong>同时带2个加密的Header参数</strong>，分别是时间戳和MD5加密后的key、时间戳以及客户端参数，否则无法返回正确的请求。</p>
-<p>目前在Android客户端使用的是Google开源Volley库，支持各种HTTP请求，图片缓存，JSON解析，性能十分强大。之前使用的接口都是直接发起HTTP Get请求，附带相关参数即可。</p>
-<p>通过阅读Volley相关资料，找到了下列方法，可以在发起HTTP请求时，附带Header参数，代码如下所示：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">makeHTTPrequest</span><span class="params">(String url)</span> {</span><br><span class="line">    MyLog.d(TAG, <span class="string">"makeHTTPrequest, url="</span> + url);</span><br><span class="line"></span><br><span class="line">    <span class="type">JsonObjectRequest</span> <span class="variable">jsonObjRequest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JsonObjectRequest</span>(Request.Method.GET, url, <span class="literal">null</span>,</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Response</span>.Listener&lt;JSONObject&gt;() {</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onResponse</span><span class="params">(JSONObject response)</span> {</span><br><span class="line">                    <span class="keyword">try</span> {</span><br><span class="line">                        MyLog.d(TAG, <span class="string">"response="</span> + response);</span><br><span class="line">                        parseiQiyiInterfaceResponse(response);</span><br><span class="line">                    } <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }, <span class="keyword">new</span> <span class="title class_">Response</span>.ErrorListener() {</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onErrorResponse</span><span class="params">(VolleyError error)</span> {</span><br><span class="line">                    <span class="keyword">if</span> (error <span class="keyword">instanceof</span> NetworkError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> ClientError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> ServerError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> AuthFailureError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> ParseError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> NoConnectionError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> TimeoutError) {</span><br><span class="line">                    }</span><br><span class="line"></span><br><span class="line">                    MyLog.e(TAG, <span class="string">"onErrorResponse, error="</span> + error);</span><br><span class="line">                }</span><br><span class="line">            }) {</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Map&lt;String, String&gt; <span class="title function_">getHeaders</span><span class="params">()</span> <span class="keyword">throws</span> AuthFailureError {</span><br><span class="line">            HashMap&lt;String, String&gt; headers = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;String, String&gt;();</span><br><span class="line">            headers.put(<span class="string">"t"</span>, iQiyiInterface.getEncryptTimestamp());</span><br><span class="line">            headers.put(<span class="string">"sign"</span>, iQiyiInterface.getSign());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// MyLog.d(TAG, "headers=" + headers);</span></span><br><span class="line">            <span class="keyword">return</span> headers;</span><br><span class="line">        }</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set a retry policy in case of SocketTimeout &amp; ConnectionTimeout</span></span><br><span class="line">    <span class="comment">// Exceptions. Volley does retry for you if you have specified the</span></span><br><span class="line">    <span class="comment">// policy.</span></span><br><span class="line">    jsonObjRequest.setRetryPolicy(<span class="keyword">new</span> <span class="title class_">DefaultRetryPolicy</span>(<span class="number">5000</span>,</span><br><span class="line">            DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));</span><br><span class="line">    jsonObjRequest.setTag(TAG);</span><br><span class="line">    jsonObjRequest.setShouldCache(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    mQueue.add(jsonObjRequest);</span><br><span class="line">    mQueue.start();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p><strong>Header参数使用HashMap存储。</strong></p>
-<p>获取到JSON数据之后，剩下的就是解析数据了，在这里就不赘述了。</p>
-<p>在完成这个过程中，还遇到了很多小插曲，比如Header的sign值不支持大写字母，结果前后也白费了不少力气。apk烧写到手机之后，还需要使用tcpdump抓取数据包，看是否返回了正确的数据。</p>
-<p>最后发现了Chrome的一个Smart Header插件，完美的解决了以上问题，不需要每次抓包验证返回结果了，直接在Chrome浏览器即可，节省了大量时间。</p>
-<p>总之，希望这篇文章对大家能有所帮助。谢谢！</p>
-<p><em><strong>Created by Long Luo at 2014-09-07 12:30:03 @Shenzhen, China.</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/52/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/52/">52</a><span class="page-number current">53</span><a class="page-number" href="/page/54/">54</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/54/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1037,7 +1311,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:43</span>
+    <span title="站点阅读时长">21:51</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -1098,7 +1372,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
 <script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/page/53/"}</script>
