@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">325</span>
+          <span class="site-state-item-count">324</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -907,7 +907,7 @@ y = y_1 + t (y_2 - y_1)
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/12/08/square-root/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/11/29/Leetcode-insert-delete-getrandom-o1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -925,7 +925,7 @@ y = y_1 + t (y_2 - y_1)
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2022/12/08/square-root/" class="post-title-link" itemprop="url">解码平方根：从巴比伦算法到牛顿迭代法</a>
+          <a href="/blog/2022/11/29/Leetcode-insert-delete-getrandom-o1/" class="post-title-link" itemprop="url">[LeetCode][380. Insert Delete GetRandom O(1)] Data Structures: Thought Process from HashMap to HashMap + Array</a>
         </h2>
 
         <div class="post-meta-container">
@@ -936,14 +936,14 @@ y = y_1 + t (y_2 - y_1)
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-12-08 08:08:07" itemprop="dateCreated datePublished" datetime="2022-12-08T08:08:07+08:00">2022-12-08</time>
+      <time title="创建时间：2022-11-29 11:02:57" itemprop="dateCreated datePublished" datetime="2022-11-29T11:02:57+08:00">2022-11-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-23 20:17:40" itemprop="dateModified" datetime="2024-01-23T20:17:40+08:00">2024-01-23</time>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -951,7 +951,7 @@ y = y_1 + t (y_2 - y_1)
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
         </span>
     </span>
 
@@ -964,8 +964,8 @@ y = y_1 + t (y_2 - y_1)
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2022/12/08/square-root/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/12/08/square-root/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2022/11/29/Leetcode-insert-delete-getrandom-o1/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/11/29/Leetcode-insert-delete-getrandom-o1/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -975,7 +975,7 @@ y = y_1 + t (y_2 - y_1)
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2022/12/08/square-root/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2022/11/29/Leetcode-insert-delete-getrandom-o1/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -984,14 +984,14 @@ y = y_1 + t (y_2 - y_1)
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.1k</span>
+      <span>2.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -1003,200 +1003,20 @@ y = y_1 + t (y_2 - y_1)
     
     <div class="post-body" itemprop="articleBody">
           <p><em><strong>By Long Luo</strong></em></p>
-<p>a_{n+1}={\frac {1}{2}}\left(a_{n}+{\dfrac {2}{a_{n}}}\right)={\frac {a_{n}}{2}}+{\frac {1}{a_{n}}}.}</p>
-<p>在中文互联网上，根号二常与“第一次数学危机”联系在一起。一种流行的说法是，毕达哥拉斯学派下的成员希帕索斯，偶然间根据老师的“毕达哥拉斯定理”（即勾股定理），发现边长为1的正方形对角线长度（即根号2）无法用有理数表示。</p>
-<p>这一发现违背了毕达哥拉斯学派“万物皆数”的教义，因此希帕索斯被同门丢进海里。但毕达哥拉斯学派无法掩盖根号2的存在，从而“万物皆数”的数学大厦轰然倒塌，引发了“第一次数学危机”。</p>
-<p>此故事是否是历史的真相已无从考证。不过，可以确定的是，希帕索斯并非第一个发现根号2的人。</p>
-<p>在希帕索斯之前的一千多年，约公元前1800年至1600年间，古巴比伦人就发现了根号2。</p>
-<p>图片</p>
-<p>在编号为YBC 7289的古巴比伦陶泥板上，画着一个正方形和它的两条对角线。对角线长度用一串数字1,24,51,10标注。由于古巴比伦采用六十进制，这串数字可以译作以下公式：</p>
-<p>图片</p>
-<p>换句话说，古巴比伦人知道边长为1的正方形，其对角线长度大约是1.41421，计算精确到了小数点后5位。</p>
-<p>古巴比伦人的发现距今约3700年，了不起的成就。</p>
-<p>据数学家推断，古巴比伦人可能用的是下述算法（因而被称为“巴比伦法”）算出根号二的近似值。</p>
-<p>令图片; 接下来，使用以下递推公式计算：图片：</p>
-<p>图片</p>
-<p>比如：<br>
-图片</p>
-<p>那么，a₁，a₂，a₃，a₄的数值依次是：</p>
-<p>图片</p>
-<p>可以看到，a₄的数值已经精确到小数点后11位，与根号2的精确值非常接近，而我们仅仅做了四次迭代计算而已。</p>
-<p>图片</p>
-<p>使用巴比伦方法，Ron Watkins在2016年将根号2的数值计算到小数点后十万亿（10^13）位。</p>
-<p>小学课本上介绍根号二的时候，其实也解释了图片的原因：</p>
-<p>图片</p>
-<p>对于小学生来说，这样的理解已经足够深刻。不过，如果采用这种方法，猜出1.4、1.41、1.414还算容易，而接下来要计算1.4142, 1.41421, 1.414213, …… 则颇费功夫，效率远不如巴比伦法。</p>
-<p>巴比伦法看上去非常有效，不过善于思考的读者朋友们或许已经开始犯嘀咕，“凭什么这样算出来的就是根号2呢？”</p>
-<p>问得好。要回答这个问题，需要用到相当深刻的数学原理。以下我们长话短说，尽量用人话来解释。</p>
-<p>巴比伦法的递推公式是图片；倘若我们令图片并代入，那么图片化简得图片毫无疑问图片的一个解。</p>
-<p>我们得到了图片，而这不是一个巧合。事实上，图片是递推式图片的一个不动点。</p>
-<p>换句话说，如果图片, 那么图片，保持“原地不动”，故名为“不动点”。</p>
-<p>根据巴拿赫不动点定理，由于此递推公式在图片区间内为一压缩映射，数列{a_n}将收敛于该区间内的不动点图片。这就是巴比伦法能不断逼近根号2精确值的原因。</p>
-<p>（注：篇幅所限，省略巴拿赫不动点定理的具体描述、压缩映射的定义、递推公式为压缩映射的推导过程）。</p>
-<p>图片</p>
-<p>巴比伦法其实是牛顿法的一个特例。在实际求解形如f(x)=0的方程的过程中，我们并不总有简单的方法直接求出x的精确数值，而需要近似地求x的数值解。</p>
-<p>牛顿法就是最常用求数值解的方法之一，其递推公式如下：</p>
-<p>图片</p>
-<p>其中，图片表示函数f在x_n处的导数。</p>
-<p>牛顿法的本质是不断求函数f(x)在x_n处的切线与x轴的交点，以达到逼近正解的目的。下面这张动图形象地解释了牛顿法的原理。</p>
-<p>图片</p>
-<p>对于求解根号2这个特例，其实我们求的是图片这个方程的正数解。那么我们可以记图片 代入牛顿法的一般递推公式，可得</p>
-<p>图片</p>
-<p>这还原了巴比伦法的递推公式。</p>
-<p>图片</p>
-<p>虽然小学生都知道根号2约等于1.414，但推导过程其实已经超出了中学数学的范围——不仅是中国中学数学课本，也包括全世界的数学课本。</p>
-<p>无论是牛顿法还是巴拿赫不动点定理，都只有在大学的数学课中才会涉及到。因此，中国学生不了解根号2的推导原理，而英国学生、美国学生、法国学生也不了解。这是一件非常正常的事，并不能说明“亚洲人的数学能力其实很差”。</p>
-<p>数学是一门神奇而深邃的学科，而估算平方根是数学中的一个常见问题。在这篇文章中，我们将探讨两种常用的方法：牛顿迭代法和泰勒展开，来快速而精确地估算一个数的平方根。</p>
-<p>在数学的历史长河中，根号2扮演了一个特殊而神秘的角色。它的发现和理解不仅推动了数学的发展，还引出了一场数学危机，让人们对数学的基础产生了深刻的反思。</p>
-<p>根号2的历史<br>
-根号2，即 2，是一个无限不循环的无理数。这一概念最早出现在古希腊，但它的真正发现可以追溯到毕达哥拉斯学派。据传说，毕达哥拉斯学派的成员发现了一个无法表示为两个整数之比的长度，即根号2。</p>
-<p>这一发现颠覆了毕达哥拉斯学派对完美比例的信仰，因为根号2无法用简单的整数表示。这引发了一场数学上的危机，对于那个时代的数学家们来说，这是一场前所未有的挑战。</p>
-<p>第一次数学危机<br>
-根号2的发现导致了著名的“第一次数学危机”，这是古希腊数学历史上的一个重要时刻。毕达哥拉斯学派一直坚信一切可以用整数表示，而根号2的无理性质颠覆了他们的信仰。</p>
-<p>传说中，一位名叫希帕索斯的毕达哥拉斯学派成员被发现泄露了这个神秘的数，他被认为是一位背叛者，甚至被推崇为数学的英雄。毕达哥拉斯学派因此面临内部分裂和挑战，这被称为数学的第一次危机。</p>
-<p>解决数学危机<br>
-随着时间的推移，人们逐渐接受了无理数的存在，并发展了更为深刻的数学理论。欧几里德在《几何原本》中提出了更为严格的证明，证明根号2是无理数。这一证明巩固了数学的基础，并解决了第一次数学危机。</p>
-<p>根号2的数学意义<br>
-虽然根号2曾经引发数学的危机，但它也开启了数学的新篇章。根号2是代数学中一个重要的常数，它出现在各种数学和物理学的公式中，例如在直角三角形中的勾股定理。</p>
-<p>结语<br>
-根号2的历史既是数学的发展历程，又是一场思想的革命。它教导我们接受数学中的挑战和无解之谜，并在解决危机中推动数学的前进。根号2，作为一个神秘的数学符号，永远会在数学的殿堂中闪耀着光芒，激发人们对数学之美的深刻思考。</p>
-<p>在古老的巴比伦，数学家们用他们独特的方法来解决根号2的计算问题。本文将带您穿越时光，了解古代巴比伦人是如何通过他们的算法逼近根号2的价值的。</p>
-<p>巴比伦算法的背景<br>
-巴比伦人是世界上最早进行数学研究的文明之一。虽然他们没有现代的数学符号和符号体系，但他们创造性地开发了一种算法，用于逼近根号2的值。</p>
-<p>巴比伦算法的基本原理<br>
-巴比伦人的算法基于一种称为“牛顿法”的迭代方法。他们观察到一个简单的事实：如果我们有一个近似值y，那么 y 2 更接近根号2的值。因此，他们提出了以下的迭代公式：<br>
-new=21(y+ y2)<br>
-通过反复应用这个公式，巴比伦人可以逐步逼近根号2的真实值。</p>
-<p>巴比伦算法的步骤<br>
-初始猜测值： 巴比伦人选择一个初始的猜测值，比如说y=1。<br>
-迭代计算： 使用迭代公式<br>
-new= 21(y+ y2) 进行计算，得到新的近似值。<br>
-反复迭代： 不断重复步骤2，直到近似值足够接近真实的根号2。<br>
-示例<br>
-让我们通过一个简单的示例来演示巴比伦算法。假设初始猜测值为y=1，通过迭代计算：<br>
-new= 1(1+ 12)= 23<br>
-继续迭代，得到更接近根号2的值。</p>
-<p>巴比伦算法的意义<br>
-巴比伦算法虽然简单，但它展示了古代数学家在没有现代技术和符号的情况下，如何通过观察和迭代逼近根号2的值。这种算法反映了他们对数学的深刻理解和创造性思维。</p>
-<p>结语<br>
-巴比伦算法不仅是古代数学的精彩之作，更是人类智慧的结晶。通过这一算法，我们可以看到古代巴比伦人在数学领域所取得的卓越成就，以及他们对根号2这一神秘数学问题的探索。这段古老的数学历史，为我们提供了深刻的启示，让我们在现代数学的殿堂中感受到古老智慧的光辉。</p>
-<p>牛顿迭代法<br>
-牛顿迭代法是一种使用初始猜测值来逼近函数零点的方法，它同样可以用于估算平方根。设想我们要估算某个数x的平方根，我们可以假设一个初始猜测值y，然后通过不断迭代改进这个猜测值。</p>
-<p>具体而言，如果我们假设y是x的平方根，那么我们可以通过以下公式来改进我们的猜测值：<br>
-new=(y+ yx )</p>
-<p>通过反复应用这个公式，猜测值将不断逼近实际的平方根。这是因为这个公式是对平方根函数的导数的线性逼近，使得每一次迭代都更接近真实值。</p>
-<p>泰勒展开<br>
-泰勒展开是另一种逼近函数的方法，通过使用函数在某一点的导数信息来近似函数的值。对于平方根函数，我们可以使用泰勒展开来得到一个近似公式。</p>
-<p>设想我们要估算数x的平方根，我们可以选择一个近似点a，并在这一点展开平方根函数的泰勒级数：</p>
-<p>f(x)≈f(a)+f ′(a)(x−a)</p>
-<p>对于平方根函数，我们有</p>
-<p>f(x)= x<br>
-​<br>
-，计算导数得到</p>
-<p>(x)=<br>
-。选择a为1，我们得到：</p>
-<p>这个公式可以用来估算平方根，特别是当x接近1时，它的精度较高。</p>
-<p>结合两种方法<br>
-在实际应用中，我们可以结合牛顿迭代法和泰勒展开，通过迭代不断改进初始猜测值，并使用泰勒展开提高迭代的精度。这样，我们可以在保证快速计算的同时，得到相对精确的平方根估算值。</p>
-<p>示例<br>
-让我们通过一个例子来演示这两种方法的应用。假设我们要估算<br>
-7<br>
-7<br>
-​<br>
-。</p>
-<p>牛顿迭代法：<br>
-初始猜测值</p>
-<p>=2，通过迭代计算：</p>
-<h1 id="1"><a class="markdownIt-Anchor" href="#1"></a> �<br>
-1</h1>
-<h1 id="12272"><a class="markdownIt-Anchor" href="#12272"></a> 1<br>
-2<br>
-(<br>
-2<br>
-+<br>
-7<br>
-2<br>
-)</h1>
-<h1 id="52y1"><a class="markdownIt-Anchor" href="#52y1"></a> 5<br>
-2<br>
-y<br>
-1<br>
-​</h1>
-<p>2<br>
-1<br>
-​<br>
-(2+<br>
-2<br>
-7<br>
-​<br>
-)=<br>
-2<br>
-5<br>
-​</p>
-<h1 id="2"><a class="markdownIt-Anchor" href="#2"></a> �<br>
-2</h1>
-<h1 id="12527521710y2"><a class="markdownIt-Anchor" href="#12527521710y2"></a> 1<br>
-2<br>
-(<br>
-5<br>
-2<br>
-+<br>
-7<br>
-5<br>
-2<br>
-)<br>
-≈<br>
-17<br>
-10<br>
-y<br>
-2<br>
-​</h1>
-<p>2<br>
-1<br>
-​<br>
-(<br>
-2<br>
-5<br>
-​<br>
-+<br>
-2<br>
-5<br>
-​</p>
-<p>7<br>
-​<br>
-)≈<br>
-10<br>
-17<br>
-​</p>
-<p>继续迭代，得到更精确的值。</p>
-<p>泰勒展开：<br>
-选择近似点a为1，使用泰勒展开公式：</p>
-<h1 id="711271"><a class="markdownIt-Anchor" href="#711271"></a> 7<br>
-≈<br>
-1<br>
-+<br>
-1<br>
-2<br>
-(<br>
-7<br>
-−<br>
-1<br>
-)</h1>
-<p>4<br>
-7<br>
-​<br>
-≈1+<br>
-2<br>
-1<br>
-​<br>
-(7−1)=4</p>
-<p>通过这两种方法，我们可以看到初始时牛顿迭代法迭代得更快，而泰勒展开提供了一个精度更高的近似值。</p>
-<p>结论<br>
-在数学的世界中，我们常常需要快速而准确地估算各种数值，而估算平方根就是一个常见的问题。通过牛顿迭代法和泰勒展开，我们可以灵活地选择适合具体情况的方法，既保证计算效率，又追求精度。这两种方法的结合为我们提供了一种强大而优雅的工具，让我们更好地探索数学之美。</p>
-<h1 id="参考文献"><a class="markdownIt-Anchor" href="#参考文献"></a> 参考文献</h1>
-<p>YBC 7289  <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/YBC_7289">https://en.wikipedia.org/wiki/YBC_7289</a></p>
-<p>Methods of computing square roots <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Methods_of_computing_square_roots">https://en.wikipedia.org/wiki/Methods_of_computing_square_roots</a></p>
-
+<p>This article is the solution <a target="_blank" rel="noopener" href="https://leetcode.com/problems/insert-delete-getrandom-o1/solutions/2858411/data-structures-thought-process-from-hashmap-to-hashmap-array/">Data Structures: Thought Process from HashMap to HashMap + Array</a> of Problem <a target="_blank" rel="noopener" href="https://leetcode.com/problems/insert-delete-getrandom-o1/">380. Insert Delete GetRandom O(1)</a>.</p>
+<h1 id="intuition"><a class="markdownIt-Anchor" href="#intuition"></a> Intuition</h1>
+<p>It’s easy to think of using a Hash Table to achieve <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> time complexity for <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">insert</mtext></mrow><annotation encoding="application/x-tex">\texttt{insert}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">insert</span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">remove</mtext></mrow><annotation encoding="application/x-tex">\texttt{remove}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">remove</span></span></span></span></span> operations. However, we need <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> time complexity to complete the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">getRandom</mtext></mrow><annotation encoding="application/x-tex">\texttt{getRandom}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">getRandom</span></span></span></span></span> operation.</p>
+<p>The Array structure can complete the operation of obtaining random elements in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> time complexity, but it can’t completed the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">insert</mtext></mrow><annotation encoding="application/x-tex">\texttt{insert}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">insert</span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">remove</mtext></mrow><annotation encoding="application/x-tex">\texttt{remove}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">remove</span></span></span></span></span> operations in <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> time complexity.</p>
+<p>So <strong>How?</strong></p>
+<p><strong>Aha!!!</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2022/11/29/Leetcode-insert-delete-getrandom-o1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1243,7 +1063,7 @@ y<br>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:51</span>
+    <span title="站点阅读时长">21:47</span>
   </span>
 </div>
 <div class="busuanzi-count">

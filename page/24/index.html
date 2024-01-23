@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">325</span>
+          <span class="site-state-item-count">324</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -229,156 +229,6 @@
     </div>
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/12/29/Fourier-transform/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2021/12/29/Fourier-transform/" class="post-title-link" itemprop="url">傅里叶变换(Fourier Transform)</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-12-29 23:56:29" itemprop="dateCreated datePublished" datetime="2021-12-29T23:56:29+08:00">2021-12-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Math/" itemprop="url" rel="index"><span itemprop="name">Math</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2021/12/29/Fourier-transform/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/12/29/Fourier-transform/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2021/12/29/Fourier-transform/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>5.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<h1 id="傅里叶变换fourier-transform是什么"><a class="markdownIt-Anchor" href="#傅里叶变换fourier-transform是什么"></a> 傅里叶变换(Fourier Transform)是什么？</h1>
-<p>傅里叶变换 <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mtext mathvariant="italic">Fourier</mtext><mtext>&nbsp;</mtext><mtext mathvariant="italic">Transform</mtext></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\textit{Fourier Transform})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord textit">Fourier&nbsp;Transform</span></span><span class="mclose">)</span></span></span></span> <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> 和傅里叶级数 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mtext mathvariant="italic">Fourier</mtext><mtext>&nbsp;</mtext><mtext mathvariant="italic">Series</mtext></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\textit{Fourier Series})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord textit">Fourier&nbsp;Series</span></span><span class="mclose">)</span></span></span></span> <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> 是有史以来<strong>最伟大的数学发现</strong>之一。</p>
-<p>傅里叶变换 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mtext mathvariant="italic">Fourier</mtext><mtext>&nbsp;</mtext><mtext mathvariant="italic">Transform</mtext></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\textit{Fourier Transform})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord textit">Fourier&nbsp;Transform</span></span><span class="mclose">)</span></span></span></span> 到底是什么，可以看下这个视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1pW411J7s8">形象展示傅里叶变换</a> ，讲的非常好。</p>
-<p>傅里叶级数和傅里叶变换背后的<strong>本质</strong>: <strong>任何函数</strong>都可以写成<strong>正弦函数</strong>之和。</p>
-<p>如下Gif动图所示：</p>
-<p><img src="https://assets.leetcode.com/users/images/0b74333e-f0a3-423f-b878-e5c5249bf733_1661131783.4503598.gif" alt="Fourier Series"></p>
-<p>下面这个视频 <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1o4411D7vm">12分钟的傅立叶级数动画</a> ，我们可以看到任何图像都可以用大圆套小圆来绘制。</p>
-<p>因为我们日常看到的世间万物都会随<strong>时间流逝</strong>而变化，比如一段声音，一幅图像或者一盏闪烁的交通灯，这种以时间作为参照来观察动态世界的方法我们称其为<strong>时域分析</strong>。</p>
-<p>傅里叶告诉我们任何一个信号都可以用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 种方式来表达：</p>
-<ol>
-<li>时域表达：自变量是时间或者空间的坐标，因变量是信号在该处的强度；</li>
-<li>频域表达：把信号“展开”成不同频率的简单正弦函数的叠加，相当于看作是定义在所有频率所组成的空间（称为频域空间）上的函数，自变量是不同的频率，因变量是该频率所对应的简谐振动的幅度。</li>
-</ol>
-<p>这两个函数一个定义在时域（或空域）上，一个定义在频域上。看起来的样子通常截然不同，但是它们是在以完全不同的方式殊途同归地描述着同一个信号。它们就象是两种不同的语言，乍一听完全不相干，但是其实可以精确地互相翻译。在数学上，这种翻译的过程被称为<strong>傅立叶变换</strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mtext mathvariant="italic">Fourier</mtext><mtext>&nbsp;</mtext><mtext mathvariant="italic">Transform</mtext></mrow><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(\textit{Fourier Transform})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord text"><span class="mord textit">Fourier&nbsp;Transform</span></span><span class="mclose">)</span></span></span></span> 。</p>
-<p><img src="https://assets.leetcode.com/users/images/38b2f689-c31f-49d5-95c7-bd4bab787ffe_1661131714.9826984.png" alt="Fourier"></p>
-<h1 id="傅里叶变换fourier-transform可以做什么"><a class="markdownIt-Anchor" href="#傅里叶变换fourier-transform可以做什么"></a> 傅里叶变换(Fourier Transform)可以做什么？</h1>
-<p>在傅立叶变换的所有这些数学性质中，最不寻常的是这样一种特性：一个在时域或空域上看起来很复杂的信号（譬如一段声音或者一幅图像）通常在频域上的表达会很简单。这里「简单」的意思是说作为频域上的函数，它只集中在很小一块区域内，而很大一部分数值都接近于零。例如下图是一张人脸和它对应的傅立叶变换，可以看出，所有的频域信号差不多都分布在中心周围，而大部分周边区域都是黑色的（即零）。</p>
-<p><img src="https://assets.leetcode.com/users/images/550bd791-13f0-498c-b682-f077862b3c28_1652346477.177226.png" alt="Fourier Transform"></p>
-<p>这是一个意味深长的事实，它说明一个在空域中看起来占满全空间的信号，从频域中看起来很可能只不过占用了极小一块区域，而大部分频率是被浪费了的。这就导出了一个极为有用的结论：一个看起来信息量很大的信号，其实可以只用少得多的数据来加以描述。只要对它先做傅立叶变换，然后只记录那些不接近零的频域信息就可以了，这样数据量就可以大大减少。</p>
-<p>基本上，这正是今天大多数<strong>数据压缩</strong>方法的基础思想。在互联网时代，大量的多媒体信息需要在尽量节省带宽和时间的前提下被传输，所以数据压缩从来都是最核心的问题之一。而今天几乎所有流行的数据压缩格式，无论是声音的mp3格式还是图像的jpg格式，都是利用傅立叶变换才得以发明的。从这个意义上说来，几乎全部现代信息社会都建立在傅立叶的理论的基础之上。</p>
-<p>关于<strong>不确定性原理</strong>，可以看下这个讲解的视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1WW411x7BJ">直观看待不确定性原理：不只是量子现象哦</a> 。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2021/12/29/Fourier-transform/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -1013,6 +863,154 @@
 
 
 
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/12/19/Leetcode-find-the-town-judge/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2021/12/19/Leetcode-find-the-town-judge/" class="post-title-link" itemprop="url">[Leetcode][997. 找到小镇的法官] 图论，计算各节点的入度和出度</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-12-19 08:10:57" itemprop="dateCreated datePublished" datetime="2021-12-19T08:10:57+08:00">2021-12-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/12/19/Leetcode-find-the-town-judge/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/12/19/Leetcode-find-the-town-judge/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/12/19/Leetcode-find-the-town-judge/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/">Leetcode</a> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/find-the-town-judge/">997. 找到小镇的法官</a> 题解。</p>
+<h1 id="方法一图论"><a class="markdownIt-Anchor" href="#方法一图论"></a> 方法一：图论</h1>
+<p><strong>思路与算法：</strong></p>
+<ol>
+<li>如果存在法官，那么所有人都会信任法官，在结合条件<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，可以得出信任法官的人数为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>；</li>
+<li>如果不存在法官，那么也可能存在某些人被所有人信任，这个人的信任人数也为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，但是他也会<strong>信任别人</strong>；</li>
+<li>可以以此作为区分other和judge的条件，假设每个人都有信任值，那么定义一个数组长度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span>，用来存放<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span>个人的信任值:</li>
+</ol>
+<ul>
+<li>如果一个人信任了别人，那么这个人的信任值<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span></span></span></span></li>
+<li>如果一个人被别人信任，那么这个人的信任值<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">1</span></span></span></span></li>
+</ul>
+<p>所以：</p>
+<ol>
+<li>当一个人被所有人信任，并且他没有信任其它人时，这个人的信任值就是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，那么此人就是法官；</li>
+<li>当一个人被所有人信任，但是他也信任了其他人时，这个人的信任值<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>&lt;</mo><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">&lt; n - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。<br>
+其它情况下，每个人的信任值都会小于<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n - 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findJudge</span><span class="params">(<span class="type">int</span> N, <span class="type">int</span>[][] trust)</span> {</span><br><span class="line">	<span class="keyword">if</span> (N &lt;= <span class="number">0</span>) {</span><br><span class="line">		<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">	} <span class="keyword">else</span> <span class="keyword">if</span> (N == <span class="number">1</span>) {</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="comment">// [0]: In  [1]: Out</span></span><br><span class="line">	<span class="type">int</span>[][] count = <span class="keyword">new</span> <span class="title class_">int</span>[N][<span class="number">2</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span>[] item : trust) {</span><br><span class="line">		count[item[<span class="number">0</span>] - <span class="number">1</span>][<span class="number">1</span>]++;</span><br><span class="line">		count[item[<span class="number">1</span>] - <span class="number">1</span>][<span class="number">0</span>]++;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; N; i++) {</span><br><span class="line">		<span class="keyword">if</span> (count[i][<span class="number">0</span>] == N - <span class="number">1</span> &amp;&amp; count[i][<span class="number">1</span>] == <span class="number">0</span>) {</span><br><span class="line">			<span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2021/12/19/Leetcode-find-the-town-judge/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/23/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><span class="page-number current">24</span><a class="page-number" href="/page/25/">25</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/25/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1042,7 +1040,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:51</span>
+    <span title="站点阅读时长">21:47</span>
   </span>
 </div>
 <div class="busuanzi-count">
