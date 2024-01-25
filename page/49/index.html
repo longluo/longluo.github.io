@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">324</span>
+          <span class="site-state-item-count">325</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">301</span>
+        <span class="site-state-item-count">302</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,158 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" class="post-title-link" itemprop="url">Android自定义View：如何实现一个模拟时钟？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-08-03 22:35:45" itemprop="dateCreated datePublished" datetime="2016-08-03T22:35:45+08:00">2016-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p><strong>Android中自定义控件</strong>一直都是Android开发中的一个难点。</p>
+<p>最近看大牛 <a target="_blank" rel="noopener" href="http://weibo.com/eclipsexu?s=6cm7D0">@Tomcat的猫</a> 写的 <a target="_blank" rel="noopener" href="http://blog.csdn.net/eclipsexys">《Android群英传》</a> 里面的第六章<strong>Android绘图机制及处理技巧</strong>，里面通过<code>Canvas</code>实现了一个如下所示的仪表盘：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/clock_still.png" alt="仪表盘"></p>
+<p>在书中详细描述了如何实现这个仪表盘，这里就不赘述了，可以参考其 <a target="_blank" rel="noopener" href="https://github.com/xuyisheng/AndroidHeroes/tree/master/6.%E7%BB%98%E5%9B%BE/MyApplication/app/src/main/java/com/yishengxu/myapplication">具体实现代码</a> 。</p>
+<p>但是这个表盘的指针是<strong>静止不动</strong>的，如果我们能让这个表盘的指针展示当前时间，随着时间而转动，那么我们就可以一款模拟时钟了。</p>
+<p>那么，问题就来了：</p>
+<p><em><strong>如何才能让时钟的指针动起来呢？</strong></em></p>
+<p>这个问题，我们可以考虑分为2步去实现，第一步先绘制出当前的时间，第二部再让指针动起来。通过这样我们就可以实现一款<strong>模拟时钟</strong>。</p>
+<h1 id="一-绘制当前时间"><a class="markdownIt-Anchor" href="#一-绘制当前时间"></a> 一、绘制当前时间</h1>
+<h2 id="11-获取当前时间"><a class="markdownIt-Anchor" href="#11-获取当前时间"></a> 1.1 获取当前时间</h2>
+<p>要绘制当前时间，我们要先获取当前时间。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mTime.setToNow();</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="12-获取指针角度"><a class="markdownIt-Anchor" href="#12-获取指针角度"></a> 1.2 获取指针角度</h2>
+<p>当前时间可分为<em><strong>时，分，秒</strong></em>。</p>
+<p>我们最终要获取的是时分秒3个指针对应的<strong>精确角度</strong>。</p>
+<blockquote>
+<p>秒针角度：最简单，直接乘以6即可获得。<br>
+分针角度：当前分钟 * 6 + 6 * 秒 / 60F<br>
+时针角度：(当前小时 % 12) * 30 + 30 * 当前分钟角度 / 360F;</p>
+</blockquote>
+<h2 id="13-绘制指针"><a class="markdownIt-Anchor" href="#13-绘制指针"></a> 1.3 绘制指针</h2>
+<p>获取到指针角度之后，接下来就是在表盘绘制指针了。这里我们要利用<code>canvas.rotate()</code>这个方法来实现绘制指针，具体实现代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">drawTime</span><span class="params">(Canvas canvas)</span> {</span><br><span class="line">    <span class="comment">// 当前时间</span></span><br><span class="line">    mTime.setToNow();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 当前时间对应的角度</span></span><br><span class="line">    <span class="type">float</span> <span class="variable">secRot</span> <span class="operator">=</span> mTime.second * <span class="number">6</span>;</span><br><span class="line">    <span class="type">float</span> <span class="variable">minRot</span> <span class="operator">=</span> mTime.minute * <span class="number">6</span> + <span class="number">6</span> * mTime.second / <span class="number">60F</span>;</span><br><span class="line">    <span class="type">float</span> <span class="variable">hrRot</span> <span class="operator">=</span> (mTime.hour % <span class="number">12</span>) * <span class="number">30</span> + <span class="number">30</span> * minRot / <span class="number">360F</span>;</span><br><span class="line"></span><br><span class="line">    Log.d(TAG, <span class="string">"hrRot="</span> + hrRot + <span class="string">",minRot="</span> + minRot + <span class="string">",secRot="</span> + secRot);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 画指针</span></span><br><span class="line">    <span class="type">Paint</span> <span class="variable">paintHour</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Paint</span>();</span><br><span class="line">    paintHour.setStrokeWidth(<span class="number">20</span>);</span><br><span class="line">    <span class="type">Paint</span> <span class="variable">paintMinute</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Paint</span>();</span><br><span class="line">    paintMinute.setStrokeWidth(<span class="number">10</span>);</span><br><span class="line">    <span class="type">Paint</span> <span class="variable">paintSecond</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Paint</span>();</span><br><span class="line">    paintSecond.setStrokeWidth(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">    canvas.save();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 时针</span></span><br><span class="line">    canvas.rotate(hrRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line">    canvas.drawLine(mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span> - mWidth / <span class="number">2</span> + <span class="number">320</span>,</span><br><span class="line">            paintHour);</span><br><span class="line">    canvas.rotate(-hrRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 分针</span></span><br><span class="line">    canvas.rotate(minRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line">    canvas.drawLine(mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span> - mWidth / <span class="number">2</span> + <span class="number">230</span>,</span><br><span class="line">            paintMinute);</span><br><span class="line">    canvas.rotate(-minRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 秒针</span></span><br><span class="line">    canvas.rotate(secRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line">    canvas.drawLine(mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span> - mWidth / <span class="number">2</span> + <span class="number">150</span>,</span><br><span class="line">            paintSecond);</span><br><span class="line">    canvas.rotate(-secRot, mWidth / <span class="number">2</span>, mHeight / <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    canvas.restore();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/03/Android-Custom-View-Create-An-Analog-Clock/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -864,175 +1016,6 @@ start()方法被用来启动新创建的线程，而且start()内部调用了run
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2016/06/23/Master-Java-Basics/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/06/10/Collections-Of-Quotations/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2016/06/10/Collections-Of-Quotations/" class="post-title-link" itemprop="url">看懂这些微博，对社会对世界对人性的认识会更上一层楼...</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-06-10 23:05:36" itemprop="dateCreated datePublished" datetime="2016-06-10T23:05:36+08:00">2016-06-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2016/06/10/Collections-Of-Quotations/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/06/10/Collections-Of-Quotations/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2016/06/10/Collections-Of-Quotations/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>5.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>通过爬虫抓取的历年收藏的一些微博和网络上语录，时常翻看，会对社会对世界对人生有更清晰的认识…</p>
-<hr>
-<p>财富即人性。</p>
-<p>所有的大财富，归根结底就是，你对人性的透彻理解。人们都需要的东西，就是你提前打桩的位置。穿越周期，靠的是你对人性的理解。你也不要急了，很多事情，我现在和你讲，你现在理解不了，例如什么叫与人为善。等你到四十岁就明白了。屌丝怒了，<br>
-～等我到40岁来不及了，大长腿都老了！<br>
-～没关系，上半场先扒拉个小短腿。还有下半场，老红也是女人嘛，你凑合吃两口。<br>
-越过道德的边境，我们走过爱的禁区。</p>
-<hr>
-<p>落地。</p>
-<p>以前有个屌丝和我说了心里话。他也愿意脚踏实地，拼命工作，早日发财。但他希望，有个师傅，把卤鸡爪的秘诀告诉他，再给他找个不错的门面房，装修好，锅碗瓢盆买好，再把进货渠道和质量把关的方法告诉他，他就可以安安心心做事业了。你现在让我从零开始，一点一点摸索，我完全没有头绪啊！你安的是什么心？这实在太累了，我不想发财了，算了，算了。我还是去空调房打游戏，摇一摇，最好捞个不要钱的二手女人，我不嫌弃，不花钱就好。</p>
-<p>我完全理解这个屌丝。当然，我还最好当个甩手掌柜，你把公司给我，我让老婆去操心，我干收钱！不香吗？事实上，人世间没有这个好事。为什么没有这好事？因为你爹二十年前也是这么想的。吃光用光，身体健康！儿孙自有儿孙福！辣块妈妈滴！</p>
-<hr>
-<p>很多人希望别人上赶着来伺候自己。</p>
-<p>老子愿意学贴砖，你告诉我，哪里学？<br>
-老子愿意发财，你告诉我哪里发？<br>
-老子愿意当上门女婿，你告诉我，给几套房？<br>
-册那，我又不是你老子，我干嘛操心你啊？你以为你那“苞米脑壳红苕心”有人感兴趣啊？西开！<br>
-人生所有的飞黄腾达，都是自己琢磨出来的，真正的发财路子，没人会跑来教你。2009年，某生意火爆，我超级感兴趣，找了好多人问，没人告诉我。那么如何找到适合自己的路子？<br>
-一是多听多看。你不是牛逼吗？你就多听多看，不懂就研究，你倒是说个一二三啊！我家门口有个小超市，十年不倒，我就奇了怪了，凭什么？我不停的研究，最后发现原因了。这个超市是自有房产，大部分货是赊账来的，根本没有成本。我后来才知道，世界上居然还有赊账生意。<br>
-二是研究聪明人。聪明人有一些小窍门，传男不传女，密不透风。但是，绝大多数人总有打盹的时候，你多接触多研究，总可以破门而入。菜嫂自以为挺聪明的，被我一把拿下，现在我已经是MBA全球总裁班的人了。<br>
-三是顺势而为。你千万不要觉得，世人皆醉我独醒。这个世界，跟风生意最好做，当然，前提是你不要想赚最后一个铜板，赚一把就走。很多人不肯走，最后就废了。<br>
-多年前，菜嫂家某个生意特别赚钱，手底下的人都跑出去自立门户了，拦也拦不住。菜嫂一看挣钱多，就想扩大产能。被我活活摁住，最后换了套房子，册那，女方家说好给我买个房的，不能耍赖。于是，我就过上了奶油蛋糕的幸福生活。<br>
-四是认清自己。很多人认不清自己。总觉得自己快三十岁了，混的一笔吊糟，是因为没有伯乐。要是哪个土豪拉我一把，给我个十亿单子，我也发达了。实际上，没有怀才不遇，而是你压根没有才。<br>
-你不是牛吗？你的房呢？你的车呢？你的那几个小红呢？呵呵都没有吧？这就是现实。不要七想八想了。<br>
-条条大路通罗马。发财的路子千万条，你要有打游戏的劲头，尽可能找到一条。不要太贪心，只要一条就发了。<br>
-小结，去萧山的“躺赢专列”已经很便宜了，你还想怎么样？</p>
-<hr>
-<p>不要急于否定别人。</p>
-<p>这个世界有太多太多我们不知道的事，你偶尔听到了，那是你的幸运。但是，有太多的屌丝，一听到与自己苞谷脑壳认知不一样的事，第一反应就是急匆匆的否定。这种人已经彻底封闭自己了，年纪二十岁，脑壳七十岁。<br>
-我年轻时候，有个朋友和我说，中环靠近外环的孙桥别墅三千一平米，非常漂亮，要不要去看看？我当时大怒，你和我说这个干嘛？我要的是外滩贵州路。我急急忙忙的拒绝了人生最大一个彩蛋。后来这个别墅因为误工逾期，开发商还赔了一笔钱，算下来大概是2700元一平米。<br>
-这种事情非常多。我以前觉得自己什么不懂！要你说？对于任何人的建议都嗤之以鼻，就你个二本子，也想说我不好？滚！然后我就成功的把自己封闭起来了，二十年后，妥妥的一根老油条，还骂天骂地！<br>
-老子是大学生啊！连个房子也没有，上下五千年都对不起我。册那，我年轻时候也够屌的。</p>
-<hr>
-<p>结婚意味着什么？</p>
-<p>大部分屌丝不知道答案。他们以为，就是丈母娘把女儿洗的干干净净给你送过来，你舒舒服服用。实际上远远不是这么简单。婚后，你可能没几年就有娃了。这就要你老命了。<br>
-1，老婆和闺蜜比房子。你吃得消吧？也不多，千万入门，脱层皮。<br>
-2，娃娃是个吞金兽。一年七八万，还要24小时配合班级微信群的家长任务，又要脱层皮。<br>
-3，自己也要考职称。副高不是那么容易的。脱层皮。<br>
-4，如果你还不服，没关系，再过几年，就可以去三甲收费处刷卡了，上不封顶，四个老人，你一人准备80w，省着点花，大差不差了。<br>
-当然，你也可以选择躺死狗，那你倒大霉了。老婆闹，儿子哭，老头老太冲上门，破口大骂，骂你不孝！你自己整两杯牛二吧！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/06/10/Collections-Of-Quotations/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

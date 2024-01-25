@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">324</span>
+          <span class="site-state-item-count">325</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">301</span>
+        <span class="site-state-item-count">302</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,144 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/05/02/algorithm_excel_row_number_string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/05/02/algorithm_excel_row_number_string/" class="post-title-link" itemprop="url">一道有趣的算法题：仿照Excel的列编号，给定一个数字，输出该列编号字符串</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-05-02 22:15:57" itemprop="dateCreated datePublished" datetime="2014-05-02T22:15:57+08:00">2014-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2014/05/02/algorithm_excel_row_number_string/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/05/02/algorithm_excel_row_number_string/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2014/05/02/algorithm_excel_row_number_string/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>最近面试时遇到一个算法题：</p>
+<blockquote>
+<p>仿照Excel的列编号，给出一个数字，输出该列编号字符串。<br>
+例如：A对应1，Z对应26，AA对应27，AZ对应52 …</p>
+</blockquote>
+<p>这个题目是一个典型的<strong>26进制</strong>思路去处理，一个整数除26然后但是这个题目里面有很多陷阱，在1, 26, 52等特殊情况进行考虑，经过晚上接近半个多小时的编写，完成的代码如下：</p>
+<h1 id="c"><a class="markdownIt-Anchor" href="#c"></a> C++</h1>
+<p>C++实现如下所示：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数itos：正整数到编号转换</span></span><br><span class="line"><span class="comment">//num：输入的正整数，pcout：输出，Max：输出控件最大长度</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">itos</span><span class="params">(<span class="type">int</span> num, <span class="type">char</span> *pcout )</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">char</span> *res = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">255</span>];</span><br><span class="line">	<span class="type">int</span> m = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>((num &gt;= <span class="number">1</span>) &amp;&amp; (n &lt; <span class="number">255</span>))</span><br><span class="line">	{</span><br><span class="line">		m = num % <span class="number">26</span>;</span><br><span class="line">		<span class="keyword">if</span> (m != <span class="number">0</span>)</span><br><span class="line">		{</span><br><span class="line">			res[n] = <span class="string">'A'</span> + m - <span class="number">1</span>;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		{</span><br><span class="line">       		res[n] = <span class="string">'Z'</span>;</span><br><span class="line">       		num--;</span><br><span class="line">		}</span><br><span class="line">        </span><br><span class="line">		num /= <span class="number">26</span>;</span><br><span class="line">		n++;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(m = n; m &gt; <span class="number">0</span>; m--)</span><br><span class="line">	{</span><br><span class="line">		pcout[n - m] = res[m - <span class="number">1</span>];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	pcout[n] = <span class="string">'\0'</span>;</span><br><span class="line">	<span class="keyword">delete</span>[] res;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//soti：字符串到数字的转换</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">stoi</span><span class="params">(<span class="type">char</span> *cha)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">int</span> m = <span class="number">0</span>, n = <span class="number">0</span>, i = <span class="number">0</span>, val = <span class="number">0</span>, a = <span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> *pc = cha ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(*pc != <span class="string">'\0'</span> )</span><br><span class="line">   {</span><br><span class="line">         <span class="comment">//后移到个位 </span></span><br><span class="line">        pc++;</span><br><span class="line">        n++;</span><br><span class="line">   }</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">   {</span><br><span class="line">         <span class="comment">//位循环</span></span><br><span class="line">        pc--;</span><br><span class="line">        a = i;</span><br><span class="line">        m = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">         <span class="keyword">while</span>(a &gt; <span class="number">1</span>)</span><br><span class="line">        {</span><br><span class="line">             <span class="comment">//位权</span></span><br><span class="line">            m *=<span class="number">26</span>;</span><br><span class="line">            a--;</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        m *= (*pc - <span class="string">'A'</span> +<span class="number">1</span>);</span><br><span class="line">        val += m;</span><br><span class="line">   }</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">char</span> out[<span class="number">255</span>] = {<span class="number">0</span>};</span><br><span class="line">   	<span class="built_in">printf</span>( <span class="string">"out = %s\n"</span>, out);</span><br><span class="line">   	<span class="built_in">itos</span>(<span class="number">32</span>, out);</span><br><span class="line">   	<span class="built_in">printf</span>( <span class="string">"out = %s\n"</span>, out);</span><br><span class="line"></span><br><span class="line">   	<span class="built_in">getchar</span>();</span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="literal">true</span> ;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/05/02/algorithm_excel_row_number_string/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -861,149 +999,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/" class="post-title-link" itemprop="url">介绍一个提高Android ListView或GridView的Smoothie库</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-02-15 11:41:06" itemprop="dateCreated datePublished" datetime="2014-02-15T11:41:06+08:00">2014-02-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/02/15/introduce_a_android_listview_and%20gridview_performence_library_smoothie/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>949</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>翻译 By Long Luo</strong></em></p>
-<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2013/01/06/introducing-smoothie/">Introducing Smoothie</a></p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/smoothie.png" alt="smoothie"></p>
-<p><a target="_blank" rel="noopener" href="http://pattrnapp.com/">Pattrn</a> UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie">Smoothie</a>。</p>
-<p><em><strong>Smoothie</strong></em>提供了一个简单的API来异步加载<em>ListView/GridView</em>的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。</p>
-<p><em><strong>Smoothie</strong></em>是<strong>手势识别</strong>：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，<em><strong>Smoothie</strong></em>使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。</p>
-<p>那么，怎么使用它呢？很简单：</p>
-<ol>
-<li>
-<p>首先在你的布局文件中增加一个<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncListView.java">AsyncListView</a>或者<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncGridView.java">AsyncGridView</a>，只需要增加一个额外传递的方法到响应的父类中。</p>
-</li>
-<li>
-<p>然后实现一个和你的应用程序加载和显示项目逻辑一致的<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemLoader.java">ItemLoader</a>。你将需要重写下面四种方法：<em>getItemParams()</em>, <em>loadItem()</em>, <em>loadItemFromMemory()<em>以及</em>displayItem()</em>。</p>
-</li>
-<li>
-<p>最后在<em>ItemLoader</em>中建一个<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemManager.java">ItemManager</a>，同时把它和目标<em>AsyncListView</em>或者<em>AsyncGridView</em>关联起来。</p>
-</li>
-</ol>
-<p>在你的<em>ListView/GridView</em>控件需要异步加载时，考虑下把<em><strong>Smoothie</strong></em>作为你的轻量骨架。您可以轻松地连接您自己的图像加载/缓存框架在里面。例如，一个典型的示例应用，<a target="_blank" rel="noopener" href="https://github.com/chrisbanes/Android-BitmapCache">Android-BitmapCache</a>实现了<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/samples/bitmap-cache/src/org/lucasr/smoothie/samples/bitmapcache/PatternsListLoader.java">ItemLoader</a>使用一个简单的淡入淡出的动画来显示图像。</p>
-<p>除了在代码中的API文档，还可以看看App示例，一边更好地了解如何使用该库。请记住，API是​不是最终版本哦。目前反响是非常好的！</p>
-<p><strong>Enjoy it:-)</strong></p>
-<p><em><strong>Long Luo at AM11:30 ~ 12:42 Feb. 15th, 2014 @Shenzhen, China.</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/55/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><span class="page-number current">56</span><a class="page-number" href="/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/57/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1094,7 +1089,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
 <script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/page/56/"}</script>
