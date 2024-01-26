@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">325</span>
+          <span class="site-state-item-count">326</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">302</span>
+        <span class="site-state-item-count">303</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,150 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/08/09/4-Types-Of-Java-Inner-Classes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2016/08/09/4-Types-Of-Java-Inner-Classes/" class="post-title-link" itemprop="url">4种Java内部类</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-08-09 11:42:14" itemprop="dateCreated datePublished" datetime="2016-08-09T11:42:14+08:00">2016-08-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2016/08/09/4-Types-Of-Java-Inner-Classes/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/08/09/4-Types-Of-Java-Inner-Classes/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2016/08/09/4-Types-Of-Java-Inner-Classes/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>一个类的定义放在另一个类的定义内部，这就是<em>内部类</em>。</p>
+<p>先来段代码，对内部类有个直观认识：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OuterClass</span> {</span><br><span class="line">    <span class="keyword">private</span> String name ;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">getName</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setName</span><span class="params">(String name)</span> {</span><br><span class="line">        <span class="built_in">this</span>.name = name;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getAge</span><span class="params">()</span> {</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setAge</span><span class="params">(<span class="type">int</span> age)</span> {</span><br><span class="line">        <span class="built_in">this</span>.age = age;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">InnerClass</span>{</span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">InnerClass</span><span class="params">()</span>{</span><br><span class="line">            name = <span class="string">"chenssy"</span>;</span><br><span class="line">            age = <span class="number">23</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>在这里InnerClass就是内部类。</p>
+<p>Java中有4种不同类型的Java内部类，下面我们将一一用实例来介绍：</p>
+<h1 id="1-静态内部类static-nested-classes"><a class="markdownIt-Anchor" href="#1-静态内部类static-nested-classes"></a> 1. 静态内部类(static nested classes)</h1>
+<p>关键字static可以修饰成员变量、方法、代码块，还可以修饰内部类，而使用static修饰的内部类我们称之为静态内部类，不过我们更喜欢称之为嵌套内部类。</p>
+<p>静态内部类与非静态内部类之间存在一个最大的区别，我们知道非静态内部类在编译完成之后会隐含地保存着一个引用，该引用是指向创建它的外围内，但是静态内部类却没有。没有这个引用就意味着：</p>
+<ol>
+<li>它的创建是不需要依赖于外围类的。</li>
+<li>它不能使用任何外围类的非static成员变量和方法。</li>
+</ol>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Outer</span> {</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Inner</span> {</span><br><span class="line">		<span class="keyword">void</span> <span class="title function_">go</span><span class="params">()</span> {</span><br><span class="line">			System.out.println(<span class="string">" Inner class reference is: "</span> + <span class="built_in">this</span>);</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> {</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">		Outer.<span class="type">Inner</span> <span class="variable">n</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Outer</span>.Inner();</span><br><span class="line">		n.go();</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>Output:</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Inner class reference is: com.longluo.java.interview.innerclass.Outer$Inner@15db9742</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/09/4-Types-Of-Java-Inner-Classes/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -947,155 +1091,8 @@ map = new HashMap ( ) ;</p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" class="post-title-link" itemprop="url">关于Java字符串(String)10个最常见问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-08-05 09:49:42" itemprop="dateCreated datePublished" datetime="2016-08-05T09:49:42+08:00">2016-08-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Java语言中，String一直很基础，但很多人都很多概念还是很模糊。这里我们选取了网络上最常见的10个问题，希望通过这篇文章让大家对Java String有更深刻的认识。</p>
-<h1 id="1-如何对字符串进行比较用-还是equals"><a class="markdownIt-Anchor" href="#1-如何对字符串进行比较用-还是equals"></a> 1. 如何对字符串进行比较？用“==” 还是<code>equals()</code>？</h1>
-<p>简单来说，如果<strong>引用是否相同</strong>那么使用<code>==</code>， 判断<em><strong>值是否相等</strong></em>则用<code>equals()</code>。除非你想判断2个字符串是否是同一对象，否则你都应该使用<code>equals()</code>。</p>
-<h1 id="2-为什么在安全敏感信息场合应该用char而不是string"><a class="markdownIt-Anchor" href="#2-为什么在安全敏感信息场合应该用char而不是string"></a> 2. 为什么在安全敏感信息场合应该用char[]而不是string？</h1>
-<p>String具有不可变的特性，当字符串一旦被创建，那么知道垃圾收集器处理之前他们都是不可变的。如果使用数组，那么你可以明确地改变其内部单元数据。因此，安全敏感的信息例如密码不应该在系统中任何时候都存在。</p>
-<h1 id="3-我们可以在switch语句中使用string吗"><a class="markdownIt-Anchor" href="#3-我们可以在switch语句中使用string吗"></a> 3. 我们可以在switch语句中使用string吗？</h1>
-<p>是的，在Java 7中可以！JDK7中，我们可以在<code>switch</code>中使用string。但是之前的Java版本是不可以的。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// java 7 only!</span></span><br><span class="line"><span class="keyword">switch</span>(str.toLowerCase()){</span><br><span class="line">	<span class="keyword">case</span> <span class="string">"a"</span>:</span><br><span class="line">		value = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">case</span> <span class="string">"b"</span>:</span><br><span class="line">		value = <span class="number">2</span> ;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	}</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="4-如何将字符转成int类型"><a class="markdownIt-Anchor" href="#4-如何将字符转成int类型"></a> 4. 如何将字符转成Int类型？</h1>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> Integer.parseInt(<span class="string">"10"</span>);</span><br></pre></td></tr></tbody></table></figure>
-<p>就是这样简单！</p>
-<h1 id="5-如何用白色空格字符分离一个字符串"><a class="markdownIt-Anchor" href="#5-如何用白色空格字符分离一个字符串"></a> 5. 如何用白色空格字符分离一个字符串？</h1>
-<p>可以使用<em><strong>正则表达式</strong></em>分离字符串。"“表示白色空格字符比如” ", “”。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String [] strArray = aString.split(<span class="string">"\\s+"</span>);</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="6-substring这个方法起什么作用"><a class="markdownIt-Anchor" href="#6-substring这个方法起什么作用"></a> 6. <code>substring()</code>这个方法起什么作用？</h1>
-<p>在JDK6中，<code>substring()</code>方法并不会创建一个新的字符数组，而是给现存的字符串一个窗口用于表示当前字符串。如果想用一个新的字符数组来表示新的字符串，你可以加一个空支付串来实现，如下所示：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.substring(m, n) + <span class="string">""</span></span><br></pre></td></tr></tbody></table></figure>
-<p>使用上述方法，会创建一个新的字符数组来表示新的字符串。有时候可以让你的代码更快，因为垃圾收集器会收集一些没有使用的大字符串但子字符串确实保留的。</p>
-<p>JDK7中，<code>substring()</code>会创建一个新的字符数组，而不是使用现在的这个。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/05/Top-10-Questions-Of-Java-Strings/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/47/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><span class="page-number current">48</span><a class="page-number" href="/page/49/">49</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/49/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/47/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/47/">47</a><span class="page-number current">48</span><a class="page-number" href="/page/49/">49</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/49/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

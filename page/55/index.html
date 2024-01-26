@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">325</span>
+          <span class="site-state-item-count">326</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">302</span>
+        <span class="site-state-item-count">303</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,165 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" class="post-title-link" itemprop="url">视频在线搜索设计与实现</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-07-02 23:04:48" itemprop="dateCreated datePublished" datetime="2014-07-02T23:04:48+08:00">2014-07-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<h1 id="一-在线搜索"><a class="markdownIt-Anchor" href="#一-在线搜索"></a> 一、在线搜索</h1>
+<p>之前搜索页面的一些缺陷：</p>
+<ol>
+<li>具体实现位于 VideoListActivity 中，一方面会造成 VideoListActivity 代码过于庞大臃肿，另外一方面<em><strong>不便于后续功能扩展</strong></em>，结构不清晰；</li>
+<li>依赖了大量系统控件，不便于<strong>后续解耦</strong>及<strong>界面定制</strong>；</li>
+<li>今后搜索界面会参考第三方视频应用的实现，之前不便于增加搜索记录，或搜索独立出来，用于搜索本地视频，甚至将此搜索移植应用于其他应用中；</li>
+</ol>
+<h2 id="11-在线搜索实现效果"><a class="markdownIt-Anchor" href="#11-在线搜索实现效果"></a> 1.1 在线搜索实现效果</h2>
+<p>在线搜索因为是和第三方合作，涉及到很多网络相关的操作，简单来说就是利用HTTP协议向相关接口发起一次网络请求，服务器如果返回了正确的响应，App会解析服务器返回的内容，并展示出来。</p>
+<h3 id="111-热词界面"><a class="markdownIt-Anchor" href="#111-热词界面"></a> 1.1.1 热词界面</h3>
+<p>热词界面是<strong>当搜索文本框文字为空</strong>时会弹出热词界面，会展示最近一段时间内搜索频率很高的词语。一方面可以节省大家输入文字，另外一方面你也可以了解当前的一些热点。</p>
+<p>当你点击列表中的某个热词时，就会发起一次以此为关键词的搜索。</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="热词显示"></p>
+<h3 id="112-关联词"><a class="markdownIt-Anchor" href="#112-关联词"></a> 1.1.2 关联词</h3>
+<p>当<strong>搜索文本输入框含有文字</strong>时，会获取当前输入文字，以此为关键词获取网络的一些联想词，可以点击此联想词发起一次搜索。</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="关联词显示"></p>
+<h3 id="113-搜索结果分类浏览"><a class="markdownIt-Anchor" href="#113-搜索结果分类浏览"></a> 1.1.3 搜索结果分类浏览</h3>
+<p>发起一次搜索之后，如果得到了服务器的正确响应，而且确实有相关视频内容。那么我们会将搜索结果展示在手机页面上。</p>
+<p>搜索到的结果可以分<strong>不同频道</strong>浏览，会根据具体内容进行动态变化，有的可能有10几个频道，有的也就1个频道。频道页面可以滑动浏览，也可以选择在顶部页面选中或者滑动。</p>
+<p>分类浏览时，第一个展示的页面是搜索到的全部视频内容，之后的会根据结果动态变化。</p>
+<p>如下图所示：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果"></p>
+<p>分频道浏览：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果分类"></p>
+<h3 id="114-语音搜索"><a class="markdownIt-Anchor" href="#114-语音搜索"></a> 1.1.4 语音搜索</h3>
+<p><strong>语音搜索图标只有当搜索框里文字为空才会出现，否则出现搜索图标</strong>。</p>
+<p>点击语音搜索图标将会启动VoiceSearch这个apk，然后你可以说话，如果被正确识别之后，会发起一次搜索，并将结果展示出来。</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索"></p>
+<h3 id="115-语音搜索结果"><a class="markdownIt-Anchor" href="#115-语音搜索结果"></a> 1.1.5 语音搜索结果</h3>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索结果"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -950,156 +1109,8 @@ Mac OS也追加了iOS上特有的功能，比如打电话、IM。</p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/05/03/tips_of_driving_exam/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/05/03/tips_of_driving_exam/" class="post-title-link" itemprop="url">学车一直过不了科目二？掌握以下几个要点，让你轻松过！</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-05-03 11:59:03" itemprop="dateCreated datePublished" datetime="2014-05-03T11:59:03+08:00">2014-05-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2014/05/03/tips_of_driving_exam/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/05/03/tips_of_driving_exam/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/05/03/tips_of_driving_exam/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>2014年的51 3天假期，有2个上午都去学车去了，因为不久之后我就要去考试了，总之呢，很多事情都是做的越早越好。今天把科目二考试的一些<em><strong>注意事项</strong></em>给记下来：</p>
-<h1 id="0-准备工作"><a class="markdownIt-Anchor" href="#0-准备工作"></a> 0. 准备工作</h1>
-<p>上车之后，第一步是调好靠背，<code>后视镜</code>，注意座椅不要调到太靠前，系好安全带。后视镜要保持后轮车毂在后视镜中间位置，把手在后视镜上方。</p>
-<p>松手刹，踩住离合器和刹车，离合器踩到底，挂一档起步，<code>慢慢松离合器，直到车头开始震动，离合不动，慢慢松刹车</code>，车辆起步。</p>
-<p>最重要的是要<strong>踩好离合器</strong>，保持<strong>很慢的速度</strong>，因为速度慢了可以慢慢调整，快了的话就没办法调整了。</p>
-<h1 id="1-曲线行驶"><a class="markdownIt-Anchor" href="#1-曲线行驶"></a> 1. 曲线行驶</h1>
-<p>车身调正，保持车身偏右进入，"<code>考</code>"字压着右边边线，进入之后，保持"<code>车</code>"字压着边线，转弯时，方向盘不动，直到车头角压着左边边线，方向盘右转一圈半，之后保持<code>试</code>字压着边线。</p>
-<p>Ok。</p>
-<h1 id="2-直角转弯"><a class="markdownIt-Anchor" href="#2-直角转弯"></a> 2. 直角转弯</h1>
-<p>车身调正，保持车身偏右进入，"<code>考</code>"字压着右边边线。直到车头盖压住前面边线，迅速向左打死方向盘，车身平行之后，迅速调正方向盘。</p>
-<p>Ok。</p>
-<h1 id="3-坡道定点停车"><a class="markdownIt-Anchor" href="#3-坡道定点停车"></a> 3. 坡道定点停车</h1>
-<p>车身调正，<strong>一直打左转向灯</strong>，保持<code>考</code>字和<code>试</code>字的中间压着黄线左边缘，慢速行驶。当左后视镜刚好可以看到双黄线的上边缘，踩住刹车。</p>
-<p>Ok。</p>
-<h1 id="4-侧方停车"><a class="markdownIt-Anchor" href="#4-侧方停车"></a> 4. 侧方停车</h1>
-<p>车身调正，保持<code>考</code>字压着右边黄线，慢速行驶。慢慢调到距离右边黄线为30公分左右，从右后视镜观察。当与二号角与窗口锁重合时，停车。方向盘向左打到死，直到<code>车</code>字压到黄线中间，停车。</p>
-<p>方向盘调正，右转半圈，踩住刹车，挂倒档，开始倒车，注意左后视镜，当观察到<code>后轮轮胎碰到黄线时</code>，迅速<code>向左打死</code>方向盘，直到车头盖缝隙与左边线平行，停车。</p>
-<p>打左转向灯，踩住刹车离合器，挂一档，直到<code>车</code>字压住左边黄线，向右调整方向盘。直到<code>考</code>字压住右边线，方向盘回正。</p>
-<p>Ok。</p>
-<h1 id="5-倒车入库"><a class="markdownIt-Anchor" href="#5-倒车入库"></a> 5. 倒车入库</h1>
-<p>倒车入库是5项中<code>最难</code>的。</p>
-<p>调整车头盖左边缝隙压住左边边线，车身调正，当桩与右窗口重合时，下车查看，保持车尾与2个桩在一条直线上。</p>
-<p>上车，方向盘<strong>向右打死</strong>，<em>挂倒档</em>，观察<strong>右后视镜</strong>，当车毂与角间隔一个篮球宽度时，方向盘向左回一圈，观察左后视镜，当车身与边线平行，方向盘回正，当后视镜完全遮住时，间隔0.5s，停车。</p>
-<p>起步观察，车身两边距离宽度是否一致，哪天多向哪边调，调半圈后回正，观察左窗口锁，当与线重合时，方向盘<code>向左调一圈半</code>，保持方向盘不动，直到左车门把手与线重合，停车。挂倒档，方向盘不动，观察左后视镜，直到左车毂与角间隔30公分，<code>向左打死方向盘</code>，车身回正时，方向盘回正，观察后视镜是否压住线。</p>
-<p>Ok。</p>
-<p><em><strong>Long Luo Created at AM12:20 ~ 13:15 @May 03rd, 2014 at Shenzhen, China.</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/54/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><span class="page-number current">55</span><a class="page-number" href="/page/56/">56</a><span class="space">&hellip;</span><a class="page-number" href="/page/65/">65</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/56/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/54/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/54/">54</a><span class="page-number current">55</span><a class="page-number" href="/page/56/">56</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/56/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
