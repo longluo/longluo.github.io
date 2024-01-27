@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">326</span>
+          <span class="site-state-item-count">327</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">303</span>
+        <span class="site-state-item-count">305</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,154 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2020/12/10/Construct-A-LinkedList-From-An-Array-Or-String/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2020/12/10/Construct-A-LinkedList-From-An-Array-Or-String/" class="post-title-link" itemprop="url">如何根据数组或者字符串创建链表？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-10 22:50:55" itemprop="dateCreated datePublished" datetime="2020-12-10T22:50:55+08:00">2020-12-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2020/12/10/Construct-A-LinkedList-From-An-Array-Or-String/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2020/12/10/Construct-A-LinkedList-From-An-Array-Or-String/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2020/12/10/Construct-A-LinkedList-From-An-Array-Or-String/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>在 <a target="_blank" rel="noopener" href="https://leetcode.cn/">Leetcode</a> 做 <a target="_blank" rel="noopener" href="https://leetcode.cn/tag/linked-list/">链表</a> 相关的题时，给出的测试用例总是数组或者字符串形式，比如 <a target="_blank" rel="noopener" href="https://leetcode.com/problems/rotate-list/">61. 旋转链表</a> 这道题，Testcase如下所示：</p>
+<p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/11/13/rotate1.jpg" alt="img"></p>
+<blockquote>
+<p>输入：head = [1,2,3,4,5], k = 2<br>
+输出：[4,5,1,2,3]</p>
+</blockquote>
+<h1 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h1>
+<p>如果在本地测试代码时，每次测试代码的时候，都需要自己创建测试用例，或者调用leetcode给的例子，都需要手动去创建一个链表的话，但这样效率太低！针对这种情况，写了几个工具函数用来处理链表的代码，可供大家参考。</p>
+<h1 id="测试代码"><a class="markdownIt-Anchor" href="#测试代码"></a> 测试代码</h1>
+<p>个人测试链表测试代码如下：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">test1</span> <span class="operator">=</span> LinkedListUtils.constructListNode(<span class="keyword">new</span> <span class="title class_">int</span>[]{<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>});</span><br><span class="line">    System.out.println(<span class="string">"[4,5,1,2,3] ?="</span> + LinkedListUtils.printLinkedList(rotateRight(test1, <span class="number">2</span>)));</span><br><span class="line"></span><br><span class="line">    <span class="type">ListNode</span> <span class="variable">test2</span> <span class="operator">=</span> LinkedListUtils.constructListNode(<span class="keyword">new</span> <span class="title class_">int</span>[]{<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>});</span><br><span class="line">    System.out.println(<span class="string">"[2,0,1] ?="</span> + LinkedListUtils.printLinkedList(rotateRight(test2, <span class="number">4</span>)));</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="打印链表"><a class="markdownIt-Anchor" href="#打印链表"></a> 打印链表</h1>
+<p>Leetcode上链表最后输出形式：</p>
+<blockquote>
+<p>输出：[4,5,1,2,3]</p>
+</blockquote>
+<p>打印方法很简单，代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">printLinkedList</span><span class="params">(ListNode head)</span> {</span><br><span class="line">    <span class="keyword">if</span> (head == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"[]"</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (head.next == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"["</span> + head.val + <span class="string">"]"</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">    sb.append(<span class="string">"["</span>);</span><br><span class="line">    <span class="keyword">while</span> (head.next != <span class="literal">null</span>) {</span><br><span class="line">        sb.append(head.val);</span><br><span class="line">        <span class="keyword">if</span> (head != <span class="literal">null</span>) {</span><br><span class="line">            sb.append(<span class="string">","</span>);</span><br><span class="line">        }</span><br><span class="line">        head = head.next;</span><br><span class="line">    }</span><br><span class="line">    sb.append(head.val).append(<span class="string">"]"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2020/12/10/Construct-A-LinkedList-From-An-Array-Or-String/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1034,135 +1182,6 @@ Please upvote👍 if you like💗 it. Thank you:-)</p>
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2019/10/26/bruges/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2019/10/26/bruges/" class="post-title-link" itemprop="url">假装游欧洲之Bruges</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-10-26 23:10:32" itemprop="dateCreated datePublished" datetime="2019-10-26T23:10:32+08:00">2019-10-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Travel/" itemprop="url" rel="index"><span itemprop="name">Travel</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2019/10/26/bruges/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2019/10/26/bruges/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2019/10/26/bruges/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>228</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>建筑是凝固的音乐，斑驳的外墙演绎着历史的旋律。</p>
-<p>布鲁日是一座被时间静止的美丽小城。漫步在布鲁日的小巷中，脚踏着青石板路，仿佛走入了中世纪。满眼是砖红色屋顶，哥特式的长窗，高高伫立的钟楼，还有墙壁上随处可见的洛可可画作，你依然能感受到当年布鲁日的繁荣和富庶。</p>
-<p>布鲁日是一座被运河环绕的水城，曾经是欧洲贸易的中心，是当时全世界最富有的城市之一。整个欧洲的货物都在这里汇集。富裕起来的商人们重塑了这座城市，建造了一栋栋流传至今的教堂，市政厅，钟楼…</p>
-<p><img src="https://github.com/AppUnion/DataBank/blob/master/images/blog/bruges/Brugge_water.jpg?raw=true" alt="A Water City"></p>
-<p><img src="https://github.com/AppUnion/DataBank/blob/master/images/blog/bruges/bruges_streetview.jpg?raw=true" alt="Street View"></p>
-<p><img src="https://github.com/AppUnion/DataBank/blob/master/images/blog/bruges/belgium-bruges-town-hall.jpg?raw=true" alt="Town Hall"></p>
-<p><img src="https://github.com/AppUnion/DataBank/blob/master/images/blog/bruges/Scenic-cityscape-with-canal-and-buildings-in-Bruges.jpg?raw=true" alt="Buildings"></p>
-
       
     </div>
 

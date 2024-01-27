@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">326</span>
+          <span class="site-state-item-count">327</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">303</span>
+        <span class="site-state-item-count">305</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,184 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/05/27/Leetcode-Concurrency-Problems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2021/05/27/Leetcode-Concurrency-Problems/" class="post-title-link" itemprop="url">搞定LeetCode的多线程并发问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-27 14:36:58" itemprop="dateCreated datePublished" datetime="2021-05-27T14:36:58+08:00">2021-05-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/05/27/Leetcode-Concurrency-Problems/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/05/27/Leetcode-Concurrency-Problems/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/05/27/Leetcode-Concurrency-Problems/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>195</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<h1 id="leetcode-concurrency-problems"><a class="markdownIt-Anchor" href="#leetcode-concurrency-problems"></a> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problemset/concurrency/">LeetCode Concurrency Problems</a></h1>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Problems</th>
+<th>Difficulty</th>
+<th>Source Code</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1114</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/print-in-order/">按序打印</a></td>
+<td>Easy</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1114_printInOrder.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1115</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/print-foobar-alternately/">交替打印FooBar</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1115_printFoobarAlternately.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1116</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/print-zero-even-odd/">打印零与奇偶数</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1116_printZeroEvenOdd.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1117</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/building-h2o/">H2O生成</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1117_buildingH2O.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1195</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fizz-buzz-multithreaded/">交替打印字符串</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1195_fizzBuzzMultithreaded.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1226</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/the-dining-philosophers/">哲学家进餐</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1226_diningPhilosophersPhilosophers.java">Java</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -864,177 +1042,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2021/05/09/Serval-Articles-About-Mother-In-Mothers-Day/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/05/03/Inertia-Of-History/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2021/05/03/Inertia-Of-History/" class="post-title-link" itemprop="url">阎学通：《历史的惯性：未来十年的中国与世界》读后感</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-03 23:36:43" itemprop="dateCreated datePublished" datetime="2021-05-03T23:36:43+08:00">2021-05-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2021/05/03/Inertia-Of-History/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/05/03/Inertia-Of-History/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2021/05/03/Inertia-Of-History/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>21k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>19 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>五一假期期间累计花了10几个小时阅读完了<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%98%8E%E5%AD%A6%E9%80%9A/1635981?fr=aladdin">阎学通</a>在2013年写的著作<a target="_blank" rel="noopener" href="https://book.douban.com/subject/24758492/">《历史的惯性：未来十年的中国与世界》</a>，看完大受启发，尤其是标题，让我有豁然开朗的感觉。</p>
-<p>中国有句古话叫“三岁看大”，当然这是说性格决定命运，因为性格很难改，所以从一个人小时候表露出来的性格就能推断出其人生的大致轨迹。</p>
-<p>杜牧的《阿房宫赋》中“秦人不暇自哀，而后人哀之；后人哀之而不鉴之，亦使后人而复哀后人也。”，德国哲学家黑格尔也曾说，人类唯一能从历史中吸取的教训就是，人类从来都不会从历史中吸取教训。纵观世界人类发展史，发现无论朝代更迭、经济发展等活动都在不断的重复过去。</p>
-<p>“历史总会惊人的相似，但又不会简单的重复”，如何解释历史的这种相似性，又如何解释某些相似的前提最后却导致了不同的结果呢？</p>
-<p>答案就是<strong>惯性</strong>。政治领导人们都会尝试用最大的理性思考和处理问题，但与此同时又会习惯性的陷入某种惯性之中。就像一个贪吃的胖子，虽然他现在体重只有160斤，但是根据大量相似的经验预测，他未来的体重将会达到200斤左右，这种结果可能性很大，因为这个胖子会习惯性地过量摄入食物，并且很难克制这种贪吃的欲望，但是也不排除这个胖子意识到了贪吃的坏处，成功地把体重保持在了160斤的恒定水平，对未来的判断往往就处在这样的不确定性之中。</p>
-<p>预测一个人如此，预测一个国家也是如此，只不过按照质量越大惯性越大的原理，一个国家历史越悠久，体积越庞大，传统的力量和制度越成熟，这个<strong>国家未来的发展路径就越容易陷入到历史的惯性之中</strong>。</p>
-<p>下面是书中一些精华摘录：</p>
-<hr>
-<h2 id="第一章-国力较量2023年的中国与美国"><a class="markdownIt-Anchor" href="#第一章-国力较量2023年的中国与美国"></a> 第一章 国力较量：2023年的中国与美国</h2>
-<p>历史是由人创造的，但这并不意味着人有能力任意改变历史。历史发展具有一定的惯性，在人没有创造出强于历史惯性的力量之前，历史将沿着既有的轨道发展。这就是为什么当一个帝国或超级大国衰落后，其衰落时间都在百年以上，很少有在半个世纪内就重振雄风的现象。大清帝国、大英帝国、俄罗斯的衰落都摆脱不了这种历史惯性。21世纪的美国人是否有能力顶住历史的惯性，不让美国长期衰落下去，这是美国人面临的历史考验。未来十年，历史的惯性有利于中国的崛起，中国能否借助这个惯性加速崛起则取决于我们这代中国人了。</p>
-<p>国际格局是随着大国综合实力的变化而变化的，而大国综合实力的基础是国家的政治实力，而政治实力的核心是领导者实施改革的能力。不同的历史使得国家领导者的改革能力有天壤之别，因此历史的惯性有时才会出现加速的现象，这也是为什么历史上常有只凭一代人就完成崛起的例子。</p>
-<p>经济决定论是现在中国人的主流信仰，然而中国先哲们却相信政治决定论，他们认为决定国家富强或衰落的最根本因素是国家的政治领导而不是经济基础。</p>
-<p>许多人认为，中国能否崛起不在于外交而在于内政，因此应集中精力关注国内建设而少介入国际事务。内政不仅是中国崛起的根本，也是美国维护世界霸权的根本。然而，能搞好内政的国家并不一定就能崛起为超级大国，北欧国家便是最好的例证。</p>
-<p>那么，中美两国综合实力的差距在过去的20多年里是如何缩小的呢？其根本原因在于中国不断进行改革而美国没有什么改革。未来十年，这种状态将难以改变，中国的改革力度仍将大于美国。这也是为什么2023年有可能形成中美两超的国际格局。</p>
-<p>对于中国无法保持第四个十年经济高增长的判断之所以错误，是因为预测者的两个依据是不科学的。首先，“物极必反”是个哲学原理而不是科学依据。以此哲学原理为据预测中国经济不可能永远高增长是有效的，但是人们忽视了哲学原理的正确性是建立在没有科学标准的前提下的，即“极”（极限）是一个没有具体标准的概念。</p>
-<p>未来十年，中国综合国力能否保持高速增长主要取决于中国政府是否加大改革力度。只要中国政府的新领导集体像1978年那样实行全面改革，中国综合国力是有望再保持十年高增长的，而且有可能再为其后的十年实现年均5%左右的稳定增长奠定基础。</p>
-<p>自1978年以来，中国改革开放的内容是多方面的，但其本质是政府将社会生活的权利归还给人民。</p>
-<p>借用中国古代哲学的观点，本书把世界权力的转移归因于崛起国比主导国更有能力进行改革。在国内方面，一国的领导类型可分为无为型、守成型、进取型和争斗型，而在国际领导类型方面则可分为王道型、霸权型、昏庸型和强权型。将政治领导类型视为一个独立变量的优势在于，我们可以用同一个变量来解释为什么在同一历史阶段，主导国会衰落，某个国家的崛起会成功，而其他国家的崛起会失败。国家领导是决定国家外交政策、政治原则、官方意识形态和政治制度的关键因素，而不同类型的领导人对改革和战略取向有着各自的态度。</p>
-<p>如上所述，大多数理论都在研究如何回答“为什么霸权会衰落”的问题，几乎不考虑问题的另一面：“一个国家如何成功崛起？”似乎有理由断言，世界中心的转移，不仅仅是因为现有的霸权衰落，同时也是因为新的世界大国崛起。</p>
-<p>本书所建立的理论表明，当崛起国的政治领导力强于主导国的政治领导力时，这两个国家的权力地位就可能反转，崛起国将成为新的主导国。换句话说，当崛起国的领导力比主导国和其同时代主要国家的领导力更强且更高效时，所有这些国家的国际权力将以崛起国胜过主导国的方式被重新划分</p>
-<p>笔者认为，未来十年在美国无力阻止中国缩小实力差距的决定性因素中，最主要的是美国缺乏具有政治改革能力的领导人。里根、老布什、小布什和奥巴马执政时期，都是美国债务不断上升的时期，然而克林顿执政8年不但还清了以往政府欠的债，而且还给美国财政积累了2000多亿美元的盈余。这意味着，未来十年，美国能否解决债务问题不是由市场决定的，而是由美国领导人的领导能力，特别是领导人推进政治改革的能力决定的。政治改革对中国和美国的实力增长具有相同的作用，哪个国家改革得快，哪个国家就能赢得未来十年的战略竞争，反之则走向相对衰落。</p>
-<p>能领导美国进行改革的领导人不仅要有与利益集团对抗的精神，还得有克服利益集团阻力的能力。这种能力往往是通过政治实践获得的，而不是靠在选举中打嘴仗练出来的。电子媒体技术的进步和晚婚趋势使美国选民选择领导人的标准发生了变化，但是美国大选的民主程序却没有做出相应的调整。</p>
-<p>现实生活中，务实者多不善言辞，能言善辩者多不务实，同时具备这两种能力的人少之又少。</p>
-<p>历史上，许多一度辉煌的帝国都走向了衰落，其具体原因可能各有不同，但因自负而不愿进行根本性改革很可能是个共同原因，而且是一个所有成功者都无法克服的人性缺陷。</p>
-<p>未来十年，美国虽无力阻止中国缩小与其实力的差距，但它必然会竭力减缓中国赶超的速度。一国的综合实力由政治、军事、经济和文化四个实力要素构成。其中，<em><strong>政治为操作性实力，军事、经济和文化为资源性实力。操作性实力对于资源性实力的运用结果决定了综合实力的大小</strong></em>，其表达式为：<br>
-政治实力×（军事实力+经济实力+文化实力）=综合国力。</p>
-<p>不过，数量上的超越为质量上的赶超奠定了基础，假如没有数量上的超越，质量超越就更无希望。</p>
-<p>美国减缓中国赶超速度的根本因素是其相对衰落的性质。</p>
-<p>做好自己家里的事，是所有国家的首要任务。但是，做好自己家里的事并不必然就能实现崛起，甚至不必然就能强大。</p>
-<p>认为中国的国内问题决定中国成不了超级大国和认为只要国内搞好了就能成为超级大国，这两种观点的核心逻辑都是内因决定论。然而，大国崛起或民族复兴是一个相对概念，是指赶超世界最强大国家的历史过程，其结果是由崛起国和霸权国两者力量的对比变化决定的。这意味着，内因和外因具有同等重要的作用。</p>
-<p>未来十年，中美军事竞争将体现在武器装备的改进上，而双方发生直接战争的危险会进一步下降，发动代理人战争的可能性也很小。<br>
-未来十年，科技竞争取代自然资源争夺将成为中美战略竞争的主要内容之一。<br>
-未来十年，中美之间的结构性矛盾将不断深化，在双方继续假朋友关系策略的条件下，双边关系的不稳定性将变得更加突出。<br>
-2023年世界很可能形成两极格局，但那是一种新型战略竞争而不是冷战，未来十年中美成为全面竞争对手的可能性很大。</p>
-<p>美国重返亚太战略是促进中国调整外交战略的首要外部因素。美国的相对衰落使其无力维持在全球的主导地位，故此美国将其主要力量集中于未来的世界中心，于是美国战略重心向东亚转移就成为必然（参见第二章有关东亚将成为新的世界中心的论述）。所谓“亚太再平衡”就是平衡中国的崛起，就是防范中国成为亚太地区的主导力量。</p>
-<p>由于未来十年世界格局向两极化方向发展，因此发展中国家将重新重视不结盟战略，这将是一个影响中国外交政策调整的重要因素。</p>
-<p>在无政府的国际体系中，中小国家对于大国的首要需求是安全保障，能否向中小国家提供安全保障将成为中美争取不结盟国家的最主要手段。不提供安全保障就无法得到这些国家的战略信任，从而也不可能获得较多的战略友好关系。</p>
-<p>核武器将使中美之间的战略竞争以和平方式为主。</p>
-<p>核武器不仅消除了“二战”后再次发生世界大战的危险，也防止了美苏之间的直接战争。苏联解体后，美国加快了反导系统的建设速度，然而20年反导系统建设的结果是，反导系统并不能有效减弱核武器的战略威慑能力。</p>
-<p>冷战后，人们对于核武器可防止核国家之间发生战争的认识进一步深化，这在很大程度上改变了大国竞争的战略行为。中美更加注重提高核武器与常规武器的现代化水平，但放弃了赢得核战争的想法，认为以战争争夺霸权的成本太高。核武器的扩散使得代理人战争升级为全面战争的代价增大，因此也使代理人战争变得不那么可取，中美也不愿承担通过代理人战争争夺领导权的代价。</p>
-<p>冷战后，由于计算机技术的迅速进步，科技成为增加经济财富的重要手段。这使得自然资源在增加国家财富方面的重要性大大下降，中美再也不必用战争方式来争夺自然资源了。</p>
-<p>进入21世纪，人类面临的最大问题已不再是生产能力满足不了社会消费需求，而是严重的产能过剩，即人类无力消费自己生产出来的产品。不仅如此，从争夺国际自然资源的效率角度讲，战争也是无法与海外投资相比的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2021/05/03/Inertia-Of-History/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
