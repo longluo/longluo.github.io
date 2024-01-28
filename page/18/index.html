@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">327</span>
+          <span class="site-state-item-count">328</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -229,6 +229,148 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/" class="post-title-link" itemprop="url">[LeetCode][1721. Swapping Nodes in a Linked List] 3 Approaches: Swapping Values and Swapping Nodes with Image Explanation</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-04 21:33:52" itemprop="dateCreated datePublished" datetime="2022-04-04T21:33:52+08:00">2022-04-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>This article is the solution <a target="_blank" rel="noopener" href="https://leetcode.com/problems/swapping-nodes-in-a-linked-list/solutions/1912231/3-approaches-swapping-values-and-swapping-nodes-with-image-explanation/">3 Approaches: Swapping Values and Swapping Nodes with Image Explanation</a> of Problem <a target="_blank" rel="noopener" href="https://leetcode.com/problems/swapping-nodes-in-a-linked-list/">1721. Swapping Nodes in a Linked List</a>.</p>
+<p>Here shows <strong>3</strong> Approaches to slove this problem: <strong>ArrayList</strong> and <strong>Two Pointers</strong>.</p>
+<h1 id="intuition"><a class="markdownIt-Anchor" href="#intuition"></a> Intuition</h1>
+<p>Since the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">ListNode</mtext></mrow><annotation encoding="application/x-tex">\texttt{ListNode}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">ListNode</span></span></span></span></span> only contain values, we can just just <strong>swap the values</strong> of two nodes. It’s very easy. All we need to do is to find these two nodes and swap their values.</p>
+<p>If we swap nodes, it will be more difficult than swap values.</p>
+<h1 id="arraylistswapping-values"><a class="markdownIt-Anchor" href="#arraylistswapping-values"></a> ArrayList(Swapping Values)</h1>
+<p>We can use an <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">ArrayList</mtext></mrow><annotation encoding="application/x-tex">\texttt{ArrayList}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">ArrayList</span></span></span></span></span> to record all the nodes of the linked list. We can just <strong>swap the values</strong> of two nodes.</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// BF List time: O(n) space: O(n)</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title function_">swapNodes_bf_list</span><span class="params">(ListNode head, <span class="type">int</span> k)</span> {</span><br><span class="line">      <span class="type">ListNode</span> <span class="variable">pNode</span> <span class="operator">=</span> head;</span><br><span class="line">      List&lt;ListNode&gt; nodeList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="comment">// store these nodes.</span></span><br><span class="line">      <span class="keyword">while</span> (pNode != <span class="literal">null</span>) {</span><br><span class="line">          nodeList.add(pNode);</span><br><span class="line">          pNode = pNode.next;</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line"><span class="comment">// swap their values.</span></span><br><span class="line">      <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> nodeList.size();</span><br><span class="line">      <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> nodeList.get(k - <span class="number">1</span>).val;</span><br><span class="line">      nodeList.get(k - <span class="number">1</span>).val = nodeList.get(len - k).val;</span><br><span class="line">      nodeList.get(len - k).val = temp;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="analysis"><a class="markdownIt-Anchor" href="#analysis"></a> Analysis</h2>
+<ul>
+<li><strong>Time Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></li>
+<li><strong>Space Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -838,151 +980,6 @@ A(x_2) = y_2 = a_0 + a_1x_2+a_2x_2^2+a_3x_2^3+ \cdots + a_{n-1}x_2^{n-1} \\
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2022/03/31/Leetcode-find-the-distance-value-between-two-arrays/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/03/30/Leetcode-search-a-2d-matrix/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2022/03/30/Leetcode-search-a-2d-matrix/" class="post-title-link" itemprop="url">[LeetCode][74. Search a 2D Matrix] 6 Approaches: Brute Force, Row Search, Column Search, One Binary Search, 2D Coordinate Axis</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-03-30 08:21:39" itemprop="dateCreated datePublished" datetime="2022-03-30T08:21:39+08:00">2022-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2022/03/30/Leetcode-search-a-2d-matrix/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/03/30/Leetcode-search-a-2d-matrix/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2022/03/30/Leetcode-search-a-2d-matrix/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>5.8k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>This article is the solution <a target="_blank" rel="noopener" href="https://leetcode.com/problems/search-a-2d-matrix/solutions/1895889/6-approaches-brute-force-row-search-column-search-one-binary-search-2d-coordinate-axis/">6 Approaches: Brute Force, Row Search, Column Search, One Binary Search, 2D Coordinate Axis</a> of Problem <a target="_blank" rel="noopener" href="https://leetcode.com/problems/search-a-2d-matrix/">74. Search a 2D Matrix</a>.</p>
-<p>Here are <strong>6</strong> approaches to solve this problem: <strong>Brute Force</strong>, Binary Search(<strong>Row</strong>), Binary Search(<strong>Column</strong>), One Binary Search and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>D</mi></mrow><annotation encoding="application/x-tex">2D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span></span></span></span> <strong>Coordinate Axis</strong>.</p>
-<h1 id="bf2-loops"><a class="markdownIt-Anchor" href="#bf2-loops"></a> BF(2 Loops)</h1>
-<p>It’s easy to use <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> <strong>Loops</strong> to traverse the entire matrix to find the target.</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// BF</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">searchMatrix_bf</span><span class="params">(<span class="type">int</span>[][] matrix, <span class="type">int</span> target)</span> {</span><br><span class="line">    <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> matrix.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">col</span> <span class="operator">=</span> matrix[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; row; i++) {</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; col; j++) {</span><br><span class="line">            <span class="keyword">if</span> (matrix[i][j] == target) {</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>Notice that the first integer of each row is greater than the last integer of the previous row.</p>
-<p>We can optimize the code before.</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// BF Opt</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">searchMatrix_bf_opt</span><span class="params">(<span class="type">int</span>[][] matrix, <span class="type">int</span> target)</span> {</span><br><span class="line">    <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> matrix.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">col</span> <span class="operator">=</span> matrix[<span class="number">0</span>].length;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (matrix[<span class="number">0</span>][<span class="number">0</span>] &gt; target || matrix[row - <span class="number">1</span>][col - <span class="number">1</span>] &lt; target) {</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; row; i++) {</span><br><span class="line">        <span class="keyword">if</span> (target &gt;= matrix[i][<span class="number">0</span>] &amp;&amp; target &lt;= matrix[i][col - <span class="number">1</span>]) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; col; j++) {</span><br><span class="line">                <span class="keyword">if</span> (matrix[i][j] == target) {</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="analysis"><a class="markdownIt-Anchor" href="#analysis"></a> Analysis</h2>
-<ul>
-<li><strong>Time Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>m</mi><mo>×</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(m \times n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></li>
-<li><strong>Space Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
-</ul>
-<h1 id="find-row-first-then-column-binary-search"><a class="markdownIt-Anchor" href="#find-row-first-then-column-binary-search"></a> Find Row First, then Column Binary Search</h1>
-<p>We can scanning the rows of the matrix, If the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">target</mtext></mrow><annotation encoding="application/x-tex">\textit{target}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord textit">target</span></span></span></span></span> is larger than the last element of this row, the target must not be in this row, but only in the lower row of the matrix.</p>
-<p>If we find the row which the target may appears, search this row.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2022/03/30/Leetcode-search-a-2d-matrix/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

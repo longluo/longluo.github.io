@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">327</span>
+          <span class="site-state-item-count">328</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -229,6 +229,193 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/08/07/Top-10-Questions-About-Java-Collections/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/" class="post-title-link" itemprop="url">关于Java Collections应知应会</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-08-07 22:56:28" itemprop="dateCreated datePublished" datetime="2016-08-07T22:56:28+08:00">2016-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>翻译 By Long Luo</strong></em></p>
+<p>下面这些问题<a target="_blank" rel="noopener" href="http://www.stackoverflow.com">Stackoverflow</a>上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章<a href="http://www.longluo.me/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/">3分钟速读：图解Java Collections的接口以及类层级关系</a>。</p>
+<h1 id="1-什么时候用linkedlist什么时候用arraylist"><a class="markdownIt-Anchor" href="#1-什么时候用linkedlist什么时候用arraylist"></a> 1. 什么时候用LinkedList？什么时候用ArrayList？</h1>
+<p><em><strong>ArrayList</strong></em>本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经满了，那么需要重新分配一个更大的数组并且将全部的元素移动到新的数组需要花费***O(n)***的时间。当然从现有的数组中增加或者删除一个元素都需要移动现有的元素。这个可能是使用ArrayList中最大的不便之处。</p>
+<p><em><strong>LinkedList</strong></em>是一个<strong>双端链表</strong>。正因为如此，如果要获取一个链表中间的元素，需要从链表的头部开始查找。另一方面，增加或者删除链表中的元素将会很快，因为只需要在本地修改即可。</p>
+<p>下表总结了最快情况下的比较需要耗费时间：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Method</th>
+<th style="text-align:right">Arraylist</th>
+<th style="text-align:center">LinkedList</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">get(index)</td>
+<td style="text-align:right">O(1)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td style="text-align:left">add(E)</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:left">add(E, index)</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td style="text-align:left">remove(index)</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(n)</td>
+</tr>
+<tr>
+<td style="text-align:left">Iterator.remove()</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+<tr>
+<td style="text-align:left">Iterator.add(E)</td>
+<td style="text-align:right">O(n)</td>
+<td style="text-align:center">O(1)</td>
+</tr>
+</tbody>
+</table>
+<p>不管运行时间，当大型列表需要额外考虑内存占用。LinkedList每个node至少需要2个额外的指针用于连接前后2个node。而在ArrayList中只需要数组存储元素值即可。</p>
+<h1 id="2-当遍历容器时高效等价于移除元素的操作"><a class="markdownIt-Anchor" href="#2-当遍历容器时高效等价于移除元素的操作"></a> 2. 当遍历容器时，高效等价于移除元素的操作？</h1>
+<p>最正确的方式就是在遍历容器时用<code>Iterator.remove()</code>去修改一个容器，如下代码所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Integer&gt; itr = list.iterator();</span><br><span class="line"><span class="keyword">while</span>(itr.hasNext()) {</span><br><span class="line">   <span class="comment">// do something</span></span><br><span class="line">   itr.remove();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>另外一个非常高频的使用但是<em><strong>不正确</strong></em>的代码是这样的：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Integer i: list) {</span><br><span class="line">  list.remove(i);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>运行上面的代码时你会得到一个<code>ConcurrentModificationException</code>。原因是因为一个迭代器自生成之后(在for循环中)，用于横贯这个列表。与此同时，这个列表同时也被<code>Iterator.remove()</code>修改了。在Java语言中，当一个线程在修改一个容器时而另外一个线程在遍历它是不允许的。</p>
+<h1 id="3-如何将list转换成int"><a class="markdownIt-Anchor" href="#3-如何将list转换成int"></a> 3. 如何将List转换成int[]？</h1>
+<p>最快捷的方式可能是用Apache Commons Lang库中的<em><strong>ArrayUtils</strong></em>。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] array = ArrayUtils.toPrimitive(list.toArray(<span class="keyword">new</span> <span class="title class_">Integer</span>[<span class="number">0</span>]));</span><br></pre></td></tr></tbody></table></figure>
+<p>在JDK中，没有快捷方式。请注意你不能使用<code>List.toArray()</code>，因为那会将列表转换成<code>Integer[]</code>。正确的方式应该是这样的：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] array = <span class="keyword">new</span> <span class="title class_">int</span>[list.size()];</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i &lt; list.size(); i++) {</span><br><span class="line">  array[i] = list.get(i);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2016/08/07/Top-10-Questions-About-Java-Collections/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -830,156 +1017,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/07/04/Master-Java-HashMap/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2016/07/04/Master-Java-HashMap/" class="post-title-link" itemprop="url">掌握Java: HashMap应知应会</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-07-04 10:50:11" itemprop="dateCreated datePublished" datetime="2016-07-04T10:50:11+08:00">2016-07-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2016/07/04/Master-Java-HashMap/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/07/04/Master-Java-HashMap/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2016/07/04/Master-Java-HashMap/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>6.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>HashMap也是我们使用非常多的Collection，它是基于哈希表的Map接口的实现，以key-value的形式存在。在HashMap中，key-value总是会当做一个整体来处理，系统会根据hash算法来来计算key-value的存储位置，我们总是可以通过key快速地存、取value。下面就来分析HashMap的存取。</p>
-<h1 id="一-定义"><a class="markdownIt-Anchor" href="#一-定义"></a> 一、定义</h1>
-<p>HashMap实现了Map接口，继承AbstractMap。其中Map接口定义了键映射到值的规则，而AbstractMap类提供Map接口的骨干实现，以最大限度地减少实现此接口所需的工作，其实AbstractMap类已经实现了Map，这里标注Map LZ觉得应该是更加清晰吧！</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HashMap</span>&lt;K, V&gt; <span class="keyword">extends</span> <span class="title class_">AbstractMap</span>&lt;K, V&gt; <span class="keyword">implements</span> <span class="title class_">Map</span>&lt;K, V&gt;, Cloneable, Serializable</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="二-构造函数"><a class="markdownIt-Anchor" href="#二-构造函数"></a> 二、构造函数</h1>
-<p>HashMap提供了三个构造函数：</p>
-<ul>
-<li><code>HashMap()</code>：构造一个具有默认初始容量 (16) 和默认加载因子 (0.75) 的空HashMap。</li>
-<li><code>HashMap(int initialCapacity)</code>：构造一个带指定初始容量和默认加载因子 (0.75) 的空HashMap。</li>
-<li><code>HashMap(int initialCapacity, float loadFactor)</code>：构造一个带指定初始容量和加载因子的空HashMap。</li>
-</ul>
-<p>在这里提到了两个参数：初始容量，加载因子。这两个参数是影响HashMap性能的重要参数，其中容量表示哈希表中桶的数量，初始容量是创建哈希表时的容量，加载因子是哈希表在其容量自动增加之前可以达到多满的一种尺度，它衡量的是一个散列表的空间的使用程度，负载因子越大表示散列表的装填程度越高，反之愈小。对于使用链表法的散列表来说，查找一个元素的平均时间是<code>O(1+a)</code>，因此如果负载因子越大，对空间的利用更充分，然而后果是查找效率的降低；如果负载因子太小，那么散列表的数据将过于稀疏，对空间造成严重浪费。系统默认负载因子为<code>0.75</code>，一般情况下我们是无需修改的。</p>
-<p>HashMap是一种支持快速存取的数据结构，要了解它的性能必须要了解它的数据结构。</p>
-<h1 id="三-数据结构"><a class="markdownIt-Anchor" href="#三-数据结构"></a> 三、数据结构</h1>
-<p>我们知道在Java中最常用的两种结构是数组和模拟指针(引用)，几乎所有的数据结构都可以利用这两种来组合实现，HashMap也是如此。实际上HashMap是一个“链表散列”，如下是它数据结构：</p>
-<p>HashMap数据结构图:</p>
-<p>从上图我们可以看出HashMap底层实现还是数组，只是数组的每一项都是一条链。其中参数<code>initialCapacity</code>就代表了该数组的长度。下面为<code>HashMap</code>构造函数的源码：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">HashMap</span><span class="params">(<span class="type">int</span> initialCapacity, <span class="type">float</span> loadFactor)</span> {</span><br><span class="line">        <span class="comment">//初始容量不能&lt;0</span></span><br><span class="line">        <span class="keyword">if</span> (initialCapacity &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">"Illegal initial capacity: "</span></span><br><span class="line">                    + initialCapacity);</span><br><span class="line">        <span class="comment">//初始容量不能 &gt; 最大容量值，HashMap的最大容量值为2^30</span></span><br><span class="line">        <span class="keyword">if</span> (initialCapacity &gt; MAXIMUM_CAPACITY)</span><br><span class="line">            initialCapacity = MAXIMUM_CAPACITY;</span><br><span class="line">        <span class="comment">//负载因子不能 &lt; 0</span></span><br><span class="line">        <span class="keyword">if</span> (loadFactor &lt;= <span class="number">0</span> || Float.isNaN(loadFactor))</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">"Illegal load factor: "</span></span><br><span class="line">                    + loadFactor);</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 计算出大于 initialCapacity 的最小的 2 的 n 次方值。</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">capacity</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (capacity &lt; initialCapacity)</span><br><span class="line">            capacity &lt;&lt;= <span class="number">1</span>;</span><br><span class="line"> </span><br><span class="line">        <span class="built_in">this</span>.loadFactor = loadFactor;</span><br><span class="line">        <span class="comment">//设置HashMap的容量极限，当HashMap的容量达到该极限时就会进行扩容操作</span></span><br><span class="line">        threshold = (<span class="type">int</span>) (capacity * loadFactor);</span><br><span class="line">        <span class="comment">//初始化table数组</span></span><br><span class="line">        table = <span class="keyword">new</span> <span class="title class_">Entry</span>[capacity];</span><br><span class="line">        init();</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
-<p>从源码中可以看出，每次新建一个HashMap时，都会初始化一个table数组。table数组的元素为Entry节点。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Entry</span>&lt;K,V&gt; <span class="keyword">implements</span> <span class="title class_">Map</span>.Entry&lt;K,V&gt; {</span><br><span class="line">        <span class="keyword">final</span> K key;</span><br><span class="line">        V value;</span><br><span class="line">        Entry&lt;K,V&gt; next;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> hash;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * Creates new entry.</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Entry(<span class="type">int</span> h, K k, V v, Entry&lt;K,V&gt; n) {</span><br><span class="line">            value = v;</span><br><span class="line">            next = n;</span><br><span class="line">            key = k;</span><br><span class="line">            hash = h;</span><br><span class="line">        }</span><br><span class="line">        .......</span><br><span class="line">    }</span><br></pre></td></tr></tbody></table></figure>
-<p>其中Entry为HashMap的内部类，它包含了键key、值value、下一个节点next，以及hash值，这是非常重要的，正是由于Entry才构成了table数组的项为链表。</p>
-<p>上面简单分析了HashMap的数据结构，下面将探讨HashMap是如何实现快速存取的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/07/04/Master-Java-HashMap/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/48/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/48/">48</a><span class="page-number current">49</span><a class="page-number" href="/page/50/">50</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/50/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1070,7 +1107,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
 <script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/page/49/"}</script>

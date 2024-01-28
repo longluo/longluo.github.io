@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">327</span>
+          <span class="site-state-item-count">328</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -229,6 +229,151 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/03/28/Solve-A-Bug-Of-Post-PV-Counter-As-Using-The-LeanCloud-Global/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2021/03/28/Solve-A-Bug-Of-Post-PV-Counter-As-Using-The-LeanCloud-Global/" class="post-title-link" itemprop="url">解决使用LeanCloud国际版时网站文章浏览次数不显示的bug</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-28 21:55:31" itemprop="dateCreated datePublished" datetime="2021-03-28T21:55:31+08:00">2021-03-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/03/28/Solve-A-Bug-Of-Post-PV-Counter-As-Using-The-LeanCloud-Global/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/03/28/Solve-A-Bug-Of-Post-PV-Counter-As-Using-The-LeanCloud-Global/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/03/28/Solve-A-Bug-Of-Post-PV-Counter-As-Using-The-LeanCloud-Global/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>之前<a href="http://www.longluo.me">个人网站</a>文章阅读次数存储一直在<a target="_blank" rel="noopener" href="http://www.leancloud.cn">Leancloud</a>上，由于去年国内版要求网站必须备案才能使用之后，个人网站的浏览次数一直是不可用状态。几个月前切换到国际版，但是切换之后浏览次数一直是<code>空白null</code>值，正常应该是<code>0</code>，数据也不会更新。</p>
+<p>后台查看<code>Counter</code>数据，也一直是没有数据的状态。当时花费了时间去检查，试图找到问题所在，当时还是怀疑LeanCloud国际版后台接口API的问题，但一直没能解决这个问题。</p>
+<p>今天下午从原理入手，分析每个可能的步骤，找到了<strong>问题原因</strong>，在此记录下解决问题的过程。</p>
+<h1 id="如何显示阅读次数"><a class="markdownIt-Anchor" href="#如何显示阅读次数"></a> 如何显示阅读次数？</h1>
+<p>网站使用的是Hexo + Next主题，可以使用3种方式显示阅读次数：1. Leancloud; 2. FireStore; 3. Busuanzi</p>
+<p><em>FireStore</em>由于需要翻墙，尝试过发现不可行；</p>
+<p><em>Busuanzi</em>虽然也可以，设置之后发现首页数据显示紊乱，而且不准，使用了一段时间之后放弃；</p>
+<p><em>LeanCloud</em>是最合适的，数据也可以很方便的进行迁移。</p>
+<p>在Next主题配置<code>_config.yml</code>文件中，可以设置使用哪种计数方式。注意文章阅读次数只能设置一个为true，否则页面会显示多个阅读次数。</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">leancloud_visitors:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">app_id:</span> <span class="comment"># &lt;your app id&gt; hdPFnwkCdbHRj5Q3OQk5vNJQ-gzGzoHsz</span></span><br><span class="line">  <span class="attr">app_key:</span> <span class="comment"># &lt;your app key&gt; p2mNUdDbqxrxOYMjs1xiS0zM </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Another tool to show number of visitors to each article.</span></span><br><span class="line"><span class="comment"># Visit https://console.firebase.google.com/u/0/ to get apiKey and projectId.</span></span><br><span class="line"><span class="comment"># Visit https://firebase.google.com/docs/firestore/ to get more information about firestore.</span></span><br><span class="line"><span class="attr">firestore:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">collection:</span> <span class="string">articles</span> <span class="comment"># Required, a string collection name to access firestore database</span></span><br><span class="line">  <span class="attr">apiKey:</span>  <span class="comment"># Required</span></span><br><span class="line">  <span class="attr">projectId:</span>  <span class="comment"># Required </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Show Views / Visitors of the website / page with busuanzi.</span></span><br><span class="line"><span class="comment"># For more information: http://ibruce.info/2015/04/04/busuanzi/</span></span><br><span class="line"><span class="attr">busuanzi_count:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_visitors:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_visitors_icon:</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br><span class="line">  <span class="attr">total_views:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">total_views_icon:</span> <span class="string">fa</span> <span class="string">fa-eye</span></span><br><span class="line">  <span class="attr">post_views:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">post_views_icon:</span> <span class="string">fa</span> <span class="string">fa-eye</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="如何读写阅读次数的"><a class="markdownIt-Anchor" href="#如何读写阅读次数的"></a> 如何读写阅读次数的？</h2>
+<p>这里以LeanCloud为例来说明阅读次数是如何读写的。首先打开<a href="http://www.longluo.me">网站首页</a>，查看源代码：</p>
+<figure class="highlight html"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-meta-item-icon"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"far fa-eye"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"post-meta-item-text"</span>&gt;</span>阅读次数：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"leancloud-visitors-count"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>可以看出，阅读次数是通过<code>leancloud-visitors-count</code>这个<code>class</code>的值来显示的，搜索<code>leancloud-visitors-count</code>可以在网页的<code>js</code>代码中找到：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">leancloudSelector</span>(<span class="params">url</span>) {</span><br><span class="line">  url = <span class="built_in">encodeURI</span>(url);</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(url).<span class="title function_">querySelector</span>(<span class="string">'.leancloud-visitors-count'</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>那么这段<code>js</code>代码在哪里呢？</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2021/03/28/Solve-A-Bug-Of-Post-PV-Counter-As-Using-The-LeanCloud-Global/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -816,165 +961,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2021/03/15/Leetcode-divide-two-integers/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/03/10/Website-Upgrade-2021/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2021/03/10/Website-Upgrade-2021/" class="post-title-link" itemprop="url">网站升级（2021年度）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-10 23:11:22" itemprop="dateCreated datePublished" datetime="2021-03-10T23:11:22+08:00">2021-03-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2021/03/10/Website-Upgrade-2021/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/03/10/Website-Upgrade-2021/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2021/03/10/Website-Upgrade-2021/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>最近对网站进行了一些升级，增加了一些新特性，在此做下记录：</p>
-<h1 id="hexo备份升级"><a class="markdownIt-Anchor" href="#hexo备份升级"></a> Hexo备份升级：</h1>
-<p>如果换了电脑或者升级Hexo或者误删了文件夹之后，如何操作：</p>
-<h2 id=""><a class="markdownIt-Anchor" href="#"></a> </h2>
-<h2 id="安装必要文件"><a class="markdownIt-Anchor" href="#安装必要文件"></a> 安装必要文件</h2>
-<h2 id="-2"><a class="markdownIt-Anchor" href="#-2"></a> </h2>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> blog </span><br><span class="line"></span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo s</span><br><span class="line"></span><br><span class="line">hexo clean &amp;&amp; hexo g -d</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
-<h2 id="切换为next主题"><a class="markdownIt-Anchor" href="#切换为next主题"></a> 切换为next主题</h2>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-theme-next --save</span><br></pre></td></tr></tbody></table></figure>
-<p><code>hexo-theme-next</code>会存放在.node-modules目录下的@hexo-theme-next路径下。</p>
-<h2 id="常用插件"><a class="markdownIt-Anchor" href="#常用插件"></a> 常用插件</h2>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br><span class="line"></span><br><span class="line">npm install hexo-generator-feed --save</span><br><span class="line"></span><br><span class="line">npm install hexo-generator-searchdb --save</span><br><span class="line"></span><br><span class="line">npm install hexo-generator-sitemap --save</span><br><span class="line"></span><br><span class="line">npm install hexo-next-twikoo --save</span><br><span class="line"></span><br><span class="line">npm install hexo-symbols-count-time --save</span><br><span class="line"></span><br><span class="line">npm install hexo-wordcount --save</span><br><span class="line"></span><br><span class="line">// 数学公式</span><br><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-markdown-it-plus --save</span><br><span class="line"></span><br><span class="line">npm install hexo-filter-github-emojis --save</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="hexo升级到8x版本"><a class="markdownIt-Anchor" href="#hexo升级到8x版本"></a> Hexo升级到8.X版本</h1>
-<p>之前使用的<code>Hexo</code>是v7.8版本，最近升级到8.X版本。<br>
-<code>Next</code>主题的Github地址从<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">theme-next</a>切换到了<a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next/">next-theme</a> ，8.X版本都位于此网站<a target="_blank" rel="noopener" href="https://theme-next.js.org/">theme-next.js.org</a>上。</p>
-<p>直接<code>git clone https://github.com/next-theme/hexo-theme-next/</code>最新代码，修改<code>Next Theme</code>的<code>_config.yml</code>文件。</p>
-<h1 id="增加说说页面"><a class="markdownIt-Anchor" href="#增加说说页面"></a> 增加说说页面</h1>
-<p>之前看到一些其他个人网站有类似于时间线的界面，如：<a target="_blank" rel="noopener" href="https://spaces.ac.cn/me.html/comment-page-2#comments">苏剑林科学空间的微言微语</a><br>
-和<a target="_blank" rel="noopener" href="https://www.changhai.org/articles/miscellaneous/blog/202101.php">卢昌海的微言小义</a>。</p>
-<p>因为很多时候写一篇博文太长太重了，而实际上想发表下一些碎片化的思考和感悟。这种时间线的句子更合适些。所以也想自己搭建一个，最终通过网络寻找资料找到并搭建了2个页面：</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="http://longluo.me/suisuinian">碎碎念</a></li>
-<li><a target="_blank" rel="noopener" href="http://longluo.me/bb">说说</a></li>
-</ol>
-<p>搭建方法很简单，可参考下面的2篇文章：</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://cndrew.cn/2020/04/10/hexo-shuoshuo/">为你的hexo博客添加动态的（可直接发布说说的）说说页面</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.heson10.com/posts/26865.html">BB短博文Hexo-Next主题(8.0+)适配</a></li>
-</ol>
-<p>哔哔可能更好点，因为可以通过微信公众号直接发送，但由于这部分没有开源，如果可以迁移到自己的微信公众号就更好了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2021/03/10/Website-Upgrade-2021/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

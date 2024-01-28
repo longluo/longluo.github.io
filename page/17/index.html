@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">327</span>
+          <span class="site-state-item-count">328</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -229,6 +229,158 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/04/12/Leetcode-merge-two-binary-trees/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2022/04/12/Leetcode-merge-two-binary-trees/" class="post-title-link" itemprop="url">[LeetCode][617. Merge Two Binary Trees] 4 Approaches: Recursion, Iteration, BFS and DFS</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-12 06:55:26" itemprop="dateCreated datePublished" datetime="2022-04-12T06:55:26+08:00">2022-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2022/04/12/Leetcode-merge-two-binary-trees/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/04/12/Leetcode-merge-two-binary-trees/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2022/04/12/Leetcode-merge-two-binary-trees/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>This article is the solution <a target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-two-binary-trees/solutions/1860049/4-approaches-recursion-iteration-bfs-and-dfs/">4 Approaches: Recursion, Iteration, BFS and DFS</a> of Problem <a target="_blank" rel="noopener" href="https://leetcode.com/problems/merge-two-binary-trees">617. Merge Two Binary Trees</a>.</p>
+<p>Here are <strong>4</strong> approaches to solve this problem in Java: <strong>Recursion</strong>, <strong>Iteration</strong>, <strong>BFS</strong> and <strong>DFS</strong>.</p>
+<h1 id="recursion"><a class="markdownIt-Anchor" href="#recursion"></a> Recursion</h1>
+<h2 id="method-1-new-tree"><a class="markdownIt-Anchor" href="#method-1-new-tree"></a> Method 1: New Tree</h2>
+<p>We can create a new <strong>Tree</strong>, each <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">TreeNode</mtext></mrow><annotation encoding="application/x-tex">\texttt{TreeNode}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">TreeNode</span></span></span></span></span> value is sum of two nodes.</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title function_">mergeTrees</span><span class="params">(TreeNode root1, TreeNode root2)</span> {</span><br><span class="line">    <span class="keyword">if</span> (root1 == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> root2;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (root2 == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> root1;</span><br><span class="line">    }</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">merged</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TreeNode</span>(root1.val + root2.val);</span><br><span class="line">    merged.left = mergeTrees(root1.left, root2.left);</span><br><span class="line">    merged.right = mergeTrees(root1.right, root2.right);</span><br><span class="line">    <span class="keyword">return</span> merged;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="analysis"><a class="markdownIt-Anchor" href="#analysis"></a> Analysis</h2>
+<ul>
+<li><strong>Time Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(min(m, n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
+<li><strong>Space Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(min(m, n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+<h2 id="method-2"><a class="markdownIt-Anchor" href="#method-2"></a> Method 2</h2>
+<p>Traverse both the given trees in a <strong>PreOrder</strong> style.</p>
+<p>At every step, check if the current node exists for both the trees. If one of these children happens to be null, we return the child of the other tree to be added as a child subtree to the calling parent node in the first tree.</p>
+<p>We can add the values in the current nodes of both the trees and update the value in the current node of the first tree to reflect this sum obtained.</p>
+<p>Then we call the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">mergeTrees()</mtext></mrow><annotation encoding="application/x-tex">\texttt{mergeTrees()}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9166599999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">mergeTrees()</span></span></span></span></span> with the left children and then with the right children of the current nodes of the two trees.</p>
+<p>At the end, the first tree will represent the required resultant merged binary tree.</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title function_">mergeTrees_rec</span><span class="params">(TreeNode root1, TreeNode root2)</span> {</span><br><span class="line">    <span class="keyword">if</span> (root1 == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> root2;</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">if</span> (root2 == <span class="literal">null</span>) {</span><br><span class="line">        <span class="keyword">return</span> root1;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (root1 != <span class="literal">null</span>) {</span><br><span class="line">        root1.val += root2.val;</span><br><span class="line">        root1.left = mergeTrees_rec(root1.left, root2.left);</span><br><span class="line">        root1.right = mergeTrees_rec(root1.right, root2.right);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> root1;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="analysis-2"><a class="markdownIt-Anchor" href="#analysis-2"></a> Analysis</h2>
+<ul>
+<li><strong>Time Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(min(m, n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
+<li><strong>Space Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>m</mi><mo separator="true">,</mo><mi>n</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(min(m, n))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2022/04/12/Leetcode-merge-two-binary-trees/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -799,148 +951,6 @@ M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2022/04/05/Leetcode-container-with-most-water/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/" class="post-title-link" itemprop="url">[LeetCode][1721. Swapping Nodes in a Linked List] 3 Approaches: Swapping Values and Swapping Nodes with Image Explanation</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-04-04 21:33:52" itemprop="dateCreated datePublished" datetime="2022-04-04T21:33:52+08:00">2022-04-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>This article is the solution <a target="_blank" rel="noopener" href="https://leetcode.com/problems/swapping-nodes-in-a-linked-list/solutions/1912231/3-approaches-swapping-values-and-swapping-nodes-with-image-explanation/">3 Approaches: Swapping Values and Swapping Nodes with Image Explanation</a> of Problem <a target="_blank" rel="noopener" href="https://leetcode.com/problems/swapping-nodes-in-a-linked-list/">1721. Swapping Nodes in a Linked List</a>.</p>
-<p>Here shows <strong>3</strong> Approaches to slove this problem: <strong>ArrayList</strong> and <strong>Two Pointers</strong>.</p>
-<h1 id="intuition"><a class="markdownIt-Anchor" href="#intuition"></a> Intuition</h1>
-<p>Since the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">ListNode</mtext></mrow><annotation encoding="application/x-tex">\texttt{ListNode}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">ListNode</span></span></span></span></span> only contain values, we can just just <strong>swap the values</strong> of two nodes. It’s very easy. All we need to do is to find these two nodes and swap their values.</p>
-<p>If we swap nodes, it will be more difficult than swap values.</p>
-<h1 id="arraylistswapping-values"><a class="markdownIt-Anchor" href="#arraylistswapping-values"></a> ArrayList(Swapping Values)</h1>
-<p>We can use an <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">ArrayList</mtext></mrow><annotation encoding="application/x-tex">\texttt{ArrayList}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">ArrayList</span></span></span></span></span> to record all the nodes of the linked list. We can just <strong>swap the values</strong> of two nodes.</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">// BF List time: O(n) space: O(n)</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> ListNode <span class="title function_">swapNodes_bf_list</span><span class="params">(ListNode head, <span class="type">int</span> k)</span> {</span><br><span class="line">      <span class="type">ListNode</span> <span class="variable">pNode</span> <span class="operator">=</span> head;</span><br><span class="line">      List&lt;ListNode&gt; nodeList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"><span class="comment">// store these nodes.</span></span><br><span class="line">      <span class="keyword">while</span> (pNode != <span class="literal">null</span>) {</span><br><span class="line">          nodeList.add(pNode);</span><br><span class="line">          pNode = pNode.next;</span><br><span class="line">      }</span><br><span class="line"></span><br><span class="line"><span class="comment">// swap their values.</span></span><br><span class="line">      <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> nodeList.size();</span><br><span class="line">      <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> nodeList.get(k - <span class="number">1</span>).val;</span><br><span class="line">      nodeList.get(k - <span class="number">1</span>).val = nodeList.get(len - k).val;</span><br><span class="line">      nodeList.get(len - k).val = temp;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> head;</span><br><span class="line">  }</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="analysis"><a class="markdownIt-Anchor" href="#analysis"></a> Analysis</h2>
-<ul>
-<li><strong>Time Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></li>
-<li><strong>Space Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2022/04/04/Leetcode-swapping-nodes-in-a-linked-list/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
