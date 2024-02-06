@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-count">332</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">305</span>
+        <span class="site-state-item-count">306</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,629 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/04/07/game-engine-an-introducation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/04/07/game-engine-an-introducation/" class="post-title-link" itemprop="url">游戏引擎学习笔记：介绍，架构，设计及实现</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-04-07 00:17:51" itemprop="dateCreated datePublished" datetime="2014-04-07T00:17:51+08:00">2014-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-04 20:46:36" itemprop="dateModified" datetime="2024-02-04T20:46:36+08:00">2024-02-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Game/" itemprop="url" rel="index"><span itemprop="name">Game</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2014/04/07/game-engine-an-introducation/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/04/07/game-engine-an-introducation/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2014/04/07/game-engine-an-introducation/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>从小到大，虽然玩过的游戏不少，但是从写程序开始，目前为此仅仅写过2个游戏。其一是2011年在MTK平台下写的贪食蛇，其二是2010年在嵌入式开发板上写过一个迷宫的游戏。第一个代码量大概有3000行左右，第二个有2000行左右。</p>
+<p>这2个游戏都很简单，而且网上有很多现成的例子可供参考，因此难度也比较低。</p>
+<p>这2天把拖延了好久的***《Android应用开发揭秘》***的游戏引擎的那一章看完了，收获还是很大，在此写一篇读书笔记。</p>
+<p>关于Game Engine，我能想到的几个问题：</p>
+<ol>
+<li>游戏引擎是什么？</li>
+<li>Game Engine是为了解决什么问题？</li>
+<li>Game Engine的架构是什么？</li>
+<li>如何设计一款游戏引擎？</li>
+<li>游戏引擎包含哪些模块？</li>
+</ol>
+<p>下面就来探讨几个问题：</p>
+<h1 id="一-game-engine是什么"><a class="markdownIt-Anchor" href="#一-game-engine是什么"></a> 一、Game Engine是什么？</h1>
+<p>游戏产业在全球来看是一个很大的产业，一款游戏大作包含了非常多的元素。游戏涉及到剧情、人物、任务、关卡、地图、画质、美术、音乐、网络等多种元素。开发一款游戏实际上需要耗费非常多的资源，据说North Star的《GTA V》耗资几亿美元。正因为如此，在开发项目过程中，尽可能复用之前项目成功的东西就非常重要。</p>
+<p>一款游戏中，<em>Game Engine直接控制着剧情、关卡、美工、音乐、操作</em>等内容，将游戏的所有元素捆绑在一起。</p>
+<p>一般来说，一款Game Engine需要包含以下模块：</p>
+<ol>
+<li>基本框架（渲染、逻辑、物理 等等各部分如何组装）</li>
+<li>资源管理</li>
+<li>渲染</li>
+<li>基本逻辑（网游还要解决逻辑的同步问题）</li>
+<li>物理（有时候和逻辑合并）</li>
+</ol>
+<p>-----------分割线，以下是重要但较为独立的部分-------------<br>
+6. <strong>UI</strong><br>
+7. <strong>音乐音效</strong><br>
+8. <strong>网络</strong><br>
+9. <strong>脚本</strong>（有些类型的游戏引擎需要脚本和逻辑的关联性非常强，有些脚本则比较独立）</p>
+<h1 id="二-game-engine为了解决什么问题"><a class="markdownIt-Anchor" href="#二-game-engine为了解决什么问题"></a> 二、Game Engine为了解决什么问题？</h1>
+<p><strong>Game Engine实际上有效的减少开发者编写程序时的冗余劳动，同时增强游戏的可移植性</strong>。</p>
+<p>Engine就是游戏的框架，我们需要往框架中填充内容就可以形成一个游戏。</p>
+<p>引擎，就是一系列的工具和生产链，像Unreal 3，Unity这样的成熟引擎，用起来非常方便，就是因为它的关卡/场景编辑器十分宜用，支持多种脚本语言。这类引擎运用恰当的话，理论上能将关卡调试和物件流水线的大部分工作从程序员那里完全移出。</p>
+<h1 id="三-game-engine的架构"><a class="markdownIt-Anchor" href="#三-game-engine的架构"></a> 三、Game Engine的架构</h1>
+<pre><code>游戏 = 引擎(程序) + 资源(图像、声音、动画等)
+</code></pre>
+<p>目前的Game Engine的架构都是Model-View-Controller架构，逻辑和显示分开，由一个逻辑控制流来协调Client的请求和Server的行动。</p>
+<ol>
+<li>View: 负责界面回执</li>
+<li>Controller：处理工作流程的创建和种植，用户输入，各种事件的处理</li>
+<li>Model: 模型、逻辑，程序的功能实现</li>
+</ol>
+<p><strong>消息循环-&gt;更新数据-&gt;绘制各节点</strong> 这是绘制的基本结构基本不会有大的改变。</p>
+<p>各种引擎的变种很大部分是在游戏逻辑上的封装。脚本也好，直接写代码也好。比如较为古老的数据与函数分离，以C语言为代表。大行其道的类结构。以c++为代表。以及现在光环日耀的CBSE，基于组件的架构</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/04/07/game-engine-an-introducation/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/" class="post-title-link" itemprop="url">学车思考之一：方向盘转多少，车轮就转多少度对吗？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-04-06 19:43:27" itemprop="dateCreated datePublished" datetime="2014-04-06T19:43:27+08:00">2014-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>923</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>最近一个月在驾校学车，前2次去练车，总是<em><strong>不得要领</strong></em>，连曲线行驶开不好，被教练狂K。经历了当学渣的痛苦之后，痛定思痛，立志成为<strong>学霸</strong>。</p>
+<h1 id="一-面临问题"><a class="markdownIt-Anchor" href="#一-面临问题"></a> 一、 面临问题：</h1>
+<p>我分析遇到的问题之后，得出我面临的几个问题：</p>
+<ol>
+<li>方向盘打法不规范；</li>
+<li>离合器踩的不到位，车速偏快；</li>
+<li>不清楚方向盘转的度数和车轮转的度数关系；</li>
+<li>不记得当前车轮方向。</li>
+</ol>
+<p>清楚自己的问题就好办了，那就各个击破。</p>
+<p>昨天去实际操作了半个小时，果然大有进展。</p>
+<h1 id="二-转向理论"><a class="markdownIt-Anchor" href="#二-转向理论"></a> 二、 转向理论：</h1>
+<p>我学习新东西的时候，往往会学习下理论，就是搞清楚*<strong>为什么</strong>的问题，目的是为了做到理论和实践相结合，才能真正掌握一个东西。</p>
+<p>首先目前的小汽车都是<strong>前置发动机前轮驱动</strong>的，之前我一直认为小汽车也是后驱的，这纠正了我的一个错误认识，简而言之，就是前轮带着汽车往前跑。</p>
+<p><strong>汽车前轮是转向轮，只有前轮才能改变方向</strong>，后轮是不能转变方向的，请看下面一张动态图：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Car/car_houlun.gif" alt="后轮无法左右移动"></p>
+<p>汽车转弯时车轮状态：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Car/zhuanxiang.gif" alt="前置前驱"></p>
+<p>我们在倒车和转弯各项操作的时候，就必须弄明白汽车转弯的机制和轨迹是什么？</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Car/zhuanwan.gif" alt="转弯轨迹"></p>
+<p>上面这张图很直观的展示了汽车在转弯的时候车辆的旋转中心和前后轮的轨迹。</p>
+<p>了解了理论知识，那么在倒车时应该注意些什么呢？</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Car/daoche_xiazai.gif" alt="倒车注意事项"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/04/06/xue-che-si-kao-zhi-fang-xiang-pan-zhuan-duo-shao/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/" class="post-title-link" itemprop="url">介绍一个提高Android ListView或GridView的Smoothie库</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-02-15 11:41:06" itemprop="dateCreated datePublished" datetime="2014-02-15T11:41:06+08:00">2014-02-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>949</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>翻译 By Long Luo</strong></em></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2013/01/06/introducing-smoothie/">Introducing Smoothie</a></p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/smoothie.png" alt="smoothie"></p>
+<p><a target="_blank" rel="noopener" href="http://pattrnapp.com/">Pattrn</a> UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie">Smoothie</a>。</p>
+<p><em><strong>Smoothie</strong></em>提供了一个简单的API来异步加载<em>ListView/GridView</em>的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。</p>
+<p><em><strong>Smoothie</strong></em>是<strong>手势识别</strong>：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，<em><strong>Smoothie</strong></em>使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。</p>
+<p>那么，怎么使用它呢？很简单：</p>
+<ol>
+<li>
+<p>首先在你的布局文件中增加一个<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncListView.java">AsyncListView</a>或者<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncGridView.java">AsyncGridView</a>，只需要增加一个额外传递的方法到响应的父类中。</p>
+</li>
+<li>
+<p>然后实现一个和你的应用程序加载和显示项目逻辑一致的<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemLoader.java">ItemLoader</a>。你将需要重写下面四种方法：<em>getItemParams()</em>, <em>loadItem()</em>, <em>loadItemFromMemory()<em>以及</em>displayItem()</em>。</p>
+</li>
+<li>
+<p>最后在<em>ItemLoader</em>中建一个<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemManager.java">ItemManager</a>，同时把它和目标<em>AsyncListView</em>或者<em>AsyncGridView</em>关联起来。</p>
+</li>
+</ol>
+<p>在你的<em>ListView/GridView</em>控件需要异步加载时，考虑下把<em><strong>Smoothie</strong></em>作为你的轻量骨架。您可以轻松地连接您自己的图像加载/缓存框架在里面。例如，一个典型的示例应用，<a target="_blank" rel="noopener" href="https://github.com/chrisbanes/Android-BitmapCache">Android-BitmapCache</a>实现了<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/samples/bitmap-cache/src/org/lucasr/smoothie/samples/bitmapcache/PatternsListLoader.java">ItemLoader</a>使用一个简单的淡入淡出的动画来显示图像。</p>
+<p>除了在代码中的API文档，还可以看看App示例，一边更好地了解如何使用该库。请记住，API是​不是最终版本哦。目前反响是非常好的！</p>
+<p><strong>Enjoy it:-)</strong></p>
+<p><em><strong>Long Luo at AM11:30 ~ 12:42 Feb. 15th, 2014 @Shenzhen, China.</strong></em></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/02/14/android-listview-performence-optimization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/02/14/android-listview-performence-optimization/" class="post-title-link" itemprop="url">提升Android ListView性能的几个技巧</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-02-14 15:22:10" itemprop="dateCreated datePublished" datetime="2014-02-14T15:22:10+08:00">2014-02-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2014/02/14/android-listview-performence-optimization/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/02/14/android-listview-performence-optimization/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2014/02/14/android-listview-performence-optimization/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>翻译By Long Luo</strong></em></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2012/04/05/performance-tips-for-androids-listview/">Performance Tips for Android’s ListView</a></p>
+<pre><code>译者注：
+1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
+2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正；
+3. inflation这个词一直找不到特别好的中文翻译。
+</code></pre>
+<h1 id="listview如何运作的"><a class="markdownIt-Anchor" href="#listview如何运作的"></a> ListView如何运作的？</h1>
+<p><em>ListView</em>是设计应用于对<strong>可扩展性和高性能要求</strong>的地方。实际上，这就意味着<em>ListView</em>有以下2个要求：</p>
+<ol>
+<li>尽可能少的创建View；</li>
+<li>只是绘制和布局在屏幕上可见的子View。</li>
+</ol>
+<p>理解第一点很简单：通过布局xml文件在创建View并显示是很昂贵耗时耗资源的操作。尽管布局文件已经编译打包成了二进制形式以便于更高效的语法解析，但是创建View仍然需要通过一个特殊的XML树，并实例化所有需要响应的View。</p>
+<p><em>ListView</em>通过回收一些不可见的Views，通常在Android源码中称为“<em>ScrapView</em>(废弃的View)”来解决这个问题。这及意味着开发者只需要简单的更新每行的内容而不需要针对每个单独的行的布局来创建View。</p>
+<p>为了实现第二点，在我们滑动屏幕时，<em>ListView</em>通过使用View回收器来增加低于或者高于当当前窗口的Views，并当前活动的Views移动到一个可回收池中。这样的话，<em>ListView</em>只需要在内存中保持足够多的Views去填充分配空间中的布局和一些额外的可回收Views，即使当你的Adapter有上百个items的适合。它会使用不同的方法去填充行之间的空间，从顶部或者底部等等，具体取决于窗口是如何变化的。</p>
+<p>下面这个图很直观的展示了当你按下ListView的时候发生了什么：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/listview_tips.png" alt="ListView"></p>
+<p>通过上述介绍，相比我们已经熟悉了<em>ListView</em>的这种机制，让我们继续前往技巧部分。正如上述介绍的，在滑动时，<em>ListView</em>通过动态的创建和回收很多View，实现了尽可能地让Adapter的*getView()<em>轻量。所有的技巧都是通过多种方法让</em>getView()*更快。</p>
+<h1 id="view的回收"><a class="markdownIt-Anchor" href="#view的回收"></a> View的回收</h1>
+<p>当<em>ListView</em>每次需要在屏幕上显示新的一行的时候，会从其Adapter中调用*getView()*的方法。众所周知，*getView()*方法有3个参数：行的位置， convertView以及父ViewGroup。</p>
+<p>参数<em>convertView</em>说穿来就是之前讲述的ScrapView。当<em>ListView</em>要求更新一行的布局时，<em>convertView</em>是一个非空值。因此，当<em>convertView</em>值非空时，你仅仅需要<em>更新内容</em>即可，而不需要重新一个新行的布局。*getView()*在Adapter中一般是如下的形式：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> View <span class="title function_">getView</span><span class="params">(<span class="type">int</span> position, View convertView, ViewGroup parent)</span> {</span><br><span class="line">    <span class="keyword">if</span> (convertView == <span class="literal">null</span>) {</span><br><span class="line">        convertView = mInflater.inflate(R.layout.your_layout, <span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">TextView</span> <span class="variable">text</span> <span class="operator">=</span> (TextView) convertView.findViewById(R.id.text);</span><br><span class="line">    text.setText(<span class="string">"Position "</span> + position);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> convertView;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="view-holder如何写的模板"><a class="markdownIt-Anchor" href="#view-holder如何写的模板"></a> View Holder如何写的模板</h1>
+<p>Android很常见的一个操作就是在布局文件中找到一个内部的View。通常是使用一个***findViewById()<em><strong>的View方法来实现的。这个</strong></em>findViewById()<em><strong>方法在View树中，根据一个View ID，会递归的被调用来找到其子树。虽然在静态UI布局中使用</strong></em>findViewById()**<em>是完全正常的。但是，在滑动时，<em>ListView</em>调用其Adapter中的</em>getView()*是非常频繁的。***findViewById()*<em><em>可能会影响</em>ListView</em>滑动时的性能，尤其是你的行布局是很复杂的时候。</p>
+<p>寻找一个充气布局内的内部观点是在Android上最常用的操作之一。这通常是通过一个名为findViewById（查看方法完成）。此方法将递归经过视图树寻找一个孩子用给定的ID码。静态的UI布局使用findViewById（）是完全正常，但正如你所看到的，ListView中滚动时调用适配器的getView（）非常频繁。 findViewById（）可能perceivably击中ListViews，尤其是滚动的性能，如果你行的布局是不平凡的。</p>
+<p>View Holder的模式就是减少在Adapter中<em>getView()<em>方法中调用</em>findViewById()<em>次数。实际上，View Holder是一个轻量级的内部类，用于直接引用到所有内部views。在创建View之后，你可以在每行的View存储为一个标签。通过这种方法，只需要在初次创建布局的时候调用</em></em><em>findViewById()</em>**。下面是一个使用上述方法的View Holder模板的代码示例：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> View <span class="title function_">getView</span><span class="params">(<span class="type">int</span> position, View convertView, ViewGroup parent)</span> {</span><br><span class="line">    ViewHolder holder;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (convertView == <span class="literal">null</span>) {</span><br><span class="line">        convertView = mInflater.inflate(R.layout.your_layout, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">        holder = <span class="keyword">new</span> <span class="title class_">ViewHolder</span>();</span><br><span class="line">        holder.text = (TextView) convertView.findViewById(R.id.text);</span><br><span class="line"></span><br><span class="line">        convertView.setTag(holder);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        holder = convertView.getTag();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    holder.text.setText(<span class="string">"Position "</span> + position);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> convertView;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">ViewHolder</span> {</span><br><span class="line">    <span class="keyword">public</span> TextView text;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/02/14/android-listview-performence-optimization/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -428,580 +1051,8 @@ android:layout_marginLeft="30px"  整个按钮离左边设置的内容30个像�
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/" class="post-title-link" itemprop="url">情歌有多动听，你就有多怀疑?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-01-21 22:41:43" itemprop="dateCreated datePublished" datetime="2014-01-21T22:41:43+08:00">2014-01-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>最近没怎么写东西的缘故是因为担心自己<strong>看的东西太少，读的东西太少，而想的太多</strong>。2014年的第一月也很快就要过去了，而我还没有对自己过去的一年里做出一点小结，就在这里随便扯几点吧！</p>
-<p>比如我的大学好友雷大才子，精通几门外语，学富五车，不仅文章写得好，又懂音乐，还会写诗作画，更是一名勤劳的Blogger，每次看他的博文，总能学到很多东西。</p>
-<h1 id="一-destiny"><a class="markdownIt-Anchor" href="#一-destiny"></a> 一、Destiny</h1>
-<p>年轻的时候我看到网上一些晒东晒西的帖子，总想：“等我到了他那个年纪，应该比TA出色的多吧！”</p>
-<p>但在工作了几年之后，我不得不认识到：<strong>和一些人相比，一方面由于家庭草根身份出身的巨大差距，另外一方面之前20多年的积累，导致除非出现巨大的机遇，否则人生绝无逆转的可能</strong>。关于这种巨大的差距，包括<strong>眼界、资源、机遇、圈子</strong>等，在第三节里面我会再认真的阐述。</p>
-<p>被认为是20世纪最有影响力的经济学家之一的Frank H. Knight有个著名的观点：“<strong>决定一个人富有的三个条件，一是出身，二是机遇，三是努力，而这三者之中，努力是最微不足道的。</strong>”</p>
-<p>我更喜欢英语的Destiny，因为让我想起一个词:Destination，我想一个人的命运也就意味着这个人一生中最终能到达什么样的地方。<strong>一个人就像森林里的一棵树苗，最初你长在什么地方，加上你的天性，除非特别的机遇，你能够长到多高是可以预见的</strong>。</p>
-<p>我很羡慕凤姐，有其是我这种间歇性缺乏自信的人，更需要学习凤姐的自信和强大的内心，相比漂在大城市的广大千千万屌丝蚁族来说，凤姐完成了大改变，不仅不用再重复父辈的贫困，很大程度的改变了社会地位，也不需要像天朝这种Hard模式活动这么累了。</p>
-<p>即使凤姐不去USA，比起绝大多数打工仔打工妹来说，凤姐上电视台，接受各种采访，人生经历也足够丰富。</p>
-<p>2013的经历也许足够丰富，只是自己缺乏总结，导致又被同样的石头绊倒了2次。是时候好好回顾下了，做出改变。</p>
-<pre><code>除了老婆孩子不能变之后，其他的统统都要变。
-									---李健熙
-</code></pre>
-<h1 id="二-这些年来的折腾"><a class="markdownIt-Anchor" href="#二-这些年来的折腾"></a> 二、这些年来的折腾</h1>
-<p>2013年自己折腾了不少，写了一些技术博客，也写了一些日志。</p>
-<p>也许是小时候太没见过世面了，导致长大后努力想体验各种东西，到各种地方，了解各种知识，满足自己旺盛的好奇心和欲望。</p>
-<p>建了个个人主页，折腾了html/css/php/js的知识，把网站搞的高大上点，虽然大部分是copy的。</p>
-<p>建设个人主页初心就是宣传自己，树立我的个人品牌了，虽然目前人气不是很足，但是</p>
-<ol>
-<li>
-<p><a target="_blank" rel="noopener" href="http://www.imlongluo.com" title="个人主页">个人主页</a></p>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="http://longluo.github.io" title="Blog">Github Blog</a></p>
-</li>
-</ol>
-<p>引用雷才子的话来说，真正学到手的东西，只要没到你临死的那天，都会发挥它的作用。所以我要努力的锻炼身体，让自己活得很长很长。</p>
-<p><strong>我就像那棵树，现在起劲的折腾，是不是只是为了让自己那棵树的下限能够再高一点?</strong></p>
-<p><strong>生命不息，折腾不止。</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2014/01/21/qing-ge-you-duo-dong-ting-ni-jiu-you-duo-huai-yi/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/01/19/a-guitar-lesson/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/01/19/a-guitar-lesson/" class="post-title-link" itemprop="url">试听了一节吉他课</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-01-19 19:29:53" itemprop="dateCreated datePublished" datetime="2014-01-19T19:29:53+08:00">2014-01-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2014/01/19/a-guitar-lesson/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/01/19/a-guitar-lesson/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/01/19/a-guitar-lesson/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>594</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>又是一个周末，说明这一周又飞速的过去了，我的时间沙漏的沙子实在是过的太快了，尤其是在这个年龄，<strong>几乎是哭着送走每一天的</strong>。</p>
-<p>上午起床后想把<strong>WordPress Android</strong>客户端自己编译出来的，下载好了之后，可是编译遇到大问题，现在还没用解决,希望再花一个小时可以搞定。</p>
-<p>最近想做一个项目：<strong>主页和博客应用</strong>。可以做到展示我写的博客，给自己2周的时间，我相信我可以完成的。</p>
-<p>这一周发生了很多事，周五晚上的年会，啥大奖都没中。</p>
-<p>我希望下周可以把**《暗时间》**这本书看完，这本书确实写的非常好，相见恨晚。</p>
-<p>下午3点的时候去了世界之窗附近的一家音乐培训机构，体验了45分钟的吉他教程，收获相当大。吉他老师保养的非常好，33岁，但看起来也就20几岁的样子，香港出生，但现在已经移民到枫叶国去了。</p>
-<p><strong>谈谈收获：</strong></p>
-<ol>
-<li>高水平老师就是不一样，就像读过的好的技术书籍，让你如沐春风，不过$180一节课；</li>
-<li>之前我认为手指短是学吉他钢琴的一个障碍，但事实证明，老师的手指还比我短；</li>
-<li>自信心缺乏，是我做很多事情遇到的一个问题，我没那么差啊，为什么那么缺乏自信心呢？</li>
-<li>我想学会吉他，学会一门才艺，但是价格感觉好贵的，自学吧。</li>
-</ol>
-<p>一个人只有多思考，勤于思考，才能有所成就。</p>
-<p><em><strong>思考，见识更大的世界。</strong></em></p>
-<p>草草写完，其实这周的总结还不够。</p>
-<p><em><strong>Long Luo PM19:00 ~ PM19：30 @Jan. 19th, 2014 at Shenzhen, China.</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2013/12/28/the-trip-to-the-oct-east-resort/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2013/12/28/the-trip-to-the-oct-east-resort/" class="post-title-link" itemprop="url">人造的风景 ---东部华侨城一日游感想与收获</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2013-12-28 21:24:59" itemprop="dateCreated datePublished" datetime="2013-12-28T21:24:59+08:00">2013-12-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Travel/" itemprop="url" rel="index"><span itemprop="name">Travel</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2013/12/28/the-trip-to-the-oct-east-resort/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2013/12/28/the-trip-to-the-oct-east-resort/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2013/12/28/the-trip-to-the-oct-east-resort/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<pre><code>旅行，就是从自己活腻的地方跑到别人活腻的地方去。
-						         ---题记
-</code></pre>
-<p>来深已经4年多了，但是东部华侨城一直没去过，一方面是个人一直对一些人造的风景不是特别感冒，然后一方面就是远加门票价格高。部门组织了今天去东部华侨城一日游的活动，于是就顺便游玩了下OCT，在此记录下感想。</p>
-<p>早上6：30爬起来，洗漱完毕，看了下天气，7°~15°，温度不高也不低，但是自己也没有比平常多穿衣服，也确实也没啥衣服，一直都是那几件衣服，再冷的天气都那样。最后证明今天不是游华侨城的好日子。</p>
-<p>好大的风，一天的时间就把我的手吹裂了，护手霜需要get。</p>
-<h1 id="一-人造的风景"><a class="markdownIt-Anchor" href="#一-人造的风景"></a> 一、人造的风景</h1>
-<p>一直以来，喜欢的风景，要么是各大城市的中心区，不管是繁华的商业区，还是车水马龙的主干道，抑或是鳞次栉比的商店，当然少不了美味小吃；要么就是没有人工雕琢痕迹的景区公园，比如九寨沟、雪山、森林公园、海滩等。国内很多景点都把原有的文物古迹给拆了，然后复刻一个，简直是令人发指啊，完全是一堆不懂艺术的公园在胡搞啊！</p>
-<p>对于OCT这种定义在休闲娱乐的主题公园来说，恰恰需要在宣传时宣传其人造风景，比如大峡谷什么亚洲第一大、第一长、第一快等等。没去过茶溪谷，但是对于大部分没去过欧洲旅游的普通大众来说，也是一种廉价体验欧洲小镇的好途径。</p>
-<p>反正对于我来说，惊险刺激性的体验一次就够了，除非特殊原因，不会想参加第二次。</p>
-<h1 id="二-攻略-良心推荐"><a class="markdownIt-Anchor" href="#二-攻略-良心推荐"></a> 二、攻略 &amp; 良心推荐</h1>
-<p>对于看到了这篇小文，希望下次去OCT的同学来说，在此给点攻略建议：<br>
-进去之后，直接前行至缆车处，上山，云霄轮盘活动，这个建在山顶上，不过不推荐冬天参加，道理你懂得，高处不胜寒。</p>
-<p>云霄轮盘可以参加360°观光塔，晚了的话，排队比较长，不过也挺快。</p>
-<p>玩完这2个项目，下山玩剩下的项目：</p>
-<p>必玩项目推荐：木质过山车，给4星半。惊险刺激，体验那种失速失重的感觉，最好不过了，前提是你血压心脏均正常，同时这个项目提供买一附送一大波尖叫声。</p>
-<p>不过不知道是OCT故意省钱还是真的在维修，上午没有开通过山车，导致下午排了很长很长的队。</p>
-<p>地心4KM坑爹啊，4D影院 &amp; 真人CS吐血阻止你去！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2013/12/28/the-trip-to-the-oct-east-resort/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2013/12/06/just-an-ordinary-weekend-daily-record/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2013/12/06/just-an-ordinary-weekend-daily-record/" class="post-title-link" itemprop="url">Just An Ordinary Weekend Daily Record</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2013-12-06 23:08:08" itemprop="dateCreated datePublished" datetime="2013-12-06T23:08:08+08:00">2013-12-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2013/12/06/just-an-ordinary-weekend-daily-record/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2013/12/06/just-an-ordinary-weekend-daily-record/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2013/12/06/just-an-ordinary-weekend-daily-record/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>702</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>While I was watching the live <strong>NBA finals</strong>, the PM gave me a call said that there were two emergency problems needed  to handle.</p>
-<p>As I had lunch in the nearby restaurant, I have to go to office to handle the problems.</p>
-<p>After I completed the problems at about 4 PM. I decide to watch the movie since I have 2 movie tickets left whose deadline is the end of the month. However, there were seldom films in the Pacific Cinema. I made a choice to watch the <a target="_blank" rel="noopener" href="https://movie.douban.com/subject/5364905/">Switch</a> which starred by Andy Lau, Chiling Lin and Jingchu Zhang.</p>
-<p>In terms of plot, action and scripts, the movie is really a tragedy. Its best comes the fascinating Chiling Lin and other charming actress with some splendid view. The chiling lin shows serval models with kinds of roles in the movie. The jingchu zhang with some girls are also attractive.</p>
-<p><em><strong>That is it.</strong></em></p>
-<p><em><strong>—By Long Luo 5th, July, 2013 @Shenzhen</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/57/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/59/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/57/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/59/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">328</span>
+          <span class="site-state-item-count">332</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">305</span>
+        <span class="site-state-item-count">306</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,679 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/05/27/leetcode-Concurrency-Problems/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2021/05/27/leetcode-Concurrency-Problems/" class="post-title-link" itemprop="url">搞定LeetCode的多线程并发问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-27 14:36:58" itemprop="dateCreated datePublished" datetime="2021-05-27T14:36:58+08:00">2021-05-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/05/27/leetcode-Concurrency-Problems/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/05/27/leetcode-Concurrency-Problems/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/05/27/leetcode-Concurrency-Problems/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>195</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<h1 id="leetcode-concurrency-problems"><a class="markdownIt-Anchor" href="#leetcode-concurrency-problems"></a> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problemset/concurrency/">LeetCode Concurrency Problems</a></h1>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Problems</th>
+<th>Difficulty</th>
+<th>Source Code</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1114</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/print-in-order/">按序打印</a></td>
+<td>Easy</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1114_printInOrder.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1115</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/print-foobar-alternately/">交替打印FooBar</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1115_printFoobarAlternately.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1116</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/print-zero-even-odd/">打印零与奇偶数</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1116_printZeroEvenOdd.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1117</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/building-h2o/">H2O生成</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1117_buildingH2O.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1195</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/fizz-buzz-multithreaded/">交替打印字符串</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1195_fizzBuzzMultithreaded.java">Java</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1226</td>
+<td><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/the-dining-philosophers/">哲学家进餐</a></td>
+<td>Medium</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/longluo/leetcode/blob/master/Java/src/com/longluo/concurrency/Problem1226_diningPhilosophersPhilosophers.java">Java</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/05/22/leetcode-implement-queue-using-stacks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2021/05/22/leetcode-implement-queue-using-stacks/" class="post-title-link" itemprop="url">[Leetcode][232. 用栈实现队列] 顺序翻转，使用两个栈：一个入队，一个出队</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-22 23:17:55" itemprop="dateCreated datePublished" datetime="2021-05-22T23:17:55+08:00">2021-05-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/05/22/leetcode-implement-queue-using-stacks/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/05/22/leetcode-implement-queue-using-stacks/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/05/22/leetcode-implement-queue-using-stacks/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/">Leetcode</a> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-queue-using-stacks/">232. 用栈实现队列</a> ，难度为<strong>Easy</strong>：</p>
+<hr>
+<ol start="232">
+<li>用栈实现队列</li>
+</ol>
+<p>请你仅使用两个栈实现先入先出队列。队列应当支持一般队列支持的所有操作（<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">push</mtext></mrow><annotation encoding="application/x-tex">\texttt{push}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">push</span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">pop</mtext></mrow><annotation encoding="application/x-tex">\texttt{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65278em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">pop</span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">peek</mtext></mrow><annotation encoding="application/x-tex">\texttt{peek}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">peek</span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">empty</mtext></mrow><annotation encoding="application/x-tex">\texttt{empty}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7757999999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">empty</span></span></span></span></span>）：</p>
+<p>实现<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">MyQueue</mtext></mrow><annotation encoding="application/x-tex">\texttt{MyQueue}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">MyQueue</span></span></span></span></span>类：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">void</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">push(int</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">x)</mtext></mrow><annotation encoding="application/x-tex">\texttt{void push(int x)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9166599999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">void&nbsp;push(int&nbsp;x)</span></span></span></span></span>将元素<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span>推到队列的末尾</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">int</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">pop()</mtext></mrow><annotation encoding="application/x-tex">\texttt{int pop()}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9166599999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">int&nbsp;pop()</span></span></span></span></span>从队列的开头移除并返回元素</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">int</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">peek()</mtext></mrow><annotation encoding="application/x-tex">\texttt{int peek()}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9166599999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">int&nbsp;peek()</span></span></span></span></span>返回队列开头的元素</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">boolean</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">empty()</mtext></mrow><annotation encoding="application/x-tex">\texttt{boolean empty()}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9166599999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">boolean&nbsp;empty()</span></span></span></span></span>如果队列为空，返回<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">true</mtext></mrow><annotation encoding="application/x-tex">\textit{true}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">true</span></span></span></span></span>；否则，返回<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">false</mtext></mrow><annotation encoding="application/x-tex">\textit{false}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">false</span></span></span></span></span>。</li>
+</ul>
+<p>说明：</p>
+<p>你 只能 使用标准的栈操作 —— 也就是只有<code>push to top</code>, <code>peek/pop from top</code>, <code>size</code>, 和<code>is empty</code>操作是合法的。<br>
+你所使用的语言也许不支持栈。你可以使用<code>list</code>或者<code>deque</code>（双端队列）来模拟一个栈，只要是标准的栈操作即可。</p>
+<p>示例 1：</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">["MyQueue", "push", "push", "peek", "pop", "empty"]</span><br><span class="line">[[], [1], [2], [], [], []]</span><br><span class="line">输出：</span><br><span class="line">[null, null, null, 1, 1, false]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">MyQueue myQueue = new MyQueue();</span><br><span class="line">myQueue.push(1); // queue is: [1]</span><br><span class="line">myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)</span><br><span class="line">myQueue.peek(); // return 1</span><br><span class="line">myQueue.pop(); // return 1, queue is [2]</span><br><span class="line">myQueue.empty(); // return false</span><br></pre></td></tr></tbody></table></figure>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= x &lt;= 9</li>
+<li>最多调用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span>次<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">push</mtext></mrow><annotation encoding="application/x-tex">\texttt{push}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">push</span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">pop</mtext></mrow><annotation encoding="application/x-tex">\texttt{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65278em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">pop</span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">peek</mtext></mrow><annotation encoding="application/x-tex">\texttt{peek}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">peek</span></span></span></span></span>和<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">empty</mtext></mrow><annotation encoding="application/x-tex">\texttt{empty}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7757999999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">empty</span></span></span></span></span><br>
+假设所有操作都是有效的 （例如，一个空的队列不会调用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">pop</mtext></mrow><annotation encoding="application/x-tex">\texttt{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65278em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">pop</span></span></span></span></span>或者<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">peek</mtext></mrow><annotation encoding="application/x-tex">\texttt{peek}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">peek</span></span></span></span></span>操作）</li>
+</ul>
+<p>进阶：</p>
+<p>你能否实现每个操作均摊时间复杂度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 的队列？换句话说，执行 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 个操作的总时间复杂度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，即使其中一个操作可能花费较长时间。</p>
+<hr>
+<p>之前我们已经实现了 <a href="http://www.longluo.me/blog/2021/05/20/Leetcode-implement-stack-using-queues/">225. 用队列实现栈</a> ，今天我们来学习如何用队列来实现栈。</p>
+<p>因为队列是<strong>FIFO</strong>，而栈是<strong>LIFO</strong>，所以我们需要用到两个栈，用其中一个来反转元素的入队顺序，而另一个则用来存储元素的最终顺序。</p>
+<h1 id="2个栈-push-on-pop-o1"><a class="markdownIt-Anchor" href="#2个栈-push-on-pop-o1"></a> 2个栈 (push - O(n), pop - O(1))</h1>
+<p>使用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个栈 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">stack</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\textit{stack}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textit">stack</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">stack</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{stack}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textit">stack</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">stack</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\textit{stack}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textit">stack</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 作为主栈，而 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">stack</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{stack}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textit">stack</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 是辅助栈。</p>
+<p>入栈时：</p>
+<ol>
+<li>把 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">stack</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\textit{stack}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textit">stack</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 中所有的元素移到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">stack</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{stack}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textit">stack</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 中；</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">stack</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{stack}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textit">stack</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 中压入新元素；</li>
+<li>把 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">stack</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{stack}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textit">stack</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> 中所有的元素弹出，再把弹出的元素压入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">stack</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\textit{stack}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textit">stack</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。</li>
+</ol>
+<p>代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyQueue</span> {</span><br><span class="line">	Stack&lt;Integer&gt; stack1;</span><br><span class="line">	Stack&lt;Integer&gt; stack2;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="title function_">MyQueue</span><span class="params">()</span> {</span><br><span class="line">		stack1 = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">		stack2 = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> x)</span> {</span><br><span class="line">		<span class="keyword">if</span> (stack1.empty()) {</span><br><span class="line">			stack1.push(x);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		}</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (!stack1.empty()) {</span><br><span class="line">			stack2.push(stack1.pop());</span><br><span class="line">		}</span><br><span class="line">		stack2.push(x);</span><br><span class="line">		<span class="keyword">while</span> (!stack2.empty()) {</span><br><span class="line">			stack1.push(stack2.pop());</span><br><span class="line">		}</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">pop</span><span class="params">()</span> {</span><br><span class="line">		<span class="keyword">return</span> stack1.pop();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="type">int</span> <span class="title function_">peek</span><span class="params">()</span> {</span><br><span class="line">		<span class="keyword">return</span> stack1.peek();</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">empty</span><span class="params">()</span> {</span><br><span class="line">		<span class="keyword">return</span> stack1.empty() &amp;&amp; stack2.empty();</span><br><span class="line">	}</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2021/05/22/leetcode-implement-queue-using-stacks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/05/20/leetcode-implement-stack-using-queues/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2021/05/20/leetcode-implement-stack-using-queues/" class="post-title-link" itemprop="url">[Leetcode][225. 用队列实现栈] 如何改变队列元素顺序？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-20 09:17:55" itemprop="dateCreated datePublished" datetime="2021-05-20T09:17:55+08:00">2021-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/05/20/leetcode-implement-stack-using-queues/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/05/20/leetcode-implement-stack-using-queues/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/05/20/leetcode-implement-stack-using-queues/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/">Leetcode</a> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-stack-using-queues/">225. 用队列实现栈</a> ，难度为<strong>Easy</strong>：</p>
+<hr>
+<ol start="225">
+<li>用队列实现栈</li>
+</ol>
+<p>请你仅使用两个队列实现一个后入先出(LIFO)的栈，并支持普通栈的全部四种操作(<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">push</mtext></mrow><annotation encoding="application/x-tex">\texttt{push}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">push</span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">top</mtext></mrow><annotation encoding="application/x-tex">\texttt{top}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7757999999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">top</span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">pop</mtext></mrow><annotation encoding="application/x-tex">\texttt{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65278em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">pop</span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">empty</mtext></mrow><annotation encoding="application/x-tex">\texttt{empty}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7757999999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">empty</span></span></span></span></span>)。</p>
+<p>实现 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">MyStack</mtext></mrow><annotation encoding="application/x-tex">\texttt{MyStack}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">MyStack</span></span></span></span></span> 类：</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">void</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">push(int</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">x)</mtext></mrow><annotation encoding="application/x-tex">\texttt{void push(int x)}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9166599999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">void&nbsp;push(int&nbsp;x)</span></span></span></span></span> 将元素 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">x</mtext></mrow><annotation encoding="application/x-tex">\textit{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">x</span></span></span></span></span> 压入栈顶。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">int</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">pop()</mtext></mrow><annotation encoding="application/x-tex">\texttt{int pop()}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9166599999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">int&nbsp;pop()</span></span></span></span></span> 移除并返回栈顶元素。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">int</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">top()</mtext></mrow><annotation encoding="application/x-tex">\texttt{int top()}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9166599999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">int&nbsp;top()</span></span></span></span></span> 返回栈顶元素。</li>
+<li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">boolean</mtext><mtext>&nbsp;</mtext><mtext mathvariant="monospace">empty()</mtext></mrow><annotation encoding="application/x-tex">\texttt{boolean empty()}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9166599999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">boolean&nbsp;empty()</span></span></span></span></span> 如果栈是空的，返回 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">true</mtext></mrow><annotation encoding="application/x-tex">\textit{true}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">true</span></span></span></span></span>；否则，返回 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">false</mtext></mrow><annotation encoding="application/x-tex">\textit{false}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">false</span></span></span></span></span>。</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>你只能使用队列的基本操作 —— 也就是<code>push to back</code>、<code>peek/pop from front</code>、<code>size</code>和<code>is empty</code>这些操作。</li>
+<li>你所使用的语言也许不支持队列。 你可以使用<code>list</code>（列表）或者<code>deque</code>（双端队列）来模拟一个队列 , 只要是标准的队列操作即可。</li>
+</ul>
+<p>示例：</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入：</span><br><span class="line">["MyStack", "push", "push", "top", "pop", "empty"]</span><br><span class="line">[[], [1], [2], [], [], []]</span><br><span class="line">输出：</span><br><span class="line">[null, null, null, 2, 2, false]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">MyStack myStack = new MyStack();</span><br><span class="line">myStack.push(1);</span><br><span class="line">myStack.push(2);</span><br><span class="line">myStack.top(); // 返回 2</span><br><span class="line">myStack.pop(); // 返回 2</span><br><span class="line">myStack.empty(); // 返回 False</span><br></pre></td></tr></tbody></table></figure>
+<p>提示：</p>
+<ul>
+<li>1 &lt;= x &lt;= 9</li>
+<li>最多调用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>100</mn></mrow><annotation encoding="application/x-tex">100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span> 次 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">push</mtext></mrow><annotation encoding="application/x-tex">\texttt{push}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">push</span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">pop</mtext></mrow><annotation encoding="application/x-tex">\texttt{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65278em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">pop</span></span></span></span></span>、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">top</mtext></mrow><annotation encoding="application/x-tex">\texttt{top}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7757999999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">top</span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">empty</mtext></mrow><annotation encoding="application/x-tex">\texttt{empty}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7757999999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">empty</span></span></span></span></span></li>
+<li>每次调用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">pop</mtext></mrow><annotation encoding="application/x-tex">\texttt{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65278em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">pop</span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">top</mtext></mrow><annotation encoding="application/x-tex">\texttt{top}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7757999999999999em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">top</span></span></span></span></span> 都保证栈不为空</li>
+</ul>
+<p>进阶：你能否仅用一个队列来实现栈。</p>
+<hr>
+<p>这道题考察的是<strong>栈</strong>和<strong>队列</strong>两种数据结构知识。</p>
+<p>栈是一种**后进先出(LIFO)**的数据结构，元素从顶端入栈，然后从顶端出栈。</p>
+<p>队列是一种**先进先出(FIFO)**的数据结构，元素从后端入队，然后从前端出队。</p>
+<h1 id="2个队列"><a class="markdownIt-Anchor" href="#2个队列"></a> 2个队列</h1>
+<p>题目的要求是用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个队列实现一个栈，但是把一个队列中的数据导入另一个队列中，数据的顺序并没有发生改变，并不会变成先进后出的顺序。</p>
+<p>那该如何做呢？</p>
+<p>用 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个队列 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span>：</p>
+<ol>
+<li>有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 个元素 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">A</mtext></mrow><annotation encoding="application/x-tex">\textit{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">A</span></span></span></span></span>，那非常简单，直接压入弹出即可；</li>
+<li>有 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn></mrow><annotation encoding="application/x-tex">2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 个元素 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">A</mtext></mrow><annotation encoding="application/x-tex">\textit{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">A</span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">B</mtext></mrow><annotation encoding="application/x-tex">\textit{B}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">B</span></span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span> 压入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span> 压入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span>，然后将 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span> 中元素压入 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span>，这样 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span> 中的元素顺序就是正确的；</li>
+<li>因为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span> 是主队列，所以还需要将 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span> 中元素重新导入到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mtext mathvariant="italic">queue</mtext><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">\textit{queue}_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6747em;vertical-align:-0.24414em;"></span><span class="mord"><span class="mord text"><span class="mord textit">queue</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span></span></span></span>。</li>
+</ol>
+<p>代码如下所示：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2021/05/20/leetcode-implement-stack-using-queues/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/05/15/how-to-implement-a-https-protocol/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2021/05/15/how-to-implement-a-https-protocol/" class="post-title-link" itemprop="url">常见面试题：HTTPS协议和HTTP协议有什么区别？HTTPS如何实现安全的？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-05-15 23:42:19" itemprop="dateCreated datePublished" datetime="2021-05-15T23:42:19+08:00">2021-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Network/" itemprop="url" rel="index"><span itemprop="name">Network</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/05/15/how-to-implement-a-https-protocol/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/05/15/how-to-implement-a-https-protocol/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/05/15/how-to-implement-a-https-protocol/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By LongLuo</strong></em></p>
+<p>面试时，经常会遇到一道题，说说HTTPS的实现。</p>
+<h1 id="为什么需要加密"><a class="markdownIt-Anchor" href="#为什么需要加密"></a> 为什么需要加密？</h1>
+<p>HTTPS是为了满足哪些需求？</p>
+<p>HTTP的缺点：</p>
+<ul>
+<li>通信使用明文（不加密），内容可能会被窃听；</li>
+<li>不验证通信方的身份，因此有可能遭遇伪装（中间人攻击）；</li>
+<li>无法证明报文的完整性，所以有可能已遭篡改。</li>
+</ul>
+<h1 id="如何设计https"><a class="markdownIt-Anchor" href="#如何设计https"></a> 如何设计HTTPS？</h1>
+<h2 id="兼容性"><a class="markdownIt-Anchor" href="#兼容性"></a> 兼容性</h2>
+<p>因为是先有HTTP再有HTTPS。所以HTTPS首先要考虑到对原有HTTP的兼容性。</p>
+<p>兼容性包括多方面，比如已有的Web应用要尽可能无缝地迁移到HTTPS；比如对浏览器厂商而言，改动要尽可能小；…</p>
+<p>基于“兼容性”方面的考虑，很容易得出如下几个结论：</p>
+<ol>
+<li>
+<p>HTTPS还是要基于TCP来传输（如果改为UDP作传输层，无论是Web服务端还是浏览器客户端，都要大改——动静太大，伤筋动骨）</p>
+</li>
+<li>
+<p>单独使用一个新的协议，把HTTP协议包裹起来（所谓的“HTTP over SSL”，实际上是在原有的HTTP数据外面加了一层SSL的封装。HTTP协议原有的GET、POST之类的机制，基本上原封不动）</p>
+</li>
+</ol>
+<p>打个比方：如果原来的HTTP是塑料水管，容易被戳破；那么如今新设计的HTTPS就像是在原有的塑料水管之外，再包一层金属水管。一来，原有的塑料水管照样运行；二来，用金属加固了之后，不容易被戳破。</p>
+<h2 id="可扩展性"><a class="markdownIt-Anchor" href="#可扩展性"></a> 可扩展性</h2>
+<p>前面说了，HTTPS 相当于是“HTTP over SSL”。</p>
+<p>如果SSL这个协议在“可扩展性”方面的设计足够牛逼，那么它除了能跟HTTP搭配，还能够跟其它的应用层协议搭配。岂不美哉？</p>
+<p>现在看来，当初设计SSL的人确实比较牛。如今的SSL/TLS可以跟很多常用的应用层协议（比如：FTP、SMTP、POP、Telnet）搭配，来强化这些应用层协议的安全性。</p>
+<p>接着刚才打的比方：如果把SSL/TLS视作一根用来加固的金属管，它不仅可以用来加固输水的管道，还可以用来加固输煤气的管道。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2021/05/15/how-to-implement-a-https-protocol/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -391,646 +1064,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/05/03/inertia-of-history/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2021/05/03/inertia-of-history/" class="post-title-link" itemprop="url">阎学通：《历史的惯性：未来十年的中国与世界》读后感</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-03 23:36:43" itemprop="dateCreated datePublished" datetime="2021-05-03T23:36:43+08:00">2021-05-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2021/05/03/inertia-of-history/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/05/03/inertia-of-history/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2021/05/03/inertia-of-history/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>21k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>19 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>五一假期期间累计花了10几个小时阅读完了<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%98%8E%E5%AD%A6%E9%80%9A/1635981?fr=aladdin">阎学通</a>在2013年写的著作<a target="_blank" rel="noopener" href="https://book.douban.com/subject/24758492/">《历史的惯性：未来十年的中国与世界》</a>，看完大受启发，尤其是标题，让我有豁然开朗的感觉。</p>
-<p>中国有句古话叫“三岁看大”，当然这是说性格决定命运，因为性格很难改，所以从一个人小时候表露出来的性格就能推断出其人生的大致轨迹。</p>
-<p>杜牧的《阿房宫赋》中“秦人不暇自哀，而后人哀之；后人哀之而不鉴之，亦使后人而复哀后人也。”，德国哲学家黑格尔也曾说，人类唯一能从历史中吸取的教训就是，人类从来都不会从历史中吸取教训。纵观世界人类发展史，发现无论朝代更迭、经济发展等活动都在不断的重复过去。</p>
-<p>“历史总会惊人的相似，但又不会简单的重复”，如何解释历史的这种相似性，又如何解释某些相似的前提最后却导致了不同的结果呢？</p>
-<p>答案就是<strong>惯性</strong>。政治领导人们都会尝试用最大的理性思考和处理问题，但与此同时又会习惯性的陷入某种惯性之中。就像一个贪吃的胖子，虽然他现在体重只有160斤，但是根据大量相似的经验预测，他未来的体重将会达到200斤左右，这种结果可能性很大，因为这个胖子会习惯性地过量摄入食物，并且很难克制这种贪吃的欲望，但是也不排除这个胖子意识到了贪吃的坏处，成功地把体重保持在了160斤的恒定水平，对未来的判断往往就处在这样的不确定性之中。</p>
-<p>预测一个人如此，预测一个国家也是如此，只不过按照质量越大惯性越大的原理，一个国家历史越悠久，体积越庞大，传统的力量和制度越成熟，这个<strong>国家未来的发展路径就越容易陷入到历史的惯性之中</strong>。</p>
-<p>下面是书中一些精华摘录：</p>
-<hr>
-<h2 id="第一章-国力较量2023年的中国与美国"><a class="markdownIt-Anchor" href="#第一章-国力较量2023年的中国与美国"></a> 第一章 国力较量：2023年的中国与美国</h2>
-<p>历史是由人创造的，但这并不意味着人有能力任意改变历史。历史发展具有一定的惯性，在人没有创造出强于历史惯性的力量之前，历史将沿着既有的轨道发展。这就是为什么当一个帝国或超级大国衰落后，其衰落时间都在百年以上，很少有在半个世纪内就重振雄风的现象。大清帝国、大英帝国、俄罗斯的衰落都摆脱不了这种历史惯性。21世纪的美国人是否有能力顶住历史的惯性，不让美国长期衰落下去，这是美国人面临的历史考验。未来十年，历史的惯性有利于中国的崛起，中国能否借助这个惯性加速崛起则取决于我们这代中国人了。</p>
-<p>国际格局是随着大国综合实力的变化而变化的，而大国综合实力的基础是国家的政治实力，而政治实力的核心是领导者实施改革的能力。不同的历史使得国家领导者的改革能力有天壤之别，因此历史的惯性有时才会出现加速的现象，这也是为什么历史上常有只凭一代人就完成崛起的例子。</p>
-<p>经济决定论是现在中国人的主流信仰，然而中国先哲们却相信政治决定论，他们认为决定国家富强或衰落的最根本因素是国家的政治领导而不是经济基础。</p>
-<p>许多人认为，中国能否崛起不在于外交而在于内政，因此应集中精力关注国内建设而少介入国际事务。内政不仅是中国崛起的根本，也是美国维护世界霸权的根本。然而，能搞好内政的国家并不一定就能崛起为超级大国，北欧国家便是最好的例证。</p>
-<p>那么，中美两国综合实力的差距在过去的20多年里是如何缩小的呢？其根本原因在于中国不断进行改革而美国没有什么改革。未来十年，这种状态将难以改变，中国的改革力度仍将大于美国。这也是为什么2023年有可能形成中美两超的国际格局。</p>
-<p>对于中国无法保持第四个十年经济高增长的判断之所以错误，是因为预测者的两个依据是不科学的。首先，“物极必反”是个哲学原理而不是科学依据。以此哲学原理为据预测中国经济不可能永远高增长是有效的，但是人们忽视了哲学原理的正确性是建立在没有科学标准的前提下的，即“极”（极限）是一个没有具体标准的概念。</p>
-<p>未来十年，中国综合国力能否保持高速增长主要取决于中国政府是否加大改革力度。只要中国政府的新领导集体像1978年那样实行全面改革，中国综合国力是有望再保持十年高增长的，而且有可能再为其后的十年实现年均5%左右的稳定增长奠定基础。</p>
-<p>自1978年以来，中国改革开放的内容是多方面的，但其本质是政府将社会生活的权利归还给人民。</p>
-<p>借用中国古代哲学的观点，本书把世界权力的转移归因于崛起国比主导国更有能力进行改革。在国内方面，一国的领导类型可分为无为型、守成型、进取型和争斗型，而在国际领导类型方面则可分为王道型、霸权型、昏庸型和强权型。将政治领导类型视为一个独立变量的优势在于，我们可以用同一个变量来解释为什么在同一历史阶段，主导国会衰落，某个国家的崛起会成功，而其他国家的崛起会失败。国家领导是决定国家外交政策、政治原则、官方意识形态和政治制度的关键因素，而不同类型的领导人对改革和战略取向有着各自的态度。</p>
-<p>如上所述，大多数理论都在研究如何回答“为什么霸权会衰落”的问题，几乎不考虑问题的另一面：“一个国家如何成功崛起？”似乎有理由断言，世界中心的转移，不仅仅是因为现有的霸权衰落，同时也是因为新的世界大国崛起。</p>
-<p>本书所建立的理论表明，当崛起国的政治领导力强于主导国的政治领导力时，这两个国家的权力地位就可能反转，崛起国将成为新的主导国。换句话说，当崛起国的领导力比主导国和其同时代主要国家的领导力更强且更高效时，所有这些国家的国际权力将以崛起国胜过主导国的方式被重新划分</p>
-<p>笔者认为，未来十年在美国无力阻止中国缩小实力差距的决定性因素中，最主要的是美国缺乏具有政治改革能力的领导人。里根、老布什、小布什和奥巴马执政时期，都是美国债务不断上升的时期，然而克林顿执政8年不但还清了以往政府欠的债，而且还给美国财政积累了2000多亿美元的盈余。这意味着，未来十年，美国能否解决债务问题不是由市场决定的，而是由美国领导人的领导能力，特别是领导人推进政治改革的能力决定的。政治改革对中国和美国的实力增长具有相同的作用，哪个国家改革得快，哪个国家就能赢得未来十年的战略竞争，反之则走向相对衰落。</p>
-<p>能领导美国进行改革的领导人不仅要有与利益集团对抗的精神，还得有克服利益集团阻力的能力。这种能力往往是通过政治实践获得的，而不是靠在选举中打嘴仗练出来的。电子媒体技术的进步和晚婚趋势使美国选民选择领导人的标准发生了变化，但是美国大选的民主程序却没有做出相应的调整。</p>
-<p>现实生活中，务实者多不善言辞，能言善辩者多不务实，同时具备这两种能力的人少之又少。</p>
-<p>历史上，许多一度辉煌的帝国都走向了衰落，其具体原因可能各有不同，但因自负而不愿进行根本性改革很可能是个共同原因，而且是一个所有成功者都无法克服的人性缺陷。</p>
-<p>未来十年，美国虽无力阻止中国缩小与其实力的差距，但它必然会竭力减缓中国赶超的速度。一国的综合实力由政治、军事、经济和文化四个实力要素构成。其中，<em><strong>政治为操作性实力，军事、经济和文化为资源性实力。操作性实力对于资源性实力的运用结果决定了综合实力的大小</strong></em>，其表达式为：<br>
-政治实力×（军事实力+经济实力+文化实力）=综合国力。</p>
-<p>不过，数量上的超越为质量上的赶超奠定了基础，假如没有数量上的超越，质量超越就更无希望。</p>
-<p>美国减缓中国赶超速度的根本因素是其相对衰落的性质。</p>
-<p>做好自己家里的事，是所有国家的首要任务。但是，做好自己家里的事并不必然就能实现崛起，甚至不必然就能强大。</p>
-<p>认为中国的国内问题决定中国成不了超级大国和认为只要国内搞好了就能成为超级大国，这两种观点的核心逻辑都是内因决定论。然而，大国崛起或民族复兴是一个相对概念，是指赶超世界最强大国家的历史过程，其结果是由崛起国和霸权国两者力量的对比变化决定的。这意味着，内因和外因具有同等重要的作用。</p>
-<p>未来十年，中美军事竞争将体现在武器装备的改进上，而双方发生直接战争的危险会进一步下降，发动代理人战争的可能性也很小。<br>
-未来十年，科技竞争取代自然资源争夺将成为中美战略竞争的主要内容之一。<br>
-未来十年，中美之间的结构性矛盾将不断深化，在双方继续假朋友关系策略的条件下，双边关系的不稳定性将变得更加突出。<br>
-2023年世界很可能形成两极格局，但那是一种新型战略竞争而不是冷战，未来十年中美成为全面竞争对手的可能性很大。</p>
-<p>美国重返亚太战略是促进中国调整外交战略的首要外部因素。美国的相对衰落使其无力维持在全球的主导地位，故此美国将其主要力量集中于未来的世界中心，于是美国战略重心向东亚转移就成为必然（参见第二章有关东亚将成为新的世界中心的论述）。所谓“亚太再平衡”就是平衡中国的崛起，就是防范中国成为亚太地区的主导力量。</p>
-<p>由于未来十年世界格局向两极化方向发展，因此发展中国家将重新重视不结盟战略，这将是一个影响中国外交政策调整的重要因素。</p>
-<p>在无政府的国际体系中，中小国家对于大国的首要需求是安全保障，能否向中小国家提供安全保障将成为中美争取不结盟国家的最主要手段。不提供安全保障就无法得到这些国家的战略信任，从而也不可能获得较多的战略友好关系。</p>
-<p>核武器将使中美之间的战略竞争以和平方式为主。</p>
-<p>核武器不仅消除了“二战”后再次发生世界大战的危险，也防止了美苏之间的直接战争。苏联解体后，美国加快了反导系统的建设速度，然而20年反导系统建设的结果是，反导系统并不能有效减弱核武器的战略威慑能力。</p>
-<p>冷战后，人们对于核武器可防止核国家之间发生战争的认识进一步深化，这在很大程度上改变了大国竞争的战略行为。中美更加注重提高核武器与常规武器的现代化水平，但放弃了赢得核战争的想法，认为以战争争夺霸权的成本太高。核武器的扩散使得代理人战争升级为全面战争的代价增大，因此也使代理人战争变得不那么可取，中美也不愿承担通过代理人战争争夺领导权的代价。</p>
-<p>冷战后，由于计算机技术的迅速进步，科技成为增加经济财富的重要手段。这使得自然资源在增加国家财富方面的重要性大大下降，中美再也不必用战争方式来争夺自然资源了。</p>
-<p>进入21世纪，人类面临的最大问题已不再是生产能力满足不了社会消费需求，而是严重的产能过剩，即人类无力消费自己生产出来的产品。不仅如此，从争夺国际自然资源的效率角度讲，战争也是无法与海外投资相比的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2021/05/03/inertia-of-history/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/05/02/dk-books/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2021/05/02/dk-books/" class="post-title-link" itemprop="url">DK书籍</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-05-02 23:55:16" itemprop="dateCreated datePublished" datetime="2021-05-02T23:55:16+08:00">2021-05-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2021/05/02/dk-books/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/05/02/dk-books/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2021/05/02/dk-books/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>目前大致读过的一些DK书籍</p>
-<h1 id="big-ideas-simply-explained"><a class="markdownIt-Anchor" href="#big-ideas-simply-explained"></a> Big Ideas Simply Explained</h1>
-<p>The Art Book (Big Ideas Simply Explained)</p>
-<p>The Bible Book (Big Ideas Simply Explained)</p>
-<p>The Law Book (Big Ideas Simply Explained)</p>
-<p>The Medicine Book (Big Ideas Simply Explained)</p>
-<p>The Movie Book (Big Ideas Simply Explained)</p>
-<h1 id="dk-english"><a class="markdownIt-Anchor" href="#dk-english"></a> DK English</h1>
-<p>English for Everyone - Business English - Level 1 Course Book</p>
-<p>English for Everyone - Business English - Practice Book Level 2</p>
-<p>English for Everyone - English Idioms by Thomas Booth, Jenny Wilson</p>
-<p>English for Everyone - Level 1 Beginner - Course Book by Rachel Harding, Tim Bowen, Susan Barduhn</p>
-<p>English for Everyone - Level 3 Intermediate - Practice Book</p>
-<p>English for Everyone English Vocabulary Builder</p>
-<p>English for Everyone Junior 5 Words a Day</p>
-<h1 id="dk-witness"><a class="markdownIt-Anchor" href="#dk-witness"></a> DK Witness</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2021/05/02/dk-books/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/04/22/review-the-web-chat-room-project/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2021/04/22/review-the-web-chat-room-project/" class="post-title-link" itemprop="url">重构Java网络聊天室项目</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-22 08:15:50" itemprop="dateCreated datePublished" datetime="2021-04-22T08:15:50+08:00">2021-04-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2021/04/22/review-the-web-chat-room-project/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/04/22/review-the-web-chat-room-project/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2021/04/22/review-the-web-chat-room-project/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>344</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>从2013年注册了<a target="_blank" rel="noopener" href="https://github.com/longluo">Github</a> 账号开始，一直断断续续上传了自己写的很多项目，但Star数和Fork数并不多，目前来看，最多的居然是这个10年前学习Java时的练手项目: <a href="http://www.longluo.me/blog/2011/10/15/Implement-A-Chat-Room-By-Java/">Java网络聊天室的设计与实现</a>。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/longluo/WebChat/">网络聊天室</a> 项目绝大部分代码其实是拷贝一个学习项目，最近重新看了下，项目源码很多都不符合编程规范，作为初学者入门学习还是可以的，就5个class，方便入门，但可以学到Java Socket编程、Java Swing、多线程编程等。</p>
-<p>目前来看，这个项目还存在很大问题：</p>
-<ol>
-<li>代码不符合编程规范问题；</li>
-<li>同一台PC无法启动多个客户端等；</li>
-<li>UI交互界面ugly;</li>
-<li>无法修改昵称、用户头像等；</li>
-<li>用户间私聊；</li>
-<li>用户间群聊；</li>
-<li>用户自定义头像等；<br>
-…</li>
-</ol>
-<p>这些功能全部做完还是需要一定时间和精力的，这些将在后续一一完善。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/04/20/what-did-i-do-in-the-last-four-months/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2021/04/20/what-did-i-do-in-the-last-four-months/" class="post-title-link" itemprop="url">在这过去的4个月里我都做了些啥？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-04-20 07:59:45" itemprop="dateCreated datePublished" datetime="2021-04-20T07:59:45+08:00">2021-04-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2021/04/20/what-did-i-do-in-the-last-four-months/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/04/20/what-did-i-do-in-the-last-four-months/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2021/04/20/what-did-i-do-in-the-last-four-months/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<h1 id="一-math"><a class="markdownIt-Anchor" href="#一-math"></a> 一、 Math</h1>
-<h1 id="11-precalculus"><a class="markdownIt-Anchor" href="#11-precalculus"></a> 1.1 PreCalculus</h1>
-<p><a target="_blank" rel="noopener" href="https://openstax.org/details/books/precalculus">PreCalculus</a></p>
-<h2 id="12-calculus"><a class="markdownIt-Anchor" href="#12-calculus"></a> 1.2 Calculus</h2>
-<p><a target="_blank" rel="noopener" href="https://betterexplained.com/calculus/lesson-1/">《Calculus Better Explained: A Guide to Developing Lasting Intuition》</a>，力荐</p>
-<p><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26662852/">《Calculus》 James Stewart版 </a></p>
-<p><a target="_blank" rel="noopener" href="https://book.douban.com/subject/19992548/">《Calculus》Ron Larson版 </a></p>
-<h2 id="13-algebra"><a class="markdownIt-Anchor" href="#13-algebra"></a> 1.3 Algebra</h2>
-<p><a target="_blank" rel="noopener" href="https://book.douban.com/subject/1425950/">《线性代数及其应用》</a></p>
-<p><a target="_blank" rel="noopener" href="https://book.douban.com/subject/26886299/">《线性代数应该这样学》</a></p>
-<p><a target="_blank" rel="noopener" href="https://openstax.org/details/books/algebra-and-trigonometry">《Algebra and Trigonometry》</a></p>
-<h2 id="14-视频教程"><a class="markdownIt-Anchor" href="#14-视频教程"></a> 1.4 视频教程</h2>
-<p><a target="_blank" rel="noopener" href="https://space.bilibili.com/88461692/video">3Blue1Brown</a>的部分数学教学视频：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1qW411N7FU">微积分的本质 - 系列合集</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=24325548&amp;bvid=BV1qW411N7FU&amp;cid=40809259&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ys411472E">线性代数的本质 - 系列合集</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=6731067&amp;bvid=BV1ys411472E&amp;cid=10959711&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<h1 id="二-physics"><a class="markdownIt-Anchor" href="#二-physics"></a> 二、 Physics</h1>
-<p>物理是我很喜欢的一门课程，是<strong>认识这个世界</strong>的一门学科。  这段时间相当于<strong>重新复习及学习了下大学物理</strong>。</p>
-<p>看完了下列视频：</p>
-<h2 id="21-曹则贤先生讲座"><a class="markdownIt-Anchor" href="#21-曹则贤先生讲座"></a> 2.1 曹则贤先生讲座</h2>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV13J411h7iF?t=4199">曹则贤2020跨年开讲：什么是量子力学？【新年悟理】</a></li>
-</ol>
-<iframe src="//player.bilibili.com/player.html?aid=81368705&amp;bvid=BV13J411h7iF&amp;cid=139250130&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<ol start="2">
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18V411b7YD/?spm_id_from=333.788.recommend_more_video.2">曹则贤2021跨年开讲：什么是相对论？【新年悟理】</a></li>
-</ol>
-<iframe src="//player.bilibili.com/player.html?aid=415797102&amp;bvid=BV18V411b7YD&amp;cid=272985096&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<ol start="3">
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Y4411s7uR">曹则贤：工业革命的物理基础——兼论对工业4.0的启发</a></li>
-</ol>
-<iframe src="//player.bilibili.com/player.html?aid=53578692&amp;bvid=BV1Y4411s7uR&amp;cid=93728420&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<h2 id="22-中科院-学不分科-系列讲座"><a class="markdownIt-Anchor" href="#22-中科院-学不分科-系列讲座"></a> 2.2 中科院 学不分科 系列讲座</h2>
-<p>总共有<strong>10</strong>期，时间精力关系目前只看了其中几期：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1t7411s7kA?from=search&amp;seid=2157024022650185768">物理学终极迷思：时间是什么？【学不分科第1期】</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=86456882&amp;bvid=BV1t7411s7kA&amp;cid=147754889&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1q7411n7h4/?spm_id_from=333.788">“情感大师”曹则贤：谁引诗·情到碧霄【学不分科第3期】</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=86789885&amp;bvid=BV1q7411n7h4&amp;cid=148300394&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1u741147cP?from=search&amp;seid=959370802299871539">曹则贤：从数学方程到大自然的花样【学不分科第6期】</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=87832953&amp;bvid=BV1u741147cP&amp;cid=150056393&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV17741147ZE?from=search&amp;seid=959370802299871539">曹则贤：花叶序背后的数学物理【学不分科第8期】</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=87861149&amp;bvid=BV17741147ZE&amp;cid=150099473&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<h2 id="23-中国科学院云里悟理系列物理微课悟理学院"><a class="markdownIt-Anchor" href="#23-中国科学院云里悟理系列物理微课悟理学院"></a> 2.3 中国科学院《云里·悟理》系列物理微课【悟理学院】</h2>
-<p>总共<strong>30</strong>期，重点看了其中几期：</p>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sE411s7Tv/?spm_id_from=333.788">【云里·悟理05】生命体系里的物理——生物物理初步</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=94091299&amp;bvid=BV1sE411s7Tv&amp;cid=160636976&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1LE411A7GJ/?spm_id_from=333.788">【云里·悟理09】时间和空间——物质的“舞台”</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=97826468&amp;bvid=BV1LE411A7GJ&amp;cid=166997383&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1u64y1u7ju/?spm_id_from=333.788">【云里·悟理14】闻声识人——声音的物理</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=582601470&amp;bvid=BV1u64y1u7ju&amp;cid=173664075&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1oe411x7qB/?spm_id_from=333.788">【云里·悟理15】如汤探冷热——热的历史与热力学第零定律</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=242679258&amp;bvid=BV1oe411x7qB&amp;cid=176083901&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FA411872K/?spm_id_from=333.788">【云里·悟理21】物理？生理？心理？——光与视觉</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=327928875&amp;bvid=BV1FA411872K&amp;cid=185513540&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Jz4y197th/?spm_id_from=333.788">【云里·悟理27】时间的箭头——热力学第二定律</a></p>
-<iframe src="//player.bilibili.com/player.html?aid=583347987&amp;bvid=BV1Jz4y197th&amp;cid=196357625&amp;page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2021/04/20/what-did-i-do-in-the-last-four-months/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/32/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/66/">66</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/34/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/32/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/32/">32</a><span class="page-number current">33</span><a class="page-number" href="/page/34/">34</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/34/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1119,7 +1154,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
 <script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/page/33/"}</script>
