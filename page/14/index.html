@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">331</span>
+          <span class="site-state-item-count">337</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">303</span>
+        <span class="site-state-item-count">307</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,286 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/06/02/leetcode-kth-smallest-in-lexicographical-order/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2022/06/02/leetcode-kth-smallest-in-lexicographical-order/" class="post-title-link" itemprop="url">[LeetCode][440. K-th Smallest in Lexicographical Order] </a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-06-02 07:57:30" itemprop="dateCreated datePublished" datetime="2022-06-02T07:57:30+08:00">2022-06-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2022/06/02/leetcode-kth-smallest-in-lexicographical-order/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/06/02/leetcode-kth-smallest-in-lexicographical-order/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2022/06/02/leetcode-kth-smallest-in-lexicographical-order/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>523</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>This article is the solution <a href=""></a> of Problem <a target="_blank" rel="noopener" href="https://leetcode.com/problems/k-th-smallest-in-lexicographical-order/">440. K-th Smallest in Lexicographical Order</a>.</p>
+<h1 id="brute-force"><a class="markdownIt-Anchor" href="#brute-force"></a> Brute Force</h1>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">findKthNumber</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> k)</span> {</span><br><span class="line">    String[] numStrs = <span class="keyword">new</span> <span class="title class_">String</span>[n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; i++) {</span><br><span class="line">        numStrs[i - <span class="number">1</span>] = <span class="string">""</span> + i;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    Arrays.sort(numStrs);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Integer.parseInt(numStrs[k - <span class="number">1</span>]);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="analysis"><a class="markdownIt-Anchor" href="#analysis"></a> Analysis</h2>
+<ul>
+<li><strong>Time Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>.</li>
+<li><strong>Space Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>.</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2022/06/02/leetcode-kth-smallest-in-lexicographical-order/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/05/30/leetcode-divide-two-integers-en/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2022/05/30/leetcode-divide-two-integers-en/" class="post-title-link" itemprop="url">[LeetCode][29. Divide Two Integers] 5 Approaches: Brute Force use Long, Brute Force use Int, Binary Search use Long, Binary Search use Int and Recursion</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-05-30 07:26:25" itemprop="dateCreated datePublished" datetime="2022-05-30T07:26:25+08:00">2022-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2022/05/30/leetcode-divide-two-integers-en/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/05/30/leetcode-divide-two-integers-en/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2022/05/30/leetcode-divide-two-integers-en/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>This article is the solution <a target="_blank" rel="noopener" href="https://leetcode.com/problems/divide-two-integers/solutions/2089329/5-approaches-bf-use-long-bf-use-int-binary-search-use-long-binary-search-use-int-and-recursion/">5 Approaches: BF use Long, BF use Int, Binary Search use Long, Binary Search use Int and Recursion</a> of Problem <a target="_blank" rel="noopener" href="https://leetcode.com/problems/divide-two-integers/">29. Divide Two Integers</a> , Chinese version is <a href="http://www.longluo.me/blog/2021/03/15/Leetcode-divide-two-integers/">3种方法：暴力法，二分搜索，递归</a> .</p>
+<p>Here shows <strong>5</strong> Approaches to slove this problem: Brute Force use <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">Long</mtext></mrow><annotation encoding="application/x-tex">\texttt{Long}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">Long</span></span></span></span></span>, Brute Force use <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">Int</mtext></mrow><annotation encoding="application/x-tex">\texttt{Int}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">Int</span></span></span></span></span>, Binary Search use <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">Long</mtext></mrow><annotation encoding="application/x-tex">\texttt{Long}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">Long</span></span></span></span></span>, Binary Search use <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">Int</mtext></mrow><annotation encoding="application/x-tex">\texttt{Int}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">Int</span></span></span></span></span> and <strong>Recursion</strong>.</p>
+<h1 id="intuition"><a class="markdownIt-Anchor" href="#intuition"></a> Intuition</h1>
+<p>To divide two integers <strong>without</strong> using multiplication, division, and mod operator, so we can <strong>subtract</strong> the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">divisor</mtext></mrow><annotation encoding="application/x-tex">\textit{divisor}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">divisor</span></span></span></span></span> from the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">dividend</mtext></mrow><annotation encoding="application/x-tex">\textit{dividend}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">dividend</span></span></span></span></span> util the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">result</mtext><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\textit{result} \ge 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord text"><span class="mord textit">result</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>.</p>
+<h1 id="brute-force-use-long"><a class="markdownIt-Anchor" href="#brute-force-use-long"></a> Brute Force use Long</h1>
+<p>We can make the <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">dividend</mtext></mrow><annotation encoding="application/x-tex">\textit{dividend}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">dividend</span></span></span></span></span> and <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">divisor</mtext></mrow><annotation encoding="application/x-tex">\textit{divisor}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">divisor</span></span></span></span></span> positive, and cast to <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="monospace">long</mtext></mrow><annotation encoding="application/x-tex">\texttt{long}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.22222em;"></span><span class="mord text"><span class="mord texttt">long</span></span></span></span></span>, then process.</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">divide</span><span class="params">(<span class="type">int</span> dividend, <span class="type">int</span> divisor)</span> {</span><br><span class="line">    <span class="keyword">if</span> (dividend == <span class="number">0</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">long</span> <span class="variable">dividendLong</span> <span class="operator">=</span> dividend;</span><br><span class="line">    <span class="type">long</span> <span class="variable">divisorLong</span> <span class="operator">=</span> divisor;</span><br><span class="line"></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">sign</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (dividendLong &lt; <span class="number">0</span> &amp;&amp; divisorLong &lt; <span class="number">0</span>) {</span><br><span class="line">        dividendLong = -dividendLong;</span><br><span class="line">        divisorLong = -divisorLong;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (dividendLong &lt; <span class="number">0</span> &amp;&amp; divisorLong &gt; <span class="number">0</span>) {</span><br><span class="line">        sign = <span class="literal">true</span>;</span><br><span class="line">        dividendLong = -dividendLong;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (dividendLong &gt; <span class="number">0</span> &amp;&amp; divisorLong &lt; <span class="number">0</span>) {</span><br><span class="line">        sign = <span class="literal">true</span>;</span><br><span class="line">        divisorLong = -divisorLong;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (dividendLong &gt;= divisorLong) {</span><br><span class="line">        dividendLong -= divisorLong;</span><br><span class="line">        ans++;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    ans = sign ? -ans : ans;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans &gt; Integer.MAX_VALUE ? Integer.MAX_VALUE : (<span class="type">int</span>) ans;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>The solution will <strong>Time Limit Exceeded</strong>, we have to deal with some corner cases.</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">divide</span><span class="params">(<span class="type">int</span> dividend, <span class="type">int</span> divisor)</span> {</span><br><span class="line">    <span class="keyword">if</span> (divisor == Integer.MIN_VALUE) {</span><br><span class="line">        <span class="keyword">return</span> dividend == Integer.MIN_VALUE ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (dividend == Integer.MIN_VALUE) {</span><br><span class="line">        <span class="keyword">if</span> (divisor == <span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">return</span> dividend;</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (divisor == -<span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">        }</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (dividend == Integer.MAX_VALUE) {</span><br><span class="line">        <span class="keyword">if</span> (divisor == <span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">return</span> dividend;</span><br><span class="line">        } <span class="keyword">else</span> <span class="keyword">if</span> (divisor == -<span class="number">1</span>) {</span><br><span class="line">            <span class="keyword">return</span> -dividend;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">long</span> <span class="variable">dividendLong</span> <span class="operator">=</span> dividend;</span><br><span class="line">    <span class="type">long</span> <span class="variable">divisorLong</span> <span class="operator">=</span> divisor;</span><br><span class="line"></span><br><span class="line">    <span class="type">boolean</span> <span class="variable">sign</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (dividendLong &lt; <span class="number">0</span> &amp;&amp; divisorLong &lt; <span class="number">0</span>) {</span><br><span class="line">        dividendLong = -dividendLong;</span><br><span class="line">        divisorLong = -divisorLong;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (dividendLong &lt; <span class="number">0</span> &amp;&amp; divisorLong &gt; <span class="number">0</span>) {</span><br><span class="line">        sign = <span class="literal">true</span>;</span><br><span class="line">        dividendLong = -dividendLong;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (dividendLong &gt; <span class="number">0</span> &amp;&amp; divisorLong &lt; <span class="number">0</span>) {</span><br><span class="line">        sign = <span class="literal">true</span>;</span><br><span class="line">        divisorLong = -divisorLong;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (dividendLong &gt;= divisorLong) {</span><br><span class="line">        dividendLong -= divisorLong;</span><br><span class="line">        ans++;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    ans = sign ? -ans : ans;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans &gt; Integer.MAX_VALUE ? Integer.MAX_VALUE : (<span class="type">int</span>) ans;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="analysis"><a class="markdownIt-Anchor" href="#analysis"></a> Analysis</h2>
+<ul>
+<li><strong>Time Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>x</mi><mi mathvariant="normal">/</mi><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(x / y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mord">/</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mclose">)</span></span></span></span>.</li>
+<li><strong>Space Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>.</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2022/05/30/leetcode-divide-two-integers-en/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -642,321 +922,8 @@ Please upvote👍 if you like💗 it. Thank you:-)</p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/05/26/leetcode-valid-palindrome-ii/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2022/05/26/leetcode-valid-palindrome-ii/" class="post-title-link" itemprop="url">[LeetCode][680. Valid Palindrome II] 3 Approaches: Brute Force, Recursion and Two Pointers</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-26 09:32:21" itemprop="dateCreated datePublished" datetime="2022-05-26T09:32:21+08:00">2022-05-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2022/05/26/leetcode-valid-palindrome-ii/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/05/26/leetcode-valid-palindrome-ii/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2022/05/26/leetcode-valid-palindrome-ii/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>This article is the solution <a target="_blank" rel="noopener" href="https://leetcode.com/problems/valid-palindrome-ii/solutions/1904917/3-approaches-brute-force-recursion-and-two-pointers/">3 Approaches: Brute Force, Recursion and Two Pointers</a> of Problem <a target="_blank" rel="noopener" href="https://leetcode.com/problems/valid-palindrome-ii/">680. Valid Palindrome II</a>.</p>
-<p>Here shows <strong>3</strong> Approaches to slove this problem: <strong>Brue Force</strong>, <strong>Recursion</strong> and <strong>Two Pointers</strong>.</p>
-<h1 id="brue-force"><a class="markdownIt-Anchor" href="#brue-force"></a> Brue Force</h1>
-<p>Let’s start from the simplest method:</p>
-<ul>
-<li>if <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>e</mi><mi>n</mi><mo stretchy="false">(</mo><mi>s</mi><mi>t</mi><mi>r</mi><mo stretchy="false">)</mo><mo>≤</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">len(str) \le 2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mord mathnormal">n</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>, definitely return <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">true</mtext></mrow><annotation encoding="application/x-tex">\textit{true}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">true</span></span></span></span></span>;</li>
-<li>if the string is a palindrome, return <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">true</mtext></mrow><annotation encoding="application/x-tex">\textit{true}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">true</span></span></span></span></span>;</li>
-<li>if not, enumerate each position as the deleted position, and then check the remaining strings is it a palindrome.</li>
-</ul>
-<p>Time complexity of this approach is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>, time limit will be exceeded.</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">validPalindrome_bf</span><span class="params">(String s)</span> {</span><br><span class="line">    <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line">    <span class="keyword">if</span> (len &lt;= <span class="number">2</span> || validPalindrome(s, <span class="number">0</span>, len - <span class="number">1</span>)) {</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; len; i++) {</span><br><span class="line">        <span class="type">String</span> <span class="variable">str</span> <span class="operator">=</span> s.substring(<span class="number">0</span>, i) + s.substring(i + <span class="number">1</span>, len);</span><br><span class="line">        <span class="keyword">if</span> (validPalindrome(str, <span class="number">0</span>, str.length() - <span class="number">1</span>)) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">validPalindrome</span><span class="params">(String s, <span class="type">int</span> left, <span class="type">int</span> right)</span> {</span><br><span class="line">    <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s.length();</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= len || right &lt; <span class="number">0</span> || left &gt; right) {</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (left &lt; right) {</span><br><span class="line">        <span class="keyword">if</span> (s.charAt(left) != s.charAt(right)) {</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        }</span><br><span class="line">        left++;</span><br><span class="line">        right--;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<h2 id="analysis"><a class="markdownIt-Anchor" href="#analysis"></a> Analysis</h2>
-<ul>
-<li><strong>Time Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
-<li><strong>Space Complexity</strong>: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2022/05/26/leetcode-valid-palindrome-ii/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2022/05/23/spider/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2022/05/23/spider/" class="post-title-link" itemprop="url">Python爬虫练习：微博热搜爬虫，微博爬虫 和 主页博文爬虫</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-05-23 18:05:32" itemprop="dateCreated datePublished" datetime="2022-05-23T18:05:32+08:00">2022-05-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2022/05/23/spider/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2022/05/23/spider/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2022/05/23/spider/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<h1 id="微博热搜爬虫"><a class="markdownIt-Anchor" href="#微博热搜爬虫"></a> 微博热搜爬虫</h1>
-<p>前几天外甥女要我帮她完成一个小作业，用 Python 完成一个爬虫，于是在网上找了点资料<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> 和 Github 上找了个爬虫<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> 的例子，改简单了点，只爬取 <a target="_blank" rel="noopener" href="https://s.weibo.com/top/summary?cate=realtimehot">微博热搜</a> 数据并存储到 Excel 中，使用 Python Jupyter 编写。</p>
-<p>具体代码见：<a target="_blank" rel="noopener" href="https://github.com/longluo/spider/blob/master/weibohot.ipynb">https://github.com/longluo/spider/blob/master/weibohot.ipynb</a> 。</p>
-<h1 id="微博爬虫"><a class="markdownIt-Anchor" href="#微博爬虫"></a> 微博爬虫</h1>
-<p><a target="_blank" rel="noopener" href="https://github.com/dataabc/weiboSpider">微博爬虫</a> <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> 的代码及功能太多太复杂，但我目前只需要爬取下列信息：</p>
-<ol>
-<li>个人信息</li>
-<li>具体时间段全部博文；</li>
-<li>将数据存入 Excel 和数据库中。</li>
-</ol>
-<p>所以需要精简其代码。</p>
-<h2 id="微博api"><a class="markdownIt-Anchor" href="#微博api"></a> 微博API</h2>
-<p>微博获取个人信息API：<a target="_blank" rel="noopener" href="https://weibo.cn/1565668374/info">https://weibo.cn/1565668374/info</a></p>
-<p>微博获取个人全部博文API：<a target="_blank" rel="noopener" href="https://weibo.cn/1565668374?page=1">https://weibo.cn/1565668374?page=1</a></p>
-<p>具体代码见：<a target="_blank" rel="noopener" href="https://github.com/longluo/spider/blob/master/weibo.py">https://github.com/longluo/spider/blob/master/weibo.py</a> 。</p>
-<h1 id="博客爬虫"><a class="markdownIt-Anchor" href="#博客爬虫"></a> 博客爬虫</h1>
-<p>在写完上述两个爬虫之后，趁热打铁，也把之前自己一直想做完的功能做完了！</p>
-<h2 id="功能"><a class="markdownIt-Anchor" href="#功能"></a> 功能</h2>
-<ol>
-<li>获取某网站的全部博文比如 <a href="http://www.longluo.me/">http://www.longluo.me/</a> 。</li>
-<li>爬取内容：文章标题、发布时间、分类、链接、正文（HTML格式）等。</li>
-</ol>
-<h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析</h2>
-<ol>
-<li>向目标网页发出请求</li>
-</ol>
-<p><strong>Header</strong> 是请求头信息的，添加的键值对越多，目标网站就越认为你是真实的用户，但我的网站没有反爬虫措施，所以 <strong>Header</strong> 里面就只有 <strong>User-Agent</strong> 键值对，用来描述你的操作系统、浏览器等信息。</p>
-<ol start="2">
-<li>获取网站博客的文章标题、发布时间和链接；</li>
-<li>数据写入Excel中；</li>
-<li>数据存入数据库中。</li>
-</ol>
-<h2 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h2>
-<h3 id="获取全部博文标题-发布时间和链接"><a class="markdownIt-Anchor" href="#获取全部博文标题-发布时间和链接"></a> 获取全部博文标题、发布时间和链接</h3>
-<p>全部博文列表位于 <a href="http://www.longluo.me/archives/">http://www.longluo.me/archives/</a> 中，首先我们要获取的是总共有多少页呢？</p>
-<h4 id="总页数"><a class="markdownIt-Anchor" href="#总页数"></a> 总页数</h4>
-<p>查看网页源代码，我们可以看见全部页数为 <code>&lt;span class="space"&gt;&amp;hellip;&lt;/span&gt;&lt;a class="page-number" href="/archives/page/48/"&gt;48&lt;/a&gt;</code>，所以我们只需要解析出来即可。</p>
-<p>参考网络代码<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup> ，利用BeautifulSoup解析HTML，然后利用正则表达式匹配，代码如下所示：</p>
-<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_total_page</span>(<span class="params">self</span>):</span><br><span class="line">    html = self.get_html(self.archivesUrl)</span><br><span class="line"></span><br><span class="line">    page_number = re.<span class="built_in">compile</span>(<span class="string">'[0-9]+'</span>)</span><br><span class="line"></span><br><span class="line">    soap = BeautifulSoup(html, <span class="string">'html.parser'</span>)</span><br><span class="line"></span><br><span class="line">    page_item = soap.find_all(<span class="string">'a'</span>, class_=<span class="string">"page-number"</span>)</span><br><span class="line">    total_pages = re.findall(page_number, <span class="built_in">str</span>(page_item))[-<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">int</span>(total_pages)</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2022/05/23/spider/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/15/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/13/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/15/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -984,7 +951,7 @@ Please upvote👍 if you like💗 it. Thank you:-)</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:31</span>
+    <span title="站点阅读时长">21:55</span>
   </span>
 </div>
 <div class="busuanzi-count">
