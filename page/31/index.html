@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">332</span>
+          <span class="site-state-item-count">337</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">303</span>
+        <span class="site-state-item-count">307</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,327 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/11/03/leetcode-trapping-rain-water-ii/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2021/11/03/leetcode-trapping-rain-water-ii/" class="post-title-link" itemprop="url">[Leetcode][407. 接雨水 II] 2种方法：优先队列存储每层围栏最低高度，BFS更新每个方块存水高度</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-03 08:20:16" itemprop="dateCreated datePublished" datetime="2021-11-03T08:20:16+08:00">2021-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/11/03/leetcode-trapping-rain-water-ii/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/11/03/leetcode-trapping-rain-water-ii/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/11/03/leetcode-trapping-rain-water-ii/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/">Leetcode</a> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trapping-rain-water-ii/">407. 接雨水 II</a> 题目如下：</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">407. 接雨水 II</span><br><span class="line"></span><br><span class="line">给你一个m x n的矩阵，其中的值均为非负整数，代表二维高度图每个单元的高度，请计算图中形状最多能接多少体积的雨水。</span><br><span class="line"></span><br><span class="line">示例 1:</span><br><span class="line"></span><br><span class="line">![3D 接雨水 1](https://assets.leetcode.com/uploads/2021/04/08/trap1-3d.jpg)</span><br><span class="line"></span><br><span class="line">输入: heightMap = [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]]</span><br><span class="line">输出: 4</span><br><span class="line">解释: 下雨后，雨水将会被上图蓝色的方块中。总的接雨水量为1+2+1=4。</span><br><span class="line"></span><br><span class="line">示例 2:</span><br><span class="line"></span><br><span class="line">![3D 接雨水 2](https://assets.leetcode.com/uploads/2021/04/08/trap2-3d.jpg)</span><br><span class="line"></span><br><span class="line">输入: heightMap = [[3,3,3,3,3],[3,2,2,2,3],[3,2,1,2,3],[3,2,2,2,3],[3,3,3,3,3]]</span><br><span class="line">输出: 10</span><br><span class="line"> </span><br><span class="line">提示:</span><br><span class="line">m == heightMap.length</span><br><span class="line">n == heightMap[i].length</span><br><span class="line">1 &lt;= m, n &lt;= 200</span><br><span class="line">0 &lt;= heightMap[i][j] &lt;= 2 * 10^4</span><br></pre></td></tr></tbody></table></figure>
+<p>这道题是 <a href="http://www.longluo.me/blog/2021/10/19/Leetcode-trapping-rain-water/">42. 接雨水</a> 的3D版本，区别于2D版本只需要维护左右两个最高的木板，这里需要维护一个围栏，用堆（优先队列）来维护周围这个围栏中的最小元素。</p>
+<h1 id="方法一优先队列-最小堆"><a class="markdownIt-Anchor" href="#方法一优先队列-最小堆"></a> 方法一：优先队列 + 最小堆</h1>
+<p><strong>思路与算法：</strong></p>
+<p>因为需要维护一个圈，用来存储水，所以需要从矩阵的最外围往里面遍历，不断缩小圈，直到遍历每个方块，在这个过程中计算每个方块能装多少水，更新 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">ans</mtext></mrow><annotation encoding="application/x-tex">\textit{ans}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span class="mord textit">ans</span></span></span></span></span>。</p>
+<p>那么什么方块能存水呢？</p>
+<ul>
+<li>该方块不是在圈外；</li>
+<li>该方块高度比其上下左右四个相邻的方块接水后的高度都要低。</li>
+</ul>
+<p>假设方块的索引为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i,j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span>，方块高度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">heightMap</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\textit{heightMap}[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textit">heightMap</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>，方块接水后的高度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">water</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\textit{water}[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textit">water</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>，则方块 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i,j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span> 的接水后的高度为：</p>
+<p class="katex-block"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext mathvariant="italic">water</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mtext mathvariant="italic">heightMap</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><mtext mathvariant="italic">water</mtext><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mtext mathvariant="italic">water</mtext><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo separator="true">,</mo><mtext mathvariant="italic">water</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mtext mathvariant="italic">water</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\textit{water}[i][j] = \max(\textit{heightMap}[i][j],\min(\textit{water}[i-1][j],\textit{water}[i+1][j],\textit{water}[i][j-1],\textit{water}[i][j+1]))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textit">water</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord text"><span class="mord textit">heightMap</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord text"><span class="mord textit">water</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord textit">water</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord textit">water</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord textit">water</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
+<p>每个方块 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(i,j)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">)</span></span></span></span> 实际接水量为：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">water</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>−</mo><mtext mathvariant="italic">heightMap</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\textit{water}[i][j] - \textit{heightMap}[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textit">water</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textit">heightMap</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>。</p>
+<p>那问题变成了如何知道每个方块的 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">water</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\textit{water}[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textit">water</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span> 呢？</p>
+<ol>
+<li>
+<p>因为最外层的方块无法接水，所以最外层的方块接水后的高度 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext mathvariant="italic">water</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>=</mo><mtext mathvariant="italic">heightMap</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\textit{water}[i][j]=\textit{heightMap}[i][j]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textit">water</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord textit">heightMap</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span></span></span></span>；</p>
+</li>
+<li>
+<p>根据木桶原理，而每层水的高度则取决于每层方块中高度最低的方块；</p>
+</li>
+<li>
+<p>从矩阵的四周边界开始，则可以知道最外层方块接水后的高度最小值。之后遍历每层中的每个方块周围<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>4</mn></mrow><annotation encoding="application/x-tex">4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span></span></span></span> 个方块，如果比当前方块低，那么说明这个方块可以接水，接水后的高度就是当前层的最小高度，反之更高的话，将其加入优先队列中；</p>
+</li>
+<li>
+<p>更新最外层的方块标记，在新的最外层的方块再次找到接水后的高度的最小值，依次迭代直到求出所有的方块的接水高度，即可知道矩阵中的接水容量。</p>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2021/11/03/leetcode-trapping-rain-water-ii/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/10/19/leetcode-trapping-rain-water/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2021/10/19/leetcode-trapping-rain-water/" class="post-title-link" itemprop="url">[Leetcode][42. 接雨水] 5种解法：木桶原理，按行求，动态规划，双指针，单调栈</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-19 08:16:25" itemprop="dateCreated datePublished" datetime="2021-10-19T08:16:25+08:00">2021-10-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2021/10/19/leetcode-trapping-rain-water/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/10/19/leetcode-trapping-rain-water/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2021/10/19/leetcode-trapping-rain-water/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/">Leetcode</a> <a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a> 题目如下：</p>
+<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">42. 接雨水</span><br><span class="line"></span><br><span class="line">给定$n$个非负整数表示每个宽度为$1$的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。</span><br><span class="line"></span><br><span class="line">示例 1：</span><br><span class="line"></span><br><span class="line">![接雨水 1](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/22/rainwatertrap.png)</span><br><span class="line"></span><br><span class="line">输入：height = [0,1,0,2,1,0,1,3,2,1,2,1]</span><br><span class="line">输出：6</span><br><span class="line">解释：上面是由数组 [0,1,0,2,1,0,1,3,2,1,2,1] 表示的高度图，在这种情况下，可以接 6 个单位的雨水（蓝色部分表示雨水）。</span><br><span class="line"> </span><br><span class="line">示例 2：</span><br><span class="line">输入：height = [4,2,0,3,2,5]</span><br><span class="line">输出：9</span><br><span class="line">&nbsp;</span><br><span class="line">提示：</span><br><span class="line">n == height.length</span><br><span class="line">1 &lt;= n &lt;= 2 * 10^4</span><br><span class="line">0 &lt;= height[i] &lt;= 10^5</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="方法一-按列求木桶原理"><a class="markdownIt-Anchor" href="#方法一-按列求木桶原理"></a> 方法一： 按列求（木桶原理）</h1>
+<p><strong>思路与算法：</strong></p>
+<p>很容易想到，装水的多少，根据<strong>木桶原理</strong>，只需要关注左边最高的木板和右边最高的模板中较矮的一个就够了，那么存储的水，等于两边木板的较小值减去当前高度的值。</p>
+<ol>
+<li>从左向右遍历数组：
+<ul>
+<li>从当前元素向左扫描并更新：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>max_left</mtext><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mtext>max_left</mtext><mo separator="true">,</mo><mtext>height</mtext><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{max\_left}=\max(\text{max\_left}, \text{height}[j])</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00444em;vertical-align:-0.31em;"></span><span class="mord text"><span class="mord">max_left</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord text"><span class="mord">max_left</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord">height</span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mclose">)</span></span></span></span></li>
+<li>从当前元素向右扫描并更新：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>max_right</mtext><mo>=</mo><mi>max</mi><mo>⁡</mo><mo stretchy="false">(</mo><mtext>max_right</mtext><mo separator="true">,</mo><mtext>height</mtext><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\text{max\_right}=\max(\text{max\_right}, \text{height}[j])</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.00444em;vertical-align:-0.31em;"></span><span class="mord text"><span class="mord">max_right</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mop">max</span><span class="mopen">(</span><span class="mord text"><span class="mord">max_right</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord">height</span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]</span><span class="mclose">)</span></span></span></span></li>
+</ul>
+</li>
+<li>更新 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>ans</mtext><mo>+</mo><mo>=</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><mtext>max_left</mtext><mo separator="true">,</mo><mtext>max_right</mtext><mo stretchy="false">)</mo><mo>−</mo><mtext>height</mtext><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo></mrow><annotation encoding="application/x-tex">\text{ans} += \min(\text{max\_left}, \text{max\_right}) - \text{height}[i]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord text"><span class="mord">ans</span></span><span class="mord">+</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.06em;vertical-align:-0.31em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord text"><span class="mord">max_left</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord text"><span class="mord">max_right</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord text"><span class="mord">height</span></span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span></span></span></span>。</li>
+</ol>
+<p>代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">trap</span><span class="params">(<span class="type">int</span>[] height)</span> {</span><br><span class="line">    <span class="keyword">if</span> (height == <span class="literal">null</span> || height.length &lt;= <span class="number">2</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> height.length;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; len - <span class="number">1</span>; i++) {</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxRight</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxLeft</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> i; right &lt; len; right++) {</span><br><span class="line">            maxRight = Math.max(maxRight, height[right]);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> i; left &gt;= <span class="number">0</span>; left--) {</span><br><span class="line">            maxLeft = Math.max(maxLeft, height[left]);</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        ans += Math.min(maxLeft, maxRight) - height[i];</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，遍历每一列需要 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span>，找出左边最高和右边最高的木板加起来刚好又是一个 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span>，所以是 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">n^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
+<h1 id="方法二按行求"><a class="markdownIt-Anchor" href="#方法二按行求"></a> 方法二：按行求</h1>
+<p><strong>思路与算法：</strong></p>
+<p>求第 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 层的水，遍历每个位置，如果当前的高度小于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span>，并且两边有高度大于等于 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 的，说明这个地方一定有水，水就可以加 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p>如果求高度为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 的水，首先用一个变量 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">water</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> 保存当前累积的水，初始化为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>。从左到右遍历墙的高度，遇到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>≥</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">h \ge i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 的时候，开始更新 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">water</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span>。</p>
+<p>第一次遇到已经开始计算时并且 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>&lt;</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">h &lt; i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.73354em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 的就把 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>r</mi><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">water+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69841em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，再次遇到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo>≥</mo><mi>i</mi></mrow><annotation encoding="application/x-tex">h \ge i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathnormal">h</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 的，说明这个地方一定有水，就把 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>r</mi></mrow><annotation encoding="application/x-tex">water</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span></span></span></span> 加到最终的答案 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mi>n</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">ans</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">a</span><span class="mord mathnormal">n</span><span class="mord mathnormal">s</span></span></span></span> 里，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>w</mi><mi>a</mi><mi>t</mi><mi>e</mi><mi>r</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">water=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.02691em;">w</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mi>l</mi><mi>a</mi><mi>g</mi><mo>=</mo><mi>f</mi><mi>a</mi><mi>l</mi><mi>s</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">flag=false</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">s</span><span class="mord mathnormal">e</span></span></span></span>，然后继续循环。</p>
+<p>代码如下所示：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">trap_row</span><span class="params">(<span class="type">int</span>[] height)</span> {</span><br><span class="line">    <span class="keyword">if</span> (height == <span class="literal">null</span> || height.length &lt;= <span class="number">2</span>) {</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> height.length;</span><br><span class="line">    <span class="type">int</span> <span class="variable">maxHeight</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> x : height) {</span><br><span class="line">        maxHeight = Math.max(maxHeight, x);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= maxHeight; i++) {</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">water</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; len; j++) {</span><br><span class="line">            <span class="keyword">if</span> (flag &amp;&amp; height[j] &lt; i) {</span><br><span class="line">                water++;</span><br><span class="line">            }</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (height[j] &gt;= i) {</span><br><span class="line">                ans += water;</span><br><span class="line">                water = <span class="number">0</span>;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>m</mi><mi>a</mi><mi>x</mi><mi>H</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi><mo>×</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(maxHeight \times n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal">m</span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">e</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">h</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mi>a</mi><mi>x</mi><mi>H</mi><mi>e</mi><mi>i</mi><mi>g</mi><mi>h</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">maxHeight</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">m</span><span class="mord mathnormal">a</span><span class="mord mathnormal">x</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mord mathnormal">e</span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">h</span><span class="mord mathnormal">t</span></span></span></span> 是数组元素的最大值。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2021/10/19/leetcode-trapping-rain-water/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1401,350 +1722,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/09/20/Coding-Interviews-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2021/09/20/Coding-Interviews-2/" class="post-title-link" itemprop="url">《剑指Offer（专项突击版）》刷题记录</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-20 21:35:25" itemprop="dateCreated datePublished" datetime="2021-09-20T21:35:25+08:00">2021-09-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2021/09/20/Coding-Interviews-2/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/09/20/Coding-Interviews-2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2021/09/20/Coding-Interviews-2/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>437</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problem-list/e8X3pBZi/">Leetcode中 剑指Offer（专项突击版）</a></p>
-<hr>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Leetcode题目</th>
-<th style="text-align:center">难度</th>
-<th style="text-align:center">解答</th>
-<th style="text-align:center">Source Code</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xoh6Oh/">剑指Offer II 001. 整数除法</a></td>
-<td style="text-align:center">Easy</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_01_divide.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/JFETK5/">剑指Offer II 002. 二进制加法</a></td>
-<td style="text-align:center">Easy</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_02_addBinary.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/w3tCBm/">剑指Offer II 003. 前 n 个数字二进制中 1 的个数</a></td>
-<td style="text-align:center">Easy</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_03_countBits.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/WGki4K/">剑指Offer II 004. 只出现一次的数字</a></td>
-<td style="text-align:center">Medium</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_04_singleNumber.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/aseY1I/">剑指Offer II 005. 单词长度的最大乘积</a></td>
-<td style="text-align:center">Medium</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_05_maxProduct.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/kLl5u1/">剑指Offer II 006. 排序数组中两个数字之和</a></td>
-<td style="text-align:center">Easy</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_06_twoSum.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/1fGaJU/">剑指Offer II 007. 数组中和为 0 的三个数</a></td>
-<td style="text-align:center">Medium</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_07_threeSum.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/2VG8Kg/">剑指Offer II 008. 和大于等于target的最短子数组</a></td>
-<td style="text-align:center">Medium</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_08_minSubArrayLen.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/A1NYOS/">剑指Offer II 011. 0 和 1 个数相同的子数组</a></td>
-<td style="text-align:center">Medium</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_11_findMaxLength.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/tvdfij/">剑指Offer II 012. 左右两边子数组的和相等</a></td>
-<td style="text-align:center">Easy</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_12_pivotIndex.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/Ygoe9J/">剑指Offer II 081. 允许重复选择元素的组合</a></td>
-<td style="text-align:center">Easy</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_12_pivotIndex.java">Java</a></td>
-</tr>
-<tr>
-<td style="text-align:left"><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/IDBivT/">剑指Offer II 085. 生成匹配的括号</a></td>
-<td style="text-align:center">Medium</td>
-<td style="text-align:center"><a href=""></a></td>
-<td style="text-align:center"><a href="./Offer2_85_generateParenthesis.java">Java</a></td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2021/09/10/meituan-interview-problem-prefixsum/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2021/09/10/meituan-interview-problem-prefixsum/" class="post-title-link" itemprop="url">记一道美团面试编程题的解题过程：从暴力到优化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-10 23:55:56" itemprop="dateCreated datePublished" datetime="2021-09-10T23:55:56+08:00">2021-09-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-04 20:37:20" itemprop="dateModified" datetime="2024-02-04T20:37:20+08:00">2024-02-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2021/09/10/meituan-interview-problem-prefixsum/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2021/09/10/meituan-interview-problem-prefixsum/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2021/09/10/meituan-interview-problem-prefixsum/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>7.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>最近在做 <a target="_blank" rel="noopener" href="https://leetcode.cn/study-plan">Leetcode学习计划</a> 中的 <a target="_blank" rel="noopener" href="https://leetcode.cn/study-plan/meituan">2021届秋季校招笔试真题</a> 时，在这道题上 <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/TJZLyC/">meituan-002. 小美的仓库整理</a> 卡了一点时间，在此记录下自己从困惑到最终解决的全过程，吸取经验教训，提高自己知识水平。</p>
-<h1 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h1>
-<p>这是一道<strong>Medium</strong>难度的题目，如下所示：</p>
-<figure class="highlight txt"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">meituan-002. 小美的仓库整理</span><br><span class="line"></span><br><span class="line">小美是美团仓库的管理员，她会根据单据的要求按顺序取出仓库中的货物，每取出一件货物后会把剩余货物重新堆放，使得自己方便查找。已知货物入库的时候是按顺序堆放在一起的。如果小美取出其中一件货物，则会把货物所在的一堆物品以取出的货物为界分成两堆，这样可以保证货物局部的顺序不变。</span><br><span class="line">已知货物最初是按1~n的顺序堆放的，每件货物的重量为w[i] ,小美会根据单据依次不放回的取出货物。请问根据上述操作，小美每取出一件货物之后，重量和最大的一堆货物重量是多少？</span><br><span class="line"></span><br><span class="line">格式：</span><br><span class="line"></span><br><span class="line">	输入：</span><br><span class="line">		- 输入第一行包含一个正整数 n ，表示货物的数量。</span><br><span class="line">		- 输入第二行包含n个正整数，表示1~n号货物的重量w[i]。</span><br><span class="line">		- 输入第三行有n个数，表示小美按顺序取出的货物的编号，也就是一个1~n的全排列。</span><br><span class="line"></span><br><span class="line">	输出：</span><br><span class="line">		- 输出包含n行，每行一个整数，表示每取出一件货物以后，对于重量和最大的一堆货物，其重量和为多少。</span><br><span class="line"></span><br><span class="line">示例：</span><br><span class="line"></span><br><span class="line">	输入：</span><br><span class="line">		5</span><br><span class="line">		3 2 4 4 5 </span><br><span class="line">		4 3 5 2 1</span><br><span class="line">	 </span><br><span class="line">	输出：</span><br><span class="line">		9</span><br><span class="line">		5</span><br><span class="line">		5</span><br><span class="line">		3</span><br><span class="line">		0</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">	原本的状态是{{3,2,4,4,5}}，取出4号货物后，得到{{3,2,4},{5}}，第一堆货物的和是9，然后取出3号货物得到{{3,2}{5}}，此时第一堆和第二堆的和都是5，以此类推。</span><br><span class="line"></span><br><span class="line">提示：</span><br><span class="line">	1 &lt;= n &lt;= 50000</span><br><span class="line">	1 &lt;= w[i] &lt;= 100</span><br><span class="line"></span><br><span class="line">请注意，本题需要自行编写「标准输入」和「标准输出」逻辑，以及自行import/include需要的library。了解书写规则</span><br></pre></td></tr></tbody></table></figure>
-<p>从题意来看，这道题目并不难，所以当时看到题目之后，马上刷刷开始做题，觉得太简单了！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2021/09/10/meituan-interview-problem-prefixsum/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/30/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/32/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/30/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/30/">30</a><span class="page-number current">31</span><a class="page-number" href="/page/32/">32</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/32/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1772,7 +1751,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:36</span>
+    <span title="站点阅读时长">21:55</span>
   </span>
 </div>
 <div class="busuanzi-count">
