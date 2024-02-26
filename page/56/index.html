@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">337</span>
+          <span class="site-state-item-count">332</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">307</span>
+        <span class="site-state-item-count">303</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -238,7 +238,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/09/23/the-tips-of-tower-defense-game/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -256,7 +256,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/23/the-tips-of-tower-defense-game/" class="post-title-link" itemprop="url">设计一款好玩的塔防游戏需要注意的几个要点---由个人玩一款塔防游戏引起的思考</a>
+          <a href="/blog/2014/07/02/the-refactor-of-channel-page-of-video/" class="post-title-link" itemprop="url">视频频道页面重构总结</a>
         </h2>
 
         <div class="post-meta-container">
@@ -267,173 +267,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2014-09-23 23:13:15" itemprop="dateCreated datePublished" datetime="2014-09-23T23:13:15+08:00">2014-09-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Game/" itemprop="url" rel="index"><span itemprop="name">Game</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2014/09/23/the-tips-of-tower-defense-game/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/09/23/the-tips-of-tower-defense-game/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/09/23/the-tips-of-tower-defense-game/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>之前一段时间花了很长时间来玩了一个 Mac OS平台下的塔防游戏《<a target="_blank" rel="noopener" href="https://itunes.apple.com/us/app/ibomber-defense-pacific/id498249308">iBomber Defense Pacific</a>》，为此浪费了不少时间。</p>
-<p>玩到通关之后，躺在床上，我一方面心痛我居然对游戏如此没有免疫力，另外一方面我在思考这款游戏好在哪里，哪些地方设计的很好？</p>
-<p>作为一款塔防游戏，这款游戏和其他塔防游戏有什么优点？如何设计一款塔防游戏呢？它需要遵循哪些原则呢？</p>
-<h1 id="塔防游戏"><a class="markdownIt-Anchor" href="#塔防游戏"></a> 塔防游戏</h1>
-<p><strong>Tower Defense</strong>，指的是一类通过在地图上建造炮塔或类似建筑物，以阻止游戏中敌人进攻的策略型游戏。比较有名的像《植物大战僵尸》、《Field Runners》、《保卫萝卜》、《Desktop TD》等。</p>
-<p>这种游戏多见于flash游戏，手机平台也很多，塔防的操作模式和节奏都比较适合触屏的操作，所以现在的Android 和 iOS平台上有非常多的此类游戏。</p>
-<p>现在以玩的&lt;<a target="_blank" rel="noopener" href="https://itunes.apple.com/us/app/ibomber-defense-pacific/id498249308">iBomber Defense Pacific</a>&gt;为例，来说明一款好的TD游戏的要素和原则：</p>
-<h2 id="11-要素之一美工设计"><a class="markdownIt-Anchor" href="#11-要素之一美工设计"></a> 1.1 要素之一：美工设计</h2>
-<p>不同游戏有不同的美术风格，比如《植物大战僵尸》和《保护萝卜》的Q版风格， 《iBomber Defense Pacific》的战争风格。App Store中国区很多塔防游戏都是三国流。</p>
-<p>游戏设计的越精美越好，包括人物设计精美度，有辨识性，突出重点。</p>
-<h2 id="12-要素之二敌人"><a class="markdownIt-Anchor" href="#12-要素之二敌人"></a> 1.2 要素之二：敌人</h2>
-<p>敌人也分为几类：</p>
-<ol>
-<li>低HP，移动速度快，低攻击力，在一波中数量众多；</li>
-<li>中等HP，移动速度快，中等攻击力，在一波中数量中等；</li>
-<li>高HP，移动速度慢，高攻击力，在一波中熟练较少。</li>
-</ol>
-<p>以上的都是地面unit，我们所摆的阵型只对地面部队起作用，但一款好的TD游戏中都有<em><strong>空军无视你的阵型</strong></em>，所以你还需要考虑防空处理。</p>
-<h2 id="13-要素之三塔"><a class="markdownIt-Anchor" href="#13-要素之三塔"></a> 1.3 要素之三：塔</h2>
-<p>塔的属性有以下几点：</p>
-<ol>
-<li>攻击力ATTACK： 决定单位建筑对敌人所能造成的伤害程度</li>
-<li>攻击频率FREQENCY： 决定单位建筑在单位时间内的攻击次数</li>
-<li>攻击范围RANGE：决定单位建筑的攻击有效距离</li>
-<li>造价GOLD: 决定单位建筑的造价。</li>
-</ol>
-<p>塔也分为几类，一类是攻击型的，一类是减速型的，一类是加群防群补型的，一款好的游戏应该包含以上所有类型。</p>
-<h2 id="14-要素之四地图"><a class="markdownIt-Anchor" href="#14-要素之四地图"></a> 1.4 要素之四：地图</h2>
-<p>地图在一款好的TD游戏是非常重要的，不同的地图需要不同类型的塔才能发挥最大的作用。</p>
-<p><strong>再来谈谈我认可的几个原则</strong>：</p>
-<h3 id="141-原则之一一个高等级的塔效果要超过2个低等级的塔"><a class="markdownIt-Anchor" href="#141-原则之一一个高等级的塔效果要超过2个低等级的塔"></a> 1.4.1 原则之一：一个高等级的塔效果要超过2个低等级的塔。</h3>
-<p>只有这样才能体现策略，才能在地图上摆阵需要思考，考虑到当前的金钱和位置，需要思考哪个位置放置什么类型的塔，这样才能成功。</p>
-<h3 id="142-原则之二不同类型的塔的组合效果必须大于单一塔的效果"><a class="markdownIt-Anchor" href="#142-原则之二不同类型的塔的组合效果必须大于单一塔的效果"></a> 1.4.2 原则之二：不同类型的塔的组合效果必须大于单一塔的效果。</h3>
-<p>只依靠一个塔的简单累加就能过关的游戏是失败的。</p>
-<h3 id="143-原则之三不同敌人组合"><a class="markdownIt-Anchor" href="#143-原则之三不同敌人组合"></a> 1.4.3 原则之三：不同敌人组合。</h3>
-<p>在敌人组合的时候，不是固定的，三类不同敌人进行组合才能对玩家产生最大的压迫效果。</p>
-<h3 id="144-原则之四关卡设计"><a class="markdownIt-Anchor" href="#144-原则之四关卡设计"></a> 1.4.4 原则之四：关卡设计。</h3>
-<p>一款游戏一般都设计成以下阶段：新手–&gt;成长–&gt;高手–&gt;专业。不同阶段都需要对玩家产生吸引力，每个阶段的难度设计都需要比较合理。</p>
-<h1 id="最后总结"><a class="markdownIt-Anchor" href="#最后总结"></a> 最后总结：</h1>
-<p>玩游戏，倒后面对游戏设计师的所有伎俩都清清楚楚，反倒不想打游戏了。</p>
-<p><em><strong>2013年3月28日下午10:09第一版</strong></em><br>
-<em><strong>2013年4月2日下午10:43完稿</strong></em></p>
-<p><em><strong>Modified By Long Luo at 2014-09-23 23:29:27 @Shenzhen, China.</strong></em><br>
-<em><strong>Modified By Long Luo at 2018年9月28日23点39分 @Shenzhen, China.</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/09/21/how-to-make-a-personal-android-app/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/21/how-to-make-a-personal-android-app/" class="post-title-link" itemprop="url">如何从零实现一个你的个人博客 Android App?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-21 11:43:03" itemprop="dateCreated datePublished" datetime="2014-09-21T11:43:03+08:00">2014-09-21</time>
+      <time title="创建时间：2014-07-02 23:16:42" itemprop="dateCreated datePublished" datetime="2014-07-02T23:16:42+08:00">2014-07-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -461,8 +295,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2014/09/21/how-to-make-a-personal-android-app/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/09/21/how-to-make-a-personal-android-app/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2014/07/02/the-refactor-of-channel-page-of-video/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/07/02/the-refactor-of-channel-page-of-video/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -472,7 +306,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/09/21/how-to-make-a-personal-android-app/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2014/07/02/the-refactor-of-channel-page-of-video/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -481,7 +315,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
+      <span>1.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -500,55 +334,46 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><em><strong>By Long Luo</strong></em></p>
-<h1 id="一-overview"><a class="markdownIt-Anchor" href="#一-overview"></a> 一、Overview</h1>
-<p>最近实现了我的第一个个人博客阅读App，但是<em><strong>目前存在很多很多Bugo(╯□╰)o  &gt;_&lt;|||</strong></em>。</p>
-<p>可以通过这个App来实现RSS订阅功能，第一时间阅读我的个人博客文章，同时可实现文章收藏与分享功能。App使用截图如下所示：</p>
-<h2 id="11-rss-订阅最新的20篇文章"><a class="markdownIt-Anchor" href="#11-rss-订阅最新的20篇文章"></a> 1.1 RSS 订阅最新的20篇文章</h2>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/BlogReader/blogreader_all.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="All Articles"></p>
-<h2 id="12-可以收藏文章"><a class="markdownIt-Anchor" href="#12-可以收藏文章"></a> 1.2 可以收藏文章</h2>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/BlogReader/blogreader_favorite.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="Favorite Articles"></p>
-<h2 id="13-查看文章全文"><a class="markdownIt-Anchor" href="#13-查看文章全文"></a> 1.3 查看文章全文</h2>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/BlogReader/blogreader_article_detail.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="Article Detail"></p>
-<h2 id="14-支持将文章分享到sns"><a class="markdownIt-Anchor" href="#14-支持将文章分享到sns"></a> 1.4 支持将文章分享到SNS</h2>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/BlogReader/blogreader_article_share.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="SNS Share"></p>
-<h1 id="二-how-to-make-it"><a class="markdownIt-Anchor" href="#二-how-to-make-it"></a> 二、How to make it?</h1>
-<p>其实我去年就想实现一个我的个人App，但是由于种种原因一直拖到现在才有了1.0版本，期间走过了很多弯路，也进行了反思，为什么失败？我觉得部分原因如下：</p>
-<h2 id="21-产品功能不清晰"><a class="markdownIt-Anchor" href="#21-产品功能不清晰"></a> 2.1 产品功能不清晰</h2>
-<p>最开始产品功能不清楚，到底仅仅是博客阅读App还是一个大而全式的App，包含自己的简历，网站，展示自己的一些作品？</p>
-<p>如果一开始就仅仅是最简单的博客阅读App，那实现难度就降了一个数量级了，目前完成的成品也仅仅是一个阅读App。</p>
-<h2 id="22-没有选择一个合适的产品参考"><a class="markdownIt-Anchor" href="#22-没有选择一个合适的产品参考"></a> 2.2 没有选择一个合适的产品参考</h2>
-<p>对于从无到有，最好是有成熟的产品可以参考，但是一开始我没有找到。有一天新大陆似的发现了<a target="_blank" rel="noopener" href="https://wordpress.org/"><strong>WordPress</strong></a>的开源Android客户端，于是决定参照此开源代码进行开发。</p>
-<p>WordPress的Android客户端代码<em>太庞大</em>了，当时也没有去认真阅读里面的源码。后来有很长一段时间，我的这个项目又放弃了。</p>
-<h2 id="23-网站自动制作app"><a class="markdownIt-Anchor" href="#23-网站自动制作app"></a> 2.3 网站自动制作App</h2>
-<p>有一天看到别人分享的网站自动制作App，于是折腾了2天，看能不能给我制作出来，不过最后以失败告终。</p>
-<h2 id="24-制定详细规划"><a class="markdownIt-Anchor" href="#24-制定详细规划"></a> 2.4 制定详细规划</h2>
-<p>为什么在最近2周又突飞猛进了呢？<br>
-中秋节3天，也没啥事，于是绝对重新捡起来。首先，我思考了这款App要做成什么样？有那些功能？各需要哪些技术？</p>
-<p>于是分析如下：</p>
-<h3 id="241-需要的功能"><a class="markdownIt-Anchor" href="#241-需要的功能"></a> 2.4.1 需要的功能</h3>
+<h1 id="一-重构前的一些缺点"><a class="markdownIt-Anchor" href="#一-重构前的一些缺点"></a> 一、重构前的一些缺点</h1>
 <ol>
-<li>1.0版本只做最基本的博客阅读功能；</li>
-<li>文章可以收藏也可以分享；</li>
-<li>文章可以删除以及标记阅读情况功能</li>
+<li>频道显示在VideoListActivity实现的，代码结构不够清晰；</li>
+<li>频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间；</li>
+<li>后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；</li>
 </ol>
-<h3 id="242-需要的技术"><a class="markdownIt-Anchor" href="#242-需要的技术"></a> 2.4.2 需要的技术</h3>
+<h1 id="二-重构方案"><a class="markdownIt-Anchor" href="#二-重构方案"></a> 二、重构方案</h1>
+<p>重构方案:</p>
 <ol>
-<li>博客阅读，也就是RSS订阅功能，需要学习RSS解析技术；</li>
-<li>最基本的页面设计，使用底部Tab技术；</li>
-<li>文章可以编辑处理，也就需要一个数据库，需要对这个阅读数据库设计，由ContentProvider实现；</li>
-<li>收藏功能，爷就是在数据库增加一个字段，在查询时进行处理，新建一张表；</li>
-<li>分享功能，使用分享SDK完成</li>
+<li>将频道页面独立出来，新建一个ChannelListActivity，作为所有频道页面的Activity，负责所有频道界面的绘制，便于后续扩展；</li>
+<li>针对不同频道，具有不同的布局方式，比如对于需要矩阵式显示的频道，使用矩阵式布局；</li>
+<li>矩阵式布局，替换原有的ListView加GridView显示，提高加载速度；</li>
 </ol>
-<h2 id="25-实现"><a class="markdownIt-Anchor" href="#25-实现"></a> 2.5 实现</h2>
-<p>经过上述分析，那么开始学习相关技术，努力编程实现吧！</p>
-<p>在实现RSS技术的过程中，其实也就是XML解析技术。通过研读了网上开源代码，移植Ok。其实界面调优也花了不少时间。</p>
-<h1 id="三-download"><a class="markdownIt-Anchor" href="#三-download"></a> 三、Download</h1>
-<p>说了这么多，放下新Apk下载链接吧，大家也体验一下吧：</p>
-<p><a target="_blank" rel="noopener" href="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/BlogReader/apk/BlogReader_v1.0_20140923.apk"><strong>点我下载</strong></a></p>
-<p><em><strong>Created by Long Luo at 2014-09-21 22:09:21 @Shenzhen, China.</strong></em><br>
-<em><strong>Completed By Long Luo at 2014-09-21 23:12:02 @Shenzhen, China.</strong></em><br>
-<em><strong>Modified By Long Luo at 2014-9-23 21:07:26 @Shenzhen, China.</strong></em><br>
-<em><strong>Modified By Long Luo at 2018年10月2日03点51分 @Shenzhen, China.</strong></em></p>
+<h1 id="三-具体实现"><a class="markdownIt-Anchor" href="#三-具体实现"></a> 三、具体实现</h1>
+<p>技术实现方案如下所示：</p>
+<ol>
+<li>新建ChannelListActivity，在VideoListActivity中用进入频道页的接口替换原有的接口，将相关处理在ChannelListActivity中实现；</li>
+<li>根据传入的频道ID不同，使用**setContentView()**加载不同的布局方式，实现不同频道不同布局显示；</li>
+<li>新建ChannelGridAdapter，替换原有的ChannelListAdapter加ChannelGridListAdapter方式，提高加载速度；</li>
+</ol>
+<h1 id="四-数据对比"><a class="markdownIt-Anchor" href="#四-数据对比"></a> 四、数据对比</h1>
+<p>我们通过TraceView工具比较前后2种方案的区别：</p>
+<h2 id="41-启动时间"><a class="markdownIt-Anchor" href="#41-启动时间"></a> 4.1 启动时间：</h2>
+<p>比较两者启动时间，可以看出重构之后的方案是有大概20ms的提升。</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/Channel_startupTime.png" alt="Startup Time"></p>
+<hr>
+<h2 id="42-traceview对比"><a class="markdownIt-Anchor" href="#42-traceview对比"></a> 4.2 TraceView对比：</h2>
+<p>通过DDMS TraceView工具，我们再比较下2者性能上的区别：</p>
+<h3 id="421-重构之前"><a class="markdownIt-Anchor" href="#421-重构之前"></a> 4.2.1 重构之前：</h3>
+<p>重构之前的在绘制页面时需要绘制ListView，然后在每一个List中在绘制GridView，在TraceView获取到的数据如下：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png" alt="ChannelListAdapter"></p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/traceview_ChannelGridListAdapter_getView.png" alt="ChannelGridListAdapter"></p>
+<p>从以上可以分析，在ChannelListAdapter的getView()就占据了**1.0%<strong>的Incl Cpu Time, GridView的getView()占据了</strong>6.9%<strong>的Incl Cpu Time，合计占用了</strong>7.9%**的CPU Time。</p>
+<h3 id="422-重构之后"><a class="markdownIt-Anchor" href="#422-重构之后"></a> 4.2.2 重构之后：</h3>
+<p>重构之后，我们仅需要在ChannelGridAdapter中绘制View，测量数据如下：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png" alt="ChannelGridAdapter"></p>
+<p>从上图可以看出，getView()占据的CPU时间仅为<strong>3.2%</strong>，效率大大提高。</p>
+<p><em><strong>Created by Long Luo at 2014/7/1 15:45:01</strong></em><br>
+<em><strong>Completed by Long Luo at 2014/7/2 14:42:29</strong></em><br>
+<em><strong>Modified by Long Luo at 2018年9月27日22点40分 at Hangzhou, China.</strong></em></p>
 
       
     </div>
@@ -575,7 +400,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -593,7 +418,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" class="post-title-link" itemprop="url">一个用于批量下载网络图片的Shell脚本</a>
+          <a href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" class="post-title-link" itemprop="url">视频在线搜索设计与实现</a>
         </h2>
 
         <div class="post-meta-container">
@@ -604,142 +429,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2014-09-13 22:26:00" itemprop="dateCreated datePublished" datetime="2014-09-13T22:26:00+08:00">2014-09-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/09/13/a-shell-script-used-to-download-the-imges-from-the-Internet/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>最近为了做好一个 <a target="_blank" rel="noopener" href="http://www.imlongluo.com/weather">天气预报</a> 的项目，需要从Yahoo下载一些天气图标，但是由于图标比较多，有80多张。图标是存储在 <a target="_blank" rel="noopener" href="http://yimg.com">Yahoo Image</a> 网站上的。</p>
-<p>迅雷不支持https的下载，虽然可以在浏览器下载，但是在浏览器下载太慢，于是写了一个批量下载图片资源的Shell脚本，完美的解决了这个问题。</p>
-<p>Yahoo天气图标的地址规则如下：<code>https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/</code> + 图标名称</p>
-<p>比如：<img src="https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/0d.png" alt="Thunder" title="雷电天气"></p>
-<p>我使用了2种方法，解决了下载的难题，虽然好久没有写Shell脚本了，但是意识和底子还在，写即几十行代码还是比较轻松的。</p>
-<h1 id="方法1"><a class="markdownIt-Anchor" href="#方法1"></a> 方法1:</h1>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># </span></span><br><span class="line"><span class="comment">#  Decription: </span></span><br><span class="line"><span class="comment">#		A Shell script used to download the imges from Internet.</span></span><br><span class="line"><span class="comment">#  Author:</span></span><br><span class="line"><span class="comment">#       Long Luo</span></span><br><span class="line"><span class="comment">#  Date:</span></span><br><span class="line"><span class="comment">#       2014-09-11 00:16:59</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"></span><br><span class="line">BASE_URL=<span class="string">"https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># declare STIRNG variable</span></span><br><span class="line">STRING=<span class="string">"Beginning Image download..."</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#print var on screen </span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$STRING</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sleep</span> 1</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"...."</span></span><br><span class="line"></span><br><span class="line">BIG_PNG=<span class="string">"ds.png"</span></span><br><span class="line">PNG=<span class="string">".png"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"url="</span><span class="variable">${BASE_URL}</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"big png="</span><span class="variable">${BIG_PNG}</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ((i=<span class="number">0</span>; i&lt;<span class="number">49</span>;i++)); <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> IMG_URL=<span class="variable">${BASE_URL}</span><span class="variable">${i}</span><span class="variable">${BIG_PNG}</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"final url="</span><span class="variable">${IMG_URL}</span></span><br><span class="line"></span><br><span class="line">	curl <span class="variable">${BASE_URL}</span><span class="variable">${i}</span><span class="variable">${BIG_PNG}</span> -o small/<span class="variable">${i}</span><span class="variable">${PNG}</span></span><br><span class="line">	<span class="built_in">sleep</span> 1</span><br><span class="line"></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></tbody></table></figure>
-<h1 id="方法2"><a class="markdownIt-Anchor" href="#方法2"></a> 方法2：</h1>
-<p>方法2将图片URL地址都写在一个数组里，然后从数组中读取，并重命名，相对来说，不如第一种方法简单：</p>
-<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Method 2</span></span><br><span class="line"></span><br><span class="line">URL_ARRAY=(</span><br><span class="line"><span class="string">'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/0d.png'</span></span><br><span class="line"><span class="string">'https://s.yimg.com/zz/combo?a/i/us/nws/weather/gr/1d.png'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">NAME_ARRAY=(</span><br><span class="line"><span class="string">'file1.jpg'</span></span><br><span class="line"><span class="string">'file2.jpg'</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ELEMENTS=<span class="variable">${#URL_ARRAY[@]}</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (( i=<span class="number">0</span>;i&lt;ELEMENTS;i++)); <span class="keyword">do</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="variable">${URL_ARRAY[<span class="variable">${i}</span>]}</span></span><br><span class="line">	<span class="built_in">echo</span> <span class="string">"saved as <span class="variable">${NAME_ARRAY[<span class="variable">${i}</span>]}</span>"</span></span><br><span class="line"> 	curl <span class="variable">${URL_ARRAY[<span class="variable">${i}</span>]}</span> -o images/<span class="variable">${NAME_ARRAY[<span class="variable">${i}</span>]}</span></span><br><span class="line">	<span class="built_in">sleep</span> 1</span><br><span class="line">	</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></tbody></table></figure>
-<p>以上，希望有需要的同学可以采用:-）</p>
-<p><em><strong>Created by Long Luo at 2014-09-13 22:44:52 @Shenzhen, China.</strong></em><br>
-<em><strong>Completed By Long Luo at 2014-09-13 23:01:05 @Shenzhen, China.</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/09/07/volley/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/07/volley/" class="post-title-link" itemprop="url">如何使用Google Volley网络库发起带Header的HTTP请求?</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-09-07 12:20:14" itemprop="dateCreated datePublished" datetime="2014-09-07T12:20:14+08:00">2014-09-07</time>
+      <time title="创建时间：2014-07-02 23:04:48" itemprop="dateCreated datePublished" datetime="2014-07-02T23:04:48+08:00">2014-07-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -767,8 +457,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2014/09/07/volley/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/09/07/volley/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -778,7 +468,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/09/07/volley/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -787,14 +477,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
+      <span>6.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -806,18 +496,44 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><em><strong>By Long Luo</strong></em></p>
-<p>由于合作的第三方iQiyi视频的数据源更新速度很慢，通过和iQiyi反馈，于是提供了新的API接口。</p>
-<p>通过阅读新API接口说明，在发起HTTP Get请求时，必须<strong>同时带2个加密的Header参数</strong>，分别是时间戳和MD5加密后的key、时间戳以及客户端参数，否则无法返回正确的请求。</p>
-<p>目前在Android客户端使用的是Google开源Volley库，支持各种HTTP请求，图片缓存，JSON解析，性能十分强大。之前使用的接口都是直接发起HTTP Get请求，附带相关参数即可。</p>
-<p>通过阅读Volley相关资料，找到了下列方法，可以在发起HTTP请求时，附带Header参数，代码如下所示：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">makeHTTPrequest</span><span class="params">(String url)</span> {</span><br><span class="line">    MyLog.d(TAG, <span class="string">"makeHTTPrequest, url="</span> + url);</span><br><span class="line"></span><br><span class="line">    <span class="type">JsonObjectRequest</span> <span class="variable">jsonObjRequest</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JsonObjectRequest</span>(Request.Method.GET, url, <span class="literal">null</span>,</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Response</span>.Listener&lt;JSONObject&gt;() {</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onResponse</span><span class="params">(JSONObject response)</span> {</span><br><span class="line">                    <span class="keyword">try</span> {</span><br><span class="line">                        MyLog.d(TAG, <span class="string">"response="</span> + response);</span><br><span class="line">                        parseiQiyiInterfaceResponse(response);</span><br><span class="line">                    } <span class="keyword">catch</span> (Exception e) {</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }, <span class="keyword">new</span> <span class="title class_">Response</span>.ErrorListener() {</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onErrorResponse</span><span class="params">(VolleyError error)</span> {</span><br><span class="line">                    <span class="keyword">if</span> (error <span class="keyword">instanceof</span> NetworkError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> ClientError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> ServerError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> AuthFailureError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> ParseError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> NoConnectionError) {</span><br><span class="line">                    } <span class="keyword">else</span> <span class="keyword">if</span> (error <span class="keyword">instanceof</span> TimeoutError) {</span><br><span class="line">                    }</span><br><span class="line"></span><br><span class="line">                    MyLog.e(TAG, <span class="string">"onErrorResponse, error="</span> + error);</span><br><span class="line">                }</span><br><span class="line">            }) {</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Map&lt;String, String&gt; <span class="title function_">getHeaders</span><span class="params">()</span> <span class="keyword">throws</span> AuthFailureError {</span><br><span class="line">            HashMap&lt;String, String&gt; headers = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;String, String&gt;();</span><br><span class="line">            headers.put(<span class="string">"t"</span>, iQiyiInterface.getEncryptTimestamp());</span><br><span class="line">            headers.put(<span class="string">"sign"</span>, iQiyiInterface.getSign());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// MyLog.d(TAG, "headers=" + headers);</span></span><br><span class="line">            <span class="keyword">return</span> headers;</span><br><span class="line">        }</span><br><span class="line">    };</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set a retry policy in case of SocketTimeout &amp; ConnectionTimeout</span></span><br><span class="line">    <span class="comment">// Exceptions. Volley does retry for you if you have specified the</span></span><br><span class="line">    <span class="comment">// policy.</span></span><br><span class="line">    jsonObjRequest.setRetryPolicy(<span class="keyword">new</span> <span class="title class_">DefaultRetryPolicy</span>(<span class="number">5000</span>,</span><br><span class="line">            DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));</span><br><span class="line">    jsonObjRequest.setTag(TAG);</span><br><span class="line">    jsonObjRequest.setShouldCache(<span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    mQueue.add(jsonObjRequest);</span><br><span class="line">    mQueue.start();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p><strong>Header参数使用HashMap存储。</strong></p>
-<p>获取到JSON数据之后，剩下的就是解析数据了，在这里就不赘述了。</p>
-<p>在完成这个过程中，还遇到了很多小插曲，比如Header的sign值不支持大写字母，结果前后也白费了不少力气。apk烧写到手机之后，还需要使用tcpdump抓取数据包，看是否返回了正确的数据。</p>
-<p>最后发现了Chrome的一个Smart Header插件，完美的解决了以上问题，不需要每次抓包验证返回结果了，直接在Chrome浏览器即可，节省了大量时间。</p>
-<p>总之，希望这篇文章对大家能有所帮助。谢谢！</p>
-<p><em><strong>Created by Long Luo at 2014-09-07 12:30:03 @Shenzhen, China.</strong></em></p>
-
+<h1 id="一-在线搜索"><a class="markdownIt-Anchor" href="#一-在线搜索"></a> 一、在线搜索</h1>
+<p>之前搜索页面的一些缺陷：</p>
+<ol>
+<li>具体实现位于 VideoListActivity 中，一方面会造成 VideoListActivity 代码过于庞大臃肿，另外一方面<em><strong>不便于后续功能扩展</strong></em>，结构不清晰；</li>
+<li>依赖了大量系统控件，不便于<strong>后续解耦</strong>及<strong>界面定制</strong>；</li>
+<li>今后搜索界面会参考第三方视频应用的实现，之前不便于增加搜索记录，或搜索独立出来，用于搜索本地视频，甚至将此搜索移植应用于其他应用中；</li>
+</ol>
+<h2 id="11-在线搜索实现效果"><a class="markdownIt-Anchor" href="#11-在线搜索实现效果"></a> 1.1 在线搜索实现效果</h2>
+<p>在线搜索因为是和第三方合作，涉及到很多网络相关的操作，简单来说就是利用HTTP协议向相关接口发起一次网络请求，服务器如果返回了正确的响应，App会解析服务器返回的内容，并展示出来。</p>
+<h3 id="111-热词界面"><a class="markdownIt-Anchor" href="#111-热词界面"></a> 1.1.1 热词界面</h3>
+<p>热词界面是<strong>当搜索文本框文字为空</strong>时会弹出热词界面，会展示最近一段时间内搜索频率很高的词语。一方面可以节省大家输入文字，另外一方面你也可以了解当前的一些热点。</p>
+<p>当你点击列表中的某个热词时，就会发起一次以此为关键词的搜索。</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="热词显示"></p>
+<h3 id="112-关联词"><a class="markdownIt-Anchor" href="#112-关联词"></a> 1.1.2 关联词</h3>
+<p>当<strong>搜索文本输入框含有文字</strong>时，会获取当前输入文字，以此为关键词获取网络的一些联想词，可以点击此联想词发起一次搜索。</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="关联词显示"></p>
+<h3 id="113-搜索结果分类浏览"><a class="markdownIt-Anchor" href="#113-搜索结果分类浏览"></a> 1.1.3 搜索结果分类浏览</h3>
+<p>发起一次搜索之后，如果得到了服务器的正确响应，而且确实有相关视频内容。那么我们会将搜索结果展示在手机页面上。</p>
+<p>搜索到的结果可以分<strong>不同频道</strong>浏览，会根据具体内容进行动态变化，有的可能有10几个频道，有的也就1个频道。频道页面可以滑动浏览，也可以选择在顶部页面选中或者滑动。</p>
+<p>分类浏览时，第一个展示的页面是搜索到的全部视频内容，之后的会根据结果动态变化。</p>
+<p>如下图所示：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果"></p>
+<p>分频道浏览：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果分类"></p>
+<h3 id="114-语音搜索"><a class="markdownIt-Anchor" href="#114-语音搜索"></a> 1.1.4 语音搜索</h3>
+<p><strong>语音搜索图标只有当搜索框里文字为空才会出现，否则出现搜索图标</strong>。</p>
+<p>点击语音搜索图标将会启动VoiceSearch这个apk，然后你可以说话，如果被正确识别之后，会发起一次搜索，并将结果展示出来。</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索"></p>
+<h3 id="115-语音搜索结果"><a class="markdownIt-Anchor" href="#115-语音搜索结果"></a> 1.1.5 语音搜索结果</h3>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索结果"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -843,7 +559,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/09/07/the-first-frontend-project-weather/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -861,7 +577,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/09/07/the-first-frontend-project-weather/" class="post-title-link" itemprop="url">第一个前端开发项目: 天气应用</a>
+          <a href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" class="post-title-link" itemprop="url">[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?</a>
         </h2>
 
         <div class="post-meta-container">
@@ -872,7 +588,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2014-09-07 11:32:45" itemprop="dateCreated datePublished" datetime="2014-09-07T11:32:45+08:00">2014-09-07</time>
+      <time title="创建时间：2014-06-21 23:15:30" itemprop="dateCreated datePublished" datetime="2014-06-21T23:15:30+08:00">2014-06-21</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -887,7 +603,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a>
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
         </span>
     </span>
 
@@ -900,8 +616,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2014/09/07/the-first-frontend-project-weather/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/09/07/the-first-frontend-project-weather/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -911,7 +627,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/09/07/the-first-frontend-project-weather/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -920,14 +636,184 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>147</span>
+      <span>4.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>翻译 By Long Luo</strong></em></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="http://mindtherobot.com/blog/580/android-audio-play-a-wav-file-on-an-audiotrack/">Android Audio: Play a WAV file on an AudioTrack</a></p>
+<p>译者注：<br>
+1. 由于这是技术文章，所以有些词句使用原文，表达更准确。<br>
+2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.<br>
+3. 针对某些语句，适当补充了上下文及更适合中文阅读，尽量做到信达雅。</p>
+<hr>
+<p>如果你已经成功地了解了关于<strong>AudioTrack</strong>的<a target="_blank" rel="noopener" href="http://mindtherobot.com/blog/555/android-audio-problems-hidden-limitations-and-opensl-es/" title="Android Audio: Problems, Hidden Limitations and OpenSL ES">一些话题</a>，那么你可能享受它带来的好处，例如低延迟（在STATIC(静态)模式），能够生成流式音频（在STREAM(流)模式）以及在播放之前，就能够访问和修改原始声音数据。</p>
+<p>不过，现在的问题是如何从源获取数据。许多应用需要使用的<strong>AudioTrack</strong>并不能简单的生成PCM音频（一个例子，比如<strong>Ethereal Dialpad</strong>或者其他类似的App）。你可能需要从文件源去加载数据，例如<em>WAV</em>或<em>MP3</em>文件。</p>
+<p>不要期望使用<strong>MediaPlayer</strong>，去解码<em>WAV</em>文件和<em>MP3</em>音频。虽然<strong>MediaPlayer</strong>播放这些文件非常好，但是其播放逻辑完全在Native层，同时并没有为我们提供额外选项，允许我们使用其他解码器实现我们的目的。因此，我们必须从手动地从音频文件进行解码出<em>PCM</em>。</p>
+<p>在这篇文章中，将会讨论<strong>WAV</strong>格式文件。而在下一课中，我们将会更进一步，讨论如何从<strong>MP3</strong>文件读取音频。</p>
+<h1 id="背景知识-一些数字音频术语"><a class="markdownIt-Anchor" href="#背景知识-一些数字音频术语"></a> 背景知识: 一些数字音频术语</h1>
+<p>如果你的App不是专门为数字音频设计，那么在继续我们的讨论之前，你可能需要先了解一些基本的缩略语。别担心，都很简单，我们不需要对此做深入挖掘。</p>
+<ul>
+<li>
+<p>PCM(<strong>脉冲调制方式</strong>) - 实现一个物理音频信号变成数字化最简单方法。基本原理就是信号变成了一个数字阵列，而其中<strong>每个数字代表的是声音在特定的时间瞬间的电平</strong>也可以说是能量（振幅）。(如果这种解释在科学上可能不会很准确，那我就只能说声抱歉了）。信不信由你，你可以使用这种方法表示<strong>任何复杂</strong>的声音，而且回放出来也非常精准。在这里，我们将只会谈到线性PCM。在线性PCM中，其中阵列中的每个数字都是原始声音振幅的<strong>线性表示</strong>。在某些情况下，对数映射能够更好地表示原来的声音幅度比例情况 - 但是我们不会讨论那些情况。</p>
+</li>
+<li>
+<p>Sampling rate(采样率)：- 每秒你的数字声音有多少样本（声音幅度用数字表示）。样本越多，你能得到声音质量越好。目前在消费类音频系统目前使用的采样率通常是22050，44100和48000Hz/s。</p>
+</li>
+<li>
+<p>每个样品分辨率/采样大小/位 - 定义表示振幅数字的大小和格式。例如，如果您使用的是8位整数，你只能表达出256级的幅度，所以原来的物理波形将被简化为256个离散电平，与此同时，你将失去一些声音精度也可以说是质量。如果你使用16位，那么声音质量变得更好。事实上，大部分时间你可能会使用16位音频。其他选项包括24位，32位（这些都是Android现在不支持的），或是使用浮点数。</p>
+</li>
+<li>
+<p>声道 - 既可以是单声道，也可以是立体声(2个声道)，或者更多声道(但是Android不支持)。如果你想要有立体声，你需要有立体声音频，就必须要在每个声道都需要有一个独立的PCM数组，相应的信息量也会翻倍。</p>
+</li>
+</ul>
+<p>上述定义也有助于你理解特定的格式和长度的音频缓冲区的数据量，以便提前预备缓冲区。也就是你需要一个缓冲区，以用于存储5秒长度以44100Hz采样率的立体声16-bit线性PCM数据。数据计算公式如下所示：</p>
+<p><code>5 sec * 44100 samples per sec * 2 bytes per sample * 2 channels = 882,000 bytes</code></p>
+<p>这一数额所需的内存可能会让初学者感到惊讶，因为当你往你的磁盘上存储的音频时，一个MP3文件，一个880KB的文件就可以容纳以相同的采样率和分辨率1分钟时长的音轨。这是为什么呢？因为先进的格式，比如MP3格式。因为我们大脑无法分辨识别出一些音频的内容，所以使用了很多复杂的方式在压缩的过程中去掉了这些内容。然而，大多数低等级的音频API，包括Android的<strong>AudioTrack</strong>只能接受线性<strong>PCM</strong>。这就是为什么如果我们不能把整个样品都放在内存中，我们需要将要处理的数据流，循环缓冲区和其他聪明的方式来使用音频API。</p>
+<p>希望这样的解释并没有让你产生困惑，现在让我们继续来实际做一些与Android上的数字音频有关的工作吧！</p>
+<h1 id="wav文件格式"><a class="markdownIt-Anchor" href="#wav文件格式"></a> WAV文件格式</h1>
+<p>我们的目标是用一个<strong>InputStream</strong>，由其从一个<em>WAV</em>文件加载PCM数据，来提供原始字节数据。然后我们就可以将原始的PCM数据直接推送到使用已经正确的配置好了的<strong>AudioTrack.write</strong>，通过使用***AudioTrack.write()***这个API。</p>
+<p><em>WAV</em>文件包含一个文件头和具体数据会。我们需要读取文件头以知道诸如采样速率，分辨率等信息。另外，我们通过文件头，也可以知道此格式是否支持。<em>WAV</em>可以封装成多种格式，我们无法全部支持。也许，只是合理的采样率，分辨率和通道的线性<strong>PCM</strong>格式。</p>
+<p><em>WAV</em>格式的细节在互联网上都可以找到，你仅仅需要在Google上搜索下。但是，遗憾的是，我并没有搜索到一个很好的Java库来读取WAV文件，而且可以移植到<strong>Android</strong>下。因此，我自己写了一些简单的代码。</p>
+<p>下面这个方法就是如何读取一个WAV文件的头部：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">RIFF_HEADER</span> <span class="operator">=</span> <span class="string">"RIFF"</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">WAVE_HEADER</span> <span class="operator">=</span> <span class="string">"WAVE"</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">FMT_HEADER</span> <span class="operator">=</span> <span class="string">"fmt "</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">DATA_HEADER</span> <span class="operator">=</span> <span class="string">"data"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">HEADER_SIZE</span> <span class="operator">=</span> <span class="number">44</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">CHARSET</span> <span class="operator">=</span> <span class="string">"ASCII"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* ... */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> WavInfo <span class="title function_">readHeader</span><span class="params">(InputStream wavStream)</span> <span class="keyword">throws</span> IOException,</span><br><span class="line">		DecoderException {</span><br><span class="line"></span><br><span class="line">	<span class="type">ByteBuffer</span> <span class="variable">buffer</span> <span class="operator">=</span> ByteBuffer.allocate(HEADER_SIZE);</span><br><span class="line">	buffer.order(ByteOrder.LITTLE_ENDIAN);</span><br><span class="line"></span><br><span class="line">	wavStream.read(buffer.array(), buffer.arrayOffset(), buffer.capacity());</span><br><span class="line"></span><br><span class="line">	buffer.rewind();</span><br><span class="line">	buffer.position(buffer.position() + <span class="number">20</span>);</span><br><span class="line">	<span class="type">int</span> <span class="variable">format</span> <span class="operator">=</span> buffer.getShort();</span><br><span class="line">	checkFormat(format == <span class="number">1</span>, <span class="string">"Unsupported encoding: "</span> + format); <span class="comment">// 1 means</span></span><br><span class="line">																	<span class="comment">// Linear</span></span><br><span class="line">																	<span class="comment">// PCM</span></span><br><span class="line">	<span class="type">int</span> <span class="variable">channels</span> <span class="operator">=</span> buffer.getShort();</span><br><span class="line">	checkFormat(channels == <span class="number">1</span> || channels == <span class="number">2</span>, <span class="string">"Unsupported channels: "</span></span><br><span class="line">			+ channels);</span><br><span class="line">	<span class="type">int</span> <span class="variable">rate</span> <span class="operator">=</span> buffer.getInt();</span><br><span class="line">	checkFormat(rate &lt;= <span class="number">48000</span> &amp;&amp; rate &gt;= <span class="number">11025</span>, <span class="string">"Unsupported rate: "</span> + rate);</span><br><span class="line">	buffer.position(buffer.position() + <span class="number">6</span>);</span><br><span class="line">	<span class="type">int</span> <span class="variable">bits</span> <span class="operator">=</span> buffer.getShort();</span><br><span class="line">	checkFormat(bits == <span class="number">16</span>, <span class="string">"Unsupported bits: "</span> + bits);</span><br><span class="line">	<span class="type">int</span> <span class="variable">dataSize</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (buffer.getInt() != <span class="number">0x61746164</span>) { <span class="comment">// "data" marker</span></span><br><span class="line">		Log.d(TAG, <span class="string">"Skipping non-data chunk"</span>);</span><br><span class="line">		<span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> buffer.getInt();</span><br><span class="line">		wavStream.skip(size);</span><br><span class="line"></span><br><span class="line">		buffer.rewind();</span><br><span class="line">		wavStream.read(buffer.array(), buffer.arrayOffset(), <span class="number">8</span>);</span><br><span class="line">		buffer.rewind();</span><br><span class="line">	}</span><br><span class="line">	dataSize = buffer.getInt();</span><br><span class="line">	checkFormat(dataSize &gt; <span class="number">0</span>, <span class="string">"wrong datasize: "</span> + dataSize);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">WavInfo</span>(<span class="keyword">new</span> <span class="title class_">FormatSpec</span>(rate, channels == <span class="number">2</span>), dataSize);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>上面的代码中，缺少的部分应该是显而易见的。正如你所看到的，仅仅支持16位，但在你可以修改代码以支持8位（<strong>AudioTrack</strong>不支持任何其他分辨率的）。</p>
+<p>下面这个方法，则是用来读取文件剩余的部分 - <strong>音频数据</strong>。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">byte</span>[] readWavPcm(WavInfo info, InputStream stream)</span><br><span class="line">		<span class="keyword">throws</span> IOException {</span><br><span class="line">	<span class="type">byte</span>[] data = <span class="keyword">new</span> <span class="title class_">byte</span>[info.getDataSize()];</span><br><span class="line">	stream.read(data, <span class="number">0</span>, data.length);</span><br><span class="line">	<span class="keyword">return</span> data;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>我们读取的<strong>WavInfo</strong>结构体，包含采样率，分辨率和声道数已经足够让我们去播放我们读取的音频了。</p>
+<p>如果我们不需要将全部音频数据一次性放入内存中，我们可以使用一个<em><strong>InputStream</strong></em>，一点一点地读取。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/06/05/summary-of-wwdc2014-ios8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/06/05/summary-of-wwdc2014-ios8/" class="post-title-link" itemprop="url">WWDC2014总结之iOS8篇</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-06-05 23:30:32" itemprop="dateCreated datePublished" datetime="2014-06-05T23:30:32+08:00">2014-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Apple/" itemprop="url" rel="index"><span itemprop="name">Apple</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2014/06/05/summary-of-wwdc2014-ios8/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/06/05/summary-of-wwdc2014-ios8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2014/06/05/summary-of-wwdc2014-ios8/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -939,11 +825,253 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><em><strong>By Long Luo</strong></em></p>
-<p>最近几天学习了下网页开发，通过学习，完成了第一个Web前端开发项目：<a target="_blank" rel="noopener" href="http://www.imlongluo.com/weather/"><strong>天气应用</strong></a></p>
-<p>数据源是<a target="_blank" rel="noopener" href="https://weather.yahoo.com/"><em><strong>Yahoo! Weather</strong></em></a></p>
-<p>使用了jQuery库开发，虽然现在啥都不会，也就到处copy。</p>
-<p><em><strong>Created by Long Luo at 2014-09-07 11:36:20 @Shenzhen, China.</strong></em></p>
+<p>2014.06.03 Apple举行了万众瞩目的WWDC2014，发布了OS X Yosimite和iOS8，最近几天看了一部分Keynote，从网上搜集了一部分资料，将这次WWDC14的一些新功能点汇总出来，同时加入了自己的一些想法，探讨下码农群体应该注意哪些趋势。</p>
+<h1 id="continuity-seamlessly"><a class="markdownIt-Anchor" href="#continuity-seamlessly"></a> Continuity &amp; Seamlessly</h1>
+<p>总体来说：</p>
+<p><em><strong>系统功能更加完善，更加人性化，更加开放</strong></em>，与其他iOS、Mac设备整合度扩大，并且预示了未来与可穿戴设备、智能家居的紧密结合的趋势，预计Health和Home两大产业将发生重大变革，将有一系列的新App和硬件改变我们的生活。</p>
+<p>WWDC的报道会分别讲解Mac OS Yosemite和iOS 8的各项功能。可是整场看下来，觉得这两个系统的更新都有一个指针：统一。爷就是关键的2个词，<strong>Continuity &amp; Seamlessly</strong>。</p>
+<p>Mac OS Yosemite的扁平化和透明统一了Mac OS和iOS的视觉风格。<br>
+Mac OS也追加了iOS上特有的功能，比如打电话、IM。</p>
+<p>两个系统在视觉和功能上统一的同时，通过 iCloud 的升级，实现了数据同步。<br>
+「视觉」，「功能」和「数据」统一了之后， Handoff 实现了Mac OS和iOS工作的无缝切换。</p>
+<p>最终，所有**“苹果设备”**都将无缝的融合到一起。随时拿起iPad，打开Macbook或者掏出 iPhone，你都能看到同样的视觉风格，得到一致的数据，使用同样的功能。</p>
+<h1 id="ios8-新功能点"><a class="markdownIt-Anchor" href="#ios8-新功能点"></a> iOS8 新功能点</h1>
+<h2 id="healthkit"><a class="markdownIt-Anchor" href="#healthkit"></a> HealthKit</h2>
+<p><strong>健康管理软件</strong></p>
+<p>这是一个私人健康数据平台，它可以整合其他第三方健康应用数据，也就说可以在HealthKit中统一浏览其他应用监测的数据。同时，它也将与梅奥诊所和其他医疗机构合作，允许医疗机构接受或传输你的数据。</p>
+<h2 id="homekit"><a class="markdownIt-Anchor" href="#homekit"></a> HomeKit</h2>
+<p>把iPhone变成智能家居中心控制器	<br>
+可以实现远程遥控智能家居设备，如智能门锁、灯泡或是监控摄像头。操作非常简单，只需对siri说：“我要上床睡觉了”，灯光就会变暗、门就会锁上。</p>
+<h2 id="mail"><a class="markdownIt-Anchor" href="#mail"></a> Mail</h2>
+<pre><code>1. 支持直接从邮件中添加日历事件。
+2. 在邮件中将会引入全新的邮件手势，下滑消息可触发新动作。  
+3. 图像编辑和草图分享，能够直接通过浏览器来提供强悍的图片编辑能力，并快速进行邮件分享。
+4. 支持群组通信。群发功能——你可以直接在会话中添加或移除对象。                                                                                   
+5. 轻松切换和快速访问联系人。                                                                   
+6. 当你在手机上写了一半邮件之后，还可以在就近的电脑上继续完成  
+7. 在当前消息中打开另一封邮件，然后再切换回来（工作进度依然保存着）。                                                                                                           
+8. 可以在通知中直接为Facebook上的消息点赞！  
+</code></pre>
+<h2 id="imessage"><a class="markdownIt-Anchor" href="#imessage"></a> iMessage</h2>
+<p>变身为<em><strong>一个没有朋友圈和公众号的微信</strong></em></p>
+<pre><code>1. 支持群组通信。你可以直接在会话中添加或移除对象。                      
+2. 支持多达14个国家和地区的语言，加快打字速度
+3. 发送语音消息的功能很有趣。 
+4. 图片支持以“相册”形式快速查看。
+5. 支持语音信息，与对话的人共享位置。                                               
+6. 支持发短视频                                                                                        
+7. 在群聊短信设置中有“不要打扰”的相关选项
+</code></pre>
+<h2 id="优化输入法"><a class="markdownIt-Anchor" href="#优化输入法"></a> 优化输入法</h2>
+<h3 id="1-ios8中在键盘中能够实现的第三方输入法quicktype可智能预测"><a class="markdownIt-Anchor" href="#1-ios8中在键盘中能够实现的第三方输入法quicktype可智能预测"></a> 1. iOS8中在键盘中能够实现的第三方输入法，QuickType可智能预测。</h3>
+<p>当用户输入完当前单词之后，QuickType会提供3个智能预测的单词供用户选择。当然，如果你不喜欢这种“输入建议”，也可以轻松移除。</p>
+<h3 id="2-在键盘中还引入了全新的tap-to-talk功能"><a class="markdownIt-Anchor" href="#2-在键盘中还引入了全新的tap-to-talk功能"></a> 2. 在键盘中还引入了全新的Tap to Talk功能</h3>
+<p>新的Tap to Talk功能，语音输入短信，用户能够录制一段音频或视频并将其发送给收件人。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/06/05/summary-of-wwdc2014-ios8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/06/02/2014-international-auto-show/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/06/02/2014-international-auto-show/" class="post-title-link" itemprop="url">我看车展感(tu)想(cao)</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-06-02 14:15:10" itemprop="dateCreated datePublished" datetime="2014-06-02T14:15:10+08:00">2014-06-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2014/06/02/2014-international-auto-show/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/06/02/2014-international-auto-show/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2014/06/02/2014-international-auto-show/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>2014年的06月01日，去参观了2014年深圳·香港·澳门国际车展，算是第一次参加车展吧，按照惯例谈谈感(tu)想(cao)吧：</p>
+<h1 id="一-学到的东西"><a class="markdownIt-Anchor" href="#一-学到的东西"></a> 一、学到的东西:</h1>
+<p><em><strong>English：</strong></em></p>
+<pre><code>车展：Auto Show or Motor Show
+手动挡：MT(Manual Transmission)
+自动挡：AT(Automatic Transmission)
+手自一体：AMT(Automated Mechanical Transmission)
+档位：P(Parking) R(Reverse) N(Neutral) D(Drive)
+</code></pre>
+<p><em><strong>Car Brand：</strong></em></p>
+<p><em><strong>A</strong></em></p>
+<pre><code>奥迪－Audi&nbsp;
+阿斯顿马丁－Aston&nbsp;Martin&nbsp;&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>B</strong></em></p>
+<pre><code>宝马－BMW&nbsp;&nbsp;&nbsp;
+宾利－Bentley&nbsp;&nbsp;&nbsp;
+别克－Buick&nbsp;&nbsp;
+	&nbsp;&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>C</strong></em></p>
+<pre><code>凯迪拉克－Cadillac&nbsp;&nbsp;&nbsp;
+雪铁龙－Citroen&nbsp;&nbsp;&nbsp;
+雪佛兰－Chevrolet&nbsp;&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>F</strong></em></p>
+<pre><code>法拉利－Ferrari&nbsp;&nbsp;&nbsp;
+菲亚特－Fiat&nbsp;&nbsp;&nbsp;
+福特－Ford&nbsp;
+</code></pre>
+<p><em><strong>H</strong></em></p>
+<pre><code>本田－Honda&nbsp;&nbsp;&nbsp;
+现代－Hyundai&nbsp;&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>J</strong></em></p>
+<pre><code>捷豹(美洲虎)－Jaguar
+</code></pre>
+<p><em><strong>K</strong></em></p>
+<pre><code>起亚－Kia&nbsp;&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>L</strong></em></p>
+<pre><code>路虎(陆虎)－Land&nbsp;Rover&nbsp;&nbsp;&nbsp;
+雷克萨斯－Lexus&nbsp;&nbsp;&nbsp;
+蓝伯基尼－Lamborghini&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>M</strong></em></p>
+<pre><code>马自达－Mazda&nbsp;
+梅赛德斯-奔驰－Mercedes-Benz&nbsp;&nbsp;&nbsp;
+玛莎拉蒂－Maserati&nbsp;
+迷你－Mini&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>N</strong></em></p>
+<pre><code>日产－－Nissan&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>P</strong></em></p>
+<pre><code>标致－Peugeot&nbsp;&nbsp;&nbsp;
+保时捷－Porsche&nbsp;&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>R</strong></em></p>
+<pre><code>劳斯莱斯－Rolls-royce&nbsp;&nbsp;&nbsp;
+</code></pre>
+<p><em><strong>S</strong></em></p>
+<pre><code>双龙－Ssangyong&nbsp;&nbsp;&nbsp;
+斯柯达－Skoda&nbsp;&nbsp;&nbsp;
+斯巴鲁－Subaru&nbsp;&nbsp;&nbsp;
+铃木－Suzuki&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+精灵－Smart&nbsp;
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/06/02/2014-international-auto-show/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -962,7 +1090,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/55/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><span class="page-number current">56</span><a class="page-number" href="/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/57/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/55/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><span class="page-number current">56</span><a class="page-number" href="/page/57/">57</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/57/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -990,7 +1118,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:55</span>
+    <span title="站点阅读时长">21:36</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">337</span>
+          <span class="site-state-item-count">332</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">307</span>
+        <span class="site-state-item-count">303</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -238,7 +238,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/05/05/ios-programming-basic-how-does-the-hello-world-app-work/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/04/07/game-engine-an-introducation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -256,7 +256,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/05/05/ios-programming-basic-how-does-the-hello-world-app-work/" class="post-title-link" itemprop="url">iOS编程基础: Hello World App是如何运作的?</a>
+          <a href="/blog/2014/04/07/game-engine-an-introducation/" class="post-title-link" itemprop="url">游戏引擎学习笔记：介绍，架构，设计及实现</a>
         </h2>
 
         <div class="post-meta-container">
@@ -267,14 +267,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2014-05-05 19:11:03" itemprop="dateCreated datePublished" datetime="2014-05-05T19:11:03+08:00">2014-05-05</time>
+      <time title="创建时间：2014-04-07 00:17:51" itemprop="dateCreated datePublished" datetime="2014-04-07T00:17:51+08:00">2014-04-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+      <time title="修改时间：2024-02-04 20:46:36" itemprop="dateModified" datetime="2024-02-04T20:46:36+08:00">2024-02-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -282,7 +282,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+          <a href="/categories/Game/" itemprop="url" rel="index"><span itemprop="name">Game</span></a>
         </span>
     </span>
 
@@ -295,8 +295,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2014/05/05/ios-programming-basic-how-does-the-hello-world-app-work/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/05/05/ios-programming-basic-how-does-the-hello-world-app-work/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2014/04/07/game-engine-an-introducation/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/04/07/game-engine-an-introducation/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -306,7 +306,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/05/05/ios-programming-basic-how-does-the-hello-world-app-work/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2014/04/07/game-engine-an-introducation/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -315,14 +315,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.2k</span>
+      <span>2.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -333,63 +333,53 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><em><strong>翻译 By Long Luo</strong></em></p>
-<p>原文链接：<a target="_blank" rel="noopener" href="http://www.appcoda.com/ios-programming-basic-how-does-the-hello-world-app-work/">iOS Programming Basic: How Does the Hello World App Work?</a></p>
-<pre><code>译者注：
-1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
-2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正.
+          <p><em><strong>By Long Luo</strong></em></p>
+<p>从小到大，虽然玩过的游戏不少，但是从写程序开始，目前为此仅仅写过2个游戏。其一是2011年在MTK平台下写的贪食蛇，其二是2010年在嵌入式开发板上写过一个迷宫的游戏。第一个代码量大概有3000行左右，第二个有2000行左右。</p>
+<p>这2个游戏都很简单，而且网上有很多现成的例子可供参考，因此难度也比较低。</p>
+<p>这2天把拖延了好久的***《Android应用开发揭秘》***的游戏引擎的那一章看完了，收获还是很大，在此写一篇读书笔记。</p>
+<p>关于Game Engine，我能想到的几个问题：</p>
+<ol>
+<li>游戏引擎是什么？</li>
+<li>Game Engine是为了解决什么问题？</li>
+<li>Game Engine的架构是什么？</li>
+<li>如何设计一款游戏引擎？</li>
+<li>游戏引擎包含哪些模块？</li>
+</ol>
+<p>下面就来探讨几个问题：</p>
+<h1 id="一-game-engine是什么"><a class="markdownIt-Anchor" href="#一-game-engine是什么"></a> 一、Game Engine是什么？</h1>
+<p>游戏产业在全球来看是一个很大的产业，一款游戏大作包含了非常多的元素。游戏涉及到剧情、人物、任务、关卡、地图、画质、美术、音乐、网络等多种元素。开发一款游戏实际上需要耗费非常多的资源，据说North Star的《GTA V》耗资几亿美元。正因为如此，在开发项目过程中，尽可能复用之前项目成功的东西就非常重要。</p>
+<p>一款游戏中，<em>Game Engine直接控制着剧情、关卡、美工、音乐、操作</em>等内容，将游戏的所有元素捆绑在一起。</p>
+<p>一般来说，一款Game Engine需要包含以下模块：</p>
+<ol>
+<li>基本框架（渲染、逻辑、物理 等等各部分如何组装）</li>
+<li>资源管理</li>
+<li>渲染</li>
+<li>基本逻辑（网游还要解决逻辑的同步问题）</li>
+<li>物理（有时候和逻辑合并）</li>
+</ol>
+<p>-----------分割线，以下是重要但较为独立的部分-------------<br>
+6. <strong>UI</strong><br>
+7. <strong>音乐音效</strong><br>
+8. <strong>网络</strong><br>
+9. <strong>脚本</strong>（有些类型的游戏引擎需要脚本和逻辑的关联性非常强，有些脚本则比较独立）</p>
+<h1 id="二-game-engine为了解决什么问题"><a class="markdownIt-Anchor" href="#二-game-engine为了解决什么问题"></a> 二、Game Engine为了解决什么问题？</h1>
+<p><strong>Game Engine实际上有效的减少开发者编写程序时的冗余劳动，同时增强游戏的可移植性</strong>。</p>
+<p>Engine就是游戏的框架，我们需要往框架中填充内容就可以形成一个游戏。</p>
+<p>引擎，就是一系列的工具和生产链，像Unreal 3，Unity这样的成熟引擎，用起来非常方便，就是因为它的关卡/场景编辑器十分宜用，支持多种脚本语言。这类引擎运用恰当的话，理论上能将关卡调试和物件流水线的大部分工作从程序员那里完全移出。</p>
+<h1 id="三-game-engine的架构"><a class="markdownIt-Anchor" href="#三-game-engine的架构"></a> 三、Game Engine的架构</h1>
+<pre><code>游戏 = 引擎(程序) + 资源(图像、声音、动画等)
 </code></pre>
-<p>我希望你享受了第一个<em><strong>iOS编程教程</strong></em>，同时已经创造了你的第一个App。在进入下一教程以及制作一个更复杂的App之前，我们有必要回过头，分析这个Hello World App。对于你理解一些Objective-C语言的语法和App的内部工作机制有很大帮助。</p>
-<p>目前为止，想必你已经按照教程完成了你的第一个Hello World App。不过，当你完成了这个教程之后，你脑海里肯定冒出了更多疑问：</p>
-<ul>
-<li><strong>xib,.h,.m</strong>文件是做什么用的？</li>
-<li>在<code>showMessage</code>内部的代码是什么？用什么作用？</li>
-<li>当你按下<code>Hello World</code>的按钮发生了什么呢？按钮是如何触发了显示消息的动作呢?</li>
-<li>Xcode中的<code>Run</code>按钮是如何运作的？</li>
-</ul>
-<p>我希望你已经对Xcode IDE开发环境比较熟悉了，这样我就不用再解释一遍上面的内容了。对于每个开发者来说，理解代码的内部细节和抓住基本概念对于iOS编程是很有必要的。对于某些技术概念，如果你没有丝毫的编程背景来说，理解一些技术概念是有一定难度的。但是，别担心，这里仅仅是一个开始。如果你继续学习后续的教程，写出更多的代码，你就能更好的理解iOS编程。尽你所能努力学习更多知识吧！</p>
-<h1 id="interface-builder-header-and-implementation-files"><a class="markdownIt-Anchor" href="#interface-builder-header-and-implementation-files"></a> Interface Builder, Header and Implementation Files</h1>
-<p>首先，.xib, .h, .m文件是什么呢？这是一位读者提出的一个非常好的问题。在项目导航中，你应该可以找到3种主要的文件类型：<strong>.xib, .h, .m</strong>。(如果你打开“Supporting Files”文件夹，你可以找到其他的文件类型，例如plist和framework。但到目前为此，我们先忘掉它们，在今后课程中我们会讨论它们。)</p>
-<h2 id="xib"><a class="markdownIt-Anchor" href="#xib"></a> .xib</h2>
-<ul>
-<li>如果一个文件也有.xib的扩展名，它们是Interface Builder文件，存储了应用的UI。当你点击了.xib文件，Xcode会自动的打开Interface Builder界面，你可以通过拖动和放下来编辑应用的UI。如下图所示:</li>
-</ul>
-<p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-Interface-Builder.jpg" alt="Interface Builder in Xcode"></p>
-<p><strong>Interface Builder in Xcode</strong></p>
-<h2 id="h-and-m"><a class="markdownIt-Anchor" href="#h-and-m"></a> .h and .m</h2>
-<ul>
-<li><strong>.h</strong>扩展名的文件表示这是<code>头文件</code>，<strong>.m</strong>扩展名表示是具体的<code>实现</code>。和其他大多数编程语言一样，Objective-C的源码也分为2部分：<code>接口</code>和<code>实现</code>。</li>
-</ul>
-<p>为了便于你更好的理解这2者关系，我们拿电视遥控器打比方。我们可以很方便地使用无线遥控器调节电视的音量。你按下音量+按钮增大扬声器的音量。切换频道时，你只需要按下频道数字。那我来问问你，你知道当你按下音量按钮的背后发生了什么吗？估计你不知道吧。我相信大部分人都不知道遥控器和扬声器之间是如何通信的。我们仅仅知道的是，那个按钮是用来调节音量的。在这里，按钮就是<code>接口</code>，而按钮之后的具体细节我们称之为<code>实现</code>。</p>
-<p>现在你应该对接口和实现有了一个更深的理解。让我们回到代码，在Objective-C语言中，一个类的接口是放在<code>.h</code>文件中。我们使用语法标示符<code>@interface</code>来声明一个类的接口。看下<strong>HelloWorldViewController.h</strong>的具体实现：</p>
-<pre><code>@interface HelloWorldViewController : UIViewController
-
--(IBAction)showMessage;
-
-@end
-</code></pre>
-<p>HelloWorldViewController这个类名以“@interface”开头。内部则声明了一个“showMessage”的实现，也可以称之为<strong>方法</strong>。</p>
-<p>就像音量按钮，显然我们不知道<code>showMessage</code>这个方法是如何运作的。你仅仅知道它是用于在屏幕上显示一条信息。具体的实现则放在HelloWorldViewController.m文件中，如下所示：</p>
-<pre><code>@implementation HelloWorldViewController
-
-// I've removed other methods for better reading. Focus on the showMessage method first.
-
-- (IBAction)showMessage 
-{
-	UIAlertView *helloWorldAlert = [[UIAlertView alloc]
-                                initWithTitle:@"My First App" message:@"Hello, World!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-
-	// Display the Hello World Message
-	[helloWorldAlert show];
-}
-
-@end
-</code></pre>
-<p>正如你上面所示，你使用“@implementation”去声明一个实现。在“showMessage”中，代码用于定义在屏幕中弹出一条警告。你不需要弄明白在“showMessage”的方法中每一行代码具体含义。简单来说，创建了一个以“My First App” 为标题，“Hello, World”作为消息的UIAlertView。然后调用“show”方法去请求iOS用于在屏幕上显示一个弹出消息。如下图所示：</p>
-<p><img src="http://www.appcoda.com/wp-content/uploads/2012/04/Hello-World-App.jpg" alt="Hello World App"></p>
+<p>目前的Game Engine的架构都是Model-View-Controller架构，逻辑和显示分开，由一个逻辑控制流来协调Client的请求和Server的行动。</p>
+<ol>
+<li>View: 负责界面回执</li>
+<li>Controller：处理工作流程的创建和种植，用户输入，各种事件的处理</li>
+<li>Model: 模型、逻辑，程序的功能实现</li>
+</ol>
+<p><strong>消息循环-&gt;更新数据-&gt;绘制各节点</strong> 这是绘制的基本结构基本不会有大的改变。</p>
+<p>各种引擎的变种很大部分是在游戏逻辑上的封装。脚本也好，直接写代码也好。比如较为古老的数据与函数分离，以C语言为代表。大行其道的类结构。以c++为代表。以及现在光环日耀的CBSE，基于组件的架构</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2014/05/05/ios-programming-basic-how-does-the-hello-world-app-work/#more" rel="contents">
+              <a class="btn" href="/blog/2014/04/07/game-engine-an-introducation/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -420,7 +410,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/05/03/tips-of-driving-exam/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/04/06/how-car-steering-works/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -438,7 +428,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/05/03/tips-of-driving-exam/" class="post-title-link" itemprop="url">学车一直过不了科目二？掌握以下几个要点，让你轻松过！</a>
+          <a href="/blog/2014/04/06/how-car-steering-works/" class="post-title-link" itemprop="url">学车思考之一：方向盘转多少，车轮就转多少度对吗？</a>
         </h2>
 
         <div class="post-meta-container">
@@ -449,14 +439,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2014-05-03 11:59:03" itemprop="dateCreated datePublished" datetime="2014-05-03T11:59:03+08:00">2014-05-03</time>
+      <time title="创建时间：2014-04-06 19:43:27" itemprop="dateCreated datePublished" datetime="2014-04-06T19:43:27+08:00">2014-04-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-19 21:30:56" itemprop="dateModified" datetime="2024-02-19T21:30:56+08:00">2024-02-19</time>
+      <time title="修改时间：2024-02-19 21:37:27" itemprop="dateModified" datetime="2024-02-19T21:37:27+08:00">2024-02-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -477,8 +467,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2014/05/03/tips-of-driving-exam/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/05/03/tips-of-driving-exam/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2014/04/06/how-car-steering-works/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/04/06/how-car-steering-works/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -488,7 +478,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/05/03/tips-of-driving-exam/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2014/04/06/how-car-steering-works/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -497,7 +487,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
+      <span>923</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -516,166 +506,32 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><em><strong>By Long Luo</strong></em></p>
-<p>2014年的51 3天假期，有2个上午都去学车去了，因为不久之后我就要去考试了，总之呢，很多事情都是做的越早越好。今天把科目二考试的一些<strong>注意事项</strong>给记下来：</p>
-<h1 id="0-准备工作"><a class="markdownIt-Anchor" href="#0-准备工作"></a> 0. 准备工作</h1>
-<p>上车之后，第一步是调好靠背，后视镜，注意座椅不要调到太靠前，系好安全带。后视镜要保持后轮车毂在后视镜中间位置，把手在后视镜上方。</p>
-<p>松手刹，踩住离合器和刹车，离合器踩到底，挂一档起步，慢慢松离合器，直到车头开始震动，离合不动，慢慢松刹车，车辆起步。</p>
-<p>最重要的是要<strong>踩好离合器</strong>，保持<strong>很慢的速度</strong>，因为速度慢了可以慢慢调整，快了的话就没办法调整了。</p>
-<h1 id="1-曲线行驶"><a class="markdownIt-Anchor" href="#1-曲线行驶"></a> 1. 曲线行驶</h1>
-<p>车身调正，保持车身偏右进入，"<code>考</code>"字压着右边边线，进入之后，保持"<code>车</code>"字压着边线，转弯时，方向盘不动，直到车头角压着左边边线，方向盘右转一圈半，之后保持<code>试</code>字压着边线。</p>
-<p>Ok。</p>
-<h1 id="2-直角转弯"><a class="markdownIt-Anchor" href="#2-直角转弯"></a> 2. 直角转弯</h1>
-<p>车身调正，保持车身偏右进入，"<code>考</code>"字压着右边边线。直到车头盖压住前面边线，迅速向左打死方向盘，车身平行之后，迅速调正方向盘。</p>
-<p>Ok。</p>
-<h1 id="3-坡道定点停车"><a class="markdownIt-Anchor" href="#3-坡道定点停车"></a> 3. 坡道定点停车</h1>
-<p>车身调正，<strong>一直打左转向灯</strong>，保持<code>考</code>字和<code>试</code>字的中间压着黄线左边缘，慢速行驶。当左后视镜刚好可以看到双黄线的上边缘，踩住刹车。</p>
-<p>Ok。</p>
-<h1 id="4-侧方停车"><a class="markdownIt-Anchor" href="#4-侧方停车"></a> 4. 侧方停车</h1>
-<p>车身调正，保持<code>考</code>字压着右边黄线，慢速行驶。慢慢调到距离右边黄线为30公分左右，从右后视镜观察。当与二号角与窗口锁重合时，停车。方向盘向左打到死，直到<code>车</code>字压到黄线中间，停车。</p>
-<p>方向盘调正，右转半圈，踩住刹车，挂倒档，开始倒车，注意左后视镜，当观察到<code>后轮轮胎碰到黄线时</code>，迅速<code>向左打死</code>方向盘，直到车头盖缝隙与左边线平行，停车。</p>
-<p>打左转向灯，踩住刹车离合器，挂一档，直到<code>车</code>字压住左边黄线，向右调整方向盘。直到<code>考</code>字压住右边线，方向盘回正。</p>
-<p>Ok。</p>
-<h1 id="5-倒车入库"><a class="markdownIt-Anchor" href="#5-倒车入库"></a> 5. 倒车入库</h1>
-<p>倒车入库是5项中<code>最难</code>的。</p>
-<p>调整车头盖左边缝隙压住左边边线，车身调正，当桩与右窗口重合时，下车查看，保持车尾与2个桩在一条直线上。</p>
-<p>上车，方向盘<strong>向右打死</strong>，<em>挂倒档</em>，观察<strong>右后视镜</strong>，当车毂与角间隔一个篮球宽度时，方向盘向左回一圈，观察左后视镜，当车身与边线平行，方向盘回正，当后视镜完全遮住时，间隔0.5s，停车。</p>
-<p>起步观察，车身两边距离宽度是否一致，哪天多向哪边调，调半圈后回正，观察左窗口锁，当与线重合时，方向盘<code>向左调一圈半</code>，保持方向盘不动，直到左车门把手与线重合，停车。挂倒档，方向盘不动，观察左后视镜，直到左车毂与角间隔30公分，<code>向左打死方向盘</code>，车身回正时，方向盘回正，观察后视镜是否压住线。</p>
-<p>Ok。</p>
-<p><em><strong>Long Luo Created at AM12:20 ~ 13:15 @May 03rd, 2014 at Shenzhen, China.</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/05/02/algorithm-excel-row-number-string/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/05/02/algorithm-excel-row-number-string/" class="post-title-link" itemprop="url">一道有趣的算法题：仿照Excel的列编号，给定一个数字，输出该列编号字符串</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2014-05-02 22:15:57" itemprop="dateCreated datePublished" datetime="2014-05-02T22:15:57+08:00">2014-05-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structures-and-Algorithms/" itemprop="url" rel="index"><span itemprop="name">Data Structures and Algorithms</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2014/05/02/algorithm-excel-row-number-string/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/05/02/algorithm-excel-row-number-string/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/05/02/algorithm-excel-row-number-string/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>最近面试时遇到一个算法题：</p>
-<blockquote>
-<p>仿照Excel的列编号，给出一个数字，输出该列编号字符串。<br>
-例如：A对应1，Z对应26，AA对应27，AZ对应52 …</p>
-</blockquote>
-<p>这个题目是一个典型的<strong>26进制</strong>思路去处理，一个整数除26然后但是这个题目里面有很多陷阱，在1, 26, 52等特殊情况进行考虑，经过晚上接近半个多小时的编写，完成的代码如下：</p>
-<h1 id="c"><a class="markdownIt-Anchor" href="#c"></a> C++</h1>
-<p>C++实现如下所示：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="comment">//函数itos：正整数到编号转换</span></span><br><span class="line"><span class="comment">//num：输入的正整数，pcout：输出，Max：输出控件最大长度</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">itos</span><span class="params">(<span class="type">int</span> num, <span class="type">char</span> *pcout )</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">char</span> *res = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">255</span>];</span><br><span class="line">	<span class="type">int</span> m = <span class="number">0</span>, n = <span class="number">0</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>((num &gt;= <span class="number">1</span>) &amp;&amp; (n &lt; <span class="number">255</span>))</span><br><span class="line">	{</span><br><span class="line">		m = num % <span class="number">26</span>;</span><br><span class="line">		<span class="keyword">if</span> (m != <span class="number">0</span>)</span><br><span class="line">		{</span><br><span class="line">			res[n] = <span class="string">'A'</span> + m - <span class="number">1</span>;</span><br><span class="line">		}</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		{</span><br><span class="line">       		res[n] = <span class="string">'Z'</span>;</span><br><span class="line">       		num--;</span><br><span class="line">		}</span><br><span class="line">        </span><br><span class="line">		num /= <span class="number">26</span>;</span><br><span class="line">		n++;</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(m = n; m &gt; <span class="number">0</span>; m--)</span><br><span class="line">	{</span><br><span class="line">		pcout[n - m] = res[m - <span class="number">1</span>];</span><br><span class="line">	}</span><br><span class="line"></span><br><span class="line">	pcout[n] = <span class="string">'\0'</span>;</span><br><span class="line">	<span class="keyword">delete</span>[] res;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//soti：字符串到数字的转换</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">stoi</span><span class="params">(<span class="type">char</span> *cha)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">    <span class="type">int</span> m = <span class="number">0</span>, n = <span class="number">0</span>, i = <span class="number">0</span>, val = <span class="number">0</span>, a = <span class="number">0</span>;</span><br><span class="line">    <span class="type">char</span> *pc = cha ;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(*pc != <span class="string">'\0'</span> )</span><br><span class="line">   {</span><br><span class="line">         <span class="comment">//后移到个位 </span></span><br><span class="line">        pc++;</span><br><span class="line">        n++;</span><br><span class="line">   }</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">   {</span><br><span class="line">         <span class="comment">//位循环</span></span><br><span class="line">        pc--;</span><br><span class="line">        a = i;</span><br><span class="line">        m = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">         <span class="keyword">while</span>(a &gt; <span class="number">1</span>)</span><br><span class="line">        {</span><br><span class="line">             <span class="comment">//位权</span></span><br><span class="line">            m *=<span class="number">26</span>;</span><br><span class="line">            a--;</span><br><span class="line">        }</span><br><span class="line">        </span><br><span class="line">        m *= (*pc - <span class="string">'A'</span> +<span class="number">1</span>);</span><br><span class="line">        val += m;</span><br><span class="line">   }</span><br><span class="line">   </span><br><span class="line">    <span class="keyword">return</span> val;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">char</span> out[<span class="number">255</span>] = {<span class="number">0</span>};</span><br><span class="line">   	<span class="built_in">printf</span>( <span class="string">"out = %s\n"</span>, out);</span><br><span class="line">   	<span class="built_in">itos</span>(<span class="number">32</span>, out);</span><br><span class="line">   	<span class="built_in">printf</span>( <span class="string">"out = %s\n"</span>, out);</span><br><span class="line"></span><br><span class="line">   	<span class="built_in">getchar</span>();</span><br><span class="line"></span><br><span class="line">    	<span class="keyword">return</span> <span class="literal">true</span> ;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>最近一个月在驾校学车，前2次去练车，总是<em><strong>不得要领</strong></em>，连曲线行驶开不好，被教练狂K。经历了当学渣的痛苦之后，痛定思痛，立志成为<strong>学霸</strong>。</p>
+<h1 id="一-面临问题"><a class="markdownIt-Anchor" href="#一-面临问题"></a> 一、 面临问题：</h1>
+<p>我分析遇到的问题之后，得出我面临的几个问题：</p>
+<ol>
+<li>方向盘打法不规范；</li>
+<li>离合器踩的不到位，车速偏快；</li>
+<li>不清楚方向盘转的度数和车轮转的度数关系；</li>
+<li>不记得当前车轮方向。</li>
+</ol>
+<p>清楚自己的问题就好办了，那就各个击破。</p>
+<p>昨天去实际操作了半个小时，果然大有进展。</p>
+<h1 id="二-转向理论"><a class="markdownIt-Anchor" href="#二-转向理论"></a> 二、 转向理论：</h1>
+<p>我学习新东西的时候，往往会学习下理论，就是搞清楚*<strong>为什么</strong>的问题，目的是为了做到理论和实践相结合，才能真正掌握一个东西。</p>
+<p>首先目前的小汽车都是<strong>前置发动机前轮驱动</strong>的，之前我一直认为小汽车也是后驱的，这纠正了我的一个错误认识，简而言之，就是前轮带着汽车往前跑。</p>
+<p><strong>汽车前轮是转向轮，只有前轮才能改变方向</strong>，后轮是不能转变方向的，请看下面一张动态图：</p>
+<p><img src="http://www.longluo.me/assets/blog/images/car/car_houlun.gif" alt="后轮无法左右移动"></p>
+<p>汽车转弯时车轮状态：</p>
+<p><img src="http://www.longluo.me/assets/blog/images/car/car_zhuanxiang.gif" alt="前置前驱"></p>
+<p>我们在倒车和转弯各项操作的时候，就必须弄明白汽车转弯的机制和轨迹是什么？</p>
+<p><img src="http://www.longluo.me/assets/blog/images/car/car_zhuanwan.gif" alt="转弯轨迹"></p>
+<p>上面这张图很直观的展示了汽车在转弯的时候车辆的旋转中心和前后轮的轨迹。</p>
+<p>了解了理论知识，那么在倒车时应该注意些什么呢？</p>
+<p><img src="http://www.longluo.me/assets/blog/images/car/car_daoche.gif" alt="倒车注意事项"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/blog/2014/05/02/algorithm-excel-row-number-string/#more" rel="contents">
+              <a class="btn" href="/blog/2014/04/06/how-car-steering-works/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -706,7 +562,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/04/09/android-develop-references/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -724,7 +580,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/04/09/android-develop-references/" class="post-title-link" itemprop="url">Android学习资源(持续更新中)</a>
+          <a href="/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/" class="post-title-link" itemprop="url">介绍一个提高Android ListView或GridView的Smoothie库</a>
         </h2>
 
         <div class="post-meta-container">
@@ -735,7 +591,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2014-04-09 22:26:13" itemprop="dateCreated datePublished" datetime="2014-04-09T22:26:13+08:00">2014-04-09</time>
+      <time title="创建时间：2014-02-15 11:41:06" itemprop="dateCreated datePublished" datetime="2014-02-15T11:41:06+08:00">2014-02-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -763,8 +619,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2014/04/09/android-develop-references/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/04/09/android-develop-references/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -774,7 +630,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/04/09/android-develop-references/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2014/02/15/introduce-a-android-listview-and-gridview-performence-library-smoothie/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -783,7 +639,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>414</span>
+      <span>949</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -801,38 +657,28 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>下面列举一些收藏的资源，用于学习参考：</p>
-<h1 id="1-android-api-guides"><a class="markdownIt-Anchor" href="#1-android-api-guides"></a> 1. Android API Guides</h1>
+          <p><em><strong>翻译 By Long Luo</strong></em></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2013/01/06/introducing-smoothie/">Introducing Smoothie</a></p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/smoothie.png" alt="smoothie"></p>
+<p><a target="_blank" rel="noopener" href="http://pattrnapp.com/">Pattrn</a> UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie">Smoothie</a>。</p>
+<p><em><strong>Smoothie</strong></em>提供了一个简单的API来异步加载<em>ListView/GridView</em>的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。</p>
+<p><em><strong>Smoothie</strong></em>是<strong>手势识别</strong>：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，<em><strong>Smoothie</strong></em>使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。</p>
+<p>那么，怎么使用它呢？很简单：</p>
 <ol>
-<li><a target="_blank" rel="noopener" href="http://developer.android.com/guide/components/index.html" title="Android API Guides"><strong>Android</strong> API Guides:</a></li>
-<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=android/reference" title="OSChina Android API Guides"><strong>OSChina</strong> Android API Guides：</a></li>
+<li>
+<p>首先在你的布局文件中增加一个<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncListView.java">AsyncListView</a>或者<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncGridView.java">AsyncGridView</a>，只需要增加一个额外传递的方法到响应的父类中。</p>
+</li>
+<li>
+<p>然后实现一个和你的应用程序加载和显示项目逻辑一致的<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemLoader.java">ItemLoader</a>。你将需要重写下面四种方法：<em>getItemParams()</em>, <em>loadItem()</em>, <em>loadItemFromMemory()<em>以及</em>displayItem()</em>。</p>
+</li>
+<li>
+<p>最后在<em>ItemLoader</em>中建一个<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemManager.java">ItemManager</a>，同时把它和目标<em>AsyncListView</em>或者<em>AsyncGridView</em>关联起来。</p>
+</li>
 </ol>
-<h1 id="2-java-develop-kit-references"><a class="markdownIt-Anchor" href="#2-java-develop-kit-references"></a> 2. Java Develop Kit References</h1>
-<ol>
-<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=jdk_7u4" title="JDK7 English"><strong>JDK7</strong> English：</a></li>
-<li><a target="_blank" rel="noopener" href="http://tool.oschina.net/apidocs/apidoc?api=jdk-zh" title="JDK6 Chinese API"><strong>JDK6</strong> Chinese API：</a></li>
-</ol>
-<h1 id="3-performances"><a class="markdownIt-Anchor" href="#3-performances"></a> 3. Performances</h1>
-<ol>
-<li><a target="_blank" rel="noopener" href="http://developer.android.com/training/best-performance.html" title="Best Practices for Performance">Best Practices for Performance：</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/performance/" title="性能优化系列总篇">性能优化系列总篇</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/android-imagecache/">图片ImageCache技术</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/android-imagesdcardcache/" title="图片SD卡缓存优化">图片SD卡缓存技术</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/database-performance/" title="性能优化之数据库优化">性能优化之数据库优化</a></li>
-<li><a target="_blank" rel="noopener" href="http://www.trinea.cn/android/android-http-cache/" title="Android网络缓存">Android网络缓存</a></li>
-</ol>
-<h1 id="4-developing"><a class="markdownIt-Anchor" href="#4-developing"></a> 4. Developing</h1>
-<ol>
-<li><a target="_blank" rel="noopener" href="http://www.importnew.com/3988.html">Android开发者必知的开发资源</a></li>
-<li><a target="_blank" rel="noopener" href="http://stackoverflow.com/tags/android/">StackOverFlow@Android</a></li>
-</ol>
-<h1 id="5-opensource-app"><a class="markdownIt-Anchor" href="#5-opensource-app"></a> 5. OpenSource App</h1>
-<ol>
-<li></li>
-</ol>
-<p><em><strong>Long Luo Version0.1 Created at 2014/4/8 10:54:32 @Shenzhen, China.</strong></em><br>
-<em><strong>Long Luo Version0.2 Update at 2014/4/9 19:45:07 @Shenzhen, China.</strong></em></p>
+<p>在你的<em>ListView/GridView</em>控件需要异步加载时，考虑下把<em><strong>Smoothie</strong></em>作为你的轻量骨架。您可以轻松地连接您自己的图像加载/缓存框架在里面。例如，一个典型的示例应用，<a target="_blank" rel="noopener" href="https://github.com/chrisbanes/Android-BitmapCache">Android-BitmapCache</a>实现了<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/samples/bitmap-cache/src/org/lucasr/smoothie/samples/bitmapcache/PatternsListLoader.java">ItemLoader</a>使用一个简单的淡入淡出的动画来显示图像。</p>
+<p>除了在代码中的API文档，还可以看看App示例，一边更好地了解如何使用该库。请记住，API是​不是最终版本哦。目前反响是非常好的！</p>
+<p><strong>Enjoy it:-)</strong></p>
+<p><em><strong>Long Luo at AM11:30 ~ 12:42 Feb. 15th, 2014 @Shenzhen, China.</strong></em></p>
 
       
     </div>
@@ -859,7 +705,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/04/07/android-app-performance-optimization/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/02/14/android-listview-performence-optimization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -877,7 +723,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2014/04/07/android-app-performance-optimization/" class="post-title-link" itemprop="url">Android App性能优化笔记之一:性能优化是什么及为什么?</a>
+          <a href="/blog/2014/02/14/android-listview-performence-optimization/" class="post-title-link" itemprop="url">提升Android ListView性能的几个技巧</a>
         </h2>
 
         <div class="post-meta-container">
@@ -888,7 +734,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2014-04-07 14:19:28" itemprop="dateCreated datePublished" datetime="2014-04-07T14:19:28+08:00">2014-04-07</time>
+      <time title="创建时间：2014-02-14 15:22:10" itemprop="dateCreated datePublished" datetime="2014-02-14T15:22:10+08:00">2014-02-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -916,8 +762,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2014/04/07/android-app-performance-optimization/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/04/07/android-app-performance-optimization/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2014/02/14/android-listview-performence-optimization/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/02/14/android-listview-performence-optimization/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -927,7 +773,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/04/07/android-app-performance-optimization/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2014/02/14/android-listview-performence-optimization/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -936,14 +782,170 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
+      <span>4.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>翻译By Long Luo</strong></em></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2012/04/05/performance-tips-for-androids-listview/">Performance Tips for Android’s ListView</a></p>
+<pre><code>译者注：
+1. 由于这是技术文章，所以有些词句使用原文，表达更准确。
+2. 由于水平有效，有些地方可能翻译的不够准确，如有不当之处，敬请批评指正；
+3. inflation这个词一直找不到特别好的中文翻译。
+</code></pre>
+<h1 id="listview如何运作的"><a class="markdownIt-Anchor" href="#listview如何运作的"></a> ListView如何运作的？</h1>
+<p><em>ListView</em>是设计应用于对<strong>可扩展性和高性能要求</strong>的地方。实际上，这就意味着<em>ListView</em>有以下2个要求：</p>
+<ol>
+<li>尽可能少的创建View；</li>
+<li>只是绘制和布局在屏幕上可见的子View。</li>
+</ol>
+<p>理解第一点很简单：通过布局xml文件在创建View并显示是很昂贵耗时耗资源的操作。尽管布局文件已经编译打包成了二进制形式以便于更高效的语法解析，但是创建View仍然需要通过一个特殊的XML树，并实例化所有需要响应的View。</p>
+<p><em>ListView</em>通过回收一些不可见的Views，通常在Android源码中称为“<em>ScrapView</em>(废弃的View)”来解决这个问题。这及意味着开发者只需要简单的更新每行的内容而不需要针对每个单独的行的布局来创建View。</p>
+<p>为了实现第二点，在我们滑动屏幕时，<em>ListView</em>通过使用View回收器来增加低于或者高于当当前窗口的Views，并当前活动的Views移动到一个可回收池中。这样的话，<em>ListView</em>只需要在内存中保持足够多的Views去填充分配空间中的布局和一些额外的可回收Views，即使当你的Adapter有上百个items的适合。它会使用不同的方法去填充行之间的空间，从顶部或者底部等等，具体取决于窗口是如何变化的。</p>
+<p>下面这个图很直观的展示了当你按下ListView的时候发生了什么：</p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/listview_tips.png" alt="ListView"></p>
+<p>通过上述介绍，相比我们已经熟悉了<em>ListView</em>的这种机制，让我们继续前往技巧部分。正如上述介绍的，在滑动时，<em>ListView</em>通过动态的创建和回收很多View，实现了尽可能地让Adapter的*getView()<em>轻量。所有的技巧都是通过多种方法让</em>getView()*更快。</p>
+<h1 id="view的回收"><a class="markdownIt-Anchor" href="#view的回收"></a> View的回收</h1>
+<p>当<em>ListView</em>每次需要在屏幕上显示新的一行的时候，会从其Adapter中调用*getView()*的方法。众所周知，*getView()*方法有3个参数：行的位置， convertView以及父ViewGroup。</p>
+<p>参数<em>convertView</em>说穿来就是之前讲述的ScrapView。当<em>ListView</em>要求更新一行的布局时，<em>convertView</em>是一个非空值。因此，当<em>convertView</em>值非空时，你仅仅需要<em>更新内容</em>即可，而不需要重新一个新行的布局。*getView()*在Adapter中一般是如下的形式：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> View <span class="title function_">getView</span><span class="params">(<span class="type">int</span> position, View convertView, ViewGroup parent)</span> {</span><br><span class="line">    <span class="keyword">if</span> (convertView == <span class="literal">null</span>) {</span><br><span class="line">        convertView = mInflater.inflate(R.layout.your_layout, <span class="literal">null</span>);</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="type">TextView</span> <span class="variable">text</span> <span class="operator">=</span> (TextView) convertView.findViewById(R.id.text);</span><br><span class="line">    text.setText(<span class="string">"Position "</span> + position);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> convertView;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="view-holder如何写的模板"><a class="markdownIt-Anchor" href="#view-holder如何写的模板"></a> View Holder如何写的模板</h1>
+<p>Android很常见的一个操作就是在布局文件中找到一个内部的View。通常是使用一个***findViewById()<em><strong>的View方法来实现的。这个</strong></em>findViewById()<em><strong>方法在View树中，根据一个View ID，会递归的被调用来找到其子树。虽然在静态UI布局中使用</strong></em>findViewById()**<em>是完全正常的。但是，在滑动时，<em>ListView</em>调用其Adapter中的</em>getView()*是非常频繁的。***findViewById()*<em><em>可能会影响</em>ListView</em>滑动时的性能，尤其是你的行布局是很复杂的时候。</p>
+<p>寻找一个充气布局内的内部观点是在Android上最常用的操作之一。这通常是通过一个名为findViewById（查看方法完成）。此方法将递归经过视图树寻找一个孩子用给定的ID码。静态的UI布局使用findViewById（）是完全正常，但正如你所看到的，ListView中滚动时调用适配器的getView（）非常频繁。 findViewById（）可能perceivably击中ListViews，尤其是滚动的性能，如果你行的布局是不平凡的。</p>
+<p>View Holder的模式就是减少在Adapter中<em>getView()<em>方法中调用</em>findViewById()<em>次数。实际上，View Holder是一个轻量级的内部类，用于直接引用到所有内部views。在创建View之后，你可以在每行的View存储为一个标签。通过这种方法，只需要在初次创建布局的时候调用</em></em><em>findViewById()</em>**。下面是一个使用上述方法的View Holder模板的代码示例：</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> View <span class="title function_">getView</span><span class="params">(<span class="type">int</span> position, View convertView, ViewGroup parent)</span> {</span><br><span class="line">    ViewHolder holder;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (convertView == <span class="literal">null</span>) {</span><br><span class="line">        convertView = mInflater.inflate(R.layout.your_layout, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">        holder = <span class="keyword">new</span> <span class="title class_">ViewHolder</span>();</span><br><span class="line">        holder.text = (TextView) convertView.findViewById(R.id.text);</span><br><span class="line"></span><br><span class="line">        convertView.setTag(holder);</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        holder = convertView.getTag();</span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    holder.text.setText(<span class="string">"Position "</span> + position);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> convertView;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">ViewHolder</span> {</span><br><span class="line">    <span class="keyword">public</span> TextView text;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/02/14/android-listview-performence-optimization/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/01/23/android-ui-layout-summay-5-layouts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2014/01/23/android-ui-layout-summay-5-layouts/" class="post-title-link" itemprop="url">Android UI Layout总结系列之篇之5大布局</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2014-01-23 20:16:36" itemprop="dateCreated datePublished" datetime="2014-01-23T20:16:36+08:00">2014-01-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2014/01/23/android-ui-layout-summay-5-layouts/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/01/23/android-ui-layout-summay-5-layouts/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2014/01/23/android-ui-layout-summay-5-layouts/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -955,39 +957,83 @@
     
     <div class="post-body" itemprop="articleBody">
           <p><em><strong>By Long Luo</strong></em></p>
-<p>周星驰的电影《功夫》里面借火云邪神之口说出了一句至理名言：“<strong>天下武功，唯快不破</strong>”。</p>
-<p>在移动互联网时代，同样如此，留给一个公司的窗口往往只有很短的时间，如何把握住这个时机，迅速开发出产品，成为至关重要的一环。相对传统互联网时代的PC产品，<strong>用户对移动端产品的容忍度更低</strong>。而一款移动应用在推出的时候可能只是接近完成的状态，这就需要通过<strong>快速的迭代开发来更新产品，不断完善产品来留住用户</strong>。同时，通过更新产品也能唤醒一些沉默用户，让一些原本下载了应用但使用次数非常少的用户给该应用多一次机会。</p>
-<p>所以<em><strong>快速迭代</strong></em>成为移动互联网时代的一个重要生存法则。</p>
-<h1 id="1-为什么需要性能优化"><a class="markdownIt-Anchor" href="#1-为什么需要性能优化"></a> 1. 为什么需要性能优化？</h1>
-<p>上面说到，在时间窗口期内开发出产品是极端重要的，但是虽然基本功能我们实现了，但是开发出来的产品代码运行的效率怎么样呢？我们的App用户给用户的体验如何呢？</p>
-<ul>
-<li>我们的App在低端机上经常ANR、闪退、卡顿等</li>
-<li>我们的App在其他分辨率上显示惨不忍睹？</li>
-<li>我们的App在不同网络的情况下如何处理的</li>
-<li>…</li>
-</ul>
-<p>我们的App体验如此之差，导致大量的用户流失。这些迫使我们认识到性能优化是非常重要，某种程度上甚至超过了新功能的开发。</p>
-<p>也验证了一句话：“<em><strong>别人有的我们也有，而且比他们的要好要快。</strong></em>”</p>
-<p>做Android开发已经3年了，期间也开发了不少App了，最开始写App的时候，只追求迅速完成所需要的功能，后来随着对相关知识的熟悉，再回头看之前写的代码，也知道有哪些改进和优化的手段了。<em><strong>性能优化</strong></em>，一方面需要自身能力的提高，另外一方面，也需要有意识去学习优化技术，并应用于自身项目的开发中。</p>
-<h1 id="2-性能优化技术"><a class="markdownIt-Anchor" href="#2-性能优化技术"></a> 2. 性能优化技术</h1>
-<p>我们的Android App开发除了NDK之外，使用的都是Java语言，而Java语言是一种基于虚拟机JVM运行的语言，所以相比C/C++语言来说，效率是比较低的。Java需要占用大量内存来换取执行速度，而不定期的GC机制，直接导致Android界面的卡顿现象。</p>
-<p>相比Apple的iOS，Android要面对无数不同的硬件组合，分辨率，驱动等，导致App质量参差不齐。</p>
-<p>性能优化技术，简而言之，就是<em><strong>提高我们程序的性能</strong></em>，让我们的应用更快，更少使用CPU资源，更少使用内存。</p>
-<h1 id="3-性能优化笔记提纲"><a class="markdownIt-Anchor" href="#3-性能优化笔记提纲"></a> 3. 性能优化笔记提纲</h1>
-<p>性能优化是一个非常大的课题，在这里目前准备写8篇笔记来记录，提纲如下：</p>
+<p>在一个Android应用中，Layout是开发中的一个很重要环节，Layout是组成UI不可缺少的一部分。</p>
+<h1 id="android-ui核心类"><a class="markdownIt-Anchor" href="#android-ui核心类"></a> Android UI核心类</h1>
+<p>在Android应用构建UI的方法有以下几种：</p>
 <ol>
-<li>如何书写优秀代码？</li>
-<li>程序性能测试</li>
-<li>App内存优化</li>
-<li>图片缓存技术(ImageCache及Image SD卡缓存技术)</li>
-<li>数据库优化</li>
-<li>网络优化</li>
-<li>App UI优化</li>
-<li>性能调优工具</li>
+<li>单纯使用JAVA代码</li>
+<li>使用XML完全定义界面</li>
+<li>结合使用两者，在XML中定义，在JAVA中引用和修改</li>
 </ol>
-<p><em><strong>Long Luo Version0.1 Created at PM14:10 April 12th, 2014 @Shenzhen, China.</strong></em><br>
-<em><strong>Long Luo Version0.1 Completed at PM15:25 April 12th, 2014 @Shenzhen, China.</strong></em></p>
-
+<h2 id="android-sdk中关于ui的核心类"><a class="markdownIt-Anchor" href="#android-sdk中关于ui的核心类"></a> Android SDK中关于UI的核心类：</h2>
+<p>Android.view.View和android.view.ViewGroup</p>
+<p>android中的常见UI控件均会扩展View和ViewGroup其中有一部分是专门用来控制其子View位置和大小，这些类我们称为布局管理器。</p>
+<h3 id="viewgroup"><a class="markdownIt-Anchor" href="#viewgroup"></a> ViewGroup</h3>
+<ol>
+<li>LayoutParams是ViewGroup内部类，包含了ViewGroup的布局参数，用来告诉它们的父类它们想怎么在父类中布局（大小和位置），所有在LayoutParams及其子类中定义的布局参数在xml中定义都是通过layout_***定义的。</li>
+</ol>
+<p>LayoutParams只提供了两个参数设定：</p>
+<pre><code>layout_width  元素的高度(fill_parent | match_parent | wrap_content | *dip)
+layout_height 元素的宽度(同上)		 		   
+</code></pre>
+<ol start="2">
+<li>MarginLayoutParams也是ViewGroup一个内部类，它继承了LayoutParams类，用来扩展LayoutParams的属性，设置参数。</li>
+</ol>
+<p>MarginLayoutParams添加了四个参数设定：</p>
+<pre><code>layout_marginLeft       相对于本元素左边界的偏移
+layout_marginRight     	相对于本元素右边界的偏移
+layout_marginTop，    	相对于本元素上边界的偏移
+layout_marginBottom  	相对于本元素下边界的偏移
+</code></pre>
+<p>以上的两种Layout参数，所有布局中的子ViewGroup和子View都可以使用</p>
+<h1 id="5种layout"><a class="markdownIt-Anchor" href="#5种layout"></a> 5种Layout</h1>
+<p><strong>下面讲讲5种布局：</strong></p>
+<h2 id="1-linear-layout-线性布局"><a class="markdownIt-Anchor" href="#1-linear-layout-线性布局"></a> 1. Linear Layout (线性布局)</h2>
+<p>线性布局是Android布局中最简单的布局，也是最常用，最实用的布局。<br>
+android:orientation线形布局的对齐方式 ： vertical(垂直) 和 horizontal(水平)<br>
+LayoutParams中的特殊参数:</p>
+<pre><code>layout_weight  权值
+layout_gravity 相对于父元素的重力值(默认top|left)：
+(top|bottom|left|right|center_vertical|fill_vertical |center_ horizontal 
+|fill_ horizontal | center| fill)
+</code></pre>
+<p>LinearLayout有两个非常相似的属性：</p>
+<pre><code>android:gravity
+android:layout_gravity
+</code></pre>
+<p><strong>他们的区别在于：</strong></p>
+<ul>
+<li>android:gravity属性是对该view中内容的限定．比如一个button 上面的text. 你可以设置该text相对于view的靠左，靠右等位置．</li>
+<li>android:layout_gravity是用来设置该view相对与父view的位置．比如一个button在linearlayout里，你想把该button放在linearlayout里靠左、靠右等位置就可以通过该属性设置．</li>
+</ul>
+<p>android:gravity用于设置View中内容相对于View组件的对齐方式，而android:layout_gravity用于设置View组件相对于Container的对齐方式。</p>
+<p>原理跟android:paddingLeft、android:layout_marginLeft有点类似。如果在按钮上同时设置这两个属性。</p>
+<pre><code>android:paddingLeft="30px"  按钮上设置的内容离按钮左边边界30个像素
+android:layout_marginLeft="30px"  整个按钮离左边设置的内容30个像素
+</code></pre>
+<p>下面回到正题， 我们可以通过设置android:gravity="center"来让EditText中的文字在EditText组件中居中显示；</p>
+<p>同时我们设置EditText的android:layout_gravity="right"来让EditText组件在LinearLayout中居右显示。看下效果：</p>
+<pre><code>&lt;LinearLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" &gt;
+    &lt;EditText
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="one"
+        android:layout_gravity="right"/&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2014/01/23/android-ui-layout-summay-5-layouts/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1006,7 +1052,7 @@
 
 
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/57/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/59/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/57/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/57/">57</a><span class="page-number current">58</span><a class="page-number" href="/page/59/">59</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/59/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -1034,7 +1080,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:55</span>
+    <span title="站点阅读时长">21:36</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -1095,7 +1141,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
 <script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/page/58/"}</script>
