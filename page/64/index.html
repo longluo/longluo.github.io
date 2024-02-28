@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">335</span>
+          <span class="site-state-item-count">337</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">306</span>
+        <span class="site-state-item-count">307</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,299 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2012/10/22/how-to-get-computer-hardware-information-by-bash-in-linux-os/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2012/10/22/how-to-get-computer-hardware-information-by-bash-in-linux-os/" class="post-title-link" itemprop="url">获取电脑配置：一个20行的脚本代码就够了，So Easy！</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2012-10-22 20:16:33" itemprop="dateCreated datePublished" datetime="2012-10-22T20:16:33+08:00">2012-10-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2012/10/22/how-to-get-computer-hardware-information-by-bash-in-linux-os/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2012/10/22/how-to-get-computer-hardware-information-by-bash-in-linux-os/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2012/10/22/how-to-get-computer-hardware-information-by-bash-in-linux-os/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<blockquote>
+<p>这篇文章是2012年在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上写的，<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8100270">Linux下获取电脑硬件配置信息的bash脚本代码</a>。</p>
+</blockquote>
+<hr>
+<p>最近由于要获取几台Linux服务器的硬件配置信息，就写了一个获取硬件配置信息的脚本代码，可以获取CPU、内存、硬盘等硬件信息。</p>
+<p>使用这个脚本文件，就可以一次性输出代码如下所示：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2012/10/22/how-to-get-computer-hardware-information-by-bash-in-linux-os/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2011/10/15/implement-a-chat-room-by-java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2011/10/15/implement-a-chat-room-by-java/" class="post-title-link" itemprop="url">Java网络聊天室的设计与实现</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2011-10-15 23:27:22" itemprop="dateCreated datePublished" datetime="2011-10-15T23:27:22+08:00">2011-10-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2011/10/15/implement-a-chat-room-by-java/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2011/10/15/implement-a-chat-room-by-java/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2011/10/15/implement-a-chat-room-by-java/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><em><strong>By Long Luo</strong></em></p>
+<h1 id="一-问题描述"><a class="markdownIt-Anchor" href="#一-问题描述"></a> 一、 问题描述</h1>
+<p>Java聊天室是用Java程序实现的，由客户端和服务器端组成。先启动服务器端，再启动客户端，服务器验证身份后客户便可登陆聊天室。</p>
+<p>对于客户来说：</p>
+<ul>
+<li>注册、登陆和退出聊天室时都有相关提示信息；</li>
+<li>用户应该可以看到所有在线的用户；</li>
+<li>聊天时可以群聊，也可以选择某个聊天对象私聊。</li>
+</ul>
+<p>对于服务器来说：</p>
+<ul>
+<li>登录聊天室时必须输入正确的用户名和密码，未注册用户必须先注册；</li>
+<li>可以显示当前使用的端口，IP地址及在线人数；</li>
+<li>可以显示所有用户注册、登陆及退出等信息，且在用户登陆和退出时可以实时刷新在线用户列表</li>
+<li>可以显示所有聊天记录，并可以将记录保存在文件中。</li>
+</ul>
+<h1 id="二-软件设计"><a class="markdownIt-Anchor" href="#二-软件设计"></a> 二、 软件设计</h1>
+<p>完成这个作业参考了马士兵的Java系列视频及从网络上下载的代码，对其进行了修改和完善，主要是增加了服务器窗口，实时显示相关信息、在线用户列表等。</p>
+<p>对于网络聊天器来说，核心思想是基于套接字的编程。在这里，打个小小的比方，我们的程序在Win32环境下表示为一个进程，也可以比喻成一所房子，该进程的套接字就好比是一扇门。我们的服务器，也就是房子的主人，如果他没睡觉的情况下，也就是位于运行状态时，是一直在倾听且欢迎着门外的敲门声的。</p>
+<p>客户端程序运行时，会向服务器发起一个连接，即敲服务器家里的门，在程序上是通过创建一个套接字来完成的。当服务器听到了敲门声之后，他会创建一个新的门，专门为这个客户服务，在Java代码上是通过<code>serverSocket.accept()</code>来实现的。这个门也就只为这个客户而开，当客户离开之后，服务器也会将这扇门关闭。</p>
+<h2 id="客户端"><a class="markdownIt-Anchor" href="#客户端"></a> 客户端：</h2>
+<ul>
+<li><code>ChatClient.java</code>，完成客户端窗口的绘制及发起连接、关闭、聊天；</li>
+</ul>
+<h2 id="服务器端"><a class="markdownIt-Anchor" href="#服务器端"></a> 服务器端:</h2>
+<ul>
+<li><code>ChatServer.java</code>，服务器端，启动服务器端口并进行监听；</li>
+<li><code>ServerFrame.java</code>，服务器窗口，主要是服务器窗口绘制；</li>
+<li><code>ServerProcess.java</code>，服务器和客户端连接的处理，包括登陆、注册、退出、信息的发送。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2011/10/15/implement-a-chat-room-by-java/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -674,298 +967,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2010/11/07/simplicity-and-warmth-the-first-time-of-visiting-ikea/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2010/11/07/simplicity-and-warmth-the-first-time-of-visiting-ikea/" class="post-title-link" itemprop="url">简约和温馨 --- IKEA宜家家居半日游有感</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2010-11-07 22:08:06" itemprop="dateCreated datePublished" datetime="2010-11-07T22:08:06+08:00">2010-11-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2010/11/07/simplicity-and-warmth-the-first-time-of-visiting-ikea/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2010/11/07/simplicity-and-warmth-the-first-time-of-visiting-ikea/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2010/11/07/simplicity-and-warmth-the-first-time-of-visiting-ikea/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>今天真是个好天气！本来想约个MM出来玩的，自己还是欠缺能力啊，以失败告终，只能重归宅男的深圳探索计划了。</p>
-<p>吃过午饭，往北走，一路上漫无目的地经过了北环大道，走上天桥，发现IKEA的招牌就在不远处。想到IKEA在国内就深圳，北京，上海，成都，广州这几个地方有，难得今天就去逛一逛。走进去发现这里是一个很大的家居中心，还有一个迪卡侬运动中心，进去买了个肩包，里面运动服饰，器械之全，不过以户外运动系列为多，价格大部分还是相对来说还是可以接受。</p>
-<p>逛完了去了楼上的sundan，看了下厨房和手机笔记本，就直奔宜家家居了。宜家的门店确实只适合开在郊区，因为实在是太大了，据说有30000平米的营业面积。眼见为实，先进去再说，东西实在是太多了，我逛了近3个小时，才勉强把大部分的东西看了个遍。我以前认为IKEA应该类似于星级酒店的装饰，进去后原来也是卖各种家居商品的，人太多了，而且以年轻的夫妻情侣居多。IKEA所有商品都给人以简洁和温馨的感觉，店内装饰以白色为主色调。家居产品大部分是纯色，白色，黑色，米黄色，蓝色，当然也有红色的，但是红色也很不鲜艳。</p>
-<p>二楼展示的有厨房，卧室，客厅，儿童等，其中既有IKEA提供的整体设计，不过最主要的还是你自己去make，让你去创造。apple的成功证明了只要你有好的产品，就不用担心用户不掏钱的问题，宜家则一方面提供了好的东西，但另一方面利用了你构建自己的家的自私天性。一个人会投大量的钱到自己拥有的东西上去，有恒产者有恒心，对于自己的东西，你的用料就会考究。一路上ikea提供的各种方案，有大有小，有各种档次的，不过Good things take money，这里的东西可都需要大把大把的银子的。其中的儿童去，更是打出“他们是最重要的人”，这不赤裸裸地让广大父母卖了还帮Ikea数钱的那种。儿童区的特点也很温馨，主要色调还是粉色，米黄色，白色的搭配。</p>
-<p>IKEA里面很多东西设计的非常精妙，比如各种柜子啊，在最小地占用空间而而提供给你最大的空间。我感叹有如此多精巧的设计！创意这东西如同思想一样不可捉摸，如果你把它描述出来，那又不叫思想了，思想是活的，我的理解是如果好的设计要在深刻理解人追求的基础了，大量试验，最后呈现给人的就是一种豁然开朗，感叹原来可以这样做啊！</p>
-<p>二楼逛完了，有一个瑞典餐厅，里面提供西餐，大致看了下，然后去了1楼，1楼卖的就是各种小物品了，厨房的刀叉，瓶瓶罐罐之类的，地毯啊，台灯啊，相框啊…临走出门拿了本Ikea的家居指南，偶尔翻番，看看自己能否学到一点设计和灵感。</p>
-<p>回到白石洲，吃晚饭，妈妈打电话过来，要我回老家，妈妈现在每周都催我，要我赶紧找个女朋友，不过自己还是想在这些狗日的大城市再待几年，开阔下眼界。想几年后回去，其实自己也挺迷茫的，回小城市可以干些啥呢？继续自己的通信生涯吗？但是电信开始的工资也太低了，估计吃饭租房都不够。哎，这就是生活啊！</p>
-<p>写到这，就22点了，洗洗澡也要睡觉了，明天又是一周的开始了，一个宅男的一天就这么结束了！</p>
-<p><em><strong>By Long Luo @2010年11月07日晚于深圳白石洲</strong></em></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2010/10/15/love-song-1990/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2010/10/15/love-song-1990/" class="post-title-link" itemprop="url">罗大佑: 《恋曲1990》</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2010-10-15 22:18:26" itemprop="dateCreated datePublished" datetime="2010-10-15T22:18:26+08:00">2010-10-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2010/10/15/love-song-1990/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2010/10/15/love-song-1990/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2010/10/15/love-song-1990/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>359</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="恋曲1990"><a class="markdownIt-Anchor" href="#恋曲1990"></a> 恋曲1990</h1>
-<p><em><strong>罗大佑词曲</strong></em></p>
-<h2 id="play"><a class="markdownIt-Anchor" href="#play"></a> <a target="_blank" rel="noopener" href="https://music.163.com/#/song?id=5232465&amp;market=baiduqk">Play</a></h2>
-<blockquote>
-<p>乌溜溜的黑眼珠和你的笑脸<br>
-怎么也难忘记你容颜的转变<br>
-轻飘飘的旧时光就这么溜走<br>
-转头回去看看时已匆匆数年<br>
-苍茫茫的天涯路是你的飘泊<br>
-寻寻觅觅长相守是我的脚步<br>
-黑漆漆的孤枕边是你的温柔<br>
-醒来时的清晨里是我的哀愁<br>
-或许明日太阳西下倦鸟已归时<br>
-你将已经踏上旧时的归途<br>
-人生难得再次寻觅相知的伴侣<br>
-生命终究难舍蓝蓝的白云天</p>
-</blockquote>
-<blockquote>
-<p>轰隆隆的雷雨声在我的窗前<br>
-怎么也难忘记你离去的转变<br>
-孤单单的身影后寂寥的心情<br>
-永远无怨的是我的双眼<br>
-苍茫茫的天涯路是你的飘泊<br>
-寻寻觅觅长相守是我的脚步<br>
-黑漆漆的孤枕边是你的温柔<br>
-醒来时的清晨里是我的哀愁<br>
-或许明日太阳西下倦鸟已归时<br>
-你将已经踏上旧时的归途<br>
-人生难得再次寻觅相知的伴侣<br>
-生命终究难舍蓝蓝的白云天</p>
-</blockquote>
-<blockquote>
-<p>轰隆隆的雷雨声在我的窗前<br>
-怎么也难忘记你离去的转变<br>
-孤单单的身影后寂寥的心情<br>
-永远无怨的是我的双眼<br>
-永远无怨的是我的双眼</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/63/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/67/">67</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/65/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/63/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/65/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
@@ -993,7 +996,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:49</span>
+    <span title="站点阅读时长">21:55</span>
   </span>
 </div>
 <div class="busuanzi-count">
