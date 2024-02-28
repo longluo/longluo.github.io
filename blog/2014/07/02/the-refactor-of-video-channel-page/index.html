@@ -26,7 +26,7 @@
     <meta name="description" content="By Long Luo  一、重构前的一些缺点  频道显示在VideoListActivity实现的，代码结构不够清晰； 频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间； 后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；   二、重构方案 重构方案:  将频道页">
 <meta property="og:type" content="article">
 <meta property="og:title" content="视频频道页面重构总结">
-<meta property="og:url" content="http://www.longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/index.html">
+<meta property="og:url" content="http://www.longluo.me/blog/2014/07/02/the-refactor-of-video-channel-page/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
 <meta property="og:description" content="By Long Luo  一、重构前的一些缺点  频道显示在VideoListActivity实现的，代码结构不够清晰； 频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间； 后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；   二、重构方案 重构方案:  将频道页">
 <meta property="og:locale" content="zh_CN">
@@ -43,11 +43,11 @@
 <meta name="twitter:image" content="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/Channel_startupTime.png">
 
 
-<link rel="canonical" href="http://www.longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/">
+<link rel="canonical" href="http://www.longluo.me/blog/2014/07/02/the-refactor-of-video-channel-page/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/","path":"/blog/2014/07/02/the-refactor-of-channel-page-of-video/","title":"视频频道页面重构总结"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2014/07/02/the-refactor-of-video-channel-page/","path":"/blog/2014/07/02/the-refactor-of-video-channel-page/","title":"视频频道页面重构总结"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>视频频道页面重构总结 | Long Luo's Life Notes</title>
@@ -181,7 +181,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">337</span>
+          <span class="site-state-item-count">335</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -192,7 +192,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">307</span>
+        <span class="site-state-item-count">306</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -248,7 +248,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/07/02/the-refactor-of-video-channel-page/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -266,7 +266,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          视频频道页面重构总结<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2024/source/_posts/the-refactor-of-channel-page-of-video.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          视频频道页面重构总结<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2024/source/_posts/the-refactor-of-video-channel-page.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -305,8 +305,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2014/07/02/the-refactor-of-channel-page-of-video/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/07/02/the-refactor-of-channel-page-of-video/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2014/07/02/the-refactor-of-video-channel-page/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/07/02/the-refactor-of-video-channel-page/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -316,7 +316,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2014/07/02/the-refactor-of-channel-page-of-video/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2014/07/02/the-refactor-of-video-channel-page/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -400,7 +400,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://www.longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/" title="视频频道页面重构总结">http://www.longluo.me/blog/2014/07/02/the-refactor-of-channel-page-of-video/</a>
+      <a href="http://www.longluo.me/blog/2014/07/02/the-refactor-of-video-channel-page/" title="视频频道页面重构总结">http://www.longluo.me/blog/2014/07/02/the-refactor-of-video-channel-page/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -434,8 +434,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/2014/07/02/the-design-and-implements-of-Video-online-search-page/" rel="prev" title="视频在线搜索设计与实现">
-                  <i class="fa fa-angle-left"></i> 视频在线搜索设计与实现
+                <a href="/blog/2014/06/21/android-audio-play-a-wav-file-on-an-audiotrack/" rel="prev" title="[译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?">
+                  <i class="fa fa-angle-left"></i> [译]Android音频: 如何使用AudioTrack播放一个WAV格式文件?
                 </a>
             </div>
             <div class="post-nav-item">
@@ -479,7 +479,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:55</span>
+    <span title="站点阅读时长">21:49</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -543,7 +543,7 @@
   <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2014/07/02/the-refactor-of-channel-page-of-video/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2014/07/02/the-refactor-of-video-channel-page/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@2.15.8/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
