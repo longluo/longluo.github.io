@@ -23,30 +23,32 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
 
-    <meta name="description" content="By Long Luo  一、 冬天的太阳，比起夏天的太阳，大了很多倍，从山顶探出头来，漏出一片红色的光，落在结了一层白色的霜的屋顶上。这个时候就是吃完饭准备走去学校的时候了。 抬头一看，只有一片蓝色，云朵都藏起来了。 四周没有多少声息，只听到一些叽叽喳喳的鸟叫声。那时的我，穿的严严实实，挑着有光的路走。红色的光在手背停留了许久许久，但就像火柴的火一样，烤不热这一团已经发红发麻的大冰块。直到上完前">
+    <meta name="description" content="翻译 By Long Luo 原文链接：Introducing Smoothie  Pattrn UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：Smoothie。 Smoothie提供了一个简单的API来异步加载ListView&#x2F;GridView的项目，以和UI线程分离。它">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我生命的原点">
-<meta property="og:url" content="http://www.longluo.me/blog/2016/02/09/the-origin-point-of-my-life/index.html">
+<meta property="og:title" content="介绍一个提高Android ListView或GridView的Smoothie库">
+<meta property="og:url" content="http://www.longluo.me/blog/2014/02/15/introducing-android-library-smoothie/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo  一、 冬天的太阳，比起夏天的太阳，大了很多倍，从山顶探出头来，漏出一片红色的光，落在结了一层白色的霜的屋顶上。这个时候就是吃完饭准备走去学校的时候了。 抬头一看，只有一片蓝色，云朵都藏起来了。 四周没有多少声息，只听到一些叽叽喳喳的鸟叫声。那时的我，穿的严严实实，挑着有光的路走。红色的光在手背停留了许久许久，但就像火柴的火一样，烤不热这一团已经发红发麻的大冰块。直到上完前">
+<meta property="og:description" content="翻译 By Long Luo 原文链接：Introducing Smoothie  Pattrn UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：Smoothie。 Smoothie提供了一个简单的API来异步加载ListView&#x2F;GridView的项目，以和UI线程分离。它">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2016-02-08T17:52:02.000Z">
-<meta property="article:modified_time" content="2024-02-25T13:03:43.396Z">
+<meta property="og:image" content="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/smoothie.png">
+<meta property="article:published_time" content="2014-02-15T03:41:06.000Z">
+<meta property="article:modified_time" content="2024-02-29T13:06:49.300Z">
 <meta property="article:author" content="Long Luo">
-<meta property="article:tag" content="思考">
-<meta property="article:tag" content="Life">
-<meta property="article:tag" content="成长">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="ListView">
+<meta property="article:tag" content="GridView">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/smoothie.png">
 
 
-<link rel="canonical" href="http://www.longluo.me/blog/2016/02/09/the-origin-point-of-my-life/">
+<link rel="canonical" href="http://www.longluo.me/blog/2014/02/15/introducing-android-library-smoothie/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2016/02/09/the-origin-point-of-my-life/","path":"/blog/2016/02/09/the-origin-point-of-my-life/","title":"我生命的原点"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2014/02/15/introducing-android-library-smoothie/","path":"/blog/2014/02/15/introducing-android-library-smoothie/","title":"介绍一个提高Android ListView或GridView的Smoothie库"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>我生命的原点 | Long Luo's Life Notes</title>
+<title>介绍一个提高Android ListView或GridView的Smoothie库 | Long Luo's Life Notes</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46213499-2"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"UA-46213499-2","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -151,7 +153,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -164,7 +166,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80"><span class="nav-number">1.</span> <span class="nav-text"> 一、</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C"><span class="nav-number">2.</span> <span class="nav-text"> 二</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -177,7 +178,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">337</span>
+          <span class="site-state-item-count">336</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -188,7 +189,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">307</span>
+        <span class="site-state-item-count">306</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -244,7 +245,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/02/09/the-origin-point-of-my-life/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2014/02/15/introducing-android-library-smoothie/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -257,12 +258,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="我生命的原点 | Long Luo's Life Notes">
+      <meta itemprop="name" content="介绍一个提高Android ListView或GridView的Smoothie库 | Long Luo's Life Notes">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          我生命的原点<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2024/source/_posts/the-origin-point-of-my-life.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          介绍一个提高Android ListView或GridView的Smoothie库<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2024/source/_posts/introducing-android-library-smoothie.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -273,14 +274,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2016-02-09 01:52:02" itemprop="dateCreated datePublished" datetime="2016-02-09T01:52:02+08:00">2016-02-09</time>
+      <time title="创建时间：2014-02-15 11:41:06" itemprop="dateCreated datePublished" datetime="2014-02-15T11:41:06+08:00">2014-02-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-25 21:03:43" itemprop="dateModified" datetime="2024-02-25T21:03:43+08:00">2024-02-25</time>
+      <time title="修改时间：2024-02-29 21:06:49" itemprop="dateModified" datetime="2024-02-29T21:06:49+08:00">2024-02-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -288,7 +289,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+          <a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a>
         </span>
     </span>
 
@@ -301,8 +302,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2016/02/09/the-origin-point-of-my-life/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/02/09/the-origin-point-of-my-life/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2014/02/15/introducing-android-library-smoothie/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2014/02/15/introducing-android-library-smoothie/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -312,7 +313,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2016/02/09/the-origin-point-of-my-life/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2014/02/15/introducing-android-library-smoothie/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -321,7 +322,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>777</span>
+      <span>949</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -338,18 +339,28 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p><em><strong>By Long Luo</strong></em></p>
-<h1 id="一"><a class="markdownIt-Anchor" href="#一"></a> 一、</h1>
-<p>冬天的太阳，比起夏天的太阳，大了很多倍，从山顶探出头来，漏出一片红色的光，落在结了一层白色的霜的屋顶上。这个时候就是吃完饭准备走去学校的时候了。</p>
-<p>抬头一看，只有一片蓝色，云朵都藏起来了。</p>
-<p>四周没有多少声息，只听到一些叽叽喳喳的鸟叫声。那时的我，穿的严严实实，挑着有光的路走。红色的光在手背停留了许久许久，但就像火柴的火一样，烤不热这一团已经发红发麻的大冰块。直到上完前3节课，冰块才完全融化，所以小学课本里的笔记有的地方一片歪歪扭扭，那就说明是在上午前3节课记下的。</p>
-<p>路边的田里覆盖着一层稀稀疏疏的白色，偶尔可以看见几片青色的野草叶子。一排排白色的稻茬排列在田间，像阅兵的方队，等候着我们的检阅。</p>
-<p>我们看着前方，太阳已经离开山顶几丈高了，照亮了更远处的村落和山坡。模模糊糊的远方，有更高的山，其实也只是几缕山的形状。我不知道何时能走到那山脚，看看那山里面到底是什么？</p>
-<p>当太阳已经挂在学校低矮的屋顶时，我们的心已经蠢蠢欲动了。随着老师的一声下课，我们一边站起来说，“老师再见”，另一边两只手已经抓牢了课桌里的书包。不同于早上的慢慢吞吞，下午我们的精力异常的旺盛，一路追着跑着，跑累了就停下来走一走。</p>
-<p>太阳仍然在离地很近很近的高处挂着，将那一片的云从白色烧成通红。不同于八九月的傍晚，尤其是在下午下了一阵雨以后，那时候有很多的云，被烧成了一片红，将大地镀上了一层金色。云彩也飞快的移动着，变化成不同的形状。多年之后我才在课本里知道这叫火烧云。</p>
-<p>太阳仿佛在和我们玩捉迷藏，将自己藏在山里面，只露出了一个头偷偷地看着我们。我们又努力向前跑着，终于又看见它了，不过一小会，它又藏在更远处的山顶。我想山那边会是什么样子？也有像我一样的孩子么？这个世界上会有另外一个我吗？</p>
-<h1 id="二"><a class="markdownIt-Anchor" href="#二"></a> 二</h1>
-<p><em><strong>Created by Long Luo at 2016.02.07 @Jiangxi, China.</strong></em></p>
+    <div class="post-body" itemprop="articleBody"><p><em><strong>翻译 By Long Luo</strong></em></p>
+<p>原文链接：<a target="_blank" rel="noopener" href="http://lucasr.org/2013/01/06/introducing-smoothie/">Introducing Smoothie</a></p>
+<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/smoothie.png" alt="smoothie"></p>
+<p><a target="_blank" rel="noopener" href="http://pattrnapp.com/">Pattrn</a> UI中的很大一部分是在滑动时从云端获取图片列表。所以我花了相当长的一段时间去调试，以获得滑动时的体验尽可能的流畅。在过去的几周里，我一直在试图解耦代码，完成了一个很小的库：<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie">Smoothie</a>。</p>
+<p><em><strong>Smoothie</strong></em>提供了一个简单的API来异步加载<em>ListView/GridView</em>的项目，以和UI线程分离。它做了所有你所期望做的事情，加载项目变得可见，取消要求回收的View对应的项目等。但它所完成的还不止这些。</p>
+<p><em><strong>Smoothie</strong></em>是<strong>手势识别</strong>：在Fling手势时，它会必须发起加载项目请求；在滑动列表时，当你的手指按下时，将会启用增量加载项目请求。此外，它支持当前屏幕外项目预加载功能，当你滑动时，可以减少加载占位符类型的项目数。说穿来，<em><strong>Smoothie</strong></em>使用了一个支持可以阻塞队列动态优先执行的的线程池。在屏幕上滑动时，屏幕外即将可见的项目加载请求将动态的获取更高的优先级。</p>
+<p>那么，怎么使用它呢？很简单：</p>
+<ol>
+<li>
+<p>首先在你的布局文件中增加一个<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncListView.java">AsyncListView</a>或者<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/AsyncGridView.java">AsyncGridView</a>，只需要增加一个额外传递的方法到响应的父类中。</p>
+</li>
+<li>
+<p>然后实现一个和你的应用程序加载和显示项目逻辑一致的<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemLoader.java">ItemLoader</a>。你将需要重写下面四种方法：<em>getItemParams()</em>, <em>loadItem()</em>, <em>loadItemFromMemory()<em>以及</em>displayItem()</em>。</p>
+</li>
+<li>
+<p>最后在<em>ItemLoader</em>中建一个<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/library/src/org/lucasr/smoothie/ItemManager.java">ItemManager</a>，同时把它和目标<em>AsyncListView</em>或者<em>AsyncGridView</em>关联起来。</p>
+</li>
+</ol>
+<p>在你的<em>ListView/GridView</em>控件需要异步加载时，考虑下把<em><strong>Smoothie</strong></em>作为你的轻量骨架。您可以轻松地连接您自己的图像加载/缓存框架在里面。例如，一个典型的示例应用，<a target="_blank" rel="noopener" href="https://github.com/chrisbanes/Android-BitmapCache">Android-BitmapCache</a>实现了<a target="_blank" rel="noopener" href="https://github.com/lucasr/smoothie/blob/master/samples/bitmap-cache/src/org/lucasr/smoothie/samples/bitmapcache/PatternsListLoader.java">ItemLoader</a>使用一个简单的淡入淡出的动画来显示图像。</p>
+<p>除了在代码中的API文档，还可以看看App示例，一边更好地了解如何使用该库。请记住，API是​不是最终版本哦。目前反响是非常好的！</p>
+<p><strong>Enjoy it:-)</strong></p>
+<p><em><strong>Long Luo at AM11:30 ~ 12:42 Feb. 15th, 2014 @Shenzhen, China.</strong></em></p>
 
     </div>
 
@@ -367,7 +378,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://www.longluo.me/blog/2016/02/09/the-origin-point-of-my-life/" title="我生命的原点">http://www.longluo.me/blog/2016/02/09/the-origin-point-of-my-life/</a>
+      <a href="http://www.longluo.me/blog/2014/02/15/introducing-android-library-smoothie/" title="介绍一个提高Android ListView或GridView的Smoothie库">http://www.longluo.me/blog/2014/02/15/introducing-android-library-smoothie/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -393,22 +404,22 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/%E6%80%9D%E8%80%83/" rel="tag"># 思考</a>
-              <a href="/tags/Life/" rel="tag"># Life</a>
-              <a href="/tags/%E6%88%90%E9%95%BF/" rel="tag"># 成长</a>
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/ListView/" rel="tag"># ListView</a>
+              <a href="/tags/GridView/" rel="tag"># GridView</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/2015/10/03/three-days-to-see/" rel="prev" title="Three Days to See 假如给我三天光明">
-                  <i class="fa fa-angle-left"></i> Three Days to See 假如给我三天光明
+                <a href="/blog/2014/02/14/optimizing-android-listview-performence/" rel="prev" title="提升Android ListView性能的几个技巧">
+                  <i class="fa fa-angle-left"></i> 提升Android ListView性能的几个技巧
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/blog/2016/02/22/the-most-important-thing-in-learning-to-play-piano/" rel="next" title="学钢琴中最重要的是什么？">
-                  学钢琴中最重要的是什么？ <i class="fa fa-angle-right"></i>
+                <a href="/blog/2014/04/06/how-car-steering-works/" rel="next" title="学车思考之一：方向盘转多少，车轮就转多少度对吗？">
+                  学车思考之一：方向盘转多少，车轮就转多少度对吗？ <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -447,7 +458,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:55</span>
+    <span title="站点阅读时长">21:54</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -511,7 +522,7 @@
   <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2016/02/09/the-origin-point-of-my-life/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2014/02/15/introducing-android-library-smoothie/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@2.15.8/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
