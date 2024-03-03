@@ -274,7 +274,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-29 21:06:49" itemprop="dateModified" datetime="2024-02-29T21:06:49+08:00">2024-02-29</time>
+      <time title="修改时间：2024-03-03 20:06:42" itemprop="dateModified" datetime="2024-03-03T20:06:42+08:00">2024-03-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -336,44 +336,48 @@
           <p><em><strong>By Long Luo</strong></em></p>
 <h1 id="一-重构前的一些缺点"><a class="markdownIt-Anchor" href="#一-重构前的一些缺点"></a> 一、重构前的一些缺点</h1>
 <ol>
-<li>频道显示在VideoListActivity实现的，代码结构不够清晰；</li>
-<li>频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在ListView中实现的，造成加载时绘制矩阵式页面需要更长的时间；</li>
+<li>频道显示在 VideoListActivity 实现的，代码结构不够清晰；</li>
+<li>频道页面需要根据不同频道目前存在矩阵式显示和列表式显示2种方式，矩阵式显示嵌入在 ListView 中实现的，造成加载时绘制矩阵式页面需要更长的时间；</li>
 <li>后续频道页面会参考第三方视频应用，不同频道会有不同的展示方式，而目前功能可扩展性不够好；</li>
 </ol>
 <h1 id="二-重构方案"><a class="markdownIt-Anchor" href="#二-重构方案"></a> 二、重构方案</h1>
 <p>重构方案:</p>
 <ol>
-<li>将频道页面独立出来，新建一个ChannelListActivity，作为所有频道页面的Activity，负责所有频道界面的绘制，便于后续扩展；</li>
+<li>将频道页面独立出来，新建一个 ChannelListActivity ，作为所有频道页面的 Activity ，负责所有频道界面的绘制，便于后续扩展；</li>
 <li>针对不同频道，具有不同的布局方式，比如对于需要矩阵式显示的频道，使用矩阵式布局；</li>
-<li>矩阵式布局，替换原有的ListView加GridView显示，提高加载速度；</li>
+<li>矩阵式布局，替换原有的 ListView 加 GridView 显示，提高加载速度；</li>
 </ol>
 <h1 id="三-具体实现"><a class="markdownIt-Anchor" href="#三-具体实现"></a> 三、具体实现</h1>
 <p>技术实现方案如下所示：</p>
 <ol>
-<li>新建ChannelListActivity，在VideoListActivity中用进入频道页的接口替换原有的接口，将相关处理在ChannelListActivity中实现；</li>
+<li>新建 ChannelListActivity ，在 VideoListActivity 中用进入频道页的接口替换原有的接口，将相关处理在 ChannelListActivity 中实现；</li>
 <li>根据传入的频道ID不同，使用**setContentView()**加载不同的布局方式，实现不同频道不同布局显示；</li>
-<li>新建ChannelGridAdapter，替换原有的ChannelListAdapter加ChannelGridListAdapter方式，提高加载速度；</li>
+<li>新建 ChannelGridAdapter ，替换原有的 ChannelListAdapter 加 ChannelGridListAdapter 方式，提高加载速度；</li>
 </ol>
 <h1 id="四-数据对比"><a class="markdownIt-Anchor" href="#四-数据对比"></a> 四、数据对比</h1>
-<p>我们通过TraceView工具比较前后2种方案的区别：</p>
+<p>我们通过 TraceView 工具比较前后2种方案的区别：</p>
 <h2 id="41-启动时间"><a class="markdownIt-Anchor" href="#41-启动时间"></a> 4.1 启动时间：</h2>
 <p>比较两者启动时间，可以看出重构之后的方案是有大概20ms的提升。</p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/Channel_startupTime.png" alt="Startup Time"></p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/Channel_startupTime.png" alt="Startup Time"></p>
 <hr>
 <h2 id="42-traceview对比"><a class="markdownIt-Anchor" href="#42-traceview对比"></a> 4.2 TraceView对比：</h2>
-<p>通过DDMS TraceView工具，我们再比较下2者性能上的区别：</p>
+<p>通过 DDMS TraceView 工具，我们再比较下2者性能上的区别：</p>
 <h3 id="421-重构之前"><a class="markdownIt-Anchor" href="#421-重构之前"></a> 4.2.1 重构之前：</h3>
-<p>重构之前的在绘制页面时需要绘制ListView，然后在每一个List中在绘制GridView，在TraceView获取到的数据如下：</p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/traceview_ChannelListAdapter_getView.png" alt="ChannelListAdapter"></p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/traceview_ChannelGridListAdapter_getView.png" alt="ChannelGridListAdapter"></p>
-<p>从以上可以分析，在ChannelListAdapter的getView()就占据了**1.0%<strong>的Incl Cpu Time, GridView的getView()占据了</strong>6.9%<strong>的Incl Cpu Time，合计占用了</strong>7.9%**的CPU Time。</p>
+<p>重构之前的在绘制页面时需要绘制 ListView ，然后在每一个 List 中在绘制 GridView ，在 TraceView 获取到的数据如下：</p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/traceview_ChannelListAdapter_getView.png" alt="ChannelListAdapter"></p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/traceview_ChannelGridListAdapter_getView.png" alt="ChannelGridListAdapter"></p>
+<p>从以上可以分析，在 ChannelListAdapter 的 getView() 就占据了**1.0%<strong>的 Incl Cpu Time , GridView 的 getView() 占据了</strong>6.9%<strong>的 Incl Cpu Time ，合计占用了</strong>7.9%**的 CPU Time。</p>
 <h3 id="422-重构之后"><a class="markdownIt-Anchor" href="#422-重构之后"></a> 4.2.2 重构之后：</h3>
-<p>重构之后，我们仅需要在ChannelGridAdapter中绘制View，测量数据如下：</p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/Channel/traceview_ChannelGridAdapter_getView.png" alt="ChannelGridAdapter"></p>
-<p>从上图可以看出，getView()占据的CPU时间仅为<strong>3.2%</strong>，效率大大提高。</p>
-<p><em><strong>Created by Long Luo at 2014/7/1 15:45:01</strong></em><br>
-<em><strong>Completed by Long Luo at 2014/7/2 14:42:29</strong></em><br>
-<em><strong>Modified by Long Luo at 2018年9月27日22点40分 at Hangzhou, China.</strong></em></p>
+<p>重构之后，我们仅需要在 ChannelGridAdapter 中绘制 View，测量数据如下：</p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/traceview_ChannelGridAdapter_getView.png" alt="ChannelGridAdapter"></p>
+<p>从上图可以看出，getView() 占据的 CPU 时间仅为<strong>3.2%</strong>，效率大大提高。</p>
+<h1 id="文章修改历史"><a class="markdownIt-Anchor" href="#文章修改历史"></a> 文章修改历史</h1>
+<ul>
+<li>Created by Long Luo at 2014/7/1 15:45:01</li>
+<li>Completed by Long Luo at 2014/7/2 14:42:29</li>
+<li>Modified by Long Luo at 2018年9月27日22点40分 at Hangzhou, China.</li>
+<li>修改图片图床 2024.03.03 in Shenzhen.</li>
+</ul>
 
       
     </div>
@@ -436,7 +440,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+      <time title="修改时间：2024-03-03 20:09:01" itemprop="dateModified" datetime="2024-03-03T20:09:01+08:00">2024-03-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -477,7 +481,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6.3k</span>
+      <span>6.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -508,24 +512,24 @@
 <h3 id="111-热词界面"><a class="markdownIt-Anchor" href="#111-热词界面"></a> 1.1.1 热词界面</h3>
 <p>热词界面是<strong>当搜索文本框文字为空</strong>时会弹出热词界面，会展示最近一段时间内搜索频率很高的词语。一方面可以节省大家输入文字，另外一方面你也可以了解当前的一些热点。</p>
 <p>当你点击列表中的某个热词时，就会发起一次以此为关键词的搜索。</p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_hotwords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="热词显示"></p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/search_hotwords.png" alt="热词显示"></p>
 <h3 id="112-关联词"><a class="markdownIt-Anchor" href="#112-关联词"></a> 1.1.2 关联词</h3>
 <p>当<strong>搜索文本输入框含有文字</strong>时，会获取当前输入文字，以此为关键词获取网络的一些联想词，可以点击此联想词发起一次搜索。</p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_asswords.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="关联词显示"></p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/search_asswords.png" alt="关联词显示"></p>
 <h3 id="113-搜索结果分类浏览"><a class="markdownIt-Anchor" href="#113-搜索结果分类浏览"></a> 1.1.3 搜索结果分类浏览</h3>
 <p>发起一次搜索之后，如果得到了服务器的正确响应，而且确实有相关视频内容。那么我们会将搜索结果展示在手机页面上。</p>
 <p>搜索到的结果可以分<strong>不同频道</strong>浏览，会根据具体内容进行动态变化，有的可能有10几个频道，有的也就1个频道。频道页面可以滑动浏览，也可以选择在顶部页面选中或者滑动。</p>
 <p>分类浏览时，第一个展示的页面是搜索到的全部视频内容，之后的会根据结果动态变化。</p>
 <p>如下图所示：</p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_results.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果"></p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/search_results.png" alt="搜索结果"></p>
 <p>分频道浏览：</p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_scrollfilter.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="搜索结果分类"></p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/search_scrollfilter.png" alt="搜索结果分类"></p>
 <h3 id="114-语音搜索"><a class="markdownIt-Anchor" href="#114-语音搜索"></a> 1.1.4 语音搜索</h3>
 <p><strong>语音搜索图标只有当搜索框里文字为空才会出现，否则出现搜索图标</strong>。</p>
-<p>点击语音搜索图标将会启动VoiceSearch这个apk，然后你可以说话，如果被正确识别之后，会发起一次搜索，并将结果展示出来。</p>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_voicesearch.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索"></p>
+<p>点击语音搜索图标将会启动 VoiceSearch 这个 apk ，然后你可以说话，如果被正确识别之后，会发起一次搜索，并将结果展示出来。</p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/search_voicesearch.png" alt="语音搜索"></p>
 <h3 id="115-语音搜索结果"><a class="markdownIt-Anchor" href="#115-语音搜索结果"></a> 1.1.5 语音搜索结果</h3>
-<p><img src="http://qrn8zhq7m.bkt.clouddn.com/images/2014/Android/VideoSearch/search_voiceresults.png?imageView/1/w/540/h/960/q/62/format/PNG" alt="语音搜索结果"></p>
+<p><img src="http://www.longluo.me/assets/blog/images/android/search_voiceresults.png" alt="语音搜索结果"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/blog/2014/07/02/the-design-and-implements-of-video-online-search-page/#more" rel="contents">
@@ -1118,7 +1122,7 @@ Mac OS也追加了iOS上特有的功能，比如打电话、IM。</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:55</span>
+    <span title="站点阅读时长">21:56</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -1179,7 +1183,7 @@ Mac OS也追加了iOS上特有的功能，比如打电话、IM。</p>
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
 <script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/page/57/"}</script>
