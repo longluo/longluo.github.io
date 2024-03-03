@@ -30,16 +30,16 @@
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
 <meta property="og:description" content="By Long Luo  一、引言 在上一篇 深入剖析printf函数(上)：如何不借助第三方库在屏幕上输出&quot;Hello World&quot;? 里，我们已经实现了用汇编语言在屏幕上输出了“Hello World”， 迈出了万里长征的第一步，但是我们知道实际的printf的功能是十分强大的，它和scanf一样属于标准输入输出的一种格式化函数，我们一般是这样使用它的： 1printf()的基本形式：prin">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://img.my.csdn.net/uploads/201301/25/1359045656_3317.jpg">
+<meta property="og:image" content="http://www.longluo.me/assets/blog/images/printf/my_printf.jpg">
 <meta property="article:published_time" content="2013-01-24T16:42:00.000Z">
-<meta property="article:modified_time" content="2023-11-14T14:24:40.452Z">
+<meta property="article:modified_time" content="2024-03-03T07:02:13.933Z">
 <meta property="article:author" content="Long Luo">
 <meta property="article:tag" content="C&#x2F;Cpp">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Printf">
 <meta property="article:tag" content="Kernel">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://img.my.csdn.net/uploads/201301/25/1359045656_3317.jpg">
+<meta name="twitter:image" content="http://www.longluo.me/assets/blog/images/printf/my_printf.jpg">
 
 
 <link rel="canonical" href="http://www.longluo.me/blog/2013/01/25/how-printf-works-the-fomal-parameters-list-and-formatter/">
@@ -167,7 +167,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text"> 一、引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="nav-number">2.</span> <span class="nav-text"> 二、格式化输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-%E5%BD%A2%E5%8F%82%E5%88%97%E8%A1%A8%E7%9A%84%E8%AF%BB%E5%85%A5"><span class="nav-number">3.</span> <span class="nav-text"> 三、形参列表的读入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="nav-number">4.</span> <span class="nav-text"> 四、参数格式化输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94-%E5%BA%94%E7%94%A8%E5%B1%82%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text"> 五、应用层的使用</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80-%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text"> 一、引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C-%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="nav-number">2.</span> <span class="nav-text"> 二、格式化输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89-%E5%BD%A2%E5%8F%82%E5%88%97%E8%A1%A8%E7%9A%84%E8%AF%BB%E5%85%A5"><span class="nav-number">3.</span> <span class="nav-text"> 三、形参列表的读入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B-%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="nav-number">4.</span> <span class="nav-text"> 四、参数格式化输出</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94-%E5%BA%94%E7%94%A8%E5%B1%82%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text"> 五、应用层的使用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2"><span class="nav-number">6.</span> <span class="nav-text"> 文章修改历史</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -191,7 +191,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">307</span>
+        <span class="site-state-item-count">306</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -283,7 +283,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+      <time title="修改时间：2024-03-03 15:02:13" itemprop="dateModified" datetime="2024-03-03T15:02:13+08:00">2024-03-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -405,15 +405,15 @@
 <p><code>LLprintf</code>的功能和我们标准库的<code>printf</code>一样强大，我们可以在上层如此使用<code>LLprintf</code>:</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************************************************</span></span><br><span class="line"><span class="comment">** File: - Z:\code\c\LLprintf\print2.1\app.c</span></span><br><span class="line"><span class="comment">**  </span></span><br><span class="line"><span class="comment">** Copyright (C), Long.Luo, All Rights Reserved!</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Description: </span></span><br><span class="line"><span class="comment">**      app.c --- The Application Level.</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** Version: 2.1</span></span><br><span class="line"><span class="comment">** Date created: 23:53:41,24/01/2013</span></span><br><span class="line"><span class="comment">** Author: Long.Luo</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">** --------------------------- Revision History: --------------------------------</span></span><br><span class="line"><span class="comment">** 	&lt;author&gt;	&lt;data&gt;			&lt;desc&gt;</span></span><br><span class="line"><span class="comment">** </span></span><br><span class="line"><span class="comment">************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">"LLprintf.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="type">char</span> *welcome = <span class="string">"     A Tiny Demo show the LLprintf   "</span>;</span><br><span class="line">	<span class="type">char</span> *program_name = <span class="string">"LLprintf"</span>;</span><br><span class="line">	<span class="type">char</span> *program_author = <span class="string">"Long.Luo"</span>;</span><br><span class="line">	<span class="type">char</span> *date = <span class="string">"Jan. 24th, 2013"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="type">float</span> program_version = <span class="number">2.1</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">Lprintf</span>(<span class="string">"%s\n\n"</span>, welcome);</span><br><span class="line">	<span class="built_in">Lprintf</span>(<span class="string">"\t\t%s, version %f \n\n"</span>, program_name, program_version);</span><br><span class="line">	<span class="built_in">Lprintf</span>(<span class="string">"\tCreated by %s, %s.\n\n"</span>, program_author, date);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <p>make一下，我们再来看看输出结果：</p>
-<p><img src="http://img.my.csdn.net/uploads/201301/25/1359045656_3317.jpg" alt="Final Output"></p>
+<p><img src="http://www.longluo.me/assets/blog/images/printf/my_printf.jpg" alt="Final Output"></p>
 <p>这样我们就了解了<code>printf</code>函数的前因后果。</p>
 <p><em><strong>聪明的你，弄明白了吗？<sup>_</sup></strong></em></p>
 <hr>
-<blockquote>
-<p><em><strong>注：</strong></em><br>
-<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/category/6270060">“深入剖析printf函数”</a>写于2013年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上的，这是下篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8279584"> 深入剖析printf函数(下)：—形参列表和格式化输出是如何做到的？</a></p>
-</blockquote>
-<p><em><strong>Modified By Long Luo at 2018年10月2日03点44分 in Shenzhen, China.</strong></em></p>
+<h1 id="文章修改历史"><a class="markdownIt-Anchor" href="#文章修改历史"></a> 文章修改历史</h1>
+<ul>
+<li>Modified By Long Luo at 2018年10月2日03点44分 in Shenzhen, China.</li>
+<li>修改图床 2024.03.03 in Shenzhen.</li>
+</ul>
 
     </div>
 
