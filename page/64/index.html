@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">338</span>
+          <span class="site-state-item-count">337</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -229,143 +229,6 @@
     </div>
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2012/10/23/how-to-use-mcu-to-control-beeper-to-generate-music/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2012/10/23/how-to-use-mcu-to-control-beeper-to-generate-music/" class="post-title-link" itemprop="url">如何利用单片机控制蜂鸣器播放音乐？---以《梁祝》的实现为例</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2012-10-23 22:37:57" itemprop="dateCreated datePublished" datetime="2012-10-23T22:37:57+08:00">2012-10-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/C-Cpp/" itemprop="url" rel="index"><span itemprop="name">C/Cpp</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2012/10/23/how-to-use-mcu-to-control-beeper-to-generate-music/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2012/10/23/how-to-use-mcu-to-control-beeper-to-generate-music/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2012/10/23/how-to-use-mcu-to-control-beeper-to-generate-music/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>By Long Luo</strong></em></p>
-<p>TI的EK-LM3S8962开发板有着比较丰富的外设，由于个人从小对音乐感兴趣，因此利用其中的蜂鸣器外设来实现音乐播放的功能，下面对此进行逐一解析：</p>
-<p>先上张开发板的Layout图：</p>
-<p><img src="http://img.my.csdn.net/uploads/201210/23/1351003559_1210.JPG" alt="EK-LM3S8962"></p>
-<p>要实现音乐播放，首先要明白数字音乐是如何播放出来的？</p>
-<p>首先需要了解一个事实，那就是我们所听到的音乐只是一系列不同频率的声音按照一定的节奏播放出来。</p>
-<p>但是乐音是有特定的频率的，因此我们首先要定义不同的乐音音节：</p>
-<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span>  __MUSIC_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  __MUSIC_H__</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//  定义低音音名（数值单位：Hz）</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  L1     262     <span class="comment">//  c</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  L2     294     <span class="comment">//  d</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  L3     330     <span class="comment">//  e</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  L4     349     <span class="comment">//  f</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  L5     392     <span class="comment">//  g</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  L6     440     <span class="comment">//  a1</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  L7     494     <span class="comment">//  b1</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  定义中音音名</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  M1     523     <span class="comment">//  c1</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  M2     587     <span class="comment">//  d1</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  M3     659     <span class="comment">//  e1</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  M4     698     <span class="comment">//  f1</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  M5     784     <span class="comment">//  g1</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  M6     880     <span class="comment">//  a2</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  M7     988     <span class="comment">//  b2</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  定义高音音名</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  H1     1047    <span class="comment">//  c2</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  H2     1175    <span class="comment">//  d2</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  H3     1319    <span class="comment">//  e2</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  H4     1397    <span class="comment">//  f2</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  H5     1568    <span class="comment">//  g2</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  H6     1760    <span class="comment">//  a3</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  H7     1976    <span class="comment">//  b3</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  定义时值单位，决定演奏速度（数值单位：ms）</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span>  T      3600</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//  定义音符结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">{</span><br><span class="line">    <span class="type">short</span> mName;    <span class="comment">//  音名：取值L1～L7、M1～M7、H1～H7分别表示低音、中音、高音的</span></span><br><span class="line">                    <span class="comment">//        1234567，取值0表示休止符</span></span><br><span class="line">    <span class="type">short</span> mTime;    <span class="comment">//  时值：取值T、T/2、T/4、T/8、T/16、T/32分别表示全音符、</span></span><br><span class="line">                    <span class="comment">//        二分音符、四分音符、八分音符…，取值0表示演奏结束</span></span><br><span class="line">}</span><br><span class="line">tNote;</span><br><span class="line"></span><br><span class="line"><span class="comment">// </span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">_tMusic</span></span><br><span class="line">{</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">tNote</span>;</span><br><span class="line">	<span class="type">char</span>	cName[<span class="number">20</span>];</span><br><span class="line">}</span><br><span class="line">tMusic;</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">void</span> <span class="title">playNote</span><span class="params">(<span class="type">const</span> tNote * pNote)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="type">void</span> <span class="title">displayNoteName</span><span class="params">(<span class="type">const</span> tMusic * pMusic)</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span><span class="comment">/*__MUSIC_H__*/</span></span></span><br></pre></td></tr></tbody></table></figure>
-<p>然后呢，我们需要歌谱，歌谱是一系列音节按照一定的节奏和时长播放出来：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2012/10/23/how-to-use-mcu-to-control-beeper-to-generate-music/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -947,6 +810,163 @@
 
 
 
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2011/02/13/summary-of-2010-stories-and-feelings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2011/02/13/summary-of-2010-stories-and-feelings/" class="post-title-link" itemprop="url">2010 --- 我的故事及总结</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2011-02-13 21:27:32" itemprop="dateCreated datePublished" datetime="2011-02-13T21:27:32+08:00">2011-02-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Life/" itemprop="url" rel="index"><span itemprop="name">Life</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2011/02/13/summary-of-2010-stories-and-feelings/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2011/02/13/summary-of-2010-stories-and-feelings/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2011/02/13/summary-of-2010-stories-and-feelings/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>2010，我的故事及总结</p>
+<p><em><strong>By Long Luo</strong></em></p>
+<blockquote>
+<p>从小到大，不论是体育课上的100米短跑还是2000米长跑，自己就从来没有跑在别人的前头；抑或是学习上、中考、高考，自己也从来没有轻轻松松地跑在别人前头过；更别说工作生活及恋爱方面，自己也没有跑在别人前头过…….终于自己明白，自己的脑子确实转的慢些，自己不努力，方法又不对头，怎么可能赶上别人？</p>
+</blockquote>
+<blockquote>
+<pre><code>                                                                                         ---题记
+</code></pre>
+</blockquote>
+<p>此刻是虎年农历大年三十下午三点，自己在笔记本上敲下这篇2010年个人盘点，算是踏入PRC社会大学进修的个人的一个年度总结。从2009年08月03日至2011年02月02日，差不多在深圳漂了18个月，按照摩尔定律，在这段时间里，CPU的主频和单位面积的晶体管数量可以提高100%。那么，对于我自己，这一年半的时间里，自己又进步了哪些呢？</p>
+<h1 id="买土豆的故事做任何事都要讲策略"><a class="markdownIt-Anchor" href="#买土豆的故事做任何事都要讲策略"></a> 买土豆的故事—做任何事都要讲策略！</h1>
+<p>自己早在小学时，就读过那个卖土豆的故事，只是年少无知，社会阅历太少，毫不知其意，而且认定自己做的肯定会做的很好。等到在社会上碰了壁，才发现自己真是“很傻很天真”啊！</p>
+<p>在这个社会上做事，不是光勤奋和努力就能把事做好的。做事需要有策略，要考虑的全面，如果没做过，一定要先问师兄，不能bug百出。</p>
+<p>做事要不慌不忙，不急不躁，因为事情不是你一时半刻的快就能搞定的。</p>
+<p>总之，心平气和才能把事做好！</p>
+<h1 id="隐约的职业生涯从qaer到一名悲催的programmer"><a class="markdownIt-Anchor" href="#隐约的职业生涯从qaer到一名悲催的programmer"></a> 隐约的职业生涯—从QAer到一名悲催的Programmer</h1>
+<p>发生在2010年07月底的跳槽在我的职业生涯中是一个很大的转折点，有人说，人生最重要的不是勤奋，而是抉择；人在整个一生中会做很多道选择题，而有那么几道关键的选择题是可以影响你的一生的，比如工作、恋爱、结婚生子等。对于我来说，最主要改变是自己从一名QAer变成了一名Programmer，完成了从生产管理到R&amp;D的改变。</p>
+<p>找工作的艰辛路程不再累述，反正是经历了下决心学习自信被打击再学习再来一次持续被打击迷茫淡定再学习Over的过程，完全符合大学里马哲课程里面的所谓否定之否定的过程。做任何事，都是一开始都有点慌张，抓紧时间充电学习，毕竟之前没怎么接触过，此阶段谓之“否定”阶段；然后，接触了一定时间后，感觉有一点认识了，然后就有点像课文里教了一二三怎么写，就知道其他字怎么写的“儿得矣，儿得矣”阶段，此谓之“肯定”阶段，也可以说是“二得可以”阶段；第三阶段，深入分析，遇到了更多问题，发现自己根本不能做到“知其然并知其所以然”，于是重新深入学习，此谓之“否定之否定”阶段。</p>
+<p>在一个已经很成熟的大公司而言，实际上的生产都步入了正轨阶段，每个人就如同一颗颗螺丝钉拧在合适的地方，任何一颗螺丝钉都是可以取代的。正所谓铁打的流程，流水的小兵。</p>
+<p>作为个人，现在算是一名Embedded Software Engineer, 技术现在是我的饭碗。回首自己Programmer工作半年，自己的进步并不明显。虽然个人的进步需要时间，但是别人一年之内的进步就抵上自己十年的进步，为什么呢？我思考过吗？我平常有没有主动去专研，去持续学习呢？一个人只有勇敢地跨出自己的安全区，尝试自己未曾体验过的东西，不懂就要向师兄师姐请教，不要惧怕嘲笑和批评，才会有进步。</p>
+<p>在社会上大部分人看来，程序员坐在写字楼的空调房里，每天面对着电脑，很光鲜啊！就像家里的熟人问自己在哪里混，我回答说在深圳打工。深圳呀，大城市啊，听起来多有面子，其实是“倚天照海花无数，流水高山心自知！”中国人啊，为了一个面子问题害死人啊！</p>
+<p>At last, 我需要一本《一个Programmer的自我修养》！</p>
+<h1 id="how-to-find-my-miss-right"><a class="markdownIt-Anchor" href="#how-to-find-my-miss-right"></a> How to find my Miss Right?</h1>
+<p>《双面胶》里的李亚平是程序员，《蜗居》中的小贝也是程序员。从哭着来到这世界开始，到现在历经了已经二十有三个寒暑了，可是自己却依然还是“孤孤单单一个人，走在丽影双双的街头，忘了我在找什么，等待明天还是往回走！”，作为一个男人，真是失败啊！明天又是2011年的02月14日了，又是别人的“Happy Valentine’s Day！”，在成双成对的日子里，一个人走完本该两个人走的路，世界上最惨的事莫过于此！</p>
+<p>一方面女人往往抱怨这世界好男人太少，可是又经常对身边的好男人视而不见；一方面痛骂情场高手玩弄女人的感情，却又投入他们的怀抱中……</p>
+<p>为什么好男人往往不会谈恋爱，总是受伤呢？对于那些拿24K纯金好人卡的人来说，就像sanitary towel一样只有需要时才会想起，要不是需要帮忙写简历抑或是帮忙搬家或者借钱。天上不会掉馅饼，就算是掉馅饼，砸中的也不会是你，而是别人。</p>
+<p>面对技术问题，他们往往可以分析的面面俱到，各个细节都可以尽在掌握之中，他们已经习惯了没有太多变数的东西，可是对于谈恋爱来说，恋爱中的一切都是变幻莫测的，尤其是女孩的心思，结果他们面对这种不在掌握之中的东西，就往往会束手无策。结果呢，就会被认为不浪漫、不懂情趣。</p>
+<p>L.L，你真是个挫男，根本不会讲话，活该没有女朋友！想起自己前几天和一个女生说话时，就懊悔自己怎么当初就那么笨！幽默风趣怎么就和你完全没有交集呢？目前我还处在“Oh, he’s just some guy I went to something with once!”的社会主义初级阶段，“Of course, we will live happily ever after.”的共产主义按需分配的高级阶段，L.L，你还有很多功课要做，很长的路途要走！</p>
+<p>作为一个男人，提升自己的价值和内涵才是王道！尤其是自己，相貌中下，就越只能靠提升自己的才华吸引女生了，相信自己的真诚，相信自己的能力，相信日久生情！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/blog/2011/02/13/summary-of-2010-stories-and-feelings/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/63/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/63/">63</a><span class="page-number current">64</span><a class="page-number" href="/page/65/">65</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/65/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -976,7 +996,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:56</span>
+    <span title="站点阅读时长">21:44</span>
   </span>
 </div>
 <div class="busuanzi-count">

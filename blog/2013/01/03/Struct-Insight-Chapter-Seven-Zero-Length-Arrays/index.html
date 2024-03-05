@@ -26,12 +26,12 @@
     <meta name="description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第七篇: 大话结构体之七：struct中0元素数组的意义在哪里？   上一回大话结构体之六：无即是有，没有成员变量的Struct(结构体)，我们在文章的结尾留了一个悬念： —为什么0元素数组在class和struct结构体之外定义就是错误的，而在class和struct中定义就是Oka">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大话结构体之七：struct中0元素数组的意义在哪里？">
-<meta property="og:url" content="http://www.longluo.me/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/index.html">
+<meta property="og:url" content="http://www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
 <meta property="og:description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第七篇: 大话结构体之七：struct中0元素数组的意义在哪里？   上一回大话结构体之六：无即是有，没有成员变量的Struct(结构体)，我们在文章的结尾留了一个悬念： —为什么0元素数组在class和struct结构体之外定义就是错误的，而在class和struct中定义就是Oka">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2013-01-02T20:28:58.000Z">
-<meta property="article:modified_time" content="2023-11-14T14:24:40.568Z">
+<meta property="article:modified_time" content="2024-03-05T13:02:45.293Z">
 <meta property="article:author" content="Long Luo">
 <meta property="article:tag" content="Struct">
 <meta property="article:tag" content="C&#x2F;Cpp">
@@ -40,11 +40,11 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://www.longluo.me/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/">
+<link rel="canonical" href="http://www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/","path":"/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/","title":"大话结构体之七：struct中0元素数组的意义在哪里？"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/","path":"/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/","title":"大话结构体之七：struct中0元素数组的意义在哪里？"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>大话结构体之七：struct中0元素数组的意义在哪里？ | Long Luo's Life Notes</title>
@@ -177,7 +177,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">338</span>
+          <span class="site-state-item-count">337</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -244,7 +244,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -262,7 +262,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          大话结构体之七：struct中0元素数组的意义在哪里？<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2024/source/_posts/structs-part-seven-arrays-of-length-zero.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          大话结构体之七：struct中0元素数组的意义在哪里？<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2024/source/_posts/Struct-Insight-Chapter-Seven-Zero-Length-Arrays.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -280,7 +280,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+      <time title="修改时间：2024-03-05 21:02:45" itemprop="dateModified" datetime="2024-03-05T21:02:45+08:00">2024-03-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -301,8 +301,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -312,7 +312,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -370,7 +370,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://www.longluo.me/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/" title="大话结构体之七：struct中0元素数组的意义在哪里？">http://www.longluo.me/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/</a>
+      <a href="http://www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/" title="大话结构体之七：struct中0元素数组的意义在哪里？">http://www.longluo.me/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -451,7 +451,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:56</span>
+    <span title="站点阅读时长">21:44</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -515,7 +515,7 @@
   <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2013/01/03/structs-part-seven-arrays-of-length-zero/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@2.15.8/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
