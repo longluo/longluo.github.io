@@ -172,7 +172,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">337</span>
+          <span class="site-state-item-count">338</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -183,7 +183,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">306</span>
+        <span class="site-state-item-count">307</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -229,6 +229,178 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/08/10/what-is-inner-interface-in-java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Long Luo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Long Luo's Life Notes">
+      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/blog/2016/08/10/what-is-inner-interface-in-java/" class="post-title-link" itemprop="url">What Is Inner Interface In Java?</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2016-08-10 11:45:12" itemprop="dateCreated datePublished" datetime="2016-08-10T11:45:12+08:00">2016-08-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/blog/2016/08/10/what-is-inner-interface-in-java/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/08/10/what-is-inner-interface-in-java/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-item" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span class="waline-pageview-count" data-path="/blog/2016/08/10/what-is-inner-interface-in-java/"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-what-is-inner-interface-in-java"><a class="markdownIt-Anchor" href="#1-what-is-inner-interface-in-java"></a> 1. what is inner interface in java?</h1>
+<p>Inner interface is also called nested interface, which means declare an interface<br>
+inside of another interface. For example, the Entry interface is declared in the<br>
+Map interface.</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Map</span> {</span><br><span class="line">    <span class="keyword">interface</span> <span class="title class_">Entry</span> {</span><br><span class="line">        <span class="type">int</span> <span class="title function_">getKey</span><span class="params">()</span>;</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">clear</span><span class="params">()</span>;</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="2-why-use-inner-interface"><a class="markdownIt-Anchor" href="#2-why-use-inner-interface"></a> 2. why use inner interface?</h1>
+<p>There are several compelling reasons for using inner interface:</p>
+<ol>
+<li>It is a way of logically grouping interfaces that are only used in one place.</li>
+<li>It increases encapsulation.</li>
+<li>Nested interfaces can lead to more readable and maintainable code.</li>
+</ol>
+<p>One example of inner interface used in java standard library is <code>java.util.Map</code> and<br>
+<code>Java.util.Map.Entry</code>. Here <code>java.util.Map</code> is used also as a namespace. Entry does<br>
+not belong to the global scope, which means there are many other entities that are<br>
+64</p>
+<h1 id="3-how-inner-interface-works-65"><a class="markdownIt-Anchor" href="#3-how-inner-interface-works-65"></a> 3. HOW INNER INTERFACE WORKS? 65</h1>
+<p>Entries and are not necessary Map’s entries. This indicates that Entry represents<br>
+entries related to the Map.<br>
+18.3 how inner interface works?<br>
+To figure out how inner interface works, we can compare it with nested classes.<br>
+Nested classes can be considered as a regular method declared in outer class.<br>
+Since a method can be declared as static or non-static, similarly nested classes can<br>
+be static and non-static. Static class is like a static method, it can only access outer<br>
+class members through objects. Non-static class can access any member of the<br>
+outer class.<br>
+18.4. A SIMPLE EXAMPLE OF INNER INTERFACE? 66<br>
+Because an interface can not be instantiated, the inner interface only makes sense<br>
+if it is static. Therefore, by default inter interface is static, no matter you manually<br>
+add static or not.<br>
+18.4 a simple example of inner interface?<br>
+Map.java<br>
+public int e r f a c e Map {<br>
+18.4. A SIMPLE EXAMPLE OF INNER INTERFACE? 67<br>
+int e r f a c e Entry {<br>
+int getKey ( ) ;<br>
+}<br>
+void c l e a r ( ) ;<br>
+}<br>
+MapImpl.java<br>
+public c l a s s MapImpl implements Map {<br>
+c l a s s ImplEntry implements Map. Entry {<br>
+public int getKey ( ) {<br>
+return 0 ;<br>
+}<br>
+}<br>
+@Override<br>
+public void c l e a r ( ) {<br>
+/ / c l e a r<br>
+}<br>
+}</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -938,193 +1110,6 @@ map = new HashMap ( ) ;</p>
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2016/08/07/top-10-questions-about-java-collections/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Long Luo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Long Luo's Life Notes">
-      <meta itemprop="description" content="The Blog of a Curious Programmer, focus on Math, Java, Android, C/C++, Python, Shell etc. ">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Long Luo's Life Notes">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/blog/2016/08/07/top-10-questions-about-java-collections/" class="post-title-link" itemprop="url">关于Java Collections应知应会</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2016-08-07 22:56:28" itemprop="dateCreated datePublished" datetime="2016-08-07T22:56:28+08:00">2016-08-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/blog/2016/08/07/top-10-questions-about-java-collections/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2016/08/07/top-10-questions-about-java-collections/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-item" title="阅读次数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2016/08/07/top-10-questions-about-java-collections/"></span>
-    </span>
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>4.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>翻译 By Long Luo</strong></em></p>
-<p>下面这些问题<a target="_blank" rel="noopener" href="http://www.stackoverflow.com">Stackoverflow</a>上关于Java collections提问和讨论最多的问题。在你阅读这些问题之前，有必要先阅读下这篇文章<a href="http://www.longluo.me/blog/2016/08/08/The-Interface-and-Class-Hierarchy-Diagram-of-Java-Collections/">3分钟速读：图解Java Collections的接口以及类层级关系</a>。</p>
-<h1 id="1-什么时候用linkedlist什么时候用arraylist"><a class="markdownIt-Anchor" href="#1-什么时候用linkedlist什么时候用arraylist"></a> 1. 什么时候用LinkedList？什么时候用ArrayList？</h1>
-<p><em><strong>ArrayList</strong></em>本质上是一个数组。它的元素可以直接通过索引值直接访问。但是如果数组已经满了，那么需要重新分配一个更大的数组并且将全部的元素移动到新的数组需要花费***O(n)***的时间。当然从现有的数组中增加或者删除一个元素都需要移动现有的元素。这个可能是使用ArrayList中最大的不便之处。</p>
-<p><em><strong>LinkedList</strong></em>是一个<strong>双端链表</strong>。正因为如此，如果要获取一个链表中间的元素，需要从链表的头部开始查找。另一方面，增加或者删除链表中的元素将会很快，因为只需要在本地修改即可。</p>
-<p>下表总结了最快情况下的比较需要耗费时间：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Method</th>
-<th style="text-align:right">Arraylist</th>
-<th style="text-align:center">LinkedList</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">get(index)</td>
-<td style="text-align:right">O(1)</td>
-<td style="text-align:center">O(n)</td>
-</tr>
-<tr>
-<td style="text-align:left">add(E)</td>
-<td style="text-align:right">O(n)</td>
-<td style="text-align:center">O(1)</td>
-</tr>
-<tr>
-<td style="text-align:left">add(E, index)</td>
-<td style="text-align:right">O(n)</td>
-<td style="text-align:center">O(n)</td>
-</tr>
-<tr>
-<td style="text-align:left">remove(index)</td>
-<td style="text-align:right">O(n)</td>
-<td style="text-align:center">O(n)</td>
-</tr>
-<tr>
-<td style="text-align:left">Iterator.remove()</td>
-<td style="text-align:right">O(n)</td>
-<td style="text-align:center">O(1)</td>
-</tr>
-<tr>
-<td style="text-align:left">Iterator.add(E)</td>
-<td style="text-align:right">O(n)</td>
-<td style="text-align:center">O(1)</td>
-</tr>
-</tbody>
-</table>
-<p>不管运行时间，当大型列表需要额外考虑内存占用。LinkedList每个node至少需要2个额外的指针用于连接前后2个node。而在ArrayList中只需要数组存储元素值即可。</p>
-<h1 id="2-当遍历容器时高效等价于移除元素的操作"><a class="markdownIt-Anchor" href="#2-当遍历容器时高效等价于移除元素的操作"></a> 2. 当遍历容器时，高效等价于移除元素的操作？</h1>
-<p>最正确的方式就是在遍历容器时用<code>Iterator.remove()</code>去修改一个容器，如下代码所示：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;Integer&gt; itr = list.iterator();</span><br><span class="line"><span class="keyword">while</span>(itr.hasNext()) {</span><br><span class="line">   <span class="comment">// do something</span></span><br><span class="line">   itr.remove();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>另外一个非常高频的使用但是<em><strong>不正确</strong></em>的代码是这样的：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Integer i: list) {</span><br><span class="line">  list.remove(i);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-<p>运行上面的代码时你会得到一个<code>ConcurrentModificationException</code>。原因是因为一个迭代器自生成之后(在for循环中)，用于横贯这个列表。与此同时，这个列表同时也被<code>Iterator.remove()</code>修改了。在Java语言中，当一个线程在修改一个容器时而另外一个线程在遍历它是不允许的。</p>
-<h1 id="3-如何将list转换成int"><a class="markdownIt-Anchor" href="#3-如何将list转换成int"></a> 3. 如何将List转换成int[]？</h1>
-<p>最快捷的方式可能是用Apache Commons Lang库中的<em><strong>ArrayUtils</strong></em>。</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] array = ArrayUtils.toPrimitive(list.toArray(<span class="keyword">new</span> <span class="title class_">Integer</span>[<span class="number">0</span>]));</span><br></pre></td></tr></tbody></table></figure>
-<p>在JDK中，没有快捷方式。请注意你不能使用<code>List.toArray()</code>，因为那会将列表转换成<code>Integer[]</code>。正确的方式应该是这样的：</p>
-<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] array = <span class="keyword">new</span> <span class="title class_">int</span>[list.size()];</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>; i &lt; list.size(); i++) {</span><br><span class="line">  array[i] = list.get(i);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/blog/2016/08/07/top-10-questions-about-java-collections/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/49/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/49/">49</a><span class="page-number current">50</span><a class="page-number" href="/page/51/">51</a><span class="space">&hellip;</span><a class="page-number" href="/page/68/">68</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/51/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1154,7 +1139,7 @@ map = new HashMap ( ) ;</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:55</span>
+    <span title="站点阅读时长">21:56</span>
   </span>
 </div>
 <div class="busuanzi-count">
