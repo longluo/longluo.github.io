@@ -23,31 +23,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.longluo.me","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.19.1","exturl":false,"sidebar":{"position":"left","width":240,"display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"fold":{"enable":false,"height":500},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-theme-next/8.19.1/config.min.js"></script>
 
-    <meta name="description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第八篇: 大话结构体之八：C语言Struct中的函数和函数指针   在系列之三大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…，我们在文章的结尾留了一个悬念： 我们了解到C语言规范是struct里面是不能有函数体的，但是在应用">
+    <meta name="description" content="By Long Luo 在系列之三 大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白… ，我们在文章的结尾留了一个悬念： 我们了解到C语言规范是struct里面是不能有函数体的，但是在应用中假如struct中没有函数的话，我们会遇到很多问题，第一数据往往是依附于函数来进行操作的；其二是我们需要用C来实现面向对象的思想。 比如下面这段代码：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针">
-<meta property="og:url" content="http://www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/index.html">
+<meta property="og:url" content="http://www.longluo.me/blog/2013/01/09/structs-part-eight-function-pointer/index.html">
 <meta property="og:site_name" content="Long Luo&#39;s Life Notes">
-<meta property="og:description" content="By Long Luo  前言 “大话结构体”系列文章写于2012年，在我的CSDN Blog上连载的，这是系列的第八篇: 大话结构体之八：C语言Struct中的函数和函数指针   在系列之三大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…，我们在文章的结尾留了一个悬念： 我们了解到C语言规范是struct里面是不能有函数体的，但是在应用">
+<meta property="og:description" content="By Long Luo 在系列之三 大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白… ，我们在文章的结尾留了一个悬念： 我们了解到C语言规范是struct里面是不能有函数体的，但是在应用中假如struct中没有函数的话，我们会遇到很多问题，第一数据往往是依附于函数来进行操作的；其二是我们需要用C来实现面向对象的思想。 比如下面这段代码：">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201212/09/1354984449_3322.jpg">
 <meta property="og:image" content="http://img.my.csdn.net/uploads/201212/09/1354986253_6040.jpg">
 <meta property="article:published_time" content="2013-01-08T19:58:28.000Z">
-<meta property="article:modified_time" content="2023-11-14T14:24:40.566Z">
+<meta property="article:modified_time" content="2024-03-06T14:28:19.603Z">
 <meta property="article:author" content="Long Luo">
-<meta property="article:tag" content="Struct">
 <meta property="article:tag" content="C&#x2F;Cpp">
+<meta property="article:tag" content="Struct">
 <meta property="article:tag" content="技术">
 <meta property="article:tag" content="科普">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://img.my.csdn.net/uploads/201212/09/1354984449_3322.jpg">
 
 
-<link rel="canonical" href="http://www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/">
+<link rel="canonical" href="http://www.longluo.me/blog/2013/01/09/structs-part-eight-function-pointer/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/","path":"/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/","title":"大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.longluo.me/blog/2013/01/09/structs-part-eight-function-pointer/","path":"/blog/2013/01/09/structs-part-eight-function-pointer/","title":"大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针 | Long Luo's Life Notes</title>
@@ -78,9 +78,9 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="Long Luo's Life Notes" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
@@ -247,7 +247,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/">
+    <link itemprop="mainEntityOfPage" href="http://www.longluo.me/blog/2013/01/09/structs-part-eight-function-pointer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -265,7 +265,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2024/source/_posts/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
+          大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针<a href="https://github.com/longluo/longluo.github.io/tree/hexo_2024/source/_posts/structs-part-eight-function-pointer.md" class="post-edit-link" title="编辑" rel="noopener" target="_blank"><i class="fa fa-pen-nib"></i></a>
         </h1>
 
         <div class="post-meta-container">
@@ -283,7 +283,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-14 22:24:40" itemprop="dateModified" datetime="2023-11-14T22:24:40+08:00">2023-11-14</time>
+      <time title="修改时间：2024-03-06 22:28:19" itemprop="dateModified" datetime="2024-03-06T22:28:19+08:00">2024-03-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -304,8 +304,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/" itemprop="commentCount"></span>
+    <a title="waline" href="/blog/2013/01/09/structs-part-eight-function-pointer/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/blog/2013/01/09/structs-part-eight-function-pointer/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -315,7 +315,7 @@
         <i class="far fa-eye"></i>
       </span>
       <span class="post-meta-item-text">阅读次数：</span>
-      <span class="waline-pageview-count" data-path="/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/"></span>
+      <span class="waline-pageview-count" data-path="/blog/2013/01/09/structs-part-eight-function-pointer/"></span>
     </span>
   
     <span class="post-meta-break"></span>
@@ -342,12 +342,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p><em><strong>By Long Luo</strong></em></p>
-<blockquote>
-<p>前言<br>
-<a target="_blank" rel="noopener" href="http://blog.csdn.net/column/details/structure.html">“大话结构体”</a>系列文章写于2012年，在我的<a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack">CSDN Blog</a>上连载的，这是系列的第八篇: <a target="_blank" rel="noopener" href="http://blog.csdn.net/tcpipstack/article/details/8259225">大话结构体之八：C语言Struct中的函数和函数指针</a></p>
-</blockquote>
-<hr>
-<p>在系列之三<a href="http://www.longluo.me/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/">大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…</a>，我们在文章的结尾留了一个悬念：</p>
+<p>在系列之三 <a href="http://www.longluo.me/blog/2012/12/25/Struct-Insight-Chapter-Three-The-Differences-Between-Class-And-Struct-In-Cpp/">大话结构体之三：借我一双慧眼吧，让我把C++中Class(类)和Struct(结构体)看个清清楚楚明明白白…</a> ，我们在文章的结尾留了一个悬念：</p>
 <p>我们了解到C语言规范是<code>struct</code>里面是<strong>不能有函数体</strong>的，但是在应用中假如<code>struct</code>中没有函数的话，我们会遇到很多问题，第一数据往往是依附于函数来进行操作的；其二是我们需要<strong>用C来实现面向对象的思想</strong>。</p>
 <p>比如下面这段代码：</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">FuncInside</span></span><br><span class="line">{</span><br><span class="line">	<span class="type">int</span> mA;</span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>{</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Hello, function inside!\n"</span>);</span><br><span class="line">	}</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">FuncInside</span> f;</span><br><span class="line"></span><br><span class="line">	f.mA = <span class="number">99</span>;</span><br><span class="line">	f.<span class="built_in">func</span>();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">getchar</span>();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
@@ -369,8 +364,8 @@
 <p>我们修改下之前的代码：</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">FuncInside</span></span><br><span class="line">{</span><br><span class="line">	<span class="type">int</span> mA;</span><br><span class="line">	<span class="built_in">void</span> (*pFunc)();</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Foo</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Hello, Function Inside Struct!\n"</span>);</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>{</span><br><span class="line">	<span class="keyword">struct</span> <span class="title class_">FuncInside</span> f;</span><br><span class="line"></span><br><span class="line">	f.mA = <span class="number">99</span>;</span><br><span class="line">	f.pFunc = Foo;</span><br><span class="line"></span><br><span class="line">	f.<span class="built_in">pFunc</span>();</span><br><span class="line"></span><br><span class="line">	<span class="built_in">getchar</span>();</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <span id="more"></span>
-<p>编译顺利通过，输出也是我们期望的结果：<br>
-<img src="http://img.my.csdn.net/uploads/201212/09/1354984449_3322.jpg" alt="函数指针"></p>
+<p>编译顺利通过，输出也是我们期望的结果：</p>
+<p><img src="http://img.my.csdn.net/uploads/201212/09/1354984449_3322.jpg" alt="函数指针"></p>
 <p>之前<code>int (*pFun)(int, int)</code>，其中<code>pFun</code>是一个函数指针。</p>
 <p>而事实上，为了代码的移植考虑,一般使用typedef定义函数指针类型：</p>
 <figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*pFun)</span><span class="params">(<span class="type">int</span>, <span class="type">int</span>)</span></span>;</span><br></pre></td></tr></tbody></table></figure>
@@ -401,7 +396,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/" title="大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针">http://www.longluo.me/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/</a>
+      <a href="http://www.longluo.me/blog/2013/01/09/structs-part-eight-function-pointer/" title="大话结构体之八：小个头也有大智慧---C语言Struct中的函数和函数指针">http://www.longluo.me/blog/2013/01/09/structs-part-eight-function-pointer/</a>
   </li>
   <li class="post-copyright-license">
       <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -427,8 +422,8 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/Struct/" rel="tag"># Struct</a>
               <a href="/tags/C-Cpp/" rel="tag"># C/Cpp</a>
+              <a href="/tags/Struct/" rel="tag"># Struct</a>
               <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
               <a href="/tags/%E7%A7%91%E6%99%AE/" rel="tag"># 科普</a>
           </div>
@@ -437,12 +432,12 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/blog/2013/01/03/Struct-Insight-Chapter-Seven-Zero-Length-Arrays/" rel="prev" title="大话结构体之七：struct中0元素数组的意义在哪里？">
+                <a href="/blog/2013/01/03/structs-part-seven-arrays-of-zero-length/" rel="prev" title="大话结构体之七：struct中0元素数组的意义在哪里？">
                   <i class="fa fa-angle-left"></i> 大话结构体之七：struct中0元素数组的意义在哪里？
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/blog/2013/01/10/Struct-Insight-Article-Indexes/" rel="next" title="大话结构体系列文章目录">
+                <a href="/blog/2013/01/10/structs-index/" rel="next" title="大话结构体系列文章目录">
                   大话结构体系列文章目录 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
@@ -543,10 +538,10 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2013/01/09/Struct-Insight-Chapter-Eight-Function-And-Function-Pointer-In-Struct/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2013/01/09/structs-part-eight-function-pointer/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@2.15.8/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {
