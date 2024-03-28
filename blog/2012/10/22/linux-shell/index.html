@@ -34,11 +34,10 @@
 <meta property="og:image" content="http://www.longluo.me/images/oss/ae3095f063dede80a8c1ee79ec25685c.png">
 <meta property="og:image" content="http://www.longluo.me/images/951413iMgBlog/image-20220505213833017.png">
 <meta property="article:published_time" content="2012-10-22T12:16:33.000Z">
-<meta property="article:modified_time" content="2024-03-28T12:32:04.179Z">
+<meta property="article:modified_time" content="2024-03-28T13:20:54.352Z">
 <meta property="article:author" content="Long Luo">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Shell">
-<meta property="article:tag" content="硬件">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://www.longluo.me/images/951413iMgBlog/crontab-7372074.png">
 
@@ -192,7 +191,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">311</span>
+        <span class="site-state-item-count">310</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -284,7 +283,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-28 20:32:04" itemprop="dateModified" datetime="2024-03-28T20:32:04+08:00">2024-03-28</time>
+      <time title="修改时间：2024-03-28 21:20:54" itemprop="dateModified" datetime="2024-03-28T21:20:54+08:00">2024-03-28</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -469,16 +468,16 @@ $BASH_ENV</p>
 $BASH_ENV</p>
 <h3 id="sh"><a class="markdownIt-Anchor" href="#sh"></a> SH</h3>
 <p>1、交互式的登录shell<br>
-载入的信息：<br>
-/etc/profile<br>
+载入的信息：</p>
+<p>/etc/profile<br>
 ~/.profile</p>
 <p>2、非交互式的登录shell<br>
-载入的信息：<br>
-/etc/profile<br>
+载入的信息：</p>
+<p>/etc/profile<br>
 ~/.profile</p>
 <p>3、交互式的非登录shell<br>
-载入的信息：<br>
-$ENV</p>
+载入的信息：</p>
+<p>$ENV</p>
 <h4 id="练习验证一下bash-sh和login-non-login"><a class="markdownIt-Anchor" href="#练习验证一下bash-sh和login-non-login"></a> 练习验证一下bash、sh和login、non-login</h4>
 <ul>
 <li>sudo ll 或者 sudo cd 是不是都报找不到命令</li>
@@ -488,8 +487,8 @@ $ENV</p>
 </ul>
 <p><strong>找不到ll、cd命令不是因为login/non-login而是因为这两个命令是bash内部定义的，所以sh找不到，通过type -a cd 可以看到一个命令到底是哪里来的</strong></p>
 <p>4、非交互式的非登录shell<br>
-载入的信息：<br>
-nothing</p>
+载入的信息：</p>
+<p>nothing</p>
 <h3 id="export命令的作用"><a class="markdownIt-Anchor" href="#export命令的作用"></a> export命令的作用</h3>
 <p>Linux 中export是一种命令工具通过export命令把shell变量中包含的用户变量导入给子程序.<strong>默认情况下子程序仅会继承父程序的环境变量</strong>，子程序不会继承父程序的自定义变量，所以需要export让父程序中的<strong>自定义变量</strong>变成环境变量，然后子程序就能继承过来了。</p>
 <p>我们来看一个例子， 有一个变量，名字 abc 内容123 如果没有export ，那么通过bash创建一个新的shell（新shell是之前bash的子程序），在新的shell里面就没有abc这个变量， export之后在新的 shell 里面才可以看到这个变量，但是退出重新login后（产生了一个新的bash，只会加载env）abc变量都不在了</p>
@@ -711,7 +710,6 @@ login shell加载环境变量的顺序是：<br>
           <div class="post-tags">
               <a href="/tags/Linux/" rel="tag"># Linux</a>
               <a href="/tags/Shell/" rel="tag"># Shell</a>
-              <a href="/tags/%E7%A1%AC%E4%BB%B6/" rel="tag"># 硬件</a>
           </div>
 
         
@@ -824,7 +822,7 @@ login shell加载环境变量的顺序是：<br>
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr+QR0SQDNfgglgtcM=" crossorigin="anonymous">
 
 
 <script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://waline.longluo.me/","cssUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.css","commentCount":true,"pageview":true,"libUrl":"https://unpkg.com/@waline/client@2.15.8/dist/waline.js","locale":{"placeholder":"Welcome to comment"},"emoji":["https://unpkg.com/@waline/emojis@1.0.1/qq"],"meta":["nick","mail","link"],"requiredMeta":[["nick"]],"wordLimit":0,"pageSize":10,"el":"#waline","comment":true,"path":"/blog/2012/10/22/linux-shell/"}</script>
