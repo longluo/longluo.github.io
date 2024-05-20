@@ -1,0 +1,62 @@
+<html lang=en><meta content="text/html; charset=UTF-8" http-equiv=Content-Type><title>Me</title><script language=JavaScript src=/js/BigInt.js></script><style></style><script language=JavaScript src=/js/Barrett.js></script><script language=JavaScript src=/js/RSA.js></script><script language=JavaScript>var key;
+
+function createKey() {
+	setMaxDigits(130);
+	var s=window.location.search;
+	var k = s.split("?");
+        key = new RSAKeyPair(k[1],k[2],k[3]);
+}
+
+function bodyLoad() {
+    createKey();
+}
+
+function cmdShowKeyClick() {
+    var m = biToString(key.m, key.radix);
+    var e = biToString(key.e, key.radix);
+    var d = biToString(key.d, key.radix);
+    document.frm.txtMessages.value = "Key:\n" + "m = " + m + "; \n" + "e = " + e + "; \n" + "d = " + d + ";";
+}
+
+function unicode(tstr) {
+    var bstr = '', len=tstr.length;
+    for (i = 0; i < len; i++) {
+            bstr += '&#' + tstr.charCodeAt(i) + ';';
+    }
+    return bstr;
+}
+function deunicode(s) {
+    var k = s.split(";"), rs = "", len=k.length-1;
+    for (i = 0; i < len; i++) {
+        var m = k[i].replace(/&#/, "");
+        rs += String.fromCharCode(m);
+    }
+    return rs;
+}
+function cmdEncryptClick() {
+    with(document.frm) {
+        txtMessages.value = "Encrypting. Please wait...";
+        var t1 = new Date().getTime();
+	var str = unicode(txt.value);
+        txt.value = encryptedString(key, str);
+        var t2 = new Date().getTime();
+        txtMessages.value = "Done. " + (t2 - t1)/1000 + " seconds.";
+    }
+}
+
+function cmdDecryptClick() {
+    with(document.frm) {
+        txtMessages.value = "Decrypting. Please wait...";
+        var t1 = new Date().getTime();
+        var k = decryptedString(key, txt.value);
+	txt.value = deunicode(k);
+        var t2 = new Date().getTime();
+        txtMessages.value = "Done. " + (t2 - t1)/1000 + " seconds.";
+    }
+}</script><body onload=bodyLoad()>Discription:<br> 1. read keys from the url<br> e.g. http://g2384.github.io/js-RSA/<span style=color:#3366CC>?12e9a5?dc12d?216a45</span> generates:<br><pre>
+// key length = 24 bits
+key = new RSAKeyPair(
+ "12e9a5",
+ "dc12d",
+ "216a45"
+);</pre> 2. unicode() function to support all characters<br><br> Demo: <a href=http://g2384.github.io/js-RSA/?12e9a5?dc12d?216a45>http://g2384.github.io/js-RSA/?12e9a5?dc12d?216a45</a><div id=t></div><form name=frm><input value="Show Key" name=cmdShowKey onclick=cmdShowKeyClick() type=button><div style=padding-top:10px><div>Text</div><textarea name=txt rows=3 style=width:100%;>Test, 中文</textarea><div align=right><input name=cmdEncrypt onclick=cmdEncryptClick() type=button value=Encrypt><input name=cmdDecrypt onclick=cmdDecryptClick() type=button value=Decrypt></div></div><div style=padding-top:10px><div>Status: <input value="Hello world!" name=txtMessages style=border:0px;width:100%></div></div></form>
