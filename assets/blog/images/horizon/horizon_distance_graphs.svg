@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+""" To recover the Python script to generate this SVG, delete the line above -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="205 -850 728 910">
+ <title>Horizon distance graphs</title>
+ <desc>Graphs of distances to the true horizon on Earth for a given height above sea level, ''h'' by CMG Lee. ''s'' is along the surface of the Earth, ''d'' is the straight line distance, and ''~d'' is the approximate straight line distance assuming ''h'' &lt;&lt; the radius of the Earth, 6371 km. In the SVG image, hover over a graph to highlight it.</desc>
+ <style type="text/css">
+  #main, .nofade { font-family:Helvetica,Arial,sans-serif; font-size:20px; text-anchor:middle;
+                   stroke-linejoin:round; stroke:none; fill:#000000;
+                   stroke-opacity:0.75; fill-opacity:1; }
+  #main:hover    { stroke-opacity:0.1; fill-opacity:0.5; }
+  .active:hover  { stroke-opacity:1;   fill-opacity:1; }
+  text           { cursor:default; }
+  .metric        { stroke:#66ccff; }
+  .imperial      { stroke:#cccccc; }
+  .graph         { stroke-width:2; }
+  .label         { font-style:italic; text-anchor:start; }
+  .legend        { font-style:italic; stroke-width:2; fill:none; }
+ </style>
+ <defs>
+  <radialGradient id="gradient_shade" cx="50%" cy="50%" r="50%" fx="30%" fy="20%">
+   <stop offset="10%" stop-color="#ccffff"/>
+   <stop offset="99%" stop-color="#66ccff"/>
+  </radialGradient>
+  <path id="reference" d="M 325,0 H 795" stroke-width="2" stroke="#000000"/>
+  <g id="grid_metric">
+   <rect x="300" y="-801" width="511" height="811" fill="url(#pattern_tick_metric)"/>
+   <rect x="300" y="-801" width="501" height="801" fill="url(#pattern_grid_metric)"/>
+  </g>
+  <g id="grid_imperial">
+   <g transform="translate(20.665,-20.665)">
+    <rect x="290" y="-810" width="511" height="311" fill="url(#pattern_tick_imperial)"/>
+    <rect x="300" y="-800" width="501" height="301" fill="url(#pattern_grid_imperial)"/>
+   </g>
+   <g transform="translate(20.665,51.6)">
+    <rect x="290" y="-570" width="511" height="671" fill="url(#pattern_tick_imperial)"/>
+    <rect x="300" y="-570" width="501" height="671" fill="url(#pattern_grid_imperial)"/>
+    <path d="M 292,-570 h 8" class="imperial"/>
+   </g>
+  </g>
+  <rect id="tick_pattern" x="0" y="0" width="100" height="100" stroke-width="1" fill="#ffffff"/>
+  <clipPath id="clip_grid"><use xlink:href="#grid"/></clipPath>
+  <pattern id="pattern_tick_metric" patternUnits="userSpaceOnUse" width="100" height="100">
+   <use xlink:href="#tick_pattern" class="metric"/>
+  </pattern>
+  <pattern id="pattern_tick_imperial" patternUnits="userSpaceOnUse" width="100" height="100">
+   <use xlink:href="#tick_pattern" class="imperial"/>
+  </pattern>
+  <g id="legend">
+   <circle cx="0" cy="0" r="45" fill="url(#gradient_shade)"/>
+   <path d="M 0,0 A 20,20 0 0 1 10,-30 A 25,25 0 0 0 -30,-30 A 30,30 0 0 0 -5,0
+            A 30,30 0 0 1 0,40 A 20,20 0 0 0 10,-5" fill="#669900" opacity="0.5"/>
+   <g class="legend">
+    <path d="M 0,-45 V 0 L 36,-27 l 27,36 l -18,-24 l -12,9 l -9,-12" stroke="#666666" stroke-dasharray="2,2"/>
+    <path d="M 0,-45 V -75" stroke="#000000"/>
+    <text x="-10" y="-60" dy="0.7ex" fill="#000000">h</text>
+   </g>
+  </g>
+  <g id="legend_d" class="legend">
+   <path d="M 0,-75 L 36,-27" stroke="#0000ff" stroke-dasharray="9,2,3,2"/>
+   <text x="30"  y="-55" dy="0.7ex" fill="#0000ff">d</text>
+  </g>
+  <g id="legend_s" class="legend">
+   <path d="M 0,-45 A 45,45 0 0 1 36,-27" stroke="#cc0000"/>
+   <text x="15"  y="-32" dy="0.7ex" fill="#cc0000">s</text>
+  </g>
+<!-- BEGIN_DYNAMIC_SVG { -->
+  <path id="grid_pattern" d="M 30.1,0 V 100 M 0,69.9 H 100 M 47.71,0 V 100 M 0,52.29 H 100 M 60.21,0 V 100 M 0,39.79 H 100 M 69.64,0 V 100 M 0,30.36 H 100 M 70.16,0 V 100 M 0,29.84 H 100 M 77.82,0 V 100 M 0,22.18 H 100 M 84.51,0 V 100 M 0,15.49 H 100 M 90.31,0 V 100 M 0,9.69 H 100 M 95.42,0 V 100 M 0,4.58 H 100" stroke-width="0.3"/>
+  <pattern id="pattern_grid_metric" patternUnits="userSpaceOnUse" width="100" height="100">
+   <use xlink:href="#tick_pattern" class="metric"/>
+   <use xlink:href="#grid_pattern" class="metric"/>
+  </pattern>
+  <pattern id="pattern_grid_imperial" patternUnits="userSpaceOnUse" width="100" height="100">
+   <use xlink:href="#tick_pattern" class="imperial"/>
+   <use xlink:href="#grid_pattern" class="imperial"/>
+  </pattern>
+  <clipPath id="clip_imperial">
+   <path d="M 305.26,100 L 310.26,90 L 315.26,80 L 320.26,70 L 325.26,60 L 330.26,50 L 335.26,40 L 340.26,30 L 345.26,20 L 350.26,10 L 355.26,-0 L 360.26,-10 L 365.26,-20 L 370.26,-30 L 375.26,-40 L 380.26,-50 L 385.26,-60 L 390.26,-70 L 395.26,-80 L 400.26,-90 L 405.26,-100 L 410.26,-110 L 415.26,-120 L 420.26,-130 L 425.26,-140 L 430.26,-150 L 435.26,-160 L 440.26,-170 L 445.26,-180 L 450.26,-190 L 455.26,-200 L 460.26,-210 L 465.26,-220 L 470.26,-230 L 475.26,-240 L 480.26,-250 L 485.26,-260 L 490.26,-270 L 495.26,-280 L 500.26,-290 L 505.26,-300 L 510.26,-310 L 515.26,-320 L 520.27,-330 L 525.27,-340 L 530.27,-350 L 535.27,-360 L 540.27,-370 L 545.27,-380 L 550.28,-390 L 555.28,-400 L 560.28,-410 L 565.29,-420 L 570.3,-430 L 575.3,-440 L 580.32,-450 L 585.33,-460 L 590.35,-470 L 595.37,-480 L 600.4,-490 L 605.43,-500 L 610.48,-510 L 615.53,-520 L 620.6,-530 L 625.69,-540 L 630.79,-550 L 635.93,-560 L 641.1,-570 L 646.31,-580 L 651.58,-590 L 656.9,-600 L 662.31,-610 L 667.81,-620 L 673.42,-630 L 679.17,-640 L 685.08,-650 L 691.17,-660 L 697.46,-670 L 704,-680 L 710.78,-690 L 717.84,-700 L 725.18,-710 L 732.81,-720 L 740.72,-730 L 748.91,-740 L 757.35,-750 L 766.03,-760 L 774.92,-770 L 783.99,-780 L 793.23,-790 L 802.6,-800 L 812.09,-810 L 821.68,-820 L 831.34,-830 L 841.07,-840 775.26,-840 L 770.26,-830 L 765.26,-820 L 760.26,-810 L 755.26,-800 L 750.26,-790 L 745.26,-780 L 740.26,-770 L 735.26,-760 L 730.26,-750 L 725.26,-740 L 720.26,-730 L 715.26,-720 L 710.26,-710 L 705.26,-700 L 700.26,-690 L 695.26,-680 L 690.26,-670 L 685.26,-660 L 680.26,-650 L 675.26,-640 L 670.26,-630 L 665.26,-620 L 660.26,-610 L 655.26,-600 L 650.26,-590 L 645.26,-580 L 640.26,-570 L 635.26,-560 L 630.26,-550 L 625.26,-540 L 620.26,-530 L 615.26,-520 L 610.26,-510 L 605.26,-500 L 600.26,-490 L 595.26,-480 L 590.26,-470 L 585.26,-460 L 580.26,-450 L 575.26,-440 L 570.26,-430 L 565.26,-420 L 560.26,-410 L 555.26,-400 L 550.26,-390 L 545.26,-380 L 540.26,-370 L 535.26,-360 L 530.26,-350 L 525.26,-340 L 520.26,-330 L 515.26,-320 L 510.26,-310 L 505.26,-300 L 500.26,-290 L 495.26,-280 L 490.26,-270 L 485.26,-260 L 480.26,-250 L 475.26,-240 L 470.26,-230 L 465.26,-220 L 460.26,-210 L 455.26,-200 L 450.26,-190 L 445.26,-180 L 440.26,-170 L 435.26,-160 L 430.26,-150 L 425.26,-140 L 420.26,-130 L 415.26,-120 L 410.26,-110 L 405.26,-100 L 400.26,-90 L 395.26,-80 L 390.26,-70 L 385.26,-60 L 380.26,-50 L 375.26,-40 L 370.26,-30 L 365.26,-20 L 360.26,-10 L 355.26,-0 L 350.26,10 L 345.26,20 L 340.26,30 L 335.26,40 L 330.26,50 L 325.26,60 L 320.26,70 L 315.26,80 L 310.26,90 L 305.26,100 305.26,100 L 310.26,90 L 315.26,80 L 320.26,70 L 325.26,60 L 330.26,50 L 335.26,40 L 340.26,30 L 345.26,20 L 350.26,10 L 355.26,-0 L 360.26,-10 L 365.26,-20 L 370.26,-30 L 375.26,-40 L 380.26,-50 L 385.26,-60 L 390.26,-70 L 395.26,-80 L 400.26,-90 L 405.26,-100 L 410.26,-110 L 415.26,-120 L 420.26,-130 L 425.26,-140 L 430.26,-150 L 435.26,-160 L 440.26,-170 L 445.26,-180 L 450.26,-190 L 455.26,-200 L 460.26,-210 L 465.26,-220 L 470.26,-230 L 475.26,-240 L 480.26,-250 L 485.26,-260 L 490.26,-270 L 495.26,-280 L 500.26,-290 L 505.26,-300 L 510.26,-310 L 515.26,-320 L 520.26,-330 L 525.25,-340 L 530.25,-350 L 535.25,-360 L 540.25,-370 L 545.24,-380 L 550.24,-390 L 555.23,-400 L 560.23,-410 L 565.22,-420 L 570.21,-430 L 575.19,-440 L 580.17,-450 L 585.15,-460 L 590.12,-470 L 595.08,-480 L 600.04,-490 L 604.98,-500 L 609.91,-510 L 614.82,-520 L 619.7,-530 L 624.56,-540 L 629.38,-550 L 634.16,-560 L 638.89,-570 L 643.54,-580 L 648.12,-590 L 652.6,-600 L 656.96,-610 L 661.19,-620 L 665.25,-630 L 669.13,-640 L 672.79,-650 L 676.22,-660 L 679.4,-670 L 682.31,-680 L 684.93,-690 L 687.28,-700 L 689.34,-710 L 691.14,-720 L 692.69,-730 L 694,-740 L 695.11,-750 L 696.03,-760 L 696.79,-770 L 697.42,-780 L 697.93,-790 L 698.34,-800 L 698.68,-810 L 698.95,-820 L 699.17,-830 L 699.34,-840 H 0 V 0 Z"/>
+  </clipPath>
+  <clipPath id="clip_metric">
+   <path d="M 305.26,100 L 310.26,90 L 315.26,80 L 320.26,70 L 325.26,60 L 330.26,50 L 335.26,40 L 340.26,30 L 345.26,20 L 350.26,10 L 355.26,-0 L 360.26,-10 L 365.26,-20 L 370.26,-30 L 375.26,-40 L 380.26,-50 L 385.26,-60 L 390.26,-70 L 395.26,-80 L 400.26,-90 L 405.26,-100 L 410.26,-110 L 415.26,-120 L 420.26,-130 L 425.26,-140 L 430.26,-150 L 435.26,-160 L 440.26,-170 L 445.26,-180 L 450.26,-190 L 455.26,-200 L 460.26,-210 L 465.26,-220 L 470.26,-230 L 475.26,-240 L 480.26,-250 L 485.26,-260 L 490.26,-270 L 495.26,-280 L 500.26,-290 L 505.26,-300 L 510.26,-310 L 515.26,-320 L 520.26,-330 L 525.25,-340 L 530.25,-350 L 535.25,-360 L 540.25,-370 L 545.24,-380 L 550.24,-390 L 555.23,-400 L 560.23,-410 L 565.22,-420 L 570.21,-430 L 575.19,-440 L 580.17,-450 L 585.15,-460 L 590.12,-470 L 595.08,-480 L 600.04,-490 L 604.98,-500 L 609.91,-510 L 614.82,-520 L 619.7,-530 L 624.56,-540 L 629.38,-550 L 634.16,-560 L 638.89,-570 L 643.54,-580 L 648.12,-590 L 652.6,-600 L 656.96,-610 L 661.19,-620 L 665.25,-630 L 669.13,-640 L 672.79,-650 L 676.22,-660 L 679.4,-670 L 682.31,-680 L 684.93,-690 L 687.28,-700 L 689.34,-710 L 691.14,-720 L 692.69,-730 L 694,-740 L 695.11,-750 L 696.03,-760 L 696.79,-770 L 697.42,-780 L 697.93,-790 L 698.34,-800 L 698.68,-810 L 698.95,-820 L 699.17,-830 L 699.34,-840 775.26,-840 L 770.26,-830 L 765.26,-820 L 760.26,-810 L 755.26,-800 L 750.26,-790 L 745.26,-780 L 740.26,-770 L 735.26,-760 L 730.26,-750 L 725.26,-740 L 720.26,-730 L 715.26,-720 L 710.26,-710 L 705.26,-700 L 700.26,-690 L 695.26,-680 L 690.26,-670 L 685.26,-660 L 680.26,-650 L 675.26,-640 L 670.26,-630 L 665.26,-620 L 660.26,-610 L 655.26,-600 L 650.26,-590 L 645.26,-580 L 640.26,-570 L 635.26,-560 L 630.26,-550 L 625.26,-540 L 620.26,-530 L 615.26,-520 L 610.26,-510 L 605.26,-500 L 600.26,-490 L 595.26,-480 L 590.26,-470 L 585.26,-460 L 580.26,-450 L 575.26,-440 L 570.26,-430 L 565.26,-420 L 560.26,-410 L 555.26,-400 L 550.26,-390 L 545.26,-380 L 540.26,-370 L 535.26,-360 L 530.26,-350 L 525.26,-340 L 520.26,-330 L 515.26,-320 L 510.26,-310 L 505.26,-300 L 500.26,-290 L 495.26,-280 L 490.26,-270 L 485.26,-260 L 480.26,-250 L 475.26,-240 L 470.26,-230 L 465.26,-220 L 460.26,-210 L 455.26,-200 L 450.26,-190 L 445.26,-180 L 440.26,-170 L 435.26,-160 L 430.26,-150 L 425.26,-140 L 420.26,-130 L 415.26,-120 L 410.26,-110 L 405.26,-100 L 400.26,-90 L 395.26,-80 L 390.26,-70 L 385.26,-60 L 380.26,-50 L 375.26,-40 L 370.26,-30 L 365.26,-20 L 360.26,-10 L 355.26,-0 L 350.26,10 L 345.26,20 L 340.26,30 L 335.26,40 L 330.26,50 L 325.26,60 L 320.26,70 L 315.26,80 L 310.26,90 L 305.26,100 305.26,100 L 310.26,90 L 315.26,80 L 320.26,70 L 325.26,60 L 330.26,50 L 335.26,40 L 340.26,30 L 345.26,20 L 350.26,10 L 355.26,-0 L 360.26,-10 L 365.26,-20 L 370.26,-30 L 375.26,-40 L 380.26,-50 L 385.26,-60 L 390.26,-70 L 395.26,-80 L 400.26,-90 L 405.26,-100 L 410.26,-110 L 415.26,-120 L 420.26,-130 L 425.26,-140 L 430.26,-150 L 435.26,-160 L 440.26,-170 L 445.26,-180 L 450.26,-190 L 455.26,-200 L 460.26,-210 L 465.26,-220 L 470.26,-230 L 475.26,-240 L 480.26,-250 L 485.26,-260 L 490.26,-270 L 495.26,-280 L 500.26,-290 L 505.26,-300 L 510.26,-310 L 515.26,-320 L 520.27,-330 L 525.27,-340 L 530.27,-350 L 535.27,-360 L 540.27,-370 L 545.27,-380 L 550.28,-390 L 555.28,-400 L 560.28,-410 L 565.29,-420 L 570.3,-430 L 575.3,-440 L 580.32,-450 L 585.33,-460 L 590.35,-470 L 595.37,-480 L 600.4,-490 L 605.43,-500 L 610.48,-510 L 615.53,-520 L 620.6,-530 L 625.69,-540 L 630.79,-550 L 635.93,-560 L 641.1,-570 L 646.31,-580 L 651.58,-590 L 656.9,-600 L 662.31,-610 L 667.81,-620 L 673.42,-630 L 679.17,-640 L 685.08,-650 L 691.17,-660 L 697.46,-670 L 704,-680 L 710.78,-690 L 717.84,-700 L 725.18,-710 L 732.81,-720 L 740.72,-730 L 748.91,-740 L 757.35,-750 L 766.03,-760 L 774.92,-770 L 783.99,-780 L 793.23,-790 L 802.6,-800 L 812.09,-810 L 821.68,-820 L 831.34,-830 L 841.07,-840 H 999 V 999 Z"/>
+  </clipPath>
+ </defs>
+ <circle cx="0" cy="0" r="99999" fill="#ffffff"/>
+ <g id="main">
+  <g class="nofade">
+   <g fill="#0099cc">
+    <g transform="translate(870,0)">
+     <text x="0" y="0"    dy="0.7ex">1 m</text>
+     <text x="0" y="-100" dy="0.7ex">10 m</text>
+     <text x="0" y="-200" dy="0.7ex">100 m</text>
+     <text x="0" y="-300" dy="0.7ex">1 km</text>
+     <text x="0" y="-400" dy="0.7ex">10 km</text>
+     <text x="0" y="-500" dy="0.7ex">100 km</text>
+     <text x="0" y="-600" dy="0.7ex">1 000 km</text>
+     <text x="0" y="-700" dy="0.7ex">10 000 km</text>
+     <text x="0" y="-800" dy="0.7ex">100 000 km</text>
+    </g>
+    <g transform="translate(0,20)">
+     <text x="400" y="0" dy="0.7ex">10 km</text>
+     <text x="500" y="0" dy="0.7ex">100 km</text>
+     <text x="600" y="0" dy="0.7ex">1 000 km</text>
+     <text transform="translate(700,0) scale(0.9,1)" x="0" y="0" dy="0.7ex">10 000 km</text>
+     <text transform="translate(800,0) scale(0.9,1)" x="0" y="0" dy="0.7ex">100 000 km</text>
+    </g>
+    <text x="920" y="-450" dy="0.7ex" font-style="italic">h</text>
+   </g>
+   <g fill="#666666">
+    <text x="215" y="-400" dy="0.7ex" font-style="italic">h</text>
+    <g transform="translate(260,51.6)">
+     <text x="0" y="-3"   dy="0.7ex">1 ft</text>
+     <text x="0" y="-100" dy="0.7ex">10 ft</text>
+     <text x="0" y="-200" dy="0.7ex">100 ft</text>
+     <text x="0" y="-300" dy="0.7ex">1 000 ft</text>
+     <text x="0" y="-400" dy="0.7ex">10 000 ft</text>
+     <text x="0" y="-500" dy="0.7ex">100 000 ft</text>
+     <text x="0" y="-562" dy="0.7ex">500 000 ft</text>
+    </g>
+    <g transform="translate(260,-20.665)">
+     <text x="0" y="-508" dy="0.7ex">100 mi</text>
+     <text x="0" y="-600" dy="0.7ex">1 000 mi</text>
+     <text x="0" y="-700" dy="0.7ex">10 000 mi</text>
+     <text x="0" y="-800" dy="0.7ex">100 000 mi</text>
+    </g>
+    <g transform="translate(20.665,-840)">
+     <text x="300" y="0" dy="0.7ex">1 mi</text>
+     <text x="400" y="0" dy="0.7ex">10 mi</text>
+     <text x="500" y="0" dy="0.7ex">100 mi</text>
+     <text x="600" y="0" dy="0.7ex">1 000 mi</text>
+    </g>
+   </g>
+   <g clip-path="url(#clip_metric)">
+    <use xlink:href="#grid_metric"/>
+   </g>
+   <g clip-path="url(#clip_imperial)">
+    <use xlink:href="#grid_imperial"/>
+   </g>
+  </g>
+  <use xlink:href="#legend" transform="translate(470,-640)"/>
+  <g transform="translate(0,-17.61)">
+   <text x="325" y="-5" text-anchor="start">standing human adult</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-65.32)">
+   <text x="325" y="-5" text-anchor="start">standing on  3 m diving platform</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-106.07)">
+   <text x="325" y="-5" text-anchor="start">standing on 10 m diving platform</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-171.26)">
+   <text x="325" y="-5" text-anchor="start">top of Nelson's Column</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-247.71)">
+   <text x="325" y="-5" text-anchor="start">top of Eiffel Tower</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-291.8)">
+   <text x="325" y="-5" text-anchor="start">top of Burj Khalifa</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-362.4)">
+   <text x="325" y="18" text-anchor="start">top of Mauna Kea</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-394.68)">
+   <text x="325" y="18" text-anchor="start">top of Mount Everest</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-404.14)">
+   <text x="325" y="-5" text-anchor="start">airliner at cruise</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-426.25)">
+   <text x="325" y="-5" text-anchor="start">Concorde at cruise</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-461.72)">
+   <text x="325" y="-5" text-anchor="start">Alan Eustace's jump</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-500)">
+   <text x="325" y="-5" text-anchor="start">K&#225;rm&#225;n line</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-560.21)">
+   <text x="325" y="18" text-anchor="start">International Space Station</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-576.72)">
+   <text x="325" y="-5" text-anchor="start">Inspiration4</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-730.54)">
+   <text x="325" y="-5" text-anchor="start">GPS satellite</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g transform="translate(0,-755.39)">
+   <text x="325" y="-5" text-anchor="start">Geosynchronous Earth Orbit</text>
+   <use xlink:href="#reference"/>
+  </g>
+  <g class="active">
+   <text class="label" transform="translate(841.07,-840)" x="0.5ex" y="0.7ex" fill="#0000ff">d</text>
+   <g stroke="#0000ff">
+    <path class="graph" d="M 305.26,100 L 310.26,90 L 315.26,80 L 320.26,70 L 325.26,60 L 330.26,50 L 335.26,40 L 340.26,30 L 345.26,20 L 350.26,10 L 355.26,-0 L 360.26,-10 L 365.26,-20 L 370.26,-30 L 375.26,-40 L 380.26,-50 L 385.26,-60 L 390.26,-70 L 395.26,-80 L 400.26,-90 L 405.26,-100 L 410.26,-110 L 415.26,-120 L 420.26,-130 L 425.26,-140 L 430.26,-150 L 435.26,-160 L 440.26,-170 L 445.26,-180 L 450.26,-190 L 455.26,-200 L 460.26,-210 L 465.26,-220 L 470.26,-230 L 475.26,-240 L 480.26,-250 L 485.26,-260 L 490.26,-270 L 495.26,-280 L 500.26,-290 L 505.26,-300 L 510.26,-310 L 515.26,-320 L 520.27,-330 L 525.27,-340 L 530.27,-350 L 535.27,-360 L 540.27,-370 L 545.27,-380 L 550.28,-390 L 555.28,-400 L 560.28,-410 L 565.29,-420 L 570.3,-430 L 575.3,-440 L 580.32,-450 L 585.33,-460 L 590.35,-470 L 595.37,-480 L 600.4,-490 L 605.43,-500 L 610.48,-510 L 615.53,-520 L 620.6,-530 L 625.69,-540 L 630.79,-550 L 635.93,-560 L 641.1,-570 L 646.31,-580 L 651.58,-590 L 656.9,-600 L 662.31,-610 L 667.81,-620 L 673.42,-630 L 679.17,-640 L 685.08,-650 L 691.17,-660 L 697.46,-670 L 704,-680 L 710.78,-690 L 717.84,-700 L 725.18,-710 L 732.81,-720 L 740.72,-730 L 748.91,-740 L 757.35,-750 L 766.03,-760 L 774.92,-770 L 783.99,-780 L 793.23,-790 L 802.6,-800 L 812.09,-810 L 821.68,-820 L 831.34,-830 L 841.07,-840" stroke-dasharray="9,3,3,3" fill="none"/>     <path d="M 320,-320 L 840,-840" stroke-dasharray="12,6"/>
+   </g>
+   <use xlink:href="#legend_d" transform="translate(470,-640)"/>
+  </g>
+  <g class="active">
+   <text class="label" transform="translate(775.26,-840)" x="0.5ex" y="0.7ex" fill="#009900">~d</text>
+   <g stroke="#009900">
+    <path class="graph" d="M 775.26,-840 L 770.26,-830 L 765.26,-820 L 760.26,-810 L 755.26,-800 L 750.26,-790 L 745.26,-780 L 740.26,-770 L 735.26,-760 L 730.26,-750 L 725.26,-740 L 720.26,-730 L 715.26,-720 L 710.26,-710 L 705.26,-700 L 700.26,-690 L 695.26,-680 L 690.26,-670 L 685.26,-660 L 680.26,-650 L 675.26,-640 L 670.26,-630 L 665.26,-620 L 660.26,-610 L 655.26,-600 L 650.26,-590 L 645.26,-580 L 640.26,-570 L 635.26,-560 L 630.26,-550 L 625.26,-540 L 620.26,-530 L 615.26,-520 L 610.26,-510 L 605.26,-500 L 600.26,-490 L 595.26,-480 L 590.26,-470 L 585.26,-460 L 580.26,-450 L 575.26,-440 L 570.26,-430 L 565.26,-420 L 560.26,-410 L 555.26,-400 L 550.26,-390 L 545.26,-380 L 540.26,-370 L 535.26,-360 L 530.26,-350 L 525.26,-340 L 520.26,-330 L 515.26,-320 L 510.26,-310 L 505.26,-300 L 500.26,-290 L 495.26,-280 L 490.26,-270 L 485.26,-260 L 480.26,-250 L 475.26,-240 L 470.26,-230 L 465.26,-220 L 460.26,-210 L 455.26,-200 L 450.26,-190 L 445.26,-180 L 440.26,-170 L 435.26,-160 L 430.26,-150 L 425.26,-140 L 420.26,-130 L 415.26,-120 L 410.26,-110 L 405.26,-100 L 400.26,-90 L 395.26,-80 L 390.26,-70 L 385.26,-60 L 380.26,-50 L 375.26,-40 L 370.26,-30 L 365.26,-20 L 360.26,-10 L 355.26,-0 L 350.26,10 L 345.26,20 L 340.26,30 L 335.26,40 L 330.26,50 L 325.26,60 L 320.26,70 L 315.26,80 L 310.26,90 L 305.26,100" stroke-dasharray="3,3" fill="none"/>
+   </g>
+   <use xlink:href="#legend_~d" transform="translate(470,-640)"/>
+  </g>
+  <g class="active">
+   <text class="label" transform="translate(699.34,-840)" x="0.5ex" y="0.7ex" fill="#cc0000">s</text>
+   <g stroke="#cc0000">
+    <path class="graph" d="M 305.26,100 L 310.26,90 L 315.26,80 L 320.26,70 L 325.26,60 L 330.26,50 L 335.26,40 L 340.26,30 L 345.26,20 L 350.26,10 L 355.26,-0 L 360.26,-10 L 365.26,-20 L 370.26,-30 L 375.26,-40 L 380.26,-50 L 385.26,-60 L 390.26,-70 L 395.26,-80 L 400.26,-90 L 405.26,-100 L 410.26,-110 L 415.26,-120 L 420.26,-130 L 425.26,-140 L 430.26,-150 L 435.26,-160 L 440.26,-170 L 445.26,-180 L 450.26,-190 L 455.26,-200 L 460.26,-210 L 465.26,-220 L 470.26,-230 L 475.26,-240 L 480.26,-250 L 485.26,-260 L 490.26,-270 L 495.26,-280 L 500.26,-290 L 505.26,-300 L 510.26,-310 L 515.26,-320 L 520.26,-330 L 525.25,-340 L 530.25,-350 L 535.25,-360 L 540.25,-370 L 545.24,-380 L 550.24,-390 L 555.23,-400 L 560.23,-410 L 565.22,-420 L 570.21,-430 L 575.19,-440 L 580.17,-450 L 585.15,-460 L 590.12,-470 L 595.08,-480 L 600.04,-490 L 604.98,-500 L 609.91,-510 L 614.82,-520 L 619.7,-530 L 624.56,-540 L 629.38,-550 L 634.16,-560 L 638.89,-570 L 643.54,-580 L 648.12,-590 L 652.6,-600 L 656.96,-610 L 661.19,-620 L 665.25,-630 L 669.13,-640 L 672.79,-650 L 676.22,-660 L 679.4,-670 L 682.31,-680 L 684.93,-690 L 687.28,-700 L 689.34,-710 L 691.14,-720 L 692.69,-730 L 694,-740 L 695.11,-750 L 696.03,-760 L 696.79,-770 L 697.42,-780 L 697.93,-790 L 698.34,-800 L 698.68,-810 L 698.95,-820 L 699.17,-830 L 699.34,-840" fill="none"/>     <path d="M 700.03,0 V -840" stroke-dasharray="24,6"/>
+   </g>
+   <use xlink:href="#legend_s" transform="translate(470,-640)"/>
+  </g>
+<!-- } END_DYNAMIC_SVG -->
+ </g>
+</svg>
+<!-- Please retain this and other comments, which contain Python code to generate this SVG. """
+import re, math
+def fmt(string): ## string.format(**vars()) using tags {expression!format} by CMG Lee
+ def f(tag): i_sep = tag.rfind('!'); return (re.sub('\.0+$', '', str(eval(tag[1:-1])))
+  if (i_sep < 0) else ('{:%s}' % tag[i_sep + 1:-1]).format(eval(tag[1:i_sep])))
+ return (re.sub(r'(?<!{){[^{}]+}', lambda m:f(m.group()), string)
+         .replace('{{', '{').replace('}}', '}'))
+def append(obj, string): return obj.append(fmt(string))
+def format_tab(*arg): return '\t'.join([str(el) for el in (arg if len(arg) > 1 else arg[0])])
+def hex_rgb(colour): ## convert [#]RGB to #RRGGBB and [#]RRGGBB to #RRGGBB
+ return '#%s' % (colour if len(colour) > 4 else ''.join([c * 2 for c in colour])).lstrip('#')
+
+def x(distance): return round(math.log10(distance) *  100, 2)
+def y(height  ): return round(math.log10(height  ) * -100, 2)
+
+radius_earth = 6371000
+n_point      = 94
+graphs       = [
+ {'label':'d' ,'colour':'00f','dash':'9,3,3,3','formula':lambda height: math.sqrt(height * (2 * radius_earth + height))  },
+ {'label':'~d','colour':'090','dash':'3,3'    ,'formula':lambda height: math.sqrt(2 * radius_earth * height)             },
+ {'label':'s' ,'colour':'c00','dash':''       ,'formula':lambda height: radius_earth * math.atan2(
+                                                           math.sqrt(height * (2 * radius_earth + height)), radius_earth)},
+]
+references = [
+ {'height':   1.5, 'label':'standing human adult'            },
+ {'height':   4.5, 'label':'standing on  3 m diving platform'},
+ {'height':  11.5, 'label':'standing on 10 m diving platform'},
+ {'height': 51.59, 'label':'top of Nelson\'s Column'         },
+ {'height':   300, 'label':'top of Eiffel Tower'             },
+ {'height':   828, 'label':'top of Burj Khalifa'             },
+ {'height': -4207, 'label':'top of Mauna Kea'                },
+ {'height': -8848, 'label':'top of Mount Everest'            },
+ {'height': 11000, 'label':'airliner at cruise'              },
+ {'height': 18300, 'label':'Concorde at cruise'              },
+ {'height': 41419, 'label':'Alan Eustace\'s jump'            },
+ {'height': 100e3, 'label':'K&#225;rm&#225;n line'           },
+ {'height':-400e3, 'label':'International Space Station'     },
+ {'height': 585e3, 'label':'Inspiration4'                    },
+#{'height':8063e3, 'label':'O3b MEO'                         },
+ {'height':20.2e6, 'label':'GPS satellite'                   },
+ {'height':35.8e6, 'label':'Geosynchronous Earth Orbit'      },
+]
+out_transform_legend = 'transform="translate(470,-640)"'
+outs = []
+
+## Log-log grid
+out_pattern_grids = []
+for i_pattern_grid in [2, 3, 4, 4.97, 5.03, 6, 7, 8, 9]:
+ x_pattern_grid = round(math.log10(i_pattern_grid) * 100, 2)
+ append(out_pattern_grids, '''M {x_pattern_grid},0 V 100 M 0,{100 - x_pattern_grid} H 100''')
+
+## Graphs
+s_max           = radius_earth * math.pi / 2
+out_graphs      = []
+out_unit_pathds = []
+for (i_graph, graph) in enumerate(graphs):
+ out_pathds  = []
+ colour      = hex_rgb(graph['colour'])
+ label       = graph['label']
+ formula     = graph['formula']
+ out_dash    = graph['dash']
+ if (out_dash != ''): out_dash = ' stroke-dasharray="%s"' % (out_dash)
+ range_point = range(0, n_point + 1) if (i_graph % 2 == 0) else range(n_point, -1, -1)
+ for i_point in range_point:
+  height   = 10 ** (i_point * 0.1 - 1)
+  distance = formula(height)
+  if (i_point % 10 == 0): print(format_tab(label, i_point, height, distance, x(distance), y(height)))
+  append(out_pathds, '''{x(distance)},{y(height)}''')
+ translate_label = out_pathds[-1 if (i_graph % 2 == 0) else 0]
+ out_pathd       = ' L '.join(out_pathds)
+ out_asymptote   = fmt('''\
+     <path d="M {x(s_max)},0 V -840" stroke-dasharray="24,6"/>''' if (label == 's')
+ else '''\
+     <path d="M 320,-320 L 840,-840" stroke-dasharray="12,6"/>''' if (label == 'd')
+ else '')
+ append(out_unit_pathds, out_pathd)
+ append(out_graphs, '''\
+  <g class="active">
+   <text class="label" transform="translate({translate_label})" x="0.5ex" y="0.7ex" fill="{colour}">{label}</text>
+   <g stroke="{colour}">
+    <path class="graph" d="M {out_pathd}"{out_dash} fill="none"/>{out_asymptote}
+   </g>
+   <use xlink:href="#legend_{label}" {out_transform_legend}/>
+  </g>''')
+
+## References
+out_references = []
+for reference in references:
+ height = reference['height']
+ label  = reference['label' ]
+ append(out_references, '''\
+  <g transform="translate(0,{y(abs(height))})">
+   <text x="325" y="{18 if height < 0 else -5}" text-anchor="start">{label}</text>
+   <use xlink:href="#reference"/>
+  </g>''')
+
+append(outs, '''\
+  <path id="grid_pattern" d="{' '.join(out_pattern_grids)}" stroke-width="0.3"/>
+  <pattern id="pattern_grid_metric" patternUnits="userSpaceOnUse" width="100" height="100">
+   <use xlink:href="#tick_pattern" class="metric"/>
+   <use xlink:href="#grid_pattern" class="metric"/>
+  </pattern>
+  <pattern id="pattern_grid_imperial" patternUnits="userSpaceOnUse" width="100" height="100">
+   <use xlink:href="#tick_pattern" class="imperial"/>
+   <use xlink:href="#grid_pattern" class="imperial"/>
+  </pattern>
+  <clipPath id="clip_imperial">
+   <path d="M {' '.join(out_unit_pathds)} H 0 V 0 Z"/>
+  </clipPath>
+  <clipPath id="clip_metric">
+   <path d="M {' '.join(reversed(out_unit_pathds))} H 999 V 999 Z"/>
+  </clipPath>
+ </defs>
+ <circle cx="0" cy="0" r="99999" fill="#ffffff"/>
+ <g id="main">
+  <g class="nofade">
+   <g fill="#0099cc">
+    <g transform="translate(870,0)">
+     <text x="0" y="0"    dy="0.7ex">1 m</text>
+     <text x="0" y="-100" dy="0.7ex">10 m</text>
+     <text x="0" y="-200" dy="0.7ex">100 m</text>
+     <text x="0" y="-300" dy="0.7ex">1 km</text>
+     <text x="0" y="-400" dy="0.7ex">10 km</text>
+     <text x="0" y="-500" dy="0.7ex">100 km</text>
+     <text x="0" y="-600" dy="0.7ex">1 000 km</text>
+     <text x="0" y="-700" dy="0.7ex">10 000 km</text>
+     <text x="0" y="-800" dy="0.7ex">100 000 km</text>
+    </g>
+    <g transform="translate(0,20)">
+     <text x="400" y="0" dy="0.7ex">10 km</text>
+     <text x="500" y="0" dy="0.7ex">100 km</text>
+     <text x="600" y="0" dy="0.7ex">1 000 km</text>
+     <text transform="translate(700,0) scale(0.9,1)" x="0" y="0" dy="0.7ex">10 000 km</text>
+     <text transform="translate(800,0) scale(0.9,1)" x="0" y="0" dy="0.7ex">100 000 km</text>
+    </g>
+    <text x="920" y="-450" dy="0.7ex" font-style="italic">h</text>
+   </g>
+   <g fill="#666666">
+    <text x="215" y="-400" dy="0.7ex" font-style="italic">h</text>
+    <g transform="translate(260,51.6)">
+     <text x="0" y="-3"   dy="0.7ex">1 ft</text>
+     <text x="0" y="-100" dy="0.7ex">10 ft</text>
+     <text x="0" y="-200" dy="0.7ex">100 ft</text>
+     <text x="0" y="-300" dy="0.7ex">1 000 ft</text>
+     <text x="0" y="-400" dy="0.7ex">10 000 ft</text>
+     <text x="0" y="-500" dy="0.7ex">100 000 ft</text>
+     <text x="0" y="-562" dy="0.7ex">500 000 ft</text>
+    </g>
+    <g transform="translate(260,-20.665)">
+     <text x="0" y="-508" dy="0.7ex">100 mi</text>
+     <text x="0" y="-600" dy="0.7ex">1 000 mi</text>
+     <text x="0" y="-700" dy="0.7ex">10 000 mi</text>
+     <text x="0" y="-800" dy="0.7ex">100 000 mi</text>
+    </g>
+    <g transform="translate(20.665,-840)">
+     <text x="300" y="0" dy="0.7ex">1 mi</text>
+     <text x="400" y="0" dy="0.7ex">10 mi</text>
+     <text x="500" y="0" dy="0.7ex">100 mi</text>
+     <text x="600" y="0" dy="0.7ex">1 000 mi</text>
+    </g>
+   </g>
+   <g clip-path="url(#clip_metric)">
+    <use xlink:href="#grid_metric"/>
+   </g>
+   <g clip-path="url(#clip_imperial)">
+    <use xlink:href="#grid_imperial"/>
+   </g>
+  </g>
+  <use xlink:href="#legend" {out_transform_legend}/>
+{'\\n'.join(out_references)}
+{'\\n'.join(out_graphs)}''')
+
+out_p = 'width="100%" height="100%" viewBox="205 -850 728 910"'
+
+## Compile everything into an .svg file
+myself   = open(__file__, 'r').read() ## the contents of this very file
+file_out = open(__file__[:__file__.rfind('.')] + '.svg', 'w') ## *.* -> *.svg
+try: ## use try/finally so that file is closed even if write fails
+ file_out.write('''<?xml version="1.0" encoding="utf-8"?><!%s
+%s%s%s\n%s%s''' % ('-' + '-', ## because SVG comments cannot have 2 consecutive '-'s
+  myself[ : myself.find('width',myself.find('<svg'))], ## assume width specified before height/viewBox
+  out_p, ## replace SVG width/height/viewBox with {out_p} & dynamic SVG block with {outs} contents
+  myself[myself.find('>',myself.find('<svg')) : myself.find('\n',myself.find('BEGIN_'+'DYNAMIC_SVG'))],
+  '\n'.join(outs), myself[myself.rfind('\n',0,myself.find('END_'+'DYNAMIC_SVG')) : ]))
+finally:
+ file_out.close()
+
+## SVG-Python near-polyglot framework version 2 by CMG Lee (Feb 2016) -->
