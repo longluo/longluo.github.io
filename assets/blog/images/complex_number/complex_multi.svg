@@ -1,0 +1,80 @@
+<?xml version="1.0" standalone="no"?>
+<!-- Author: Ika, Date: 08/02/2015 -->
+<!-- Anyone can copy and revise this code without any copyright concern. -->
+<svg width="700" height="600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	
+	<!-- Axes. -->
+	<g style="stroke:rgb(0,0,0); stroke-width:4; stroke-linecap:round">
+		<line x1="50" y1="550" x2="50" y2="10" />
+		<line x1="50" y1="550" x2="685" y2="550" />
+	</g>
+	
+	<!-- Tics. -->
+	<g style="stroke-width:6;stroke:black;stroke-dasharray:1,9">
+		<line x1="53" y1="550" x2="53" y2="20" />
+		<line x1="50" y1="547" x2="680" y2="547" />
+	</g>
+	<g style="stroke-width:10;stroke:black;stroke-dasharray:1,99">
+		<line x1="55" y1="550" x2="55" y2="20" />
+		<line x1="50" y1="545" x2="680" y2="545" />
+	</g>
+	
+	<!-- Labels. -->
+	<text x="0" y="0" text-anchor="middle" font-size="36" >
+		<tspan x="40" y="590">0</tspan>
+		<tspan x="40" y="460">1</tspan>
+		<tspan x="40" y="360">2</tspan>
+		<tspan x="40" y="260">3</tspan>
+		<tspan x="40" y="160">4</tspan>
+		<tspan x="40" y="60">5</tspan>
+		
+		<tspan x="155" y="590">1</tspan>
+		<tspan x="255" y="590">2</tspan>
+		<tspan x="355" y="590">3</tspan>
+		<tspan x="455" y="590">4</tspan>
+		<tspan x="555" y="590">5</tspan>
+		<tspan x="655" y="590">6</tspan>
+	</text>
+	
+	<!-- 3 Triangles. -->
+	<!-- We also consider the scaling by sqrt(2) as below. -->
+	<g fill="none" stroke-opacity="0.8">
+		<polygon id="3+i" points="0,0 300,0 300,-100" />
+		<use xlink:href="#3+i" stroke="red" stroke-width="4.472" 
+			transform="translate(50,550)"/>
+		<!-- arctan 0.5 * 180 / pi = 26.565 -->
+		<!-- 2.236^2 = 5 -->
+		<use xlink:href="#3+i" stroke="grey" stroke-width="2"
+			transform="translate(50,550) rotate(-26.565) scale(2.236)"/>
+		<use xlink:href="#3+i" stroke="red" stroke-width="4.472"
+			transform="translate(50,550) rotate(-26.565)" />
+		
+		<polygon stroke="blue" stroke-width="4.472"
+			points="50,550 250,550 250,450" />
+	</g>
+	
+	<!-- 3 Arcs. -->
+	<g stroke-opacity="0.5">
+		<path id="arc" d="M120 550 a70,70 0 0,0 -3.59217,-22.136" fill="none"
+		style="stroke:red; stroke-width:2" />
+		<use xlink:href="#arc" />
+		<use xlink:href="#arc" transform="translate(50,550) rotate(-26.565) translate(-50,-550)" />
+		<path d="M150 550 a100,100 0 0,0 -10.55728,-44.72136" fill="none"
+			style="stroke:blue; stroke-width:2"/>
+	</g>
+	
+	<!-- Circles. -->
+	<g fill="black" >
+		<circle cx="250" cy="450" r="5" />
+		<circle cx="350" cy="450" r="5" />
+		<circle cx="550" cy="50" r="5" />
+	</g>
+	
+	<!-- Texts. -->
+	<g font-size="32" font-style="italic" text-anchor="middle">
+		<text x="250" y="450" dy="-30" fill="blue">2+i</text>
+		<text x="350" y="450" dx="30" dy="-10" fill="red">3+i</text>
+		<text x="550" y="50" dx="80" fill="grey">5+5i</text>
+	</g>
+
+</svg>
