@@ -221,36 +221,6 @@ GPS
   </entry>
   
   <entry>
-    <title>如何证明泰勒公式?</title>
-    <link href="https://www.longluo.me/blog/2024/02/24/taylor/"/>
-    <id>https://www.longluo.me/blog/2024/02/24/taylor/</id>
-    <published>2024-02-24T11:52:19.000Z</published>
-    <updated>2024-02-25T13:02:43.067Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong><em>By Long Luo</em></strong></p><h1 id="挖坑">挖坑</h1><p><span class="math display">\[\begin{aligned}f(x) &amp; = f(a) + f(x) - f(a) \\&amp; = f(a) + \int_a^x f'(t) \mathrm{d}t \\&amp; = f(a) - \int_a^x f'(t) \mathrm{d}(x-t) \\&amp; = f(a) - f'(t)(x - t)|_a^x - \frac12 \int_a^x f''(t)\mathrm{d}[(x-t)^2]  \\&amp; = f(a) + f'(a)(x - a) + {f''(a) \over 2}(x - a)^2 - {1\over 3!} \int_a^x f'''(t) \mathrm{d}[(x-t)]^3\end{aligned}\]</span></p><p>不断重复这一过程，可知当 f 的 n+1 阶导数连续时，有：</p><p><span class="math display">\[f(x) = \sum_{k=0}^n {f^{(k)}(a) \over k!}(x-a)^k + R_n(x)\]</span></p><p>其中积分余项 为：</p><p><span class="math display">\[R_n(x) = {1 \over n!} \int_a^x f^{(n + 1)}(t)(x - t)^n \mathrm{d}t\]</span></p><h1 id="参考文献">参考文献</h1><ol type="1"><li><a href="https://en.wikipedia.org/wiki/Taylor%27s_theorem">Taylor’stheorem</a></li><li><a href="https://en.wikipedia.org/wiki/Taylor_series">TaylorSeries</a></li><li><a href="https://betterexplained.com/articles/taylor-series/">Intuition forTaylor Series</a></li></ol>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;By Long Luo&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;h1 id=&quot;挖坑&quot;&gt;挖坑&lt;/h1&gt;
-&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
-&#92;begin{aligned}
-f(x) &amp;amp; = f(a) + f(x) -</summary>
-      
-    
-    
-    
-    <category term="Math" scheme="https://www.longluo.me/categories/Math/"/>
-    
-    
-    <category term="Math" scheme="https://www.longluo.me/tags/Math/"/>
-    
-    <category term="Taylor" scheme="https://www.longluo.me/tags/Taylor/"/>
-    
-  </entry>
-  
-  <entry>
     <title>库函数 (libm) 是如何计算三角函数值的？</title>
     <link href="https://www.longluo.me/blog/2024/02/16/sine/"/>
     <id>https://www.longluo.me/blog/2024/02/16/sine/</id>
@@ -701,20 +671,23 @@ x&#39; = x - 2k &#92;pi &#92;quad k &#92;subset &#92;mathbb{Z}
     <link href="https://www.longluo.me/blog/2023/08/21/oscillation/"/>
     <id>https://www.longluo.me/blog/2023/08/21/oscillation/</id>
     <published>2023-08-21T13:17:43.000Z</published>
-    <updated>2024-03-14T14:29:37.330Z</updated>
+    <updated>2024-06-29T09:22:00.910Z</updated>
     
-    <content type="html"><![CDATA[<p><strong><em>By Long Luo</em></strong></p><h1 id="挖坑">挖坑</h1><p><span class="math display">\[m \frac {d^2x}{dt^2} = -kx\]</span></p><p><span class="math display">\[m \frac{d^2x}{dt^2} = -k \cdot x = k \cdot A \sin \left( \omega t -\Delta \varphi \right)\]</span></p><p><span class="math display">\[m \frac{d^2x}{dt^2} + m r \frac{dx}{dt} + kx = F(t)\]</span></p><h1 id="参考文献">参考文献</h1><ol type="1"><li><a href="https://en.wikipedia.org/wiki/Oscillation">Oscillation</a></li><li><a href="https://en.wikipedia.org/wiki/Simple_harmonic_motion">Simpleharmonic motion</a></li><li><a href="https://en.wikipedia.org/wiki/Electronic_oscillator">Electronicoscillator</a></li><li><a href="https://en.wikipedia.org/wiki/Pendulum">Pendulum</a></li><li><a href="https://en.wikipedia.org/wiki/Galileo_Galilei">GalileoGalilei</a></li><li><a href="https://en.wikipedia.org/wiki/Damping">Damping</a></li></ol>]]></content>
+    <content type="html"><![CDATA[<p><strong><em>By Long Luo</em></strong></p><h1 id="挖坑">挖坑</h1><p><span class="math display">\[m \frac {d^2x}{dt^2} = -kx\]</span></p><p><span class="math display">\[m \frac{d^2x}{dt^2} = -k \cdot x = k \cdot A \sin \left( \omega t -\Delta \varphi \right)\]</span></p><p><span class="math display">\[m \frac{d^2x}{dt^2} + m r \frac{dx}{dt} + kx = F(t)\]</span></p><span id="more"></span><p>这张图是从stein书中截取，也是经典物理中简谐运动的简单模型，其中 <span class="math inline">\(m\)</span> 是物体质量， <span class="math inline">\(k\)</span>是弹力系数。根据运动牛顼运动定律和胡党定律可以得到简单的力学等式:</p><p><span class="math display">\[-k y(t)=m y^{\prime \prime}(t),\]</span></p><p>而这是一个典型的微分方程，目的是求解出 <span class="math inline">\(y(t)\)</span>，也就是物体位置和时间的关系。先做一下形式上的整理，令 <span class="math inline">\(c=\sqrt{k / m}\)</span>, 则如上等式可以写成:</p><p><span class="math display">\[y^{\prime \prime}(t)+c^2 y(t)=0 .\]</span></p><p>现在的问题是，如何求解这个微分方程?通常来说，会直接给出一个通解形式，即:</p><p><span class="math display">\[y(t)=a \cos c t+b \sin c t,\]</span></p><p>但是在这里可以給出一个有说服力的恩路。蚟如同求普通方程一样，得到的结果是一个数字。也就是说，在求解实数普通方程时，是从实数域中那无穷多个实数中找到了满足普通等式的那一个或几个数字。只不过在求解微分方程时，目标域不再是实数，而是无穷多个函数组成的函数域。那么问题来了，我们怎么知道这个函数域中有嘶些函数呢?</p><p>对于这个问题，数学家决定加上一些约束条件来帮助他们找到答宛。他们雩䤚，这个函数域中的函数都是性质良好的。在这里我特意把“希旺”和“性质良好”标注成再点。首先解䉽一下为什么“希望”如此如此雨要，这是为了强调数学工作是需要确立方向的，换句话说可能有许许多多奇奇怪怪的函数都能满足这个微分方程，但是数学家们只想关注那些性质良好的（在你求解一些普通方程时，是否胺海中也浮现过，要是答案是数数就好了这样的常望？）。第二要解释</p><p><span class="math display">\[f(x)=a_0+a_1 x+a_2 x^2+\cdots\]</span></p><p>这样的函数之所以性质良好，一是可以无限次求导且求导方便，而来求其数值解也非常简单，回到正题，也就是说，数学家们现在要解决的问题是，是否存在一个函数能满足那个微分方程，同时它还具有多项式的形式?此时问题已经变成清析了很多。</p><p>那么该如何解决这个问题呢? 思路也是简单的，那就是反向思维.如果一个多项式能满足这个微分方程等式，那么会出现什么情况呢?</p><p>不妨假设 <span class="math inline">\(f(x)=a_0+a_1 x+a_2x^2+\cdots\)</span> 就是微分方程的解，那么带入其中会发现:</p><p><span class="math display">\[\begin{gathered}f(x)=a_0+a_1 x+a_2 x^2+a_3 x^3+a_4 x^4+a_5 x^5+\cdots \\f^{\prime}(x)=a_1+2 a_2 x+3 a_3 x^2+4 a_4 x^3+5 a_5 x^4+\cdots \\f^{\prime \prime}(x)=2 a_2+3 \cdot 2 a_3 x+4 \cdot 3 a_4 x^2+5 \cdot 4a_5 x^3+\cdots\end{gathered}\]</span></p><p>要满足等式，则有 <span class="math inline">\(f^{\prime \prime}(x)+c^2f(x)=0\)</span>, 则有</p><p><span class="math display">\[\left(2 a_2+c^2 a_0\right)+\left(3 \cdot 2 a_3+c^2 a_1\right) x+\left(4\cdot 3 a_4+c^2 a_2\right) x^2+\left(5 \cdot 4 a_5+c^2 a_3\right)x^3+\cdots=0\]</span></p><p>要使得对所有 <span class="math inline">\(x\)</span> 都使等式为 0 ,则所有项必须都为 0 , 于量就有如下结论:</p><p><span class="math display">\[\left\{\begin{array}{l}2 a_2+c^2 a_0=0 \\3 \cdot 2 a_3+c^2 a_1=0 \\4 \cdot 3 a_4+c^2 a_2=0 \\5 \cdot 4 a_5+c^2 a_3=0 \\6 \cdot 5 a_6+c^2 a_4=0 \\7 \cdot 6 a_7+c^2 a_5=0 \\\vdots\end{array}\right.\]</span></p><p>我们对如上一些列的简单等式进行求解可知: <span class="math display">\[\left\{\begin{array}{l}a_2=\frac{-c^2 a_0}{2} \\a_3=\frac{-c^2 a_1}{3 \cdot 2} \\a_4=\frac{-c^2 a_2}{4.3}=\frac{\left(-c^2\right)^2 a_0}{4!} \\a_5=\frac{-c^2 a_3}{5 \cdot 4}=\frac{\left(-c^2\right)^2 a_1}{5!} \\a_6=\frac{-c^2 a_4}{6.5}=\frac{\left(-c^2\right)^3 a_0}{6!} \\\vdots\end{array}\right.\]</span></p><p>那么 <span class="math inline">\(a_0\)</span> 和 <span class="math inline">\(a_1\)</span> 是什么呢?我们井不知道，这就是所谓的“初始条件”，从如上求解的列表可以看到这两个初始冬件始终贯穿有的系数项，那么至此我们已经求出了微分方程的一个解:<span class="math display">\[y=a_0+a_1 x+\frac{-c^2 a_0}{2} x^2+\frac{-c^2 a_1}{3!}x^3+\frac{\left(-c^2\right)^2 a_0}{4!} x^4+\frac{\left(-c^2\right)^2a_1}{5!} x^5+\frac{\left(-c^2\right)^3 a_0}{6!}x^6+\frac{\left(-c^2\right)^3 a_1}{7!}+\cdots\]</span></p><p>将指数的奇数项和偶数项分开我们会得到: <span class="math display">\[\begin{aligned}y= &amp; a_0+\frac{-c^2 a_0}{2} x^2+\frac{\left(-c^2\right)^2 a_0}{4!}x^4+\frac{\left(-c^2\right)^3 a_0}{6!} x^6+\cdots \\&amp; + \\&amp; a_1 x+\frac{-c^2 a_1}{3!} x^3+\frac{\left(-c^2\right)^2 a_1}{5!}x^5+\frac{\left(-c^2\right)^3 a_1}{7!}+\cdots\end{aligned}\]</span> <span class="math display">\[\begin{aligned}&amp; \sin x-x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots+(-1)^n \frac{x^{2n+1}}{(2 n+1)!}+o\left(x^{2 n+2}\right) \\&amp; \cosx=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\cdots+(-1)^n\frac{x^{2 n}}{(2 n)!}+o\left(x^{2 n+1}\right)_1\end{aligned}\]</span></p><p>虽然他们长得还不是完全一样，不过我们可以做一些整理： <span class="math display">\[\begin{aligned}y= &amp; a_0\left(1-\frac{(c x)^2}{2}+\frac{(c x)^4}{4!}-\frac{(cx)^6}{6!}+\cdots\right) \\&amp; + \\&amp; \frac{a_1}{c}\left(c x-\frac{(c x)^3}{3!}+\frac{(cx)^5}{5!}-\frac{(c x)^7}{7!}+\cdots\right) \\= &amp; a_0 \sin (c x)+\frac{a_1}{c} \cos (c x)\end{aligned}\]</span></p><p>至此我们觫释了为何一开始的那个简谐运动的微分方程的通解长这个形式，可以坧到这个推理的过程比较䑤珖，这也是为何直接记住结论的原因，但是一旦弄清祾其原理，会对倩里叶分析更深刻的理解和认知打下基础。</p><h1 id="参考文献">参考文献</h1><ol type="1"><li><a href="https://en.wikipedia.org/wiki/Oscillation">Oscillation</a></li><li><a href="https://en.wikipedia.org/wiki/Simple_harmonic_motion">Simpleharmonic motion</a></li><li><a href="https://en.wikipedia.org/wiki/Electronic_oscillator">Electronicoscillator</a></li><li><a href="https://en.wikipedia.org/wiki/Pendulum">Pendulum</a></li><li><a href="https://en.wikipedia.org/wiki/Galileo_Galilei">GalileoGalilei</a></li><li><a href="https://en.wikipedia.org/wiki/Damping">Damping</a></li></ol>]]></content>
     
     
-      
-      
     <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;By Long Luo&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;h1 id=&quot;挖坑&quot;&gt;挖坑&lt;/h1&gt;
 &lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
 m &#92;frac {d^2x}{dt^2} = -kx
 &#92;]&lt;/span&gt;&lt;/p&gt;
-&lt;</summary>
-      
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
+m &#92;frac{d^2x}{dt^2} = -k &#92;cdot x = k &#92;cdot A &#92;sin &#92;left( &#92;omega t -
+&#92;Delta &#92;varphi &#92;right)
+&#92;]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
+m &#92;frac{d^2x}{dt^2} + m r &#92;frac{dx}{dt} + kx = F(t)
+&#92;]&lt;/span&gt;&lt;/p&gt;</summary>
     
     
     
@@ -832,6 +805,50 @@ J(&#92;theta) = &#92;frac{1}{2m} &#92;sum_{i = 1}^{m} (h_{&#92;theta} (x_i) - y_
     <category term="AI" scheme="https://www.longluo.me/tags/AI/"/>
     
     <category term="Gradient Descent" scheme="https://www.longluo.me/tags/Gradient-Descent/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>发生在计算机内存里的进化：解密遗传算法(Genetic Algorithm)</title>
+    <link href="https://www.longluo.me/blog/2023/06/12/genetic-algorithm/"/>
+    <id>https://www.longluo.me/blog/2023/06/12/genetic-algorithm/</id>
+    <published>2023-06-12T00:32:31.000Z</published>
+    <updated>2023-11-14T14:24:40.448Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong><em>By Long Luo</em></strong></p><h1 id="这篇文章部分内容还在优化demo-还在继续开发大概还需要-7---8-小时写作时间">这篇文章部分内容还在优化，Demo还在继续开发，大概还需要 7 - 8 小时写作时间。</h1><p>无限猴子定理（英语：Infinite monkey theorem）</p><p>让一只猴子在打字机上随机地按键，当按键时间达到无穷时，几乎必然能够打出任何给定的文字，比如莎士比亚的全套著作。</p><p>在这里，几乎必然是一个有特定含义的数学术语，“猴子”也不是一只真正意义上的猴子，它被用来比喻成一个可以产生无限随机字母序列的抽象设备。这个理论说明把一个很大但有限的数看成无限的推论是错误的。猴子精确地通过键盘敲打出一部完整的作品比如说莎士比亚的哈姆雷特，在宇宙的生命周期中发生的概率也是极其低的，但并不是零。</p><p>遗传算法(Genetic Algorithm) <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>是一种元启发式搜索和优化技术，借鉴了生物进化中的自然选择和遗传机制。它已经在各个领域展示出了强大的应用潜力。本文将介绍遗传算法的发展历史、原理、示例，以及其广泛应用和不足之处。</p><h1 id="发展历史">发展历史</h1><p>遗传算法的发展可以追溯到上世纪60年代的约翰·荷兰德（JohnHolland）和他的同事们的工作。他们首先提出了基因型与表现型之间的映射关系，并通过模拟生物进化过程来解决复杂的优化问题。</p><h1 id="原理">原理</h1><p>遗传算法的核心原理是模拟自然进化的过程。它通过定义适应度函数来评估候选解的质量，并利用遗传操作（选择、交叉和变异）对候选解进行迭代改进。具体而言，算法从一个初始种群开始，通过选择适应度较高的个体作为父代，进行交叉和变异操作产生新的后代个体，然后通过评估适应度来选择出下一代个体。这个过程不断迭代，直到找到满足特定条件的优秀解。</p><p>It’s never too late</p><h1 id="举个例子">举个例子</h1><p>目前参考网络资源写了一个简单的Demo，地址：http://longluo.me/projects/genetic</p><p>这个例子还有待完善！</p><p><a href="http://longluo.me/projects/genetic"><img src="https://user-images.githubusercontent.com/3395062/247012809-febec500-50dd-4d52-a6f6-d5b86aba4132.png" alt="Genetic Algorithm"></a></p><span id="more"></span><h1 id="应用领域">应用领域</h1><p>遗传算法在各个领域都有广泛的应用。它被用于优化问题、机器学习、数据挖掘、调度问题等。例如，在工程设计中，可以使用遗传算法来优化设计参数，以获得更好的性能。在人工智能领域，遗传算法被用于训练神经网络的参数。</p><h1 id="todos">ToDos</h1><ul><li>利用遗传算法优化 <a href="http://www.longluo.me/blog/2023/05/05/pid/">PID</a> ，自动调谐 PID参数，目前开发中…</li><li>利用遗传算法应用于 <a href="http://www.longluo.me/blog/2023/03/03/Neutral-Network/">机器学习</a>，目前还在开发中…</li></ul><h1 id="缺点">缺点</h1><p>遗传算法在应用中存在一些缺点，但可以采取一些方法来规避这些问题。以下是一些常见的遗传算法缺点及其应对措施的例子：</p><p>可能陷入局部最优解：由于遗传算法的随机性质，可能导致算法收敛到局部最优解而无法达到全局最优解。为了规避这个问题，可以采用以下方法：</p><p>多次运行算法：运行遗传算法的多个独立实例，以增加搜索空间的探索性。引入多样性维护机制：通过保留一部分较差个体、增加变异操作的概率或引入新的个体，以增加种群的多样性，避免过早陷入局部最优解。计算复杂度高：遗传算法需要进行大量的计算和评估操作，导致计算复杂度较高。为了降低计算成本，可以尝试以下方法：</p><p>优化评估函数：通过对评估函数进行优化，减少计算成本。使用近似算法：在某些情况下，可以使用近似算法或启发式方法来加速计算过程，以减少计算复杂度。参数选择困难：遗传算法中的参数选择对算法的性能和效果至关重要。不正确的参数选择可能导致算法效果不佳。为了解决这个问题，可以采取以下措施：</p><p>参数调优：通过实验和测试，调整算法的参数，以找到最佳的参数组合。自适应参数调整：引入自适应机制，根据问题的特性和算法的表现，动态调整参数值。举例来说，假设有一个优化问题，需要找到一个函数的最小值。遗传算法被用来解决这个问题，但在初步运行中发现算法很容易陷入局部最优解。为了规避这个问题，可以采取多次运行算法的方法，每次使用不同的初始种群和随机数种子，以增加搜索空间的覆盖度，从而更有可能找到全局最优解。</p><p>另外，遗传算法在每一代选择操作时都会考虑适应度函数的评估，这可能导致计算复杂度的增加。为了降低计算成本，可以对适应度函数进行优化，使用更高效的算法或数据结构进行计算。同时，可以利用并行计算或分布式计算的方法，提高算法的计算效率。</p><p>总之，通过合理的方法和技巧，可以规避遗传算法的一些缺点，并提高算法的效率和性能。根据具体的问题和应用场景，选择适当的策略和方法来克服遗传算法的局限性。</p><h1 id="总结">总结</h1><p>综上所述，遗传算法作为一种强大的优化技术，在解决复杂问题和优化搜索中具有广泛的应用。通过模拟生物进化的机制，它能够发现优秀的解决方案。然而，它也面临局部最优解和计算复杂度高的挑战。随着计算能力和算法改进的不断提升，遗传算法在未来将继续发挥重要作用，并为各个领域的问题提供创新解决方案。</p><h1 id="参考文献">参考文献</h1><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><hr><ol><li id="fn1"><p><a href="https://en.wikipedia.org/wiki/George_Gamow">George Gamow</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li></ol></section>]]></content>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;By Long Luo&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;这篇文章部分内容还在优化demo-还在继续开发大概还需要-7---8-小时写作时间&quot;&gt;这篇文章部分内容还在优化，Demo
+还在继续开发，大概还需要 7 - 8 小时写作时间。&lt;/h1&gt;
+&lt;p&gt;无限猴子定理（英语：Infinite monkey theorem）&lt;/p&gt;
+&lt;p&gt;让一只猴子在打字机上随机地按键，当按键时间达到无穷时，几乎必然能够打出任何给定的文字，比如莎士比亚的全套著作。&lt;/p&gt;
+&lt;p&gt;在这里，几乎必然是一个有特定含义的数学术语，“猴子”也不是一只真正意义上的猴子，它被用来比喻成一个可以产生无限随机字母序列的抽象设备。这个理论说明把一个很大但有限的数看成无限的推论是错误的。猴子精确地通过键盘敲打出一部完整的作品比如说莎士比亚的哈姆雷特，在宇宙的生命周期中发生的概率也是极其低的，但并不是零。&lt;/p&gt;
+&lt;p&gt;遗传算法(Genetic Algorithm) &lt;a href=&quot;#fn1&quot; class=&quot;footnote-ref&quot; id=&quot;fnref1&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;
+是一种元启发式搜索和优化技术，借鉴了生物进化中的自然选择和遗传机制。它已经在各个领域展示出了强大的应用潜力。本文将介绍遗传算法的发展历史、原理、示例，以及其广泛应用和不足之处。&lt;/p&gt;
+&lt;h1 id=&quot;发展历史&quot;&gt;发展历史&lt;/h1&gt;
+&lt;p&gt;遗传算法的发展可以追溯到上世纪60年代的约翰·荷兰德（John
+Holland）和他的同事们的工作。他们首先提出了基因型与表现型之间的映射关系，并通过模拟生物进化过程来解决复杂的优化问题。&lt;/p&gt;
+&lt;h1 id=&quot;原理&quot;&gt;原理&lt;/h1&gt;
+&lt;p&gt;遗传算法的核心原理是模拟自然进化的过程。它通过定义适应度函数来评估候选解的质量，并利用遗传操作（选择、交叉和变异）对候选解进行迭代改进。具体而言，算法从一个初始种群开始，通过选择适应度较高的个体作为父代，进行交叉和变异操作产生新的后代个体，然后通过评估适应度来选择出下一代个体。这个过程不断迭代，直到找到满足特定条件的优秀解。&lt;/p&gt;
+&lt;p&gt;It’s never too late&lt;/p&gt;
+&lt;h1 id=&quot;举个例子&quot;&gt;举个例子&lt;/h1&gt;
+&lt;p&gt;目前参考网络资源写了一个简单的Demo，地址：http://longluo.me/projects/genetic&lt;/p&gt;
+&lt;p&gt;这个例子还有待完善！&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://longluo.me/projects/genetic&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/3395062/247012809-febec500-50dd-4d52-a6f6-d5b86aba4132.png&quot; alt=&quot;Genetic Algorithm&quot;&gt;&lt;/a&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Math" scheme="https://www.longluo.me/categories/Math/"/>
+    
+    
+    <category term="Math" scheme="https://www.longluo.me/tags/Math/"/>
+    
+    <category term="Algorithm" scheme="https://www.longluo.me/tags/Algorithm/"/>
+    
+    <category term="Genetic Algorithm" scheme="https://www.longluo.me/tags/Genetic-Algorithm/"/>
+    
+    <category term="AI" scheme="https://www.longluo.me/tags/AI/"/>
     
   </entry>
   
