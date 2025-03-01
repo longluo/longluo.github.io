@@ -35,6 +35,8 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 友链,
 
 [谢益辉](https://yihui.org/)
 
+[陶哲轩 Terence Tao](https://terrytao.wordpress.com/)
+
 
 
 
