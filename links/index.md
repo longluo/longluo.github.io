@@ -66,4 +66,8 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [木鸟杂记](https://www.qtmuniao.com/)
 
+[PRIN BLOG](https://prinsss.github.io/)
+
+[Xinsenz茶話](https://xinsenz.com/) 
+
 
