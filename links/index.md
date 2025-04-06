@@ -60,14 +60,18 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [谢益辉](https://yihui.org/)
 
-[且听书吟](https://yufan.me/)
+[且听书吟](https://yufan.me/) 诗与梦想的远方
 
 [胡涂说](https://hutusi.com/)
 
 [木鸟杂记](https://www.qtmuniao.com/)
 
-[PRIN BLOG](https://prinsss.github.io/)
+[PRIN BLOG](https://prinsss.github.io/) 半吊子全栈开发者的日常
 
-[Xinsenz茶話](https://xinsenz.com/) 
+[Xinsenz茶話](https://xinsenz.com/) 树下呷茶，酒好花新。
+
+[Finisky Garden](https://finisky.github.io/) 互联网技术那些事儿
+
+
 
 
