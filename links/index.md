@@ -76,5 +76,6 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [程志辉博客](https://www.qqzmly.com) 我这个人走的很慢，但我从不后退。
 
+[菲兹克斯喵](https://physnya.top) Eclipse first, the rest nowhere.
 
 
