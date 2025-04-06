@@ -43,11 +43,11 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 # 博客信息
 
 ```txt
-1. 博客名称：LongLuo's Life Notes
-2. 博客简介：每一天都是奇迹
-3. 博客网址：https://www.longluo.me
-4. 博客 Logo：https://longluo.me/assets/logo/favicon-32x32.png
-5. 博客 Banner：https://longluo.me/assets/banner/physics-banner-1200x450.jpg
+博客名称：LongLuo's Life Notes
+博客简介：每一天都是奇迹
+博客网址：https://www.longluo.me
+博客 Logo：https://longluo.me/assets/logo/favicon-32x32.png
+博客 Banner：https://longluo.me/assets/banner/physics-banner-1200x450.jpg
 ```
 
 # 友情链接
@@ -72,6 +72,9 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [Finisky Garden](https://finisky.github.io/) 互联网技术那些事儿
 
+[严振杰](https://www.yanzhenjie.com) 严振杰的个人网站
+
+[程志辉博客](https://www.qqzmly.com) 我这个人走的很慢，但我从不后退。
 
 
 
