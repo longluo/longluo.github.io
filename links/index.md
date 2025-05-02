@@ -80,6 +80,12 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [菲兹克斯喵](https://physnya.top) Eclipse first, the rest nowhere.
 
-[Weichky’s Blog](https://blog.weichky.com) 物不可穷也，故受之以未济。
+[Weichky's Blog](https://blog.weichky.com) 物不可穷也，故受之以未济。
+
+[383494's Blog](https://www.cnblogs.com/x383494) 
+
+
+
+
 
 
