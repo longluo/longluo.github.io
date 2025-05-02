@@ -25,7 +25,7 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 在快速消费的内容洪流之外，我们仍愿意用这样的方式，慢慢地、温柔地，把世界连接起来。
 
 
-# 友链交换申请
+## 友链交换申请
 
 如果你也像我一样，依然在这个快节奏、重算法的互联网世界里，固执地维护着一座属于自己的小小岛屿，那么——欢迎来和我交换一条友链。
 
@@ -40,7 +40,7 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 友链，不只是交换链接，更是某种遥远但坚定的握手。我们不在同一片大陆，但都相信：文字可以跨越时空，链接起彼此心中的灯火。
 
 
-# 博客信息
+## 博客信息
 
 ```txt
 博客名称：LongLuo's Life Notes
@@ -50,7 +50,7 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 博客 Banner：https://longluo.me/assets/banner/physics-banner-1200x450.jpg
 ```
 
-# 友情链接
+## 友情链接
 
 以下排名不分先后！
 
@@ -83,8 +83,6 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 [Weichky's Blog](https://blog.weichky.com) 物不可穷也，故受之以未济。
 
 [383494's Blog](https://www.cnblogs.com/x383494) 
-
-
 
 
 
