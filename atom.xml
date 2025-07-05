@@ -6,7 +6,7 @@
   <link href="https://www.longluo.me/atom.xml" rel="self"/>
   
   <link href="https://www.longluo.me/"/>
-  <updated>2025-07-04T16:00:16.967Z</updated>
+  <updated>2025-07-05T03:34:09.806Z</updated>
   <id>https://www.longluo.me/</id>
   
   <author>
@@ -15,6 +15,82 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>斯特林公式(Stirling&#39;s Formula)：我一个阶乘表达式，怎么就和圆扯上关系了呢？</title>
+    <link href="https://www.longluo.me/blog/stirlings-formula/"/>
+    <id>https://www.longluo.me/blog/stirlings-formula/</id>
+    <published>2025-01-18T07:57:08.000Z</published>
+    <updated>2025-07-05T03:34:09.806Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;By Long Luo&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在科研和工程领域中，&lt;strong&gt;阶乘&lt;/strong&gt;( &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{Factorial}&#92;)&lt;/span&gt;
+)有着广泛的应用。在概率论中，阶乘是计算排列( &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{Permutation}&#92;)&lt;/span&gt; )和组合( &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{Combination}&#92;)&lt;/span&gt;
+)时不可或缺的；在物理中，计算粒子系统的状态数以及大型系统的统计分布都要用到阶乘；在计算机中，阶乘则用于图论和组合优化问题。&lt;/p&gt;
+&lt;p&gt;大家都知道“指数爆炸”这个值，因为指数增长是非常迅猛的。其实阶乘增长要远远快于指数增长，如下图
+1 所示为不同算法复杂度增长情况。随着 &lt;span class=&quot;math inline&quot;&gt;&#92;(n&#92;)&lt;/span&gt;
+的增大，阶乘的计算复杂度迅速上升，当处理大 &lt;span class=&quot;math inline&quot;&gt;&#92;(n&#92;)&lt;/span&gt; 时，计算 &lt;span class=&quot;math inline&quot;&gt;&#92;(n!&#92;)&lt;/span&gt; 会变得极其复杂且耗时。例如 &lt;span class=&quot;math inline&quot;&gt;&#92;(5! = 120&#92;)&lt;/span&gt; ，而 &lt;span class=&quot;math inline&quot;&gt;&#92;(50! &#92;approx 3.04 &#92;times 10^{64}&#92;)&lt;/span&gt;
+，这已经是一个非常庞大的数字！如果直接使用递归方法去求解 &lt;span class=&quot;math inline&quot;&gt;&#92;(n!&#92;)&lt;/span&gt; 的时间复杂度是 &lt;span class=&quot;math inline&quot;&gt;&#92;(O(2^n)&#92;)&lt;/span&gt; ，使用动态规划也只能降低到 &lt;span class=&quot;math inline&quot;&gt;&#92;(O(n)&#92;)&lt;/span&gt;
+。在实际应用中，往往需要计算大数的阶乘，即使目前最先进的计算机去处理极大数的阶乘时，也会面临需要巨大的计算及存储资源消耗问题。&lt;/p&gt;
+&lt;figure&gt;
+&lt;img src=&quot;https://www.longluo.me/assets/blog/images/time-complexity/comparison-computational-complexity.svg&quot; title=&quot;Time Complexity Comparison&quot; alt=&quot;图1. 不同算法时间复杂度 Time Complexity Comparison&quot;&gt;
+&lt;figcaption aria-hidden=&quot;true&quot;&gt;图1. 不同算法时间复杂度 Time Complexity
+Comparison&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;人们迫切需要找到一种可以快速计算阶乘的方法，在 18
+世纪初期，苏格兰数学家詹姆斯·斯特林( &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{James Stirling}&#92;)&lt;/span&gt; )提出了斯特林公式
+。斯特林公式( &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{Stirling&#39;s
+Approximation}&#92;)&lt;/span&gt; )提供了一种近似计算阶乘的方法，特别适用于大
+&lt;span class=&quot;math inline&quot;&gt;&#92;(n&#92;)&lt;/span&gt; 的情况，其标准形式为：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
+n! &#92;approx {&#92;sqrt {2&#92;pi n}} &#92;,&#92;left( {&#92;frac {n}{e}} &#92;right
+)^n    &#92;tag{1.1} &#92;label{1.1}
+&#92;]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;其对数形式为：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
+&#92;ln (n!) &#92;approx n &#92;ln n - n
+&#92;]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这个公式最早是亚伯拉罕·棣莫弗( &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{Abraham de Moivre}&#92;)&lt;/span&gt;
+)在研究二项分布时，为了解决大数阶乘问题时发现的，其形式为：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
+n! &#92;approx C n^{n + &#92;frac {1}{2}}e^{-n}    &#92;tag{1.2} &#92;label{1.2}
+&#92;]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;其中 &lt;span class=&quot;math inline&quot;&gt;&#92;(C&#92;)&lt;/span&gt;
+为某个常量值，斯特林证明了公式中 &lt;span class=&quot;math inline&quot;&gt;&#92;(C = &#92;sqrt
+{2 &#92;pi}&#92;)&lt;/span&gt; ，于是冠名权就给了斯特林。&lt;/p&gt;
+&lt;p&gt;斯特林公式可以大大简化阶乘的计算，特别是当 &lt;span class=&quot;math inline&quot;&gt;&#92;(n&#92;)&lt;/span&gt;
+很大时，它提供了一个非常精确的近似值。斯特林公式使得复杂的阶乘计算可以通过较为简单的幂函数、指数函数和根号运算来完成。相比于直接计算阶乘，它极大地减少了计算量，是大数问题中不可或缺的工具。&lt;/p&gt;
+&lt;p&gt;斯特林公式中集合了圆周率 &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;pi&#92;)&lt;/span&gt;
+和自然常数 &lt;span class=&quot;math inline&quot;&gt;&#92;(e&#92;)&lt;/span&gt; ，这 &lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt;
+个数学中最重要的常数，十分独特且具有美感。因为 &lt;span class=&quot;math inline&quot;&gt;&#92;(e&#92;)&lt;/span&gt;
+意味着&lt;strong&gt;连续增长&lt;/strong&gt;，而阶乘就是连续自然数的相乘。而出现
+&lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;pi&#92;)&lt;/span&gt; 的时候，就要问自己 “Where is
+the circle?”，那么阶乘是如何和几何中的圆扯上关系了呢？&lt;/p&gt;
+&lt;p&gt;关于斯特拉公式的证明，常见的证明是对数形式的证明或者利用伽马函数(
+&lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{Gamma Function}&#92;)&lt;/span&gt;
+)来证明，这里将介绍一种从零开始更易理解的推导方式。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Math" scheme="https://www.longluo.me/categories/Math/"/>
+    
+    
+    <category term="Math" scheme="https://www.longluo.me/tags/Math/"/>
+    
+    <category term="Analysis" scheme="https://www.longluo.me/tags/Analysis/"/>
+    
+    <category term="Circle" scheme="https://www.longluo.me/tags/Circle/"/>
+    
+    <category term="Factorial" scheme="https://www.longluo.me/tags/Factorial/"/>
+    
+    <category term="Proof" scheme="https://www.longluo.me/tags/Proof/"/>
+    
+    <category term="Asymptotics" scheme="https://www.longluo.me/tags/Asymptotics/"/>
+    
+    <category term="Stirling&#39;s Approximation" scheme="https://www.longluo.me/tags/Stirling-s-Approximation/"/>
+    
+  </entry>
   
   <entry>
     <title>我爱做题：2010年江西高考理科数学压轴题</title>
@@ -993,51 +1069,6 @@ Strassen 算法&lt;/a&gt;
     <category term="CORDIC" scheme="https://www.longluo.me/tags/CORDIC/"/>
     
     <category term="Trigonometry" scheme="https://www.longluo.me/tags/Trigonometry/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>墨卡托的魔术：地图是如何欺骗你的眼睛的？</title>
-    <link href="https://www.longluo.me/blog/the-mercator-projection/"/>
-    <id>https://www.longluo.me/blog/the-mercator-projection/</id>
-    <published>2023-05-20T02:43:35.000Z</published>
-    <updated>2025-05-02T07:36:13.372Z</updated>
-    
-    
-    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;By Long Luo&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;最近在书店里看到一本 &lt;a href=&quot;https://book.douban.com/subject/35548116/&quot;&gt;《数学的奥秘》&lt;/a&gt;
-，原著是 《The Secret Life of Equations: The 50 Greatest Equations and
-How They Work》
-，讲的是最伟大的数学方程式起源、构成、含义和应用。书的内容并不多，我看了其中的一部分，里面有讲
-墨卡托投影( &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{Mercator
-projection}&#92;)&lt;/span&gt; )&lt;a href=&quot;#fn1&quot; class=&quot;footnote-ref&quot; id=&quot;fnref1&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; 。&lt;/p&gt;
-&lt;p&gt;我对地理和地图一直很感兴趣，但之前对原理一直一知半解的，只知道我们常见的地图都是墨卡托投影，由墨卡托(
-&lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{Gerardus Mercator}&#92;)&lt;/span&gt; )&lt;a href=&quot;#fn2&quot; class=&quot;footnote-ref&quot; id=&quot;fnref2&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt; 在
-1569年创立。但墨卡托投影的原理是什么却并不清楚。书里面只有几页，但具体公式缺乏说明及推导过程，所以这几天通过查找资料掌握了墨卡托投影的原理。&lt;/p&gt;
-&lt;h2 id=&quot;如何绘制地图&quot;&gt;如何绘制地图？&lt;/h2&gt;
-&lt;p&gt;在大航海时代，航海家可以通过六分仪和观察日月星辰获取到经纬度，但在茫茫大海中迷失方向是很可怕的事情，如何才能正确的航行到目的地呢？&lt;/p&gt;
-&lt;p&gt;地球由于自转是一个两极比赤道略短的扁球体，但扁率约为 &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;dfrac {1}{300}&#92;)&lt;/span&gt;
-，非常之低，因为可以视为球体。因为&lt;strong&gt;球面不是可展曲面&lt;/strong&gt;，也就是如果展成平面的话，长度会发生形变，所以也会形变。因为根据高斯绝妙定理
-( &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;textit{Theorema Egregium}&#92;)&lt;/span&gt; )&lt;a href=&quot;#fn3&quot; class=&quot;footnote-ref&quot; id=&quot;fnref3&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;3&lt;/sup&gt;&lt;/a&gt; ，平面的高斯曲率为 &lt;span class=&quot;math inline&quot;&gt;&#92;(0&#92;)&lt;/span&gt; ，而球面的高斯曲率为 &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;dfrac {1}{R^2}&#92;)&lt;/span&gt; ，其中 &lt;span class=&quot;math inline&quot;&gt;&#92;(R&#92;)&lt;/span&gt;
-为球面半径，所以在保持图形完整性前提下，将球面转化为平面，投影后得到的经纬线网形状必然会产生变形，也就是说，在投影的过程中，变形是必然存在的。&lt;/p&gt;
-&lt;p&gt;在这种情况下，墨卡托运用&lt;strong&gt;等角圆柱投影法&lt;/strong&gt;绘制了航海图，极大地方便了航海家。有了墨卡托海图，航海家想要到达某个目的地，只需要在出发点和目的地之间连一条直线，量出这条航线和经线的夹角，按照航行路线就能到达目的地。&lt;/p&gt;
-&lt;figure&gt;
-&lt;img src=&quot;https://www.longluo.me/assets/blog/images/map/earth-map-mercator.jpg&quot; alt=&quot;图1. 地图的墨卡托投影&quot;&gt;
-&lt;figcaption aria-hidden=&quot;true&quot;&gt;图1. 地图的墨卡托投影&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;h2 id=&quot;什么是墨卡托投影&quot;&gt;什么是墨卡托投影？&lt;/h2&gt;
-&lt;p&gt;设想将地球置于在一中空的圆柱里，如下图所示，其基准纬线（赤道）与圆柱相切。再设想地球中心处放置一灯泡，那么从球心处发射的光线会把球面上的图形投影到圆柱体上，之后再将把圆柱体展开，那么就可以得到一张墨卡托投影绘制出的地图。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Math" scheme="https://www.longluo.me/categories/Math/"/>
-    
-    
-    <category term="Math" scheme="https://www.longluo.me/tags/Math/"/>
-    
-    <category term="Map" scheme="https://www.longluo.me/tags/Map/"/>
-    
-    <category term="Mercator Projection" scheme="https://www.longluo.me/tags/Mercator-Projection/"/>
     
   </entry>
   
