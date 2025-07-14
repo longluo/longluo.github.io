@@ -60,9 +60,13 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [陶哲轩 Terence Tao](https://terrytao.wordpress.com/)
 
-[伊洪老师](https://yihong.run/)
-
 [谢益辉](https://yihui.org/)
+
+[伊洪老师](https://yihui.org/)
+
+[霍炬老师](https://jhuo.ca/)
+
+[宝玉老师](https://baoyu.io/)
 
 [且听书吟](https://yufan.me/) 诗与梦想的远方
 
