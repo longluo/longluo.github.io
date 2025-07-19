@@ -92,6 +92,4 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [PhilFan](https://www.philfan.cn/)
 
-[羡渔笔记](https://saltfish.vip/)
-
 
