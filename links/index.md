@@ -92,4 +92,7 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [PhilFan](https://www.philfan.cn/)
 
+[独元殇](https://www.ccgxk.com) 月光刚好，你在仰望，我们一起仰望。
+
+[f2h2h1's blog](https://f2h2h1.github.io/) 合抱之木，生于毫末
 
