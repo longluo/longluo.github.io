@@ -74,6 +74,8 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [木鸟杂记](https://www.qtmuniao.com/)
 
+[David Feng](https://davidfeng.us/zh-cn/)
+
 [PRIN BLOG](https://prinsss.github.io/) 半吊子全栈开发者的日常
 
 [Xinsenz茶話](https://xinsenz.com/) 树下呷茶，酒好花新。
