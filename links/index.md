@@ -98,3 +98,7 @@ keywords: Internet, Blog, Blogger, Website, Friends, Links, 博客, 个人网站
 
 [f2h2h1's blog](https://f2h2h1.github.io/) 合抱之木，生于毫末
 
+[博客之家](https://www.perass.com/)
+
+[十年之约](https://www.foreverblog.cn/)
+
