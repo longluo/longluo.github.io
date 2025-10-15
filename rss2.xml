@@ -15,8 +15,90 @@
     <atom:link href="https://www.longluo.me/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>A Curious Engineer</description>
-    <pubDate>Thu, 09 Oct 2025 10:54:57 GMT</pubDate>
+    <pubDate>Wed, 15 Oct 2025 16:21:48 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>扔几个骰子，怎么算出期望？——拼多多校招笔试算法题的数学故事</title>
+      <link>https://www.longluo.me/blog/pinduoduo-2020-campus-recruitment-coding-problems-expected-value-of-dice/</link>
+      <guid>https://www.longluo.me/blog/pinduoduo-2020-campus-recruitment-coding-problems-expected-value-of-dice/</guid>
+      <pubDate>Sat, 01 Feb 2025 02:12:03 GMT</pubDate>
+      
+      <description>&lt;p&gt;&lt;strong&gt;&lt;em&gt;By Long Luo&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;在上一篇文章我们剖析了 &lt;a href=&quot;https://www.longluo.me/blog/pinduoduo-2020-campus-recruitment-coding-problems-magic-boxes/&quot;&gt;拼多多
+2020 年校招笔试算法题中第一题: 多多的魔术盒子&lt;/a&gt; ，今天来挑战下其中的第
+4 题：骰子期望 &lt;a href=&quot;#fn1&quot; class=&quot;footnote-ref&quot; id=&quot;fnref1&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt; ，题目如下：&lt;/p&gt;
+&lt;div class=&quot;note info&quot;&gt;&lt;h2 id=&quot;骰子期望&quot;&gt;骰子期望&lt;/h2&gt;
+&lt;p&gt;扔 &lt;span class=&quot;math inline&quot;&gt;&#92;(n&#92;)&lt;/span&gt; 个骰子，第 &lt;span class=&quot;math inline&quot;&gt;&#92;(i&#92;)&lt;/span&gt; 个骰子有可能投掷出 &lt;span class=&quot;math inline&quot;&gt;&#92;(X_i&#92;)&lt;/span&gt; 种等概率的不同的结果，数字从 &lt;span class=&quot;math inline&quot;&gt;&#92;(1&#92;)&lt;/span&gt; 到 &lt;span class=&quot;math inline&quot;&gt;&#92;(X_i&#92;)&lt;/span&gt;
+。所有骰子的结果的最大值将作为最终结果。求最终结果的期望。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;输入描述:
+&lt;ul&gt;
+&lt;li&gt;第一行一个整数 &lt;span class=&quot;math inline&quot;&gt;&#92;(n&#92;)&lt;/span&gt; ，表示有 &lt;span class=&quot;math inline&quot;&gt;&#92;(n&#92;)&lt;/span&gt; 个骰子。( &lt;span class=&quot;math inline&quot;&gt;&#92;(1
+&#92;le n &#92;le 50&#92;)&lt;/span&gt; )&lt;/li&gt;
+&lt;li&gt;第二行 &lt;span class=&quot;math inline&quot;&gt;&#92;(n&#92;)&lt;/span&gt;
+个整数，表示每个骰子的结果数 &lt;span class=&quot;math inline&quot;&gt;&#92;(X_i&#92;)&lt;/span&gt;
+。( &lt;span class=&quot;math inline&quot;&gt;&#92;(2 &#92;le X_i &#92;le 50&#92;)&lt;/span&gt; )&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;输出描述:
+&lt;ul&gt;
+&lt;li&gt;输出最终结果的期望，保留两位小数。&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;输入例子 &lt;span class=&quot;math inline&quot;&gt;&#92;(1&#92;)&lt;/span&gt; :
+&lt;ul&gt;
+&lt;li&gt;2&lt;/li&gt;
+&lt;li&gt;2 2&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;输出例子 &lt;span class=&quot;math inline&quot;&gt;&#92;(1&#92;)&lt;/span&gt; :
+&lt;ul&gt;
+&lt;li&gt;1.75&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;p&gt;要解答这道题，我们需要先从脑海里把中学数学知识捡起来，弄清楚什么是&lt;strong&gt;期望&lt;/strong&gt;
+&lt;a href=&quot;#fn2&quot; class=&quot;footnote-ref&quot; id=&quot;fnref2&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;？&lt;/p&gt;
+&lt;p&gt;在概率论和统计学中，一个离散性随机变量的数学期望是试验中每次可能的结果乘以其结果概率的总和：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&quot;math display&quot;&gt;&#92;[
+&#92;operatorname {E} [X] = &#92;sum _{i=1}^{&#92;infty }x_{i}&#92;,p_{i}
+&#92;]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;具体到这道题示例 &lt;span class=&quot;math inline&quot;&gt;&#92;(1&#92;)&lt;/span&gt; ，很明显
+&lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt; 个骰子只能取到 &lt;span class=&quot;math inline&quot;&gt;&#92;(1&#92;)&lt;/span&gt; 或者 &lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt; 个值：&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;假设这 &lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt;
+个骰子取到的最大值为 &lt;span class=&quot;math inline&quot;&gt;&#92;(1&#92;)&lt;/span&gt; ，那么这
+&lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt; 个骰子都只能选择 &lt;span class=&quot;math inline&quot;&gt;&#92;(1&#92;)&lt;/span&gt; ，概率为： &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;dfrac {1}{2} &#92;times &#92;dfrac {1}{2} = &#92;dfrac
+{1}{4}&#92;)&lt;/span&gt; ；&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;假设这 &lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt;
+个骰子取到的最大值为 &lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt; ，那么存在
+&lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt; 种可能，要么都取 &lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt; 或者 &lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt; 个骰子中有一个骰子投出了 &lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt; ，其概率为： &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;dfrac {1}{2} &#92;times &#92;dfrac {1}{2} + &#92;dfrac {1}{2}
+&#92;times 1 = &#92;dfrac {3}{4}&#92;)&lt;/span&gt; 。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;那么期望为： &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;dfrac {1}{4} &#92;times 1 +
+&#92;dfrac {3}{4} &#92;times 2 = 1.75&#92;)&lt;/span&gt; 。&lt;/p&gt;
+&lt;p&gt;对于骰子数少的时候还可以枚举，如果骰子数量很多呢？用上述方法就会遇到困难，比如有
+&lt;span class=&quot;math inline&quot;&gt;&#92;(N&#92;)&lt;/span&gt; 个骰子，最大值为 &lt;span class=&quot;math inline&quot;&gt;&#92;(M&#92;)&lt;/span&gt; ，那么骰子结果为 &lt;span class=&quot;math inline&quot;&gt;&#92;([1, 2, &#92;dots, M]&#92;)&lt;/span&gt;
+，如何计算每个结果的概率值呢？&lt;/p&gt;
+&lt;p&gt;对于单个骰子，很显然每个结果的概率均为 &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;dfrac {1}{M}&#92;)&lt;/span&gt;
+，那多个不同骰子一起呢？如何计算最终结果的概率值呢？&lt;/p&gt;</description>
+      
+      
+      
+      
+      <category domain="https://www.longluo.me/categories/Data-Structures-and-Algorithms/">Data Structures and Algorithms</category>
+      
+      
+      <category domain="https://www.longluo.me/tags/Math/">Math</category>
+      
+      <category domain="https://www.longluo.me/tags/Probability/">Probability</category>
+      
+      <category domain="https://www.longluo.me/tags/Algorithm/">Algorithm</category>
+      
+      <category domain="https://www.longluo.me/tags/Interview/">Interview</category>
+      
+      
+      <comments>https://www.longluo.me/blog/pinduoduo-2020-campus-recruitment-coding-problems-expected-value-of-dice/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>拼多多校招笔试算法题：一行公式搞定“多多的魔术盒子”</title>
@@ -1083,50 +1165,6 @@ x&#39; = x - 2k &#92;pi &#92;quad k &#92;subset &#92;mathbb{Z}
       
       
       <comments>https://www.longluo.me/blog/perspective/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>发生在计算机内存里的进化：解密遗传算法(Genetic Algorithm)</title>
-      <link>https://www.longluo.me/blog/genetic-algorithm/</link>
-      <guid>https://www.longluo.me/blog/genetic-algorithm/</guid>
-      <pubDate>Mon, 12 Jun 2023 00:32:31 GMT</pubDate>
-      
-      <description>&lt;p&gt;&lt;strong&gt;&lt;em&gt;By Long Luo&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;这篇文章部分内容还在优化，Demo 还在继续开发，大概还需要 7 - 8
-小时写作时间。&lt;/p&gt;
-&lt;p&gt;无限猴子定理（英语：Infinite monkey theorem）&lt;/p&gt;
-&lt;p&gt;让一只猴子在打字机上随机地按键，当按键时间达到无穷时，几乎必然能够打出任何给定的文字，比如莎士比亚的全套著作。&lt;/p&gt;
-&lt;p&gt;在这里，几乎必然是一个有特定含义的数学术语，“猴子”也不是一只真正意义上的猴子，它被用来比喻成一个可以产生无限随机字母序列的抽象设备。这个理论说明把一个很大但有限的数看成无限的推论是错误的。猴子精确地通过键盘敲打出一部完整的作品比如说莎士比亚的哈姆雷特，在宇宙的生命周期中发生的概率也是极其低的，但并不是零。&lt;/p&gt;
-&lt;p&gt;遗传算法(Genetic Algorithm) &lt;a href=&quot;#fn1&quot; class=&quot;footnote-ref&quot; id=&quot;fnref1&quot; role=&quot;doc-noteref&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;
-是一种元启发式搜索和优化技术，借鉴了生物进化中的自然选择和遗传机制。它已经在各个领域展示出了强大的应用潜力。本文将介绍遗传算法的发展历史、原理、示例，以及其广泛应用和不足之处。&lt;/p&gt;
-&lt;h2 id=&quot;发展历史&quot;&gt;发展历史&lt;/h2&gt;
-&lt;p&gt;遗传算法的发展可以追溯到上世纪60年代的约翰·荷兰德（John
-Holland）和他的同事们的工作。他们首先提出了基因型与表现型之间的映射关系，并通过模拟生物进化过程来解决复杂的优化问题。&lt;/p&gt;
-&lt;h2 id=&quot;原理&quot;&gt;原理&lt;/h2&gt;
-&lt;p&gt;遗传算法的核心原理是模拟自然进化的过程。它通过定义适应度函数来评估候选解的质量，并利用遗传操作（选择、交叉和变异）对候选解进行迭代改进。具体而言，算法从一个初始种群开始，通过选择适应度较高的个体作为父代，进行交叉和变异操作产生新的后代个体，然后通过评估适应度来选择出下一代个体。这个过程不断迭代，直到找到满足特定条件的优秀解。&lt;/p&gt;
-&lt;p&gt;It’s never too late&lt;/p&gt;
-&lt;h2 id=&quot;举个例子&quot;&gt;举个例子&lt;/h2&gt;
-&lt;p&gt;目前参考网络资源写了一个简单的Demo，地址：http://longluo.me/projects/genetic&lt;/p&gt;
-&lt;p&gt;这个例子还有待完善！&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://longluo.me/projects/genetic&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/3395062/247012809-febec500-50dd-4d52-a6f6-d5b86aba4132.png&quot; alt=&quot;Genetic Algorithm&quot;&gt;&lt;/a&gt;&lt;/p&gt;</description>
-      
-      
-      
-      
-      <category domain="https://www.longluo.me/categories/Math/">Math</category>
-      
-      
-      <category domain="https://www.longluo.me/tags/Math/">Math</category>
-      
-      <category domain="https://www.longluo.me/tags/Algorithm/">Algorithm</category>
-      
-      <category domain="https://www.longluo.me/tags/Genetic-Algorithm/">Genetic Algorithm</category>
-      
-      <category domain="https://www.longluo.me/tags/AI/">AI</category>
-      
-      
-      <comments>https://www.longluo.me/blog/genetic-algorithm/#disqus_thread</comments>
       
     </item>
     
