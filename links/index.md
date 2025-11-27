@@ -104,3 +104,7 @@ keywords: Internet, Blog, Blogger, SNS, Website, Friends, Links, 互联网, 博�
 
 [十年之约](https://www.foreverblog.cn/)
 
+[Under the Sun with Paddy](https://www.paddysun.top/) 理性求知，感性生活
+
+
+
