@@ -6,7 +6,7 @@
   <link href="https://www.longluo.me/atom.xml" rel="self"/>
   
   <link href="https://www.longluo.me/"/>
-  <updated>2026-06-01T14:34:54.705Z</updated>
+  <updated>2026-06-02T14:57:47.016Z</updated>
   <id>https://www.longluo.me/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.longluo.me/blog/egg-dropping-puzzle/"/>
     <id>https://www.longluo.me/blog/egg-dropping-puzzle/</id>
     <published>2026-03-06T03:38:23.000Z</published>
-    <updated>2026-06-01T14:34:54.705Z</updated>
+    <updated>2026-06-02T14:57:47.016Z</updated>
     
     
     <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;em&gt;By Long Luo&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
@@ -46,7 +46,25 @@ worst-case scenario.&lt;/p&gt;
 &lt;p&gt;如果只有 &lt;span class=&quot;math inline&quot;&gt;&#92;(1&#92;)&lt;/span&gt;
 个鸡蛋，问题解法非常简单。我们别无选择，只能从一楼开始逐层测试。用这种方法一定能找到鸡蛋安全掉落的最高楼层：该楼层就是鸡蛋摔碎楼层的下一层。&lt;/p&gt;
 &lt;p&gt;那么在最坏情况下，最少需要尝试多少次？答案就是 &lt;span class=&quot;math inline&quot;&gt;&#92;(100&#92;)&lt;/span&gt; 次。因为最坏的情况就是临界楼层为第
-&lt;span class=&quot;math inline&quot;&gt;&#92;(100&#92;)&lt;/span&gt; 层（若鸡蛋在第 &lt;span class=&quot;math inline&quot;&gt;&#92;(100&#92;)&lt;/span&gt; 层摔碎，则临界楼层为 &lt;span class=&quot;math inline&quot;&gt;&#92;(99&#92;)&lt;/span&gt; 层）。&lt;/p&gt;</summary>
+&lt;span class=&quot;math inline&quot;&gt;&#92;(100&#92;)&lt;/span&gt; 层（若鸡蛋在第 &lt;span class=&quot;math inline&quot;&gt;&#92;(100&#92;)&lt;/span&gt; 层摔碎，则临界楼层为 &lt;span class=&quot;math inline&quot;&gt;&#92;(99&#92;)&lt;/span&gt; 层）。&lt;/p&gt;
+&lt;h2 id=&quot;两个鸡蛋&quot;&gt;两个鸡蛋&lt;/h2&gt;
+&lt;p&gt;如果有 &lt;span class=&quot;math inline&quot;&gt;&#92;(2&#92;)&lt;/span&gt;
+个鸡蛋，那么问题就变得有趣起来。此时我们允许试错一次。大家很自然会想到二分查找，但在这里并不是最优方案。如果最高安全楼层是
+&lt;span class=&quot;math inline&quot;&gt;&#92;(49&#92;)&lt;/span&gt; 层。一开始就在 &lt;span class=&quot;math inline&quot;&gt;&#92;(50&#92;)&lt;/span&gt;
+层扔下第一枚鸡蛋，鸡蛋直接摔碎，之后只能逐层测试 &lt;span class=&quot;math inline&quot;&gt;&#92;(49&#92;)&lt;/span&gt; 次才能得到答案，总计尝试 &lt;span class=&quot;math inline&quot;&gt;&#92;(50&#92;)&lt;/span&gt; 次。&lt;/p&gt;
+&lt;p&gt;这种情况下，如果我们每隔 &lt;span class=&quot;math inline&quot;&gt;&#92;(10&#92;)&lt;/span&gt;
+层测试一次的话，那么依次在 &lt;span class=&quot;math inline&quot;&gt;&#92;(10, 20, 30, 40,
+50&#92;)&lt;/span&gt; 层扔鸡蛋，鸡蛋在 &lt;span class=&quot;math inline&quot;&gt;&#92;(50&#92;)&lt;/span&gt;
+层摔碎后，再逐层测试 &lt;span class=&quot;math inline&quot;&gt;&#92;(41 - 49&#92;)&lt;/span&gt;
+层即可得出答案，全程仅需 &lt;span class=&quot;math inline&quot;&gt;&#92;(14&#92;)&lt;/span&gt;
+次尝试。由此可见，每隔 &lt;span class=&quot;math inline&quot;&gt;&#92;(k&#92;)&lt;/span&gt;
+层测试一次是可行的思路。再来分析下这种策略在最坏情况下的尝试次数：最坏场景是连续跳层直到鸡蛋摔碎，之后只能用仅剩的一枚鸡蛋，在最后一段长度为
+&lt;span class=&quot;math inline&quot;&gt;&#92;(k - 1&#92;)&lt;/span&gt; 的区间内逐层排查。&lt;/p&gt;
+&lt;p&gt;那么尝试次数计算公式为：&lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;lfloor &#92;dfrac
+{100}{k} &#92;rfloor + (k - 1)&#92;)&lt;/span&gt; 。注意到 &lt;span class=&quot;math inline&quot;&gt;&#92;(&#92;dfrac {100}{k}&#92;)&lt;/span&gt; 和 &lt;span class=&quot;math inline&quot;&gt;&#92;(k - 1&#92;)&lt;/span&gt; 是此消彼长的关系，在大概 &lt;span class=&quot;math inline&quot;&gt;&#92;(k = 10&#92;)&lt;/span&gt; 左右有极值，当 &lt;span class=&quot;math inline&quot;&gt;&#92;(k = 8, 9, 10, 11, 12, 13&#92;)&lt;/span&gt;
+时，计算得到最坏尝试次数为 &lt;span class=&quot;math inline&quot;&gt;&#92;(19&#92;)&lt;/span&gt;
+次。&lt;/p&gt;
+&lt;p&gt;那这个问题的正确答案是扔多少次呢？&lt;/p&gt;</summary>
     
     
     
